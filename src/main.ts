@@ -8,11 +8,11 @@ import { ValidationPipe } from "@nestjs/common";
 import fastifyHelmet from "@fastify/helmet";
 import { ConfigService } from "@nestjs/config";
 import fastifyRateLimit from "@fastify/rate-limit";
+import path from "node:path";
+import { writeFile } from "node:fs/promises";
 
 import { AppModule } from "./app.module";
 import { name, description, version } from "../package.json";
-import path from "node:path";
-import { writeFileSync } from "node:fs";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -40,7 +40,13 @@ async function bootstrap() {
   };
 
   const outputPath = path.resolve(process.cwd(), "dist/swagger.json");
-  writeFileSync(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
+  console.log(outputPath);
+  try{
+    await writeFile(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
+  } catch (e) {
+    console.log(e);
+  }
+  // writeFileSync(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
 
   SwaggerModule.setup("docs", app, document, customOptions);
 
