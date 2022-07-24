@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.6.17](https://github.com/0-vortex/api.opensauced.pizza/compare/v1.6.16...v1.6.17) (2022-07-24)
+
+
+### 🔁 Continuous Integration
+
+* add temporary debug logging ([ba8dfbb](https://github.com/0-vortex/api.opensauced.pizza/commit/ba8dfbb397b1282adcfac50ca7c2bd95919f055b))
+
 ### [1.6.16](https://github.com/0-vortex/api.opensauced.pizza/compare/v1.6.15...v1.6.16) (2022-07-23)
 
 
