@@ -206,7 +206,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: "📦 authenticate with docr"
-        run: doctl registry login
+        run: doctl registry login --expiry-seconds 360
 
       - name: "📂 download docker artifacts"
         uses: actions/download-artifact@v2
