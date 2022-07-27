@@ -187,6 +187,38 @@ jobs:
           enable_jekyll: false
           #cname: apidocs.opensauced.pizza
 
+  digital-ocean:
+    name: Delpoy to Digital Ocean
+    needs:
+      - release
+    runs-on: ubuntu-latest
+    steps:
+      - name: "☁️ checkout repository"
+        uses: actions/checkout@v2
+
+      - name: "📦 install doctl"
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: "📦 authenticate with docr"
+        run: doctl registry login
+
+      - name: "📂 download docker artifacts"
+        uses: actions/download-artifact@v2
+        with:
+          name: docker
+          path: /tmp
+
+      - name: "📦 load tag"
+        run: |
+          TARGET=$(${{ github.base_ref }} == 'main' && 'latest' || ${{ github.base_ref }})
+          echo $TARGET
+          docker load --input /tmp/docker.tar
+          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ steps.semantic-release.outputs.release-tag }}
+          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ github.base_ref }}
+          docker image ls -a
+
   cleanup:
     name: Cleanup actions
     needs:
