@@ -40,13 +40,12 @@ async function bootstrap() {
   };
 
   const outputPath = path.resolve(process.cwd(), "dist/swagger.json");
-  console.log(outputPath);
+
   try{
     await writeFile(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
   } catch (e) {
     console.log(e);
   }
-  // writeFileSync(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
 
   SwaggerModule.setup("docs", app, document, customOptions);
 
