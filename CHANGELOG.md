@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.1](https://github.com/0-vortex/api.opensauced.pizza/compare/v1.7.0...v1.7.1) (2022-07-27)
+
+
+### 🔁 Continuous Integration
+
+* deploy developer mkdocs to github pages test ([8837b2a](https://github.com/0-vortex/api.opensauced.pizza/commit/8837b2a687b7a78a39562956d017178c39d64012))
+
 ## [1.7.0](https://github.com/0-vortex/api.opensauced.pizza/compare/v1.6.17...v1.7.0) (2022-07-27)
 
 
