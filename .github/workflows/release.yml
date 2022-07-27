@@ -168,62 +168,28 @@ jobs:
     needs:
       - release
     runs-on: ubuntu-latest
-#    services:
-#      api:
-#        image: ghcr.io/${{ github.repository }}:latest
-#        ports:
-#          - 8080:3000
-#        volumes:
-#          - api:/usr/src/app/
     steps:
       - name: "☁️ checkout repository"
         uses: actions/checkout@v2
 
-      - name: "📂 download docker artifacts"
+      - name: "📂 download artifacts"
         uses: actions/download-artifact@v2
         with:
-          name: docker
-          path: /tmp
-
-      - name: "📦 load tag"
-        run: |
-          docker load --input /tmp/docker.tar
-          docker image ls -a
+          name: dist
+          path: /home/runner/dist
 
       - name: "📂 copy artifacts"
         run: |
-          docker run -v api:/usr/src/app/ -dit ${{ github.repository }}
-          docker volume ls
+          ls -lahH /home/runner/dist
 
-          mkdir -p out
-          CID=$(docker run -d -v api:/usr/src/app/ busybox true)
-          docker volume ls
-          docker cp $CID:/usr/src/app/dist/swagger.json ./out/
-          cat swagger.json
-          cp -R ./public/rapidoc.html ./out/index.html
-
-#          docker run --rm ghcr.io/${{ github.repository }}:latest ls -lahH /usr/src/app/dist
-#          API=$(docker ps --filter id=${{ job.services.api.id }} --format '{{.Names}}')
-#          echo $API
-#          docker run --rm ${{ job.services.api.id }} ls -lahH /usr/src/app/dist
-#          docker cp $API:/usr/src/app/dist/swagger.json test.json
-#          cat test.json
-#          docker run --rm $API ls -lahH /usr/src/app/dist
-#          echo "space"
-#          docker run --rm ghcr.io/${{ github.repository }}:latest ls -lahH /usr/src/app/dist
-#          docker run --rm --volumes-from ${{ job.services.api.id }} ghcr.io/${{ github.repository }}:latest ls -lahH /usr/src/app/dist
-#          docker run --rm ${{ job.services.api.id }} ls -lahH /usr/src/app/dist
-#          ls -lahH .
-#          ls -lahH /out
-#          cat test.json
-      - name: "🚀 deploy static"
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
-          commit_message: ${{ github.event.head_commit.message }}
-          enable_jekyll: false
-          #cname: apidocs.opensauced.pizza
+#      - name: "🚀 deploy static"
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_dir: /home/runner/dist/documentation
+#          commit_message: ${{ github.event.head_commit.message }}
+#          enable_jekyll: false
+#          #cname: apidocs.opensauced.pizza
 
   cleanup:
     name: Cleanup actions
