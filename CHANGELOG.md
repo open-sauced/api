@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.3...v1.7.4) (2022-07-29)
+
+
+### 🔁 Continuous Integration
+
+* change pull request event target ([20bc1e7](https://github.com/open-sauced/api.opensauced.pizza/commit/20bc1e7d721ce0a6591f5957ce204f3deace4a40))
+
 ### [1.7.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.2...v1.7.3) (2022-07-29)
 
 
