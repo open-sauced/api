@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.2...v1.7.3) (2022-07-29)
+
+
+### 🐛 Bug Fixes
+
+* correct digital ocean docker tag based on target ([b1a67da](https://github.com/open-sauced/api.opensauced.pizza/commit/b1a67dabb5c8070aa586540a682493b121b9f841))
+
 ### [1.7.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.1...v1.7.2) (2022-07-29)
 
 
