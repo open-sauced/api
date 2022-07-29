@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.6...v1.7.7) (2022-07-29)
+
+
+### ✅ Tests
+
+* print out proper pull request target env variables ([20880c7](https://github.com/open-sauced/api.opensauced.pizza/commit/20880c76dbf87ecab06efd6d67ceec8ec7368714))
+
 ### [1.7.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.5...v1.7.6) (2022-07-29)
 
 
