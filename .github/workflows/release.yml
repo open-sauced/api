@@ -218,9 +218,11 @@ jobs:
         env:
           TARGET: ${{ github.event.pull_request.base.ref }}
           ISMAIN: ${{ github.event.pull_request.base.ref == 'main' }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$TARGET"
-          echo "ISMAIN"
+          echo "$ISMAIN"
+          echo "$GITHUB_CONTEXT"
 #          TARGET="$(${{ github.event.pull_request.base.ref == 'main'}}  && echo 'latest' || echo ${{ github.event.pull_request.base.ref }})
 #          echo $TARGET
 #          docker load --input /tmp/docker.tar
