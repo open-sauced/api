@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.5...v1.7.6) (2022-07-29)
+
+
+### 🔁 Continuous Integration
+
+* echo github context ([7adfb6b](https://github.com/open-sauced/api.opensauced.pizza/commit/7adfb6bdfd2c0ceaa246ce4056550299bc80acab))
+
 ### [1.7.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.4...v1.7.5) (2022-07-29)
 
 
