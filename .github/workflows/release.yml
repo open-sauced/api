@@ -215,21 +215,13 @@ jobs:
           path: /tmp
 
       - name: "📦 load tag"
-        env:
-          TARGET: ${{ github.ref_name }}
-          ISMAIN: ${{ github.ref_name == 'main' }}
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          echo "$TARGET"
-          echo "$ISMAIN"
-          echo "$GITHUB_CONTEXT"
-          echo ${{ github.ref_name }}
-          API="$($ISMAIN && echo 'latest' || echo $TARGET)"
-          echo $API
-#          docker load --input /tmp/docker.tar
-#          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ steps.semantic-release.outputs.release-tag }}
-#          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ github.event.pull_request.base.ref }}
-#          docker image ls -a
+          TARGET="$(${{ github.ref_name == 'main' }} && echo 'latest' || echo '${{ github.ref_name }}')"
+          echo $TARGET
+          docker load --input /tmp/docker.tar
+          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ steps.semantic-release.outputs.release-tag }}
+          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:$TARGET
+          docker image ls -a
 
   cleanup:
     name: Cleanup actions
