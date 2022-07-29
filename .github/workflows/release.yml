@@ -216,12 +216,12 @@ jobs:
 
       - name: "📦 load tag"
         run: |
-          echo "${{ github.base_ref }}"
-          TARGET="$(${{ github.event.base_ref == 'main'}}  && echo 'latest' || echo ${{ github.base_ref }})
+          echo "${{ github.event.pull_request.base.ref }}"
+          TARGET="$(${{ github.event.pull_request.base.ref == 'main'}}  && echo 'latest' || echo ${{ github.event.pull_request.base.ref }})
           echo $TARGET
           docker load --input /tmp/docker.tar
           docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ steps.semantic-release.outputs.release-tag }}
-          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ github.base_ref }}
+          docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ github.event.pull_request.base.ref }}
           docker image ls -a
 
   cleanup:
