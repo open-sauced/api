@@ -5,6 +5,22 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.1...v1.7.2) (2022-07-29)
+
+
+### 🐛 Bug Fixes
+
+* correct static domain and release clean up workflow ([a229a3b](https://github.com/open-sauced/api.opensauced.pizza/commit/a229a3b7e40d2ced0356d15eee398085771fd5fe))
+* update dependencies and list docr tags ([79bf61d](https://github.com/open-sauced/api.opensauced.pizza/commit/79bf61d1999380e3f45bdfd9b5bfe5aab691eaed))
+
+
+### 🔁 Continuous Integration
+
+* add docr push dry run ([5eddeb1](https://github.com/open-sauced/api.opensauced.pizza/commit/5eddeb1421083f8b30b7511a141fc642292ff0be))
+* add release workflow concurrency for demo purposes ([63d6a92](https://github.com/open-sauced/api.opensauced.pizza/commit/63d6a92d3df70920b6e62ae7abfb453f601b260f))
+* extend digital ocean temporary token ([d0d5ca5](https://github.com/open-sauced/api.opensauced.pizza/commit/d0d5ca5a7f45996d83da18bd1a54d9530023fb5c))
+* test bash variable environment ([e1fe498](https://github.com/open-sauced/api.opensauced.pizza/commit/e1fe4981d5dacecb4e1fe376896f808d67a5e00a))
+
 ### [1.7.1](https://github.com/0-vortex/api.opensauced.pizza/compare/v1.7.0...v1.7.1) (2022-07-27)
 
 
