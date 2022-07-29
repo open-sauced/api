@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.7...v1.7.8) (2022-07-29)
+
+
+### 🔁 Continuous Integration
+
+* correct environment variables ([6d23c24](https://github.com/open-sauced/api.opensauced.pizza/commit/6d23c246c2a69a7573865ec0ecd3ec5697553272))
+
 ### [1.7.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.6...v1.7.7) (2022-07-29)
 
 
