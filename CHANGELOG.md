@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.12...v1.8.0-beta.1) (2022-07-30)
+
+
+### 📝 Documentation
+
+* update readme badges ([17c54b9](https://github.com/open-sauced/api.opensauced.pizza/commit/17c54b91f9721158ba05d32224e5ca7edcf2a5db))
+
 ### [1.7.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.11...v1.7.12) (2022-07-30)
 
 
