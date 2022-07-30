@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.11...v1.7.12) (2022-07-30)
+
+
+### 🐛 Bug Fixes
+
+* push all tags to docr ([a9e1df6](https://github.com/open-sauced/api.opensauced.pizza/commit/a9e1df665956b500080c07db591c1b02cdd1824e))
+
 ### [1.7.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.10...v1.7.11) (2022-07-30)
 
 
