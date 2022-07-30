@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.8...v1.7.9) (2022-07-30)
+
+
+### ✅ Tests
+
+* check release job outputs ([31e4d60](https://github.com/open-sauced/api.opensauced.pizza/commit/31e4d606ce54c13a83cf4f7ddaa662d8dfe3d029))
+
 ### [1.7.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.7...v1.7.8) (2022-07-29)
 
 
