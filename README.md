@@ -6,13 +6,13 @@
 </div>
 <br>
 <p align="center">
-  <img src="https://img.shields.io/github/languages/code-size/0-vortex/open-sauced-nest-supabase-poc" alt="GitHub code size in bytes">
-  <img src="https://img.shields.io/github/commit-activity/w/0-vortex/open-sauced-nest-supabase-poc" alt="GitHub commit activity">
-  <a href="https://github.com/0-vortex/open-sauced-nest-supabase-poc/issues">
-    <img src="https://img.shields.io/github/issues/0-vortex/open-sauced-nest-supabase-poc" alt="GitHub issues">
+  <img src="https://img.shields.io/github/languages/code-size/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub code size in bytes">
+  <img src="https://img.shields.io/github/commit-activity/w/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub commit activity">
+  <a href="https://github.com/open-sauced/open-sauced-nest-supabase-poc/issues">
+    <img src="https://img.shields.io/github/issues/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub issues">
   </a>
-  <a href="https://github.com/0-vortex/open-sauced-nest-supabase-poc/releases">
-    <img src="https://img.shields.io/github/v/release/0-vortex/open-sauced-nest-supabase-poc.svg?style=flat" alt="GitHub Release">
+  <a href="https://github.com/open-sauced/open-sauced-nest-supabase-poc/releases">
+    <img src="https://img.shields.io/github/v/release/open-sauced/open-sauced-nest-supabase-poc.svg?style=flat" alt="GitHub Release">
   </a>
   <a href="https://discord.gg/U2peSNf23P">
     <img src="https://img.shields.io/discord/714698561081704529.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord">
