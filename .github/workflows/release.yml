@@ -215,9 +215,13 @@ jobs:
           path: /tmp
 
       - name: "📦 load tag"
+        env:
+          JSON: ${{ toJSON(github) }}
+          NEEDS: ${{ toJSON(needs) }}
         run: |
+          echo $JSON
+          echo $NEEDS
           TARGET="$(${{ github.ref_name == 'main' }} && echo 'latest' || echo '${{ github.ref_name }}')"
-          echo $TARGET
           docker load --input /tmp/docker.tar
           docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ steps.semantic-release.outputs.release-tag }}
           docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:$TARGET
