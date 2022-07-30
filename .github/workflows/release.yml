@@ -222,7 +222,7 @@ jobs:
           docker load --input /tmp/docker.tar
           docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:${{ needs.release.outputs.release-tag }}
           docker tag ${{ github.repository }}:latest registry.digitalocean.com/opensauced/api.opensauced.pizza:$TARGET
-          docker push registry.digitalocean.com/opensauced/api.opensauced.pizza
+          docker push -a registry.digitalocean.com/opensauced/api.opensauced.pizza
 
   cleanup:
     name: Cleanup actions
