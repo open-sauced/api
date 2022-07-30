@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.10...v1.7.11) (2022-07-30)
+
+
+### 🔁 Continuous Integration
+
+* push to digital ocean container registry ([cd8f21d](https://github.com/open-sauced/api.opensauced.pizza/commit/cd8f21d73e4647ea908bdafb9da5acdf03fdefd5))
+
 ### [1.7.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.9...v1.7.10) (2022-07-30)
 
 
