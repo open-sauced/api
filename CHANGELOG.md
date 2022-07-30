@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.7.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.9...v1.7.10) (2022-07-30)
+
+
+### 🔁 Continuous Integration
+
+* correct the digital ocean tagging ([673dca9](https://github.com/open-sauced/api.opensauced.pizza/commit/673dca96f35659dce64340eb712a338d1ef95c3e))
+
 ### [1.7.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.8...v1.7.9) (2022-07-30)
 
 
