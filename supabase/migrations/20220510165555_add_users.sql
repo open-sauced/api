@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS public.users
   has_stars_data boolean NOT NULL DEFAULT false,
   is_private boolean NOT NULL DEFAULT false,
   is_open_sauced_member boolean NOT NULL DEFAULT false,
-  created_at timestamp with time zone DEFAULT now(),
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  updated_at timestamp without time zone NOT NULL DEFAULT now(),
+  deleted_at timestamp without time zone DEFAULT null,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",
