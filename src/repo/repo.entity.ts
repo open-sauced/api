@@ -6,13 +6,16 @@ import {
   JoinColumn,
   ManyToOne,
   CreateDateColumn,
-  UpdateDateColumn, OneToMany
+  UpdateDateColumn,
+  OneToMany,
+  DeleteDateColumn
 } from "typeorm";
 
 import { User } from "../user/user.entity";
 import { Contribution } from "../contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo.to.user.stars.entity";
+import { RepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 
 @Entity({
   name: "repos",
@@ -82,6 +85,11 @@ export class Repo extends BaseEntity {
   })
   last_fetched_contributors_at: Date;
 
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+  })
+  deleted_at: Date;
+
   @Column({
     type: "character varying",
     length: 255
@@ -130,4 +138,7 @@ export class Repo extends BaseEntity {
 
   @OneToMany(() => RepoToUserStars, repoToUserStars => repoToUserStars.repo)
   repoToUserStars: RepoToUserStars[];
+
+  @OneToMany(() => RepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
+  repoToUserSubmissions: RepoToUserSubmissions[];
 }
