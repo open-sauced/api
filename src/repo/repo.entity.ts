@@ -16,6 +16,7 @@ import { Contribution } from "../contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo.to.user.submissions.entity";
+import { RepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 
 @Entity({
   name: "repos",
@@ -141,4 +142,7 @@ export class Repo extends BaseEntity {
 
   @OneToMany(() => RepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
   repoToUserSubmissions: RepoToUserSubmissions[];
+
+  @OneToMany(() => RepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
+  repoToUserStargazers: RepoToUserStargazers[];
 }

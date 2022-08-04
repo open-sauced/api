@@ -17,6 +17,7 @@ import { Contribution } from "./contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo/repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo/repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo/repo.to.user.submissions.entity";
+import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { RepoToUserSubmissions } from "./repo/repo.to.user.submissions.entity";
           RepoToUserVotes,
           RepoToUserStars,
           RepoToUserSubmissions,
+          RepoToUserStargazers,
         ],
         synchronize: false,
       }),
