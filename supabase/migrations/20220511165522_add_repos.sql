@@ -13,8 +13,9 @@ CREATE TABLE IF NOT EXISTS public.repos
   watchers bigint NOT NULL DEFAULT 0,
   subscribers bigint NOT NULL DEFAULT 0,
   is_fork boolean NOT NULL DEFAULT false,
-  created_at timestamp without time zone DEFAULT now(),
-  updated_at timestamp without time zone DEFAULT now(),
+  created_at timestamp without time zone NOT NULL DEFAULT now(),
+  updated_at timestamp without time zone NOT NULL DEFAULT now(),
+  deleted_at timestamp without time zone DEFAULT null,
   pushed_at timestamp without time zone DEFAULT now(),
   last_fetched_contributors_at timestamp without time zone DEFAULT to_timestamp(0),
 
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS public.repos
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.repos
-    OWNER to postgres;
+  OWNER to postgres;
 
 GRANT ALL ON TABLE public.repos TO anon;
 
