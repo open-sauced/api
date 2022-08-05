@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.1...v1.8.0-beta.2) (2022-08-05)
+
+
+### 🍕 Features
+
+* add proper metadata fields to entities and typeorm soft delete ([#13](https://github.com/open-sauced/api.opensauced.pizza/issues/13)) ([af531e4](https://github.com/open-sauced/api.opensauced.pizza/commit/af531e45aceeb16496a6849b3c8b1c43ff312276)), closes [#10](https://github.com/open-sauced/api.opensauced.pizza/issues/10)
+
 ## [1.8.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.12...v1.8.0-beta.1) (2022-07-30)
 
 

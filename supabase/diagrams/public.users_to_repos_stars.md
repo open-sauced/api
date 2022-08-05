@@ -10,6 +10,8 @@
 | user_id    | bigint                   |         | false    |          | [public.users](public.users.md) |         |
 | repo_id    | bigint                   |         | false    |          | [public.repos](public.repos.md) |         |
 | created_at | timestamp with time zone | now()   | true     |          |                                 |         |
+| updated_at | timestamp with time zone | now()   | false    |          |                                 |         |
+| deleted_at | timestamp with time zone |         | true     |          |                                 |         |
 
 ## Constraints
 

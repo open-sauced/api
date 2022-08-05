@@ -12,6 +12,9 @@
 | last_merged_at | timestamp without time zone |         | false    |          |                                 |         |
 | contributor    | varchar(255)                |         | true     |          |                                 |         |
 | url            | varchar(255)                |         | true     |          |                                 |         |
+| deleted_at     | timestamp with time zone    |         | true     |          |                                 |         |
+| updated_at     | timestamp with time zone    | now()   | false    |          |                                 |         |
+| created_at     | timestamp with time zone    | now()   | false    |          |                                 |         |
 
 ## Constraints
 
