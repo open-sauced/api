@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.2...v1.8.0-beta.3) (2022-08-05)
+
+
+### 🍕 Features
+
+* add get repository by id and full name ([4552c66](https://github.com/open-sauced/api.opensauced.pizza/commit/4552c6647b3bd396284393f8745db8b398d314b4))
+
 ## [1.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.1...v1.8.0-beta.2) (2022-08-05)
 
 
