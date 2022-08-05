@@ -250,6 +250,8 @@ export class RepoService {
       .leftJoinAndSelect(&quot;repo.contributions&quot;, &quot;contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
       .loadRelationCountAndMap(&quot;repo.starsCount&quot;, &quot;repo.repoToUserStars&quot;)
+      .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
+      .loadRelationCountAndMap(&quot;repo.stargazersCount&quot;, &quot;repo.repoToUserStargazers&quot;)
       .orderBy(&quot;repo.pushed_at&quot;, pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);

@@ -145,7 +145,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/Repo.html" data-type="entity-link" >Repo</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/RepoToUserStargazers.html" data-type="entity-link" >RepoToUserStargazers</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/RepoToUserStars.html" data-type="entity-link" >RepoToUserStars</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/RepoToUserSubmissions.html" data-type="entity-link" >RepoToUserSubmissions</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/RepoToUserVotes.html" data-type="entity-link" >RepoToUserVotes</a>
