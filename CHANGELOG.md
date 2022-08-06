@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.3...v1.8.0-beta.4) (2022-08-06)
+
+
+### 📝 Documentation
+
+* add deployment links and apidocs diagrams ([d77ea52](https://github.com/open-sauced/api.opensauced.pizza/commit/d77ea526565cfacfe57e90095721a47d8c748aa6))
+
 ## [1.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.2...v1.8.0-beta.3) (2022-08-05)
 
 
