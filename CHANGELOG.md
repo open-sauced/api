@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.4...v1.8.0-beta.5) (2022-08-06)
+
+
+### 🍕 Features
+
+* add better swagger document links ([eba258a](https://github.com/open-sauced/api.opensauced.pizza/commit/eba258aa762acdb4b2b82c4f4a6337e041316512)), closes [#18](https://github.com/open-sauced/api.opensauced.pizza/issues/18)
+
+
+### 🤖 Build System
+
+* update dependencies ([62b3eea](https://github.com/open-sauced/api.opensauced.pizza/commit/62b3eea18880b64c17ccfad5f0e8bd3570a30504))
+
 ## [1.8.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.3...v1.8.0-beta.4) (2022-08-06)
 
 
