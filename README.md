@@ -6,13 +6,13 @@
 </div>
 <br>
 <p align="center">
-  <img src="https://img.shields.io/github/languages/code-size/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub code size in bytes">
-  <img src="https://img.shields.io/github/commit-activity/w/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub commit activity">
-  <a href="https://github.com/open-sauced/open-sauced-nest-supabase-poc/issues">
-    <img src="https://img.shields.io/github/issues/open-sauced/open-sauced-nest-supabase-poc" alt="GitHub issues">
+  <img src="https://img.shields.io/github/languages/code-size/open-sauced/api.opensauced.pizza" alt="GitHub code size in bytes">
+  <img src="https://img.shields.io/github/commit-activity/w/open-sauced/api.opensauced.pizza" alt="GitHub commit activity">
+  <a href="https://github.com/open-sauced/api.opensauced.pizza/issues">
+    <img src="https://img.shields.io/github/issues/open-sauced/api.opensauced.pizza" alt="GitHub issues">
   </a>
-  <a href="https://github.com/open-sauced/open-sauced-nest-supabase-poc/releases">
-    <img src="https://img.shields.io/github/v/release/open-sauced/open-sauced-nest-supabase-poc.svg?style=flat" alt="GitHub Release">
+  <a href="https://github.com/open-sauced/api.opensauced.pizza/releases">
+    <img src="https://img.shields.io/github/v/release/open-sauced/api.opensauced.pizza.svg?style=flat" alt="GitHub Release">
   </a>
   <a href="https://discord.gg/U2peSNf23P">
     <img src="https://img.shields.io/discord/714698561081704529.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord">
@@ -22,6 +22,11 @@
   </a>
 </p>
 
+## 🚀 Live release environments
+
+- [api.opensauced.pizza](https://api.opensauced.pizza/docs)
+- [beta.api.opensauced.pizza](https://beta.api.opensauced.pizza/docs)
+
 ## 📖 Prerequisites
 
 In order to run the project we need the following software binaries installed on our development machines:
@@ -30,7 +35,7 @@ In order to run the project we need the following software binaries installed on
 - `docker>=20.10.12`
 - `supabase>=0.18.0`
 
-# 🔑 Database commands
+## 🔑 Database commands
 
 ### Starting the Supabase Studio
 

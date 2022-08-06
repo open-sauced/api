@@ -184,6 +184,10 @@ jobs:
           name: dist
           path: /home/runner/dist
 
+      - name: "📂 copy public folder"
+        run: |
+          cp -R ./public /home/runner/dist/documentation/public
+
       - name: "🚀 deploy static"
         uses: peaceiris/actions-gh-pages@v3
         with:
