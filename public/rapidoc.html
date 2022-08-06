@@ -1,0 +1,19 @@
+<!doctype html> <!-- Important: must specify -->
+<html>
+<head>
+  <meta charset="utf-8"> <!-- Important: rapi-doc uses utf8 characters -->
+  <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+</head>
+<body>
+<rapi-doc
+  spec-url="/swagger.json"
+  server-url="https://api.opensauced.pizza"
+
+  persist-auth="true"
+  render-style="focused"
+  show-method-in-nav-bar="as-colored-block"
+  show-components="true"
+  schema-style="table"
+></rapi-doc>
+</body>
+</html>
