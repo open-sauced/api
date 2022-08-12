@@ -132,7 +132,7 @@ jobs:
   release:
     environment:
       name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
-      url: https://${{ needs.setup.outputs.DEPLOY_SUBDOMAIN }}api.opensauced.pizza
+      url: https://${{ needs.setup.outputs.DEPLOY_SUBDOMAIN }}api.opensauced.pizza/docs
     outputs:
       release-tag: ${{ steps.semantic-release.outputs.release-tag }}
     name: Semantic release
