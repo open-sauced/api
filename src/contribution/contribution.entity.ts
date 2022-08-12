@@ -1,4 +1,14 @@
-import { Entity, Column, BaseEntity, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  BaseEntity,
+  PrimaryColumn,
+  ManyToOne,
+  JoinColumn,
+  DeleteDateColumn,
+  CreateDateColumn,
+  UpdateDateColumn
+} from "typeorm";
 import { Repo } from "../repo/repo.entity";
 
 @Entity({
@@ -24,6 +34,23 @@ export class Contribution extends BaseEntity {
     type: "timestamp without time zone"
   })
   last_merged_at: Date;
+
+  @CreateDateColumn({
+    type: "timestamp without time zone",
+    default: () => "now()",
+  })
+  created_at: Date;
+
+  @UpdateDateColumn({
+    type: "timestamp without time zone",
+    default: () => "now()",
+  })
+  updated_at: Date;
+
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+  })
+  deleted_at: Date;
 
   @Column({
     type: "character varying",

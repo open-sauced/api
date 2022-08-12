@@ -4,15 +4,16 @@ import {
   NestFastifyApplication,
 } from "@nestjs/platform-fastify";
 import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from "@nestjs/swagger";
-import { ValidationPipe } from "@nestjs/common";
+import { ValidationPipe, VersioningType } from "@nestjs/common";
 import fastifyHelmet from "@fastify/helmet";
 import { ConfigService } from "@nestjs/config";
 import fastifyRateLimit from "@fastify/rate-limit";
 import path from "node:path";
 import { writeFile } from "node:fs/promises";
+import { major } from "semver";
 
 import { AppModule } from "./app.module";
-import { name, description, version } from "../package.json";
+import { name, description, version, license } from "../package.json";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -21,10 +22,21 @@ async function bootstrap() {
   );
   const configService = app.get(ConfigService);
 
+  app.enableCors();
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: String(major("1.8.0", {
+      loose: false,
+    })),
+  });
+
   const options = new DocumentBuilder()
     .setTitle(name)
     .setDescription(description)
     .setVersion(version)
+    .setContact("Open Sauced Triage Team", "https://opensauced.pizza", "hello@opensauced.pizza")
+    .setTermsOfService("https://github.com/open-sauced/code-of-conduct")
+    .setLicense(license, `https://opensource.org/licenses/${license}`)
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options, {
@@ -33,6 +45,7 @@ async function bootstrap() {
       methodKey: string,
     ) => methodKey,
   });
+
   const customOptions: SwaggerCustomOptions = {
     swaggerOptions: {
       persistAuthorization: true,
@@ -49,7 +62,6 @@ async function bootstrap() {
 
   SwaggerModule.setup("docs", app, document, customOptions);
 
-  app.enableCors();
   await app.register(fastifyHelmet, {
     contentSecurityPolicy: false,
   });

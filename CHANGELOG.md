@@ -5,6 +5,46 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.4...v1.8.0-beta.5) (2022-08-06)
+
+
+### 🍕 Features
+
+* add better swagger document links ([eba258a](https://github.com/open-sauced/api.opensauced.pizza/commit/eba258aa762acdb4b2b82c4f4a6337e041316512)), closes [#18](https://github.com/open-sauced/api.opensauced.pizza/issues/18)
+
+
+### 🤖 Build System
+
+* update dependencies ([62b3eea](https://github.com/open-sauced/api.opensauced.pizza/commit/62b3eea18880b64c17ccfad5f0e8bd3570a30504))
+
+## [1.8.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.3...v1.8.0-beta.4) (2022-08-06)
+
+
+### 📝 Documentation
+
+* add deployment links and apidocs diagrams ([d77ea52](https://github.com/open-sauced/api.opensauced.pizza/commit/d77ea526565cfacfe57e90095721a47d8c748aa6))
+
+## [1.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.2...v1.8.0-beta.3) (2022-08-05)
+
+
+### 🍕 Features
+
+* add get repository by id and full name ([4552c66](https://github.com/open-sauced/api.opensauced.pizza/commit/4552c6647b3bd396284393f8745db8b398d314b4))
+
+## [1.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.1...v1.8.0-beta.2) (2022-08-05)
+
+
+### 🍕 Features
+
+* add proper metadata fields to entities and typeorm soft delete ([#13](https://github.com/open-sauced/api.opensauced.pizza/issues/13)) ([af531e4](https://github.com/open-sauced/api.opensauced.pizza/commit/af531e45aceeb16496a6849b3c8b1c43ff312276)), closes [#10](https://github.com/open-sauced/api.opensauced.pizza/issues/10)
+
+## [1.8.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.12...v1.8.0-beta.1) (2022-07-30)
+
+
+### 📝 Documentation
+
+* update readme badges ([17c54b9](https://github.com/open-sauced/api.opensauced.pizza/commit/17c54b91f9721158ba05d32224e5ca7edcf2a5db))
+
 ### [1.7.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.11...v1.7.12) (2022-07-30)
 
 

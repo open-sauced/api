@@ -11,12 +11,12 @@ import { User } from "../user/user.entity";
 import { Repo } from "./repo.entity";
 
 @Entity({
-  name: "users_to_repos_votes",
+  name: "users_to_repos_stargazers",
   orderBy: {
     created_at: "DESC",
   }
 })
-export class RepoToUserVotes {
+export class RepoToUserStargazers {
   @PrimaryGeneratedColumn()
   public id!: number;
 
@@ -43,14 +43,14 @@ export class RepoToUserVotes {
   })
   deleted_at: Date;
 
-  @ManyToOne(() => User, (user) => user.repoToUserVotes)
+  @ManyToOne(() => User, (user) => user.repoToUserStargazers)
   @JoinColumn({
     name: "id",
     referencedColumnName: "id",
   })
   public user!: User;
 
-  @ManyToOne(() => Repo, (repo) => repo.repoToUserVotes)
+  @ManyToOne(() => Repo, (repo) => repo.repoToUserStargazers)
   @JoinColumn({
     name: "id",
     referencedColumnName: "id",
