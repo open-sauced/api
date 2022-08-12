@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.8.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.1...v1.8.2) (2022-08-12)
+
+
+### 🐛 Bug Fixes
+
+* correct ci release url docs ([f0304d4](https://github.com/open-sauced/api.opensauced.pizza/commit/f0304d42a7c9b2fe65340a02a169f0c053a64909))
+
 ### [1.8.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0...v1.8.1) (2022-08-12)
 
 
