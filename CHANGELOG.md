@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.2...v1.9.0-beta.1) (2022-08-18)
+
+
+### 🍕 Features
+
+* implement simple supabase strategy guard ([2f966a3](https://github.com/open-sauced/api.opensauced.pizza/commit/2f966a333c27015f39195e65a405ff5f413a5070))
+
 ### [1.8.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.1...v1.8.2) (2022-08-12)
 
 
