@@ -5,6 +5,40 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.8.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.1...v1.8.2) (2022-08-12)
+
+
+### 🐛 Bug Fixes
+
+* correct ci release url docs ([f0304d4](https://github.com/open-sauced/api.opensauced.pizza/commit/f0304d42a7c9b2fe65340a02a169f0c053a64909))
+
+### [1.8.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0...v1.8.1) (2022-08-12)
+
+
+### 🔁 Continuous Integration
+
+* improve release urls ([dd5e668](https://github.com/open-sauced/api.opensauced.pizza/commit/dd5e66835bb1dce7ab14a2bc57225a903b09b5af))
+
+## [1.8.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.12...v1.8.0) (2022-08-12)
+
+
+### 📝 Documentation
+
+* add deployment links and apidocs diagrams ([d77ea52](https://github.com/open-sauced/api.opensauced.pizza/commit/d77ea526565cfacfe57e90095721a47d8c748aa6))
+* update readme badges ([17c54b9](https://github.com/open-sauced/api.opensauced.pizza/commit/17c54b91f9721158ba05d32224e5ca7edcf2a5db))
+
+
+### 🍕 Features
+
+* add better swagger document links ([eba258a](https://github.com/open-sauced/api.opensauced.pizza/commit/eba258aa762acdb4b2b82c4f4a6337e041316512)), closes [#18](https://github.com/open-sauced/api.opensauced.pizza/issues/18)
+* add get repository by id and full name ([4552c66](https://github.com/open-sauced/api.opensauced.pizza/commit/4552c6647b3bd396284393f8745db8b398d314b4))
+* add proper metadata fields to entities and typeorm soft delete ([#13](https://github.com/open-sauced/api.opensauced.pizza/issues/13)) ([af531e4](https://github.com/open-sauced/api.opensauced.pizza/commit/af531e45aceeb16496a6849b3c8b1c43ff312276)), closes [#10](https://github.com/open-sauced/api.opensauced.pizza/issues/10)
+
+
+### 🤖 Build System
+
+* update dependencies ([62b3eea](https://github.com/open-sauced/api.opensauced.pizza/commit/62b3eea18880b64c17ccfad5f0e8bd3570a30504))
+
 ## [1.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.4...v1.8.0-beta.5) (2022-08-06)
 
 
