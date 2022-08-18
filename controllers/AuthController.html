@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >HealthController</li>
+  <li >AuthController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,14 +55,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/health/health.controller.ts</code>
+            <code>src/auth/auth.controller.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Prefix</h3>
             </p>
             <p class="comment">
-                <code>health</code>
+                <code>auth</code>
             </p>
 
 
@@ -84,12 +84,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#service" >service</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#web" >web</a>
+                                <a href="#getHello" >getHello</a>
                             </li>
                         </ul>
                     </td>
@@ -112,18 +107,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="service"></a>
+                    <a name="getHello"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>service</b></span>
-                        <a href="#service"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getHello</b></span>
+                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>service()</code>
+<code>getHello()</code>
                 </td>
             </tr>
 
@@ -131,14 +124,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/service&#x27;)<br />@ApiOperation({operationId: &#x27;healthStatusService&#x27;, summary: &#x27;Check the health of Open Sauced service endpoints&#x27;})<br />@HealthCheck()<br />@ApiOkResponse()<br /></code>
+                    <code>@Get(&#x27;/status&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthStatus&#x27;, summary: &#x27;Check the status of JWT based authentication&#x27;})<br />@ApiOkResponse({type: String})<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/health/health.controller.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/auth/auth.controller.ts:17</a></div>
                 </td>
             </tr>
 
@@ -147,53 +140,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="web"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>web</b></span>
-                        <a href="#web"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>web()</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/web&#x27;)<br />@ApiOperation({operationId: &#x27;healthStatusWeb&#x27;, summary: &#x27;Check the health of Open Sauced web endpoints&#x27;})<br />@HealthCheck()<br />@ApiOkResponse()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                 </td>
@@ -204,69 +151,26 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get } from &quot;@nestjs/common&quot;;
-import {
-  HealthCheckService,
-  HttpHealthIndicator,
-  TypeOrmHealthIndicator,
-  HealthCheck,
-  MemoryHealthIndicator,
-  DiskHealthIndicator,
-} from &quot;@nestjs/terminus&quot;;
-import { ConfigService } from &quot;@nestjs/config&quot;;
-import { ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, UseGuards } from &quot;@nestjs/common&quot;;
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 
-@ApiTags(&quot;Health&quot;)
-@Controller(&quot;health&quot;)
-export class HealthController {
-  constructor(
-    private health: HealthCheckService,
-    private http: HttpHealthIndicator,
-    private database: TypeOrmHealthIndicator,
-    private memory: MemoryHealthIndicator,
-    private disk: DiskHealthIndicator,
-    private readonly configService: ConfigService,
-  ) {}
-
-  @Get(&quot;/service&quot;)
+@ApiTags(&quot;Authentication&quot;)
+@Controller(&quot;auth&quot;)
+export class AuthController {
+  @Get(&quot;/status&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;healthStatusService&quot;,
-    summary: &quot;Check the health of Open Sauced service endpoints&quot;,
+    operationId: &quot;checkAuthStatus&quot;,
+    summary: &quot;Check the status of JWT based authentication&quot;,
   })
-  @HealthCheck()
-  @ApiOkResponse()
-  async service() {
-    return this.health.check([
-      async () &#x3D;&gt; this.database.pingCheck(&quot;db&quot;),
-      async () &#x3D;&gt; this.memory.checkHeap(&quot;memory.heap&quot;, &lt;number&gt;this.configService.get(&quot;memory_heap&quot;)),
-      async () &#x3D;&gt; this.memory.checkRSS(&quot;memory.rss&quot;, &lt;number&gt;this.configService.get(&quot;memory_rss&quot;)),
-      async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.usage&quot;, {
-        thresholdPercent: &lt;number&gt;this.configService.get(&quot;disk_percentage&quot;),
-        path: &quot;/&quot;,
-      }),
-      async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.storage&quot;, {
-        thresholdPercent: &lt;number&gt;this.configService.get(&quot;disk_size&quot;),
-        path: &quot;/&quot;,
-      }),
-    ]);
-  }
+  @ApiOkResponse({ type: String })
+  @HttpCode(HttpStatus.OK)
+  getHello(): string {
+    console.log(&quot;SupabaseGuard&quot;);
 
-  @Get(&quot;/web&quot;)
-  @ApiOperation({
-    operationId: &quot;healthStatusWeb&quot;,
-    summary: &quot;Check the health of Open Sauced web endpoints&quot;,
-  })
-  @HealthCheck()
-  @ApiOkResponse()
-  async web() {
-    return this.health.check([
-      async () &#x3D;&gt; this.http.pingCheck(&quot;opensauced.pizza&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.landing&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;app.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.app&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;hot.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.hot&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;docs.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.docs&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;explore.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.explore&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;admin.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.admin&quot;)),
-    ]);
+    return &quot;1&quot;;
   }
 }
 </code></pre>
@@ -314,7 +218,7 @@ export class HealthController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'HealthController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -303,14 +303,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@HttpCode(HttpStatus.OK)<br />@ApiPaginatedResponse(Repo)<br />@ApiOkResponse({type: Repo})<br /></code>
+                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiPaginatedResponse(Repo)<br />@ApiOkResponse({type: Repo})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/repo/repo.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/repo/repo.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -405,6 +405,10 @@ export class RepoController {
   }
 
   @Get(&quot;/list&quot;)
+  @ApiOperation({
+    operationId: &quot;findAll&quot;,
+    summary: &quot;Finds all repos and paginates them&quot;,
+  })
   @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(Repo)
   @ApiOkResponse({ type: Repo })
