@@ -18,6 +18,7 @@ import { RepoToUserVotes } from "./repo/repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo/repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo/repo.to.user.submissions.entity";
 import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
+import { AuthModule } from "./auth/auth.module";
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
     }),
     TerminusModule,
     HttpModule,
+    AuthModule,
     HealthModule,
     RepoModule,
   ],

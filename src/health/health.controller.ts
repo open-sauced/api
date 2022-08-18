@@ -8,9 +8,9 @@ import {
   DiskHealthIndicator,
 } from "@nestjs/terminus";
 import { ConfigService } from "@nestjs/config";
-import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
-@ApiTags("health")
+@ApiTags("Health")
 @Controller("health")
 export class HealthController {
   constructor(
@@ -23,6 +23,10 @@ export class HealthController {
   ) {}
 
   @Get("/service")
+  @ApiOperation({
+    operationId: "healthStatusService",
+    summary: "Check the health of Open Sauced service endpoints",
+  })
   @HealthCheck()
   @ApiOkResponse()
   async service() {
@@ -42,6 +46,10 @@ export class HealthController {
   }
 
   @Get("/web")
+  @ApiOperation({
+    operationId: "healthStatusWeb",
+    summary: "Check the health of Open Sauced web endpoints",
+  })
   @HealthCheck()
   @ApiOkResponse()
   async web() {

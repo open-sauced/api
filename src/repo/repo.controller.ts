@@ -41,6 +41,10 @@ export class RepoController {
   }
 
   @Get("/list")
+  @ApiOperation({
+    operationId: "findAll",
+    summary: "Finds all repos and paginates them",
+  })
   @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(Repo)
   @ApiOkResponse({ type: Repo })

@@ -12,7 +12,7 @@ export class SupabaseStrategy extends PassportStrategy(
   public constructor() {
     super({
       supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_KEY,
+      supabaseKey: process.env.SUPABASE_API_KEY,
       supabaseOptions: {},
       supabaseJwtSecret: process.env.SUPABASE_JWT_SECRET,
       extractor: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -23,7 +23,7 @@ export class SupabaseStrategy extends PassportStrategy(
     return super.validate(user);
   }
 
-  // authenticate(req: Request) {
-  //   super.authenticate(req);
-  // }
+  authenticate(req: never) {
+    super.authenticate(req);
+  }
 }
