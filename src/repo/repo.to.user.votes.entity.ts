@@ -12,9 +12,6 @@ import { Repo } from "./repo.entity";
 
 @Entity({
   name: "users_to_repos_votes",
-  orderBy: {
-    created_at: "DESC",
-  }
 })
 export class RepoToUserVotes {
   @PrimaryGeneratedColumn()
@@ -45,14 +42,14 @@ export class RepoToUserVotes {
 
   @ManyToOne(() => User, (user) => user.repoToUserVotes)
   @JoinColumn({
-    name: "id",
+    name: "user_id",
     referencedColumnName: "id",
   })
   public user!: User;
 
   @ManyToOne(() => Repo, (repo) => repo.repoToUserVotes)
   @JoinColumn({
-    name: "id",
+    name: "repo_id",
     referencedColumnName: "id",
   })
   public repo!: Repo;

@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { Repo } from "./repo.entity";
@@ -14,15 +14,35 @@ export class RepoService {
     private repoRepository: Repository<Repo>,
   ) {}
 
+  // subQueryCount(subQuery: SelectQueryBuilder<any>, entity: string , alias: string, target = "repo") {
+  //   const aliasName = `${alias}Count`;
+  //   const aliasTable = `${alias}CountSelect`;
+  //
+  //   return subQuery
+  //     .select("COUNT(DISTINCT id)", aliasName)
+  //     .from(entity, aliasTable)
+  //     .where(`${aliasTable}.${target}_id = ${target}.id`);
+  // }
+
   baseQueryBuilder() {
-    return this.repoRepository.createQueryBuilder("repo")
+    const builder = this.repoRepository.createQueryBuilder("repo")
       // .select(['repo.id'])
-      .leftJoinAndSelect("repo.user", "user")
-      .leftJoinAndSelect("repo.contributions", "contributions")
+      // .leftJoinAndSelect("repo.user", "user")
+      // .leftJoinAndSelect(RepoToUserStars, "stars")
+      // .leftJoinAndMapMany("repo.contributions", Contribution, "contributions", "contributions.repo_id = repo.id")
+      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserVotes", "votes"))
+      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserSubmissions", "submissions"))
+      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStargazers", "stargazers"))
+      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStars", "stars"))
+      .loadRelationCountAndMap("repo.contributionsCount", "repo.contributions")
       .loadRelationCountAndMap("repo.votesCount", "repo.repoToUserVotes")
-      .loadRelationCountAndMap("repo.starsCount", "repo.repoToUserStars")
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
-      .loadRelationCountAndMap("repo.stargazersCount", "repo.repoToUserStargazers");
+      .loadRelationCountAndMap("repo.stargazersCount", "repo.repoToUserStargazers")
+      .loadRelationCountAndMap("repo.starsCount", "repo.repoToUserStars");
+
+    console.log(builder.getSql());
+
+    return builder;
   }
 
   async findOneById(id: number): Promise<Repo> {
@@ -64,10 +84,10 @@ export class RepoService {
 
     queryBuilder
       .orderBy("repo.pushed_at", pageOptionsDto.order)
-      .skip(pageOptionsDto.skip)
-      .take(pageOptionsDto.take);
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.take);
 
-    // console.log(builder.getSql());
+    console.log(queryBuilder.getSql());
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();

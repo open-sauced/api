@@ -12,9 +12,6 @@ import { Repo } from "./repo.entity";
 
 @Entity({
   name: "users_to_repos_stargazers",
-  orderBy: {
-    created_at: "DESC",
-  }
 })
 export class RepoToUserStargazers {
   @PrimaryGeneratedColumn()
@@ -45,14 +42,14 @@ export class RepoToUserStargazers {
 
   @ManyToOne(() => User, (user) => user.repoToUserStargazers)
   @JoinColumn({
-    name: "id",
+    name: "user_id",
     referencedColumnName: "id",
   })
   public user!: User;
 
   @ManyToOne(() => Repo, (repo) => repo.repoToUserStargazers)
   @JoinColumn({
-    name: "id",
+    name: "repo_id",
     referencedColumnName: "id",
   })
   public repo!: Repo;
