@@ -1,22 +1,35 @@
 import { Controller, Get, HttpCode, HttpStatus, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
+import { SupabaseAuthUser } from "nestjs-supabase-auth";
+import { User } from "./supabase.user.decorator";
+import { SupabaseAuthResponse } from "./dtos/supabase-auth-response.dto";
 
 @ApiTags("Authentication")
 @Controller("auth")
 export class AuthController {
-  @Get("/status")
+  @Get("/session")
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: "checkAuthStatus",
-    summary: "Check the status of JWT based authentication",
+    operationId: "checkAuthSession",
+    summary: "Get authenticated session information",
   })
-  @ApiOkResponse({ type: String })
+  @ApiOkResponse({ type: SupabaseAuthResponse })
   @HttpCode(HttpStatus.OK)
-  getHello(): string {
-    console.log("SupabaseGuard");
+  getHello(
+    @User() user: SupabaseAuthUser,
+  ): SupabaseAuthResponse {
+    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub } } = user;
 
-    return "1";
+    return {
+      id: `${String(sub)}`,
+      role,
+      email,
+      confirmed_at,
+      last_sign_in_at,
+      created_at,
+      updated_at
+    };
   }
 }

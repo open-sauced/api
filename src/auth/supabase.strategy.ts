@@ -1,8 +1,9 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt } from "passport-jwt";
-import { SupabaseAuthStrategy } from "nestjs-supabase-auth";
-import { AuthUser } from "@supabase/supabase-js";
+import { SupabaseAuthStrategy, SupabaseAuthUser } from "nestjs-supabase-auth";
+
+export type SupabaseAuthRequest = Partial<Request> & { user?: SupabaseAuthUser };
 
 @Injectable()
 export class SupabaseStrategy extends PassportStrategy(
@@ -19,7 +20,7 @@ export class SupabaseStrategy extends PassportStrategy(
     });
   }
 
-  async validate(user: AuthUser) {
+  async validate(user: SupabaseAuthUser) {
     return super.validate(user);
   }
 
