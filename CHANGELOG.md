@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.2...v1.9.0-beta.3) (2022-08-19)
+
+
+### 🐛 Bug Fixes
+
+* correct counting of many to many tables ([7249714](https://github.com/open-sauced/api.opensauced.pizza/commit/72497145f9de392d861818e2e745e465815f38a2))
+
+
+### 🧑‍💻 Code Refactoring
+
+* correct stray console.log ([b4c9879](https://github.com/open-sauced/api.opensauced.pizza/commit/b4c9879a834d01432b6a84d18147a26fd2dc3ed5))
+
 ## [1.9.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.1...v1.9.0-beta.2) (2022-08-19)
 
 
