@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.3...v1.9.0-beta.4) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* improve local development workflow along vite apps ([b9f3798](https://github.com/open-sauced/api.opensauced.pizza/commit/b9f3798923ef67cdb77e523e44991e2427184ce1))
+
 ## [1.9.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.2...v1.9.0-beta.3) (2022-08-19)
 
 
