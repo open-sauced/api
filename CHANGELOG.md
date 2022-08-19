@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.1...v1.9.0-beta.2) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* only deploy documentation on main branch ([fad79b1](https://github.com/open-sauced/api.opensauced.pizza/commit/fad79b10a029664cb747c85d9c92cc22f3184f95)), closes [#14](https://github.com/open-sauced/api.opensauced.pizza/issues/14)
+
+
+### 🍕 Features
+
+* add supabase auth session handler and working guards ([ed9729a](https://github.com/open-sauced/api.opensauced.pizza/commit/ed9729a4dbcf5e1d6758e8308311a2560bef7898)), closes [#24](https://github.com/open-sauced/api.opensauced.pizza/issues/24)
+
 ## [1.9.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.2...v1.9.0-beta.1) (2022-08-18)
 
 
