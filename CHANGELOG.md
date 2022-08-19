@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.4...v1.9.0-beta.5) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* attempt to push docr only on successful release ([957b86e](https://github.com/open-sauced/api.opensauced.pizza/commit/957b86ed40b2f5ff1eff8c7af740549d66ea1f09))
+
 ## [1.9.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.3...v1.9.0-beta.4) (2022-08-19)
 
 
