@@ -116,7 +116,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello()</code>
+<code>getHello(user: <a href="../entitys/User.html" target="_self">SupabaseAuthUser</a>)</code>
                 </td>
             </tr>
 
@@ -124,14 +124,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/status&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthStatus&#x27;, summary: &#x27;Check the status of JWT based authentication&#x27;})<br />@ApiOkResponse({type: String})<br />@HttpCode(HttpStatus.OK)<br /></code>
+                    <code>@Get(&#x27;/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthSession&#x27;, summary: &#x27;Get authenticated session information&#x27;})<br />@ApiOkResponse({type: SupabaseAuthResponse})<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/auth/auth.controller.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/auth/auth.controller.ts:20</a></div>
                 </td>
             </tr>
 
@@ -140,8 +140,40 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../entitys/User.html" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthResponse.html" target="_self" >SupabaseAuthResponse</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -154,23 +186,36 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
+import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
+import { User } from &quot;./supabase.user.decorator&quot;;
+import { SupabaseAuthResponse } from &quot;./dtos/supabase-auth-response.dto&quot;;
 
 @ApiTags(&quot;Authentication&quot;)
 @Controller(&quot;auth&quot;)
 export class AuthController {
-  @Get(&quot;/status&quot;)
+  @Get(&quot;/session&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;checkAuthStatus&quot;,
-    summary: &quot;Check the status of JWT based authentication&quot;,
+    operationId: &quot;checkAuthSession&quot;,
+    summary: &quot;Get authenticated session information&quot;,
   })
-  @ApiOkResponse({ type: String })
+  @ApiOkResponse({ type: SupabaseAuthResponse })
   @HttpCode(HttpStatus.OK)
-  getHello(): string {
-    console.log(&quot;SupabaseGuard&quot;);
+  getHello(
+    @User() user: SupabaseAuthUser,
+  ): SupabaseAuthResponse {
+    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub } } &#x3D; user;
 
-    return &quot;1&quot;;
+    return {
+      id: &#x60;${String(sub)}&#x60;,
+      role,
+      email,
+      confirmed_at,
+      last_sign_in_at,
+      created_at,
+      updated_at
+    };
   }
 }
 </code></pre>

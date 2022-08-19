@@ -66,6 +66,12 @@
                         <li>
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
+                        <li>
+                            <a href="#User" title="src/auth/supabase.user.decorator.ts" ><b>User</b>&nbsp;&nbsp;&nbsp;(src/.../supabase.user.decorator.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#UserId" title="src/auth/supabase.user.decorator.ts" ><b>UserId</b>&nbsp;&nbsp;&nbsp;(src/.../supabase.user.decorator.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -135,6 +141,61 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(subdomain?: string) &#x3D;&gt;
   new URL(&#x60;https://${subdomain ? &#x60;${subdomain}.&#x60; : &quot;&quot; }${process.env.DOMAIN || &quot;opensauced.pizza&quot;}&#x60;).toString()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/auth/supabase.user.decorator.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="User"></a>
+                    <span class="name">
+                        <span ><b>User</b></span>
+                        <a href="#User"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator(
+  (_data: unknown, context: ExecutionContext) &#x3D;&gt; {
+    const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
+
+    return request.user;
+  },
+)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UserId"></a>
+                    <span class="name">
+                        <span ><b>UserId</b></span>
+                        <a href="#UserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator(
+  (_data: unknown, context: ExecutionContext) &#x3D;&gt; {
+    const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
+
+    return request.user?.user_metadata?.sub as string;
+  },
+)</code>
                     </td>
                 </tr>
 
