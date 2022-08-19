@@ -9,7 +9,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Repo } from "../repo/repo.entity";
+import { Repo } from "../repo/entities/repo.entity";
 
 @Entity({
   name: "contributions"

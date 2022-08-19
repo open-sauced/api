@@ -8,11 +8,11 @@ import {
   DeleteDateColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Repo } from "../repo/repo.entity";
-import { RepoToUserVotes } from "../repo/repo.to.user.votes.entity";
-import { RepoToUserStars } from "../repo/repo.to.user.stars.entity";
-import { RepoToUserSubmissions } from "../repo/repo.to.user.submissions.entity";
-import { RepoToUserStargazers } from "../repo/repo.to.user.stargazers.entity";
+import { Repo } from "../repo/entities/repo.entity";
+import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
+import { RepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
+import { RepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
+import { RepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 
 @Entity({
   name: "users"

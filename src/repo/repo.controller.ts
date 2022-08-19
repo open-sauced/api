@@ -1,6 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Query } from "@nestjs/common";
 import { RepoService } from "./repo.service";
-import { Repo } from "./repo.entity";
+import { Repo } from "./entities/repo.entity";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";

@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { Repo } from "./repo.entity";
+import { Repo } from "./entities/repo.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";

@@ -11,13 +11,13 @@ import apiConfig from "./config/api.config";
 import dbConfig from "./config/database.config";
 import endpointConfig from "./config/endpoint.config";
 import { HealthModule } from "./health/health.module";
-import { Repo } from "./repo/repo.entity";
+import { Repo } from "./repo/entities/repo.entity";
 import { User } from "./user/user.entity";
 import { Contribution } from "./contribution/contribution.entity";
-import { RepoToUserVotes } from "./repo/repo.to.user.votes.entity";
-import { RepoToUserStars } from "./repo/repo.to.user.stars.entity";
-import { RepoToUserSubmissions } from "./repo/repo.to.user.submissions.entity";
-import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
+import { RepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
+import { RepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
+import { RepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
+import { RepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
 import { AuthModule } from "./auth/auth.module";
 
 @Module({

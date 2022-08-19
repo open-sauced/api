@@ -11,8 +11,8 @@ import {
   DeleteDateColumn
 } from "typeorm";
 
-import { User } from "../user/user.entity";
-import { Contribution } from "../contribution/contribution.entity";
+import { User } from "../../user/user.entity";
+import { Contribution } from "../../contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo.to.user.submissions.entity";

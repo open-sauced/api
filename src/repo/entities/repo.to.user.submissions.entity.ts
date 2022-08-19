@@ -7,13 +7,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { User } from "../user/user.entity";
+import { User } from "../../user/user.entity";
 import { Repo } from "./repo.entity";
 
 @Entity({
-  name: "users_to_repos_votes",
+  name: "users_to_repos_submissions",
 })
-export class RepoToUserVotes {
+export class RepoToUserSubmissions {
   @PrimaryGeneratedColumn()
   public id!: number;
 
@@ -40,14 +40,14 @@ export class RepoToUserVotes {
   })
   deleted_at: Date;
 
-  @ManyToOne(() => User, (user) => user.repoToUserVotes)
+  @ManyToOne(() => User, (user) => user.repoToUserSubmissions)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
   public user!: User;
 
-  @ManyToOne(() => Repo, (repo) => repo.repoToUserVotes)
+  @ManyToOne(() => Repo, (repo) => repo.repoToUserSubmissions)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

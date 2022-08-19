@@ -7,13 +7,13 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { User } from "../user/user.entity";
+import { User } from "../../user/user.entity";
 import { Repo } from "./repo.entity";
 
 @Entity({
-  name: "users_to_repos_stargazers",
+  name: "users_to_repos_stars",
 })
-export class RepoToUserStargazers {
+export class RepoToUserStars {
   @PrimaryGeneratedColumn()
   public id!: number;
 
@@ -40,14 +40,14 @@ export class RepoToUserStargazers {
   })
   deleted_at: Date;
 
-  @ManyToOne(() => User, (user) => user.repoToUserStargazers)
+  @ManyToOne(() => User, (user) => user.repoToUserStars)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
   public user!: User;
 
-  @ManyToOne(() => Repo, (repo) => repo.repoToUserStargazers)
+  @ManyToOne(() => Repo, (repo) => repo.repoToUserStars)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

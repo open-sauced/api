@@ -3,7 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { RepoService } from "./repo.service";
 import { RepoController } from "./repo.controller";
-import { Repo } from "./repo.entity";
+import { Repo } from "./entities/repo.entity";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Repo])],
