@@ -149,7 +149,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -184,7 +184,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -220,7 +220,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -250,13 +250,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, repo &#x3D;&gt; repo.repoToUserStars)<br />@JoinColumn({name: &#x27;id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ManyToOne(undefined, repo &#x3D;&gt; repo.repoToUserStars)<br />@JoinColumn({name: &#x27;repo_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -292,7 +292,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -327,7 +327,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -357,13 +357,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ManyToOne(undefined, user &#x3D;&gt; user.repoToUserStars)<br />@JoinColumn({name: &#x27;id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ManyToOne(undefined, user &#x3D;&gt; user.repoToUserStars)<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -399,7 +399,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/repo/repo.to.user.stars.entity.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -425,9 +425,6 @@ import { Repo } from &quot;./repo.entity&quot;;
 
 @Entity({
   name: &quot;users_to_repos_stars&quot;,
-  orderBy: {
-    created_at: &quot;DESC&quot;,
-  }
 })
 export class RepoToUserStars {
   @PrimaryGeneratedColumn()
@@ -458,14 +455,14 @@ export class RepoToUserStars {
 
   @ManyToOne(() &#x3D;&gt; User, (user) &#x3D;&gt; user.repoToUserStars)
   @JoinColumn({
-    name: &quot;id&quot;,
+    name: &quot;user_id&quot;,
     referencedColumnName: &quot;id&quot;,
   })
   public user!: User;
 
   @ManyToOne(() &#x3D;&gt; Repo, (repo) &#x3D;&gt; repo.repoToUserStars)
   @JoinColumn({
-    name: &quot;id&quot;,
+    name: &quot;repo_id&quot;,
     referencedColumnName: &quot;id&quot;,
   })
   public repo!: Repo;

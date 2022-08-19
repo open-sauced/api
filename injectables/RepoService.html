@@ -179,8 +179,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/repo/repo.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/repo/repo.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/repo/repo.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/repo/repo.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -289,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/repo/repo.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/repo/repo.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -360,8 +360,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/repo/repo.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/repo/repo.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -443,15 +443,33 @@ export class RepoService {
     private repoRepository: Repository&lt;Repo&gt;,
   ) {}
 
+  // subQueryCount(subQuery: SelectQueryBuilder&lt;any&gt;, entity: string , alias: string, target &#x3D; &quot;repo&quot;) {
+  //   const aliasName &#x3D; &#x60;${alias}Count&#x60;;
+  //   const aliasTable &#x3D; &#x60;${alias}CountSelect&#x60;;
+  //
+  //   return subQuery
+  //     .select(&quot;COUNT(DISTINCT id)&quot;, aliasName)
+  //     .from(entity, aliasTable)
+  //     .where(&#x60;${aliasTable}.${target}_id &#x3D; ${target}.id&#x60;);
+  // }
+
   baseQueryBuilder() {
-    return this.repoRepository.createQueryBuilder(&quot;repo&quot;)
+    const builder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;)
       // .select([&#x27;repo.id&#x27;])
-      .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
-      .leftJoinAndSelect(&quot;repo.contributions&quot;, &quot;contributions&quot;)
+      // .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
+      // .leftJoinAndSelect(RepoToUserStars, &quot;stars&quot;)
+      // .leftJoinAndMapMany(&quot;repo.contributions&quot;, Contribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
+      // .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;))
+      // .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;))
+      // .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStargazers&quot;, &quot;stargazers&quot;))
+      // .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStars&quot;, &quot;stars&quot;))
+      .loadRelationCountAndMap(&quot;repo.contributionsCount&quot;, &quot;repo.contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
-      .loadRelationCountAndMap(&quot;repo.starsCount&quot;, &quot;repo.repoToUserStars&quot;)
       .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
-      .loadRelationCountAndMap(&quot;repo.stargazersCount&quot;, &quot;repo.repoToUserStargazers&quot;);
+      .loadRelationCountAndMap(&quot;repo.stargazersCount&quot;, &quot;repo.repoToUserStargazers&quot;)
+      .loadRelationCountAndMap(&quot;repo.starsCount&quot;, &quot;repo.repoToUserStars&quot;);
+
+    return builder;
   }
 
   async findOneById(id: number): Promise&lt;Repo&gt; {
@@ -493,10 +511,10 @@ export class RepoService {
 
     queryBuilder
       .orderBy(&quot;repo.pushed_at&quot;, pageOptionsDto.order)
-      .skip(pageOptionsDto.skip)
-      .take(pageOptionsDto.take);
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.take);
 
-    // console.log(builder.getSql());
+    console.log(queryBuilder.getSql());
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
