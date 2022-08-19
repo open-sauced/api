@@ -213,6 +213,7 @@ jobs:
           cname: apidocs.opensauced.pizza
 
   digital-ocean:
+    if: needs.release.outputs.release-tag
     name: Deploy to Digital Ocean
     needs:
       - release
