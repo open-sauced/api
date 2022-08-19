@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository, SelectQueryBuilder } from "typeorm";
+import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { Repo } from "./repo.entity";
@@ -39,8 +39,6 @@ export class RepoService {
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
       .loadRelationCountAndMap("repo.stargazersCount", "repo.repoToUserStargazers")
       .loadRelationCountAndMap("repo.starsCount", "repo.repoToUserStars");
-
-    console.log(builder.getSql());
 
     return builder;
   }
