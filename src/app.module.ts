@@ -19,6 +19,7 @@ import { RepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
 import { RepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
 import { AuthModule } from "./auth/auth.module";
+import { VoteModule } from "./vote/vote.module";
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     HealthModule,
     RepoModule,
+    VoteModule,
   ],
   controllers: [],
   providers: [],

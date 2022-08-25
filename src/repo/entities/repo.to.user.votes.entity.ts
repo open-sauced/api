@@ -27,30 +27,30 @@ export class RepoToUserVotes {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at: Date;
+  updated_at?: Date;
 
   @DeleteDateColumn({
     type: "timestamp without time zone",
   })
-  deleted_at: Date;
+  deleted_at?: Date;
 
   @ManyToOne(() => User, (user) => user.repoToUserVotes)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user!: User;
+  public user: User;
 
   @ManyToOne(() => Repo, (repo) => repo.repoToUserVotes)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",
   })
-  public repo!: Repo;
+  public repo: Repo;
 }

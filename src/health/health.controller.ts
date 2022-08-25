@@ -10,8 +10,8 @@ import {
 import { ConfigService } from "@nestjs/config";
 import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
-@ApiTags("Health")
 @Controller("health")
+@ApiTags("Health check service")
 export class HealthController {
   constructor(
     private health: HealthCheckService,

@@ -5,8 +5,8 @@ import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User } from "./supabase.user.decorator";
 import { SupabaseAuthResponse } from "./dtos/supabase-auth-response.dto";
 
-@ApiTags("Authentication")
 @Controller("auth")
+@ApiTags("Authentication service")
 export class AuthController {
   @Get("/session")
   @ApiBearerAuth()

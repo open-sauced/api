@@ -6,8 +6,8 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 
-@Controller("repos")
-@ApiTags("Repositories")
+@Controller("repo")
+@ApiTags("Repository service")
 export class RepoController {
   constructor(private readonly repoService: RepoService) {}
 
