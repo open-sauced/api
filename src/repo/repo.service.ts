@@ -31,6 +31,7 @@ export class RepoService {
       // .leftJoinAndSelect("repo.user", "user")
       // .leftJoinAndSelect(RepoToUserStars, "stars")
       // .leftJoinAndMapMany("repo.contributions", Contribution, "contributions", "contributions.repo_id = repo.id")
+      .addSelect((qb) => this.subQueryCount(qb, "Contribution", "contributions"), "contributionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "RepoToUserVotes", "votes"), "votesCount")
       .addSelect((qb) => this.subQueryCount(qb, "RepoToUserSubmissions", "submissions"), "submissionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStargazers", "stargazers"), "stargazersCount")
