@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.8...v1.9.0-beta.9) (2022-08-25)
+
+
+### 🐛 Bug Fixes
+
+* correct repo contributions count ([8952f19](https://github.com/open-sauced/api.opensauced.pizza/commit/8952f193e891bd847947317b2f48239c47497692))
+
 ## [1.9.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.7...v1.9.0-beta.8) (2022-08-25)
 
 
