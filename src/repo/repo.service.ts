@@ -1,11 +1,12 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository } from "typeorm";
+import { Repository, SelectQueryBuilder} from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { Repo } from "./entities/repo.entity";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
+import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
+import {Order} from "../common/constants/order.constant";
 
 @Injectable()
 export class RepoService {
@@ -14,15 +15,15 @@ export class RepoService {
     private repoRepository: Repository<Repo>,
   ) {}
 
-  // subQueryCount(subQuery: SelectQueryBuilder<any>, entity: string , alias: string, target = "repo") {
-  //   const aliasName = `${alias}Count`;
-  //   const aliasTable = `${alias}CountSelect`;
-  //
-  //   return subQuery
-  //     .select("COUNT(DISTINCT id)", aliasName)
-  //     .from(entity, aliasTable)
-  //     .where(`${aliasTable}.${target}_id = ${target}.id`);
-  // }
+  subQueryCount<T>(subQuery: SelectQueryBuilder<T>, entity: string , alias: string, target = "repo") {
+    const aliasName = `${alias}Count`;
+    const aliasTable = `${alias}CountSelect`;
+
+    return subQuery
+      .select("COUNT(DISTINCT id)", aliasName)
+      .from(entity, aliasTable)
+      .where(`${aliasTable}.${target}_id = ${target}.id`);
+  }
 
   baseQueryBuilder() {
     const builder = this.repoRepository.createQueryBuilder("repo")
@@ -30,10 +31,10 @@ export class RepoService {
       // .leftJoinAndSelect("repo.user", "user")
       // .leftJoinAndSelect(RepoToUserStars, "stars")
       // .leftJoinAndMapMany("repo.contributions", Contribution, "contributions", "contributions.repo_id = repo.id")
-      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserVotes", "votes"))
-      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserSubmissions", "submissions"))
-      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStargazers", "stargazers"))
-      // .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStars", "stars"))
+      .addSelect((qb) => this.subQueryCount(qb, "RepoToUserVotes", "votes"), "votesCount")
+      .addSelect((qb) => this.subQueryCount(qb, "RepoToUserSubmissions", "submissions"), "submissionsCount")
+      .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStargazers", "stargazers"), "stargazersCount")
+      .addSelect((qb) => this.subQueryCount(qb, "RepoToUserStars", "stars"), "starsCount")
       .loadRelationCountAndMap("repo.contributionsCount", "repo.contributions")
       .loadRelationCountAndMap("repo.votesCount", "repo.repoToUserVotes")
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
@@ -76,14 +77,18 @@ export class RepoService {
   }
 
   async findAll(
-    pageOptionsDto: PageOptionsDto
+    pageOptionsDto: RepoPageOptionsDto
   ): Promise<PageDto<Repo>> {
     const queryBuilder = this.baseQueryBuilder();
+    const orderField = pageOptionsDto.orderBy || "is_fork";
 
     queryBuilder
-      .orderBy("repo.pushed_at", pageOptionsDto.order)
+      .orderBy(`"repo"."is_fork"`, Order.ASC)
+      .addOrderBy(`"${orderField}"`, pageOptionsDto.orderDirection)
+      .addOrderBy(`"repo"."stars"`, Order.DESC)
+      .addOrderBy(`"repo"."created_at"`, Order.DESC)
       .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.take);
+      .limit(pageOptionsDto.limit);
 
     // console.log(queryBuilder.getSql());
 

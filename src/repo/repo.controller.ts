@@ -5,6 +5,7 @@ import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nest
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import {RepoPageOptionsDto} from "./dtos/repo-page-options.dto";
 
 @Controller("repo")
 @ApiTags("Repository service")
@@ -18,7 +19,9 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
+  @ApiNotFoundResponse({
+    description: "Repository not found",
+  })
   async findOneById(
     @Param("id") id: number,
   ): Promise<Repo> {
@@ -32,7 +35,9 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
+  @ApiNotFoundResponse({
+    description: "Repository not found",
+  })
   async findOneByOwnerAndRepo(
     @Param("owner") owner: string,
       @Param("repo") repo: string,
@@ -49,7 +54,7 @@ export class RepoController {
   @ApiPaginatedResponse(Repo)
   @ApiOkResponse({ type: Repo })
   async findUserList(
-    @Query() pageOptionsDto: PageOptionsDto
+    @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise<PageDto<Repo>> {
     return this.repoService.findAll(pageOptionsDto);
   }
