@@ -216,8 +216,8 @@ import {
 import { ConfigService } from &quot;@nestjs/config&quot;;
 import { ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 
-@ApiTags(&quot;Health&quot;)
 @Controller(&quot;health&quot;)
+@ApiTags(&quot;Health check service&quot;)
 export class HealthController {
   constructor(
     private health: HealthCheckService,

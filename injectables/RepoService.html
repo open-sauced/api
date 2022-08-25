@@ -431,7 +431,7 @@
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { Repo } from &quot;./repo.entity&quot;;
+import { Repo } from &quot;./entities/repo.entity&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -514,7 +514,7 @@ export class RepoService {
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.take);
 
-    console.log(queryBuilder.getSql());
+    // console.log(queryBuilder.getSql());
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();

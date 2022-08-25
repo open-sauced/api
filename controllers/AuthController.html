@@ -190,8 +190,8 @@ import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { User } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseAuthResponse } from &quot;./dtos/supabase-auth-response.dto&quot;;
 
-@ApiTags(&quot;Authentication&quot;)
 @Controller(&quot;auth&quot;)
+@ApiTags(&quot;Authentication service&quot;)
 export class AuthController {
   @Get(&quot;/session&quot;)
   @ApiBearerAuth()
