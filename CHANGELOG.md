@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.6...v1.9.0-beta.7) (2022-08-25)
+
+
+### 📝 Documentation
+
+* add powered by digital ocean readme badge and referal link ([5925b74](https://github.com/open-sauced/api.opensauced.pizza/commit/5925b749c59cb96844fe4bfee7e1c8014608a01c))
+
 ## [1.9.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.5...v1.9.0-beta.6) (2022-08-25)
 
 
