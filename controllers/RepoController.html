@@ -135,14 +135,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({type: NotFoundException})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/repo/repo.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/repo/repo.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({type: NotFoundException})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/repo/repo.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/repo/repo.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -295,7 +295,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findUserList(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <code>findUserList(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -309,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/repo/repo.controller.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/repo/repo.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -333,7 +333,7 @@
                                 <tr>
                                     <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                                <code><a href="../classes/RepoPageOptionsDto.html" target="_self" >RepoPageOptionsDto</a></code>
                                     </td>
 
                                     <td>
@@ -362,13 +362,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, Param, Query } from &quot;@nestjs/common&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
 import { Repo } from &quot;./entities/repo.entity&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
-import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 
 @Controller(&quot;repo&quot;)
 @ApiTags(&quot;Repository service&quot;)
@@ -382,7 +382,9 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
+  @ApiNotFoundResponse({
+    description: &quot;Repository not found&quot;,
+  })
   async findOneById(
     @Param(&quot;id&quot;) id: number,
   ): Promise&lt;Repo&gt; {
@@ -396,7 +398,9 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
+  @ApiNotFoundResponse({
+    description: &quot;Repository not found&quot;,
+  })
   async findOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
@@ -413,7 +417,7 @@ export class RepoController {
   @ApiPaginatedResponse(Repo)
   @ApiOkResponse({ type: Repo })
   async findUserList(
-    @Query() pageOptionsDto: PageOptionsDto
+    @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise&lt;PageDto&lt;Repo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto);
   }

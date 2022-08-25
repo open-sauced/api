@@ -230,6 +230,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/PageOptionsDto.html" data-type="entity-link" >PageOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/RepoPageOptionsDto.html" data-type="entity-link" >RepoPageOptionsDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/SupabaseAuthResponse.html" data-type="entity-link" >SupabaseAuthResponse</a>
                             </li>
                         </ul>

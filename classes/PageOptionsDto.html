@@ -85,17 +85,17 @@
                             <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
-                                <a href="#order" >order</a>
+                                <a href="#limit" >limit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#orderDirection" >orderDirection</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#page" >page</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#take" >take</a>
                             </li>
                         </ul>
                     </td>
@@ -134,12 +134,54 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="order"></a>
+                    <a name="limit"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
                             <span class="modifier">Optional</span>
-                        <span ><b>order</b></span>
-                        <a href="#order"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>limit</b></span>
+                        <a href="#limit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>10</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({minimum: 1, maximum: 50, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(50)<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/common/dtos/page-options.dto.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderDirection"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>orderDirection</b></span>
+                        <a href="#orderDirection"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -151,7 +193,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>Order.ASC</code>
+                        <i>Default value : </i><code>Order.DESC</code>
                     </td>
                 </tr>
                 <tr>
@@ -165,7 +207,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/common/dtos/page-options.dto.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/common/dtos/page-options.dto.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -207,49 +249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/common/dtos/page-options.dto.ts:20</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="take"></a>
-                    <span class="name">
-                            <span class="modifier">Readonly</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>take</b></span>
-                        <a href="#take"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>10</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiPropertyOptional({minimum: 1, maximum: 50, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(50)<br />@IsOptional()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/common/dtos/page-options.dto.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/common/dtos/page-options.dto.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -301,11 +301,6 @@ import { IsEnum, IsInt, IsOptional, Max, Min } from &quot;class-validator&quot;;
 import { Order } from &quot;../constants/order.constant&quot;;
 
 export class PageOptionsDto {
-  @ApiPropertyOptional({ enum: Order, enumName: &quot;Order&quot;, default: Order.ASC })
-  @IsEnum(Order)
-  @IsOptional()
-  readonly order?: Order &#x3D; Order.ASC;
-
   @ApiPropertyOptional({
     minimum: 1,
     default: 1,
@@ -326,10 +321,15 @@ export class PageOptionsDto {
   @Min(1)
   @Max(50)
   @IsOptional()
-  readonly take?: number &#x3D; 10;
+  readonly limit?: number &#x3D; 10;
+
+  @ApiPropertyOptional({ enum: Order, enumName: &quot;Order&quot;, default: Order.DESC })
+  @IsEnum(Order)
+  @IsOptional()
+  readonly orderDirection?: Order &#x3D; Order.DESC;
 
   get skip(): number {
-    return ((this.page || 1) - 1) * (this.take || 10);
+    return ((this.page || 1) - 1) * (this.limit || 10);
   }
 }
 </code></pre>

@@ -98,7 +98,7 @@
   model: TModel,
 ) &#x3D;&gt; {
   return applyDecorators(
-    ApiExtraModels(PageDto, Repo),
+    ApiExtraModels(PageDto, model),
     ApiOkResponse({
       description: &quot;Successfully received model list&quot;,
       schema: {
