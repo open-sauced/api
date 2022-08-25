@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.5...v1.9.0-beta.6) (2022-08-25)
+
+
+### 🧑‍💻 Code Refactoring
+
+* code split repository entities ([ae43450](https://github.com/open-sauced/api.opensauced.pizza/commit/ae43450249dbf4651797fc746baf4ed86f54b7ff))
+
+
+### 🍕 Features
+
+* add repo up vote and down vote functionality ([16678a7](https://github.com/open-sauced/api.opensauced.pizza/commit/16678a7d1bca97907165436e548b56901b891044)), closes [#19](https://github.com/open-sauced/api.opensauced.pizza/issues/19)
+
 ## [1.9.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.4...v1.9.0-beta.5) (2022-08-19)
 
 
