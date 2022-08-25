@@ -221,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/repo/repo.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/repo/repo.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -292,8 +292,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/repo/repo.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/repo/repo.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -363,8 +363,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/repo/repo.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/repo/repo.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -586,6 +586,7 @@ export class RepoService {
       // .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
       // .leftJoinAndSelect(RepoToUserStars, &quot;stars&quot;)
       // .leftJoinAndMapMany(&quot;repo.contributions&quot;, Contribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;Contribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
