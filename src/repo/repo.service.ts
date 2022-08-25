@@ -1,12 +1,12 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository, SelectQueryBuilder} from "typeorm";
+import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { Repo } from "./entities/repo.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
-import {Order} from "../common/constants/order.constant";
+import { Order } from "../common/constants/order.constant";
 
 @Injectable()
 export class RepoService {

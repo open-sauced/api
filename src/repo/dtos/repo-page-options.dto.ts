@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { IsEnum, IsOptional } from "class-validator";
-import {PageOptionsDto} from "../../common/dtos/page-options.dto";
+import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 
 export enum RepoOrder {
   issues = "issues",
