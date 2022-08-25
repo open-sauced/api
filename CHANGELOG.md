@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.7...v1.9.0-beta.8) (2022-08-25)
+
+
+### 🐛 Bug Fixes
+
+* make order work for repo listing ([69b2067](https://github.com/open-sauced/api.opensauced.pizza/commit/69b20676fe504a00d6bb48672fb79c8bc92cf49a))
+
+
+### 🎨 Styles
+
+* correct lint errors from hasty push ([fe20c2d](https://github.com/open-sauced/api.opensauced.pizza/commit/fe20c2db54f00ef02cdc48fc7faf36867a6ef317))
+
 ## [1.9.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.6...v1.9.0-beta.7) (2022-08-25)
 
 
