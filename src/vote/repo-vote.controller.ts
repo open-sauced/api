@@ -14,7 +14,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 
-@Controller("repo")
+@Controller("repos")
 @ApiTags("Repository service guarded", "Vote service")
 export class RepoVoteController {
   constructor(
