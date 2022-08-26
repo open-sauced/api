@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.9...v1.9.0-beta.10) (2022-08-26)
+
+
+### 🐛 Bug Fixes
+
+* undo rogue controller route name change ([6a4810f](https://github.com/open-sauced/api.opensauced.pizza/commit/6a4810f8c31b353d3ff57f69af1ef36728fdedee))
+
 ## [1.9.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.8...v1.9.0-beta.9) (2022-08-25)
 
 
