@@ -16,7 +16,7 @@ import { DbRepo } from "../repo/entities/repo.entity";
 @Entity({
   name: "contributions"
 })
-export class Contribution extends BaseEntity {
+export class DbContribution extends BaseEntity {
   @PrimaryColumn("bigint")
   id: number;
 
