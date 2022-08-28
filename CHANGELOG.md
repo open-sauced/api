@@ -5,6 +5,33 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.10...v1.9.0-beta.11) (2022-08-28)
+
+
+### 🍕 Features
+
+* add star repo authenticated feature ([e392288](https://github.com/open-sauced/api.opensauced.pizza/commit/e39228861a826d3c255fbf7393a8b8c048a70376)), closes [#20](https://github.com/open-sauced/api.opensauced.pizza/issues/20)
+* add stargaze repo authenticated feature ([f8d41f1](https://github.com/open-sauced/api.opensauced.pizza/commit/f8d41f1f2f141a6ed4ef619bc28bc1ee397a1145)), closes [#22](https://github.com/open-sauced/api.opensauced.pizza/issues/22)
+
+
+### 🐛 Bug Fixes
+
+* correct additional relation entities appearing in openapi schema ([f4570c3](https://github.com/open-sauced/api.opensauced.pizza/commit/f4570c31dcbf59992ac099ae76572d13c2582566))
+* correct date type meta tags openapi types ([860fff3](https://github.com/open-sauced/api.opensauced.pizza/commit/860fff3f052c3a36fa8158b0df4812531475e7b3))
+* remove more relationship entities from openapi response schemas ([d315ea4](https://github.com/open-sauced/api.opensauced.pizza/commit/d315ea4c90d07380ff87ca5e19b6502dc8ce4621))
+
+
+### 🧑‍💻 Code Refactoring
+
+* rename Contribution entity into DbContribution ([3774b36](https://github.com/open-sauced/api.opensauced.pizza/commit/3774b36663e41004b394b6b222b5f384899d88ba))
+* rename enum ([b8b22da](https://github.com/open-sauced/api.opensauced.pizza/commit/b8b22daffba5e9faf7b8f805858f393a6181bc2b))
+* rename Repo entity into DbRepo ([f05c29c](https://github.com/open-sauced/api.opensauced.pizza/commit/f05c29cd44c665fe5c2ad8b41609dcb2ac09d1ce))
+* rename RepoToUserStargazers entity into DbRepoToUserStargazers ([867d740](https://github.com/open-sauced/api.opensauced.pizza/commit/867d7409a17c33f34bd173d871b5568131f4ddc3))
+* rename RepoToUserStars entity into DbRepoToUserStars ([d08b3ff](https://github.com/open-sauced/api.opensauced.pizza/commit/d08b3ffed2952b6d078545952075eeb56a3ae372))
+* rename RepoToUserSubmissions entity into DbRepoToUserSubmissions ([9484df4](https://github.com/open-sauced/api.opensauced.pizza/commit/9484df4dd49bbb1c0e59a4406aabe910ccdb6aaf))
+* rename RepoToUserVotes entity into DbRepoToUserVotes ([61ac1e7](https://github.com/open-sauced/api.opensauced.pizza/commit/61ac1e7de4272cb52eb8e0eb9f54f982c2ea1e7e))
+* rename User entity into DbUser ([04082d7](https://github.com/open-sauced/api.opensauced.pizza/commit/04082d7d7436d83806888977335ba7c1ef377f1d))
+
 ## [1.9.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.9...v1.9.0-beta.10) (2022-08-26)
 
 
