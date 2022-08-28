@@ -9,7 +9,7 @@ import {
 } from "@nestjs/swagger";
 import { RepoService } from "../repo/repo.service";
 import { VoteService } from "./vote.service";
-import { Repo } from "../repo/entities/repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
@@ -57,7 +57,7 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: Repo
+    type: DbRepo
   })
   @ApiNotFoundResponse({
     description: "Repo or vote not found",
@@ -110,7 +110,7 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: Repo
+    type: DbRepo
   })
   @ApiNotFoundResponse({
     description: "Repo or vote not found",

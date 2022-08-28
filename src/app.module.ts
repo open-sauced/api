@@ -11,7 +11,7 @@ import apiConfig from "./config/api.config";
 import dbConfig from "./config/database.config";
 import endpointConfig from "./config/endpoint.config";
 import { HealthModule } from "./health/health.module";
-import { Repo } from "./repo/entities/repo.entity";
+import { DbRepo } from "./repo/entities/repo.entity";
 import { User } from "./user/user.entity";
 import { Contribution } from "./contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
@@ -45,7 +45,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
         autoLoadEntities: false,
         entities: [
           User,
-          Repo,
+          DbRepo,
           Contribution,
           RepoToUserVotes,
           RepoToUserStars,

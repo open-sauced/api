@@ -9,7 +9,7 @@ import {
 } from "@nestjs/swagger";
 import { RepoService } from "../repo/repo.service";
 import { StarService } from "./star.service";
-import { Repo } from "../repo/entities/repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { RepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
@@ -57,7 +57,7 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: Repo
+    type: DbRepo
   })
   @ApiNotFoundResponse({
     description: "Repo or star not found",
@@ -110,7 +110,7 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: Repo
+    type: DbRepo
   })
   @ApiNotFoundResponse({
     description: "Repo or star not found",

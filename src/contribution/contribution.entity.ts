@@ -11,7 +11,7 @@ import {
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { Repo } from "../repo/entities/repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
 
 @Entity({
   name: "contributions"
@@ -67,10 +67,10 @@ export class Contribution extends BaseEntity {
   url: string;
 
   @ApiHideProperty()
-  @ManyToOne(() => Repo, (repo) => repo.contributions)
+  @ManyToOne(() => DbRepo, (repo) => repo.contributions)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",
   })
-  repo: Repo;
+  repo: DbRepo;
 }

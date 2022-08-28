@@ -10,7 +10,7 @@ import {
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { Repo } from "../repo/entities/repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { RepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
@@ -56,8 +56,8 @@ export class User extends BaseEntity {
   deleted_at: Date;
 
   @ApiHideProperty()
-  @OneToMany(() => Repo, repo => repo.user)
-  repos: Repo[];
+  @OneToMany(() => DbRepo, repo => repo.user)
+  repos: DbRepo[];
 
   @ApiHideProperty()
   @OneToMany(() => RepoToUserVotes, repoToUserVotes => repoToUserVotes.user)

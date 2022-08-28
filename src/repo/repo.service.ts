@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { Repo } from "./entities/repo.entity";
+import { DbRepo } from "./entities/repo.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
@@ -11,8 +11,8 @@ import { Order } from "../common/constants/order.constant";
 @Injectable()
 export class RepoService {
   constructor(
-    @InjectRepository(Repo)
-    private repoRepository: Repository<Repo>,
+    @InjectRepository(DbRepo)
+    private repoRepository: Repository<DbRepo>,
   ) {}
 
   subQueryCount<T>(subQuery: SelectQueryBuilder<T>, entity: string , alias: string, target = "repo") {
@@ -45,7 +45,7 @@ export class RepoService {
     return builder;
   }
 
-  async findOneById(id: number): Promise<Repo> {
+  async findOneById(id: number): Promise<DbRepo> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -60,7 +60,7 @@ export class RepoService {
     return item;
   }
 
-  async findOneByOwnerAndRepo(owner: string, repo: string): Promise<Repo> {
+  async findOneByOwnerAndRepo(owner: string, repo: string): Promise<DbRepo> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -79,7 +79,7 @@ export class RepoService {
 
   async findAll(
     pageOptionsDto: RepoPageOptionsDto
-  ): Promise<PageDto<Repo>> {
+  ): Promise<PageDto<DbRepo>> {
     const queryBuilder = this.baseQueryBuilder();
     const orderField = pageOptionsDto.orderBy || "is_fork";
 

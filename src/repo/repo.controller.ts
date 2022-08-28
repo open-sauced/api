@@ -1,6 +1,6 @@
 import { Controller, Get, HttpCode, HttpStatus, Param, Query } from "@nestjs/common";
 import { RepoService } from "./repo.service";
-import { Repo } from "./entities/repo.entity";
+import { DbRepo } from "./entities/repo.entity";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -17,13 +17,13 @@ export class RepoController {
     summary: "Finds a repo by :id",
   })
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
+  @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({
     description: "Repository not found",
   })
   async findOneById(
     @Param("id") id: number,
-  ): Promise<Repo> {
+  ): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }
 
@@ -33,14 +33,14 @@ export class RepoController {
     summary: "Finds a repo by :owner and :repo",
   })
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
+  @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({
     description: "Repository not found",
   })
   async findOneByOwnerAndRepo(
     @Param("owner") owner: string,
       @Param("repo") repo: string,
-  ): Promise<Repo> {
+  ): Promise<DbRepo> {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
 
@@ -50,11 +50,11 @@ export class RepoController {
     summary: "Finds all repos and paginates them",
   })
   @HttpCode(HttpStatus.OK)
-  @ApiPaginatedResponse(Repo)
-  @ApiOkResponse({ type: Repo })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
   async findUserList(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-  ): Promise<PageDto<Repo>> {
+  ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);
   }
 }

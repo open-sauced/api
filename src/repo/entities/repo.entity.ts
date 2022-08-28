@@ -26,7 +26,7 @@ import { RepoToUserStargazers } from "./repo.to.user.stargazers.entity";
     name: "ASC"
   }
 })
-export class Repo extends BaseEntity {
+export class DbRepo extends BaseEntity {
   @PrimaryColumn("bigint")
   id: number;
 
