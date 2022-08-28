@@ -135,7 +135,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -180,7 +180,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/Repo.html" target="_self" >Promise&lt;Repo&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -213,7 +213,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: Repo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -270,7 +270,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/Repo.html" target="_self" >Promise&lt;Repo&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -303,7 +303,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiPaginatedResponse(Repo)<br />@ApiOkResponse({type: Repo})<br /></code>
+                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
                 </td>
             </tr>
 
@@ -348,7 +348,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Repo&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -364,7 +364,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, Param, Query } from &quot;@nestjs/common&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
-import { Repo } from &quot;./entities/repo.entity&quot;;
+import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
@@ -381,13 +381,13 @@ export class RepoController {
     summary: &quot;Finds a repo by :id&quot;,
   })
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
+  @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({
     description: &quot;Repository not found&quot;,
   })
   async findOneById(
     @Param(&quot;id&quot;) id: number,
-  ): Promise&lt;Repo&gt; {
+  ): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneById(id);
   }
 
@@ -397,14 +397,14 @@ export class RepoController {
     summary: &quot;Finds a repo by :owner and :repo&quot;,
   })
   @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
+  @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({
     description: &quot;Repository not found&quot;,
   })
   async findOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
-  ): Promise&lt;Repo&gt; {
+  ): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
 
@@ -414,11 +414,11 @@ export class RepoController {
     summary: &quot;Finds all repos and paginates them&quot;,
   })
   @HttpCode(HttpStatus.OK)
-  @ApiPaginatedResponse(Repo)
-  @ApiOkResponse({ type: Repo })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
   async findUserList(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-  ): Promise&lt;PageDto&lt;Repo&gt;&gt; {
+  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto);
   }
 }

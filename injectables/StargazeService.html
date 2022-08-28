@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >VoteService</li>
+  <li >StargazeService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/vote/vote.service.ts</code>
+            <code>src/stargaze/stargaze.service.ts</code>
         </p>
 
 
@@ -83,11 +83,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#downVoteByRepoId" >downVoteByRepoId</a>
+                                <a href="#downStargazeByRepoId" >downStargazeByRepoId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#voteByRepoId" >voteByRepoId</a>
+                                <a href="#stargazeByRepoId" >stargazeByRepoId</a>
                             </li>
                         </ul>
                     </td>
@@ -107,12 +107,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(repoVoteRepository: <a href="../s/User.html" target="_self">Repository&lt;DbRepoToUserVotes&gt;</a>)</code>
+<code>constructor(repoStargazeRepository: <a href="../s/User.html" target="_self">Repository&lt;DbRepoToUserStargazers&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/vote/vote.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/stargaze/stargaze.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -130,10 +130,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>repoVoteRepository</td>
+                                                        <td>repoStargazeRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbRepoToUserVotes&gt;</a></code>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbRepoToUserStargazers&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -176,7 +176,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/vote/vote.service.ts:13</a></div>
+                            class="link-to-prism">src/stargaze/stargaze.service.ts:13</a></div>
                 </td>
             </tr>
 
@@ -196,18 +196,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="downVoteByRepoId"></a>
+                    <a name="downStargazeByRepoId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>downVoteByRepoId</b></span>
-                        <a href="#downVoteByRepoId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>downStargazeByRepoId</b></span>
+                        <a href="#downStargazeByRepoId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>downVoteByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>downStargazeByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -215,7 +215,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/vote/vote.service.ts:45</a></div>
+                            class="link-to-prism">src/stargaze/stargaze.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -265,7 +265,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -279,18 +279,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="voteByRepoId"></a>
+                    <a name="stargazeByRepoId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>voteByRepoId</b></span>
-                        <a href="#voteByRepoId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>stargazeByRepoId</b></span>
+                        <a href="#stargazeByRepoId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>voteByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>stargazeByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -298,7 +298,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/vote/vote.service.ts:20</a></div>
+                            class="link-to-prism">src/stargaze/stargaze.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -348,7 +348,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -367,67 +367,67 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
-import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.entity&quot;;
+import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.stargazers.entity&quot;;
 
 @Injectable()
-export class VoteService {
+export class StargazeService {
   constructor(
-    @InjectRepository(DbRepoToUserVotes)
-    private repoVoteRepository: Repository&lt;DbRepoToUserVotes&gt;,
+    @InjectRepository(DbRepoToUserStargazers)
+    private repoStargazeRepository: Repository&lt;DbRepoToUserStargazers&gt;,
   ) {}
 
   baseQueryBuilder() {
-    const builder &#x3D; this.repoVoteRepository.createQueryBuilder(&quot;r2votes&quot;)
+    const builder &#x3D; this.repoStargazeRepository.createQueryBuilder(&quot;r2stargazes&quot;)
       .withDeleted();
 
     return builder;
   }
 
-  async voteByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
+  async stargazeByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;r2votes.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2votes.user_id &#x3D; :userId&quot;, { userId });
+      .where(&quot;r2stargazes.repo_id &#x3D; :repoId&quot;, { repoId })
+      .andWhere(&quot;r2stargazes.user_id &#x3D; :userId&quot;, { userId });
 
-    const voteExists &#x3D; await queryBuilder.getOne();
+    const stargazeExists &#x3D; await queryBuilder.getOne();
 
-    if (voteExists) {
-      if (voteExists.deleted_at &#x3D;&#x3D;&#x3D; null) {
-        throw new ConflictException(&quot;You have already voted for this repo&quot;);
+    if (stargazeExists) {
+      if (stargazeExists.deleted_at &#x3D;&#x3D;&#x3D; null) {
+        throw new ConflictException(&quot;You have already unfollowed this repo&quot;);
       }
 
-      await this.repoVoteRepository.restore(voteExists.id);
+      await this.repoStargazeRepository.restore(stargazeExists.id);
 
-      return voteExists;
+      return stargazeExists;
     }
 
-    return this.repoVoteRepository.save({
+    return this.repoStargazeRepository.save({
       repo_id: repoId,
       user_id: userId,
     });
   }
 
-  async downVoteByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
+  async downStargazeByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;r2votes.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2votes.user_id &#x3D; :userId&quot;, { userId });
+      .where(&quot;r2stargazes.repo_id &#x3D; :repoId&quot;, { repoId })
+      .andWhere(&quot;r2stargazes.user_id &#x3D; :userId&quot;, { userId });
 
-    const voteExists &#x3D; await queryBuilder.getOne();
+    const stargazeExists &#x3D; await queryBuilder.getOne();
 
-    if (!voteExists) {
-      throw new NotFoundException(&quot;You have not voted for this repo&quot;);
+    if (!stargazeExists) {
+      throw new NotFoundException(&quot;You have not followed this repo&quot;);
     }
 
-    if (voteExists.deleted_at !&#x3D;&#x3D; null) {
-      throw new ConflictException(&quot;You have already removed your vote&quot;);
+    if (stargazeExists.deleted_at !&#x3D;&#x3D; null) {
+      throw new ConflictException(&quot;You have already unfollowed this repo&quot;);
     }
 
-    await this.repoVoteRepository.softDelete(voteExists.id);
+    await this.repoStargazeRepository.softDelete(stargazeExists.id);
 
-    return voteExists;
+    return stargazeExists;
   }
 }
 </code></pre>
@@ -473,7 +473,7 @@ export class VoteService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'VoteService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'StargazeService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

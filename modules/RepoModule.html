@@ -171,12 +171,12 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &quot;@nestjs/common&quot;;
 import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
-import { Repo } from &quot;./entities/repo.entity&quot;;
+import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
 import { RepoController } from &quot;./repo.controller&quot;;
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Repo])],
+  imports: [TypeOrmModule.forFeature([DbRepo])],
   controllers: [RepoController],
   providers: [RepoService],
   exports: [RepoService],

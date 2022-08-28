@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >SupabaseStrategy</li>
+  <li >StarService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/auth/supabase.strategy.ts</code>
+            <code>src/star/star.service.ts</code>
         </p>
 
 
@@ -79,11 +79,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#authenticate" >authenticate</a>
+                                <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#validate" >validate</a>
+                                <a href="#downStarByRepoId" >downStarByRepoId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#starByRepoId" >starByRepoId</a>
                             </li>
                         </ul>
                     </td>
@@ -103,16 +107,45 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                                <span class="modifier">Public</span>
-                        <code>constructor()</code>
+<code>constructor(repoStarRepository: <a href="../s/User.html" target="_self">Repository&lt;DbRepoToUserStars&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/auth/supabase.strategy.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/star/star.service.ts:7</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>repoStarRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbRepoToUserStars&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -126,24 +159,63 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="authenticate"></a>
+                    <a name="baseQueryBuilder"></a>
                     <span class="name">
-                        <span ><b>authenticate</b></span>
-                        <a href="#authenticate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>authenticate(req: never)</code>
+<code>baseQueryBuilder()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/auth/supabase.strategy.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/star/star.service.ts:13</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downStarByRepoId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>downStarByRepoId</b></span>
+                        <a href="#downStarByRepoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>downStarByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/star/star.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -164,9 +236,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>req</td>
+                                    <td>repoId</td>
                                     <td>
-                                            <code>never</code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -181,7 +265,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -195,26 +279,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="validate"></a>
+                    <a name="starByRepoId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>validate</b></span>
-                        <a href="#validate"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>starByRepoId</b></span>
+                        <a href="#starByRepoId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>validate(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                    <code>starByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/auth/supabase.strategy.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/star/star.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -235,9 +319,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>user</td>
+                                    <td>repoId</td>
                                     <td>
-                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -252,7 +348,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -268,34 +364,70 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { PassportStrategy } from &quot;@nestjs/passport&quot;;
-import { ExtractJwt } from &quot;passport-jwt&quot;;
-import { SupabaseAuthStrategy, SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
-
-export type SupabaseAuthRequest &#x3D; Partial&lt;Request&gt; &amp; { user?: SupabaseAuthUser };
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+import { Repository } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+import { DbRepoToUserStars } from &quot;../repo/entities/repo.to.user.stars.entity&quot;;
 
 @Injectable()
-export class SupabaseStrategy extends PassportStrategy(
-  SupabaseAuthStrategy,
-  &quot;supabase&quot;,
-) {
-  public constructor() {
-    super({
-      supabaseUrl: process.env.SUPABASE_URL,
-      supabaseKey: process.env.SUPABASE_API_KEY,
-      supabaseOptions: {},
-      supabaseJwtSecret: process.env.SUPABASE_JWT_SECRET,
-      extractor: ExtractJwt.fromAuthHeaderAsBearerToken(),
+export class StarService {
+  constructor(
+    @InjectRepository(DbRepoToUserStars)
+    private repoStarRepository: Repository&lt;DbRepoToUserStars&gt;,
+  ) {}
+
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoStarRepository.createQueryBuilder(&quot;r2stars&quot;)
+      .withDeleted();
+
+    return builder;
+  }
+
+  async starByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId })
+      .andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
+
+    const starExists &#x3D; await queryBuilder.getOne();
+
+    if (starExists) {
+      if (starExists.deleted_at &#x3D;&#x3D;&#x3D; null) {
+        throw new ConflictException(&quot;You have already starred this repo&quot;);
+      }
+
+      await this.repoStarRepository.restore(starExists.id);
+
+      return starExists;
+    }
+
+    return this.repoStarRepository.save({
+      repo_id: repoId,
+      user_id: userId,
     });
   }
 
-  async validate(user: SupabaseAuthUser) {
-    return super.validate(user);
-  }
+  async downStarByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
 
-  authenticate(req: never) {
-    super.authenticate(req);
+    queryBuilder
+      .where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId })
+      .andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
+
+    const starExists &#x3D; await queryBuilder.getOne();
+
+    if (!starExists) {
+      throw new NotFoundException(&quot;You have not starred this repo&quot;);
+    }
+
+    if (starExists.deleted_at !&#x3D;&#x3D; null) {
+      throw new ConflictException(&quot;You have already removed your star&quot;);
+    }
+
+    await this.repoStarRepository.softDelete(starExists.id);
+
+    return starExists;
   }
 }
 </code></pre>
@@ -341,7 +473,7 @@ export class SupabaseStrategy extends PassportStrategy(
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SupabaseStrategy.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'StarService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

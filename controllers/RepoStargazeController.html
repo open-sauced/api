@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >RepoVoteController</li>
+  <li >RepoStargazeController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/vote/repo-vote.controller.ts</code>
+            <code>src/stargaze/repo-stargaze.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -85,19 +85,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#downVoteOneById" >downVoteOneById</a>
+                                <a href="#downStargazeOneById" >downStargazeOneById</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#downVoteOneByOwnerAndRepo" >downVoteOneByOwnerAndRepo</a>
+                                <a href="#downStargazeOneByOwnerAndRepo" >downStargazeOneByOwnerAndRepo</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#voteOneById" >voteOneById</a>
+                                <a href="#stargazeOneById" >stargazeOneById</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#voteOneByOwnerAndRepo" >voteOneByOwnerAndRepo</a>
+                                <a href="#stargazeOneByOwnerAndRepo" >stargazeOneByOwnerAndRepo</a>
                             </li>
                         </ul>
                     </td>
@@ -120,18 +120,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="downVoteOneById"></a>
+                    <a name="downStargazeOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>downVoteOneById</b></span>
-                        <a href="#downVoteOneById"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>downStargazeOneById</b></span>
+                        <a href="#downStargazeOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>downVoteOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>downStargazeOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -139,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downVoteOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your vote&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and unfollows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already unfollowed this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:95</a></div>
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:95</a></div>
                 </td>
             </tr>
 
@@ -196,7 +196,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -210,18 +210,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="downVoteOneByOwnerAndRepo"></a>
+                    <a name="downStargazeOneByOwnerAndRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>downVoteOneByOwnerAndRepo</b></span>
-                        <a href="#downVoteOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>downStargazeOneByOwnerAndRepo</b></span>
+                        <a href="#downStargazeOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>downVoteOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>downStargazeOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -229,14 +229,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:owner/:repo/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downVoteOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and removes existing vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your vote&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:owner/:repo/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStargazeOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and unfollows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repo or stargaze not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already unfollowed this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:121</a></div>
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:121</a></div>
                 </td>
             </tr>
 
@@ -298,7 +298,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -312,18 +312,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="voteOneById"></a>
+                    <a name="stargazeOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>voteOneById</b></span>
-                        <a href="#voteOneById"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>stargazeOneById</b></span>
+                        <a href="#stargazeOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>voteOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>stargazeOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -331,14 +331,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;voteOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already voted for this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;stargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and follows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already followed this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:42</a></div>
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:42</a></div>
                 </td>
             </tr>
 
@@ -388,7 +388,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -402,18 +402,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="voteOneByOwnerAndRepo"></a>
+                    <a name="stargazeOneByOwnerAndRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>voteOneByOwnerAndRepo</b></span>
-                        <a href="#voteOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>stargazeOneByOwnerAndRepo</b></span>
+                        <a href="#stargazeOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>voteOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>stargazeOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -421,14 +421,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:owner/:repo/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;voteOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and adds a vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already voted for this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:owner/:repo/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;stargazeOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and follows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already followed this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:68</a></div>
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -490,7 +490,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserVotes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStargazers&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -514,124 +514,124 @@ import {
   ApiTags
 } from &quot;@nestjs/swagger&quot;;
 import { RepoService } from &quot;../repo/repo.service&quot;;
-import { VoteService } from &quot;./vote.service&quot;;
+import { StargazeService } from &quot;./stargaze.service&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
-import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.entity&quot;;
+import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.stargazers.entity&quot;;
 
 @Controller(&quot;repos&quot;)
-@ApiTags(&quot;Repository service guarded&quot;, &quot;Vote service&quot;)
-export class RepoVoteController {
+@ApiTags(&quot;Repository service guarded&quot;, &quot;Stargaze service&quot;)
+export class RepoStargazeController {
   constructor(
     private readonly repoService: RepoService,
-    private readonly voteService: VoteService,
+    private readonly stargazeService: StargazeService,
   ) {}
 
-  @Put(&quot;/:id/vote&quot;)
+  @Put(&quot;/:id/stargaze&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;voteOneById&quot;,
-    summary: &quot;Finds a repo by :id and adds a vote&quot;,
+    operationId: &quot;stargazeOneById&quot;,
+    summary: &quot;Finds a repo by :id and follows&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo vote&quot;,
-    type: DbRepoToUserVotes
+    description: &quot;Returns the repo follow&quot;,
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
-    description: &quot;Repo or vote not found&quot;,
+    description: &quot;Repo or follow not found&quot;,
   })
   @ApiConflictResponse({
-    description: &quot;You have already voted for this repo&quot;,
+    description: &quot;You have already followed this repo&quot;,
   })
-  async voteOneById(
+  async stargazeOneById(
     @Param(&quot;id&quot;) id: number,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserVotes&gt; {
+  ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
-    return this.voteService.voteByRepoId(item.id, userId);
+    return this.stargazeService.stargazeByRepoId(item.id, userId);
   }
 
-  @Put(&quot;/:owner/:repo/vote&quot;)
+  @Put(&quot;/:owner/:repo/stargaze&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;voteOneByOwnerAndRepo&quot;,
-    summary: &quot;Finds a repo by :owner and :repo and adds a vote&quot;,
+    operationId: &quot;stargazeOneByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo and follows&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo vote&quot;,
-    type: DbRepo
+    description: &quot;Returns the repo follow&quot;,
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
-    description: &quot;Repo or vote not found&quot;,
+    description: &quot;Repo or follow not found&quot;,
   })
   @ApiConflictResponse({
-    description: &quot;You have already voted for this repo&quot;,
+    description: &quot;You have already followed this repo&quot;,
   })
-  async voteOneByOwnerAndRepo(
+  async stargazeOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserVotes&gt; {
+  ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
-    return this.voteService.voteByRepoId(item.id, userId);
+    return this.stargazeService.stargazeByRepoId(item.id, userId);
   }
 
-  @Delete(&quot;/:id/vote&quot;)
+  @Delete(&quot;/:id/stargaze&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;downVoteOneById&quot;,
-    summary: &quot;Finds a repo by :id and removes existing vote&quot;,
+    operationId: &quot;downStargazeOneById&quot;,
+    summary: &quot;Finds a repo by :id and unfollows&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo vote&quot;,
-    type: DbRepoToUserVotes
+    description: &quot;Returns the repo follow&quot;,
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
-    description: &quot;Repo or vote not found&quot;,
+    description: &quot;Repo or follow not found&quot;,
   })
   @ApiConflictResponse({
-    description: &quot;You have already removed your vote&quot;,
+    description: &quot;You have already unfollowed this repo&quot;,
   })
-  async downVoteOneById(
+  async downStargazeOneById(
     @Param(&quot;id&quot;) id: number,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserVotes&gt; {
+  ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
-    return this.voteService.downVoteByRepoId(item.id, userId);
+    return this.stargazeService.downStargazeByRepoId(item.id, userId);
   }
 
-  @Delete(&quot;/:owner/:repo/vote&quot;)
+  @Delete(&quot;/:owner/:repo/stargaze&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;downVoteOneByOwnerAndRepo&quot;,
-    summary: &quot;Finds a repo by :owner and :repo and removes existing vote&quot;,
+    operationId: &quot;downStargazeOneByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo and unfollows&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo vote&quot;,
+    description: &quot;Returns the repo follow&quot;,
     type: DbRepo
   })
   @ApiNotFoundResponse({
-    description: &quot;Repo or vote not found&quot;,
+    description: &quot;Repo or stargaze not found&quot;,
   })
   @ApiConflictResponse({
-    description: &quot;You have already removed your vote&quot;,
+    description: &quot;You have already unfollowed this repo&quot;,
   })
-  async downVoteOneByOwnerAndRepo(
+  async downStargazeOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserVotes&gt; {
+  ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
-    return this.voteService.downVoteByRepoId(item.id, userId);
+    return this.stargazeService.downStargazeByRepoId(item.id, userId);
   }
 }
 </code></pre>
@@ -679,7 +679,7 @@ export class RepoVoteController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'RepoVoteController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RepoStargazeController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

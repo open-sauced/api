@@ -114,7 +114,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(repoRepository: <a href="../entitys/Repo.html" target="_self">Repository&lt;Repo&gt;</a>)</code>
+<code>constructor(repoRepository: <a href="../entitys/DbRepo.html" target="_self">Repository&lt;DbRepo&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -140,7 +140,7 @@
                                                         <td>repoRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/Repo.html" target="_self" >Repository&lt;Repo&gt;</a></code>
+                                                                        <code><a href="../entitys/DbRepo.html" target="_self" >Repository&lt;DbRepo&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -260,7 +260,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;Repo&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -331,7 +331,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/Repo.html" target="_self" >Promise&lt;Repo&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -414,7 +414,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/Repo.html" target="_self" >Promise&lt;Repo&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -557,17 +557,17 @@
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { Repo } from &quot;./entities/repo.entity&quot;;
+import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
-import { Order } from &quot;../common/constants/order.constant&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 
 @Injectable()
 export class RepoService {
   constructor(
-    @InjectRepository(Repo)
-    private repoRepository: Repository&lt;Repo&gt;,
+    @InjectRepository(DbRepo)
+    private repoRepository: Repository&lt;DbRepo&gt;,
   ) {}
 
   subQueryCount&lt;T&gt;(subQuery: SelectQueryBuilder&lt;T&gt;, entity: string , alias: string, target &#x3D; &quot;repo&quot;) {
@@ -584,8 +584,8 @@ export class RepoService {
     const builder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;)
       // .select([&#x27;repo.id&#x27;])
       // .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
-      // .leftJoinAndSelect(RepoToUserStars, &quot;stars&quot;)
-      // .leftJoinAndMapMany(&quot;repo.contributions&quot;, Contribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
+      // .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
+      // .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;Contribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
@@ -600,7 +600,7 @@ export class RepoService {
     return builder;
   }
 
-  async findOneById(id: number): Promise&lt;Repo&gt; {
+  async findOneById(id: number): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -615,7 +615,7 @@ export class RepoService {
     return item;
   }
 
-  async findOneByOwnerAndRepo(owner: string, repo: string): Promise&lt;Repo&gt; {
+  async findOneByOwnerAndRepo(owner: string, repo: string): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -634,15 +634,15 @@ export class RepoService {
 
   async findAll(
     pageOptionsDto: RepoPageOptionsDto
-  ): Promise&lt;PageDto&lt;Repo&gt;&gt; {
+  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
     const orderField &#x3D; pageOptionsDto.orderBy || &quot;is_fork&quot;;
 
     queryBuilder
-      .orderBy(&#x60;&quot;repo&quot;.&quot;is_fork&quot;&#x60;, Order.ASC)
+      .orderBy(&#x60;&quot;repo&quot;.&quot;is_fork&quot;&#x60;, OrderDirectionEnum.ASC)
       .addOrderBy(&#x60;&quot;${orderField}&quot;&#x60;, pageOptionsDto.orderDirection)
-      .addOrderBy(&#x60;&quot;repo&quot;.&quot;stars&quot;&#x60;, Order.DESC)
-      .addOrderBy(&#x60;&quot;repo&quot;.&quot;created_at&quot;&#x60;, Order.DESC)
+      .addOrderBy(&#x60;&quot;repo&quot;.&quot;stars&quot;&#x60;, OrderDirectionEnum.DESC)
+      .addOrderBy(&#x60;&quot;repo&quot;.&quot;created_at&quot;&#x60;, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
