@@ -15,7 +15,7 @@ import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
 import { DbContribution } from "./contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
-import { RepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
+import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
 import { RepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
 import { AuthModule } from "./auth/auth.module";
@@ -48,7 +48,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
           DbRepo,
           DbContribution,
           RepoToUserVotes,
-          RepoToUserStars,
+          DbRepoToUserStars,
           RepoToUserSubmissions,
           DbRepoToUserStargazers,
         ],

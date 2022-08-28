@@ -29,7 +29,7 @@ export class RepoService {
     const builder = this.repoRepository.createQueryBuilder("repo")
       // .select(['repo.id'])
       // .leftJoinAndSelect("repo.user", "user")
-      // .leftJoinAndSelect(RepoToUserStars, "stars")
+      // .leftJoinAndSelect(DbRepoToUserStars, "stars")
       // .leftJoinAndMapMany("repo.contributions", DbContribution, "contributions", "contributions.repo_id = repo.id")
       .addSelect((qb) => this.subQueryCount(qb, "Contribution", "contributions"), "contributionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "RepoToUserVotes", "votes"), "votesCount")

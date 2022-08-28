@@ -1,13 +1,13 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { RepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
+import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 
 @Injectable()
 export class StarService {
   constructor(
-    @InjectRepository(RepoToUserStars)
-    private repoStarRepository: Repository<RepoToUserStars>,
+    @InjectRepository(DbRepoToUserStars)
+    private repoStarRepository: Repository<DbRepoToUserStars>,
   ) {}
 
   baseQueryBuilder() {
@@ -17,7 +17,7 @@ export class StarService {
     return builder;
   }
 
-  async starByRepoId(repoId: number, userId: number): Promise<RepoToUserStars> {
+  async starByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -42,7 +42,7 @@ export class StarService {
     });
   }
 
-  async downStarByRepoId(repoId: number, userId: number): Promise<RepoToUserStars> {
+  async downStarByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
