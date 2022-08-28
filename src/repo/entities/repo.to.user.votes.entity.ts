@@ -47,7 +47,7 @@ export class DbRepoToUserVotes {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user: DbUser;
+  public user!: DbUser;
 
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.repoToUserVotes)
@@ -55,5 +55,5 @@ export class DbRepoToUserVotes {
     name: "repo_id",
     referencedColumnName: "id",
   })
-  public repo: DbRepo;
+  public repo!: DbRepo;
 }

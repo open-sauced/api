@@ -21,7 +21,7 @@ import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers
 })
 export class DbUser extends BaseEntity {
   @PrimaryColumn("bigint")
-  id: number;
+  id!: number;
 
   @Column({
     type: "bigint",
@@ -42,18 +42,18 @@ export class DbUser extends BaseEntity {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at: Date;
+  updated_at?: Date;
 
   @DeleteDateColumn({
     type: "timestamp without time zone",
   })
-  deleted_at: Date;
+  deleted_at?: Date;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)

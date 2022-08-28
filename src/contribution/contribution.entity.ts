@@ -18,13 +18,13 @@ import { DbRepo } from "../repo/entities/repo.entity";
 })
 export class DbContribution extends BaseEntity {
   @PrimaryColumn("bigint")
-  id: number;
+  id!: number;
 
   @Column({
     type: "bigint",
     select: false
   })
-  repo_id: number;
+  repo_id!: number;
 
   @Column({
     type: "bigint",
@@ -41,18 +41,18 @@ export class DbContribution extends BaseEntity {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at: Date;
+  updated_at?: Date;
 
   @DeleteDateColumn({
     type: "timestamp without time zone",
   })
-  deleted_at: Date;
+  deleted_at?: Date;
 
   @Column({
     type: "character varying",
@@ -72,5 +72,5 @@ export class DbContribution extends BaseEntity {
     name: "repo_id",
     referencedColumnName: "id",
   })
-  repo: DbRepo;
+  repo!: DbRepo;
 }

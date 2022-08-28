@@ -28,18 +28,18 @@ export class DbRepoToUserStargazers {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at: Date;
+  updated_at?: Date;
 
   @DeleteDateColumn({
     type: "timestamp without time zone",
   })
-  deleted_at: Date;
+  deleted_at?: Date;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.repoToUserStargazers)
@@ -47,7 +47,7 @@ export class DbRepoToUserStargazers {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user: DbUser;
+  public user!: DbUser;
 
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.repoToUserStargazers)
@@ -55,5 +55,5 @@ export class DbRepoToUserStargazers {
     name: "repo_id",
     referencedColumnName: "id",
   })
-  public repo: DbRepo;
+  public repo!: DbRepo;
 }
