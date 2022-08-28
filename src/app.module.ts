@@ -21,6 +21,7 @@ import { RepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.en
 import { AuthModule } from "./auth/auth.module";
 import { VoteModule } from "./vote/vote.module";
 import { StarModule } from "./star/star.module";
+import { StargazeModule } from "./stargaze/stargaze.module";
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import { StarModule } from "./star/star.module";
     RepoModule,
     VoteModule,
     StarModule,
+    StargazeModule,
   ],
   controllers: [],
   providers: [],
