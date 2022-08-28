@@ -12,7 +12,7 @@ import { VoteService } from "./vote.service";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
-import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
+import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Vote service")
@@ -31,7 +31,7 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: RepoToUserVotes
+    type: DbRepoToUserVotes
   })
   @ApiNotFoundResponse({
     description: "Repo or vote not found",
@@ -42,7 +42,7 @@ export class RepoVoteController {
   async voteOneById(
     @Param("id") id: number,
       @UserId() userId: number,
-  ): Promise<RepoToUserVotes> {
+  ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 
     return this.voteService.voteByRepoId(item.id, userId);
@@ -69,7 +69,7 @@ export class RepoVoteController {
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
-  ): Promise<RepoToUserVotes> {
+  ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
     return this.voteService.voteByRepoId(item.id, userId);
@@ -84,7 +84,7 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: RepoToUserVotes
+    type: DbRepoToUserVotes
   })
   @ApiNotFoundResponse({
     description: "Repo or vote not found",
@@ -95,7 +95,7 @@ export class RepoVoteController {
   async downVoteOneById(
     @Param("id") id: number,
       @UserId() userId: number,
-  ): Promise<RepoToUserVotes> {
+  ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 
     return this.voteService.downVoteByRepoId(item.id, userId);
@@ -122,7 +122,7 @@ export class RepoVoteController {
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
-  ): Promise<RepoToUserVotes> {
+  ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
     return this.voteService.downVoteByRepoId(item.id, userId);

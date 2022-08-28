@@ -1,13 +1,13 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
+import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 
 @Injectable()
 export class VoteService {
   constructor(
-    @InjectRepository(RepoToUserVotes)
-    private repoVoteRepository: Repository<RepoToUserVotes>,
+    @InjectRepository(DbRepoToUserVotes)
+    private repoVoteRepository: Repository<DbRepoToUserVotes>,
   ) {}
 
   baseQueryBuilder() {
@@ -17,7 +17,7 @@ export class VoteService {
     return builder;
   }
 
-  async voteByRepoId(repoId: number, userId: number): Promise<RepoToUserVotes> {
+  async voteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -42,7 +42,7 @@ export class VoteService {
     });
   }
 
-  async downVoteByRepoId(repoId: number, userId: number): Promise<RepoToUserVotes> {
+  async downVoteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder

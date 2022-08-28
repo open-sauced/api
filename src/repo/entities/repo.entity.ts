@@ -14,7 +14,7 @@ import { ApiHideProperty } from "@nestjs/swagger";
 
 import { DbUser } from "../../user/user.entity";
 import { DbContribution } from "../../contribution/contribution.entity";
-import { RepoToUserVotes } from "./repo.to.user.votes.entity";
+import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
@@ -138,8 +138,8 @@ export class DbRepo extends BaseEntity {
   contributions: DbContribution[];
 
   @ApiHideProperty()
-  @OneToMany(() => RepoToUserVotes, repoToUserVotes => repoToUserVotes.repo)
-  repoToUserVotes: RepoToUserVotes[];
+  @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.repo)
+  repoToUserVotes: DbRepoToUserVotes[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStars, repoToUserStars => repoToUserStars.repo)

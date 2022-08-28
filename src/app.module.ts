@@ -14,7 +14,7 @@ import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
 import { DbContribution } from "./contribution/contribution.entity";
-import { RepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
+import { DbRepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
@@ -47,7 +47,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
           DbUser,
           DbRepo,
           DbContribution,
-          RepoToUserVotes,
+          DbRepoToUserVotes,
           DbRepoToUserStars,
           DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
