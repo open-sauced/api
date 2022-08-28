@@ -1,7 +1,7 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsEnum, IsInt, IsOptional, Max, Min } from "class-validator";
-import { Order } from "../constants/order.constant";
+import { OrderDirectionEnum } from "../constants/order-direction.constant";
 
 export class PageOptionsDto {
   @ApiPropertyOptional({
@@ -26,10 +26,10 @@ export class PageOptionsDto {
   @IsOptional()
   readonly limit?: number = 10;
 
-  @ApiPropertyOptional({ enum: Order, enumName: "Order", default: Order.DESC })
-  @IsEnum(Order)
+  @ApiPropertyOptional({ enum: OrderDirectionEnum, enumName: "OrderDirectionEnum", default: OrderDirectionEnum.DESC })
+  @IsEnum(OrderDirectionEnum)
   @IsOptional()
-  readonly orderDirection?: Order = Order.DESC;
+  readonly orderDirection?: OrderDirectionEnum = OrderDirectionEnum.DESC;
 
   get skip(): number {
     return ((this.page || 1) - 1) * (this.limit || 10);

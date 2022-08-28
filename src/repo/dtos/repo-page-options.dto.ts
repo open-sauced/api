@@ -2,7 +2,7 @@ import { ApiPropertyOptional } from "@nestjs/swagger";
 import { IsEnum, IsOptional } from "class-validator";
 import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 
-export enum RepoOrder {
+export enum RepoOrderFieldsEnum {
   issues = "issues",
   stars = "stars",
   watchers = "watchers",
@@ -19,11 +19,11 @@ export enum RepoOrder {
 
 export class RepoPageOptionsDto extends PageOptionsDto {
   @ApiPropertyOptional({
-    enum: RepoOrder,
-    enumName: "RepoOrder",
-    default: RepoOrder.stars
+    enum: RepoOrderFieldsEnum,
+    enumName: "RepoOrderFieldsEnum",
+    default: RepoOrderFieldsEnum.stars
   })
-  @IsEnum(RepoOrder)
+  @IsEnum(RepoOrderFieldsEnum)
   @IsOptional()
-  readonly orderBy?: RepoOrder = RepoOrder.stars;
+  readonly orderBy?: RepoOrderFieldsEnum = RepoOrderFieldsEnum.stars;
 }

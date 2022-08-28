@@ -6,7 +6,7 @@ import { DbRepo } from "./entities/repo.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
-import { Order } from "../common/constants/order.constant";
+import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 
 @Injectable()
 export class RepoService {
@@ -84,10 +84,10 @@ export class RepoService {
     const orderField = pageOptionsDto.orderBy || "is_fork";
 
     queryBuilder
-      .orderBy(`"repo"."is_fork"`, Order.ASC)
+      .orderBy(`"repo"."is_fork"`, OrderDirectionEnum.ASC)
       .addOrderBy(`"${orderField}"`, pageOptionsDto.orderDirection)
-      .addOrderBy(`"repo"."stars"`, Order.DESC)
-      .addOrderBy(`"repo"."created_at"`, Order.DESC)
+      .addOrderBy(`"repo"."stars"`, OrderDirectionEnum.DESC)
+      .addOrderBy(`"repo"."created_at"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
