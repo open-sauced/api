@@ -9,6 +9,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn
 } from "typeorm";
+import { ApiHideProperty } from "@nestjs/swagger";
+
 import { Repo } from "../repo/entities/repo.entity";
 
 @Entity({
@@ -64,6 +66,7 @@ export class Contribution extends BaseEntity {
   })
   url: string;
 
+  @ApiHideProperty()
   @ManyToOne(() => Repo, (repo) => repo.contributions)
   @JoinColumn({
     name: "repo_id",

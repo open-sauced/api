@@ -8,6 +8,8 @@ import {
   DeleteDateColumn,
   UpdateDateColumn
 } from "typeorm";
+import { ApiHideProperty } from "@nestjs/swagger";
+
 import { Repo } from "../repo/entities/repo.entity";
 import { RepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { RepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
@@ -53,18 +55,23 @@ export class User extends BaseEntity {
   })
   deleted_at: Date;
 
+  @ApiHideProperty()
   @OneToMany(() => Repo, repo => repo.user)
   repos: Repo[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserVotes, repoToUserVotes => repoToUserVotes.user)
   repoToUserVotes: RepoToUserVotes[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserStars, repoToUserStars => repoToUserStars.user)
   repoToUserStars: RepoToUserStars[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.user)
   repoToUserSubmissions: RepoToUserSubmissions[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.user)
   repoToUserStargazers: RepoToUserStargazers[];
 }

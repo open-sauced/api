@@ -10,6 +10,7 @@ import {
   OneToMany,
   DeleteDateColumn
 } from "typeorm";
+import { ApiHideProperty } from "@nestjs/swagger";
 
 import { User } from "../../user/user.entity";
 import { Contribution } from "../../contribution/contribution.entity";
@@ -124,6 +125,7 @@ export class Repo extends BaseEntity {
   })
   url: string;
 
+  @ApiHideProperty()
   @ManyToOne(() => User, user => user.repos)
   @JoinColumn({
     name: "user_id",
@@ -131,18 +133,23 @@ export class Repo extends BaseEntity {
   })
   user: User;
 
+  @ApiHideProperty()
   @OneToMany(() => Contribution, contribution => contribution.repo)
   contributions: Contribution[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserVotes, repoToUserVotes => repoToUserVotes.repo)
   repoToUserVotes: RepoToUserVotes[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserStars, repoToUserStars => repoToUserStars.repo)
   repoToUserStars: RepoToUserStars[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
   repoToUserSubmissions: RepoToUserSubmissions[];
 
+  @ApiHideProperty()
   @OneToMany(() => RepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
   repoToUserStargazers: RepoToUserStargazers[];
 }
