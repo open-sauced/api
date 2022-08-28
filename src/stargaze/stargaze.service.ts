@@ -1,13 +1,13 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { RepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
+import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 
 @Injectable()
 export class StargazeService {
   constructor(
-    @InjectRepository(RepoToUserStargazers)
-    private repoStargazeRepository: Repository<RepoToUserStargazers>,
+    @InjectRepository(DbRepoToUserStargazers)
+    private repoStargazeRepository: Repository<DbRepoToUserStargazers>,
   ) {}
 
   baseQueryBuilder() {
@@ -17,7 +17,7 @@ export class StargazeService {
     return builder;
   }
 
-  async stargazeByRepoId(repoId: number, userId: number): Promise<RepoToUserStargazers> {
+  async stargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -42,7 +42,7 @@ export class StargazeService {
     });
   }
 
-  async downStargazeByRepoId(repoId: number, userId: number): Promise<RepoToUserStargazers> {
+  async downStargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder

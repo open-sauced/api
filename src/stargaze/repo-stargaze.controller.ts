@@ -12,7 +12,7 @@ import { StargazeService } from "./stargaze.service";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
-import { RepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
+import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")
@@ -31,7 +31,7 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: RepoToUserStargazers
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
     description: "Repo or follow not found",
@@ -42,7 +42,7 @@ export class RepoStargazeController {
   async stargazeOneById(
     @Param("id") id: number,
       @UserId() userId: number,
-  ): Promise<RepoToUserStargazers> {
+  ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);
 
     return this.stargazeService.stargazeByRepoId(item.id, userId);
@@ -57,7 +57,7 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: RepoToUserStargazers
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
     description: "Repo or follow not found",
@@ -69,7 +69,7 @@ export class RepoStargazeController {
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
-  ): Promise<RepoToUserStargazers> {
+  ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
     return this.stargazeService.stargazeByRepoId(item.id, userId);
@@ -84,7 +84,7 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: RepoToUserStargazers
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
     description: "Repo or follow not found",
@@ -95,7 +95,7 @@ export class RepoStargazeController {
   async downStargazeOneById(
     @Param("id") id: number,
       @UserId() userId: number,
-  ): Promise<RepoToUserStargazers> {
+  ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);
 
     return this.stargazeService.downStargazeByRepoId(item.id, userId);
@@ -122,7 +122,7 @@ export class RepoStargazeController {
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
-  ): Promise<RepoToUserStargazers> {
+  ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
     return this.stargazeService.downStargazeByRepoId(item.id, userId);
