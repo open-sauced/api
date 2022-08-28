@@ -8,7 +8,7 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
-import { User } from "../../user/user.entity";
+import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
 
 @Entity({
@@ -42,12 +42,12 @@ export class RepoToUserVotes {
   deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => User, (user) => user.repoToUserVotes)
+  @ManyToOne(() => DbUser, (user) => user.repoToUserVotes)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user: User;
+  public user: DbUser;
 
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.repoToUserVotes)

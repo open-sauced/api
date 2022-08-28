@@ -12,7 +12,7 @@ import {
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { User } from "../../user/user.entity";
+import { DbUser } from "../../user/user.entity";
 import { DbContribution } from "../../contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo.to.user.votes.entity";
 import { RepoToUserStars } from "./repo.to.user.stars.entity";
@@ -126,12 +126,12 @@ export class DbRepo extends BaseEntity {
   url: string;
 
   @ApiHideProperty()
-  @ManyToOne(() => User, user => user.repos)
+  @ManyToOne(() => DbUser, user => user.repos)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
-  user: User;
+  user: DbUser;
 
   @ApiHideProperty()
   @OneToMany(() => DbContribution, contribution => contribution.repo)

@@ -19,7 +19,7 @@ import { RepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.e
 @Entity({
   name: "users"
 })
-export class User extends BaseEntity {
+export class DbUser extends BaseEntity {
   @PrimaryColumn("bigint")
   id: number;
 
