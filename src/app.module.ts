@@ -16,7 +16,7 @@ import { DbUser } from "./user/user.entity";
 import { DbContribution } from "./contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
-import { RepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
+import { DbRepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
 import { AuthModule } from "./auth/auth.module";
 import { VoteModule } from "./vote/vote.module";
@@ -49,7 +49,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
           DbContribution,
           RepoToUserVotes,
           DbRepoToUserStars,
-          RepoToUserSubmissions,
+          DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
         ],
         synchronize: false,

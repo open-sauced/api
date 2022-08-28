@@ -14,7 +14,7 @@ import { DbRepo } from "./repo.entity";
 @Entity({
   name: "users_to_repos_submissions",
 })
-export class RepoToUserSubmissions {
+export class DbRepoToUserSubmissions {
   @PrimaryGeneratedColumn()
   public id!: number;
 

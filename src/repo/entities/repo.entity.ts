@@ -16,7 +16,7 @@ import { DbUser } from "../../user/user.entity";
 import { DbContribution } from "../../contribution/contribution.entity";
 import { RepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
-import { RepoToUserSubmissions } from "./repo.to.user.submissions.entity";
+import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 
 @Entity({
@@ -146,8 +146,8 @@ export class DbRepo extends BaseEntity {
   repoToUserStars: DbRepoToUserStars[];
 
   @ApiHideProperty()
-  @OneToMany(() => RepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
-  repoToUserSubmissions: RepoToUserSubmissions[];
+  @OneToMany(() => DbRepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
+  repoToUserSubmissions: DbRepoToUserSubmissions[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
