@@ -5,6 +5,30 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.11...v1.9.0-beta.12) (2022-08-29)
+
+
+### 🤖 Build System
+
+* update dependencies to latest non breaking versions ([59dd7bf](https://github.com/open-sauced/api.opensauced.pizza/commit/59dd7bf2d35abb49b4af3a6bdafaafbca7c9b246))
+
+
+### 🐛 Bug Fixes
+
+* correct repo authenticated services return types ([e42223f](https://github.com/open-sauced/api.opensauced.pizza/commit/e42223f57cf92710bc3b75e3ca965bfccbbc8a9b))
+
+
+### 🍕 Features
+
+* add is_accepted admin managed field to repo user submissions ([b0169e7](https://github.com/open-sauced/api.opensauced.pizza/commit/b0169e78098932651b3897bf63021caa215ad900))
+* add submit repo authenticated feature ([09c96fe](https://github.com/open-sauced/api.opensauced.pizza/commit/09c96fea5b68eb80d14b40b7e6260d1c427ca4f9)), closes [#21](https://github.com/open-sauced/api.opensauced.pizza/issues/21)
+* implement eslint hot opensauced rules ([e0d38ca](https://github.com/open-sauced/api.opensauced.pizza/commit/e0d38cae0def06f6705c5a7283e6423d1c047938))
+
+
+### 🧑‍💻 Code Refactoring
+
+* implement new eslint style changes ([c8115b6](https://github.com/open-sauced/api.opensauced.pizza/commit/c8115b64c3dc6e5840197bc09e35757866833fc0))
+
 ## [1.9.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.10...v1.9.0-beta.11) (2022-08-28)
 
 
