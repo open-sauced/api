@@ -35,11 +35,11 @@ export class RepoService {
      * .leftJoinAndMapMany("repo.contributions", DbContribution, "contributions", "contributions.repo_id = repo.id")
      */
 
-      .addSelect(qb => this.subQueryCount(qb, "Contribution", "contributions"), "contributionsCount")
-      .addSelect(qb => this.subQueryCount(qb, "RepoToUserVotes", "votes"), "votesCount")
-      .addSelect(qb => this.subQueryCount(qb, "RepoToUserSubmissions", "submissions"), "submissionsCount")
-      .addSelect(qb => this.subQueryCount(qb, "RepoToUserStargazers", "stargazers"), "stargazersCount")
-      .addSelect(qb => this.subQueryCount(qb, "RepoToUserStars", "stars"), "starsCount")
+      .addSelect(qb => this.subQueryCount(qb, "DbContribution", "contributions"), "contributionsCount")
+      .addSelect(qb => this.subQueryCount(qb, "DbRepoToUserVotes", "votes"), "votesCount")
+      .addSelect(qb => this.subQueryCount(qb, "DbRepoToUserSubmissions", "submissions"), "submissionsCount")
+      .addSelect(qb => this.subQueryCount(qb, "DbRepoToUserStargazers", "stargazers"), "stargazersCount")
+      .addSelect(qb => this.subQueryCount(qb, "DbRepoToUserStars", "stars"), "starsCount")
       .loadRelationCountAndMap("repo.contributionsCount", "repo.contributions")
       .loadRelationCountAndMap("repo.votesCount", "repo.repoToUserVotes")
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
