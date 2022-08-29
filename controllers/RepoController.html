@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/repo/repo.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/repo/repo.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/repo/repo.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/repo/repo.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -309,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/repo/repo.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/repo/repo.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -373,7 +373,7 @@ import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service&quot;)
 export class RepoController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor (private readonly repoService: RepoService) {}
 
   @Get(&quot;/:id&quot;)
   @ApiOperation({
@@ -382,10 +382,8 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({
-    description: &quot;Repository not found&quot;,
-  })
-  async findOneById(
+  @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
+  async findOneById (
     @Param(&quot;id&quot;) id: number,
   ): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneById(id);
@@ -398,10 +396,8 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({
-    description: &quot;Repository not found&quot;,
-  })
-  async findOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
+  async findOneByOwnerAndRepo (
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
   ): Promise&lt;DbRepo&gt; {
@@ -416,7 +412,7 @@ export class RepoController {
   @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList(
+  async findUserList (
     @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto);

@@ -221,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/repo/repo.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/repo/repo.service.ts:82</a></div>
                 </td>
             </tr>
 
@@ -292,8 +292,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/repo/repo.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/repo/repo.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -363,8 +363,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/repo/repo.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/repo/repo.service.ts:67</a></div>
                 </td>
             </tr>
 
@@ -565,12 +565,12 @@ import { OrderDirectionEnum } from &quot;../common/constants/order-direction.con
 
 @Injectable()
 export class RepoService {
-  constructor(
+  constructor (
     @InjectRepository(DbRepo)
     private repoRepository: Repository&lt;DbRepo&gt;,
   ) {}
 
-  subQueryCount&lt;T&gt;(subQuery: SelectQueryBuilder&lt;T&gt;, entity: string , alias: string, target &#x3D; &quot;repo&quot;) {
+  subQueryCount&lt;T&gt; (subQuery: SelectQueryBuilder&lt;T&gt;, entity: string, alias: string, target &#x3D; &quot;repo&quot;) {
     const aliasName &#x3D; &#x60;${alias}Count&#x60;;
     const aliasTable &#x3D; &#x60;${alias}CountSelect&#x60;;
 
@@ -580,17 +580,21 @@ export class RepoService {
       .where(&#x60;${aliasTable}.${target}_id &#x3D; ${target}.id&#x60;);
   }
 
-  baseQueryBuilder() {
+  baseQueryBuilder () {
     const builder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;)
-      // .select([&#x27;repo.id&#x27;])
-      // .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
-      // .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
-      // .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;Contribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
+
+    /*
+     * .select([&#x27;repo.id&#x27;])
+     * .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
+     * .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
+     * .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
+     */
+
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;Contribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
       .loadRelationCountAndMap(&quot;repo.contributionsCount&quot;, &quot;repo.contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
       .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
@@ -600,7 +604,7 @@ export class RepoService {
     return builder;
   }
 
-  async findOneById(id: number): Promise&lt;DbRepo&gt; {
+  async findOneById (id: number): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -609,34 +613,32 @@ export class RepoService {
     const item &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw new NotFoundException();
+      throw (new NotFoundException);
     }
 
     return item;
   }
 
-  async findOneByOwnerAndRepo(owner: string, repo: string): Promise&lt;DbRepo&gt; {
+  async findOneByOwnerAndRepo (owner: string, repo: string): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;repo.full_name &#x3D; :name&quot;, {
-        name: &#x60;${owner}/${repo}&#x60;
-      });
+      .where(&quot;repo.full_name &#x3D; :name&quot;, { name: &#x60;${owner}/${repo}&#x60; });
 
     const item &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw new NotFoundException();
+      throw (new NotFoundException);
     }
 
     return item;
   }
 
-  async findAll(
-    pageOptionsDto: RepoPageOptionsDto
+  async findAll (
+    pageOptionsDto: RepoPageOptionsDto,
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
-    const orderField &#x3D; pageOptionsDto.orderBy || &quot;is_fork&quot;;
+    const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;is_fork&quot;;
 
     queryBuilder
       .orderBy(&#x60;&quot;repo&quot;.&quot;is_fork&quot;&#x60;, OrderDirectionEnum.ASC)

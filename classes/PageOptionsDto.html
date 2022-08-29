@@ -328,8 +328,8 @@ export class PageOptionsDto {
   @IsOptional()
   readonly orderDirection?: OrderDirectionEnum &#x3D; OrderDirectionEnum.DESC;
 
-  get skip(): number {
-    return ((this.page || 1) - 1) * (this.limit || 10);
+  get skip (): number {
+    return ((this.page ?? 1) - 1) * (this.limit ?? 10);
   }
 }
 </code></pre>

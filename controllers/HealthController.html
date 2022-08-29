@@ -219,7 +219,7 @@ import { ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;
 @Controller(&quot;health&quot;)
 @ApiTags(&quot;Health check service&quot;)
 export class HealthController {
-  constructor(
+  constructor (
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
     private database: TypeOrmHealthIndicator,
@@ -235,17 +235,17 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async service() {
+  async service () {
     return this.health.check([
       async () &#x3D;&gt; this.database.pingCheck(&quot;db&quot;),
-      async () &#x3D;&gt; this.memory.checkHeap(&quot;memory.heap&quot;, &lt;number&gt;this.configService.get(&quot;memory_heap&quot;)),
-      async () &#x3D;&gt; this.memory.checkRSS(&quot;memory.rss&quot;, &lt;number&gt;this.configService.get(&quot;memory_rss&quot;)),
+      async () &#x3D;&gt; this.memory.checkHeap(&quot;memory.heap&quot;, this.configService.get(&quot;memory_heap&quot;)!),
+      async () &#x3D;&gt; this.memory.checkRSS(&quot;memory.rss&quot;, this.configService.get(&quot;memory_rss&quot;)!),
       async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.usage&quot;, {
-        thresholdPercent: &lt;number&gt;this.configService.get(&quot;disk_percentage&quot;),
+        thresholdPercent: this.configService.get(&quot;disk_percentage&quot;)!,
         path: &quot;/&quot;,
       }),
       async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.storage&quot;, {
-        thresholdPercent: &lt;number&gt;this.configService.get(&quot;disk_size&quot;),
+        thresholdPercent: this.configService.get(&quot;disk_size&quot;)!,
         path: &quot;/&quot;,
       }),
     ]);
@@ -258,14 +258,14 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async web() {
+  async web () {
     return this.health.check([
-      async () &#x3D;&gt; this.http.pingCheck(&quot;opensauced.pizza&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.landing&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;app.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.app&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;hot.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.hot&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;docs.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.docs&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;explore.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.explore&quot;)),
-      async () &#x3D;&gt; this.http.pingCheck(&quot;admin.opensauced&quot;, &lt;string&gt;this.configService.get(&quot;endpoint.admin&quot;)),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;opensauced.pizza&quot;, this.configService.get(&quot;endpoint.landing&quot;)!),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;app.opensauced&quot;, this.configService.get(&quot;endpoint.app&quot;)!),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;hot.opensauced&quot;, this.configService.get(&quot;endpoint.hot&quot;)!),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;docs.opensauced&quot;, this.configService.get(&quot;endpoint.docs&quot;)!),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;explore.opensauced&quot;, this.configService.get(&quot;endpoint.explore&quot;)!),
+      async () &#x3D;&gt; this.http.pingCheck(&quot;admin.opensauced&quot;, this.configService.get(&quot;endpoint.admin&quot;)!),
     ]);
   }
 }

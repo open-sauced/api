@@ -94,29 +94,25 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&lt;TModel extends Type&gt;(
-  model: TModel,
-) &#x3D;&gt; {
-  return applyDecorators(
-    ApiExtraModels(PageDto, model),
-    ApiOkResponse({
-      description: &quot;Successfully received model list&quot;,
-      schema: {
-        allOf: [
-          { $ref: getSchemaPath(PageDto) },
-          {
-            properties: {
-              data: {
-                type: &quot;array&quot;,
-                items: { $ref: getSchemaPath(model) },
-              },
+                        <i>Default value : </i><code>&lt;TModel extends Type&gt;(model: TModel) &#x3D;&gt; applyDecorators(
+  ApiExtraModels(PageDto, model),
+  ApiOkResponse({
+    description: &quot;Successfully received model list&quot;,
+    schema: {
+      allOf: [
+        { $ref: getSchemaPath(PageDto) },
+        {
+          properties: {
+            data: {
+              type: &quot;array&quot;,
+              items: { $ref: getSchemaPath(model) },
             },
           },
-        ],
-      },
-    }),
-  );
-}</code>
+        },
+      ],
+    },
+  }),
+)</code>
                     </td>
                 </tr>
 
@@ -140,7 +136,7 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>(subdomain?: string) &#x3D;&gt;
-  new URL(&#x60;https://${subdomain ? &#x60;${subdomain}.&#x60; : &quot;&quot; }${process.env.DOMAIN || &quot;opensauced.pizza&quot;}&#x60;).toString()</code>
+  new URL(&#x60;https://${subdomain ? &#x60;${subdomain}.&#x60; : &quot;&quot;}${process.env.DOMAIN ?? &quot;opensauced.pizza&quot;}&#x60;).toString()</code>
                     </td>
                 </tr>
 
@@ -193,7 +189,7 @@
   (_data: unknown, context: ExecutionContext) &#x3D;&gt; {
     const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
 
-    return request.user?.user_metadata?.sub as string;
+    return request.user?.user_metadata.sub as string;
   },
 )</code>
                     </td>

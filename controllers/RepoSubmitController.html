@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >RepoStarController</li>
+  <li >RepoSubmitController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/star/repo-star.controller.ts</code>
+            <code>src/submit/repo-submit.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -85,19 +85,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#downStarOneById" >downStarOneById</a>
+                                <a href="#downSubmitOneById" >downSubmitOneById</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#downStarOneByOwnerAndRepo" >downStarOneByOwnerAndRepo</a>
+                                <a href="#downSubmitOneByOwnerAndRepo" >downSubmitOneByOwnerAndRepo</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#starOneById" >starOneById</a>
+                                <a href="#submitOneById" >submitOneById</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#starOneByOwnerAndRepo" >starOneByOwnerAndRepo</a>
+                                <a href="#submitOneByOwnerAndRepo" >submitOneByOwnerAndRepo</a>
                             </li>
                         </ul>
                     </td>
@@ -120,18 +120,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="downStarOneById"></a>
+                    <a name="downSubmitOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>downStarOneById</b></span>
-                        <a href="#downStarOneById"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>downSubmitOneById</b></span>
+                        <a href="#downSubmitOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>downStarOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>downSubmitOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -139,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStarOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your star&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/submit&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downSubmitOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing submission&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo submission&#x27;, type: DbRepoToUserSubmissions})<br />@ApiNotFoundResponse({description: &#x27;Repo or submission not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your submission&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/star/repo-star.controller.ts:83</a></div>
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -196,7 +196,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserSubmissions&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -210,18 +210,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="downStarOneByOwnerAndRepo"></a>
+                    <a name="downSubmitOneByOwnerAndRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>downStarOneByOwnerAndRepo</b></span>
-                        <a href="#downStarOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>downSubmitOneByOwnerAndRepo</b></span>
+                        <a href="#downSubmitOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>downStarOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>downSubmitOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -229,14 +229,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:owner/:repo/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStarOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and removes existing star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your star&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:owner/:repo/submit&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downSubmitOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and removes existing submission&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo submission&#x27;, type: DbRepoToUserSubmissions})<br />@ApiNotFoundResponse({description: &#x27;Repo or submission not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your submission&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/star/repo-star.controller.ts:105</a></div>
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -298,7 +298,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserSubmissions&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -312,18 +312,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="starOneById"></a>
+                    <a name="submitOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>starOneById</b></span>
-                        <a href="#starOneById"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>submitOneById</b></span>
+                        <a href="#submitOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>starOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>submitOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -331,14 +331,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;starOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already starred this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:id/submit&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;submitOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a submission&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo submission&#x27;, type: DbRepoToUserSubmissions})<br />@ApiNotFoundResponse({description: &#x27;Repo or submission not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already submitted this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/star/repo-star.controller.ts:38</a></div>
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:38</a></div>
                 </td>
             </tr>
 
@@ -388,7 +388,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserSubmissions&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -402,18 +402,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="starOneByOwnerAndRepo"></a>
+                    <a name="submitOneByOwnerAndRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>starOneByOwnerAndRepo</b></span>
-                        <a href="#starOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>submitOneByOwnerAndRepo</b></span>
+                        <a href="#submitOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>starOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>submitOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -421,14 +421,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:owner/:repo/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;starOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and adds a star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already starred this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:owner/:repo/submit&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;submitOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and adds a submission&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo submission&#x27;, type: DbRepoToUserSubmissions})<br />@ApiNotFoundResponse({description: &#x27;Repo or submission not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already submitted this repo&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/star/repo-star.controller.ts:60</a></div>
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -490,7 +490,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserStars&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbRepoToUserSubmissions&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -515,107 +515,107 @@ import {
 } from &quot;@nestjs/swagger&quot;;
 
 import { RepoService } from &quot;../repo/repo.service&quot;;
-import { StarService } from &quot;./star.service&quot;;
+import { SubmitService } from &quot;./submit.service&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
-import { DbRepoToUserStars } from &quot;../repo/entities/repo.to.user.stars.entity&quot;;
+import { DbRepoToUserSubmissions } from &quot;../repo/entities/repo.to.user.submissions.entity&quot;;
 
 @Controller(&quot;repos&quot;)
-@ApiTags(&quot;Repository service guarded&quot;, &quot;Star service&quot;)
-export class RepoStarController {
+@ApiTags(&quot;Repository service guarded&quot;, &quot;Submit service&quot;)
+export class RepoSubmitController {
   constructor (
     private readonly repoService: RepoService,
-    private readonly starService: StarService,
+    private readonly submitService: SubmitService,
   ) {}
 
-  @Put(&quot;/:id/star&quot;)
+  @Put(&quot;/:id/submit&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;starOneById&quot;,
-    summary: &quot;Finds a repo by :id and adds a star&quot;,
+    operationId: &quot;submitOneById&quot;,
+    summary: &quot;Finds a repo by :id and adds a submission&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo star&quot;,
-    type: DbRepoToUserStars,
+    description: &quot;Returns the repo submission&quot;,
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
-  @ApiConflictResponse({ description: &quot;You have already starred this repo&quot; })
-  async starOneById (
+  @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
+  @ApiConflictResponse({ description: &quot;You have already submitted this repo&quot; })
+  async submitOneById (
     @Param(&quot;id&quot;) id: number,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
-    return this.starService.starByRepoId(item.id, userId);
+    return this.submitService.submitByRepoId(item.id, userId);
   }
 
-  @Put(&quot;/:owner/:repo/star&quot;)
+  @Put(&quot;/:owner/:repo/submit&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;starOneByOwnerAndRepo&quot;,
-    summary: &quot;Finds a repo by :owner and :repo and adds a star&quot;,
+    operationId: &quot;submitOneByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo and adds a submission&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo star&quot;,
-    type: DbRepoToUserStars,
+    description: &quot;Returns the repo submission&quot;,
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
-  @ApiConflictResponse({ description: &quot;You have already starred this repo&quot; })
-  async starOneByOwnerAndRepo (
+  @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
+  @ApiConflictResponse({ description: &quot;You have already submitted this repo&quot; })
+  async submitOneByOwnerAndRepo (
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
-    return this.starService.starByRepoId(item.id, userId);
+    return this.submitService.submitByRepoId(item.id, userId);
   }
 
-  @Delete(&quot;/:id/star&quot;)
+  @Delete(&quot;/:id/submit&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;downStarOneById&quot;,
-    summary: &quot;Finds a repo by :id and removes existing star&quot;,
+    operationId: &quot;downSubmitOneById&quot;,
+    summary: &quot;Finds a repo by :id and removes existing submission&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo star&quot;,
-    type: DbRepoToUserStars,
+    description: &quot;Returns the repo submission&quot;,
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
-  @ApiConflictResponse({ description: &quot;You have already removed your star&quot; })
-  async downStarOneById (
+  @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
+  @ApiConflictResponse({ description: &quot;You have already removed your submission&quot; })
+  async downSubmitOneById (
     @Param(&quot;id&quot;) id: number,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
-    return this.starService.downStarByRepoId(item.id, userId);
+    return this.submitService.downSubmitByRepoId(item.id, userId);
   }
 
-  @Delete(&quot;/:owner/:repo/star&quot;)
+  @Delete(&quot;/:owner/:repo/submit&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: &quot;downStarOneByOwnerAndRepo&quot;,
-    summary: &quot;Finds a repo by :owner and :repo and removes existing star&quot;,
+    operationId: &quot;downSubmitOneByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo and removes existing submission&quot;,
   })
   @ApiOkResponse({
-    description: &quot;Returns the repo star&quot;,
-    type: DbRepoToUserStars,
+    description: &quot;Returns the repo submission&quot;,
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
-  @ApiConflictResponse({ description: &quot;You have already removed your star&quot; })
-  async downStarOneByOwnerAndRepo (
+  @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
+  @ApiConflictResponse({ description: &quot;You have already removed your submission&quot; })
+  async downSubmitOneByOwnerAndRepo (
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
       @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
-    return this.starService.downStarByRepoId(item.id, userId);
+    return this.submitService.downSubmitByRepoId(item.id, userId);
   }
 }
 </code></pre>
@@ -663,7 +663,7 @@ export class RepoStarController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'RepoStarController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RepoSubmitController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

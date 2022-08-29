@@ -37,18 +37,41 @@
 <blockquote>
 <p>All notable changes to this project will be documented in this file</p>
 </blockquote>
-<h2 id="190-beta10-2022-08-26"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.9...v1.9.0-beta.10">1.9.0-beta.10</a> (2022-08-26)</h2>
+<h2 id="190-beta11-2022-08-28"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.10...v1.9.0-beta.11">1.9.0-beta.11</a> (2022-08-28)</h2>
+<h3 id="🍕-features">🍕 Features</h3>
+<ul>
+<li>add star repo authenticated feature (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/e39228861a826d3c255fbf7393a8b8c048a70376">e392288</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/20">#20</a></li>
+<li>add stargaze repo authenticated feature (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/f8d41f1f2f141a6ed4ef619bc28bc1ee397a1145">f8d41f1</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/22">#22</a></li>
+</ul>
 <h3 id="🐛-bug-fixes">🐛 Bug Fixes</h3>
+<ul>
+<li>correct additional relation entities appearing in openapi schema (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/f4570c31dcbf59992ac099ae76572d13c2582566">f4570c3</a>)</li>
+<li>correct date type meta tags openapi types (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/860fff3f052c3a36fa8158b0df4812531475e7b3">860fff3</a>)</li>
+<li>remove more relationship entities from openapi response schemas (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/d315ea4c90d07380ff87ca5e19b6502dc8ce4621">d315ea4</a>)</li>
+</ul>
+<h3 id="🧑💻-code-refactoring">🧑‍💻 Code Refactoring</h3>
+<ul>
+<li>rename Contribution entity into DbContribution (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/3774b36663e41004b394b6b222b5f384899d88ba">3774b36</a>)</li>
+<li>rename enum (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/b8b22daffba5e9faf7b8f805858f393a6181bc2b">b8b22da</a>)</li>
+<li>rename Repo entity into DbRepo (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/f05c29cd44c665fe5c2ad8b41609dcb2ac09d1ce">f05c29c</a>)</li>
+<li>rename RepoToUserStargazers entity into DbRepoToUserStargazers (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/867d7409a17c33f34bd173d871b5568131f4ddc3">867d740</a>)</li>
+<li>rename RepoToUserStars entity into DbRepoToUserStars (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/d08b3ffed2952b6d078545952075eeb56a3ae372">d08b3ff</a>)</li>
+<li>rename RepoToUserSubmissions entity into DbRepoToUserSubmissions (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/9484df4dd49bbb1c0e59a4406aabe910ccdb6aaf">9484df4</a>)</li>
+<li>rename RepoToUserVotes entity into DbRepoToUserVotes (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/61ac1e7de4272cb52eb8e0eb9f54f982c2ea1e7e">61ac1e7</a>)</li>
+<li>rename User entity into DbUser (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/04082d7d7436d83806888977335ba7c1ef377f1d">04082d7</a>)</li>
+</ul>
+<h2 id="190-beta10-2022-08-26"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.9...v1.9.0-beta.10">1.9.0-beta.10</a> (2022-08-26)</h2>
+<h3 id="🐛-bug-fixes-1">🐛 Bug Fixes</h3>
 <ul>
 <li>undo rogue controller route name change (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/6a4810f8c31b353d3ff57f69af1ef36728fdedee">6a4810f</a>)</li>
 </ul>
 <h2 id="190-beta9-2022-08-25"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.8...v1.9.0-beta.9">1.9.0-beta.9</a> (2022-08-25)</h2>
-<h3 id="🐛-bug-fixes-1">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-2">🐛 Bug Fixes</h3>
 <ul>
 <li>correct repo contributions count (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/8952f193e891bd847947317b2f48239c47497692">8952f19</a>)</li>
 </ul>
 <h2 id="190-beta8-2022-08-25"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.7...v1.9.0-beta.8">1.9.0-beta.8</a> (2022-08-25)</h2>
-<h3 id="🐛-bug-fixes-2">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-3">🐛 Bug Fixes</h3>
 <ul>
 <li>make order work for repo listing (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/69b20676fe504a00d6bb48672fb79c8bc92cf49a">69b2067</a>)</li>
 </ul>
@@ -62,11 +85,11 @@
 <li>add powered by digital ocean readme badge and referal link (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/5925b749c59cb96844fe4bfee7e1c8014608a01c">5925b74</a>)</li>
 </ul>
 <h2 id="190-beta6-2022-08-25"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.5...v1.9.0-beta.6">1.9.0-beta.6</a> (2022-08-25)</h2>
-<h3 id="🧑💻-code-refactoring">🧑‍💻 Code Refactoring</h3>
+<h3 id="🧑💻-code-refactoring-1">🧑‍💻 Code Refactoring</h3>
 <ul>
 <li>code split repository entities (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/ae43450249dbf4651797fc746baf4ed86f54b7ff">ae43450</a>)</li>
 </ul>
-<h3 id="🍕-features">🍕 Features</h3>
+<h3 id="🍕-features-1">🍕 Features</h3>
 <ul>
 <li>add repo up vote and down vote functionality (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/16678a7d1bca97907165436e548b56901b891044">16678a7</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/19">#19</a></li>
 </ul>
@@ -81,11 +104,11 @@
 <li>improve local development workflow along vite apps (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/b9f3798923ef67cdb77e523e44991e2427184ce1">b9f3798</a>)</li>
 </ul>
 <h2 id="190-beta3-2022-08-19"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.2...v1.9.0-beta.3">1.9.0-beta.3</a> (2022-08-19)</h2>
-<h3 id="🐛-bug-fixes-3">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-4">🐛 Bug Fixes</h3>
 <ul>
 <li>correct counting of many to many tables (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/72497145f9de392d861818e2e745e465815f38a2">7249714</a>)</li>
 </ul>
-<h3 id="🧑💻-code-refactoring-1">🧑‍💻 Code Refactoring</h3>
+<h3 id="🧑💻-code-refactoring-2">🧑‍💻 Code Refactoring</h3>
 <ul>
 <li>correct stray console.log (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/b4c9879a834d01432b6a84d18147a26fd2dc3ed5">b4c9879</a>)</li>
 </ul>
@@ -94,17 +117,17 @@
 <ul>
 <li>only deploy documentation on main branch (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/fad79b10a029664cb747c85d9c92cc22f3184f95">fad79b1</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/14">#14</a></li>
 </ul>
-<h3 id="🍕-features-1">🍕 Features</h3>
+<h3 id="🍕-features-2">🍕 Features</h3>
 <ul>
 <li>add supabase auth session handler and working guards (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/ed9729a4dbcf5e1d6758e8308311a2560bef7898">ed9729a</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/24">#24</a></li>
 </ul>
 <h2 id="190-beta1-2022-08-18"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.2...v1.9.0-beta.1">1.9.0-beta.1</a> (2022-08-18)</h2>
-<h3 id="🍕-features-2">🍕 Features</h3>
+<h3 id="🍕-features-3">🍕 Features</h3>
 <ul>
 <li>implement simple supabase strategy guard (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/2f966a333c27015f39195e65a405ff5f413a5070">2f966a3</a>)</li>
 </ul>
 <h3 id="182-2022-08-12"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.1...v1.8.2">1.8.2</a> (2022-08-12)</h3>
-<h3 id="🐛-bug-fixes-4">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-5">🐛 Bug Fixes</h3>
 <ul>
 <li>correct ci release url docs (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/f0304d42a7c9b2fe65340a02a169f0c053a64909">f0304d4</a>)</li>
 </ul>
@@ -119,7 +142,7 @@
 <li>add deployment links and apidocs diagrams (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/d77ea526565cfacfe57e90095721a47d8c748aa6">d77ea52</a>)</li>
 <li>update readme badges (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/17c54b91f9721158ba05d32224e5ca7edcf2a5db">17c54b9</a>)</li>
 </ul>
-<h3 id="🍕-features-3">🍕 Features</h3>
+<h3 id="🍕-features-4">🍕 Features</h3>
 <ul>
 <li>add better swagger document links (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/eba258aa762acdb4b2b82c4f4a6337e041316512">eba258a</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/18">#18</a></li>
 <li>add get repository by id and full name (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/4552c6647b3bd396284393f8745db8b398d314b4">4552c66</a>)</li>
@@ -130,7 +153,7 @@
 <li>update dependencies (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/62b3eea18880b64c17ccfad5f0e8bd3570a30504">62b3eea</a>)</li>
 </ul>
 <h2 id="180-beta5-2022-08-06"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.4...v1.8.0-beta.5">1.8.0-beta.5</a> (2022-08-06)</h2>
-<h3 id="🍕-features-4">🍕 Features</h3>
+<h3 id="🍕-features-5">🍕 Features</h3>
 <ul>
 <li>add better swagger document links (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/eba258aa762acdb4b2b82c4f4a6337e041316512">eba258a</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/18">#18</a></li>
 </ul>
@@ -144,12 +167,12 @@
 <li>add deployment links and apidocs diagrams (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/d77ea526565cfacfe57e90095721a47d8c748aa6">d77ea52</a>)</li>
 </ul>
 <h2 id="180-beta3-2022-08-05"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.2...v1.8.0-beta.3">1.8.0-beta.3</a> (2022-08-05)</h2>
-<h3 id="🍕-features-5">🍕 Features</h3>
+<h3 id="🍕-features-6">🍕 Features</h3>
 <ul>
 <li>add get repository by id and full name (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/4552c6647b3bd396284393f8745db8b398d314b4">4552c66</a>)</li>
 </ul>
 <h2 id="180-beta2-2022-08-05"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.0-beta.1...v1.8.0-beta.2">1.8.0-beta.2</a> (2022-08-05)</h2>
-<h3 id="🍕-features-6">🍕 Features</h3>
+<h3 id="🍕-features-7">🍕 Features</h3>
 <ul>
 <li>add proper metadata fields to entities and typeorm soft delete (<a href="https://github.com/open-sauced/api.opensauced.pizza/issues/13">#13</a>) (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/af531e45aceeb16496a6849b3c8b1c43ff312276">af531e4</a>), closes <a href="https://github.com/open-sauced/api.opensauced.pizza/issues/10">#10</a></li>
 </ul>
@@ -159,7 +182,7 @@
 <li>update readme badges (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/17c54b91f9721158ba05d32224e5ca7edcf2a5db">17c54b9</a>)</li>
 </ul>
 <h3 id="1712-2022-07-30"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.11...v1.7.12">1.7.12</a> (2022-07-30)</h3>
-<h3 id="🐛-bug-fixes-5">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-6">🐛 Bug Fixes</h3>
 <ul>
 <li>push all tags to docr (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/a9e1df665956b500080c07db591c1b02cdd1824e">a9e1df6</a>)</li>
 </ul>
@@ -204,12 +227,12 @@
 <li>change pull request event target (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/20bc1e7d721ce0a6591f5957ce204f3deace4a40">20bc1e7</a>)</li>
 </ul>
 <h3 id="173-2022-07-29"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.2...v1.7.3">1.7.3</a> (2022-07-29)</h3>
-<h3 id="🐛-bug-fixes-6">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-7">🐛 Bug Fixes</h3>
 <ul>
 <li>correct digital ocean docker tag based on target (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/b1a67dabb5c8070aa586540a682493b121b9f841">b1a67da</a>)</li>
 </ul>
 <h3 id="172-2022-07-29"><a href="https://github.com/open-sauced/api.opensauced.pizza/compare/v1.7.1...v1.7.2">1.7.2</a> (2022-07-29)</h3>
-<h3 id="🐛-bug-fixes-7">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-8">🐛 Bug Fixes</h3>
 <ul>
 <li>correct static domain and release clean up workflow (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/a229a3b7e40d2ced0356d15eee398085771fd5fe">a229a3b</a>)</li>
 <li>update dependencies and list docr tags (<a href="https://github.com/open-sauced/api.opensauced.pizza/commit/79bf61d1999380e3f45bdfd9b5bfe5aab691eaed">79bf61d</a>)</li>
@@ -297,7 +320,7 @@
 <li>load docker container from artifact (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/b7c33956720ceaa719143baa2566508c78176f5a">b7c3395</a>)</li>
 </ul>
 <h3 id="165-2022-07-21"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.6.4...v1.6.5">1.6.5</a> (2022-07-21)</h3>
-<h3 id="🐛-bug-fixes-8">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-9">🐛 Bug Fixes</h3>
 <ul>
 <li>correct docker local creation (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/cd306f8428870e38d40902bc99c5e49bfba1abc9">cd306f8</a>)</li>
 </ul>
@@ -321,7 +344,7 @@
 <ul>
 <li>improve swagger generation (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/22d3cc1fc22c7bef1657ea2cbbf92934b4cb0f23">22d3cc1</a>)</li>
 </ul>
-<h3 id="🐛-bug-fixes-9">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-10">🐛 Bug Fixes</h3>
 <ul>
 <li>correct workflow yaml comments (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/7fe63aa165bc2dc3c75597a785071851fcdf29a5">7fe63aa</a>)</li>
 </ul>
@@ -330,7 +353,7 @@
 <ul>
 <li>implement correct eslint rules for immediate scoping (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/bd6d6211ce1c8111cd4f2ac0fbbd2a789e22cf18">bd6d621</a>), closes <a href="https://github.com/0-vortex/api.opensauced.pizza/issues/1">#1</a></li>
 </ul>
-<h3 id="🍕-features-7">🍕 Features</h3>
+<h3 id="🍕-features-8">🍕 Features</h3>
 <ul>
 <li>update dependencies and nest to stable new version (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/c24937fdd484588a88a41dccec0af8df2bc220fa">c24937f</a>)</li>
 </ul>
@@ -346,7 +369,7 @@
 <li>add minor deployment improvements and github pages adjustments (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/cb83f9ddae860802d949dd01fc61d7ee633450c3">cb83f9d</a>)</li>
 <li>implement prettier rules in typescript eslint (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/166050d49c1e1852b250a06570d6323ebf6e2ea1">166050d</a>)</li>
 </ul>
-<h3 id="🐛-bug-fixes-10">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-11">🐛 Bug Fixes</h3>
 <ul>
 <li>correct release workflow artifact strategy (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/b5b6ac56f97d1f687bfc688117d2d03336579004">b5b6ac5</a>)</li>
 <li>correct rogue workflow artifact (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/61b67d502a93106abc22a1d6683e6a70c614f212">61b67d5</a>)</li>
@@ -363,29 +386,29 @@
 <p>All notable changes to this project will be documented in this file</p>
 </blockquote>
 <h2 id="150-2022-06-21"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.4.0...v1.5.0">1.5.0</a> (2022-06-21)</h2>
-<h3 id="🍕-features-8">🍕 Features</h3>
+<h3 id="🍕-features-9">🍕 Features</h3>
 <ul>
 <li>implement proper starsCount (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/fdc11ea5d89e943707b6e48599a0cd4dc190a0d4">fdc11ea</a>)</li>
 <li>implement proper votesCount (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/607cf5db682347c779001f64e1d2efbdaee12ff0">607cf5d</a>)</li>
 </ul>
 <h2 id="140-2022-06-17"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.3.0...v1.4.0">1.4.0</a> (2022-06-17)</h2>
-<h3 id="🍕-features-9">🍕 Features</h3>
+<h3 id="🍕-features-10">🍕 Features</h3>
 <ul>
 <li>add minimal pagination decorator (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/ac3155610894c56b1401842ff7f1fa6c5516e5d6">ac31556</a>)</li>
 </ul>
 <h2 id="130-2022-06-10"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.2.0...v1.3.0">1.3.0</a> (2022-06-10)</h2>
-<h3 id="🍕-features-10">🍕 Features</h3>
+<h3 id="🍕-features-11">🍕 Features</h3>
 <ul>
 <li>add abstract pagination component (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/630f3b524939db9a931df4b76ce91e449456aa3c">630f3b5</a>)</li>
 <li>add repository relations and limit select (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/b4d3785433c0aac00ee1218d41b0a82a2a4357fe">b4d3785</a>)</li>
 </ul>
 <h2 id="120-2022-06-09"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.1.0...v1.2.0">1.2.0</a> (2022-06-09)</h2>
-<h3 id="🍕-features-11">🍕 Features</h3>
+<h3 id="🍕-features-12">🍕 Features</h3>
 <ul>
 <li>attach user relationship to get repos (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/e66317069abf700ad5acfb40399480a0ed783a40">e663170</a>)</li>
 </ul>
 <h2 id="110-2022-06-07"><a href="https://github.com/0-vortex/api.opensauced.pizza/compare/v1.0.2...v1.1.0">1.1.0</a> (2022-06-07)</h2>
-<h3 id="🍕-features-12">🍕 Features</h3>
+<h3 id="🍕-features-13">🍕 Features</h3>
 <ul>
 <li>add basic tld entities (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/273f337b0b6ef6e85f680acb5ac4daeed0cdd751">273f337</a>)</li>
 </ul>
@@ -400,12 +423,12 @@
 <li>verify database diagrams generation (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/73d1c747f071d045edd88c8e33323762de566eb9">73d1c74</a>)</li>
 </ul>
 <h2 id="100-2022-06-05">1.0.0 (2022-06-05)</h2>
-<h3 id="🍕-features-13">🍕 Features</h3>
+<h3 id="🍕-features-14">🍕 Features</h3>
 <ul>
 <li>adjust health checks endpoints (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/cb9206d17c089d0243531d4de21cb0d05139bc0e">cb9206d</a>)</li>
 <li>initial commit (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/5e7c6c7af42d38c57f363c564c58007da448c443">5e7c6c7</a>)</li>
 </ul>
-<h3 id="🐛-bug-fixes-11">🐛 Bug Fixes</h3>
+<h3 id="🐛-bug-fixes-12">🐛 Bug Fixes</h3>
 <ul>
 <li>correct npm scripts, workflow node versiond and update deps (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/2c0b15ffa8ac108655569bb246ca1706cf31d3d5">2c0b15f</a>)</li>
 <li>update nest typeorm integration and correct db status (<a href="https://github.com/0-vortex/api.opensauced.pizza/commit/58bf9228993a531f9cd144acb39f56adde883fce">58bf922</a>)</li>

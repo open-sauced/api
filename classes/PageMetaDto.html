@@ -125,7 +125,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(undefined: <a href="../undefineds/PageMetaParameters.html" target="_self">PageMetaParameters</a>)</code>
+<code>constructor(undefined: <a href="../interfaces/PageMetaParameters.html" target="_self">PageMetaParameters</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -150,7 +150,7 @@
                                                 <tr>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/typealiases.html#PageMetaParameters" target="_self" >PageMetaParameters</a></code>
+                                                                        <code><a href="../interfaces/PageMetaParameters.html" target="_self" >PageMetaParameters</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -422,9 +422,9 @@ export class PageMetaDto {
   @ApiProperty()
   readonly hasNextPage: boolean;
 
-  constructor({ pageOptionsDto, itemCount }: PageMetaParameters) {
-    this.page &#x3D; pageOptionsDto.page || 1;
-    this.limit &#x3D; pageOptionsDto.limit || 10;
+  constructor ({ pageOptionsDto, itemCount }: PageMetaParameters) {
+    this.page &#x3D; pageOptionsDto.page ?? 1;
+    this.limit &#x3D; pageOptionsDto.limit ?? 10;
     this.itemCount &#x3D; itemCount;
     this.pageCount &#x3D; Math.ceil(this.itemCount / this.limit);
     this.hasPreviousPage &#x3D; this.page &gt; 1;
