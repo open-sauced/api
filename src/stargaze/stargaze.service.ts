@@ -5,19 +5,19 @@ import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers
 
 @Injectable()
 export class StargazeService {
-  constructor(
+  constructor (
     @InjectRepository(DbRepoToUserStargazers)
     private repoStargazeRepository: Repository<DbRepoToUserStargazers>,
   ) {}
 
-  baseQueryBuilder() {
+  baseQueryBuilder () {
     const builder = this.repoStargazeRepository.createQueryBuilder("r2stargazes")
       .withDeleted();
 
     return builder;
   }
 
-  async stargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
+  async stargazeByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -27,7 +27,7 @@ export class StargazeService {
     const stargazeExists = await queryBuilder.getOne();
 
     if (stargazeExists) {
-      if (stargazeExists.deleted_at === null) {
+      if (!stargazeExists.deleted_at) {
         throw new ConflictException("You have already unfollowed this repo");
       }
 
@@ -42,7 +42,7 @@ export class StargazeService {
     });
   }
 
-  async downStargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
+  async downStargazeByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -55,7 +55,7 @@ export class StargazeService {
       throw new NotFoundException("You have not followed this repo");
     }
 
-    if (stargazeExists.deleted_at !== null) {
+    if (stargazeExists.deleted_at) {
       throw new ConflictException("You have already unfollowed this repo");
     }
 

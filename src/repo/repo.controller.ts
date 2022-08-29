@@ -9,7 +9,7 @@ import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 @Controller("repos")
 @ApiTags("Repository service")
 export class RepoController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor (private readonly repoService: RepoService) {}
 
   @Get("/:id")
   @ApiOperation({
@@ -18,10 +18,8 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({
-    description: "Repository not found",
-  })
-  async findOneById(
+  @ApiNotFoundResponse({ description: "Repository not found" })
+  async findOneById (
     @Param("id") id: number,
   ): Promise<DbRepo> {
     return this.repoService.findOneById(id);
@@ -34,10 +32,8 @@ export class RepoController {
   })
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({
-    description: "Repository not found",
-  })
-  async findOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repository not found" })
+  async findOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
   ): Promise<DbRepo> {
@@ -52,7 +48,7 @@ export class RepoController {
   @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList(
+  async findUserList (
     @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);

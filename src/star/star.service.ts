@@ -5,19 +5,19 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 
 @Injectable()
 export class StarService {
-  constructor(
+  constructor (
     @InjectRepository(DbRepoToUserStars)
     private repoStarRepository: Repository<DbRepoToUserStars>,
   ) {}
 
-  baseQueryBuilder() {
+  baseQueryBuilder () {
     const builder = this.repoStarRepository.createQueryBuilder("r2stars")
       .withDeleted();
 
     return builder;
   }
 
-  async starByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
+  async starByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -27,7 +27,7 @@ export class StarService {
     const starExists = await queryBuilder.getOne();
 
     if (starExists) {
-      if (starExists.deleted_at === null) {
+      if (!starExists.deleted_at) {
         throw new ConflictException("You have already starred this repo");
       }
 
@@ -42,7 +42,7 @@ export class StarService {
     });
   }
 
-  async downStarByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
+  async downStarByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -55,7 +55,7 @@ export class StarService {
       throw new NotFoundException("You have not starred this repo");
     }
 
-    if (starExists.deleted_at !== null) {
+    if (starExists.deleted_at) {
       throw new ConflictException("You have already removed your star");
     }
 

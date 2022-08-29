@@ -5,7 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
@@ -17,7 +17,7 @@ import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissio
 @Controller("repos")
 @ApiTags("Repository service guarded", "Submit service")
 export class RepoSubmitController {
-  constructor(
+  constructor (
     private readonly repoService: RepoService,
     private readonly submitService: SubmitService,
   ) {}
@@ -31,15 +31,11 @@ export class RepoSubmitController {
   })
   @ApiOkResponse({
     description: "Returns the repo submission",
-    type: DbRepoToUserSubmissions
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or submission not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already submitted this repo",
-  })
-  async submitOneById(
+  @ApiNotFoundResponse({ description: "Repo or submission not found" })
+  @ApiConflictResponse({ description: "You have already submitted this repo" })
+  async submitOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserSubmissions> {
@@ -57,15 +53,11 @@ export class RepoSubmitController {
   })
   @ApiOkResponse({
     description: "Returns the repo submission",
-    type: DbRepoToUserSubmissions
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or submission not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already submitted this repo",
-  })
-  async submitOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or submission not found" })
+  @ApiConflictResponse({ description: "You have already submitted this repo" })
+  async submitOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
@@ -84,15 +76,11 @@ export class RepoSubmitController {
   })
   @ApiOkResponse({
     description: "Returns the repo submission",
-    type: DbRepoToUserSubmissions
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or submission not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your submission",
-  })
-  async downSubmitOneById(
+  @ApiNotFoundResponse({ description: "Repo or submission not found" })
+  @ApiConflictResponse({ description: "You have already removed your submission" })
+  async downSubmitOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserSubmissions> {
@@ -110,15 +98,11 @@ export class RepoSubmitController {
   })
   @ApiOkResponse({
     description: "Returns the repo submission",
-    type: DbRepoToUserSubmissions
+    type: DbRepoToUserSubmissions,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or submission not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your submission",
-  })
-  async downSubmitOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or submission not found" })
+  @ApiConflictResponse({ description: "You have already removed your submission" })
+  async downSubmitOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,

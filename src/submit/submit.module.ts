@@ -10,7 +10,7 @@ import { RepoSubmitController } from "./repo-submit.controller";
 @Module({
   imports: [TypeOrmModule.forFeature([
     DbRepo,
-    DbRepoToUserSubmissions
+    DbRepoToUserSubmissions,
   ])],
   controllers: [RepoSubmitController],
   providers: [RepoService, SubmitService],

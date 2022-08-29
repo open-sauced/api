@@ -10,7 +10,7 @@ export class SupabaseStrategy extends PassportStrategy(
   SupabaseAuthStrategy,
   "supabase",
 ) {
-  public constructor() {
+  public constructor () {
     super({
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseKey: process.env.SUPABASE_API_KEY,
@@ -20,11 +20,11 @@ export class SupabaseStrategy extends PassportStrategy(
     });
   }
 
-  async validate(user: SupabaseAuthUser) {
+  async validate (user: SupabaseAuthUser) {
     return super.validate(user);
   }
 
-  authenticate(req: never) {
+  authenticate (req: never) {
     super.authenticate(req);
   }
 }

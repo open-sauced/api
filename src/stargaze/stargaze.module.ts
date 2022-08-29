@@ -10,7 +10,7 @@ import { RepoStargazeController } from "./repo-stargaze.controller";
 @Module({
   imports: [TypeOrmModule.forFeature([
     DbRepo,
-    DbRepoToUserStargazers
+    DbRepoToUserStargazers,
   ])],
   controllers: [RepoStargazeController],
   providers: [RepoService, StargazeService],

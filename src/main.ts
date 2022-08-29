@@ -15,7 +15,7 @@ import { major } from "semver";
 import { AppModule } from "./app.module";
 import { name, description, version, license } from "../package.json";
 
-async function bootstrap() {
+async function bootstrap () {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({ logger: false }),
@@ -25,12 +25,10 @@ async function bootstrap() {
   app.enableCors();
   app.enableVersioning({
     type: VersioningType.URI,
-    defaultVersion: String(major("1.8.0", {
-      loose: false,
-    })),
+    defaultVersion: String(major("1.8.0", { loose: false })),
   });
 
-  const options = new DocumentBuilder()
+  const options = (new DocumentBuilder)
     .setTitle(name)
     .setDescription(description)
     .setVersion(version)
@@ -46,15 +44,11 @@ async function bootstrap() {
     ) => methodKey,
   });
 
-  const customOptions: SwaggerCustomOptions = {
-    swaggerOptions: {
-      persistAuthorization: true,
-    },
-  };
+  const customOptions: SwaggerCustomOptions = { swaggerOptions: { persistAuthorization: true } };
 
   const outputPath = path.resolve(process.cwd(), "dist/swagger.json");
 
-  try{
+  try {
     await writeFile(outputPath, JSON.stringify(document, null, 2), { encoding: "utf8" });
   } catch (e) {
     console.log(e);
@@ -62,9 +56,7 @@ async function bootstrap() {
 
   SwaggerModule.setup("docs", app, document, customOptions);
 
-  await app.register(fastifyHelmet, {
-    contentSecurityPolicy: false,
-  });
+  await app.register(fastifyHelmet, { contentSecurityPolicy: false });
   await app.register(fastifyRateLimit, {
     max: 100,
     timeWindow: "1 minute",
@@ -74,7 +66,7 @@ async function bootstrap() {
     forbidUnknownValues: true,
   }));
 
-  await app.listen(<string>configService.get("api.port"), configService.get("api.host"));
+  await app.listen(configService.get("api.port")!, configService.get("api.host"));
 }
 
 void bootstrap();

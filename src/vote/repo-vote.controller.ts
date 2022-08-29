@@ -5,7 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
@@ -17,7 +17,7 @@ import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Vote service")
 export class RepoVoteController {
-  constructor(
+  constructor (
     private readonly repoService: RepoService,
     private readonly voteService: VoteService,
   ) {}
@@ -31,15 +31,11 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: DbRepoToUserVotes
+    type: DbRepoToUserVotes,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or vote not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already voted for this repo",
-  })
-  async voteOneById(
+  @ApiNotFoundResponse({ description: "Repo or vote not found" })
+  @ApiConflictResponse({ description: "You have already voted for this repo" })
+  async voteOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserVotes> {
@@ -57,15 +53,11 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: DbRepoToUserVotes
+    type: DbRepoToUserVotes,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or vote not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already voted for this repo",
-  })
-  async voteOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or vote not found" })
+  @ApiConflictResponse({ description: "You have already voted for this repo" })
+  async voteOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
@@ -84,15 +76,11 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: DbRepoToUserVotes
+    type: DbRepoToUserVotes,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or vote not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your vote",
-  })
-  async downVoteOneById(
+  @ApiNotFoundResponse({ description: "Repo or vote not found" })
+  @ApiConflictResponse({ description: "You have already removed your vote" })
+  async downVoteOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserVotes> {
@@ -110,15 +98,11 @@ export class RepoVoteController {
   })
   @ApiOkResponse({
     description: "Returns the repo vote",
-    type: DbRepoToUserVotes
+    type: DbRepoToUserVotes,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or vote not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your vote",
-  })
-  async downVoteOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or vote not found" })
+  @ApiConflictResponse({ description: "You have already removed your vote" })
+  async downVoteOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,

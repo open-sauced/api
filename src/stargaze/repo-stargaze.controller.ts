@@ -5,7 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
@@ -17,7 +17,7 @@ import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")
 export class RepoStargazeController {
-  constructor(
+  constructor (
     private readonly repoService: RepoService,
     private readonly stargazeService: StargazeService,
   ) {}
@@ -31,15 +31,11 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: DbRepoToUserStargazers
+    type: DbRepoToUserStargazers,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or follow not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already followed this repo",
-  })
-  async stargazeOneById(
+  @ApiNotFoundResponse({ description: "Repo or follow not found" })
+  @ApiConflictResponse({ description: "You have already followed this repo" })
+  async stargazeOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStargazers> {
@@ -57,15 +53,11 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: DbRepoToUserStargazers
+    type: DbRepoToUserStargazers,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or follow not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already followed this repo",
-  })
-  async stargazeOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or follow not found" })
+  @ApiConflictResponse({ description: "You have already followed this repo" })
+  async stargazeOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
@@ -84,15 +76,11 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: DbRepoToUserStargazers
+    type: DbRepoToUserStargazers,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or follow not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already unfollowed this repo",
-  })
-  async downStargazeOneById(
+  @ApiNotFoundResponse({ description: "Repo or follow not found" })
+  @ApiConflictResponse({ description: "You have already unfollowed this repo" })
+  async downStargazeOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStargazers> {
@@ -110,15 +98,11 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: DbRepoToUserStargazers
+    type: DbRepoToUserStargazers,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or stargaze not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already unfollowed this repo",
-  })
-  async downStargazeOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or stargaze not found" })
+  @ApiConflictResponse({ description: "You have already unfollowed this repo" })
+  async downStargazeOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,

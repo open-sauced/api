@@ -20,9 +20,9 @@ export class PageMetaDto {
   @ApiProperty()
   readonly hasNextPage: boolean;
 
-  constructor({ pageOptionsDto, itemCount }: PageMetaParameters) {
-    this.page = pageOptionsDto.page || 1;
-    this.limit = pageOptionsDto.limit || 10;
+  constructor ({ pageOptionsDto, itemCount }: PageMetaParameters) {
+    this.page = pageOptionsDto.page ?? 1;
+    this.limit = pageOptionsDto.limit ?? 10;
     this.itemCount = itemCount;
     this.pageCount = Math.ceil(this.itemCount / this.limit);
     this.hasPreviousPage = this.page > 1;

@@ -10,7 +10,7 @@ import { RepoStarController } from "./repo-star.controller";
 @Module({
   imports: [TypeOrmModule.forFeature([
     DbRepo,
-    DbRepoToUserStars
+    DbRepoToUserStars,
   ])],
   controllers: [RepoStarController],
   providers: [RepoService, StarService],

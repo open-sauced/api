@@ -5,15 +5,13 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
 
-@Entity({
-  name: "users_to_repos_votes",
-})
+@Entity({ name: "users_to_repos_votes" })
 export class DbRepoToUserVotes {
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -28,21 +26,19 @@ export class DbRepoToUserVotes {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at?: Date;
+  public created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at?: Date;
+  public updated_at?: Date;
 
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-  })
-  deleted_at?: Date;
+  @DeleteDateColumn({ type: "timestamp without time zone" })
+  public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.repoToUserVotes)
+  @ManyToOne(() => DbUser, user => user.repoToUserVotes)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -50,7 +46,7 @@ export class DbRepoToUserVotes {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbRepo, (repo) => repo.repoToUserVotes)
+  @ManyToOne(() => DbRepo, repo => repo.repoToUserVotes)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

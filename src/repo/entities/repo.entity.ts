@@ -8,7 +8,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  DeleteDateColumn
+  DeleteDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
@@ -23,107 +23,105 @@ import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
   name: "repos",
   orderBy: {
     stars: "DESC",
-    name: "ASC"
-  }
+    name: "ASC",
+  },
 })
 export class DbRepo extends BaseEntity {
   @PrimaryColumn("bigint")
-  id!: number;
+  public id!: number;
 
   @Column({
     type: "bigint",
-    select: false
+    select: false,
   })
-  user_id!: number;
-
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  issues: number;
+  public user_id!: number;
 
   @Column({
     type: "bigint",
     default: 0,
   })
-  stars: number;
+  public issues: number;
 
   @Column({
     type: "bigint",
     default: 0,
   })
-  watchers: number;
+  public stars: number;
 
   @Column({
     type: "bigint",
     default: 0,
   })
-  subscribers: number;
+  public watchers: number;
+
+  @Column({
+    type: "bigint",
+    default: 0,
+  })
+  public subscribers: number;
 
   @Column({ default: false })
-  is_fork: boolean;
+  public is_fork: boolean;
 
   @CreateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at?: Date;
+  public created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at?: Date;
+  public updated_at?: Date;
 
   @Column({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  pushed_at?: Date;
+  public pushed_at?: Date;
 
   @Column({
     type: "timestamp without time zone",
     default: () => "to_timestamp(0)",
   })
-  last_fetched_contributors_at?: Date;
+  public last_fetched_contributors_at?: Date;
 
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-  })
-  deleted_at?: Date;
+  @DeleteDateColumn({ type: "timestamp without time zone" })
+  public deleted_at?: Date;
 
   @Column({
     type: "character varying",
-    length: 255
+    length: 255,
   })
-  name: string;
+  public name: string;
 
   @Column({
     type: "character varying",
-    length: 255
+    length: 255,
   })
-  full_name: string;
+  public full_name: string;
 
   @Column("text")
-  description: string;
+  public description: string;
 
   @Column({
     type: "character varying",
-    length: 64
+    length: 64,
   })
-  language: string;
+  public language: string;
 
   @Column({
     type: "character varying",
-    length: 64
+    length: 64,
   })
-  license: string;
+  public license: string;
 
   @Column({
     type: "character varying",
-    length: 255
+    length: 255,
   })
-  url: string;
+  public url: string;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, user => user.repos)
@@ -131,25 +129,25 @@ export class DbRepo extends BaseEntity {
     name: "user_id",
     referencedColumnName: "id",
   })
-  user!: DbUser;
+  public user!: DbUser;
 
   @ApiHideProperty()
   @OneToMany(() => DbContribution, contribution => contribution.repo)
-  contributions: DbContribution[];
+  public contributions: DbContribution[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.repo)
-  repoToUserVotes: DbRepoToUserVotes[];
+  public repoToUserVotes: DbRepoToUserVotes[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStars, repoToUserStars => repoToUserStars.repo)
-  repoToUserStars: DbRepoToUserStars[];
+  public repoToUserStars: DbRepoToUserStars[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
-  repoToUserSubmissions: DbRepoToUserSubmissions[];
+  public repoToUserSubmissions: DbRepoToUserSubmissions[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
-  repoToUserStargazers: DbRepoToUserStargazers[];
+  public repoToUserStargazers: DbRepoToUserStargazers[];
 }

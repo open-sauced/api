@@ -5,15 +5,13 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
 
-@Entity({
-  name: "users_to_repos_stars",
-})
+@Entity({ name: "users_to_repos_stars" })
 export class DbRepoToUserStars {
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -28,21 +26,19 @@ export class DbRepoToUserStars {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at?: Date;
+  public created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at?: Date;
+  public updated_at?: Date;
 
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-  })
-  deleted_at?: Date;
+  @DeleteDateColumn({ type: "timestamp without time zone" })
+  public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.repoToUserStars)
+  @ManyToOne(() => DbUser, user => user.repoToUserStars)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -50,7 +46,7 @@ export class DbRepoToUserStars {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbRepo, (repo) => repo.repoToUserStars)
+  @ManyToOne(() => DbRepo, repo => repo.repoToUserStars)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

@@ -6,7 +6,7 @@ import {
   OneToMany,
   CreateDateColumn,
   DeleteDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
@@ -16,62 +16,58 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 
-@Entity({
-  name: "users"
-})
+@Entity({ name: "users" })
 export class DbUser extends BaseEntity {
   @PrimaryColumn("bigint")
-  id!: number;
+  public id!: number;
 
   @Column({
     type: "bigint",
     default: 0,
   })
-  open_issues: number;
+  public open_issues: number;
 
   @Column({ default: false })
-  has_stars_data: boolean;
+  public has_stars_data: boolean;
 
   @Column({ default: false })
-  is_private: boolean;
+  public is_private: boolean;
 
   @Column({ default: false })
-  is_open_sauced_member: boolean;
+  public is_open_sauced_member: boolean;
 
   @CreateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at?: Date;
+  public created_at?: Date;
 
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at?: Date;
+  public updated_at?: Date;
 
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-  })
-  deleted_at?: Date;
+  @DeleteDateColumn({ type: "timestamp without time zone" })
+  public deleted_at?: Date;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
-  repos: DbRepo[];
+  public repos: DbRepo[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)
-  repoToUserVotes: DbRepoToUserVotes[];
+  public repoToUserVotes: DbRepoToUserVotes[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStars, repoToUserStars => repoToUserStars.user)
-  repoToUserStars: DbRepoToUserStars[];
+  public repoToUserStars: DbRepoToUserStars[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.user)
-  repoToUserSubmissions: DbRepoToUserSubmissions[];
+  public repoToUserSubmissions: DbRepoToUserSubmissions[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.user)
-  repoToUserStargazers: DbRepoToUserStargazers[];
+  public repoToUserStargazers: DbRepoToUserStargazers[];
 }

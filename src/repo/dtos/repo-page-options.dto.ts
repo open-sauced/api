@@ -21,7 +21,7 @@ export class RepoPageOptionsDto extends PageOptionsDto {
   @ApiPropertyOptional({
     enum: RepoOrderFieldsEnum,
     enumName: "RepoOrderFieldsEnum",
-    default: RepoOrderFieldsEnum.stars
+    default: RepoOrderFieldsEnum.stars,
   })
   @IsEnum(RepoOrderFieldsEnum)
   @IsOptional()

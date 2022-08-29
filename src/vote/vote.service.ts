@@ -5,19 +5,19 @@ import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 
 @Injectable()
 export class VoteService {
-  constructor(
+  constructor (
     @InjectRepository(DbRepoToUserVotes)
     private repoVoteRepository: Repository<DbRepoToUserVotes>,
   ) {}
 
-  baseQueryBuilder() {
+  baseQueryBuilder () {
     const builder = this.repoVoteRepository.createQueryBuilder("r2votes")
       .withDeleted();
 
     return builder;
   }
 
-  async voteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
+  async voteByRepoId (repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -27,7 +27,7 @@ export class VoteService {
     const voteExists = await queryBuilder.getOne();
 
     if (voteExists) {
-      if (voteExists.deleted_at === null) {
+      if (!voteExists.deleted_at) {
         throw new ConflictException("You have already voted for this repo");
       }
 
@@ -42,7 +42,7 @@ export class VoteService {
     });
   }
 
-  async downVoteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
+  async downVoteByRepoId (repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -55,7 +55,7 @@ export class VoteService {
       throw new NotFoundException("You have not voted for this repo");
     }
 
-    if (voteExists.deleted_at !== null) {
+    if (voteExists.deleted_at) {
       throw new ConflictException("You have already removed your vote");
     }
 

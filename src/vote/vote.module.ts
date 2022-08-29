@@ -10,7 +10,7 @@ import { RepoVoteController } from "./repo-vote.controller";
 @Module({
   imports: [TypeOrmModule.forFeature([
     DbRepo,
-    DbRepoToUserVotes
+    DbRepoToUserVotes,
   ])],
   controllers: [RepoVoteController],
   providers: [RepoService, VoteService],

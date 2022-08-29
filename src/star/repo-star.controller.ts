@@ -5,7 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
@@ -17,7 +17,7 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Star service")
 export class RepoStarController {
-  constructor(
+  constructor (
     private readonly repoService: RepoService,
     private readonly starService: StarService,
   ) {}
@@ -31,15 +31,11 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: DbRepoToUserStars
+    type: DbRepoToUserStars,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or star not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already starred this repo",
-  })
-  async starOneById(
+  @ApiNotFoundResponse({ description: "Repo or star not found" })
+  @ApiConflictResponse({ description: "You have already starred this repo" })
+  async starOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStars> {
@@ -57,15 +53,11 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: DbRepoToUserStars
+    type: DbRepoToUserStars,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or star not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already starred this repo",
-  })
-  async starOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or star not found" })
+  @ApiConflictResponse({ description: "You have already starred this repo" })
+  async starOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,
@@ -84,15 +76,11 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: DbRepoToUserStars
+    type: DbRepoToUserStars,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or star not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your star",
-  })
-  async downStarOneById(
+  @ApiNotFoundResponse({ description: "Repo or star not found" })
+  @ApiConflictResponse({ description: "You have already removed your star" })
+  async downStarOneById (
     @Param("id") id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStars> {
@@ -110,15 +98,11 @@ export class RepoStarController {
   })
   @ApiOkResponse({
     description: "Returns the repo star",
-    type: DbRepoToUserStars
+    type: DbRepoToUserStars,
   })
-  @ApiNotFoundResponse({
-    description: "Repo or star not found",
-  })
-  @ApiConflictResponse({
-    description: "You have already removed your star",
-  })
-  async downStarOneByOwnerAndRepo(
+  @ApiNotFoundResponse({ description: "Repo or star not found" })
+  @ApiConflictResponse({ description: "You have already removed your star" })
+  async downStarOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
       @UserId() userId: number,

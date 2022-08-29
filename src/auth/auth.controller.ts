@@ -17,7 +17,7 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthResponse })
   @HttpCode(HttpStatus.OK)
-  getHello(
+  getHello (
     @User() user: SupabaseAuthUser,
   ): SupabaseAuthResponse {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub } } = user;
@@ -29,7 +29,7 @@ export class AuthController {
       confirmed_at,
       last_sign_in_at,
       created_at,
-      updated_at
+      updated_at,
     };
   }
 }

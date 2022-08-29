@@ -22,6 +22,7 @@ import { AuthModule } from "./auth/auth.module";
 import { VoteModule } from "./vote/vote.module";
 import { StarModule } from "./star/star.module";
 import { StargazeModule } from "./stargaze/stargaze.module";
+import { SubmitModule } from "./submit/submit.module";
 
 @Module({
   imports: [
@@ -29,13 +30,13 @@ import { StargazeModule } from "./stargaze/stargaze.module";
       load: [
         apiConfig,
         dbConfig,
-        endpointConfig
+        endpointConfig,
       ],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => <TypeOrmModuleOptions>({
+      useFactory: (configService: ConfigService) => ({
         type: configService.get("db.connection"),
         host: configService.get("db.host"),
         port: configService.get("db.port"),
@@ -53,7 +54,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
           DbRepoToUserStargazers,
         ],
         synchronize: false,
-      }),
+      }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
     TerminusModule,
@@ -64,10 +65,11 @@ import { StargazeModule } from "./stargaze/stargaze.module";
     VoteModule,
     StarModule,
     StargazeModule,
+    SubmitModule,
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor (private dataSource: DataSource) {}
 }

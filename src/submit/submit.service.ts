@@ -5,19 +5,19 @@ import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissio
 
 @Injectable()
 export class SubmitService {
-  constructor(
+  constructor (
     @InjectRepository(DbRepoToUserSubmissions)
     private repoSubmitRepository: Repository<DbRepoToUserSubmissions>,
   ) {}
 
-  baseQueryBuilder() {
+  baseQueryBuilder () {
     const builder = this.repoSubmitRepository.createQueryBuilder("r2submits")
       .withDeleted();
 
     return builder;
   }
 
-  async submitByRepoId(repoId: number, userId: number): Promise<DbRepoToUserSubmissions> {
+  async submitByRepoId (repoId: number, userId: number): Promise<DbRepoToUserSubmissions> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -27,7 +27,7 @@ export class SubmitService {
     const submitExists = await queryBuilder.getOne();
 
     if (submitExists) {
-      if (submitExists.deleted_at === null) {
+      if (!submitExists.deleted_at) {
         throw new ConflictException("You have already submitd for this repo");
       }
 
@@ -42,7 +42,7 @@ export class SubmitService {
     });
   }
 
-  async downSubmitByRepoId(repoId: number, userId: number): Promise<DbRepoToUserSubmissions> {
+  async downSubmitByRepoId (repoId: number, userId: number): Promise<DbRepoToUserSubmissions> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -55,7 +55,7 @@ export class SubmitService {
       throw new NotFoundException("You have not submitd for this repo");
     }
 
-    if (submitExists.deleted_at !== null) {
+    if (submitExists.deleted_at) {
       throw new ConflictException("You have already removed your submit");
     }
 
