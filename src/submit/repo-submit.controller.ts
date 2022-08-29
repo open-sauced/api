@@ -1,4 +1,4 @@
-import { Controller, Delete, Param, Put, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -13,6 +13,10 @@ import { SubmitService } from "./submit.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
+import { PageDto } from "../common/dtos/page.dto";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Submit service")
@@ -21,6 +25,22 @@ export class RepoSubmitController {
     private readonly repoService: RepoService,
     private readonly submitService: SubmitService,
   ) {}
+
+  @Get("/listUserSubmitted")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "findAllUserSubmitted",
+    summary: "Finds all repos submitted by authenticated user and paginates them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findUserList (
+    @Query() pageOptionsDto: RepoPageOptionsDto,
+      @UserId() userId: number,
+  ): Promise<PageDto<DbRepo>> {
+    return this.repoService.findAll(pageOptionsDto, userId, ["Submissions"]);
+  }
 
   @Put("/:id/submit")
   @ApiBearerAuth()
