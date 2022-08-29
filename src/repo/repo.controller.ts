@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, Query } from "@nestjs/common";
 import { RepoService } from "./repo.service";
 import { DbRepo } from "./entities/repo.entity";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
@@ -16,7 +16,6 @@ export class RepoController {
     operationId: "findOneById",
     summary: "Finds a repo by :id",
   })
-  @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
   async findOneById (
@@ -30,7 +29,6 @@ export class RepoController {
     operationId: "findOneByOwnerAndRepo",
     summary: "Finds a repo by :owner and :repo",
   })
-  @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
   async findOneByOwnerAndRepo (
@@ -45,7 +43,6 @@ export class RepoController {
     operationId: "findAll",
     summary: "Finds all repos and paginates them",
   })
-  @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   async findUserList (
