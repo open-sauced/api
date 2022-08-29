@@ -7,9 +7,9 @@ import {
   ApiOperation,
   ApiTags
 } from "@nestjs/swagger";
+
 import { RepoService } from "../repo/repo.service";
 import { StargazeService } from "./stargaze.service";
-import { DbRepo } from "../repo/entities/repo.entity";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
@@ -110,7 +110,7 @@ export class RepoStargazeController {
   })
   @ApiOkResponse({
     description: "Returns the repo follow",
-    type: DbRepo
+    type: DbRepoToUserStargazers
   })
   @ApiNotFoundResponse({
     description: "Repo or stargaze not found",
