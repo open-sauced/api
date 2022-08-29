@@ -93,6 +93,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findUserList" >findUserList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#submitOneById" >submitOneById</a>
                             </li>
                             <li>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:103</a></div>
                 </td>
             </tr>
 
@@ -235,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:125</a></div>
                 </td>
             </tr>
 
@@ -312,6 +316,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findUserList"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findUserList</b></span>
+                        <a href="#findUserList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findUserList(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/listUserSubmitted&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findAllUserSubmitted&#x27;, summary: &#x27;Finds all repos submitted by authenticated user and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:38</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/RepoPageOptionsDto.html" target="_self" >RepoPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="submitOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -337,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -427,8 +521,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -504,7 +598,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Param, Put, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, Put, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -519,6 +613,10 @@ import { SubmitService } from &quot;./submit.service&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { DbRepoToUserSubmissions } from &quot;../repo/entities/repo.to.user.submissions.entity&quot;;
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
+import { RepoPageOptionsDto } from &quot;../repo/dtos/repo-page-options.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service guarded&quot;, &quot;Submit service&quot;)
@@ -527,6 +625,22 @@ export class RepoSubmitController {
     private readonly repoService: RepoService,
     private readonly submitService: SubmitService,
   ) {}
+
+  @Get(&quot;/listUserSubmitted&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;findAllUserSubmitted&quot;,
+    summary: &quot;Finds all repos submitted by authenticated user and paginates them&quot;,
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findUserList (
+    @Query() pageOptionsDto: RepoPageOptionsDto,
+      @UserId() userId: number,
+  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
+    return this.repoService.findAll(pageOptionsDto, userId, [&quot;Submissions&quot;]);
+  }
 
   @Put(&quot;/:id/submit&quot;)
   @ApiBearerAuth()

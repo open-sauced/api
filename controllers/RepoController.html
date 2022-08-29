@@ -135,14 +135,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/repo/repo.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/repo/repo.controller.ts:21</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/repo/repo.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/repo/repo.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -303,14 +303,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@HttpCode(HttpStatus.OK)<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/repo/repo.controller.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/repo/repo.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -362,7 +362,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
@@ -380,7 +380,6 @@ export class RepoController {
     operationId: &quot;findOneById&quot;,
     summary: &quot;Finds a repo by :id&quot;,
   })
-  @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   async findOneById (
@@ -394,7 +393,6 @@ export class RepoController {
     operationId: &quot;findOneByOwnerAndRepo&quot;,
     summary: &quot;Finds a repo by :owner and :repo&quot;,
   })
-  @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   async findOneByOwnerAndRepo (
@@ -409,7 +407,6 @@ export class RepoController {
     operationId: &quot;findAll&quot;,
     summary: &quot;Finds all repos and paginates them&quot;,
   })
-  @HttpCode(HttpStatus.OK)
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   async findUserList (

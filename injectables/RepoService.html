@@ -214,7 +214,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>)</code>
+                    <code>findAll(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>, userId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userRelations?: string[])</code>
                 </td>
             </tr>
 
@@ -250,6 +250,30 @@
 
                                     <td>
                                         No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userRelations</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -590,11 +614,11 @@ export class RepoService {
      * .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
      */
 
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;Contribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;RepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbContribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
+      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
       .loadRelationCountAndMap(&quot;repo.contributionsCount&quot;, &quot;repo.contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
       .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
@@ -636,9 +660,17 @@ export class RepoService {
 
   async findAll (
     pageOptionsDto: RepoPageOptionsDto,
+    userId?: number,
+    userRelations?: string[],
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
     const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;is_fork&quot;;
+
+    if (userId) {
+      userRelations?.map(relation &#x3D;&gt;
+        queryBuilder
+          .innerJoin(&#x60;repo.repoToUser${relation}&#x60;, &#x60;authUser${relation}&#x60;, &#x60;authUser${relation}.user_id &#x3D; :userId&#x60;, { userId }));
+    }
 
     queryBuilder
       .orderBy(&#x60;&quot;repo&quot;.&quot;is_fork&quot;&#x60;, OrderDirectionEnum.ASC)
