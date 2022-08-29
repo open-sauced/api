@@ -5,6 +5,26 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.13](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.12...v1.9.0-beta.13) (2022-08-29)
+
+
+### 🐛 Bug Fixes
+
+* correct repo listing database relationship names ([f29f5f2](https://github.com/open-sauced/api.opensauced.pizza/commit/f29f5f267246d5b9501f9c375a34f320d8b261e9))
+
+
+### 🧑‍💻 Code Refactoring
+
+* clean up repo controller extra decorators ([3282435](https://github.com/open-sauced/api.opensauced.pizza/commit/3282435f5d662e6d494885faf812fc2a5a9a9071))
+
+
+### 🍕 Features
+
+* add list authenticated user stargazed repos ([2a8d198](https://github.com/open-sauced/api.opensauced.pizza/commit/2a8d198c4ae932dfec7c0cbf2a23abd579bd8d3f))
+* add list authenticated user starred repos ([f5f942f](https://github.com/open-sauced/api.opensauced.pizza/commit/f5f942fbb4a6fc7feb35b7cd8a8f82fe9ab39dd4))
+* add list authenticated user submitted repos ([334268d](https://github.com/open-sauced/api.opensauced.pizza/commit/334268db21562d28282ce119267a081cf7a8fadd))
+* add list authenticated user voted repos ([f96a793](https://github.com/open-sauced/api.opensauced.pizza/commit/f96a793a02120da3b657705020c4647e3963cf52))
+
 ## [1.9.0-beta.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.11...v1.9.0-beta.12) (2022-08-29)
 
 
