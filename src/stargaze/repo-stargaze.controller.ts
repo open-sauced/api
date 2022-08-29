@@ -1,4 +1,4 @@
-import { Controller, Delete, Param, Put, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -13,6 +13,10 @@ import { StargazeService } from "./stargaze.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
+import { PageDto } from "../common/dtos/page.dto";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")
@@ -21,6 +25,22 @@ export class RepoStargazeController {
     private readonly repoService: RepoService,
     private readonly stargazeService: StargazeService,
   ) {}
+
+  @Get("/listUserStargazed")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "findAllUserStargazed",
+    summary: "Finds all repos followed by authenticated user and paginates them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findUserList (
+    @Query() pageOptionsDto: RepoPageOptionsDto,
+      @UserId() userId: number,
+  ): Promise<PageDto<DbRepo>> {
+    return this.repoService.findAll(pageOptionsDto, userId, ["Stargazers"]);
+  }
 
   @Put("/:id/stargaze")
   @ApiBearerAuth()
