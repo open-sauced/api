@@ -81,9 +81,17 @@ export class RepoService {
 
   async findAll (
     pageOptionsDto: RepoPageOptionsDto,
+    userId?: number,
+    userRelations?: string[],
   ): Promise<PageDto<DbRepo>> {
     const queryBuilder = this.baseQueryBuilder();
     const orderField = pageOptionsDto.orderBy ?? "is_fork";
+
+    if (userId) {
+      userRelations?.map(relation =>
+        queryBuilder
+          .innerJoin(`repo.repoToUser${relation}`, `authUser${relation}`, `authUser${relation}.user_id = :userId`, { userId }));
+    }
 
     queryBuilder
       .orderBy(`"repo"."is_fork"`, OrderDirectionEnum.ASC)
