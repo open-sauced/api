@@ -24,6 +24,9 @@ export class DbRepoToUserSubmissions {
   @Column()
   public repo_id!: number;
 
+  @Column({ default: false })
+  is_accepted?: boolean;
+
   @CreateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
