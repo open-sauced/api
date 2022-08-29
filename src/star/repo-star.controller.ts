@@ -1,4 +1,4 @@
-import { Controller, Delete, Param, Put, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -13,6 +13,10 @@ import { StarService } from "./star.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
+import { PageDto } from "../common/dtos/page.dto";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Star service")
@@ -21,6 +25,22 @@ export class RepoStarController {
     private readonly repoService: RepoService,
     private readonly starService: StarService,
   ) {}
+
+  @Get("/listUserStarred")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "findAllUserStarred",
+    summary: "Finds all repos starred by authenticated user and paginates them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findUserList (
+    @Query() pageOptionsDto: RepoPageOptionsDto,
+      @UserId() userId: number,
+  ): Promise<PageDto<DbRepo>> {
+    return this.repoService.findAll(pageOptionsDto, userId, ["Stars"]);
+  }
 
   @Put("/:id/star")
   @ApiBearerAuth()
