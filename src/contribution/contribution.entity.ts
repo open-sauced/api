@@ -31,7 +31,7 @@ export class DbContribution extends BaseEntity {
   public count: number;
 
   @Column({ type: "timestamp without time zone" })
-    last_merged_at: Date;
+  public last_merged_at: Date;
 
   @CreateDateColumn({
     type: "timestamp without time zone",
