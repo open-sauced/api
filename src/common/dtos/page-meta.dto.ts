@@ -2,22 +2,40 @@ import { ApiProperty } from "@nestjs/swagger";
 import { PageMetaParameters } from "./page-meta-parameters.dto";
 
 export class PageMetaDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: "The current page",
+    example: 1,
+  })
   readonly page: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "The number of items per page",
+    example: 10,
+  })
   readonly limit: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "The number of items in the collection",
+    example: 100,
+  })
   readonly itemCount: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "The number of pages in the collection",
+    example: 10,
+  })
   readonly pageCount: number;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Flag indicating if there is a previous page",
+    example: false,
+  })
   readonly hasPreviousPage: boolean;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: "Flag indicating if there is a next page",
+    example: true,
+  })
   readonly hasNextPage: boolean;
 
   constructor ({ pageOptionsDto, itemCount }: PageMetaParameters) {

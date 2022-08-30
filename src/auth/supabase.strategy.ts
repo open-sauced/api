@@ -3,8 +3,6 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt } from "passport-jwt";
 import { SupabaseAuthStrategy, SupabaseAuthUser } from "nestjs-supabase-auth";
 
-export type SupabaseAuthRequest = Partial<Request> & { user?: SupabaseAuthUser };
-
 @Injectable()
 export class SupabaseStrategy extends PassportStrategy(
   SupabaseAuthStrategy,
