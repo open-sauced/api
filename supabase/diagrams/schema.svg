@@ -263,43 +263,46 @@
 <!-- public.users_to_repos_submissions -->
 <g id="node7" class="node">
 <title>public.users_to_repos_submissions</title>
-<polygon fill="#efefef" stroke="transparent" points="487,-964.5 487,-999.5 883,-999.5 883,-964.5 487,-964.5"/>
-<polygon fill="none" stroke="#000000" points="487,-964.5 487,-999.5 883,-999.5 883,-964.5 487,-964.5"/>
-<text text-anchor="start" x="493.8446" y="-977.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.users_to_repos_submissions</text>
-<text text-anchor="start" x="778.9016" y="-977.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
-<text text-anchor="start" x="782.7922" y="-977.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
-<polygon fill="none" stroke="#000000" points="487,-934.5 487,-964.5 883,-964.5 883,-934.5 487,-934.5"/>
-<text text-anchor="start" x="494" y="-945.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
-<text text-anchor="start" x="508.7798" y="-945.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="487,-904.5 487,-934.5 883,-934.5 883,-904.5 487,-904.5"/>
-<text text-anchor="start" x="494" y="-915.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
-<text text-anchor="start" x="543.7882" y="-915.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="487,-874.5 487,-904.5 883,-904.5 883,-874.5 487,-874.5"/>
-<text text-anchor="start" x="494" y="-885.9" font-family="Arial" font-size="14.00" fill="#000000">repo_id </text>
-<text text-anchor="start" x="544.5708" y="-885.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="487,-844.5 487,-874.5 883,-874.5 883,-844.5 487,-844.5"/>
-<text text-anchor="start" x="494" y="-855.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="564.028" y="-855.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
-<polygon fill="none" stroke="#000000" points="487,-814.5 487,-844.5 883,-844.5 883,-814.5 487,-814.5"/>
-<text text-anchor="start" x="494" y="-825.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="567.9326" y="-825.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
-<polygon fill="none" stroke="#000000" points="487,-784.5 487,-814.5 883,-814.5 883,-784.5 487,-784.5"/>
-<text text-anchor="start" x="494" y="-795.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
-<text text-anchor="start" x="563.2566" y="-795.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="#efefef" stroke="transparent" points="487,-979.5 487,-1014.5 883,-1014.5 883,-979.5 487,-979.5"/>
+<polygon fill="none" stroke="#000000" points="487,-979.5 487,-1014.5 883,-1014.5 883,-979.5 487,-979.5"/>
+<text text-anchor="start" x="493.8446" y="-992.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.users_to_repos_submissions</text>
+<text text-anchor="start" x="778.9016" y="-992.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
+<text text-anchor="start" x="782.7922" y="-992.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
+<polygon fill="none" stroke="#000000" points="487,-949.5 487,-979.5 883,-979.5 883,-949.5 487,-949.5"/>
+<text text-anchor="start" x="494" y="-960.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
+<text text-anchor="start" x="508.7798" y="-960.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="487,-919.5 487,-949.5 883,-949.5 883,-919.5 487,-919.5"/>
+<text text-anchor="start" x="494" y="-930.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
+<text text-anchor="start" x="543.7882" y="-930.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="487,-889.5 487,-919.5 883,-919.5 883,-889.5 487,-889.5"/>
+<text text-anchor="start" x="494" y="-900.9" font-family="Arial" font-size="14.00" fill="#000000">repo_id </text>
+<text text-anchor="start" x="544.5708" y="-900.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="487,-859.5 487,-889.5 883,-889.5 883,-859.5 487,-859.5"/>
+<text text-anchor="start" x="494" y="-870.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="564.028" y="-870.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="487,-829.5 487,-859.5 883,-859.5 883,-829.5 487,-829.5"/>
+<text text-anchor="start" x="494" y="-840.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
+<text text-anchor="start" x="567.9326" y="-840.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="487,-799.5 487,-829.5 883,-829.5 883,-799.5 487,-799.5"/>
+<text text-anchor="start" x="494" y="-810.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
+<text text-anchor="start" x="563.2566" y="-810.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="487,-769.5 487,-799.5 883,-799.5 883,-769.5 487,-769.5"/>
+<text text-anchor="start" x="494" y="-780.9" font-family="Arial" font-size="14.00" fill="#000000">is_accepted </text>
+<text text-anchor="start" x="572.5834" y="-780.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 </g>
 <!-- public.users_to_repos_submissions&#45;&gt;public.repos -->
 <g id="edge6" class="edge">
 <title>public.users_to_repos_submissions:repo_id&#45;&gt;public.repos:id</title>
-<path fill="none" stroke="#000000" d="M893.1437,-888.9604C966.4025,-880.6221 907.2412,-777.326 935,-697 955.4242,-637.8982 927.4686,-567.5 990,-567.5"/>
-<polygon fill="#000000" stroke="#000000" points="892.9859,-888.9687 882.7609,-885.0064 887.9929,-889.2344 883,-889.5 883,-889.5 883,-889.5 887.9929,-889.2344 883.2391,-893.9936 892.9859,-888.9687 892.9859,-888.9687"/>
-<text text-anchor="start" x="889.7755" y="-899.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (repo_id) REFERENCES repos(id)</text>
+<path fill="none" stroke="#000000" d="M893.3869,-903.9714C972.5051,-895.3728 905.9504,-783.6187 935,-697 954.883,-637.7139 927.4686,-567.5 990,-567.5"/>
+<polygon fill="#000000" stroke="#000000" points="892.9871,-903.9916 882.7712,-900.0058 887.9935,-904.2458 883,-904.5 883,-904.5 883,-904.5 887.9935,-904.2458 883.2288,-908.9942 892.9871,-903.9916 892.9871,-903.9916"/>
+<text text-anchor="start" x="889.7755" y="-914.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (repo_id) REFERENCES repos(id)</text>
 </g>
 <!-- public.users_to_repos_submissions&#45;&gt;public.users -->
 <g id="edge7" class="edge">
 <title>public.users_to_repos_submissions:user_id&#45;&gt;public.users:id</title>
-<path fill="none" stroke="#000000" d="M893.2994,-918.81C957.8136,-909.557 916.5702,-809.2809 883,-742 811.724,-599.1499 667.276,-668.8501 596,-526 577.4468,-488.8161 554.4444,-432.5 596,-432.5"/>
-<polygon fill="#000000" stroke="#000000" points="892.9776,-918.8315 882.6992,-915.0101 887.9888,-919.1657 883,-919.5 883,-919.5 883,-919.5 887.9888,-919.1657 883.3008,-923.9899 892.9776,-918.8315 892.9776,-918.8315"/>
-<text text-anchor="start" x="890.3345" y="-929.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id)</text>
+<path fill="none" stroke="#000000" d="M892.9568,-931.2982C925.0626,-908.0133 902.5434,-764.5468 883,-727 811.0999,-588.8652 667.9001,-664.1348 596,-526 576.8135,-489.1389 554.4444,-432.5 596,-432.5"/>
+<polygon fill="#000000" stroke="#000000" points="892.5199,-931.4386 881.6224,-930.216 887.7599,-932.9693 883,-934.5 883,-934.5 883,-934.5 887.7599,-932.9693 884.3776,-938.784 892.5199,-931.4386 892.5199,-931.4386"/>
+<text text-anchor="start" x="890.3345" y="-944.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id)</text>
 </g>
 <!-- public.users_to_repos_stargazers -->
 <g id="node8" class="node">
@@ -340,7 +343,7 @@
 <title>public.users_to_repos_stargazers:user_id&#45;&gt;public.users:id</title>
 <path fill="none" stroke="#000000" d="M978.1737,-917.0294C938.6762,-895.708 947.7908,-742.4899 935,-697 901.54,-578.0014 972.6133,-432.5 849,-432.5"/>
 <polygon fill="#000000" stroke="#000000" points="978.3018,-917.0615 986.9027,-923.8642 983.1509,-918.2808 988,-919.5 988,-919.5 988,-919.5 983.1509,-918.2808 989.0973,-915.1358 978.3018,-917.0615 978.3018,-917.0615"/>
-<text text-anchor="start" x="995.3345" y="-929.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id)</text>
+<text text-anchor="start" x="817.5845" y="-903.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id)</text>
 </g>
 </g>
 </svg>

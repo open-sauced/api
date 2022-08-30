@@ -4,14 +4,15 @@
 
 ## Columns
 
-| Name       | Type                     | Default | Nullable | Children | Parents                         | Comment |
-| ---------- | ------------------------ | ------- | -------- | -------- | ------------------------------- | ------- |
-| id         | bigint                   |         | false    |          |                                 |         |
-| user_id    | bigint                   |         | false    |          | [public.users](public.users.md) |         |
-| repo_id    | bigint                   |         | false    |          | [public.repos](public.repos.md) |         |
-| created_at | timestamp with time zone | now()   | true     |          |                                 |         |
-| updated_at | timestamp with time zone | now()   | false    |          |                                 |         |
-| deleted_at | timestamp with time zone |         | true     |          |                                 |         |
+| Name        | Type                     | Default | Nullable | Children | Parents                         | Comment |
+| ----------- | ------------------------ | ------- | -------- | -------- | ------------------------------- | ------- |
+| id          | bigint                   |         | false    |          |                                 |         |
+| user_id     | bigint                   |         | false    |          | [public.users](public.users.md) |         |
+| repo_id     | bigint                   |         | false    |          | [public.repos](public.repos.md) |         |
+| created_at  | timestamp with time zone | now()   | true     |          |                                 |         |
+| updated_at  | timestamp with time zone | now()   | false    |          |                                 |         |
+| deleted_at  | timestamp with time zone |         | true     |          |                                 |         |
+| is_accepted | boolean                  | false   | false    |          |                                 |         |
 
 ## Constraints
 

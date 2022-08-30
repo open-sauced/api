@@ -5,6 +5,189 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.14](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.13...v1.9.0-beta.14) (2022-08-30)
+
+
+### 📝 Documentation
+
+* update repo api model properties and hide soft delete tags for all entities ([2bdec65](https://github.com/open-sauced/api.opensauced.pizza/commit/2bdec651e7bd7b5998f0d55090bf5917ed5cf0a1))
+
+
+### 🧑‍💻 Code Refactoring
+
+* add Contribution api model properties ([a08abfd](https://github.com/open-sauced/api.opensauced.pizza/commit/a08abfd3b612f06c0f94aacd6fa6071b56315396))
+* add DbRepoToUserStargazers api model properties ([247e0ba](https://github.com/open-sauced/api.opensauced.pizza/commit/247e0baa86b1fbb38c52fc35f10a15de3d59f1ed))
+* add DbRepoToUserStars api model properties ([14b6a44](https://github.com/open-sauced/api.opensauced.pizza/commit/14b6a446cdd71778fcf2dd86d4bbad0b114dbe39))
+* add DbRepoToUserSubmissions api model properties ([dbc66f3](https://github.com/open-sauced/api.opensauced.pizza/commit/dbc66f39f5c66f86bea57dad91770fbd80712a87))
+* add DbRepoToUserVotes api model properties ([d051987](https://github.com/open-sauced/api.opensauced.pizza/commit/d0519877168554a908c4a28d455299c624b0138e))
+* add User api model properties ([618225f](https://github.com/open-sauced/api.opensauced.pizza/commit/618225f0df60059114017247f67e635d949bf77b))
+
+
+### 🐛 Bug Fixes
+
+* correct remaining dtos and auth controller return values ([1bbeaf6](https://github.com/open-sauced/api.opensauced.pizza/commit/1bbeaf60b2fe07d5de9fe85a12bb25359e281aa6))
+
+## [1.9.0-beta.13](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.12...v1.9.0-beta.13) (2022-08-29)
+
+
+### 🐛 Bug Fixes
+
+* correct repo listing database relationship names ([f29f5f2](https://github.com/open-sauced/api.opensauced.pizza/commit/f29f5f267246d5b9501f9c375a34f320d8b261e9))
+
+
+### 🧑‍💻 Code Refactoring
+
+* clean up repo controller extra decorators ([3282435](https://github.com/open-sauced/api.opensauced.pizza/commit/3282435f5d662e6d494885faf812fc2a5a9a9071))
+
+
+### 🍕 Features
+
+* add list authenticated user stargazed repos ([2a8d198](https://github.com/open-sauced/api.opensauced.pizza/commit/2a8d198c4ae932dfec7c0cbf2a23abd579bd8d3f))
+* add list authenticated user starred repos ([f5f942f](https://github.com/open-sauced/api.opensauced.pizza/commit/f5f942fbb4a6fc7feb35b7cd8a8f82fe9ab39dd4))
+* add list authenticated user submitted repos ([334268d](https://github.com/open-sauced/api.opensauced.pizza/commit/334268db21562d28282ce119267a081cf7a8fadd))
+* add list authenticated user voted repos ([f96a793](https://github.com/open-sauced/api.opensauced.pizza/commit/f96a793a02120da3b657705020c4647e3963cf52))
+
+## [1.9.0-beta.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.11...v1.9.0-beta.12) (2022-08-29)
+
+
+### 🤖 Build System
+
+* update dependencies to latest non breaking versions ([59dd7bf](https://github.com/open-sauced/api.opensauced.pizza/commit/59dd7bf2d35abb49b4af3a6bdafaafbca7c9b246))
+
+
+### 🐛 Bug Fixes
+
+* correct repo authenticated services return types ([e42223f](https://github.com/open-sauced/api.opensauced.pizza/commit/e42223f57cf92710bc3b75e3ca965bfccbbc8a9b))
+
+
+### 🍕 Features
+
+* add is_accepted admin managed field to repo user submissions ([b0169e7](https://github.com/open-sauced/api.opensauced.pizza/commit/b0169e78098932651b3897bf63021caa215ad900))
+* add submit repo authenticated feature ([09c96fe](https://github.com/open-sauced/api.opensauced.pizza/commit/09c96fea5b68eb80d14b40b7e6260d1c427ca4f9)), closes [#21](https://github.com/open-sauced/api.opensauced.pizza/issues/21)
+* implement eslint hot opensauced rules ([e0d38ca](https://github.com/open-sauced/api.opensauced.pizza/commit/e0d38cae0def06f6705c5a7283e6423d1c047938))
+
+
+### 🧑‍💻 Code Refactoring
+
+* implement new eslint style changes ([c8115b6](https://github.com/open-sauced/api.opensauced.pizza/commit/c8115b64c3dc6e5840197bc09e35757866833fc0))
+
+## [1.9.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.10...v1.9.0-beta.11) (2022-08-28)
+
+
+### 🍕 Features
+
+* add star repo authenticated feature ([e392288](https://github.com/open-sauced/api.opensauced.pizza/commit/e39228861a826d3c255fbf7393a8b8c048a70376)), closes [#20](https://github.com/open-sauced/api.opensauced.pizza/issues/20)
+* add stargaze repo authenticated feature ([f8d41f1](https://github.com/open-sauced/api.opensauced.pizza/commit/f8d41f1f2f141a6ed4ef619bc28bc1ee397a1145)), closes [#22](https://github.com/open-sauced/api.opensauced.pizza/issues/22)
+
+
+### 🐛 Bug Fixes
+
+* correct additional relation entities appearing in openapi schema ([f4570c3](https://github.com/open-sauced/api.opensauced.pizza/commit/f4570c31dcbf59992ac099ae76572d13c2582566))
+* correct date type meta tags openapi types ([860fff3](https://github.com/open-sauced/api.opensauced.pizza/commit/860fff3f052c3a36fa8158b0df4812531475e7b3))
+* remove more relationship entities from openapi response schemas ([d315ea4](https://github.com/open-sauced/api.opensauced.pizza/commit/d315ea4c90d07380ff87ca5e19b6502dc8ce4621))
+
+
+### 🧑‍💻 Code Refactoring
+
+* rename Contribution entity into DbContribution ([3774b36](https://github.com/open-sauced/api.opensauced.pizza/commit/3774b36663e41004b394b6b222b5f384899d88ba))
+* rename enum ([b8b22da](https://github.com/open-sauced/api.opensauced.pizza/commit/b8b22daffba5e9faf7b8f805858f393a6181bc2b))
+* rename Repo entity into DbRepo ([f05c29c](https://github.com/open-sauced/api.opensauced.pizza/commit/f05c29cd44c665fe5c2ad8b41609dcb2ac09d1ce))
+* rename RepoToUserStargazers entity into DbRepoToUserStargazers ([867d740](https://github.com/open-sauced/api.opensauced.pizza/commit/867d7409a17c33f34bd173d871b5568131f4ddc3))
+* rename RepoToUserStars entity into DbRepoToUserStars ([d08b3ff](https://github.com/open-sauced/api.opensauced.pizza/commit/d08b3ffed2952b6d078545952075eeb56a3ae372))
+* rename RepoToUserSubmissions entity into DbRepoToUserSubmissions ([9484df4](https://github.com/open-sauced/api.opensauced.pizza/commit/9484df4dd49bbb1c0e59a4406aabe910ccdb6aaf))
+* rename RepoToUserVotes entity into DbRepoToUserVotes ([61ac1e7](https://github.com/open-sauced/api.opensauced.pizza/commit/61ac1e7de4272cb52eb8e0eb9f54f982c2ea1e7e))
+* rename User entity into DbUser ([04082d7](https://github.com/open-sauced/api.opensauced.pizza/commit/04082d7d7436d83806888977335ba7c1ef377f1d))
+
+## [1.9.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.9...v1.9.0-beta.10) (2022-08-26)
+
+
+### 🐛 Bug Fixes
+
+* undo rogue controller route name change ([6a4810f](https://github.com/open-sauced/api.opensauced.pizza/commit/6a4810f8c31b353d3ff57f69af1ef36728fdedee))
+
+## [1.9.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.8...v1.9.0-beta.9) (2022-08-25)
+
+
+### 🐛 Bug Fixes
+
+* correct repo contributions count ([8952f19](https://github.com/open-sauced/api.opensauced.pizza/commit/8952f193e891bd847947317b2f48239c47497692))
+
+## [1.9.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.7...v1.9.0-beta.8) (2022-08-25)
+
+
+### 🐛 Bug Fixes
+
+* make order work for repo listing ([69b2067](https://github.com/open-sauced/api.opensauced.pizza/commit/69b20676fe504a00d6bb48672fb79c8bc92cf49a))
+
+
+### 🎨 Styles
+
+* correct lint errors from hasty push ([fe20c2d](https://github.com/open-sauced/api.opensauced.pizza/commit/fe20c2db54f00ef02cdc48fc7faf36867a6ef317))
+
+## [1.9.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.6...v1.9.0-beta.7) (2022-08-25)
+
+
+### 📝 Documentation
+
+* add powered by digital ocean readme badge and referal link ([5925b74](https://github.com/open-sauced/api.opensauced.pizza/commit/5925b749c59cb96844fe4bfee7e1c8014608a01c))
+
+## [1.9.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.5...v1.9.0-beta.6) (2022-08-25)
+
+
+### 🧑‍💻 Code Refactoring
+
+* code split repository entities ([ae43450](https://github.com/open-sauced/api.opensauced.pizza/commit/ae43450249dbf4651797fc746baf4ed86f54b7ff))
+
+
+### 🍕 Features
+
+* add repo up vote and down vote functionality ([16678a7](https://github.com/open-sauced/api.opensauced.pizza/commit/16678a7d1bca97907165436e548b56901b891044)), closes [#19](https://github.com/open-sauced/api.opensauced.pizza/issues/19)
+
+## [1.9.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.4...v1.9.0-beta.5) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* attempt to push docr only on successful release ([957b86e](https://github.com/open-sauced/api.opensauced.pizza/commit/957b86ed40b2f5ff1eff8c7af740549d66ea1f09))
+
+## [1.9.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.3...v1.9.0-beta.4) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* improve local development workflow along vite apps ([b9f3798](https://github.com/open-sauced/api.opensauced.pizza/commit/b9f3798923ef67cdb77e523e44991e2427184ce1))
+
+## [1.9.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.2...v1.9.0-beta.3) (2022-08-19)
+
+
+### 🐛 Bug Fixes
+
+* correct counting of many to many tables ([7249714](https://github.com/open-sauced/api.opensauced.pizza/commit/72497145f9de392d861818e2e745e465815f38a2))
+
+
+### 🧑‍💻 Code Refactoring
+
+* correct stray console.log ([b4c9879](https://github.com/open-sauced/api.opensauced.pizza/commit/b4c9879a834d01432b6a84d18147a26fd2dc3ed5))
+
+## [1.9.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.1...v1.9.0-beta.2) (2022-08-19)
+
+
+### 🔁 Continuous Integration
+
+* only deploy documentation on main branch ([fad79b1](https://github.com/open-sauced/api.opensauced.pizza/commit/fad79b10a029664cb747c85d9c92cc22f3184f95)), closes [#14](https://github.com/open-sauced/api.opensauced.pizza/issues/14)
+
+
+### 🍕 Features
+
+* add supabase auth session handler and working guards ([ed9729a](https://github.com/open-sauced/api.opensauced.pizza/commit/ed9729a4dbcf5e1d6758e8308311a2560bef7898)), closes [#24](https://github.com/open-sauced/api.opensauced.pizza/issues/24)
+
+## [1.9.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.2...v1.9.0-beta.1) (2022-08-18)
+
+
+### 🍕 Features
+
+* implement simple supabase strategy guard ([2f966a3](https://github.com/open-sauced/api.opensauced.pizza/commit/2f966a333c27015f39195e65a405ff5f413a5070))
+
 ### [1.8.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.1...v1.8.2) (2022-08-12)
 
 

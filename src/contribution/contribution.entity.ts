@@ -7,67 +7,98 @@ import {
   JoinColumn,
   DeleteDateColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from "typeorm";
-import { Repo } from "../repo/repo.entity";
+import { ApiHideProperty } from "@nestjs/swagger";
 
-@Entity({
-  name: "contributions"
-})
-export class Contribution extends BaseEntity {
+import { DbRepo } from "../repo/entities/repo.entity";
+import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+
+@Entity({ name: "contributions" })
+export class DbContribution extends BaseEntity {
+  @ApiModelProperty({
+    description: "Contribution identifier",
+    example: 12237133,
+  })
   @PrimaryColumn("bigint")
-  id: number;
+  public id!: number;
 
+  @ApiModelProperty({
+    description: "Repository identifier",
+    example: 71359796,
+  })
   @Column({
     type: "bigint",
-    select: false
+    select: false,
   })
-  repo_id: number;
+  public repo_id!: number;
 
+  @ApiModelProperty({
+    description: "Total number of contributed pull requests",
+    example: 15,
+  })
   @Column({
     type: "bigint",
     default: 0,
   })
-  count: number;
+  public count: number;
 
-  @Column({
-    type: "timestamp without time zone"
+  @ApiModelProperty({
+    description: "Timestamp representing last contribution merge to the default branch",
+    example: "2016-10-19 13:24:51.000000",
   })
-  last_merged_at: Date;
+  @Column({ type: "timestamp without time zone" })
+  public last_merged_at: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing contribution creation",
+    example: "2016-10-19 13:24:51.000000",
+  })
   @CreateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at: Date;
+  public created_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing contribution last update",
+    example: "2022-08-28 22:04:29.000000",
+  })
   @UpdateDateColumn({
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at: Date;
+  public updated_at?: Date;
 
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
+  @ApiHideProperty()
+  @DeleteDateColumn({ type: "timestamp without time zone" })
+  public deleted_at?: Date;
+
+  @ApiModelProperty({
+    description: "Contributor unique user name",
+    example: "0-vortex",
   })
-  deleted_at: Date;
-
   @Column({
     type: "character varying",
-    length: 255
+    length: 255,
   })
-  contributor: string;
+  public contributor: string;
 
+  @ApiModelProperty({
+    description: "Contribution GitHub origin URL",
+    example: "https://github.com/open-sauced/hot/pull/320",
+  })
   @Column({
     type: "character varying",
-    length: 255
+    length: 255,
   })
-  url: string;
+  public url: string;
 
-  @ManyToOne(() => Repo, (repo) => repo.contributions)
+  @ApiHideProperty()
+  @ManyToOne(() => DbRepo, repo => repo.contributions)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",
   })
-  repo: Repo;
+  public repo!: DbRepo;
 }

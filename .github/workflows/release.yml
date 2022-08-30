@@ -184,6 +184,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
+    if: github.event.repository.default_branch == github.ref_name
     name: Deploy to static
     needs:
       - release
@@ -212,6 +213,7 @@ jobs:
           cname: apidocs.opensauced.pizza
 
   digital-ocean:
+    if: needs.release.outputs.release-tag
     name: Deploy to Digital Ocean
     needs:
       - release

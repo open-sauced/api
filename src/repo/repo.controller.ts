@@ -1,27 +1,26 @@
-import { Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, Query } from "@nestjs/common";
 import { RepoService } from "./repo.service";
-import { Repo } from "./repo.entity";
+import { DbRepo } from "./entities/repo.entity";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 
 @Controller("repos")
-@ApiTags("Repositories")
+@ApiTags("Repository service")
 export class RepoController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor (private readonly repoService: RepoService) {}
 
   @Get("/:id")
   @ApiOperation({
     operationId: "findOneById",
     summary: "Finds a repo by :id",
   })
-  @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
-  async findOneById(
+  @ApiOkResponse({ type: DbRepo })
+  @ApiNotFoundResponse({ description: "Repository not found" })
+  async findOneById (
     @Param("id") id: number,
-  ): Promise<Repo> {
+  ): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }
 
@@ -30,23 +29,25 @@ export class RepoController {
     operationId: "findOneByOwnerAndRepo",
     summary: "Finds a repo by :owner and :repo",
   })
-  @HttpCode(HttpStatus.OK)
-  @ApiOkResponse({ type: Repo })
-  @ApiNotFoundResponse({ type: NotFoundException })
-  async findOneByOwnerAndRepo(
+  @ApiOkResponse({ type: DbRepo })
+  @ApiNotFoundResponse({ description: "Repository not found" })
+  async findOneByOwnerAndRepo (
     @Param("owner") owner: string,
       @Param("repo") repo: string,
-  ): Promise<Repo> {
+  ): Promise<DbRepo> {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
 
   @Get("/list")
-  @HttpCode(HttpStatus.OK)
-  @ApiPaginatedResponse(Repo)
-  @ApiOkResponse({ type: Repo })
-  async findUserList(
-    @Query() pageOptionsDto: PageOptionsDto
-  ): Promise<PageDto<Repo>> {
+  @ApiOperation({
+    operationId: "findAll",
+    summary: "Finds all repos and paginates them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findUserList (
+    @Query() pageOptionsDto: RepoPageOptionsDto,
+  ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);
   }
 }

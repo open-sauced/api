@@ -11,13 +11,18 @@ import apiConfig from "./config/api.config";
 import dbConfig from "./config/database.config";
 import endpointConfig from "./config/endpoint.config";
 import { HealthModule } from "./health/health.module";
-import { Repo } from "./repo/repo.entity";
-import { User } from "./user/user.entity";
-import { Contribution } from "./contribution/contribution.entity";
-import { RepoToUserVotes } from "./repo/repo.to.user.votes.entity";
-import { RepoToUserStars } from "./repo/repo.to.user.stars.entity";
-import { RepoToUserSubmissions } from "./repo/repo.to.user.submissions.entity";
-import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
+import { DbRepo } from "./repo/entities/repo.entity";
+import { DbUser } from "./user/user.entity";
+import { DbContribution } from "./contribution/contribution.entity";
+import { DbRepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
+import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
+import { DbRepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
+import { DbRepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
+import { AuthModule } from "./auth/auth.module";
+import { VoteModule } from "./vote/vote.module";
+import { StarModule } from "./star/star.module";
+import { StargazeModule } from "./stargaze/stargaze.module";
+import { SubmitModule } from "./submit/submit.module";
 
 @Module({
   imports: [
@@ -25,13 +30,13 @@ import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
       load: [
         apiConfig,
         dbConfig,
-        endpointConfig
+        endpointConfig,
       ],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => <TypeOrmModuleOptions>({
+      useFactory: (configService: ConfigService) => ({
         type: configService.get("db.connection"),
         host: configService.get("db.host"),
         port: configService.get("db.port"),
@@ -40,26 +45,31 @@ import { RepoToUserStargazers } from "./repo/repo.to.user.stargazers.entity";
         database: configService.get("db.database"),
         autoLoadEntities: false,
         entities: [
-          User,
-          Repo,
-          Contribution,
-          RepoToUserVotes,
-          RepoToUserStars,
-          RepoToUserSubmissions,
-          RepoToUserStargazers,
+          DbUser,
+          DbRepo,
+          DbContribution,
+          DbRepoToUserVotes,
+          DbRepoToUserStars,
+          DbRepoToUserSubmissions,
+          DbRepoToUserStargazers,
         ],
         synchronize: false,
-      }),
+      }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
     TerminusModule,
     HttpModule,
+    AuthModule,
     HealthModule,
     RepoModule,
+    VoteModule,
+    StarModule,
+    StargazeModule,
+    SubmitModule,
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) {}
+  constructor (private dataSource: DataSource) {}
 }
