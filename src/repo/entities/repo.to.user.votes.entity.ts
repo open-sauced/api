@@ -10,7 +10,7 @@ import {
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
-import {ApiModelProperty, ApiModelPropertyOptional} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "users_to_repos_votes" })
 export class DbRepoToUserVotes {
@@ -37,7 +37,7 @@ export class DbRepoToUserVotes {
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing vote creation",
-    example: "2016-10-19 13:24:51.000000"
+    example: "2016-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
     type: "timestamp without time zone",
@@ -47,7 +47,7 @@ export class DbRepoToUserVotes {
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing vote last update",
-    example: "2022-08-28 22:04:29.000000"
+    example: "2022-08-28 22:04:29.000000",
   })
   @UpdateDateColumn({
     type: "timestamp without time zone",

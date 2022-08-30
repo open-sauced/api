@@ -18,7 +18,7 @@ import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
-import {ApiModelProperty, ApiModelPropertyOptional} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({
   name: "repos",
@@ -94,7 +94,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing repository creation",
-    example: "2016-10-19 13:24:51.000000"
+    example: "2016-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
     type: "timestamp without time zone",
@@ -104,7 +104,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing repository last update",
-    example: "2022-08-28 22:04:29.000000"
+    example: "2022-08-28 22:04:29.000000",
   })
   @UpdateDateColumn({
     type: "timestamp without time zone",
@@ -114,7 +114,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing repository last push",
-    example: "2022-08-28 22:04:39.000000"
+    example: "2022-08-28 22:04:39.000000",
   })
   @Column({
     type: "timestamp without time zone",
