@@ -48,6 +48,7 @@ export class DbUser extends BaseEntity {
   })
   public updated_at?: Date;
 
+  @ApiHideProperty()
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
 

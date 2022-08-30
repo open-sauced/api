@@ -37,6 +37,7 @@ export class DbRepoToUserSubmissions {
   })
   public updated_at?: Date;
 
+  @ApiHideProperty()
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
 
