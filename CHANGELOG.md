@@ -5,6 +5,28 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.14](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.13...v1.9.0-beta.14) (2022-08-30)
+
+
+### 📝 Documentation
+
+* update repo api model properties and hide soft delete tags for all entities ([2bdec65](https://github.com/open-sauced/api.opensauced.pizza/commit/2bdec651e7bd7b5998f0d55090bf5917ed5cf0a1))
+
+
+### 🧑‍💻 Code Refactoring
+
+* add Contribution api model properties ([a08abfd](https://github.com/open-sauced/api.opensauced.pizza/commit/a08abfd3b612f06c0f94aacd6fa6071b56315396))
+* add DbRepoToUserStargazers api model properties ([247e0ba](https://github.com/open-sauced/api.opensauced.pizza/commit/247e0baa86b1fbb38c52fc35f10a15de3d59f1ed))
+* add DbRepoToUserStars api model properties ([14b6a44](https://github.com/open-sauced/api.opensauced.pizza/commit/14b6a446cdd71778fcf2dd86d4bbad0b114dbe39))
+* add DbRepoToUserSubmissions api model properties ([dbc66f3](https://github.com/open-sauced/api.opensauced.pizza/commit/dbc66f39f5c66f86bea57dad91770fbd80712a87))
+* add DbRepoToUserVotes api model properties ([d051987](https://github.com/open-sauced/api.opensauced.pizza/commit/d0519877168554a908c4a28d455299c624b0138e))
+* add User api model properties ([618225f](https://github.com/open-sauced/api.opensauced.pizza/commit/618225f0df60059114017247f67e635d949bf77b))
+
+
+### 🐛 Bug Fixes
+
+* correct remaining dtos and auth controller return values ([1bbeaf6](https://github.com/open-sauced/api.opensauced.pizza/commit/1bbeaf60b2fe07d5de9fe85a12bb25359e281aa6))
+
 ## [1.9.0-beta.13](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.12...v1.9.0-beta.13) (2022-08-29)
 
 
