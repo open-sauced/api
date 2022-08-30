@@ -151,13 +151,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing vote creation&#x27;, example: &#x27;2016-10-19 13:24:51.000000&#x27;})<br />@CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -188,13 +188,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
+                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -224,13 +224,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @PrimaryGeneratedColumn()<br />
+                            @ApiModelProperty({description: &#x27;Vote identifier&#x27;, example: 196})<br />@PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -266,7 +266,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -296,13 +296,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />
+                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 71359796})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -333,13 +333,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing vote last update&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -405,13 +405,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column()<br />
+                            @ApiModelProperty({description: &#x27;User identifier&#x27;, example: 237133})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/repo/entities/repo.to.user.votes.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -435,30 +435,52 @@
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 import { DbUser } from &quot;../../user/user.entity&quot;;
 import { DbRepo } from &quot;./repo.entity&quot;;
+import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 @Entity({ name: &quot;users_to_repos_votes&quot; })
 export class DbRepoToUserVotes {
+  @ApiModelProperty({
+    description: &quot;Vote identifier&quot;,
+    example: 196,
+  })
   @PrimaryGeneratedColumn()
   public id!: number;
 
+  @ApiModelProperty({
+    description: &quot;User identifier&quot;,
+    example: 237133,
+  })
   @Column()
   public user_id!: number;
 
+  @ApiModelProperty({
+    description: &quot;Repository identifier&quot;,
+    example: 71359796,
+  })
   @Column()
   public repo_id!: number;
 
+  @ApiModelPropertyOptional({
+    description: &quot;Timestamp representing vote creation&quot;,
+    example: &quot;2016-10-19 13:24:51.000000&quot;,
+  })
   @CreateDateColumn({
     type: &quot;timestamp without time zone&quot;,
     default: () &#x3D;&gt; &quot;now()&quot;,
   })
   public created_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: &quot;Timestamp representing vote last update&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
   @UpdateDateColumn({
     type: &quot;timestamp without time zone&quot;,
     default: () &#x3D;&gt; &quot;now()&quot;,
   })
   public updated_at?: Date;
 
+  @ApiHideProperty()
   @DeleteDateColumn({ type: &quot;timestamp without time zone&quot; })
   public deleted_at?: Date;
 

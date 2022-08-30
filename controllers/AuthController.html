@@ -124,7 +124,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthSession&#x27;, summary: &#x27;Get authenticated session information&#x27;})<br />@ApiOkResponse({type: SupabaseAuthResponse})<br />@HttpCode(HttpStatus.OK)<br /></code>
+                    <code>@Get(&#x27;/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthSession&#x27;, summary: &#x27;Get authenticated session information&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
@@ -169,7 +169,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthResponse.html" target="_self" >SupabaseAuthResponse</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthDto.html" target="_self" >SupabaseAuthDto</a></code>
 
                     </div>
                     <div class="io-description">
@@ -188,7 +188,7 @@ import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestj
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { User } from &quot;./supabase.user.decorator&quot;;
-import { SupabaseAuthResponse } from &quot;./dtos/supabase-auth-response.dto&quot;;
+import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
@@ -200,15 +200,16 @@ export class AuthController {
     operationId: &quot;checkAuthSession&quot;,
     summary: &quot;Get authenticated session information&quot;,
   })
-  @ApiOkResponse({ type: SupabaseAuthResponse })
+  @ApiOkResponse({ type: SupabaseAuthDto })
   @HttpCode(HttpStatus.OK)
   getHello (
     @User() user: SupabaseAuthUser,
-  ): SupabaseAuthResponse {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub } } &#x3D; user;
+  ): SupabaseAuthDto {
+    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub, user_name } } &#x3D; user;
 
     return {
       id: &#x60;${String(sub)}&#x60;,
+      user_name: &#x60;${String(user_name)}&#x60;,
       role,
       email,
       confirmed_at,

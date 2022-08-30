@@ -97,6 +97,7 @@
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#last_merged_at" >last_merged_at</a>
                             </li>
                             <li>
@@ -157,13 +158,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                            @ApiModelProperty({description: &#x27;Contributor unique user name&#x27;, example: &#x27;0-vortex&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/contribution/contribution.entity.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/contribution/contribution.entity.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -193,13 +194,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;bigint&#x27;, default: 0})<br />
+                            @ApiModelProperty({description: &#x27;Total number of contributed pull requests&#x27;, example: 15})<br />@Column({type: &#x27;bigint&#x27;, default: 0})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/contribution/contribution.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/contribution/contribution.entity.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -230,13 +231,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing contribution creation&#x27;, example: &#x27;2016-10-19 13:24:51.000000&#x27;})<br />@CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/contribution/contribution.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/contribution/contribution.entity.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -267,13 +268,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
+                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/contribution/contribution.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/contribution/contribution.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -303,13 +304,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @PrimaryColumn(&#x27;bigint&#x27;)<br />
+                            @ApiModelProperty({description: &#x27;Contribution identifier&#x27;, example: 12237133})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/contribution/contribution.entity.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/contribution/contribution.entity.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -322,6 +323,7 @@
                 <td class="col-md-4">
                     <a name="last_merged_at"></a>
                     <span class="name">
+                            <span class="modifier">Public</span>
                         <span ><b>last_merged_at</b></span>
                         <a href="#last_merged_at"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -338,13 +340,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;timestamp without time zone&#x27;})<br />
+                            @ApiModelProperty({description: &#x27;Timestamp representing last contribution merge to the default branch&#x27;, example: &#x27;2016-10-19 13:24:51.000000&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/contribution/contribution.entity.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/contribution/contribution.entity.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -380,7 +382,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/contribution/contribution.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/contribution/contribution.entity.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -410,13 +412,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;bigint&#x27;, select: false})<br />
+                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 71359796})<br />@Column({type: &#x27;bigint&#x27;, select: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/contribution/contribution.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/contribution/contribution.entity.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -447,13 +449,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing contribution last update&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/contribution/contribution.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/contribution/contribution.entity.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -483,13 +485,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                            @ApiModelProperty({description: &#x27;Contribution GitHub origin URL&#x27;, example: &#x27;https://github.com/open-sauced/hot/pull/320&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/contribution/contribution.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/contribution/contribution.entity.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -515,48 +517,82 @@
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
+import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 @Entity({ name: &quot;contributions&quot; })
 export class DbContribution extends BaseEntity {
+  @ApiModelProperty({
+    description: &quot;Contribution identifier&quot;,
+    example: 12237133,
+  })
   @PrimaryColumn(&quot;bigint&quot;)
   public id!: number;
 
+  @ApiModelProperty({
+    description: &quot;Repository identifier&quot;,
+    example: 71359796,
+  })
   @Column({
     type: &quot;bigint&quot;,
     select: false,
   })
   public repo_id!: number;
 
+  @ApiModelProperty({
+    description: &quot;Total number of contributed pull requests&quot;,
+    example: 15,
+  })
   @Column({
     type: &quot;bigint&quot;,
     default: 0,
   })
   public count: number;
 
+  @ApiModelProperty({
+    description: &quot;Timestamp representing last contribution merge to the default branch&quot;,
+    example: &quot;2016-10-19 13:24:51.000000&quot;,
+  })
   @Column({ type: &quot;timestamp without time zone&quot; })
-    last_merged_at: Date;
+  public last_merged_at: Date;
 
+  @ApiModelPropertyOptional({
+    description: &quot;Timestamp representing contribution creation&quot;,
+    example: &quot;2016-10-19 13:24:51.000000&quot;,
+  })
   @CreateDateColumn({
     type: &quot;timestamp without time zone&quot;,
     default: () &#x3D;&gt; &quot;now()&quot;,
   })
   public created_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: &quot;Timestamp representing contribution last update&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
   @UpdateDateColumn({
     type: &quot;timestamp without time zone&quot;,
     default: () &#x3D;&gt; &quot;now()&quot;,
   })
   public updated_at?: Date;
 
+  @ApiHideProperty()
   @DeleteDateColumn({ type: &quot;timestamp without time zone&quot; })
   public deleted_at?: Date;
 
+  @ApiModelProperty({
+    description: &quot;Contributor unique user name&quot;,
+    example: &quot;0-vortex&quot;,
+  })
   @Column({
     type: &quot;character varying&quot;,
     length: 255,
   })
   public contributor: string;
 
+  @ApiModelProperty({
+    description: &quot;Contribution GitHub origin URL&quot;,
+    example: &quot;https://github.com/open-sauced/hot/pull/320&quot;,
+  })
   @Column({
     type: &quot;character varying&quot;,
     length: 255,
