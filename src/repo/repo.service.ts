@@ -5,7 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { DbRepo } from "./entities/repo.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import {RepoOrderFieldsEnum, RepoPageOptionsDto} from "./dtos/repo-page-options.dto";
+import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 
 @Injectable()
