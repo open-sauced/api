@@ -584,7 +584,7 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
+import { RepoOrderFieldsEnum, RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 
 @Injectable()
@@ -664,7 +664,7 @@ export class RepoService {
     userRelations?: string[],
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
-    const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;is_fork&quot;;
+    const orderField &#x3D; pageOptionsDto.orderBy ?? RepoOrderFieldsEnum.stars;
 
     if (userId) {
       userRelations?.map(relation &#x3D;&gt;
@@ -675,7 +675,6 @@ export class RepoService {
     queryBuilder
       .orderBy(&#x60;&quot;repo&quot;.&quot;is_fork&quot;&#x60;, OrderDirectionEnum.ASC)
       .addOrderBy(&#x60;&quot;${orderField}&quot;&#x60;, pageOptionsDto.orderDirection)
-      .addOrderBy(&#x60;&quot;repo&quot;.&quot;stars&quot;&#x60;, OrderDirectionEnum.DESC)
       .addOrderBy(&#x60;&quot;repo&quot;.&quot;created_at&quot;&#x60;, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
