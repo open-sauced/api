@@ -45,7 +45,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAll (
     @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);

@@ -35,7 +35,7 @@ export class RepoStargazeController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAllUserStargazed (
     @Query() pageOptionsDto: RepoPageOptionsDto,
       @UserId() userId: number,
   ): Promise<PageDto<DbRepo>> {
