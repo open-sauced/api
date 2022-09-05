@@ -23,6 +23,7 @@ import { VoteModule } from "./vote/vote.module";
 import { StarModule } from "./star/star.module";
 import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
+import { ContributionModule } from "./contribution/contribution.module";
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { SubmitModule } from "./submit/submit.module";
     StarModule,
     StargazeModule,
     SubmitModule,
+    ContributionModule,
   ],
   controllers: [],
   providers: [],
