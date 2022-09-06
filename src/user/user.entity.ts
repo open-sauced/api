@@ -37,7 +37,10 @@ export class DbUser extends BaseEntity {
   public open_issues: number;
 
   @ApiHideProperty()
-  @Column({ default: false })
+  @Column({
+    default: false,
+    select: false,
+  })
   public has_stars_data: boolean;
 
   @ApiModelProperty({
