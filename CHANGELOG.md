@@ -5,6 +5,35 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.16](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.15...v1.9.0-beta.16) (2022-09-06)
+
+
+### 🍕 Features
+
+* add paginated contributions service ([d2745ff](https://github.com/open-sauced/api.opensauced.pizza/commit/d2745ff17450d2e0790a50a28281d7b68a2c227b))
+
+
+### 🧑‍💻 Code Refactoring
+
+* correct controller function naming ([0046b05](https://github.com/open-sauced/api.opensauced.pizza/commit/0046b0567e579509c1f30124c0cf22cf531b2957))
+* remove non-meta hidden properties from typeorm entity display ([4601be2](https://github.com/open-sauced/api.opensauced.pizza/commit/4601be28771994b4cd9fa343ef375800ec6c5796))
+
+
+### 🐛 Bug Fixes
+
+* correctly hide api hidden model properties from typeorm select ([8810e03](https://github.com/open-sauced/api.opensauced.pizza/commit/8810e03d78ff8c42ad46d66880a46e969b30425f))
+* exclude generated temporary view from database visualisation ([b457783](https://github.com/open-sauced/api.opensauced.pizza/commit/b457783f855811bea8f8bccc7ffa128e6a0ed569))
+
+
+### 📝 Documentation
+
+* improve readme for first time users ([f8c9324](https://github.com/open-sauced/api.opensauced.pizza/commit/f8c9324158bfb79457695c01572111ff6dba1eab))
+
+
+### 🎨 Styles
+
+* correct lint errors from writing too much manual stuff ([2073883](https://github.com/open-sauced/api.opensauced.pizza/commit/207388351d024062ae88c93d96493b0728146f39))
+
 ## [1.9.0-beta.15](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.14...v1.9.0-beta.15) (2022-09-01)
 
 
