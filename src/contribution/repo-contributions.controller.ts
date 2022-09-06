@@ -3,7 +3,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from "@nestjs/swagger";
 import { ContributionService } from "./contribution.service";
 import { RepoService } from "../repo/repo.service";
@@ -15,7 +15,7 @@ import { ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto
 @Controller("repos")
 @ApiTags("Repository service", "Contribution service")
 export class RepoContributionsController {
-  constructor(
+  constructor (
     private readonly repoService: RepoService,
     private readonly contributionService: ContributionService,
   ) {}
@@ -30,7 +30,7 @@ export class RepoContributionsController {
   @ApiNotFoundResponse({ description: "Repo not found" })
   async findAllByRepoId (
     @Param("id") id: number,
-    @Query() pageOptionsDto: ContributionPageOptionsDto,
+      @Query() pageOptionsDto: ContributionPageOptionsDto,
   ): Promise<PageDto<DbContribution>> {
     const item = await this.repoService.findOneById(id);
 
@@ -47,8 +47,8 @@ export class RepoContributionsController {
   @ApiNotFoundResponse({ description: "Repo not found" })
   async findAllByOwnerAndRepo (
     @Param("owner") owner: string,
-    @Param("repo") repo: string,
-    @Query() pageOptionsDto: ContributionPageOptionsDto,
+      @Param("repo") repo: string,
+      @Query() pageOptionsDto: ContributionPageOptionsDto,
   ): Promise<PageDto<DbContribution>> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
