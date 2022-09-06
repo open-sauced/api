@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.17](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.16...v1.9.0-beta.17) (2022-09-06)
+
+
+### 🤖 Build System
+
+* update dependencies ([4c3782f](https://github.com/open-sauced/api.opensauced.pizza/commit/4c3782feb16fc3f452db6e27347e07f34203adb9))
+
 ## [1.9.0-beta.16](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.15...v1.9.0-beta.16) (2022-09-06)
 
 
