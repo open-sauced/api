@@ -130,7 +130,10 @@ export class DbRepo extends BaseEntity {
   public last_fetched_contributors_at?: Date;
 
   @ApiHideProperty()
-  @DeleteDateColumn({ type: "timestamp without time zone" })
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    select: false,
+  })
   public deleted_at?: Date;
 
   @ApiModelProperty({

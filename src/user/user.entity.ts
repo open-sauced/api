@@ -85,7 +85,10 @@ export class DbUser extends BaseEntity {
   public login: string;
 
   @ApiHideProperty()
-  @DeleteDateColumn({ type: "timestamp without time zone" })
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    select: false,
+  })
   public deleted_at?: Date;
 
   @ApiHideProperty()
