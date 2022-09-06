@@ -71,8 +71,33 @@
 <li><code>docker&gt;=20.10.12</code></li>
 <li><code>supabase&gt;=0.18.0</code></li>
 </ul>
-<h2 id="🔑-database-commands">🔑 Database commands</h2>
-<h3 id="starting-the-supabase-studio">Starting the Supabase Studio</h3>
+<h2 id="🖥️-local-development">🖥️ Local development</h2>
+<p>To install the application:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm ci</code></pre></div><p>To start a local copy of the app on port <code>3001</code>:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run start:dev</code></pre></div><h3 id="🧪-test">🧪 Test</h3>
+<p>For running the test suite, use the following command. Since the tests run in watch mode by default, some users may encounter errors about too many files being open. In this case, it may be beneficial to <a href="https://facebook.github.io/watchman/docs/install.html">install watchman</a>.</p>
+<div><pre class="line-numbers"><code class="language-shell">npm test</code></pre></div><p>You can request a coverage report by running the following command:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run test:coverage</code></pre></div><p>For writing tests, the rule is move business or service logic to the lib folder and write unit tests. Logic that needs to be in a React component, then leverage tools like <a href="https://www.cypress.io/">Cypress</a> or <a href="https://vitest.dev/guide/mocking.html">Vitest mocking</a> to write tests.</p>
+<h3 id="📦-docker-builds">📦 Docker builds</h3>
+<p>A development preview can also be run from docker:</p>
+<div><pre class="line-numbers"><code class="language-shell">docker build -t api.opensauced.pizza .
+docker run -p 8080:3001 api.opensauced.pizza</code></pre></div><p>Alternatively you can pull the production container and skip all builds:</p>
+<div><pre class="line-numbers"><code class="language-shell">docker run -dit -p 8080:3001 ghcr.io/open-sauced/api.opensauced.pizza</code></pre></div><h3 id="🎨-code-linting">🎨 Code linting</h3>
+<p>To check the code and styles quality, use the following command:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run lint</code></pre></div><p>This will also display during development, but not break on errors.</p>
+<p>To fix the linting errors, use the following command:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run format</code></pre></div><p>It is advised to run this command before committing or opening a pull request.</p>
+<h3 id="📕-types">📕 Types</h3>
+<p>We have a couple of scripts to check and adjust missing types.</p>
+<p>In order to dry run what types would be added to <code>package.json</code>:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run types:auto-check </code></pre></div><p>In order to add any missing types to <code>package.json</code>:</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run types:auto-add</code></pre></div><h3 id="🚀-production-deployment">🚀 Production deployment</h3>
+<p>A production deployment is a complete build of the project, including the build of the static assets.</p>
+<div><pre class="line-numbers"><code class="language-shell">npm run build</code></pre></div><h2 id="🔑-database-commands">🔑 Database commands</h2>
+<p>The API is configured to connect to a local Docker backed PostGres instance however 
+you can also connect to a remote Supabase instance by logging in via the UI and 
+copying the connection string from the settings page.</p>
+<h3 id="managing-supabase-migrations">Managing supabase migrations</h3>
 <p>First thing we have to do for <a href="https://supabase.com/docs/guides/local-development">local development</a> is start the studio locally at <a href="http://localhost:54321">localhost:54321</a>:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run db:start</code></pre></div><h3 id="make-changes">Make changes</h3>
 <p>If we are adding a new table structure, first do it visually in the Supabase Studio and test locally.</p>
@@ -82,16 +107,18 @@
 <p>Simplest way to test the migrations are working is to reset the local database:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run db:reset</code></pre></div><h3 id="push-changes">Push changes</h3>
 <p>If everything is fine we can push the changes to the remote database:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:push</code></pre></div><h1 id="🔑-supabase-structure">🔑 Supabase structure</h1>
+<div><pre class="line-numbers"><code class="language-shell">npm run db:push</code></pre></div><h2 id="🔑-supabase-structure">🔑 Supabase structure</h2>
 <p>Click the image to see the schema diagram full documentation.</p>
 <p><a href="./supabase/diagrams/README.md"><img src="./supabase/diagrams/schema.svg" alt="er" class="img-responsive"></a></p>
-<h1 id="🤝-contributing">🤝 Contributing</h1>
+<h2 id="🤝-contributing">🤝 Contributing</h2>
 <p>We encourage you to contribute to Open Sauced! Please check out the <a href="https://docs.opensauced.pizza/contributing/introduction-to-contributing/">Contributing guide</a> for guidelines about how to proceed.</p>
 <img align="right" src="https://i.ibb.co/CJfW18H/ship.gif" width="200"/>
 
 <h2 id="🍕-community">🍕 Community</h2>
 <p>Got Questions? Join the conversation in our <a href="https://discord.gg/U2peSNf23P">Discord</a>.<br>Find Open Sauced videos and release overviews on our <a href="https://www.youtube.com/channel/UCklWxKrTti61ZCROE1e5-MQ">YouTube Channel</a>.</p>
 <h2 id="🎦-repository-visualization">🎦 Repository Visualization</h2>
+<p>Below is visual representation of our code repository. It is generated by <a href="https://github.com/githubocto/repo-visualizer">Octo Repo Visualizer</a>.</p>
+<p>This visualization is being updated on release to our default branch by our <a href="./.github/workflows/release.yml">release workflow</a>.</p>
 <p><a href="./src"><img src="./public/diagram.svg" alt="Visualization of this repository" class="img-responsive">
 </a></p>
 <h2 id="⚖️-license">⚖️ LICENSE</h2>

@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >RepoController</li>
+  <li >RepoContributionsController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/repo/repo.controller.ts</code>
+            <code>src/contribution/repo-contributions.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -85,15 +85,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
+                                <a href="#findAllByOwnerAndRepo" >findAllByOwnerAndRepo</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findOneById" >findOneById</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#findOneByOwnerAndRepo" >findOneByOwnerAndRepo</a>
+                                <a href="#findAllByRepoId" >findAllByRepoId</a>
                             </li>
                         </ul>
                     </td>
@@ -116,18 +112,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="findAllByOwnerAndRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllByOwnerAndRepo</b></span>
+                        <a href="#findAllByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>)</code>
+                    <code>findAllByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/ContributionPageOptionsDto.html" target="_self">ContributionPageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -135,170 +131,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo/contributions&#x27;)<br />@ApiOperation({operationId: &#x27;findAllByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo listing all contributions and paginating them&#x27;})<br />@ApiPaginatedResponse(DbContribution)<br />@ApiOkResponse({type: DbContribution})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/repo/repo.controller.ts:48</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/RepoPageOptionsDto.html" target="_self" >RepoPageOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOneById"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findOneById</b></span>
-                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/repo/repo.controller.ts:21</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOneByOwnerAndRepo"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findOneByOwnerAndRepo</b></span>
-                        <a href="#findOneByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/repo/repo.controller.ts:34</a></div>
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -342,13 +182,115 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/ContributionPageOptionsDto.html" target="_self" >ContributionPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbContribution&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllByRepoId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllByRepoId</b></span>
+                        <a href="#findAllByRepoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllByRepoId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/ContributionPageOptionsDto.html" target="_self">ContributionPageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/contributions&#x27;)<br />@ApiOperation({operationId: &#x27;findAllByRepoId&#x27;, summary: &#x27;Find a repo by :id listing all contributions and paginating them&#x27;})<br />@ApiPaginatedResponse(DbContribution)<br />@ApiOkResponse({type: DbContribution})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/ContributionPageOptionsDto.html" target="_self" >ContributionPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbContribution&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -363,56 +305,60 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
-import { RepoService } from &quot;./repo.service&quot;;
-import { DbRepo } from &quot;./entities/repo.entity&quot;;
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
-import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import {
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from &quot;@nestjs/swagger&quot;;
+import { ContributionService } from &quot;./contribution.service&quot;;
+import { RepoService } from &quot;../repo/repo.service&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
-import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { DbContribution } from &quot;./contribution.entity&quot;;
+import { ContributionPageOptionsDto } from &quot;./dtos/contribution-page-options.dto&quot;;
 
 @Controller(&quot;repos&quot;)
-@ApiTags(&quot;Repository service&quot;)
-export class RepoController {
-  constructor (private readonly repoService: RepoService) {}
+@ApiTags(&quot;Repository service&quot;, &quot;Contribution service&quot;)
+export class RepoContributionsController {
+  constructor (
+    private readonly repoService: RepoService,
+    private readonly contributionService: ContributionService,
+  ) {}
 
-  @Get(&quot;/:id&quot;)
+  @Get(&quot;/:id/contributions&quot;)
   @ApiOperation({
-    operationId: &quot;findOneById&quot;,
-    summary: &quot;Finds a repo by :id&quot;,
+    operationId: &quot;findAllByRepoId&quot;,
+    summary: &quot;Find a repo by :id listing all contributions and paginating them&quot;,
   })
-  @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
-  async findOneById (
+  @ApiPaginatedResponse(DbContribution)
+  @ApiOkResponse({ type: DbContribution })
+  @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
+  async findAllByRepoId (
     @Param(&quot;id&quot;) id: number,
-  ): Promise&lt;DbRepo&gt; {
-    return this.repoService.findOneById(id);
+      @Query() pageOptionsDto: ContributionPageOptionsDto,
+  ): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
+    const item &#x3D; await this.repoService.findOneById(id);
+
+    return this.contributionService.findAll(pageOptionsDto, item.id);
   }
 
-  @Get(&quot;/:owner/:repo&quot;)
+  @Get(&quot;/:owner/:repo/contributions&quot;)
   @ApiOperation({
-    operationId: &quot;findOneByOwnerAndRepo&quot;,
-    summary: &quot;Finds a repo by :owner and :repo&quot;,
+    operationId: &quot;findAllByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo listing all contributions and paginating them&quot;,
   })
-  @ApiOkResponse({ type: DbRepo })
-  @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
-  async findOneByOwnerAndRepo (
+  @ApiPaginatedResponse(DbContribution)
+  @ApiOkResponse({ type: DbContribution })
+  @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
+  async findAllByOwnerAndRepo (
     @Param(&quot;owner&quot;) owner: string,
       @Param(&quot;repo&quot;) repo: string,
-  ): Promise&lt;DbRepo&gt; {
-    return this.repoService.findOneByOwnerAndRepo(owner, repo);
-  }
+      @Query() pageOptionsDto: ContributionPageOptionsDto,
+  ): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
+    const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
-  @Get(&quot;/list&quot;)
-  @ApiOperation({
-    operationId: &quot;findAll&quot;,
-    summary: &quot;Finds all repos and paginates them&quot;,
-  })
-  @ApiPaginatedResponse(DbRepo)
-  @ApiOkResponse({ type: DbRepo })
-  async findAll (
-    @Query() pageOptionsDto: RepoPageOptionsDto,
-  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
-    return this.repoService.findAll(pageOptionsDto);
+    return this.contributionService.findAll(pageOptionsDto, item.id);
   }
 }
 </code></pre>
@@ -460,7 +406,7 @@ export class RepoController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'RepoController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'RepoContributionsController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

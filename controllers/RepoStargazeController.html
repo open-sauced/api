@@ -93,7 +93,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findUserList" >findUserList</a>
+                                <a href="#findAllUserStargazed" >findAllUserStargazed</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -316,18 +316,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findUserList"></a>
+                    <a name="findAllUserStargazed"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findUserList</b></span>
-                        <a href="#findUserList"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllUserStargazed</b></span>
+                        <a href="#findAllUserStargazed"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findUserList(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllUserStargazed(pageOptionsDto: <a href="../classes/RepoPageOptionsDto.html" target="_self">RepoPageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -635,7 +635,7 @@ export class RepoStargazeController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAllUserStargazed (
     @Query() pageOptionsDto: RepoPageOptionsDto,
       @UserId() userId: number,
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {

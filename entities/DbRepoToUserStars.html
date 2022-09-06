@@ -188,13 +188,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
+                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;, select: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -266,7 +266,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -481,7 +481,10 @@ export class DbRepoToUserStars {
   public updated_at?: Date;
 
   @ApiHideProperty()
-  @DeleteDateColumn({ type: &quot;timestamp without time zone&quot; })
+  @DeleteDateColumn({
+    type: &quot;timestamp without time zone&quot;,
+    select: false,
+  })
   public deleted_at?: Date;
 
   @ApiHideProperty()

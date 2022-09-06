@@ -98,6 +98,40 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/ContributionModule.html" data-type="entity-link" >ContributionModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' : 'data-target="#xs-controllers-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' :
+                                            'id="xs-controllers-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' }>
+                                            <li class="link">
+                                                <a href="controllers/RepoContributionsController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RepoContributionsController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' : 'data-target="#xs-injectables-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' :
+                                        'id="xs-injectables-links-module-ContributionModule-be91dc893dfe8001d57357220e37aff8d97508385778f3ce9c239b68509d2fbce6406743422f3edb74091226752bde9b754b0d97f9f93884349b73ebe988ad87"' }>
+                                        <li class="link">
+                                            <a href="injectables/ContributionService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContributionService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/RepoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RepoService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/HealthModule.html" data-type="entity-link" >HealthModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -322,6 +356,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
+                            </li>
                             <li class="link">
                                 <a href="classes/PageDto.html" data-type="entity-link" >PageDto</a>
                             </li>

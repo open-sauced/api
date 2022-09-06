@@ -193,13 +193,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;})<br />
+                            @ApiHideProperty()<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;, select: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -308,7 +308,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -417,7 +417,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/repo/entities/repo.to.user.submissions.entity.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -530,7 +530,10 @@ export class DbRepoToUserSubmissions {
   public updated_at?: Date;
 
   @ApiHideProperty()
-  @DeleteDateColumn({ type: &quot;timestamp without time zone&quot; })
+  @DeleteDateColumn({
+    type: &quot;timestamp without time zone&quot;,
+    select: false,
+  })
   public deleted_at?: Date;
 
   @ApiHideProperty()
