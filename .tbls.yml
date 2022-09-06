@@ -4,6 +4,9 @@ desc: 🍕 The backend for the site that recommends the hottest projects on GitH
 include:
   - public.*
 
+exclude:
+  - public.auth_users
+
 detectVirtualRelations:
   enabled: false
   strategy: default
