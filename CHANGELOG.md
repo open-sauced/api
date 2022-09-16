@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.18](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.17...v1.9.0-beta.18) (2022-09-16)
+
+
+### 🍕 Features
+
+* add onboarding information to session endpoint and endpoint for completing onboarding ([155e99e](https://github.com/open-sauced/api.opensauced.pizza/commit/155e99ef524526462deee3074dfa332898e668e5))
+
+
+### 🐛 Bug Fixes
+
+* add check/insert public user to session endpoint ([03bf95b](https://github.com/open-sauced/api.opensauced.pizza/commit/03bf95bcc8c493b2d8d24214fdc88156fa503c94))
+
 ## [1.9.0-beta.17](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.16...v1.9.0-beta.17) (2022-09-06)
 
 
