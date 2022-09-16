@@ -54,11 +54,10 @@ export class AuthController {
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOperation({
-    operationId: "updateOnboarding",
+    operationId: "postOnboarding",
     summary: "Updates onboarding information for user",
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
-  @HttpCode(HttpStatus.OK)
   async postOnboarding (
     @User() user: SupabaseAuthUser,
   ): Promise<SupabaseAuthDto> {
