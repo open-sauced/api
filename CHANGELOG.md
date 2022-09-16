@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.9.0-beta.19](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.18...v1.9.0-beta.19) (2022-09-16)
+
+
+### 🍕 Features
+
+* added is_onboarded boolean to migration for public.users table ([1edaeda](https://github.com/open-sauced/api.opensauced.pizza/commit/1edaeda5b66a0279f0123270d04cc6f536f33701))
+
 ## [1.9.0-beta.18](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0-beta.17...v1.9.0-beta.18) (2022-09-16)
 
 
