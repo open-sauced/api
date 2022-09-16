@@ -5,6 +5,45 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.10.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0...v1.10.0) (2022-09-16)
+
+
+### 🧑‍💻 Code Refactoring
+
+* correct controller function naming ([0046b05](https://github.com/open-sauced/api.opensauced.pizza/commit/0046b0567e579509c1f30124c0cf22cf531b2957))
+* remove non-meta hidden properties from typeorm entity display ([4601be2](https://github.com/open-sauced/api.opensauced.pizza/commit/4601be28771994b4cd9fa343ef375800ec6c5796))
+
+
+### 📝 Documentation
+
+* improve readme for first time users ([f8c9324](https://github.com/open-sauced/api.opensauced.pizza/commit/f8c9324158bfb79457695c01572111ff6dba1eab))
+
+
+### 🎨 Styles
+
+* correct lint errors ([4b264d5](https://github.com/open-sauced/api.opensauced.pizza/commit/4b264d50a0f86376a0910e593c84c28d63dc709c))
+* correct lint errors from writing too much manual stuff ([2073883](https://github.com/open-sauced/api.opensauced.pizza/commit/207388351d024062ae88c93d96493b0728146f39))
+
+
+### 🤖 Build System
+
+* update dependencies ([4c3782f](https://github.com/open-sauced/api.opensauced.pizza/commit/4c3782feb16fc3f452db6e27347e07f34203adb9))
+
+
+### 🐛 Bug Fixes
+
+* add check/insert public user to session endpoint ([03bf95b](https://github.com/open-sauced/api.opensauced.pizza/commit/03bf95bcc8c493b2d8d24214fdc88156fa503c94))
+* correct repository service order 500 error ([e5e2e03](https://github.com/open-sauced/api.opensauced.pizza/commit/e5e2e03a8fcd5291c20e07e9213a3a56c18bfefb))
+* correctly hide api hidden model properties from typeorm select ([8810e03](https://github.com/open-sauced/api.opensauced.pizza/commit/8810e03d78ff8c42ad46d66880a46e969b30425f))
+* exclude generated temporary view from database visualisation ([b457783](https://github.com/open-sauced/api.opensauced.pizza/commit/b457783f855811bea8f8bccc7ffa128e6a0ed569))
+
+
+### 🍕 Features
+
+* add onboarding information to session endpoint and endpoint for completing onboarding ([155e99e](https://github.com/open-sauced/api.opensauced.pizza/commit/155e99ef524526462deee3074dfa332898e668e5))
+* add paginated contributions service ([d2745ff](https://github.com/open-sauced/api.opensauced.pizza/commit/d2745ff17450d2e0790a50a28281d7b68a2c227b))
+* added is_onboarded boolean to migration for public.users table ([1edaeda](https://github.com/open-sauced/api.opensauced.pizza/commit/1edaeda5b66a0279f0123270d04cc6f536f33701))
+
 ## [1.9.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.8.2...v1.9.0) (2022-08-30)
 
 
