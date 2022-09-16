@@ -26,10 +26,11 @@ export class AuthController {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
     let onboarded = false;
-    
+
+    // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded } = await this.userService.findOneById(id as number);
+      const { is_onboarded } = await this.userService.checkAddUser(user);
 
       onboarded = is_onboarded;
     } catch (e) {
