@@ -4,12 +4,12 @@ import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
-import { UserService } from 'src/user/user.service';
+import { UserService } from "../user/user.service";
 
 @Controller("auth")
 @ApiTags("Authentication service")
 export class AuthController {
-  constructor(private userService: UserService) {}
+  constructor (private userService: UserService) {}
 
   @Get("/session")
   @ApiBearerAuth()
@@ -25,8 +25,16 @@ export class AuthController {
   ): Promise<SupabaseAuthDto & { is_onboarded: boolean }> {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
-    // Get user from public users table
-    const publicUser = await this.userService.findOneById(id);
+    let onboarded = false;
+    
+    try {
+      // get user from public users table
+      const { is_onboarded } = await this.userService.findOneById(id as number);
+
+      onboarded = is_onboarded;
+    } catch (e) {
+      // leave onboarded as-is
+    }
 
     return {
       id: `${String(id)}`,
@@ -37,7 +45,7 @@ export class AuthController {
       last_sign_in_at,
       created_at,
       updated_at,
-      is_onboarded: publicUser.is_onboarded
+      is_onboarded: onboarded,
     };
   }
 
@@ -50,12 +58,16 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @HttpCode(HttpStatus.OK)
-  postOnboarding (
+  async postOnboarding (
     @User() user: SupabaseAuthUser,
-  ): SupabaseAuthDto {
+  ): Promise<SupabaseAuthDto> {
     const { user_metadata: { sub: id } } = user;
 
-    this.userService.updateOnboarding(id);
+    try {
+      await this.userService.updateOnboarding(id as number);
+    } catch (e) {
+      // handle error
+    }
 
     return user;
   }

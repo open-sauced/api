@@ -24,7 +24,7 @@ import { StarModule } from "./star/star.module";
 import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
-import { UserModule } from './user/user.module';
+import { UserModule } from "./user/user.module";
 
 @Module({
   imports: [
@@ -69,7 +69,7 @@ import { UserModule } from './user/user.module';
     StargazeModule,
     SubmitModule,
     ContributionModule,
-    UserModule
+    UserModule,
   ],
   controllers: [],
   providers: [],

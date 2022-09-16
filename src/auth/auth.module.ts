@@ -3,7 +3,7 @@ import { PassportModule } from "@nestjs/passport";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseStrategy } from "./supabase.strategy";
 import { AuthController } from "./auth.controller";
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from "../user/user.module";
 
 @Module({
   imports: [PassportModule, UserModule],
