@@ -33,7 +33,7 @@ export class UserService {
     }
 
     if (!item) {
-      throw new NotFoundException("User Not Found");
+      throw (new NotFoundException);
     }
 
     return item;
@@ -47,18 +47,16 @@ export class UserService {
 
       return publicUser;
     } catch (e) {
-      // user not found
+      // create new user
+      const newUser = this.userRepository.create({
+        id: id as number,
+        login: user_name as string,
+        created_at: new Date().toString(), // eslint-disable-line
+      });
+
+      // return new user
+      return newUser;
     }
-
-    // create new user
-    const newUser = this.userRepository.create({
-      id: id as number,
-      login: user_name as string,
-      created_at: new Date().toString(), // eslint-disable-line
-    });
-
-    // return new user
-    return newUser;
   }
 
   async updateOnboarding (id: number) {
