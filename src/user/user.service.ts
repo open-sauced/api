@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { User } from "@supabase/supabase-js";
 
 import { DbUser } from "./user.entity";
 
@@ -36,6 +37,28 @@ export class UserService {
     }
 
     return item;
+  }
+
+  async checkAddUser (user: User): Promise<DbUser> {
+    const { user_metadata: { sub: id, user_name } } = user;
+
+    try {
+      const publicUser = await this.findOneById(id as number);
+
+      return publicUser;
+    } catch (e) {
+      // user not found
+    }
+
+    // create new user
+    const newUser = this.userRepository.create({
+      id: id as number,
+      login: user_name as string,
+      created_at: new Date().toString(), // eslint-disable-line
+    });
+
+    // return new user
+    return newUser;
   }
 
   async updateOnboarding (id: number) {
