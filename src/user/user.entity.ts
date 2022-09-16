@@ -94,6 +94,13 @@ export class DbUser extends BaseEntity {
   })
   public deleted_at?: Date;
 
+  @ApiModelProperty({
+    description: "Flag indicating user's onboarding status",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_onboarded: boolean;  
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];
