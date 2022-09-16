@@ -11,30 +11,40 @@ export class UserService {
     private userRepository: Repository<DbUser>,
   ) {}
 
-  baseQueryBuilder() {
-    const builder = this.userRepository.createQueryBuilder("users")
+  baseQueryBuilder (): SelectQueryBuilder<DbUser> {
+    const builder = this.userRepository.createQueryBuilder("users");
 
     return builder;
   }
 
-  async findOneById(id: number): Promise<DbUser> {
+  async findOneById (id: number): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("id = :id", { id });
+    queryBuilder.where("id = :id", { id });
 
-    const item = await queryBuilder.getOne();
+    let item: DbUser | null;
+
+    try {
+      item = await queryBuilder.getOne();
+    } catch (e) {
+      // handle error
+      item = null;
+    }
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException("User Not Found");
     }
 
     return item;
   }
 
-  async updateOnboarding(id: number) {
-    await this.findOneById(id);
+  async updateOnboarding (id: number) {
+    try {
+      await this.findOneById(id);
 
-    this.userRepository.update(id, { is_onboarded: true });
+      await this.userRepository.update(id, { is_onboarded: true });
+    } catch (e) {
+      // handle error
+    }
   }
 }
