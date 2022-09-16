@@ -37,7 +37,10 @@ export class DbUser extends BaseEntity {
   public open_issues: number;
 
   @ApiHideProperty()
-  @Column({ default: false })
+  @Column({
+    default: false,
+    select: false,
+  })
   public has_stars_data: boolean;
 
   @ApiModelProperty({
@@ -85,8 +88,18 @@ export class DbUser extends BaseEntity {
   public login: string;
 
   @ApiHideProperty()
-  @DeleteDateColumn({ type: "timestamp without time zone" })
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    select: false,
+  })
   public deleted_at?: Date;
+
+  @ApiModelProperty({
+    description: "Flag indicating user's onboarding status",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_onboarded: boolean;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)

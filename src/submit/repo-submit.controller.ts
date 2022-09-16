@@ -35,7 +35,7 @@ export class RepoSubmitController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAllUserSubmitted (
     @Query() pageOptionsDto: RepoPageOptionsDto,
       @UserId() userId: number,
   ): Promise<PageDto<DbRepo>> {

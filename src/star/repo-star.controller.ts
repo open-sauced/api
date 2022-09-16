@@ -35,7 +35,7 @@ export class RepoStarController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAllUserStarred (
     @Query() pageOptionsDto: RepoPageOptionsDto,
       @UserId() userId: number,
   ): Promise<PageDto<DbRepo>> {

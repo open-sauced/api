@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS public.users
   created_at timestamp without time zone NOT NULL DEFAULT now(),
   updated_at timestamp without time zone NOT NULL DEFAULT now(),
   deleted_at timestamp without time zone DEFAULT null,
+  is_onboarded boolean NOT NULL DEFAULT false,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",

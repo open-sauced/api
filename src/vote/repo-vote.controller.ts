@@ -35,7 +35,7 @@ export class RepoVoteController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findUserList (
+  async findAllUserVoted (
     @Query() pageOptionsDto: RepoPageOptionsDto,
       @UserId() userId: number,
   ): Promise<PageDto<DbRepo>> {
