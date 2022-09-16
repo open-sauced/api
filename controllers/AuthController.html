@@ -84,7 +84,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getHello" >getHello</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#getSession" >getSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#postOnboarding" >postOnboarding</a>
                             </li>
                         </ul>
                     </td>
@@ -107,16 +112,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getHello"></a>
+                    <a name="getSession"></a>
                     <span class="name">
-                        <span ><b>getHello</b></span>
-                        <a href="#getHello"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>getSession</b></span>
+                        <a href="#getSession"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getHello(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getSession(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
                 </td>
             </tr>
 
@@ -130,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/auth/auth.controller.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/auth/auth.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -169,7 +176,85 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthDto.html" target="_self" >SupabaseAuthDto</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postOnboarding"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postOnboarding</b></span>
+                        <a href="#postOnboarding"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postOnboarding(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/onboarding&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postOnboarding&#x27;, summary: &#x27;Updates onboarding information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/auth/auth.controller.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthDto.html" target="_self" >Promise&lt;SupabaseAuthDto&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -183,16 +268,19 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { User } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
+import { UserService } from &quot;../user/user.service&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
 export class AuthController {
+  constructor (private userService: UserService) {}
+
   @Get(&quot;/session&quot;)
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
@@ -202,13 +290,25 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @HttpCode(HttpStatus.OK)
-  getHello (
+  async getSession (
     @User() user: SupabaseAuthUser,
-  ): SupabaseAuthDto {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub, user_name } } &#x3D; user;
+  ): Promise&lt;SupabaseAuthDto &amp; { is_onboarded: boolean }&gt; {
+    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
+
+    let onboarded &#x3D; false;
+
+    // check/insert user
+    try {
+      // get user from public users table
+      const { is_onboarded } &#x3D; await this.userService.checkAddUser(user);
+
+      onboarded &#x3D; is_onboarded;
+    } catch (e) {
+      // leave onboarded as-is
+    }
 
     return {
-      id: &#x60;${String(sub)}&#x60;,
+      id: &#x60;${String(id)}&#x60;,
       user_name: &#x60;${String(user_name)}&#x60;,
       role,
       email,
@@ -216,7 +316,30 @@ export class AuthController {
       last_sign_in_at,
       created_at,
       updated_at,
+      is_onboarded: onboarded,
     };
+  }
+
+  @Post(&quot;/onboarding&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;postOnboarding&quot;,
+    summary: &quot;Updates onboarding information for user&quot;,
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  async postOnboarding (
+    @User() user: SupabaseAuthUser,
+  ): Promise&lt;SupabaseAuthDto&gt; {
+    const { user_metadata: { sub: id } } &#x3D; user;
+
+    try {
+      await this.userService.updateOnboarding(id as number);
+    } catch (e) {
+      // handle error
+    }
+
+    return user;
   }
 }
 </code></pre>
