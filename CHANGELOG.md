@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.11.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.11.0-beta.1...v1.11.0-beta.2) (2022-09-27)
+
+
+### 📝 Documentation
+
+* adjust the pizzas emoji in readme ([f5f2761](https://github.com/open-sauced/api.opensauced.pizza/commit/f5f27619599b103a5414fd1e2340a0b6ce932051))
+
 ## [1.11.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.10.0...v1.11.0-beta.1) (2022-09-27)
 
 
