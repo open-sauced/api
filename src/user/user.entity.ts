@@ -101,6 +101,13 @@ export class DbUser extends BaseEntity {
   @Column({ default: false })
   public is_onboarded: boolean;
 
+  @ApiModelProperty({
+    description: "Insights Role",
+    example: 10,
+  })
+  @Column({ default: 10 })
+  public role: number;
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];

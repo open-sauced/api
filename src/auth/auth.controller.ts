@@ -22,17 +22,19 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async getSession (
     @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto & { is_onboarded: boolean }> {
+  ): Promise<SupabaseAuthDto & { is_onboarded: boolean, insights_role: number }> {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
     let onboarded = false;
+    let insights_role = 10;
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded } = await this.userService.checkAddUser(user);
+      const { is_onboarded, role: insights_role_id } = await this.userService.checkAddUser(user);
 
       onboarded = is_onboarded;
+      insights_role = insights_role_id;
     } catch (e) {
       // leave onboarded as-is
     }
@@ -47,6 +49,7 @@ export class AuthController {
       created_at,
       updated_at,
       is_onboarded: onboarded,
+      insights_role,
     };
   }
 
