@@ -48,4 +48,16 @@ export class SupabaseAuthDto {
     example: "2016-10-19 13:24:51.000000",
   })
   readonly updated_at?: string;
+
+  @ApiPropertyOptional({
+    description: "Flag indicated whether the user is onboarded",
+    example: false,
+  })
+  readonly is_onboarded?: boolean;
+
+  @ApiPropertyOptional({
+    description: "Authenticated User's Insights Role",
+    example: 10,
+  })
+  readonly insights_role?: number;
 }
