@@ -22,7 +22,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async getSession (
     @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto & { is_onboarded: boolean, insights_role: number }> {
+  ): Promise<SupabaseAuthDto> {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
     let onboarded = false;
