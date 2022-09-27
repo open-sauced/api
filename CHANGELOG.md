@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.11.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.10.0...v1.11.0-beta.1) (2022-09-27)
+
+
+### 🍕 Features
+
+* add role for insights to session information endpoint ([#32](https://github.com/open-sauced/api.opensauced.pizza/issues/32)) ([5699f6a](https://github.com/open-sauced/api.opensauced.pizza/commit/5699f6a21520a77202deafc18e758c2f6a2c4878))
+
 ## [1.10.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.9.0...v1.10.0) (2022-09-16)
 
 
