@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.12.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.11.0...v1.12.0) (2022-09-28)
+
+
+### 🍕 Features
+
+* add ability to retrieve/update waitlist status for a user ([aef9df6](https://github.com/open-sauced/api.opensauced.pizza/commit/aef9df6ad33c8d8d21d7bcc497df59f82919d2c2))
+
+
+### 🐛 Bug Fixes
+
+* review feedback fixes ([f3808a5](https://github.com/open-sauced/api.opensauced.pizza/commit/f3808a5106ed25fcbfc56290513d9f570496b258))
+* use request exception/responses ([fcaddb5](https://github.com/open-sauced/api.opensauced.pizza/commit/fcaddb56d350da2a5c48ecb6eb4f34397ae97234))
+
 ## [1.12.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.11.0...v1.12.0-beta.1) (2022-09-28)
 
 
