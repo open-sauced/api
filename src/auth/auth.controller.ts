@@ -27,14 +27,16 @@ export class AuthController {
 
     let onboarded = false;
     let insights_role = 10;
+    let waitlisted = false;
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, role: insights_role_id } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role_id } = await this.userService.checkAddUser(user);
 
       onboarded = is_onboarded;
       insights_role = insights_role_id;
+      waitlisted = is_waitlisted;
     } catch (e) {
       // leave onboarded as-is
     }
@@ -50,6 +52,7 @@ export class AuthController {
       updated_at,
       is_onboarded: onboarded,
       insights_role,
+      is_waitlisted: waitlisted,
     };
   }
 
@@ -68,6 +71,28 @@ export class AuthController {
 
     try {
       await this.userService.updateOnboarding(id as number);
+    } catch (e) {
+      // handle error
+    }
+
+    return user;
+  }
+
+  @Post("/waitlist")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "postWaitlist",
+    summary: "Updates waitlist information for user",
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  async postWaitlist (
+    @User() user: SupabaseAuthUser,
+  ): Promise<SupabaseAuthDto> {
+    const { user_metadata: { sub: id } } = user;
+
+    try {
+      await this.userService.updateWaitlistStatus(id as number);
     } catch (e) {
       // handle error
     }

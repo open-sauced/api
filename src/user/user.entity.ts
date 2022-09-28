@@ -102,6 +102,13 @@ export class DbUser extends BaseEntity {
   public is_onboarded: boolean;
 
   @ApiModelProperty({
+    description: "Flag indicating user's waitlist status",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_waitlisted: boolean;
+
+  @ApiModelProperty({
     description: "Insights Role",
     example: 10,
   })
