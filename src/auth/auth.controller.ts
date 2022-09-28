@@ -2,7 +2,7 @@ import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
-import { User } from "./supabase.user.decorator";
+import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/user.service";
 
@@ -87,16 +87,8 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   async postWaitlist (
-    @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto> {
-    const { user_metadata: { sub: id } } = user;
-
-    try {
-      await this.userService.updateWaitlistStatus(id as number);
-    } catch (e) {
-      // handle error
-    }
-
-    return user;
+    @UserId() userId: number,
+  ): Promise<void> {
+    return this.userService.updateWaitlistStatus(userId);
   }
 }
