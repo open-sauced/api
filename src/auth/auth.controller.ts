@@ -1,8 +1,8 @@
 import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
-import { User } from "./supabase.user.decorator";
+import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/user.service";
 
@@ -27,14 +27,16 @@ export class AuthController {
 
     let onboarded = false;
     let insights_role = 10;
+    let waitlisted = false;
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, role: insights_role_id } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role_id } = await this.userService.checkAddUser(user);
 
       onboarded = is_onboarded;
       insights_role = insights_role_id;
+      waitlisted = is_waitlisted;
     } catch (e) {
       // leave onboarded as-is
     }
@@ -50,6 +52,7 @@ export class AuthController {
       updated_at,
       is_onboarded: onboarded,
       insights_role,
+      is_waitlisted: waitlisted,
     };
   }
 
@@ -61,17 +64,25 @@ export class AuthController {
     summary: "Updates onboarding information for user",
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
   async postOnboarding (
-    @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto> {
-    const { user_metadata: { sub: id } } = user;
+    @UserId() userId: number,
+  ): Promise<void> {
+    return this.userService.updateOnboarding(userId);
+  }
 
-    try {
-      await this.userService.updateOnboarding(id as number);
-    } catch (e) {
-      // handle error
-    }
-
-    return user;
+  @Post("/waitlist")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "postWaitlist",
+    summary: "Updates waitlist information for user",
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to update waitlist information for the user" })
+  async postWaitlist (
+    @UserId() userId: number,
+  ): Promise<void> {
+    return this.userService.updateWaitlistStatus(userId);
   }
 }

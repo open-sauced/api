@@ -56,6 +56,12 @@ export class SupabaseAuthDto {
   readonly is_onboarded?: boolean;
 
   @ApiPropertyOptional({
+    description: "Flag indicated whether the user is waitlisted",
+    example: false,
+  })
+  readonly is_waitlisted?: boolean;
+
+  @ApiPropertyOptional({
     description: "Authenticated User's Insights Role",
     example: 10,
   })

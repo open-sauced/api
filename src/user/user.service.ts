@@ -63,9 +63,19 @@ export class UserService {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { is_onboarded: true });
+      await this.userRepository.update(id, { is_onboarded: true, is_waitlisted: false });
     } catch (e) {
-      // handle error
+      throw new NotFoundException("Unable to update user onboarding status");
+    }
+  }
+
+  async updateWaitlistStatus (id: number) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { is_waitlisted: true });
+    } catch (e) {
+      throw new NotFoundException("Unable to update user waitlist status");
     }
   }
 }
