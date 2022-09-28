@@ -65,7 +65,7 @@ export class UserService {
 
       await this.userRepository.update(id, { is_onboarded: true, is_waitlisted: false });
     } catch (e) {
-      // handle error
+      throw new Error("Unable to update user onboarding status");
     }
   }
 
@@ -75,7 +75,7 @@ export class UserService {
 
       await this.userRepository.update(id, { is_waitlisted: true });
     } catch (e) {
-      // handle error
+      throw new Error("Unable to update user waitlist status");
     }
   }
 }
