@@ -91,6 +91,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#postOnboarding" >postOnboarding</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#postWaitlist" >postWaitlist</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -201,7 +205,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>postOnboarding(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -209,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/onboarding&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postOnboarding&#x27;, summary: &#x27;Updates onboarding information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br /></code>
+                    <code>@Post(&#x27;/onboarding&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postOnboarding&#x27;, summary: &#x27;Updates onboarding information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to update onboarding information for the user&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/auth/auth.controller.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/auth/auth.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -237,9 +241,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>user</td>
+                                    <td>userId</td>
                                     <td>
-                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -254,7 +258,85 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthDto.html" target="_self" >Promise&lt;SupabaseAuthDto&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postWaitlist"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postWaitlist</b></span>
+                        <a href="#postWaitlist"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postWaitlist(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/waitlist&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postWaitlist&#x27;, summary: &#x27;Updates waitlist information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to update waitlist information for the user&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/auth/auth.controller.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -269,10 +351,10 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
-import { User } from &quot;./supabase.user.decorator&quot;;
+import { User, UserId } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { UserService } from &quot;../user/user.service&quot;;
 
@@ -297,14 +379,16 @@ export class AuthController {
 
     let onboarded &#x3D; false;
     let insights_role &#x3D; 10;
+    let waitlisted &#x3D; false;
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, role: insights_role_id } &#x3D; await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role_id } &#x3D; await this.userService.checkAddUser(user);
 
       onboarded &#x3D; is_onboarded;
       insights_role &#x3D; insights_role_id;
+      waitlisted &#x3D; is_waitlisted;
     } catch (e) {
       // leave onboarded as-is
     }
@@ -320,6 +404,7 @@ export class AuthController {
       updated_at,
       is_onboarded: onboarded,
       insights_role,
+      is_waitlisted: waitlisted,
     };
   }
 
@@ -331,18 +416,26 @@ export class AuthController {
     summary: &quot;Updates onboarding information for user&quot;,
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: &quot;Unable to update onboarding information for the user&quot; })
   async postOnboarding (
-    @User() user: SupabaseAuthUser,
-  ): Promise&lt;SupabaseAuthDto&gt; {
-    const { user_metadata: { sub: id } } &#x3D; user;
+    @UserId() userId: number,
+  ): Promise&lt;void&gt; {
+    return this.userService.updateOnboarding(userId);
+  }
 
-    try {
-      await this.userService.updateOnboarding(id as number);
-    } catch (e) {
-      // handle error
-    }
-
-    return user;
+  @Post(&quot;/waitlist&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;postWaitlist&quot;,
+    summary: &quot;Updates waitlist information for user&quot;,
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: &quot;Unable to update waitlist information for the user&quot; })
+  async postWaitlist (
+    @UserId() userId: number,
+  ): Promise&lt;void&gt; {
+    return this.userService.updateWaitlistStatus(userId);
   }
 }
 </code></pre>
