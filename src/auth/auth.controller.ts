@@ -1,5 +1,5 @@
 import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
@@ -64,18 +64,11 @@ export class AuthController {
     summary: "Updates onboarding information for user",
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
   async postOnboarding (
-    @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto> {
-    const { user_metadata: { sub: id } } = user;
-
-    try {
-      await this.userService.updateOnboarding(id as number);
-    } catch (e) {
-      // handle error
-    }
-
-    return user;
+    @UserId() userId: number,
+  ): Promise<void> {
+    return this.userService.updateOnboarding(userId);
   }
 
   @Post("/waitlist")
@@ -86,6 +79,7 @@ export class AuthController {
     summary: "Updates waitlist information for user",
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to update waitlist information for the user" })
   async postWaitlist (
     @UserId() userId: number,
   ): Promise<void> {
