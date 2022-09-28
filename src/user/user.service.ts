@@ -63,7 +63,17 @@ export class UserService {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { is_onboarded: true });
+      await this.userRepository.update(id, { is_onboarded: true, is_waitlisted: false });
+    } catch (e) {
+      // handle error
+    }
+  }
+
+  async updateWaitlistStatus (id: number) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { is_waitlisted: true });
     } catch (e) {
       // handle error
     }

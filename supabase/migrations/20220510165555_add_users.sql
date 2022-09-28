@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS public.users
   deleted_at timestamp without time zone DEFAULT null,
   is_onboarded boolean NOT NULL DEFAULT false,
   role bigint NOT NULL DEFAULT 10,
+  is_waitlisted boolean NOT NULL DEFAULT false,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",
