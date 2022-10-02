@@ -28,16 +28,24 @@ async function bootstrap () {
     defaultVersion: String(major("1.8.0", { loose: false })),
   });
 
-  const options = (new DocumentBuilder)
+  const options = (new DocumentBuilder);
+
+  if (configService.get("api.development")) {
+    options.addServer(`http://localhost:${String(configService.get("api.port"))}`, "Development");
+  }
+
+  options
+    .addServer(`https://${<string>configService.get("api.domain")}`, "Production")
+    .addServer(`https://beta.${<string>configService.get("api.domain")}`, "Beta")
     .setTitle(name)
     .setDescription(description)
     .setVersion(version)
     .setContact("Open Sauced Triage Team", "https://opensauced.pizza", "hello@opensauced.pizza")
     .setTermsOfService("https://github.com/open-sauced/code-of-conduct")
     .setLicense(license, `https://opensource.org/licenses/${license}`)
-    .addBearerAuth()
-    .build();
-  const document = SwaggerModule.createDocument(app, options, {
+    .addBearerAuth();
+
+  const document = SwaggerModule.createDocument(app, options.build(), {
     operationIdFactory: (
       controllerKey: string,
       methodKey: string,
