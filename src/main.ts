@@ -62,7 +62,7 @@ async function bootstrap () {
     console.log(e);
   }
 
-  SwaggerModule.setup("docs", app, document, customOptions);
+  SwaggerModule.setup("/", app, document, customOptions);
 
   await app.register(fastifyHelmet, { contentSecurityPolicy: false });
   await app.register(fastifyRateLimit, {
