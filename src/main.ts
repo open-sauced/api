@@ -66,8 +66,21 @@ async function bootstrap () {
 
   await app.register(fastifyHelmet, { contentSecurityPolicy: false });
   await app.register(fastifyRateLimit, {
-    max: 100,
-    timeWindow: "1 minute",
+    global: true,
+    max: 5000,
+    timeWindow: "1 hour",
+    enableDraftSpec: false,
+    addHeadersOnExceeding: {
+      "x-ratelimit-limit": true,
+      "x-ratelimit-remaining": true,
+      "x-ratelimit-reset": true,
+    },
+    addHeaders: {
+      "x-ratelimit-limit": true,
+      "x-ratelimit-remaining": true,
+      "x-ratelimit-reset": true,
+      "retry-after": true,
+    },
   });
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
