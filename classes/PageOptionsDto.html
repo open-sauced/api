@@ -151,7 +151,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>10</code>
+                        <i>Default value : </i><code>50</code>
                     </td>
                 </tr>
                 <tr>
@@ -159,7 +159,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({minimum: 1, maximum: 50, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(50)<br />@IsOptional()<br />
+                            @ApiPropertyOptional({minimum: 1, maximum: 50, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(500)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -319,9 +319,9 @@ export class PageOptionsDto {
   @Type(() &#x3D;&gt; Number)
   @IsInt()
   @Min(1)
-  @Max(50)
+  @Max(500)
   @IsOptional()
-  readonly limit?: number &#x3D; 10;
+  readonly limit?: number &#x3D; 50;
 
   @ApiPropertyOptional({ enum: OrderDirectionEnum, enumName: &quot;OrderDirectionEnum&quot;, default: OrderDirectionEnum.DESC })
   @IsEnum(OrderDirectionEnum)
@@ -329,7 +329,7 @@ export class PageOptionsDto {
   readonly orderDirection?: OrderDirectionEnum &#x3D; OrderDirectionEnum.DESC;
 
   get skip (): number {
-    return ((this.page ?? 1) - 1) * (this.limit ?? 10);
+    return ((this.page ?? 1) - 1) * (this.limit ?? 50);
   }
 }
 </code></pre>
