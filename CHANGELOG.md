@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.12.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.12.0-beta.2...v1.12.0-beta.3) (2022-10-03)
+
+
+### 🔁 Continuous Integration
+
+* correct release workflow garbage collection trigger mechanics ([6b157e5](https://github.com/open-sauced/api.opensauced.pizza/commit/6b157e5d01c1b4be3a4650be021e9ea07485cde8))
+
 ## [1.12.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.12.0-beta.1...v1.12.0-beta.2) (2022-10-03)
 
 
