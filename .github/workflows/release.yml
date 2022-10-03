@@ -228,7 +228,7 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: "📦 authenticate with docr"
-        run: doctl registry login --expiry-seconds 600
+        run: doctl registry login --expiry-seconds 3600
 
       - name: "📂 download docker artifacts"
         uses: actions/download-artifact@v2
@@ -248,7 +248,6 @@ jobs:
     name: Cleanup actions
     needs:
       - release
-      - deploy
       - digital-ocean
     runs-on: ubuntu-latest
     steps:
