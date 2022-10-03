@@ -5,6 +5,24 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.12.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.12.0-beta.1...v1.12.0-beta.2) (2022-10-03)
+
+
+### 🤖 Build System
+
+* add ability to switch between servers ([f5b6599](https://github.com/open-sauced/api.opensauced.pizza/commit/f5b65996d3abf58bf7731145e8615171adb566e2))
+* default do swagger documentation ([de371dc](https://github.com/open-sauced/api.opensauced.pizza/commit/de371dc6c6aa9ba59d054b6e0c915cbcadab59dc))
+
+
+### 🐛 Bug Fixes
+
+* correct rate limits ([63639b4](https://github.com/open-sauced/api.opensauced.pizza/commit/63639b40b8d60df5de35a704762a9009bdf58362)), closes [#36](https://github.com/open-sauced/api.opensauced.pizza/issues/36)
+
+
+### 📝 Documentation
+
+* add better swagger description and release targets ([742b073](https://github.com/open-sauced/api.opensauced.pizza/commit/742b073e229b5fe7bbce68eddfd3e74c16d39987))
+
 ## [1.12.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.11.0...v1.12.0-beta.1) (2022-09-28)
 
 
