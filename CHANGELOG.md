@@ -1,3 +1,33 @@
+# 📦 open-sauced/api.opensauced.pizza changelog
+
+[![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
+
+> All notable changes to this project will be documented in this file
+
+## [1.13.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.12.0...v1.13.0) (2022-10-03)
+
+
+### 🤖 Build System
+
+* add ability to switch between servers ([f5b6599](https://github.com/open-sauced/api.opensauced.pizza/commit/f5b65996d3abf58bf7731145e8615171adb566e2))
+* default do swagger documentation ([de371dc](https://github.com/open-sauced/api.opensauced.pizza/commit/de371dc6c6aa9ba59d054b6e0c915cbcadab59dc))
+
+
+### 🐛 Bug Fixes
+
+* correct rate limits ([63639b4](https://github.com/open-sauced/api.opensauced.pizza/commit/63639b40b8d60df5de35a704762a9009bdf58362)), closes [#36](https://github.com/open-sauced/api.opensauced.pizza/issues/36)
+
+
+### 📝 Documentation
+
+* add better swagger description and release targets ([742b073](https://github.com/open-sauced/api.opensauced.pizza/commit/742b073e229b5fe7bbce68eddfd3e74c16d39987))
+
+
+### 🔁 Continuous Integration
+
+* correct release workflow garbage collection trigger mechanics ([6b157e5](https://github.com/open-sauced/api.opensauced.pizza/commit/6b157e5d01c1b4be3a4650be021e9ea07485cde8))
+
 # 📦 @open-sauced/api.opensauced.pizza changelog
 
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
