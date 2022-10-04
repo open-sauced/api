@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.14.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.14.0-beta.1...v1.14.0-beta.2) (2022-10-03)
+
+
+### 🐛 Bug Fixes
+
+* increase paginated response limit to 500 ([b174a3f](https://github.com/open-sauced/api.opensauced.pizza/commit/b174a3f93775696b3b726e64d548e694beed439c)), closes [#43](https://github.com/open-sauced/api.opensauced.pizza/issues/43)
+
+## [1.14.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.13.0...v1.14.0-beta.1) (2022-10-03)
+
+
+### 📝 Documentation
+
+* mentioned .env file ([#42](https://github.com/open-sauced/api.opensauced.pizza/issues/42)) ([a17b835](https://github.com/open-sauced/api.opensauced.pizza/commit/a17b835f8b61c9acf562d4fd5254267e1247dd66)), closes [#41](https://github.com/open-sauced/api.opensauced.pizza/issues/41)
+
 ## [1.13.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.12.0...v1.13.0) (2022-10-03)
 
 

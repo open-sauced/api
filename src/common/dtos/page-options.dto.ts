@@ -22,9 +22,9 @@ export class PageOptionsDto {
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  @Max(50)
+  @Max(500)
   @IsOptional()
-  readonly limit?: number = 10;
+  readonly limit?: number = 50;
 
   @ApiPropertyOptional({ enum: OrderDirectionEnum, enumName: "OrderDirectionEnum", default: OrderDirectionEnum.DESC })
   @IsEnum(OrderDirectionEnum)
@@ -32,6 +32,6 @@ export class PageOptionsDto {
   readonly orderDirection?: OrderDirectionEnum = OrderDirectionEnum.DESC;
 
   get skip (): number {
-    return ((this.page ?? 1) - 1) * (this.limit ?? 10);
+    return ((this.page ?? 1) - 1) * (this.limit ?? 50);
   }
 }
