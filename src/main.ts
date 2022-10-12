@@ -7,6 +7,7 @@ import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from "@nestjs/sw
 import { ValidationPipe, VersioningType } from "@nestjs/common";
 import fastifyHelmet from "@fastify/helmet";
 import { ConfigService } from "@nestjs/config";
+import { Logger, LoggerErrorInterceptor } from "nestjs-pino";
 import fastifyRateLimit from "@fastify/rate-limit";
 import path from "node:path";
 import { writeFile } from "node:fs/promises";
@@ -19,10 +20,10 @@ async function bootstrap () {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({ logger: false }),
+    { bufferLogs: true },
   );
   const configService = app.get(ConfigService);
   const apiDomain = String(configService.get("api.domain"));
-
   const markdownDescription = `
 ## Swagger-UI API Documentation
 
@@ -66,6 +67,8 @@ code | condition
 
 ## Additional links`;
 
+  app.useLogger(app.get(Logger));
+  app.useGlobalInterceptors((new LoggerErrorInterceptor));
   app.enableCors();
   app.enableVersioning({
     type: VersioningType.URI,
