@@ -1,11 +1,12 @@
-import {Module, RequestMethod} from "@nestjs/common";
+import { Module, RequestMethod } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
 import { TerminusModule } from "@nestjs/terminus";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { LoggerModule } from "nestjs-pino";
 import { DataSource } from "typeorm";
+import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
+import { clc } from "@nestjs/common/utils/cli-colors.util";
 
 import { RepoModule } from "./repo/repo.module";
 import apiConfig from "./config/api.config";
@@ -26,6 +27,7 @@ import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
+
 
 @Module({
   imports: [
@@ -60,25 +62,27 @@ import { UserModule } from "./user/user.module";
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
-    LoggerModule.forRoot({
-      pinoHttp: {
-        // name: "api.os",
-        level: process.env.NODE_ENV !== "production" ? "debug" : "info",
-        transport: process.env.NODE_ENV !== "production"
-          ? {
+    LoggerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        pinoHttp: {
+          name: `os.${String(config.get("api.codename")).toLowerCase()}`,
+          level: config.get("api.logging"),
+          transport: {
             target: "pino-pretty",
             options: {
               colorize: true,
               levelFirst: true,
               translateTime: "UTC:hh:MM:ss.l",
-              // singleLine: true,
-              messageFormat: "\x1B[33m[{context}] \x1B[32m{msg}",
+              singleLine: true,
+              messageFormat: `${clc.yellow(`[{context}]`)} ${clc.green(`{msg}`)}`,
               ignore: "pid,hostname,context",
             },
-          }
-          : undefined,
-      },
-      exclude: [{ method: RequestMethod.ALL, path: "check" }],
+          },
+        },
+        exclude: [{ method: RequestMethod.ALL, path: "check" }],
+      }),
     }),
     TerminusModule,
     HttpModule,

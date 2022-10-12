@@ -1,6 +1,8 @@
 import { registerAs } from "@nestjs/config";
 
 export default registerAs("api", () => ({
+  codename: String(process.env.API_CODENAME ?? "api-local"),
+  logging: process.env.NODE_ENV !== "production" ? "debug" : "info",
   host: String(process.env.API_HOST ?? "0.0.0.0"),
   port: String(process.env.API_PORT ?? "3001"),
   domain: String(process.env.API_DOMAIN ?? "api.opensauced.pizza"),
