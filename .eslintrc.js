@@ -372,6 +372,9 @@ module.exports = {
     "@typescript-eslint/no-extraneous-class": "off",
   },
   settings: {
+    "node": {
+      "allowModules": ["express"],
+    },
     "import/resolver": {
       "node": {
         "extensions": [
