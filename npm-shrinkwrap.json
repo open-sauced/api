@@ -47,7 +47,6 @@
         "@open-sauced/conventional-commit": "^1.0.1",
         "@swc/core": "^1.2.248",
         "@types/eslint": "^8.4.6",
-        "@types/eslint-scope": "^3.7.4",
         "@types/jest": "^29.0.0",
         "@types/node": "^18.7.15",
         "@types/passport": "^1.0.10",
@@ -56,7 +55,7 @@
         "@types/rimraf": "^3.0.2",
         "@types/semver": "^7.3.12",
         "@types/supertest": "^2.0.12",
-        "@types/validator": "^13.7.6",
+        "@types/validator": "^13.7.7",
         "@typescript-eslint/eslint-plugin": "^5.36.2",
         "@typescript-eslint/parser": "^5.36.2",
         "eslint": "^8.23.0",
@@ -4540,9 +4539,9 @@
       }
     },
     "node_modules/@types/validator": {
-      "version": "13.7.6",
-      "resolved": "https://registry.npmjs.org/@types/validator/-/validator-13.7.6.tgz",
-      "integrity": "sha512-uBsnWETsUagQ0n6G2wcXNIufpTNJir0zqzG4p62fhnwzs48d/iuOWEEo0d3iUxN7D+9R/8CSvWGKS+KmaD0mWA==",
+      "version": "13.7.7",
+      "resolved": "https://registry.npmjs.org/@types/validator/-/validator-13.7.7.tgz",
+      "integrity": "sha512-jiEw2kTUJ8Jsh4A1K4b5Pkjj9Xz6FktLLOQ36ZVLRkmxFbpTvAV2VRoKMojz8UlZxNg/2dZqzpigH4JYn1bkQg==",
       "dev": true
     },
     "node_modules/@types/yargs": {
