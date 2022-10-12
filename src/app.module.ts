@@ -1,9 +1,10 @@
-import { Module } from "@nestjs/common";
+import {Module, RequestMethod} from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
 import { TerminusModule } from "@nestjs/terminus";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
+import { LoggerModule } from "nestjs-pino";
 import { DataSource } from "typeorm";
 
 import { RepoModule } from "./repo/repo.module";
@@ -58,6 +59,26 @@ import { UserModule } from "./user/user.module";
         synchronize: false,
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
+    }),
+    LoggerModule.forRoot({
+      pinoHttp: {
+        // name: "api.os",
+        level: process.env.NODE_ENV !== "production" ? "debug" : "info",
+        transport: process.env.NODE_ENV !== "production"
+          ? {
+            target: "pino-pretty",
+            options: {
+              colorize: true,
+              levelFirst: true,
+              translateTime: "UTC:hh:MM:ss.l",
+              // singleLine: true,
+              messageFormat: "\x1B[33m[{context}] \x1B[32m{msg}",
+              ignore: "pid,hostname,context",
+            },
+          }
+          : undefined,
+      },
+      exclude: [{ method: RequestMethod.ALL, path: "check" }],
     }),
     TerminusModule,
     HttpModule,
