@@ -1,4 +1,4 @@
-import { Module, RequestMethod } from "@nestjs/common";
+import { MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
@@ -27,7 +27,9 @@ import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
-
+import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
+import { version } from "../package.json";
+import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
 
 @Module({
   imports: [
@@ -59,6 +61,7 @@ import { UserModule } from "./user/user.module";
           DbRepoToUserStargazers,
         ],
         synchronize: false,
+        logger: (new DatabaseLoggerMiddleware),
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
@@ -80,6 +83,7 @@ import { UserModule } from "./user/user.module";
               ignore: "pid,hostname,context",
             },
           },
+          customProps: () => ({ context: "HTTP" }),
         },
         exclude: [{ method: RequestMethod.ALL, path: "check" }],
       }),
@@ -101,4 +105,9 @@ import { UserModule } from "./user/user.module";
 })
 export class AppModule {
   constructor (private dataSource: DataSource) {}
+  configure (consumer: MiddlewareConsumer) {
+    consumer
+      .apply(HttpLoggerMiddleware)
+      .forRoutes(`v${version.charAt(0)}`);
+  }
 }
