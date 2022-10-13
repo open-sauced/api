@@ -249,18 +249,94 @@
             </div>
         </div>
 
+        <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="configure"></a>
+                    <span class="name">
+                        <span ><b>configure</b></span>
+                        <a href="#configure"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>configure(consumer: MiddlewareConsumer)</code>
+                </td>
+            </tr>
 
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app.module.ts:109</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>consumer</td>
+                                    <td>
+                                            <code>MiddlewareConsumer</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MiddlewareConsumer, Module, RequestMethod } from &quot;@nestjs/common&quot;;
 import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 import { ConfigModule, ConfigService } from &quot;@nestjs/config&quot;;
 import { HttpModule } from &quot;@nestjs/axios&quot;;
 import { TerminusModule } from &quot;@nestjs/terminus&quot;;
-import { TypeOrmModuleOptions } from &quot;@nestjs/typeorm/dist/interfaces/typeorm-options.interface&quot;;
+import { LoggerModule } from &quot;nestjs-pino&quot;;
 import { DataSource } from &quot;typeorm&quot;;
+import { TypeOrmModuleOptions } from &quot;@nestjs/typeorm/dist/interfaces/typeorm-options.interface&quot;;
+import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
 
 import { RepoModule } from &quot;./repo/repo.module&quot;;
 import apiConfig from &quot;./config/api.config&quot;;
@@ -281,6 +357,9 @@ import { StargazeModule } from &quot;./stargaze/stargaze.module&quot;;
 import { SubmitModule } from &quot;./submit/submit.module&quot;;
 import { ContributionModule } from &quot;./contribution/contribution.module&quot;;
 import { UserModule } from &quot;./user/user.module&quot;;
+import { HttpLoggerMiddleware } from &quot;./common/middleware/http-logger.middleware&quot;;
+import { version } from &quot;../package.json&quot;;
+import { DatabaseLoggerMiddleware } from &quot;./common/middleware/database-logger.middleware&quot;;
 
 @Module({
   imports: [
@@ -312,8 +391,33 @@ import { UserModule } from &quot;./user/user.module&quot;;
           DbRepoToUserStargazers,
         ],
         synchronize: false,
+        logger: (new DatabaseLoggerMiddleware),
+        maxQueryExecutionTime: configService.get(&quot;db.maxQueryExecutionTime&quot;),
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
+    }),
+    LoggerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) &#x3D;&gt; ({
+        pinoHttp: {
+          name: &#x60;os.${String(config.get(&quot;api.codename&quot;)).toLowerCase()}&#x60;,
+          level: config.get(&quot;api.logging&quot;),
+          transport: {
+            target: &quot;pino-pretty&quot;,
+            options: {
+              colorize: true,
+              levelFirst: true,
+              translateTime: &quot;UTC:hh:MM:ss.l&quot;,
+              singleLine: true,
+              messageFormat: &#x60;${clc.yellow(&#x60;[{context}]&#x60;)} ${clc.green(&#x60;{msg}&#x60;)}&#x60;,
+              ignore: &quot;pid,hostname,context&quot;,
+            },
+          },
+          customProps: () &#x3D;&gt; ({ context: &quot;HTTP&quot; }),
+        },
+        exclude: [{ method: RequestMethod.ALL, path: &quot;check&quot; }],
+      }),
     }),
     TerminusModule,
     HttpModule,
@@ -332,6 +436,11 @@ import { UserModule } from &quot;./user/user.module&quot;;
 })
 export class AppModule {
   constructor (private dataSource: DataSource) {}
+  configure (consumer: MiddlewareConsumer) {
+    consumer
+      .apply(HttpLoggerMiddleware)
+      .forRoutes(&#x60;v${version.charAt(0)}&#x60;);
+  }
 }
 </code></pre>
     </div>

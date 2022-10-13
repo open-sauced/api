@@ -679,8 +679,6 @@ export class RepoService {
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
-    // console.log(queryBuilder.getSql());
-
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
 

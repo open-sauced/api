@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >ContributionService</li>
+  <li >HttpLoggerMiddleware</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/contribution/contribution.service.ts</code>
+            <code>src/common/middleware/http-logger.middleware.ts</code>
         </p>
 
 
@@ -69,6 +69,21 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#logger" >logger</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -79,8 +94,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
+                                <a href="#use" >use</a>
                             </li>
                         </ul>
                     </td>
@@ -94,54 +108,6 @@
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(contributionRepository: <a href="../entitys/DbContribution.html" target="_self">Repository&lt;DbContribution&gt;</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/contribution/contribution.service.ts:11</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>contributionRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../entitys/DbContribution.html" target="_self" >Repository&lt;DbContribution&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -152,26 +118,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="use"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>use</b></span>
+                        <a href="#use"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(pageOptionsDto: <a href="../classes/ContributionPageOptionsDto.html" target="_self">ContributionPageOptionsDto</a>, repoId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>use(request: Request, response: Response, next: NextFunction)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/contribution/contribution.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="11"
+                            class="link-to-prism">src/common/middleware/http-logger.middleware.ts:11</a></div>
                 </td>
             </tr>
 
@@ -192,9 +156,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>pageOptionsDto</td>
+                                    <td>request</td>
                                     <td>
-                                                <code><a href="../classes/ContributionPageOptionsDto.html" target="_self" >ContributionPageOptionsDto</a></code>
+                                            <code>Request</code>
                                     </td>
 
                                     <td>
@@ -204,13 +168,25 @@
 
                                 </tr>
                                 <tr>
-                                    <td>repoId</td>
+                                    <td>response</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>Response</code>
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>next</td>
+                                    <td>
+                                            <code>NextFunction</code>
+                                    </td>
+
+                                    <td>
+                                        No
                                     </td>
 
 
@@ -221,7 +197,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbContribution&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -232,53 +208,78 @@
         </tbody>
     </table>
 </section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logger"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>logger</b></span>
+                        <a href="#logger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Logger(&#x60;HTTP&#x60;)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/common/middleware/http-logger.middleware.ts:9</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { Repository } from &quot;typeorm&quot;;
-import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
-import { DbContribution } from &quot;./contribution.entity&quot;;
-import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
-import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
-import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from &quot;./dtos/contribution-page-options.dto&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, Logger, NestMiddleware } from &quot;@nestjs/common&quot;;
+import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
+import { Request, Response, NextFunction } from &quot;express&quot;;
+
+import { cliDuration } from &quot;../util/cli-duration&quot;;
 
 @Injectable()
-export class ContributionService {
-  constructor (
-    @InjectRepository(DbContribution)
-    private contributionRepository: Repository&lt;DbContribution&gt;,
-  ) {}
+export class HttpLoggerMiddleware implements NestMiddleware {
+  private logger &#x3D; new Logger(&#x60;HTTP&#x60;);
 
-  async findAll (
-    pageOptionsDto: ContributionPageOptionsDto,
-    repoId?: number,
-  ): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
-    const queryBuilder &#x3D; this.contributionRepository.createQueryBuilder(&quot;contribution&quot;);
-    const orderField &#x3D; pageOptionsDto.orderBy ?? ContributionOrderFieldsEnum.count;
+  use (request: Request, response: Response, next: NextFunction) {
+    const startTime &#x3D; Date.now();
 
-    if (repoId) {
-      queryBuilder
-        .where(&quot;contribution.repo_id &#x3D; :repoId&quot;, { repoId });
-    }
+    response.on(&quot;finish&quot;, () &#x3D;&gt; {
+      const { method, originalUrl } &#x3D; request;
+      const { statusCode, statusMessage } &#x3D; response;
 
-    queryBuilder
-      .addOrderBy(&#x60;&quot;${orderField}&quot;&#x60;, pageOptionsDto.orderDirection)
-      .addOrderBy(&#x60;&quot;contribution&quot;.&quot;created_at&quot;&#x60;, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      const message &#x3D; &#x60;${method} ${originalUrl} ${statusCode} ${statusMessage}&#x60;;
 
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
+      if (statusCode &gt;&#x3D; 500) {
+        return this.logger.error(cliDuration(startTime, clc.red(message)));
+      }
 
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+      if (statusCode &gt;&#x3D; 400) {
+        return this.logger.warn(cliDuration(startTime, clc.magentaBright(message)));
+      }
 
-    return new PageDto(entities, pageMetaDto);
+      return this.logger.log(cliDuration(startTime, message));
+    });
+
+    next();
   }
 }
+
+export default HttpLoggerMiddleware;
 </code></pre>
     </div>
 
@@ -322,7 +323,7 @@ export class ContributionService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'ContributionService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'HttpLoggerMiddleware.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
