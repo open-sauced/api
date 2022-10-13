@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.15.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0-beta.1...v1.15.0-beta.2) (2022-10-13)
+
+
+### 🎨 Styles
+
+* remove extraneous console.logs ([e3d7bd7](https://github.com/open-sauced/api.opensauced.pizza/commit/e3d7bd71471c0c56e57372cbd0477aa9d351f270))
+
 ## [1.15.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.14.0...v1.15.0-beta.1) (2022-10-13)
 
 
