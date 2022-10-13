@@ -62,6 +62,7 @@ import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.mi
         ],
         synchronize: false,
         logger: (new DatabaseLoggerMiddleware),
+        maxQueryExecutionTime: configService.get("db.maxQueryExecutionTime"),
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
