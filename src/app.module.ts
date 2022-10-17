@@ -1,10 +1,12 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
 import { TerminusModule } from "@nestjs/terminus";
-import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
+import { LoggerModule } from "nestjs-pino";
 import { DataSource } from "typeorm";
+import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
+import { clc } from "@nestjs/common/utils/cli-colors.util";
 
 import { RepoModule } from "./repo/repo.module";
 import apiConfig from "./config/api.config";
@@ -25,6 +27,9 @@ import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
+import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
+import { version } from "../package.json";
+import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
 
 @Module({
   imports: [
@@ -56,8 +61,33 @@ import { UserModule } from "./user/user.module";
           DbRepoToUserStargazers,
         ],
         synchronize: false,
+        logger: (new DatabaseLoggerMiddleware),
+        maxQueryExecutionTime: configService.get("db.maxQueryExecutionTime"),
       }) as TypeOrmModuleOptions,
       inject: [ConfigService],
+    }),
+    LoggerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        pinoHttp: {
+          name: `os.${String(config.get("api.codename")).toLowerCase()}`,
+          level: config.get("api.logging"),
+          transport: {
+            target: "pino-pretty",
+            options: {
+              colorize: true,
+              levelFirst: true,
+              translateTime: "UTC:hh:MM:ss.l",
+              singleLine: true,
+              messageFormat: `${clc.yellow(`[{context}]`)} ${clc.green(`{msg}`)}`,
+              ignore: "pid,hostname,context",
+            },
+          },
+          customProps: () => ({ context: "HTTP" }),
+        },
+        exclude: [{ method: RequestMethod.ALL, path: "check" }],
+      }),
     }),
     TerminusModule,
     HttpModule,
@@ -76,4 +106,9 @@ import { UserModule } from "./user/user.module";
 })
 export class AppModule {
   constructor (private dataSource: DataSource) {}
+  configure (consumer: MiddlewareConsumer) {
+    consumer
+      .apply(HttpLoggerMiddleware)
+      .forRoutes(`v${version.charAt(0)}`);
+  }
 }
