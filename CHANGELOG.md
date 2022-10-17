@@ -5,6 +5,32 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.15.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.14.0...v1.15.0) (2022-10-17)
+
+
+### 🤖 Build System
+
+* implement minimal pino logger ([b991dad](https://github.com/open-sauced/api.opensauced.pizza/commit/b991dad01692fc137df53ba8b296111b0c76e4c3))
+
+
+### 🍕 Features
+
+* implement http and database logging capabilities ([3a662d0](https://github.com/open-sauced/api.opensauced.pizza/commit/3a662d0f9351264fd0d960a24666c0861d92015d)), closes [#37](https://github.com/open-sauced/api.opensauced.pizza/issues/37)
+
+
+### 🧑‍💻 Code Refactoring
+
+* correct http timestamp logging ([3782b21](https://github.com/open-sauced/api.opensauced.pizza/commit/3782b21f4039d6cb8728bad67b68a39a0d45527b))
+* correct type dependencies ([9895327](https://github.com/open-sauced/api.opensauced.pizza/commit/9895327a05b6a2dde5dd0161401cffc79f5e79d4))
+* improve sql logging and slow query timeout ([5385049](https://github.com/open-sauced/api.opensauced.pizza/commit/53850492591abf5c702db26145c2ed9c3e09bc67))
+* make logging beautiful everywhere ([99ac2c6](https://github.com/open-sauced/api.opensauced.pizza/commit/99ac2c6e85afbf2c48174cc2e7fdeb18466f0084))
+
+
+### 🎨 Styles
+
+* add fastify express middleware adapter linting ([fc74284](https://github.com/open-sauced/api.opensauced.pizza/commit/fc7428489ebd0f86d46492fa98f7aa26b546a517))
+* remove extraneous console.logs ([e3d7bd7](https://github.com/open-sauced/api.opensauced.pizza/commit/e3d7bd71471c0c56e57372cbd0477aa9d351f270))
+
 ## [1.15.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0-beta.1...v1.15.0-beta.2) (2022-10-13)
 
 

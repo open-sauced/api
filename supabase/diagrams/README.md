@@ -16,6 +16,7 @@
 | [public.private_access_tokens](public.private_access_tokens.md)           | 6       |         | BASE TABLE |
 | [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |         | BASE TABLE |
 | [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |         | BASE TABLE |
+| [public.users_to_repos_insights](public.users_to_repos_insights.md)       | 3       |         | BASE TABLE |
 
 ## Relations
 
