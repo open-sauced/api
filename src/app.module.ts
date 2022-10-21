@@ -30,6 +30,9 @@ import { UserModule } from "./user/user.module";
 import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
 import { version } from "../package.json";
 import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
+import { InsightsModule } from "./insight/insights.module";
+import { DbInsight } from "./insight/entities/insight.entity";
+import { DbInsightRepo } from "./insight/entities/insight-repo.entity";
 
 @Module({
   imports: [
@@ -59,6 +62,8 @@ import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.mi
           DbRepoToUserStars,
           DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
+          DbInsight,
+          DbInsightRepo,
         ],
         synchronize: false,
         logger: (new DatabaseLoggerMiddleware),
@@ -100,6 +105,7 @@ import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.mi
     SubmitModule,
     ContributionModule,
     UserModule,
+    InsightsModule,
   ],
   controllers: [],
   providers: [],
