@@ -48,7 +48,7 @@
     "docs:serve": "npm run docs -- --serve"
   },
   "dependencies": {
-    "@fastify/express": "^2.0.2",
+    "@fastify/express": "^2.1.0",
     "@fastify/helmet": "^10.0.0",
     "@fastify/rate-limit": "^7.4.0",
     "@fastify/static": "^6.5.0",
