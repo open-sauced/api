@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.16.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.1-beta.1...v1.16.0-beta.1) (2022-10-28)
+
+
+### 🍕 Features
+
+* add users insights controller ([#55](https://github.com/open-sauced/api.opensauced.pizza/issues/55)) ([c4addf6](https://github.com/open-sauced/api.opensauced.pizza/commit/c4addf65e8f8380c990cb620a9230738e886a9a7))
+
 ### [1.15.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0...v1.15.1-beta.1) (2022-10-28)
 
 

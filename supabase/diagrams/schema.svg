@@ -408,8 +408,8 @@
 <text text-anchor="start" x="3644" y="-945.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
 <text text-anchor="start" x="3693.7882" y="-945.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
 <polygon fill="none" stroke="#000000" points="3637,-904.5 3637,-934.5 3890,-934.5 3890,-904.5 3637,-904.5"/>
-<text text-anchor="start" x="3644" y="-915.9" font-family="Arial" font-size="14.00" fill="#000000">title </text>
-<text text-anchor="start" x="3669.6676" y="-915.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
+<text text-anchor="start" x="3644" y="-915.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
+<text text-anchor="start" x="3682.899" y="-915.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
 <polygon fill="none" stroke="#000000" points="3637,-874.5 3637,-904.5 3890,-904.5 3890,-874.5 3637,-874.5"/>
 <text text-anchor="start" x="3644" y="-885.9" font-family="Arial" font-size="14.00" fill="#000000">is_public </text>
 <text text-anchor="start" x="3702.3408" y="-885.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>

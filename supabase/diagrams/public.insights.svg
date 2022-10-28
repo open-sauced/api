@@ -24,8 +24,8 @@
 <text text-anchor="start" x="53.5" y="-236.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
 <text text-anchor="start" x="103.2882" y="-236.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
 <polygon fill="none" stroke="#000000" points="46.5,-195.5 46.5,-225.5 299.5,-225.5 299.5,-195.5 46.5,-195.5"/>
-<text text-anchor="start" x="53.5" y="-206.9" font-family="Arial" font-size="14.00" fill="#000000">title </text>
-<text text-anchor="start" x="79.1676" y="-206.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
+<text text-anchor="start" x="53.5" y="-206.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
+<text text-anchor="start" x="92.399" y="-206.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
 <polygon fill="none" stroke="#000000" points="46.5,-165.5 46.5,-195.5 299.5,-195.5 299.5,-165.5 46.5,-165.5"/>
 <text text-anchor="start" x="53.5" y="-176.9" font-family="Arial" font-size="14.00" fill="#000000">is_public </text>
 <text text-anchor="start" x="111.8408" y="-176.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>

@@ -10,12 +10,12 @@ Insight Pages
 | ----------- | ------------------------ | ------- | -------- | -------- | ------- | ------- |
 | id          | bigint                   |         | false    |          |         |         |
 | user_id     | bigint                   |         | false    |          |         |         |
-| title       | varchar                  |         | false    |          |         |         |
+| name        | varchar                  |         | false    |          |         |         |
 | is_public   | boolean                  | false   | true     |          |         |         |
 | is_favorite | boolean                  | false   | true     |          |         |         |
 | short_code  | varchar                  |         | true     |          |         |         |
 | created_at  | timestamp with time zone | now()   | true     |          |         |         |
-| updated_at  | timestamp with time zone |         | true     |          |         |         |
+| updated_at  | timestamp with time zone | now()   | true     |          |         |         |
 
 ## Constraints
 
