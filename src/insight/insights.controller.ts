@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -34,7 +34,7 @@ export class InsightsController {
     return this.insightsService.findAllByUserId(pageOptionsDto, userId);
   }
 
-  @Get("/")
+  @Post("/")
   @ApiOperation({
     operationId: "findAllByUserId",
     summary: "Listing all insights for a user and paginate them",
