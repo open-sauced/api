@@ -6,17 +6,21 @@
 
 ## Tables
 
-| Name                                                                      | Columns | Comment | Type       |
-| ------------------------------------------------------------------------- | ------- | ------- | ---------- |
-| [public.repos](public.repos.md)                                           | 18      |         | BASE TABLE |
-| [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
-| [public.users](public.users.md)                                           | 12      |         | BASE TABLE |
-| [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
-| [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
-| [public.private_access_tokens](public.private_access_tokens.md)           | 6       |         | BASE TABLE |
-| [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |         | BASE TABLE |
-| [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |         | BASE TABLE |
-| [public.users_to_repos_insights](public.users_to_repos_insights.md)       | 3       |         | BASE TABLE |
+| Name                                                                      | Columns | Comment                           | Type       |
+| ------------------------------------------------------------------------- | ------- | --------------------------------- | ---------- |
+| [public.repos](public.repos.md)                                           | 18      |                                   | BASE TABLE |
+| [public.contributions](public.contributions.md)                           | 9       |                                   | BASE TABLE |
+| [public.users](public.users.md)                                           | 12      |                                   | BASE TABLE |
+| [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |                                   | BASE TABLE |
+| [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |                                   | BASE TABLE |
+| [public.private_access_tokens](public.private_access_tokens.md)           | 6       |                                   | BASE TABLE |
+| [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |                                   | BASE TABLE |
+| [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |                                   | BASE TABLE |
+| [public.users_to_repos_insights](public.users_to_repos_insights.md)       | 3       |                                   | BASE TABLE |
+| [public.user_notifications](public.user_notifications.md)                 | 4       | Record of user notifications sent | BASE TABLE |
+| [public.insights](public.insights.md)                                     | 8       | Insight Pages                     | BASE TABLE |
+| [public.insight_repos](public.insight_repos.md)                           | 4       | Insights Repositories             | BASE TABLE |
+| [public.user_repos](public.user_repos.md)                                 | 4       |                                   | BASE TABLE |
 
 ## Relations
 

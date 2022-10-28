@@ -1,6 +1,6 @@
 {
   "name": "@open-sauced/api.opensauced.pizza",
-  "version": "1.15.0",
+  "version": "1.16.0-beta.1",
   "keywords": [],
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
   "author": "TED Vortex <ted.vortex@gmail.com>",
@@ -48,7 +48,7 @@
     "docs:serve": "npm run docs -- --serve"
   },
   "dependencies": {
-    "@fastify/express": "^2.0.2",
+    "@fastify/express": "^2.1.0",
     "@fastify/helmet": "^10.0.0",
     "@fastify/rate-limit": "^7.4.0",
     "@fastify/static": "^6.5.0",
