@@ -36,8 +36,8 @@ export class InsightsController {
 
   @Post("/")
   @ApiOperation({
-    operationId: "findAllByUserId",
-    summary: "Listing all insights for a user and paginate them",
+    operationId: "addInsightForUser",
+    summary: "Adds a new insight page for the authenticated user",
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
