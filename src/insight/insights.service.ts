@@ -26,14 +26,7 @@ export class InsightsService {
 
     queryBuilder.where("id = :id", { id });
 
-    let item: DbInsight | null;
-
-    try {
-      item = await queryBuilder.getOne();
-    } catch (e) {
-      // handle error
-      item = null;
-    }
+    const item: DbInsight | null = await queryBuilder.getOne();
 
     if (!item) {
       throw (new NotFoundException);

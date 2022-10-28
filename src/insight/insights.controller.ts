@@ -19,7 +19,7 @@ export class InsightsController {
 
   @Get("/")
   @ApiOperation({
-    operationId: "findAllByUserId",
+    operationId: "findAllInsightsByUserId",
     summary: "Listing all insights for a user and paginate them",
   })
   @ApiBearerAuth()
@@ -27,7 +27,7 @@ export class InsightsController {
   @ApiPaginatedResponse(DbInsight)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Insights not found" })
-  async findAllByUserId (
+  async findAllInsightsByUserId (
     @Query() pageOptionsDto: InsightPageOptionsDto,
       @UserId() userId: string,
   ): Promise<PageDto<DbInsight>> {

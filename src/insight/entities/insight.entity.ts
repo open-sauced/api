@@ -30,14 +30,14 @@ export class DbInsight extends BaseEntity {
   public user_id: number;
 
   @ApiModelProperty({
-    description: "Title",
-    example: "Stripe Team",
+    description: "Insight Page Name",
+    example: "Open Sauced Team",
   })
   @Column({
     type: "character varying",
     length: 255,
   })
-  public title: string;
+  public name: string;
 
   @ApiModelProperty({
     description: "Flag indicating insight visibility",
