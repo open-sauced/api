@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.15.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0...v1.15.1-beta.1) (2022-10-28)
+
+
+### 🐛 Bug Fixes
+
+* correct fastify dev dependency ([de9cea0](https://github.com/open-sauced/api.opensauced.pizza/commit/de9cea093b9cfc63d15d02b07e9ee415a7c7401e))
+
 ## [1.15.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.14.0...v1.15.0) (2022-10-17)
 
 
