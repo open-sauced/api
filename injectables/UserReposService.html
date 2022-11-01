@@ -28,16 +28,19 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content controller">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
 
 
+
+
+
 <ol class="breadcrumb">
-  <li>Controllers</li>
-  <li >AuthController</li>
+  <li>Injectables</li>
+  <li >UserReposService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,16 +58,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/auth/auth.controller.ts</code>
+            <code>src/user-repo/user-repos.service.ts</code>
         </p>
-
-            <p class="comment">
-                <h3>Prefix</h3>
-            </p>
-            <p class="comment">
-                <code>auth</code>
-            </p>
-
 
 
 
@@ -85,15 +80,18 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getSession" >getSession</a>
+                                <a href="#addUserRepo" >addUserRepo</a>
+                            </li>
+                            <li>
+                                <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#postOnboarding" >postOnboarding</a>
+                                <a href="#findAllByUserId" >findAllByUserId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#postWaitlist" >postWaitlist</a>
+                                <a href="#findOneById" >findOneById</a>
                             </li>
                         </ul>
                     </td>
@@ -108,6 +106,55 @@
 </section>
 
             <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userRepoRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserRepo&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/user-repo/user-repos.service.ts:12</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userRepoRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserRepo&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
     
     <h3 id="methods">
         Methods
@@ -116,111 +163,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getSession"></a>
+                    <a name="addUserRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>getSession</b></span>
-                        <a href="#getSession"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addUserRepo</b></span>
+                        <a href="#addUserRepo"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getSession(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;checkAuthSession&#x27;, summary: &#x27;Get authenticated session information&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@HttpCode(HttpStatus.OK)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/auth/auth.controller.ts:27</a></div>
+                    <code>addUserRepo(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>user</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SupabaseAuthDto.html" target="_self" >Promise&lt;SupabaseAuthDto&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="postOnboarding"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>postOnboarding</b></span>
-                        <a href="#postOnboarding"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, body: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;/onboarding&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postOnboarding&#x27;, summary: &#x27;Updates onboarding information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to update onboarding information for the user&#x27;})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/auth/auth.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:38</a></div>
                 </td>
             </tr>
 
@@ -253,7 +215,127 @@
 
                                 </tr>
                                 <tr>
-                                    <td>body</td>
+                                    <td>repoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserRepo&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllByUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllByUserId</b></span>
+                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllByUserId(pageOptionsDto: <a href="../classes/UserRepoOptionsDto.html" target="_self">UserRepoOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/UserRepoOptionsDto.html" target="_self" >UserRepoOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -270,7 +352,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserRepo&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -284,33 +366,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="postWaitlist"></a>
+                    <a name="findOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>postWaitlist</b></span>
-                        <a href="#postWaitlist"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findOneById</b></span>
+                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>postWaitlist(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;/waitlist&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postWaitlist&#x27;, summary: &#x27;Updates waitlist information for user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to update waitlist information for the user&#x27;})<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/auth/auth.controller.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -331,7 +406,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -348,7 +423,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserRepo&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -358,119 +433,83 @@
             </tr>
         </tbody>
     </table>
-</section>    </div>
+</section>
+
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
-import { SupabaseGuard } from &quot;./supabase.guard&quot;;
-import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
-import { User, UserId } from &quot;./supabase.user.decorator&quot;;
-import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
-import { UserService } from &quot;../user/user.service&quot;;
-import { UserReposService } from &quot;../user-repo/user-repos.service&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-@Controller(&quot;auth&quot;)
-@ApiTags(&quot;Authentication service&quot;)
-export class AuthController {
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+
+import { DbUserRepo } from &quot;./user-repo.entity&quot;;
+import { UserRepoOptionsDto } from &quot;./dtos/user-repo-options.dto&quot;;
+
+@Injectable()
+export class UserReposService {
   constructor (
-    private userService: UserService,
-    private userReposService: UserReposService,
+    @InjectRepository(DbUserRepo)
+    private userRepoRepository: Repository&lt;DbUserRepo&gt;,
   ) {}
 
-  @Get(&quot;/session&quot;)
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
-  @ApiOperation({
-    operationId: &quot;checkAuthSession&quot;,
-    summary: &quot;Get authenticated session information&quot;,
-  })
-  @ApiOkResponse({ type: SupabaseAuthDto })
-  @HttpCode(HttpStatus.OK)
-  async getSession (
-    @User() user: SupabaseAuthUser,
-  ): Promise&lt;SupabaseAuthDto&gt; {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
+  baseQueryBuilder (): SelectQueryBuilder&lt;DbUserRepo&gt; {
+    const builder &#x3D; this.userRepoRepository.createQueryBuilder(&quot;user_repos&quot;);
 
-    let onboarded &#x3D; false;
-    let insights_role &#x3D; 10;
-    let waitlisted &#x3D; false;
-
-    // check/insert user
-    try {
-      // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role_id } &#x3D; await this.userService.checkAddUser(user);
-
-      onboarded &#x3D; is_onboarded;
-      insights_role &#x3D; insights_role_id;
-      waitlisted &#x3D; is_waitlisted;
-    } catch (e) {
-      // leave onboarded as-is
-    }
-
-    return {
-      id: &#x60;${String(id)}&#x60;,
-      user_name: &#x60;${String(user_name)}&#x60;,
-      role,
-      email,
-      confirmed_at,
-      last_sign_in_at,
-      created_at,
-      updated_at,
-      is_onboarded: onboarded,
-      insights_role,
-      is_waitlisted: waitlisted,
-    };
+    return builder;
   }
 
-  @Post(&quot;/onboarding&quot;)
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
-  @ApiOperation({
-    operationId: &quot;postOnboarding&quot;,
-    summary: &quot;Updates onboarding information for user&quot;,
-  })
-  @ApiOkResponse({ type: SupabaseAuthDto })
-  @ApiNotFoundResponse({ description: &quot;Unable to update onboarding information for the user&quot; })
-  async postOnboarding (
-    @UserId() userId: number,
-      @Body() body: string,
-  ): Promise&lt;void&gt; {
-    const data &#x3D; JSON.parse(body) as { ids: number[] } | null;
+  async findOneById (id: number): Promise&lt;DbUserRepo&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    if (data &amp;&amp; Array.isArray(data.ids)) {
-      const repoIds &#x3D; data.ids;
+    queryBuilder.where(&quot;id &#x3D; :id&quot;, { id });
 
-      repoIds.forEach(async repoId &#x3D;&gt; {
-        await this.userReposService.addUserRepo(userId, repoId);
-      });
+    const item: DbUserRepo | null &#x3D; await queryBuilder.getOne();
+
+    if (!item) {
+      throw (new NotFoundException);
     }
 
-    return this.userService.updateOnboarding(userId);
+    return item;
   }
 
-  @Post(&quot;/waitlist&quot;)
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
-  @ApiOperation({
-    operationId: &quot;postWaitlist&quot;,
-    summary: &quot;Updates waitlist information for user&quot;,
-  })
-  @ApiOkResponse({ type: SupabaseAuthDto })
-  @ApiNotFoundResponse({ description: &quot;Unable to update waitlist information for the user&quot; })
-  async postWaitlist (
-    @UserId() userId: number,
-  ): Promise&lt;void&gt; {
-    return this.userService.updateWaitlistStatus(userId);
+  async addUserRepo (userId: number, repoId: number) {
+    const newUserRepo &#x3D; this.userRepoRepository.create({
+      user_id: userId,
+      repo_id: repoId,
+    });
+
+    return this.userRepoRepository.save(newUserRepo);
+  }
+
+  async findAllByUserId (
+    pageOptionsDto: UserRepoOptionsDto,
+    userId: string,
+  ): Promise&lt;PageDto&lt;DbUserRepo&gt;&gt; {
+    const queryBuilder &#x3D; this.userRepoRepository.createQueryBuilder(&quot;user_repos&quot;);
+
+    queryBuilder
+      .where(&quot;user_repos.user_id &#x3D; :userId&quot;, { userId });
+
+    queryBuilder
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }
 </code></pre>
     </div>
+
 </div>
-
-
-
 
 
 
@@ -509,8 +548,8 @@ export class AuthController {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'AuthController.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserReposService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
