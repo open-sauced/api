@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.17.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.16.0...v1.17.0-beta.1) (2022-11-01)
+
+
+### 🍕 Features
+
+* add associating users to repositories to onboarding endpoint ([#57](https://github.com/open-sauced/api.opensauced.pizza/issues/57)) ([cda2cb2](https://github.com/open-sauced/api.opensauced.pizza/commit/cda2cb2b9b3b3f3c84983f6ddc9fb08c7ac00dbc))
+
 ## [1.16.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0...v1.16.0) (2022-10-28)
 
 
