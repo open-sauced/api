@@ -33,6 +33,8 @@ import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.mi
 import { InsightsModule } from "./insight/insights.module";
 import { DbInsight } from "./insight/entities/insight.entity";
 import { DbInsightRepo } from "./insight/entities/insight-repo.entity";
+import { UserReposModule } from "./user-repo/user-repos.module";
+import { DbUserRepo } from "./user-repo/user-repo.entity";
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import { DbInsightRepo } from "./insight/entities/insight-repo.entity";
         autoLoadEntities: false,
         entities: [
           DbUser,
+          DbUserRepo,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
@@ -106,6 +109,7 @@ import { DbInsightRepo } from "./insight/entities/insight-repo.entity";
     ContributionModule,
     UserModule,
     InsightsModule,
+    UserReposModule,
   ],
   controllers: [],
   providers: [],
