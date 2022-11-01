@@ -26,14 +26,7 @@ export class UserReposService {
 
     queryBuilder.where("id = :id", { id });
 
-    let item: DbUserRepo | null;
-
-    try {
-      item = await queryBuilder.getOne();
-    } catch (e) {
-      // handle error
-      item = null;
-    }
+    const item: DbUserRepo | null = await queryBuilder.getOne();
 
     if (!item) {
       throw (new NotFoundException);
