@@ -16,7 +16,7 @@ export class UserReposService {
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbUserRepo> {
-    const builder = this.userRepoRepository.createQueryBuilder("insights");
+    const builder = this.userRepoRepository.createQueryBuilder("user_repos");
 
     return builder;
   }
