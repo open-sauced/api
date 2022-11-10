@@ -28,15 +28,19 @@ export class InsightsService {
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
-    if (!item) {
+    if (!item || !item.is_public) {
       throw (new NotFoundException);
     }
 
     return item;
   }
 
-  addInsight (insight: Omit<DbInsight, "id" | "created_at" | "updated_at">) {
-    return this.insightRepository.create({ ...insight });
+  async addInsight (insight: Omit<DbInsight, "id" | "created_at" | "updated_at">) {
+    const newInsight = this.insightRepository.create({ ...insight });
+
+    await newInsight.save();
+
+    return newInsight;
   }
 
   async findAllByUserId (
