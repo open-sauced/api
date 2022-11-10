@@ -79,6 +79,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addInsight" >addInsight</a>
                             </li>
                             <li>
@@ -164,6 +165,7 @@
                 <td class="col-md-4">
                     <a name="addInsight"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>addInsight</b></span>
                         <a href="#addInsight"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -171,15 +173,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addInsight(insight: <a href="../entitys/DbInsight.html" target="_self">Omit&lt;DbInsight | &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addInsight(insight: <a href="../entitys/DbInsight.html" target="_self">Omit&lt;DbInsight | &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/insight/insights.service.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/insight/insights.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -217,7 +220,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -286,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/insight/insights.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/insight/insights.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -450,7 +453,8 @@ export class InsightsService {
   async findOneById (id: number): Promise&lt;DbInsight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;id &#x3D; :id&quot;, { id });
+    queryBuilder.where(&quot;insights.id &#x3D; :id&quot;, { id })
+      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
 
     const item: DbInsight | null &#x3D; await queryBuilder.getOne();
 
@@ -461,8 +465,12 @@ export class InsightsService {
     return item;
   }
 
-  addInsight (insight: Omit&lt;DbInsight, &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;) {
-    return this.insightRepository.create({ ...insight });
+  async addInsight (insight: Omit&lt;DbInsight, &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;) {
+    const newInsight &#x3D; this.insightRepository.create({ ...insight });
+
+    await newInsight.save();
+
+    return newInsight;
   }
 
   async findAllByUserId (

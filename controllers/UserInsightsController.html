@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >InsightsController</li>
+  <li >UserInsightsController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/insight/insights.controller.ts</code>
+            <code>src/insight/user-insight.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -84,6 +84,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addInsightForUser" >addInsightForUser</a>
                             </li>
                             <li>
@@ -113,6 +114,7 @@
                 <td class="col-md-4">
                     <a name="addInsightForUser"></a>
                     <span class="name">
+                        <span class="modifier">Async</span>
                         <span ><b>addInsightForUser</b></span>
                         <a href="#addInsightForUser"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -120,7 +122,8 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addInsightForUser(body: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addInsightForUser(body: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -135,7 +138,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/insight/insights.controller.ts:46</a></div>
+                            class="link-to-prism">src/insight/user-insight.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -185,7 +188,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >DbInsight</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -225,7 +228,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/insight/insights.controller.ts:30</a></div>
+                            class="link-to-prism">src/insight/user-insight.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -303,7 +306,7 @@ import { InsightsService } from &quot;./insights.service&quot;;
 
 @Controller(&quot;user/insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
-export class InsightsController {
+export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
   ) {}
@@ -334,10 +337,10 @@ export class InsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to add user insight&quot; })
-  addInsightForUser (
+  async addInsightForUser (
     @Body() body: string,
       @UserId() userId: string,
-  ): DbInsight {
+  ): Promise&lt;DbInsight&gt; {
     const newInsight &#x3D; (JSON.parse(body) || {}) as DbInsight;
 
     return this.insightsService.addInsight({ ...newInsight, user_id: parseInt(userId) } as DbInsight);
@@ -388,7 +391,7 @@ export class InsightsController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'InsightsController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserInsightsController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
