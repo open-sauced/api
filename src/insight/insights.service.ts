@@ -24,7 +24,8 @@ export class InsightsService {
   async findOneById (id: number): Promise<DbInsight> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("id = :id", { id });
+    queryBuilder.where("insights.id = :id", { id })
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
@@ -35,8 +36,12 @@ export class InsightsService {
     return item;
   }
 
-  addInsight (insight: Omit<DbInsight, "id" | "created_at" | "updated_at">) {
-    return this.insightRepository.create({ ...insight });
+  async addInsight (insight: Omit<DbInsight, "id" | "created_at" | "updated_at">) {
+    const newInsight = this.insightRepository.create({ ...insight });
+
+    await newInsight.save();
+
+    return newInsight;
   }
 
   async findAllByUserId (

@@ -12,7 +12,7 @@ import { InsightsService } from "./insights.service";
 
 @Controller("user/insights")
 @ApiTags("Insights service")
-export class InsightsController {
+export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
   ) {}
@@ -43,10 +43,10 @@ export class InsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to add user insight" })
-  addInsightForUser (
+  async addInsightForUser (
     @Body() body: string,
       @UserId() userId: string,
-  ): DbInsight {
+  ): Promise<DbInsight> {
     const newInsight = (JSON.parse(body) || {}) as DbInsight;
 
     return this.insightsService.addInsight({ ...newInsight, user_id: parseInt(userId) } as DbInsight);
