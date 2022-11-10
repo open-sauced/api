@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.17.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0-beta.1...v1.17.0-beta.2) (2022-11-10)
+
+
+### 🐛 Bug Fixes
+
+* correct database loading backfill not saving user ([7cfc04b](https://github.com/open-sauced/api.opensauced.pizza/commit/7cfc04b1ad6cf9df852f01ddf0b6e028497b714e))
+
 ## [1.17.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.16.0...v1.17.0-beta.1) (2022-11-01)
 
 
