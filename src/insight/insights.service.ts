@@ -24,16 +24,13 @@ export class InsightsService {
   async findOneById (id: number): Promise<DbInsight> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("id = :id", { id });
+    queryBuilder.where("insights.id = :id", { id })
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
     if (!item) {
       throw (new NotFoundException);
-    }
-
-    if (!item.is_public) {
-      throw (new UnauthorizedException);
     }
 
     return item;
