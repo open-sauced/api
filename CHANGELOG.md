@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.17.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0-beta.2...v1.17.0-beta.3) (2022-11-10)
+
+
+### 🍕 Features
+
+* add endpoint to retrieve insight page by id ([#58](https://github.com/open-sauced/api.opensauced.pizza/issues/58)) ([648dbeb](https://github.com/open-sauced/api.opensauced.pizza/commit/648dbeb755ecdaeccb0175fd4bd58be8d245d45e))
+
 ## [1.17.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0-beta.1...v1.17.0-beta.2) (2022-11-10)
 
 
