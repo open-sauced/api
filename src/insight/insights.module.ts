@@ -4,7 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { DbInsight } from "./entities/insight.entity";
 import { DbInsightRepo } from "./entities/insight-repo.entity";
 import { InsightController } from "./insight.controller";
-import { UserInsightsController } from "./user-insights.controller";
+import { UserInsightsController } from "./user-insight.controller";
 import { InsightsService } from "./insights.service";
 
 @Module({

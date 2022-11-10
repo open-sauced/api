@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -28,8 +28,12 @@ export class InsightsService {
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
-    if (!item || !item.is_public) {
+    if (!item) {
       throw (new NotFoundException);
+    }
+
+    if (!item.is_public) {
+      throw (new UnauthorizedException);
     }
 
     return item;

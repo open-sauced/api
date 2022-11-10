@@ -1,5 +1,5 @@
 import { Controller, Get, Param } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 
 import { DbInsight } from "./entities/insight.entity";
 import { InsightsService } from "./insights.service";
@@ -18,6 +18,7 @@ export class InsightController {
   })
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Insight page not found" })
+  @ApiUnauthorizedResponse({ description: "Not Authorized to view this Insight" })
   async findInsightPageById (
     @Param("id") id: number,
   ): Promise<DbInsight> {
