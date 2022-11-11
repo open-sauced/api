@@ -364,8 +364,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/user/user.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/user/user.service.ts:65</a></div>
                 </td>
             </tr>
 
@@ -435,8 +435,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user/user.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/user/user.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -537,16 +537,14 @@ export class UserService {
     const id &#x3D; parseInt(github.id, 10);
 
     try {
-      const publicUser &#x3D; await this.findOneById(id);
-
-      return publicUser;
+      return await this.findOneById(id);
     } catch (e) {
       // create new user
       const newUser &#x3D; this.userRepository.create({
         id,
         is_open_sauced_member: false,
         login: user_name as string,
-        created_at: new Date(github.created_at),
+        created_at: (new Date),
         updated_at: new Date(github.updated_at ?? github.created_at),
       });
 
