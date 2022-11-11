@@ -5,6 +5,27 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.17.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0-beta.2...v1.17.0-beta.3) (2022-11-10)
+
+
+### 🍕 Features
+
+* add endpoint to retrieve insight page by id ([#58](https://github.com/open-sauced/api.opensauced.pizza/issues/58)) ([648dbeb](https://github.com/open-sauced/api.opensauced.pizza/commit/648dbeb755ecdaeccb0175fd4bd58be8d245d45e))
+
+## [1.17.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0-beta.1...v1.17.0-beta.2) (2022-11-10)
+
+
+### 🐛 Bug Fixes
+
+* correct database loading backfill not saving user ([7cfc04b](https://github.com/open-sauced/api.opensauced.pizza/commit/7cfc04b1ad6cf9df852f01ddf0b6e028497b714e))
+
+## [1.17.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.16.0...v1.17.0-beta.1) (2022-11-01)
+
+
+### 🍕 Features
+
+* add associating users to repositories to onboarding endpoint ([#57](https://github.com/open-sauced/api.opensauced.pizza/issues/57)) ([cda2cb2](https://github.com/open-sauced/api.opensauced.pizza/commit/cda2cb2b9b3b3f3c84983f6ddc9fb08c7ac00dbc))
+
 ## [1.16.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.15.0...v1.16.0) (2022-10-28)
 
 

@@ -40,21 +40,26 @@ export class UserService {
   }
 
   async checkAddUser (user: User): Promise<DbUser> {
-    const { user_metadata: { sub: id, user_name } } = user;
+    const { user_metadata: { user_name }, identities } = user;
+    const github = identities!.filter(identity => identity.provider === "github")[0];
+    const id = parseInt(github.id, 10);
 
     try {
-      const publicUser = await this.findOneById(id as number);
+      const publicUser = await this.findOneById(id);
 
       return publicUser;
     } catch (e) {
       // create new user
       const newUser = this.userRepository.create({
-        id: id as number,
+        id,
+        is_open_sauced_member: false,
         login: user_name as string,
-        created_at: new Date().toString(), // eslint-disable-line
+        created_at: new Date(github.created_at),
+        updated_at: new Date(github.updated_at ?? github.created_at),
       });
 
-      // return new user
+      await newUser.save();
+
       return newUser;
     }
   }

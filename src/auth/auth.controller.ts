@@ -1,15 +1,19 @@
-import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/user.service";
+import { UserReposService } from "../user-repo/user-repos.service";
 
 @Controller("auth")
 @ApiTags("Authentication service")
 export class AuthController {
-  constructor (private userService: UserService) {}
+  constructor (
+    private userService: UserService,
+    private userReposService: UserReposService,
+  ) {}
 
   @Get("/session")
   @ApiBearerAuth()
@@ -67,7 +71,18 @@ export class AuthController {
   @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
   async postOnboarding (
     @UserId() userId: number,
+      @Body() body: string,
   ): Promise<void> {
+    const data = JSON.parse(body) as { ids: number[] } | null;
+
+    if (data && Array.isArray(data.ids)) {
+      const repoIds = data.ids;
+
+      repoIds.forEach(async repoId => {
+        await this.userReposService.addUserRepo(userId, repoId);
+      });
+    }
+
     return this.userService.updateOnboarding(userId);
   }
 
