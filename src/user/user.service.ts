@@ -45,16 +45,14 @@ export class UserService {
     const id = parseInt(github.id, 10);
 
     try {
-      const publicUser = await this.findOneById(id);
-
-      return publicUser;
+      return await this.findOneById(id);
     } catch (e) {
       // create new user
       const newUser = this.userRepository.create({
         id,
         is_open_sauced_member: false,
         login: user_name as string,
-        created_at: new Date(github.created_at),
+        created_at: (new Date),
         updated_at: new Date(github.updated_at ?? github.created_at),
       });
 
