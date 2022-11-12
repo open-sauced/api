@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.17.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0...v1.17.1) (2022-11-12)
+
+
+### 🐛 Bug Fixes
+
+* correct open sauced member created_at timestamp ([89b5329](https://github.com/open-sauced/api.opensauced.pizza/commit/89b5329e7cce1b60274d126971b87d63cf476686))
+
 ### [1.17.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0...v1.17.1-beta.1) (2022-11-11)
 
 
