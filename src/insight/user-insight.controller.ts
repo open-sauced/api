@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { BadRequestException, Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
@@ -8,6 +8,7 @@ import { PageDto } from "../common/dtos/page.dto";
 
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 import { DbInsight } from "./entities/insight.entity";
+import { InsightRepoService } from "./insight-repo.service";
 import { InsightsService } from "./insights.service";
 
 @Controller("user/insights")
@@ -15,6 +16,7 @@ import { InsightsService } from "./insights.service";
 export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
+    private readonly insightsRepoService: InsightRepoService,
   ) {}
 
   @Get("/")
@@ -43,12 +45,30 @@ export class UserInsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to add user insight" })
+  @ApiBadRequestResponse({ description: "Invalid request"})
   async addInsightForUser (
     @Body() body: string,
-      @UserId() userId: string,
+      @UserId() userId: number,
   ): Promise<DbInsight> {
-    const newInsight = (JSON.parse(body) || {}) as DbInsight;
+    const data = (JSON.parse(body) || {}) as DbInsight & { ids: string[] };
 
-    return this.insightsService.addInsight({ ...newInsight, user_id: parseInt(userId) } as DbInsight);
+    if (!data.name || !Array.isArray(data.ids)) {
+      throw (new BadRequestException);
+    }
+
+    const newInsight = await this.insightsService.addInsight({
+      name: data.name,
+      user_id: userId,
+    });
+
+    if (Array.isArray(data.ids)) {
+      const repoIds = data.ids;
+
+      repoIds.forEach(async repoId => {
+        await this.insightsRepoService.addInsightRepo(newInsight.id, parseInt(repoId, 10));
+      });
+    }
+
+    return newInsight;
   }
 }
