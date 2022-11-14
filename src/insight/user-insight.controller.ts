@@ -45,7 +45,7 @@ export class UserInsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to add user insight" })
-  @ApiBadRequestResponse({ description: "Invalid request"})
+  @ApiBadRequestResponse({ description: "Invalid request" })
   async addInsightForUser (
     @Body() body: string,
       @UserId() userId: number,
