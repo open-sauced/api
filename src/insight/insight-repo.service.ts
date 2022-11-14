@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { Repository, SelectQueryBuilder } from "typeorm";
+import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbInsightRepo } from "./entities/insight-repo.entity";
@@ -10,12 +10,6 @@ export class InsightRepoService {
     @InjectRepository(DbInsightRepo)
     private insightRepoRepository: Repository<DbInsightRepo>,
   ) {}
-
-  baseQueryBuilder (): SelectQueryBuilder<DbInsightRepo> {
-    const builder = this.insightRepoRepository.createQueryBuilder("insights");
-
-    return builder;
-  }
 
   async addInsightRepo (insightId: number, repoId: number) {
     const newInsightRepo = this.insightRepoRepository.create({ insight_id: insightId, repo_id: repoId });
