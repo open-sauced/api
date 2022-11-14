@@ -12,9 +12,9 @@ export class InsightRepoService {
   ) {}
 
   async addInsightRepo (insightId: number, repoId: number) {
-    const newInsightRepo = this.insightRepoRepository.create({ insight_id: insightId, repo_id: repoId });
+    const createdInsightRepo = this.insightRepoRepository.create({ insight_id: insightId, repo_id: repoId });
 
-    await newInsightRepo.save();
+    const newInsightRepo = await createdInsightRepo.save();
 
     return newInsightRepo;
   }
