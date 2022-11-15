@@ -1,10 +1,11 @@
 import { BadRequestException, Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse } from "@nestjs/swagger";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
+import { CreateInsightDto } from "./dtos/create-insight.dto";
 
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 import { DbInsight } from "./entities/insight.entity";
@@ -46,26 +47,25 @@ export class UserInsightsController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to add user insight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiBody({ type: CreateInsightDto })
   async addInsightForUser (
-    @Body() body: string,
+    @Body() body: CreateInsightDto,
       @UserId() userId: number,
   ): Promise<DbInsight> {
-    const data = (JSON.parse(body) || {}) as DbInsight & { ids: string[] };
-
-    if (!data.name || !Array.isArray(data.ids)) {
+    if (!body.name || !Array.isArray(body.ids)) {
       throw (new BadRequestException);
     }
 
     const newInsight = await this.insightsService.addInsight({
-      name: data.name,
+      name: body.name,
       user_id: userId,
     });
 
-    if (Array.isArray(data.ids)) {
-      const repoIds = data.ids;
+    if (Array.isArray(body.ids)) {
+      const repoIds = body.ids;
 
       repoIds.forEach(async repoId => {
-        await this.insightsRepoService.addInsightRepo(newInsight.id, parseInt(repoId, 10));
+        await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
       });
     }
 
