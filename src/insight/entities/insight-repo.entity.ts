@@ -6,6 +6,7 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
@@ -20,6 +21,7 @@ export class DbInsightRepo extends BaseEntity {
     example: 237133,
   })
   @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   public id!: number;
 
   @ApiModelProperty({

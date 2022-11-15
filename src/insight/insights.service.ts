@@ -36,10 +36,10 @@ export class InsightsService {
     return item;
   }
 
-  async addInsight (insight: Omit<DbInsight, "id" | "created_at" | "updated_at">) {
-    const newInsight = this.insightRepository.create({ ...insight });
+  async addInsight (insight: Partial<DbInsight>) {
+    const createdInsight = this.insightRepository.create({ ...insight });
 
-    await newInsight.save();
+    const newInsight = await createdInsight.save();
 
     return newInsight;
   }
