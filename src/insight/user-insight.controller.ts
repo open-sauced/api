@@ -49,25 +49,23 @@ export class UserInsightsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateInsightDto })
   async addInsightForUser (
-    @Body() body: CreateInsightDto,
+    @Body() createInsightDto: CreateInsightDto,
       @UserId() userId: number,
   ): Promise<DbInsight> {
-    if (!body.name || !Array.isArray(body.ids)) {
+    if (!createInsightDto.name || !Array.isArray(createInsightDto.ids)) {
       throw (new BadRequestException);
     }
 
     const newInsight = await this.insightsService.addInsight({
-      name: body.name,
+      name: createInsightDto.name,
       user_id: userId,
     });
 
-    if (Array.isArray(body.ids)) {
-      const repoIds = body.ids;
+    const repoIds = createInsightDto.ids;
 
-      repoIds.forEach(async repoId => {
-        await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
-      });
-    }
+    repoIds.forEach(async repoId => {
+      await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
+    });
 
     return newInsight;
   }
