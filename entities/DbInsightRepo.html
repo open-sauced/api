@@ -143,7 +143,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -173,13 +173,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133})<br />@PrimaryColumn()<br />
+                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133})<br />@PrimaryColumn()<br />@PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:23</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -215,7 +215,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -251,7 +251,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -287,7 +287,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -307,6 +307,7 @@
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
+  PrimaryGeneratedColumn,
 } from &quot;typeorm&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
@@ -321,6 +322,7 @@ export class DbInsightRepo extends BaseEntity {
     example: 237133,
   })
   @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   public id!: number;
 
   @ApiModelProperty({

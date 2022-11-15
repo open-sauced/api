@@ -174,7 +174,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsight(insight: <a href="../entitys/DbInsight.html" target="_self">Omit&lt;DbInsight | &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;</a>)</code>
+                    <code>addInsight(insight: <a href="../entitys/DbInsight.html" target="_self">Partial&lt;DbInsight&gt;</a>)</code>
                 </td>
             </tr>
 
@@ -205,7 +205,7 @@
                                 <tr>
                                     <td>insight</td>
                                     <td>
-                                                <code><a href="../entitys/DbInsight.html" target="_self" >Omit&lt;DbInsight | &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;</a></code>
+                                                <code><a href="../entitys/DbInsight.html" target="_self" >Partial&lt;DbInsight&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -465,10 +465,10 @@ export class InsightsService {
     return item;
   }
 
-  async addInsight (insight: Omit&lt;DbInsight, &quot;id&quot; | &quot;created_at&quot; | &quot;updated_at&quot;&gt;) {
-    const newInsight &#x3D; this.insightRepository.create({ ...insight });
+  async addInsight (insight: Partial&lt;DbInsight&gt;) {
+    const createdInsight &#x3D; this.insightRepository.create({ ...insight });
 
-    await newInsight.save();
+    const newInsight &#x3D; await createdInsight.save();
 
     return newInsight;
   }

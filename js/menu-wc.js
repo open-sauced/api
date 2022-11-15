@@ -152,13 +152,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/InsightsModule.html" data-type="entity-link" >InsightsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' : 'data-target="#xs-controllers-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' }>
+                                            'data-target="#controllers-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' : 'data-target="#xs-controllers-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' :
-                                            'id="xs-controllers-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' :
+                                            'id="xs-controllers-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' }>
                                             <li class="link">
                                                 <a href="controllers/InsightController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >InsightController</a>
                                             </li>
@@ -169,13 +169,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' : 'data-target="#xs-injectables-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' }>
+                                        'data-target="#injectables-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' : 'data-target="#xs-injectables-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' :
-                                        'id="xs-injectables-links-module-InsightsModule-a243def07b70f7fb480d514904a35305c247589bfd0f3ac64c8bbb058d864703a1598955bf1de80ae11bb52a287cb9773644c0966848e63072424ae07442f99d"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' :
+                                        'id="xs-injectables-links-module-InsightsModule-47ff4d9886596034126695fee46e1af69716777667f54d117d525fb1617ee2b9f0d28a99415f0eba5851a534db1afe6330aba1c8b7e6263759842612e96326fe"' }>
+                                        <li class="link">
+                                            <a href="injectables/InsightRepoService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >InsightRepoService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/InsightsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >InsightsService</a>
                                         </li>
@@ -435,6 +438,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
                                 <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateInsightDto.html" data-type="entity-link" >CreateInsightDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/DatabaseLoggerMiddleware.html" data-type="entity-link" >DatabaseLoggerMiddleware</a>

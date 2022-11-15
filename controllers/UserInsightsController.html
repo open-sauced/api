@@ -123,7 +123,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsightForUser(body: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>addInsightForUser(createInsightDto: <a href="../classes/CreateInsightDto.html" target="_self">CreateInsightDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -131,14 +131,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addInsightForUser&#x27;, summary: &#x27;Adds a new insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user insight&#x27;})<br /></code>
+                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addInsightForUser&#x27;, summary: &#x27;Adds a new insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user insight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateInsightDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -159,9 +159,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>body</td>
+                                    <td>createInsightDto</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/CreateInsightDto.html" target="_self" >CreateInsightDto</a></code>
                                     </td>
 
                                     <td>
@@ -173,7 +173,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -227,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -292,16 +292,18 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Body, Controller, Get, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { CreateInsightDto } from &quot;./dtos/create-insight.dto&quot;;
 
 import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
+import { InsightRepoService } from &quot;./insight-repo.service&quot;;
 import { InsightsService } from &quot;./insights.service&quot;;
 
 @Controller(&quot;user/insights&quot;)
@@ -309,6 +311,7 @@ import { InsightsService } from &quot;./insights.service&quot;;
 export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
+    private readonly insightsRepoService: InsightRepoService,
   ) {}
 
   @Get(&quot;/&quot;)
@@ -337,13 +340,28 @@ export class UserInsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to add user insight&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiBody({ type: CreateInsightDto })
   async addInsightForUser (
-    @Body() body: string,
-      @UserId() userId: string,
+    @Body() createInsightDto: CreateInsightDto,
+      @UserId() userId: number,
   ): Promise&lt;DbInsight&gt; {
-    const newInsight &#x3D; (JSON.parse(body) || {}) as DbInsight;
+    if (!createInsightDto.name || !Array.isArray(createInsightDto.ids)) {
+      throw (new BadRequestException);
+    }
 
-    return this.insightsService.addInsight({ ...newInsight, user_id: parseInt(userId) } as DbInsight);
+    const newInsight &#x3D; await this.insightsService.addInsight({
+      name: createInsightDto.name,
+      user_id: userId,
+    });
+
+    const repoIds &#x3D; createInsightDto.ids;
+
+    repoIds.forEach(async repoId &#x3D;&gt; {
+      await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
+    });
+
+    return newInsight;
   }
 }
 </code></pre>
