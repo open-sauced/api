@@ -58,6 +58,7 @@ export class UserInsightsController {
 
     const newInsight = await this.insightsService.addInsight({
       name: createInsightDto.name,
+      is_public: createInsightDto.is_public,
       user_id: userId,
     });
 

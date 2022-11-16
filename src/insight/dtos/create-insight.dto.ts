@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsString } from "class-validator";
 
 export class CreateInsightDto {
   @ApiProperty({
@@ -9,6 +9,14 @@ export class CreateInsightDto {
   })
   @IsString()
     name: string;
+
+  @ApiProperty({
+    description: "Insight Page Visibility",
+    type: Boolean,
+    example: false,
+  })
+  @IsBoolean()
+    is_public: boolean;
 
   @ApiProperty({
     description: "An array of repository IDs",
