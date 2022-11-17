@@ -1,13 +1,15 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { BadRequestException, Body, Controller, Get, Post, Query, UseGuards } from "@nestjs/common";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
+import { CreateInsightDto } from "./dtos/create-insight.dto";
 
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 import { DbInsight } from "./entities/insight.entity";
+import { InsightRepoService } from "./insight-repo.service";
 import { InsightsService } from "./insights.service";
 
 @Controller("user/insights")
@@ -15,6 +17,7 @@ import { InsightsService } from "./insights.service";
 export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
+    private readonly insightsRepoService: InsightRepoService,
   ) {}
 
   @Get("/")
@@ -43,12 +46,28 @@ export class UserInsightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to add user insight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiBody({ type: CreateInsightDto })
   async addInsightForUser (
-    @Body() body: string,
-      @UserId() userId: string,
+    @Body() createInsightDto: CreateInsightDto,
+      @UserId() userId: number,
   ): Promise<DbInsight> {
-    const newInsight = (JSON.parse(body) || {}) as DbInsight;
+    if (!createInsightDto.name || !Array.isArray(createInsightDto.ids)) {
+      throw (new BadRequestException);
+    }
 
-    return this.insightsService.addInsight({ ...newInsight, user_id: parseInt(userId) } as DbInsight);
+    const newInsight = await this.insightsService.addInsight({
+      name: createInsightDto.name,
+      is_public: createInsightDto.is_public,
+      user_id: userId,
+    });
+
+    const repoIds = createInsightDto.ids;
+
+    repoIds.forEach(async repoId => {
+      await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
+    });
+
+    return newInsight;
   }
 }

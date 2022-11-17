@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.18.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.18.0-beta.1...v1.18.0-beta.2) (2022-11-16)
+
+
+### 🐛 Bug Fixes
+
+* add visibility flag to insight page creation ([#64](https://github.com/open-sauced/api.opensauced.pizza/issues/64)) ([2ddb855](https://github.com/open-sauced/api.opensauced.pizza/commit/2ddb8559702a02d5dbff645696a7d4c6d68744b2))
+
+## [1.18.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.1...v1.18.0-beta.1) (2022-11-15)
+
+
+### 🍕 Features
+
+* add repos when creating an insight page ([#63](https://github.com/open-sauced/api.opensauced.pizza/issues/63)) ([1f021a4](https://github.com/open-sauced/api.opensauced.pizza/commit/1f021a48cb3f962d3b9e387b017638a442672996))
+
 ### [1.17.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.17.0...v1.17.1) (2022-11-12)
 
 
