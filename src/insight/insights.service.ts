@@ -37,11 +37,7 @@ export class InsightsService {
   }
 
   async addInsight (insight: Partial<DbInsight>) {
-    const createdInsight = this.insightRepository.create({ ...insight });
-
-    const newInsight = await createdInsight.save();
-
-    return newInsight;
+    return this.insightRepository.save(insight);
   }
 
   async findAllByUserId (
