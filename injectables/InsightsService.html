@@ -289,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/insight/insights.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/insight/insights.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -466,11 +466,7 @@ export class InsightsService {
   }
 
   async addInsight (insight: Partial&lt;DbInsight&gt;) {
-    const createdInsight &#x3D; this.insightRepository.create({ ...insight });
-
-    const newInsight &#x3D; await createdInsight.save();
-
-    return newInsight;
+    return this.insightRepository.save(insight);
   }
 
   async findAllByUserId (

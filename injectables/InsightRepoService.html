@@ -251,11 +251,7 @@ export class InsightRepoService {
   ) {}
 
   async addInsightRepo (insightId: number, repoId: number) {
-    const createdInsightRepo &#x3D; this.insightRepoRepository.create({ insight_id: insightId, repo_id: repoId });
-
-    const newInsightRepo &#x3D; await createdInsightRepo.save();
-
-    return newInsightRepo;
+    return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repoId });
   }
 }
 </code></pre>
