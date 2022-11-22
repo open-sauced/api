@@ -1,5 +1,5 @@
-import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from "@nestjs/swagger";
+import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Query, UnauthorizedException, UnprocessableEntityException, UseGuards } from "@nestjs/common";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
@@ -82,6 +82,7 @@ export class UserInsightsController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to update user insight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to unable insight repos" })
   @ApiBody({ type: UpdateInsightDto })
   async updateInsightForUser (
     @Param("id") id: number,
@@ -100,23 +101,27 @@ export class UserInsightsController {
       is_public: updateInsightDto.is_public,
     });
 
-    // current set of insight repos
-    const currentRepos = insight.repos.filter(insightRepo => !insightRepo.deleted_at);
+    try {
+      // current set of insight repos
+      const currentRepos = insight.repos.filter(insightRepo => !insightRepo.deleted_at);
 
-    // remove deleted repos
-    const reposToRemove = currentRepos.filter(repo => !updateInsightDto.ids.find(id => `${id}` === `${repo.repo_id}`));
+      // remove deleted repos
+      const reposToRemove = currentRepos.filter(repo => !updateInsightDto.ids.find(id => `${id}` === `${repo.repo_id}`));
 
-    reposToRemove.forEach(async insightRepo => {
-      await this.insightsRepoService.removeInsightRepo(insightRepo.id);
-    });
+      const reposToRemoveRequests = reposToRemove.map(async insightRepo => this.insightsRepoService.removeInsightRepo(insightRepo.id));
 
-    // add new repos
-    const currentRepoIds = currentRepos.map(cr => cr.repo_id);
-    const reposToAdd = updateInsightDto.ids.filter(repoId => !currentRepoIds.find(id => `${id}` === `${repoId}`));
+      await Promise.all(reposToRemoveRequests);
 
-    reposToAdd.forEach(async repoId => {
-      await this.insightsRepoService.addInsightRepo(insight.id, repoId);
-    });
+      // add new repos
+      const currentRepoIds = currentRepos.map(cr => cr.repo_id);
+      const reposToAdd = updateInsightDto.ids.filter(repoId => !currentRepoIds.find(id => `${id}` === `${repoId}`));
+
+      const repoToAddRequests = reposToAdd.map(async repoId => this.insightsRepoService.addInsightRepo(insight.id, repoId));
+
+      await Promise.all(repoToAddRequests);
+    } catch (e) {
+      throw new (UnprocessableEntityException);
+    }
 
     return this.insightsService.findOneById(id);
   }
