@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS public.insights
     short_code character varying COLLATE pg_catalog."default",
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now(),
+    deleted_at timestamp without time zone DEFAULT null,
     CONSTRAINT insights_pkey PRIMARY KEY (id)
 )
 

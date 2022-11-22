@@ -1,5 +1,8 @@
-import { Controller, Get, Param } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
+import { Controller, Delete, Get, Param, UnauthorizedException, UseGuards } from "@nestjs/common";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse, ApiBadRequestResponse, ApiBearerAuth, ApiBody } from "@nestjs/swagger";
+import { SupabaseGuard } from "../auth/supabase.guard";
+import { UserId } from "../auth/supabase.user.decorator";
+import { UpdateInsightDto } from "./dtos/update-insight.dto";
 
 import { DbInsight } from "./entities/insight.entity";
 import { InsightsService } from "./insights.service";
@@ -23,5 +26,29 @@ export class InsightController {
     @Param("id") id: number,
   ): Promise<DbInsight> {
     return this.insightsService.findOneById(id);
+  }
+
+  @Delete("/:id")
+  @ApiOperation({
+    operationId: "removeInsightForUser",
+    summary: "Removes an insight page for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbInsight })
+  @ApiNotFoundResponse({ description: "Unable to remove user insight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiBody({ type: UpdateInsightDto })
+  async removeInsightForUser (
+    @Param("id") id: number,
+      @UserId() userId: number,
+  ): Promise<void> {
+    const insight = await this.insightsService.findOneById(id);
+
+    if (insight.user_id !== userId) {
+      throw new (UnauthorizedException);
+    }
+
+    await this.insightsService.removeInsight(id);
   }
 }

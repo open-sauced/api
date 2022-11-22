@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
   OneToMany,
   PrimaryGeneratedColumn,
+  DeleteDateColumn,
 } from "typeorm";
 
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
@@ -84,6 +85,16 @@ export class DbInsight extends BaseEntity {
     default: () => "now()",
   })
   public updated_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing insight deletion",
+    example: "2022-10-19 13:24:51.000000",
+  })
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    default: () => "now()",
+  })
+  public deleted_at?: Date;
 
   @ApiHideProperty()
   @OneToMany(() => DbInsightRepo, insightRepo => insightRepo.insight)

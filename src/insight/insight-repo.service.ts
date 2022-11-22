@@ -14,4 +14,8 @@ export class InsightRepoService {
   async addInsightRepo (insightId: number, repoId: number) {
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repoId });
   }
+
+  async removeInsightRepo (id: number) {
+    return this.insightRepoRepository.softDelete(id);
+  }
 }

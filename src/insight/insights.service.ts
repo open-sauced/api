@@ -40,6 +40,14 @@ export class InsightsService {
     return this.insightRepository.save(insight);
   }
 
+  async updateInsight (id: number, insight: Partial<DbInsight>) {
+    return this.insightRepository.update(id, insight);
+  }
+
+  async removeInsight (id: number) {
+    return this.insightRepository.softDelete(id);
+  }
+
   async findAllByUserId (
     pageOptionsDto: InsightPageOptionsDto,
     userId: string,

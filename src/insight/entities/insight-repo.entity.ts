@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  DeleteDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
@@ -47,6 +48,16 @@ export class DbInsightRepo extends BaseEntity {
     default: () => "now()",
   })
   public created_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing insight repo deletion",
+    example: "2022-10-19 13:24:51.000000",
+  })
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    default: () => "now()",
+  })
+  public deleted_at?: Date;
 
   @ApiHideProperty()
   @ManyToOne(() => DbInsight, insight => insight.repos)
