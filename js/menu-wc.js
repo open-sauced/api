@@ -464,6 +464,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/SupabaseAuthDto.html" data-type="entity-link" >SupabaseAuthDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/UpdateInsightDto.html" data-type="entity-link" >UpdateInsightDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/UserRepoOptionsDto.html" data-type="entity-link" >UserRepoOptionsDto</a>
                             </li>
                         </ul>

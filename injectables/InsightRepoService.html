@@ -82,6 +82,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#addInsightRepo" >addInsightRepo</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeInsightRepo" >removeInsightRepo</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -231,6 +235,77 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeInsightRepo"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeInsightRepo</b></span>
+                        <a href="#removeInsightRepo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeInsightRepo(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -252,6 +327,10 @@ export class InsightRepoService {
 
   async addInsightRepo (insightId: number, repoId: number) {
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repoId });
+  }
+
+  async removeInsightRepo (id: number) {
+    return this.insightRepoRepository.softDelete(id);
   }
 }
 </code></pre>
