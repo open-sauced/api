@@ -12,6 +12,7 @@ Insights Repositories
 | insight_id | bigint                   |         | false    |          |         |         |
 | repo_id    | bigint                   |         | false    |          |         |         |
 | created_at | timestamp with time zone | now()   | true     |          |         |         |
+| deleted_at | timestamp with time zone |         | true     |          |         |         |
 
 ## Constraints
 
