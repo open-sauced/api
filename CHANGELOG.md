@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.19.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.18.1...v1.19.0) (2022-11-29)
+
+
+### 🍕 Features
+
+* add endpoints to update/remove insight page ([#68](https://github.com/open-sauced/api.opensauced.pizza/issues/68)) ([df56c4f](https://github.com/open-sauced/api.opensauced.pizza/commit/df56c4fd6e67ae0ee31bbb268ef163a5679bc576))
+
 ## [1.19.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.18.1-beta.1...v1.19.0-beta.1) (2022-11-22)
 
 
