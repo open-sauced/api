@@ -12,6 +12,13 @@
 
 * add endpoints to update/remove insight page ([#68](https://github.com/open-sauced/api.opensauced.pizza/issues/68)) ([df56c4f](https://github.com/open-sauced/api.opensauced.pizza/commit/df56c4fd6e67ae0ee31bbb268ef163a5679bc576))
 
+### [1.18.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.18.0...v1.18.1) (2022-11-18)
+
+
+### 🐛 Bug Fixes
+
+* use save operation directly for insights, insight repos ([#66](https://github.com/open-sauced/api.opensauced.pizza/issues/66)) ([bd25889](https://github.com/open-sauced/api.opensauced.pizza/commit/bd25889ef390abd2b4ca212f904d7426c1c9241d))
+
 ### [1.18.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.18.0...v1.18.1-beta.1) (2022-11-18)
 
 
