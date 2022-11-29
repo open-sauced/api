@@ -16,6 +16,7 @@ Insight Pages
 | short_code  | varchar                  |         | true     |          |         |         |
 | created_at  | timestamp with time zone | now()   | true     |          |         |         |
 | updated_at  | timestamp with time zone | now()   | true     |          |         |         |
+| deleted_at  | timestamp with time zone |         | true     |          |         |         |
 
 ## Constraints
 

@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS public.insight_repos
     insight_id bigint NOT NULL,
     repo_id bigint NOT NULL,
     created_at timestamp with time zone DEFAULT now(),
+    deleted_at timestamp without time zone DEFAULT null,
     CONSTRAINT insights_to_repos_pkey PRIMARY KEY (id)
 )
 

@@ -18,8 +18,8 @@
 | [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |                                   | BASE TABLE |
 | [public.users_to_repos_insights](public.users_to_repos_insights.md)       | 3       |                                   | BASE TABLE |
 | [public.user_notifications](public.user_notifications.md)                 | 4       | Record of user notifications sent | BASE TABLE |
-| [public.insights](public.insights.md)                                     | 8       | Insight Pages                     | BASE TABLE |
-| [public.insight_repos](public.insight_repos.md)                           | 4       | Insights Repositories             | BASE TABLE |
+| [public.insights](public.insights.md)                                     | 9       | Insight Pages                     | BASE TABLE |
+| [public.insight_repos](public.insight_repos.md)                           | 5       | Insights Repositories             | BASE TABLE |
 | [public.user_repos](public.user_repos.md)                                 | 4       |                                   | BASE TABLE |
 
 ## Relations
