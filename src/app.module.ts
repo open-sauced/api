@@ -35,6 +35,8 @@ import { DbInsight } from "./insight/entities/insight.entity";
 import { DbInsightRepo } from "./insight/entities/insight-repo.entity";
 import { UserReposModule } from "./user-repo/user-repos.module";
 import { DbUserRepo } from "./user-repo/user-repo.entity";
+import { DbCustomer } from "./customer/customer.entity";
+import { CustomerModule } from "./customer/customer.module";
 
 @Module({
   imports: [
@@ -67,6 +69,7 @@ import { DbUserRepo } from "./user-repo/user-repo.entity";
           DbRepoToUserStargazers,
           DbInsight,
           DbInsightRepo,
+          DbCustomer,
         ],
         synchronize: false,
         logger: (new DatabaseLoggerMiddleware),
@@ -110,6 +113,7 @@ import { DbUserRepo } from "./user-repo/user-repo.entity";
     UserModule,
     InsightsModule,
     UserReposModule,
+    CustomerModule,
   ],
   controllers: [],
   providers: [],

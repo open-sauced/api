@@ -5,9 +5,11 @@ import { SupabaseStrategy } from "./supabase.strategy";
 import { AuthController } from "./auth.controller";
 import { UserModule } from "../user/user.module";
 import { UserReposModule } from "../user-repo/user-repos.module";
+import { StripeModule } from "../stripe/stripe.module";
+import { CustomerModule } from "../customer/customer.module";
 
 @Module({
-  imports: [PassportModule, UserModule, UserReposModule],
+  imports: [PassportModule, UserModule, UserReposModule, StripeModule, CustomerModule],
   providers: [SupabaseStrategy, SupabaseGuard],
   exports: [SupabaseStrategy, SupabaseGuard],
   controllers: [AuthController],

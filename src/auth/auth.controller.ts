@@ -6,6 +6,8 @@ import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/user.service";
 import { UserReposService } from "../user-repo/user-repos.service";
+import { StripeService } from "../stripe/stripe.service";
+import { CustomerService } from "../customer/customer.service";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -13,6 +15,8 @@ export class AuthController {
   constructor (
     private userService: UserService,
     private userReposService: UserReposService,
+    private stripeService: StripeService,
+    private customerService: CustomerService,
   ) {}
 
   @Get("/session")
@@ -99,5 +103,34 @@ export class AuthController {
     @UserId() userId: number,
   ): Promise<void> {
     return this.userService.updateWaitlistStatus(userId);
+  }
+
+  @Post("/checkout/session")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "postCreateCheckoutSession",
+    summary: "Creates a new checkout session for the user",
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to create checkout session" })
+  async postCreateCheckoutSession (
+    @User() user: SupabaseAuthUser,
+  ): Promise<{ sessionId: string }> {
+    const { email, user_metadata: { sub } } = user;
+    const id = sub as number;
+    const customer = await this.customerService.findById(id);
+    let customerId: string;
+
+    if (customer) {
+      customerId = customer.stripe_customer_id;
+    } else {
+      const stripeCustomer = await this.stripeService.addCustomer(id, email);
+      const newCustomer = await this.customerService.addCustomer(id, stripeCustomer.id);
+
+      customerId = newCustomer.stripe_customer_id;
+    }
+
+    return this.stripeService.createCheckoutSession(customerId);
   }
 }
