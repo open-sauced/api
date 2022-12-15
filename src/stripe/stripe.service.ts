@@ -30,8 +30,8 @@ export class StripeService {
         },
       ],
       mode: "subscription",
-      success_url: `${this.configService.get<string>("NEXT_PUBLIC_BASE_URL")!}/?subscription_success=true`,
-      cancel_url: `${this.configService.get<string>("NEXT_PUBLIC_BASE_URL")!}/?subscription_cancel=true`,
+      success_url: `${this.configService.get<string>("STRIPE_CHECKOUT_SESSION_SUCCESS_URL")!}`,
+      cancel_url: `${this.configService.get<string>("STRIPE_CHECKOUT_SESSION_CANCEL_URL")!}`,
     });
 
     return { sessionId: session.id };
