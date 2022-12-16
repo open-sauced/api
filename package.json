@@ -1,6 +1,6 @@
 {
   "name": "@open-sauced/api.opensauced.pizza",
-  "version": "1.19.0",
+  "version": "1.20.0-beta.1",
   "keywords": [],
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
   "author": "TED Vortex <ted.vortex@gmail.com>",
@@ -73,6 +73,7 @@
     "pino-pretty": "^9.1.1",
     "rxjs": "^7.5.6",
     "semver": "^7.3.7",
+    "stripe": "^11.3.0",
     "typeorm": "^0.3.9",
     "typeorm-transactional-cls-hooked": "^0.1.21"
   },
