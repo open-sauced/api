@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#postCreateCheckoutSession" >postCreateCheckoutSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#postOnboarding" >postOnboarding</a>
                             </li>
                             <li>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/auth/auth.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/auth/auth.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -194,6 +198,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="postCreateCheckoutSession"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postCreateCheckoutSession</b></span>
+                        <a href="#postCreateCheckoutSession"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postCreateCheckoutSession(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/checkout/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postCreateCheckoutSession&#x27;, summary: &#x27;Creates a new checkout session for the user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to create checkout session&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/auth/auth.controller.ts:117</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="postOnboarding"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -219,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/auth/auth.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/auth/auth.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -309,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/auth/auth.controller.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/auth/auth.controller.ts:102</a></div>
                 </td>
             </tr>
 
@@ -370,6 +452,8 @@ import { User, UserId } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { UserService } from &quot;../user/user.service&quot;;
 import { UserReposService } from &quot;../user-repo/user-repos.service&quot;;
+import { StripeService } from &quot;../stripe/stripe.service&quot;;
+import { CustomerService } from &quot;../customer/customer.service&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
@@ -377,6 +461,8 @@ export class AuthController {
   constructor (
     private userService: UserService,
     private userReposService: UserReposService,
+    private stripeService: StripeService,
+    private customerService: CustomerService,
   ) {}
 
   @Get(&quot;/session&quot;)
@@ -463,6 +549,35 @@ export class AuthController {
     @UserId() userId: number,
   ): Promise&lt;void&gt; {
     return this.userService.updateWaitlistStatus(userId);
+  }
+
+  @Post(&quot;/checkout/session&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;postCreateCheckoutSession&quot;,
+    summary: &quot;Creates a new checkout session for the user&quot;,
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: &quot;Unable to create checkout session&quot; })
+  async postCreateCheckoutSession (
+    @User() user: SupabaseAuthUser,
+  ): Promise&lt;{ sessionId: string }&gt; {
+    const { email, user_metadata: { sub } } &#x3D; user;
+    const id &#x3D; sub as number;
+    const customer &#x3D; await this.customerService.findById(id);
+    let customerId: string;
+
+    if (customer) {
+      customerId &#x3D; customer.stripe_customer_id;
+    } else {
+      const stripeCustomer &#x3D; await this.stripeService.addCustomer(id, email);
+      const newCustomer &#x3D; await this.customerService.addCustomer(id, stripeCustomer.id);
+
+      customerId &#x3D; newCustomer.stripe_customer_id;
+    }
+
+    return this.stripeService.createCheckoutSession(customerId);
   }
 }
 </code></pre>
