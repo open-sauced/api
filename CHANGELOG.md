@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.20.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.19.0...v1.20.0) (2022-12-16)
+
+
+### 🍕 Features
+
+* add endpoint for creating checkout session ([#72](https://github.com/open-sauced/api.opensauced.pizza/issues/72)) ([2ce16fd](https://github.com/open-sauced/api.opensauced.pizza/commit/2ce16fdc077fce4224648ea42df360b5eb094efb))
+
 ## [1.20.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.19.0...v1.20.0-beta.1) (2022-12-16)
 
 
