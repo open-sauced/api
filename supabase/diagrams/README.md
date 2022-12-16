@@ -21,6 +21,8 @@
 | [public.insights](public.insights.md)                                     | 9       | Insight Pages                     | BASE TABLE |
 | [public.insight_repos](public.insight_repos.md)                           | 5       | Insights Repositories             | BASE TABLE |
 | [public.user_repos](public.user_repos.md)                                 | 4       |                                   | BASE TABLE |
+| [public.customers](public.customers.md)                                   | 2       |                                   | BASE TABLE |
+| [public.subscriptions](public.subscriptions.md)                           | 15      |                                   | BASE TABLE |
 
 ## Relations
 
