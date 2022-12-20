@@ -12,6 +12,7 @@ import { RepoModule } from "./repo/repo.module";
 import apiConfig from "./config/api.config";
 import dbConfig from "./config/database.config";
 import endpointConfig from "./config/endpoint.config";
+import stripeConfig from "./config/stripe.config";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
@@ -37,6 +38,9 @@ import { UserReposModule } from "./user-repo/user-repos.module";
 import { DbUserRepo } from "./user-repo/user-repo.entity";
 import { DbCustomer } from "./customer/customer.entity";
 import { CustomerModule } from "./customer/customer.module";
+import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
+import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
+import { DbSubscription } from "./subscription/stripe-subscription.dto";
 
 @Module({
   imports: [
@@ -45,6 +49,7 @@ import { CustomerModule } from "./customer/customer.module";
         apiConfig,
         dbConfig,
         endpointConfig,
+        stripeConfig,
       ],
       isGlobal: true,
     }),
@@ -70,6 +75,7 @@ import { CustomerModule } from "./customer/customer.module";
           DbInsight,
           DbInsightRepo,
           DbCustomer,
+          DbSubscription,
         ],
         synchronize: false,
         logger: (new DatabaseLoggerMiddleware),
@@ -114,6 +120,8 @@ import { CustomerModule } from "./customer/customer.module";
     InsightsModule,
     UserReposModule,
     CustomerModule,
+    StripeWebHookModule,
+    StripeSubscriptionModule,
   ],
   controllers: [],
   providers: [],
