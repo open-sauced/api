@@ -81,4 +81,14 @@ export class UserService {
       throw new NotFoundException("Unable to update user waitlist status");
     }
   }
+
+  async updateRole (id: number, role: number) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { role });
+    } catch (e) {
+      throw new NotFoundException("Unable to update user role");
+    }
+  }
 }
