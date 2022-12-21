@@ -20,7 +20,7 @@ async function bootstrap () {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter({ logger: false }),
-    { bufferLogs: true },
+    { bufferLogs: true, rawBody: true },
   );
   const configService = app.get(ConfigService);
   const apiDomain = String(configService.get("api.domain"));

@@ -1,5 +1,5 @@
 import { ConfigService } from "@nestjs/config";
-import { BadRequestException, Controller, Post, RawBodyRequest, Req } from "@nestjs/common";
+import { BadRequestException, Controller, Logger, Post, RawBodyRequest, Req } from "@nestjs/common";
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import Stripe from "stripe";
 
@@ -19,6 +19,8 @@ const relevantEvents = new Set([
 @ApiTags("Stripe service")
 @Controller("stripe")
 export class StripeWebhookController {
+  private logger = new Logger(`StripeWebhook`);
+
   constructor (
     private customerService: CustomerService,
     private stripeSubscriptionService: StripeSubscriptionService,
@@ -63,12 +65,12 @@ export class StripeWebhookController {
       const userRole = subscription.status === "active" ? 50 : 10;
 
       await this.userService.updateRole(userId, userRole);
-    } catch (e) {
-      console.error(e);
+    } catch (e: unknown) {
+      this.logger.error(`Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}`);
       throw (new BadRequestException);
     }
 
-    console.log(`Inserted/updated subscription [${subscription.id}] for user [${uuid}]`);
+    this.logger.log(`Inserted/updated subscription [${subscription.id}] for user [${userId}]`);
   }
 
   @Post("/webhooks")
@@ -84,7 +86,6 @@ export class StripeWebhookController {
     const event = this.stripeService.stripe.webhooks.constructEvent(req.rawBody!, sig, webhookSecret);
 
     if (relevantEvents.has(event.type)) {
-      console.log("event type", event.type);
       const subEvents = [
         "customer.subscription.created",
         "customer.subscription.updated",
