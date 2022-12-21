@@ -79,7 +79,8 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#stripe" >stripe</a>
+                                    <span class="modifier">Optional</span>
+                                <a href="#_stripe" >_stripe</a>
                             </li>
                         </ul>
                     </td>
@@ -109,6 +110,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#stripe" >stripe</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -189,8 +204,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/stripe/stripe.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/stripe/stripe.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -272,8 +287,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/stripe/stripe.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/stripe/stripe.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -331,11 +346,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="stripe"></a>
+                    <a name="_stripe"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>stripe</b></span>
-                        <a href="#stripe"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Optional</span>
+                        <span ><b>_stripe</b></span>
+                        <a href="#_stripe"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -356,6 +372,33 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="stripe"></a>
+                        <span class="name"><b>stripe</b><a href="#stripe"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>stripe()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/stripe/stripe.service.ts:12</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
     </div>
 
 
@@ -367,10 +410,16 @@ import Stripe from &quot;stripe&quot;;
 
 @Injectable()
 export class StripeService {
-  private stripe: Stripe;
+  private _stripe?: Stripe;
 
-  constructor (private configService: ConfigService) {
-    this.stripe &#x3D; new Stripe(this.configService.get(&quot;STRIPE_SECRET_KEY&quot;)!, { apiVersion: &quot;2022-11-15&quot; });
+  constructor (private configService: ConfigService) {}
+
+  get stripe () {
+    if (!this._stripe) {
+      this._stripe &#x3D; new Stripe(this.configService.get(&quot;stripe.secretKey&quot;)!, { apiVersion: &quot;2022-11-15&quot; });
+    }
+
+    return this._stripe;
   }
 
   async addCustomer (id: number, email?: string) {
@@ -387,13 +436,13 @@ export class StripeService {
       customer,
       line_items: [
         {
-          price: this.configService.get(&quot;STRIPE_SUBSCRIPTION_PRICE_ID&quot;)!,
+          price: this.configService.get(&quot;stripe.subscriptionPriceID&quot;)!,
           quantity: 1,
         },
       ],
       mode: &quot;subscription&quot;,
-      success_url: &#x60;${this.configService.get&lt;string&gt;(&quot;STRIPE_CHECKOUT_SESSION_SUCCESS_URL&quot;)!}&#x60;,
-      cancel_url: &#x60;${this.configService.get&lt;string&gt;(&quot;STRIPE_CHECKOUT_SESSION_CANCEL_URL&quot;)!}&#x60;,
+      success_url: &#x60;${this.configService.get&lt;string&gt;(&quot;stripe.subscriptionSessionCheckoutSuccessURL&quot;)!}&#x60;,
+      cancel_url: &#x60;${this.configService.get&lt;string&gt;(&quot;stripe.subscriptionSessionCancelURL&quot;)!}&#x60;,
     });
 
     return { sessionId: session.id };

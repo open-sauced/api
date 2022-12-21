@@ -319,6 +319,40 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/StripeSubscriptionModule.html" data-type="entity-link" >StripeSubscriptionModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-StripeSubscriptionModule-5126109523168738a6d0306b830e2633233aca7df26cc9dc96c249a2bb2e77d683997735432cb595e3ad0900d8a13fcfbe91cbc1e52ea7727c376a5ad793b651"' : 'data-target="#xs-injectables-links-module-StripeSubscriptionModule-5126109523168738a6d0306b830e2633233aca7df26cc9dc96c249a2bb2e77d683997735432cb595e3ad0900d8a13fcfbe91cbc1e52ea7727c376a5ad793b651"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-StripeSubscriptionModule-5126109523168738a6d0306b830e2633233aca7df26cc9dc96c249a2bb2e77d683997735432cb595e3ad0900d8a13fcfbe91cbc1e52ea7727c376a5ad793b651"' :
+                                        'id="xs-injectables-links-module-StripeSubscriptionModule-5126109523168738a6d0306b830e2633233aca7df26cc9dc96c249a2bb2e77d683997735432cb595e3ad0900d8a13fcfbe91cbc1e52ea7727c376a5ad793b651"' }>
+                                        <li class="link">
+                                            <a href="injectables/StripeSubscriptionService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StripeSubscriptionService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/StripeWebHookModule.html" data-type="entity-link" >StripeWebHookModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-StripeWebHookModule-68bc2ba390ebd417a82096243884860494e5da069769f185e09958c579e83250e98c5359668f61310b0b43a8597f2200c8dc36ecd0d6951b688e43919ba82478"' : 'data-target="#xs-controllers-links-module-StripeWebHookModule-68bc2ba390ebd417a82096243884860494e5da069769f185e09958c579e83250e98c5359668f61310b0b43a8597f2200c8dc36ecd0d6951b688e43919ba82478"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-StripeWebHookModule-68bc2ba390ebd417a82096243884860494e5da069769f185e09958c579e83250e98c5359668f61310b0b43a8597f2200c8dc36ecd0d6951b688e43919ba82478"' :
+                                            'id="xs-controllers-links-module-StripeWebHookModule-68bc2ba390ebd417a82096243884860494e5da069769f185e09958c579e83250e98c5359668f61310b0b43a8597f2200c8dc36ecd0d6951b688e43919ba82478"' }>
+                                            <li class="link">
+                                                <a href="controllers/StripeWebhookController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StripeWebhookController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/SubmitModule.html" data-type="entity-link" >SubmitModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -456,6 +490,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbRepoToUserVotes.html" data-type="entity-link" >DbRepoToUserVotes</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbSubscription.html" data-type="entity-link" >DbSubscription</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbUser.html" data-type="entity-link" >DbUser</a>

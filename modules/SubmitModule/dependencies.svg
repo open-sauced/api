@@ -14,13 +14,13 @@
 <title>cluster_SubmitModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 314,-230.8 314,-32.8 8,-32.8"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_SubmitModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 306,-92.8 306,-40.8 16,-40.8"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_SubmitModule_exports</title>
 <polygon fill="none" stroke="black" points="106,-170.8 106,-222.8 224,-222.8 224,-170.8 106,-170.8"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_SubmitModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 306,-92.8 306,-40.8 16,-40.8"/>
 </g>
 <!-- SubmitService  -->
 <g id="node1" class="node">

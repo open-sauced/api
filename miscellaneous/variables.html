@@ -70,6 +70,12 @@
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#relevantEvents" title="src/stripe-webhook/stripe-webhook.controller.ts" ><b>relevantEvents</b>&nbsp;&nbsp;&nbsp;(src/.../stripe-webhook.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#toDateTime" title="src/stripe-webhook/utils.ts" ><b>toDateTime</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#User" title="src/auth/supabase.user.decorator.ts" ><b>User</b>&nbsp;&nbsp;&nbsp;(src/.../supabase.user.decorator.ts)</a>
                         </li>
                         <li>
@@ -164,6 +170,63 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(subdomain?: string) &#x3D;&gt;
   new URL(&#x60;https://${subdomain ? &#x60;${subdomain}.&#x60; : &quot;&quot;}${process.env.DOMAIN ?? &quot;opensauced.pizza&quot;}&#x60;).toString()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/stripe-webhook/stripe-webhook.controller.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="relevantEvents"></a>
+                    <span class="name">
+                        <span ><b>relevantEvents</b></span>
+                        <a href="#relevantEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set([
+  &quot;checkout.session.completed&quot;,
+  &quot;customer.subscription.created&quot;,
+  &quot;customer.subscription.updated&quot;,
+  &quot;customer.subscription.deleted&quot;,
+])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/stripe-webhook/utils.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toDateTime"></a>
+                    <span class="name">
+                        <span ><b>toDateTime</b></span>
+                        <a href="#toDateTime"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(secs: number) &#x3D;&gt; {
+  // unix epoch start
+  const t &#x3D; new Date(&quot;1970-01-01T00:30:00Z&quot;);
+
+  t.setSeconds(secs);
+  return t;
+}</code>
                     </td>
                 </tr>
 
