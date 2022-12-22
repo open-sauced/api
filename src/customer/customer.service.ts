@@ -24,6 +24,15 @@ export class CustomerService {
     return queryBuilder.getOne();
   }
 
+  async findByCustomerId (id: string) {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .where("customer.stripe_customer_id=:id", { id });
+
+    return queryBuilder.getOne();
+  }
+
   async addCustomer (userId: number, stripe_customer_id: string) {
     return this.customerRepository.save({ id: userId, stripe_customer_id });
   }
