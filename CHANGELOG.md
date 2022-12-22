@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.21.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.20.0...v1.21.0) (2022-12-22)
+
+
+### 🍕 Features
+
+* add stripe webhook integration for subscriptions ([#74](https://github.com/open-sauced/api.opensauced.pizza/issues/74)) ([b9d5a6e](https://github.com/open-sauced/api.opensauced.pizza/commit/b9d5a6ed536984981e56687b5e48e5153049ebff))
+
 ## [1.21.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.20.0...v1.21.0-beta.1) (2022-12-21)
 
 
