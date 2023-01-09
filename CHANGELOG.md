@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.21.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.21.0...v1.21.1-beta.1) (2023-01-09)
+
+
+### 🤖 Build System
+
+* add full_name to insight repos migrations ([0eb10bb](https://github.com/open-sauced/api.opensauced.pizza/commit/0eb10bb241ca68b600b2eb4c806b12fa901befb6))
+
 ## [1.21.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.20.0...v1.21.0) (2022-12-22)
 
 
