@@ -143,6 +143,15 @@
                     </ul>
                 </div>
                 <div class="col-sm-3">
+                    <h3>Controllers<a href="https://docs.nestjs.com/controllers" target="_blank" title="Official documentation about module controllers"><span
+                                class="icon ion-ios-information-circle-outline"></a></h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="../controllers/UserController.html">UserController</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
                     <h3>Exports<a href="https://angular.io/api/core/NgModule#exports" target="_blank" title="Official documentation about module exports"><span
                                 class="icon ion-ios-information-circle-outline"></a></h3>
                     <ul class="list-group">
@@ -164,6 +173,7 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { DbUser } from &quot;./user.entity&quot;;
 import { UserService } from &quot;./user.service&quot;;
+import { UserController } from &quot;./user.controller&quot;;
 
 @Module({
   imports: [
@@ -171,7 +181,8 @@ import { UserService } from &quot;./user.service&quot;;
       DbUser,
     ]),
   ],
-  providers: [UserService],
+  controllers: [UserController],
+  providers: [UserService, UserController],
   exports: [UserService],
 })
 export class UserModule {}

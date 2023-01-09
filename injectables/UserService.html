@@ -91,6 +91,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findOneByUsername" >findOneByUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateOnboarding" >updateOnboarding</a>
                             </li>
                             <li>
@@ -226,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/user/user.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/user/user.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -350,6 +354,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByUsername</b></span>
+                        <a href="#findOneByUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/user/user.service.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateOnboarding"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -368,8 +443,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/user/user.service.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/user/user.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -439,8 +514,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/user/user.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/user/user.service.ts:99</a></div>
                 </td>
             </tr>
 
@@ -522,8 +597,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/user/user.service.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/user/user.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -610,6 +685,20 @@ export class UserService {
       // handle error
       item &#x3D; null;
     }
+
+    if (!item) {
+      throw (new NotFoundException);
+    }
+
+    return item;
+  }
+
+  async findOneByUsername (username: string): Promise&lt;DbUser&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.where(&quot;LOWER(login) &#x3D; LOWER(:username)&quot;, { username });
+
+    const item: DbUser | null &#x3D; await queryBuilder.getOne();
 
     if (!item) {
       throw (new NotFoundException);
