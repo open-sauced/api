@@ -39,6 +39,27 @@ export class UserService {
     return item;
   }
 
+  async findOneByUsername (username: string): Promise<DbUser> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("LOWER(login) = LOWER(:username)", { username });
+
+    let item: DbUser | null;
+
+    try {
+      item = await queryBuilder.getOne();
+    } catch (e) {
+      // handle error
+      item = null;
+    }
+
+    if (!item) {
+      throw (new NotFoundException);
+    }
+
+    return item;
+  }
+
   async checkAddUser (user: User): Promise<DbUser> {
     const { user_metadata: { user_name }, identities } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
