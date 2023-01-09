@@ -44,14 +44,7 @@ export class UserService {
 
     queryBuilder.where("LOWER(login) = LOWER(:username)", { username });
 
-    let item: DbUser | null;
-
-    try {
-      item = await queryBuilder.getOne();
-    } catch (e) {
-      // handle error
-      item = null;
-    }
+    let item: DbUser | null = await queryBuilder.getOne();
 
     if (!item) {
       throw (new NotFoundException);
