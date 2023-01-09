@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.22.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.21.1-beta.1...v1.22.0-beta.1) (2023-01-09)
+
+
+### 🍕 Features
+
+* add endpoint to find a user by username ([#77](https://github.com/open-sauced/api.opensauced.pizza/issues/77)) ([bd905ab](https://github.com/open-sauced/api.opensauced.pizza/commit/bd905abb0bc599e38eced740e1dd20953b721ea6))
+
 ### [1.21.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.21.0...v1.21.1-beta.1) (2023-01-09)
 
 
