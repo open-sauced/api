@@ -123,14 +123,6 @@ export class DbRepo extends BaseEntity {
   public pushed_at?: Date;
 
   @ApiHideProperty()
-  @Column({
-    type: "timestamp without time zone",
-    default: () => "to_timestamp(0)",
-    select: false,
-  })
-  public last_fetched_contributors_at?: Date;
-
-  @ApiHideProperty()
   @DeleteDateColumn({
     type: "timestamp without time zone",
     select: false,
@@ -161,7 +153,10 @@ export class DbRepo extends BaseEntity {
     description: "Repository short description",
     example: "🍕This is a project to identify your next open source contribution! 🍕",
   })
-  @Column("text")
+  @Column({
+    type: "text",
+    default: "",
+  })
   public description: string;
 
   @ApiModelProperty({
@@ -191,8 +186,41 @@ export class DbRepo extends BaseEntity {
   @Column({
     type: "character varying",
     length: 255,
+    default: "",
   })
   public url: string;
+
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_repos_at?: Date;
+
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_prs_at?: Date;
+
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_commits_at?: Date;
+
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_contributors_at?: Date;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, user => user.repos)
