@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.22.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.22.0-beta.1...v1.22.0-beta.2) (2023-01-11)
+
+
+### 🤖 Build System
+
+* add indexer meta fields to repos ([e3161ab](https://github.com/open-sauced/api.opensauced.pizza/commit/e3161ab7a08cbebcfe5ec387f6a7f5f43da99ffa))
+
 ## [1.22.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.21.1-beta.1...v1.22.0-beta.1) (2023-01-09)
 
 

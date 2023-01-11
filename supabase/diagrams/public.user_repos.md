@@ -10,6 +10,7 @@
 | created_at | timestamp with time zone | now()   | true     |          |         |         |
 | repo_id    | bigint                   |         | false    |          |         |         |
 | user_id    | bigint                   |         | false    |          |         |         |
+| full_name  | varchar(255)             |         | true     |          |         |         |
 
 ## Constraints
 

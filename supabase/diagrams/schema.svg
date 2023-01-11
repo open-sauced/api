@@ -432,23 +432,26 @@
 <!-- public.user_repos -->
 <g id="node12" class="node">
 <title>public.user_repos</title>
-<polygon fill="#efefef" stroke="transparent" points="3919,-1024.5 3919,-1059.5 4172,-1059.5 4172,-1024.5 3919,-1024.5"/>
-<polygon fill="none" stroke="#000000" points="3919,-1024.5 3919,-1059.5 4172,-1059.5 4172,-1024.5 3919,-1024.5"/>
-<text text-anchor="start" x="3925.8577" y="-1037.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_repos</text>
-<text text-anchor="start" x="4067.8885" y="-1037.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
-<text text-anchor="start" x="4071.7791" y="-1037.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
-<polygon fill="none" stroke="#000000" points="3919,-994.5 3919,-1024.5 4172,-1024.5 4172,-994.5 3919,-994.5"/>
-<text text-anchor="start" x="3926" y="-1005.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
-<text text-anchor="start" x="3940.7798" y="-1005.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="3919,-964.5 3919,-994.5 4172,-994.5 4172,-964.5 3919,-964.5"/>
-<text text-anchor="start" x="3926" y="-975.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="3996.028" y="-975.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
-<polygon fill="none" stroke="#000000" points="3919,-934.5 3919,-964.5 4172,-964.5 4172,-934.5 3919,-934.5"/>
-<text text-anchor="start" x="3926" y="-945.9" font-family="Arial" font-size="14.00" fill="#000000">repo_id </text>
-<text text-anchor="start" x="3976.5708" y="-945.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="3919,-904.5 3919,-934.5 4172,-934.5 4172,-904.5 3919,-904.5"/>
-<text text-anchor="start" x="3926" y="-915.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
-<text text-anchor="start" x="3975.7882" y="-915.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="#efefef" stroke="transparent" points="3919,-1039.5 3919,-1074.5 4172,-1074.5 4172,-1039.5 3919,-1039.5"/>
+<polygon fill="none" stroke="#000000" points="3919,-1039.5 3919,-1074.5 4172,-1074.5 4172,-1039.5 3919,-1039.5"/>
+<text text-anchor="start" x="3925.8577" y="-1052.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_repos</text>
+<text text-anchor="start" x="4067.8885" y="-1052.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
+<text text-anchor="start" x="4071.7791" y="-1052.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
+<polygon fill="none" stroke="#000000" points="3919,-1009.5 3919,-1039.5 4172,-1039.5 4172,-1009.5 3919,-1009.5"/>
+<text text-anchor="start" x="3926" y="-1020.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
+<text text-anchor="start" x="3940.7798" y="-1020.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="3919,-979.5 3919,-1009.5 4172,-1009.5 4172,-979.5 3919,-979.5"/>
+<text text-anchor="start" x="3926" y="-990.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="3996.028" y="-990.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="3919,-949.5 3919,-979.5 4172,-979.5 4172,-949.5 3919,-949.5"/>
+<text text-anchor="start" x="3926" y="-960.9" font-family="Arial" font-size="14.00" fill="#000000">repo_id </text>
+<text text-anchor="start" x="3976.5708" y="-960.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="3919,-919.5 3919,-949.5 4172,-949.5 4172,-919.5 3919,-919.5"/>
+<text text-anchor="start" x="3926" y="-930.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
+<text text-anchor="start" x="3975.7882" y="-930.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="3919,-889.5 3919,-919.5 4172,-919.5 4172,-889.5 3919,-889.5"/>
+<text text-anchor="start" x="3926" y="-900.9" font-family="Arial" font-size="14.00" fill="#000000">full_name </text>
+<text text-anchor="start" x="3990.568" y="-900.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 </g>
 <!-- public.customers -->
 <g id="node13" class="node">
