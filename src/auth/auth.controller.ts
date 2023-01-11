@@ -8,6 +8,7 @@ import { UserService } from "../user/user.service";
 import { UserReposService } from "../user-repo/user-repos.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
+import { RepoInfo } from "../repo/dtos/repo-info.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -77,13 +78,11 @@ export class AuthController {
     @UserId() userId: number,
       @Body() body: string,
   ): Promise<void> {
-    const data = JSON.parse(body) as { ids: number[] } | null;
+    const data = JSON.parse(body) as { repos: RepoInfo[] } | null;
 
-    if (data && Array.isArray(data.ids)) {
-      const repoIds = data.ids;
-
-      repoIds.forEach(async repoId => {
-        await this.userReposService.addUserRepo(userId, repoId);
+    if (data && Array.isArray(data.repos)) {
+      data.repos.forEach(async repo => {
+        await this.userReposService.addUserRepo(userId, repo);
       });
     }
 
