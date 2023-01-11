@@ -12,6 +12,7 @@ import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
+import { RepoInfo } from "../repo/dtos/repo-info.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -76,13 +77,11 @@ export class AuthController {
     @UserId() userId: number,
       @Body() body: string,
   ): Promise<void> {
-    const data = JSON.parse(body) as { ids: number[] } | null;
+    const data = JSON.parse(body) as { repos: RepoInfo[] } | null;
 
-    if (data && Array.isArray(data.ids)) {
-      const repoIds = data.ids;
-
-      repoIds.forEach(async repoId => {
-        await this.userReposService.addUserRepo(userId, repoId);
+    if (data && Array.isArray(data.repos)) {
+      data.repos.forEach(async repo => {
+        await this.userReposService.addUserRepo(userId, repo);
       });
     }
 
