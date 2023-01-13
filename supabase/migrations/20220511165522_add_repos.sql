@@ -17,15 +17,18 @@ CREATE TABLE IF NOT EXISTS public.repos
   updated_at timestamp without time zone NOT NULL DEFAULT now(),
   deleted_at timestamp without time zone DEFAULT null,
   pushed_at timestamp without time zone DEFAULT now(),
+  last_fetched_repos_at timestamp without time zone DEFAULT to_timestamp(0),
+  last_fetched_prs_at timestamp without time zone DEFAULT to_timestamp(0),
+  last_fetched_commits_at timestamp without time zone DEFAULT to_timestamp(0),
   last_fetched_contributors_at timestamp without time zone DEFAULT to_timestamp(0),
 
   -- Elastic columns
   name character varying(255) COLLATE pg_catalog."default",
   full_name character varying(255) COLLATE pg_catalog."default",
-  description text COLLATE pg_catalog."default",
+  description text COLLATE pg_catalog."default" not null default '',
   language character varying(64) COLLATE pg_catalog."default",
   license character varying(64) COLLATE pg_catalog."default",
-  url character varying(255) COLLATE pg_catalog."default",
+  url character varying(255) COLLATE pg_catalog."default" not null default '',
 
   CONSTRAINT user_stars_pkey PRIMARY KEY (id)
 )
