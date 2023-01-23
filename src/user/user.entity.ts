@@ -115,6 +115,79 @@ export class DbUser extends BaseEntity {
   @Column({ default: 10 })
   public role: number;
 
+  @ApiModelProperty({
+    description: "User bio information",
+    example: "OpenSauced User",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly bio?: string;
+
+  @ApiModelProperty({
+    description: "User name information",
+    example: "MrPizza",
+  })
+  @Column({
+    type: "character varying",
+    length: 100,
+  })
+  readonly name?: string;
+
+  @ApiModelProperty({
+    description: "User Twitter information",
+    example: "saucedopen",
+  })
+  @Column({
+    type: "character varying",
+    length: 15,
+  })
+  readonly twitter_username?: string;
+
+  @ApiModelProperty({
+    description: "User company information",
+    example: "OpenSauced",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly company?: string;
+
+  @ApiModelProperty({
+    description: "User location information",
+    example: "San Francisco, CA",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly location?: string;
+
+  @ApiModelProperty({
+    description: "User display local time information",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    length: 30,
+    select: false,
+    default: false,
+  })
+  readonly display_local_time?: boolean;
+
+  @ApiModelProperty({
+    description: "User timezone information",
+    example: "America/Los_Angeles",
+  })
+  @Column({
+    type: "character varying",
+    length: 30,
+    select: false,
+  })
+  readonly timezone?: string;
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];
