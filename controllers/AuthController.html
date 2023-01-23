@@ -223,8 +223,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/auth/auth.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/auth/auth.controller.ts:112</a></div>
                 </td>
             </tr>
 
@@ -301,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/auth/auth.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/auth/auth.controller.ts:71</a></div>
                 </td>
             </tr>
 
@@ -391,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/auth/auth.controller.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/auth/auth.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -479,20 +479,17 @@ export class AuthController {
   ): Promise&lt;SupabaseAuthDto&gt; {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
 
-    let onboarded &#x3D; false;
-    let insights_role &#x3D; 10;
-    let waitlisted &#x3D; false;
+    let userProfile &#x3D; {};
+
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role_id } &#x3D; await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role_id, name, bio, location, twitter_username, company } &#x3D; await this.userService.checkAddUser(user);
 
-      onboarded &#x3D; is_onboarded;
-      insights_role &#x3D; insights_role_id;
-      waitlisted &#x3D; is_waitlisted;
+      userProfile &#x3D; { is_onboarded, insights_role_id, is_waitlisted, name, location, bio, twitter_username, company };
     } catch (e) {
-      // leave onboarded as-is
+      // leave user profile as-is
     }
 
     return {
@@ -504,9 +501,7 @@ export class AuthController {
       last_sign_in_at,
       created_at,
       updated_at,
-      is_onboarded: onboarded,
-      insights_role,
-      is_waitlisted: waitlisted,
+      ...userProfile,
     };
   }
 
