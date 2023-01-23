@@ -177,17 +177,6 @@ export class DbUser extends BaseEntity {
   })
   readonly display_local_time?: boolean;
 
-  @ApiModelProperty({
-    description: "User timezone information",
-    example: "America/Los_Angeles",
-  })
-  @Column({
-    type: "character varying",
-    length: 30,
-    select: false,
-  })
-  readonly timezone?: string;
-
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];

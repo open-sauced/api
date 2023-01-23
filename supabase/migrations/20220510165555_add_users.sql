@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS public.users
   company character varying(50) COLLATE pg_catalog."default",
   location character varying(50) COLLATE pg_catalog."default",
   display_local_time boolean NOT NULL DEFAULT false,
-  timezone character varying(30) COLLATE pg_catalog."default",
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",
