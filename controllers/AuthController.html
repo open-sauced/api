@@ -99,6 +99,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#postWaitlist" >postWaitlist</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateProfileForUser" >updateProfileForUser</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/auth/auth.controller.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/auth/auth.controller.ts:33</a></div>
                 </td>
             </tr>
 
@@ -223,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/auth/auth.controller.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/auth/auth.controller.ts:114</a></div>
                 </td>
             </tr>
 
@@ -301,8 +305,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/auth/auth.controller.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/auth/auth.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -391,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/auth/auth.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/auth/auth.controller.ts:99</a></div>
                 </td>
             </tr>
 
@@ -440,12 +444,102 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateProfileForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateProfileForUser</b></span>
+                        <a href="#updateProfileForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateProfileForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/profile&#x27;)<br />@ApiOperation({operationId: &#x27;updateProfileForUser&#x27;, summary: &#x27;Updates the profile for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user profile&#x27;})<br />@ApiBody({type: UpdateUserDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/auth/auth.controller.ts:144</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
+import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { User, UserId } from &quot;./supabase.user.decorator&quot;;
@@ -454,6 +548,8 @@ import { UserService } from &quot;../user/user.service&quot;;
 import { UserReposService } from &quot;../user-repo/user-repos.service&quot;;
 import { StripeService } from &quot;../stripe/stripe.service&quot;;
 import { CustomerService } from &quot;../customer/customer.service&quot;;
+import { DbUser } from &quot;../user/user.entity&quot;;
+import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
@@ -573,6 +669,23 @@ export class AuthController {
     }
 
     return this.stripeService.createCheckoutSession(customerId);
+  }
+
+  @Patch(&quot;/profile&quot;)
+  @ApiOperation({
+    operationId: &quot;updateProfileForUser&quot;,
+    summary: &quot;Updates the profile for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to update user profile&quot; })
+  @ApiBody({ type: UpdateUserDto })
+  async updateProfileForUser (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise&lt;DbUser&gt; {
+    return this.userService.updateUser(userId, updateUserDto);
   }
 }
 </code></pre>
