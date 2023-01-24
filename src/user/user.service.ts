@@ -4,6 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
 import { DbUser } from "./user.entity";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 
 @Injectable()
 export class UserService {
@@ -54,7 +55,7 @@ export class UserService {
   }
 
   async checkAddUser (user: User): Promise<DbUser> {
-    const { user_metadata: { user_name }, identities } = user;
+    const { user_metadata: { user_name, email }, identities } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
     const id = parseInt(github.id, 10);
 
@@ -66,6 +67,7 @@ export class UserService {
         id,
         is_open_sauced_member: false,
         login: user_name as string,
+        email: email as string,
         created_at: (new Date),
         updated_at: new Date(github.updated_at ?? github.created_at),
       });
@@ -73,6 +75,18 @@ export class UserService {
       await newUser.save();
 
       return newUser;
+    }
+  }
+
+  async updateUser (id: number, user: UpdateUserDto) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { email: user.email });
+
+      return this.findOneById(id);
+    } catch (e) {
+      throw new NotFoundException("Unable to update user");
     }
   }
 

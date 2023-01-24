@@ -87,6 +87,17 @@ export class DbUser extends BaseEntity {
   })
   public login: string;
 
+  @ApiModelProperty({
+    description: "User email address",
+    example: "hello@opensauced.pizza",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+    select: false,
+  })
+  public email: string;
+
   @ApiHideProperty()
   @DeleteDateColumn({
     type: "timestamp without time zone",
