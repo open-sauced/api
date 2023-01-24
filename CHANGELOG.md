@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.23.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0-beta.2...v1.23.0-beta.3) (2023-01-24)
+
+
+### 🍕 Features
+
+* add email to initial user data when session is used ([#83](https://github.com/open-sauced/api.opensauced.pizza/issues/83)) ([df31fc9](https://github.com/open-sauced/api.opensauced.pizza/commit/df31fc964a46362f2a98d88505e134d0e16ed005))
+
 ## [1.23.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0-beta.1...v1.23.0-beta.2) (2023-01-24)
 
 
