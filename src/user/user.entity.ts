@@ -36,27 +36,6 @@ export class DbUser extends BaseEntity {
   })
   public open_issues: number;
 
-  @ApiHideProperty()
-  @Column({
-    default: false,
-    select: false,
-  })
-  public has_stars_data: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating whether user opted to have a private profile (beta feature",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_private: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating app.opensauced user status",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_open_sauced_member: boolean;
-
   @ApiModelPropertyOptional({
     description: "Timestamp representing user creation",
     example: "2016-10-19 13:24:51.000000",
@@ -77,6 +56,13 @@ export class DbUser extends BaseEntity {
   })
   public updated_at?: Date;
 
+  @ApiHideProperty()
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
+    select: false,
+  })
+  public deleted_at?: Date;
+
   @ApiModelProperty({
     description: "User unique login name",
     example: "0-vortex",
@@ -88,11 +74,25 @@ export class DbUser extends BaseEntity {
   public login: string;
 
   @ApiHideProperty()
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
+  @Column({
+    default: false,
     select: false,
   })
-  public deleted_at?: Date;
+  public has_stars_data: boolean;
+
+  @ApiModelProperty({
+    description: "Flag indicating whether user opted to have a private profile (beta feature",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_private: boolean;
+
+  @ApiModelProperty({
+    description: "Flag indicating app.opensauced user status",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_open_sauced_member: boolean;
 
   @ApiModelProperty({
     description: "Flag indicating user's onboarding status",
