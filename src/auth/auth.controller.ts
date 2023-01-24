@@ -1,5 +1,5 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
@@ -8,6 +8,8 @@ import { UserService } from "../user/user.service";
 import { UserReposService } from "../user-repo/user-repos.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
+import { DbUser } from "../user/user.entity";
+import { UpdateUserDto } from "../user/dtos/update-user.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -127,5 +129,22 @@ export class AuthController {
     }
 
     return this.stripeService.createCheckoutSession(customerId);
+  }
+
+  @Patch("/profile")
+  @ApiOperation({
+    operationId: "updateProfileForUser",
+    summary: "Updates the profile for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update user profile" })
+  @ApiBody({ type: UpdateUserDto })
+  async updateProfileForUser (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise<DbUser> {
+    return this.userService.updateUser(userId, updateUserDto);
   }
 }

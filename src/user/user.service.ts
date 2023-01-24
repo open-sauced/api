@@ -4,6 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
 import { DbUser } from "./user.entity";
+import { UpdateUserDto } from "./dtos/update-user.dto";
 
 @Injectable()
 export class UserService {
@@ -74,6 +75,18 @@ export class UserService {
       await newUser.save();
 
       return newUser;
+    }
+  }
+
+  async updateUser (id: number, user: UpdateUserDto) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { email: user.email });
+
+      return this.findOneById(id);
+    } catch (e) {
+      throw new NotFoundException("Unable to update user");
     }
   }
 
