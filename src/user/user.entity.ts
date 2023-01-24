@@ -171,7 +171,6 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "boolean",
-    length: 30,
     select: false,
     default: false,
   })

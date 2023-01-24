@@ -66,4 +66,40 @@ export class SupabaseAuthDto {
     example: 10,
   })
   readonly insights_role?: number;
+
+  @ApiPropertyOptional({
+    description: "User bio information",
+    example: "OpenSauced User",
+  })
+  readonly bio?: string;
+
+  @ApiPropertyOptional({
+    description: "User name information",
+    example: "MrPizza",
+  })
+  readonly name?: string;
+
+  @ApiPropertyOptional({
+    description: "User Twitter information",
+    example: "saucedopen",
+  })
+  readonly twitter_username?: string;
+
+  @ApiPropertyOptional({
+    description: "User company information",
+    example: "OpenSauced",
+  })
+  readonly company?: string;
+
+  @ApiPropertyOptional({
+    description: "User location information",
+    example: "San Francisco, CA",
+  })
+  readonly location?: string;
+
+  @ApiPropertyOptional({
+    description: "User display local time information",
+    example: false,
+  })
+  readonly display_local_time?: boolean;
 }
