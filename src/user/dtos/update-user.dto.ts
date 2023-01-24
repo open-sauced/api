@@ -8,5 +8,5 @@ export class UpdateUserDto {
     example: "hello@opensauced.pizza",
   })
   @IsEmail()
-    email: string;
+  public email: string;
 }
