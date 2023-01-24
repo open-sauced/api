@@ -94,7 +94,7 @@ export class DbUser extends BaseEntity {
   @Column({
     type: "character varying",
     length: 255,
-    select: false
+    select: false,
   })
   public email: string;
 
