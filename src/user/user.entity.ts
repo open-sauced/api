@@ -187,6 +187,16 @@ export class DbUser extends BaseEntity {
   })
   readonly display_local_time?: boolean;
 
+  @ApiModelProperty({
+    description: "User topic interests",
+    example: "javascript",
+  })
+  @Column({
+    type: "character varying",
+    length: 200,
+  })
+  readonly interests?: string;
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];

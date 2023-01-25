@@ -147,4 +147,23 @@ export class AuthController {
   ): Promise<DbUser> {
     return this.userService.updateUser(userId, updateUserDto);
   }
+
+  @Patch("/profile/interests")
+  @ApiOperation({
+    operationId: "updateInterestsForUserProfile",
+    summary: "Updates the interests for the authenticated user profile",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update interests for the user profile" })
+  @ApiBody({ type: UpdateUserDto })
+  async updateInterestsForUserProfile (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise<DbUser> {
+    await this.userService.updateInterests(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
 }
