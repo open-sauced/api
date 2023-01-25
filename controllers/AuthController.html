@@ -101,6 +101,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#updateInterestsForUserProfile" >updateInterestsForUserProfile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateProfileForUser" >updateProfileForUser</a>
                             </li>
                         </ul>
@@ -448,6 +452,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="updateInterestsForUserProfile"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateInterestsForUserProfile</b></span>
+                        <a href="#updateInterestsForUserProfile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateInterestsForUserProfile(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateUserDto: <a href="../classes/UpdateUserDto.html" target="_self">UpdateUserDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/profile/interests&#x27;)<br />@ApiOperation({operationId: &#x27;updateInterestsForUserProfile&#x27;, summary: &#x27;Updates the interests for the authenticated user profile&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to update interests for the user profile&#x27;})<br />@ApiBody({type: UpdateUserDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/auth/auth.controller.ts:161</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserDto.html" target="_self" >UpdateUserDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateProfileForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -686,6 +780,25 @@ export class AuthController {
       @Body() updateUserDto: UpdateUserDto,
   ): Promise&lt;DbUser&gt; {
     return this.userService.updateUser(userId, updateUserDto);
+  }
+
+  @Patch(&quot;/profile/interests&quot;)
+  @ApiOperation({
+    operationId: &quot;updateInterestsForUserProfile&quot;,
+    summary: &quot;Updates the interests for the authenticated user profile&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to update interests for the user profile&quot; })
+  @ApiBody({ type: UpdateUserDto })
+  async updateInterestsForUserProfile (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise&lt;DbUser&gt; {
+    await this.userService.updateInterests(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
   }
 }
 </code></pre>
