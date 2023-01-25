@@ -119,4 +119,8 @@ export class UserService {
       throw new NotFoundException("Unable to update user role");
     }
   }
+
+  async updateInterests (id: number, user: UpdateUserDto) {
+    return this.userRepository.update(id, { interests: (user.interests ?? []).join(",") });
+  }
 }
