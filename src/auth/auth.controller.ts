@@ -148,7 +148,7 @@ export class AuthController {
     return this.userService.updateUser(userId, updateUserDto);
   }
 
-  @Patch("/profil/interests")
+  @Patch("/profile/interests")
   @ApiOperation({
     operationId: "updateInterestsForUserProfile",
     summary: "Updates the interests for the authenticated user profile",
