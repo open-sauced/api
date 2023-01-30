@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0-beta.1) (2023-01-30)
+
+
+### 🍕 Features
+
+* add etl supporting repos and users metadata ([#87](https://github.com/open-sauced/api.opensauced.pizza/issues/87)) ([9c605d0](https://github.com/open-sauced/api.opensauced.pizza/commit/9c605d04d7863a7c9d71ba655059a77e157d2477))
+
+
+### ⏩ Reverts
+
+* Revert "feat: add etl supporting repos and users metadata (#87)" (#88) ([0b85d93](https://github.com/open-sauced/api.opensauced.pizza/commit/0b85d936fa4b15c5a286ed95da79f0d786fe6624)), closes [#87](https://github.com/open-sauced/api.opensauced.pizza/issues/87) [#88](https://github.com/open-sauced/api.opensauced.pizza/issues/88)
+
 ## [1.23.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.22.0...v1.23.0) (2023-01-30)
 
 
