@@ -5,6 +5,21 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.23.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.22.0...v1.23.0) (2023-01-30)
+
+
+### 🍕 Features
+
+* add additional information to user record ([#81](https://github.com/open-sauced/api.opensauced.pizza/issues/81)) ([5e24505](https://github.com/open-sauced/api.opensauced.pizza/commit/5e24505af427aa170e33f0c80d4b7478200f4d33))
+* add email to initial user data when session is used ([#83](https://github.com/open-sauced/api.opensauced.pizza/issues/83)) ([df31fc9](https://github.com/open-sauced/api.opensauced.pizza/commit/df31fc964a46362f2a98d88505e134d0e16ed005))
+* add support for managing interests in the user profile ([#84](https://github.com/open-sauced/api.opensauced.pizza/issues/84)) ([a6488b4](https://github.com/open-sauced/api.opensauced.pizza/commit/a6488b4373706e38886fade536638e4e4d625009))
+
+
+### 🐛 Bug Fixes
+
+* add user information to session info, fix display_local_time field ([f83b3cd](https://github.com/open-sauced/api.opensauced.pizza/commit/f83b3cd9dd046e49214093811ce1ee21f7d0651d))
+* fix bug with insight_role_id, set type for additional user data ([#86](https://github.com/open-sauced/api.opensauced.pizza/issues/86)) ([807162e](https://github.com/open-sauced/api.opensauced.pizza/commit/807162e6840fdc29f8816dbee452fc64927fd010))
+
 ## [1.23.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0-beta.4...v1.23.0-beta.5) (2023-01-30)
 
 
