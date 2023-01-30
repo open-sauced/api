@@ -36,6 +36,27 @@ export class DbUser extends BaseEntity {
   })
   public open_issues: number;
 
+  @ApiHideProperty()
+  @Column({
+    default: false,
+    select: false,
+  })
+  public has_stars_data: boolean;
+
+  @ApiModelProperty({
+    description: "Flag indicating whether user opted to have a private profile (beta feature",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_private: boolean;
+
+  @ApiModelProperty({
+    description: "Flag indicating app.opensauced user status",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_open_sauced_member: boolean;
+
   @ApiModelPropertyOptional({
     description: "Timestamp representing user creation",
     example: "2016-10-19 13:24:51.000000",
@@ -55,53 +76,6 @@ export class DbUser extends BaseEntity {
     default: () => "now()",
   })
   public updated_at?: Date;
-
-  @ApiHideProperty()
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-    select: false,
-  })
-  public deleted_at?: Date;
-
-  @ApiModelProperty({
-    description: "User GitHub node id",
-    example: "MDQ6VXNlcjIzNzEzMw==",
-  })
-  @Column({
-    type: "character varying",
-    length: 20,
-  })
-  public node_id: string;
-
-  @ApiModelProperty({
-    description: "User GitHub avatar URL",
-    example: "https://avatars.githubusercontent.com/u/237133?v=4",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public avatar_url: string;
-
-  @ApiModelProperty({
-    description: "User GitHub gravatar URL",
-    example: "",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public gravatar_id?: string;
-
-  @ApiModelProperty({
-    description: "User GitHub profile URL",
-    example: "https://api.github.com/users/0-vortex",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public url?: string;
 
   @ApiModelProperty({
     description: "User unique login name",
@@ -125,32 +99,15 @@ export class DbUser extends BaseEntity {
   public email: string;
 
   @ApiHideProperty()
-  @Column({
-    default: false,
+  @DeleteDateColumn({
+    type: "timestamp without time zone",
     select: false,
   })
-  public has_stars_data: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating whether user opted to have a private profile (beta feature",
-    example: false,
-    default: false,
-  })
-  @Column({ default: false })
-  public is_private: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating app.opensauced user status",
-    example: false,
-    default: false,
-  })
-  @Column({ default: false })
-  public is_open_sauced_member: boolean;
+  public deleted_at?: Date;
 
   @ApiModelProperty({
     description: "Flag indicating user's onboarding status",
     example: false,
-    default: false,
   })
   @Column({ default: false })
   public is_onboarded: boolean;
@@ -158,7 +115,6 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "Flag indicating user's waitlist status",
     example: false,
-    default: false,
   })
   @Column({ default: false })
   public is_waitlisted: boolean;
@@ -166,7 +122,6 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "Insights Role",
     example: 10,
-    default: 10,
   })
   @Column({ default: 10 })
   public role: number;
@@ -180,16 +135,6 @@ export class DbUser extends BaseEntity {
     length: 255,
   })
   readonly bio?: string;
-
-  @ApiModelProperty({
-    description: "GitHub blog information",
-    example: "https://opensauced.pizza/blog",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public blog?: string;
 
   @ApiModelProperty({
     description: "User name information",
@@ -251,68 +196,6 @@ export class DbUser extends BaseEntity {
     length: 200,
   })
   readonly interests?: string;
-
-  @ApiModelProperty({
-    description: "GitHub user hireable status",
-    example: false,
-  })
-  @Column({
-    type: "boolean",
-    default: false,
-  })
-  public hireable?: boolean;
-
-  @ApiModelProperty({
-    description: "GitHub user public repos number",
-    example: 0,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public public_repos: number;
-
-  @ApiModelProperty({
-    description: "GitHub user public gists number",
-    example: 0,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public public_gists: number;
-
-  @ApiModelProperty({
-    description: "GitHub user public followers number",
-    example: 0,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public followers: number;
-
-  @ApiModelProperty({
-    description: "GitHub user public following number",
-    example: 0,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public following: number;
-
-  @ApiModelProperty({
-    description: "GitHub user type",
-    example: "User",
-    default: "User",
-  })
-  @Column({
-    type: "character varying",
-    length: 20,
-    default: "User",
-  })
-  public type: string;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
