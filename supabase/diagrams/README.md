@@ -8,9 +8,9 @@
 
 | Name                                                                      | Columns | Comment                           | Type       |
 | ------------------------------------------------------------------------- | ------- | --------------------------------- | ---------- |
-| [public.repos](public.repos.md)                                           | 21      |                                   | BASE TABLE |
+| [public.repos](public.repos.md)                                           | 42      |                                   | BASE TABLE |
 | [public.contributions](public.contributions.md)                           | 9       |                                   | BASE TABLE |
-| [public.users](public.users.md)                                           | 12      |                                   | BASE TABLE |
+| [public.users](public.users.md)                                           | 32      |                                   | BASE TABLE |
 | [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |                                   | BASE TABLE |
 | [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |                                   | BASE TABLE |
 | [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |                                   | BASE TABLE |

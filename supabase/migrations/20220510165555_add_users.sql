@@ -17,6 +17,14 @@ CREATE TABLE IF NOT EXISTS public.users
   is_onboarded boolean NOT NULL DEFAULT false,
   role bigint NOT NULL DEFAULT 10,
   is_waitlisted boolean NOT NULL DEFAULT false,
+  email character varying(255) COLLATE pg_catalog."default",
+  bio character varying(255) COLLATE pg_catalog."default",
+  name character varying(100) COLLATE pg_catalog."default",
+  twitter_username character varying(15) COLLATE pg_catalog."default",
+  company character varying(50) COLLATE pg_catalog."default",
+  location character varying(50) COLLATE pg_catalog."default",
+  display_local_time boolean NOT NULL DEFAULT false,
+  interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",

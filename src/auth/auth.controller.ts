@@ -1,5 +1,5 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
@@ -8,6 +8,8 @@ import { UserService } from "../user/user.service";
 import { UserReposService } from "../user-repo/user-repos.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
+import { DbUser } from "../user/user.entity";
+import { UpdateUserDto } from "../user/dtos/update-user.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -33,20 +35,17 @@ export class AuthController {
   ): Promise<SupabaseAuthDto> {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
-    let onboarded = false;
-    let insights_role = 10;
-    let waitlisted = false;
+    let userProfile: Partial<SupabaseAuthDto> = {};
+
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role_id } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company } = await this.userService.checkAddUser(user);
 
-      onboarded = is_onboarded;
-      insights_role = insights_role_id;
-      waitlisted = is_waitlisted;
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company };
     } catch (e) {
-      // leave onboarded as-is
+      // leave user profile as-is
     }
 
     return {
@@ -58,9 +57,7 @@ export class AuthController {
       last_sign_in_at,
       created_at,
       updated_at,
-      is_onboarded: onboarded,
-      insights_role,
-      is_waitlisted: waitlisted,
+      ...userProfile,
     };
   }
 
@@ -132,5 +129,41 @@ export class AuthController {
     }
 
     return this.stripeService.createCheckoutSession(customerId);
+  }
+
+  @Patch("/profile")
+  @ApiOperation({
+    operationId: "updateProfileForUser",
+    summary: "Updates the profile for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update user profile" })
+  @ApiBody({ type: UpdateUserDto })
+  async updateProfileForUser (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise<DbUser> {
+    return this.userService.updateUser(userId, updateUserDto);
+  }
+
+  @Patch("/profile/interests")
+  @ApiOperation({
+    operationId: "updateInterestsForUserProfile",
+    summary: "Updates the interests for the authenticated user profile",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update interests for the user profile" })
+  @ApiBody({ type: UpdateUserDto })
+  async updateInterestsForUserProfile (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserDto,
+  ): Promise<DbUser> {
+    await this.userService.updateInterests(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
   }
 }
