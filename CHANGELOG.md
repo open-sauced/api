@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.23.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0-beta.4...v1.23.0-beta.5) (2023-01-30)
+
+
+### 🐛 Bug Fixes
+
+* fix bug with insight_role_id, set type for additional user data ([#86](https://github.com/open-sauced/api.opensauced.pizza/issues/86)) ([807162e](https://github.com/open-sauced/api.opensauced.pizza/commit/807162e6840fdc29f8816dbee452fc64927fd010))
+
 ## [1.23.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0-beta.3...v1.23.0-beta.4) (2023-01-25)
 
 
