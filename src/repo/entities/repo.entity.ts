@@ -46,16 +46,6 @@ export class DbRepo extends BaseEntity {
   public user_id!: number;
 
   @ApiModelProperty({
-    description: "Total size in bytes",
-    example: 274322,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public size: number;
-
-  @ApiModelProperty({
     description: "Total number of issues",
     example: 274,
   })
@@ -74,16 +64,6 @@ export class DbRepo extends BaseEntity {
     default: 0,
   })
   public stars: number;
-
-  @ApiModelProperty({
-    description: "Total number of forks",
-    example: 1,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public forks: number;
 
   @ApiModelProperty({
     description: "Total number of watchers",
@@ -106,91 +86,11 @@ export class DbRepo extends BaseEntity {
   public subscribers: number;
 
   @ApiModelProperty({
-    description: "Total number of network usages",
-    example: 4,
-  })
-  @Column({
-    type: "bigint",
-    default: 0,
-  })
-  public network: number;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo is a fork",
+    description: "Flag indicating fork status, false for sources",
     example: false,
   })
   @Column({ default: false })
   public is_fork: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo is private",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_private: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo is a template",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_template: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo is archived",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_archived: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo is disabled",
-    example: false,
-  })
-  @Column({ default: false })
-  public is_disabled: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has issues enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_issues: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has projects enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_projects: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has downloads enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_downloads: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has wiki enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_wiki: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has pages enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_pages: boolean;
-
-  @ApiModelProperty({
-    description: "Flag indicating repo has discussions enabled",
-    example: false,
-  })
-  @Column({ default: true })
-  public has_discussions: boolean;
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing repository creation",
@@ -228,77 +128,6 @@ export class DbRepo extends BaseEntity {
     select: false,
   })
   public deleted_at?: Date;
-
-  @ApiModelProperty({
-    description: "Repository default branch",
-    example: "main",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-    default: "main",
-  })
-  public default_branch: string;
-
-  @ApiModelProperty({
-    description: "Repository GQL node id",
-    example: "MDEwOlJlcG9zaXRvcnk3MTM1OTc5Ng==",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public node_id: string;
-
-  @ApiModelProperty({
-    description: "Repository git url",
-    example: "git://github.com/open-sauced/open-sauced.git",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public git_url: string;
-
-  @ApiModelProperty({
-    description: "Repository ssh url",
-    example: "git@github.com:open-sauced/open-sauced.git",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public ssh_url: string;
-
-  @ApiModelProperty({
-    description: "Repository clone url",
-    example: "https://github.com/open-sauced/open-sauced.git",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public clone_url: string;
-
-  @ApiModelProperty({
-    description: "Repository svn url",
-    example: "https://github.com/open-sauced/open-sauced",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public svn_url: string;
-
-  @ApiModelProperty({
-    description: "Repository mirror url",
-    example: null,
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-  })
-  public mirror_url?: string;
 
   @ApiModelProperty({
     description: "Repository unique name",
@@ -352,17 +181,6 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository GitHub linked URL",
-    example: "https://api.github.com/repos/open-sauced/open-sauced",
-  })
-  @Column({
-    type: "character varying",
-    length: 255,
-    default: "",
-  })
-  public url: string;
-
-  @ApiModelProperty({
-    description: "Repository GitHub homepage",
     example: "https://app.opensauced.pizza",
   })
   @Column({
@@ -370,7 +188,7 @@ export class DbRepo extends BaseEntity {
     length: 255,
     default: "",
   })
-  public homepage: string;
+  public url: string;
 
   @ApiHideProperty()
   @Column({
