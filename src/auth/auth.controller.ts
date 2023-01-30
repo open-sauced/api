@@ -35,15 +35,15 @@ export class AuthController {
   ): Promise<SupabaseAuthDto> {
     const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
-    let userProfile = {};
+    let userProfile: Partial<SupabaseAuthDto> = {};
 
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role_id, name, bio, location, twitter_username, company } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role_id, is_waitlisted, name, location, bio, twitter_username, company };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company };
     } catch (e) {
       // leave user profile as-is
     }
