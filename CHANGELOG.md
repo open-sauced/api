@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.1...v1.24.0-alpha.2) (2023-01-31)
+
+
+### 🍕 Features
+
+* update environment and database connections to new logging model ([39bdd16](https://github.com/open-sauced/api.opensauced.pizza/commit/39bdd16761f46016daeb3ea88ef5c099111289be))
+
 ## [1.24.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0-alpha.1) (2023-01-30)
 
 
