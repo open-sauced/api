@@ -159,7 +159,7 @@ export class AuthController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update interests for the user profile" })
-  @ApiBody({ type: UpdateUserDto })
+  @ApiBody({ type: UpdateUserProfileInterestsDto })
   async updateInterestsForUserProfile (
     @UserId() userId: number,
       @Body() updateUserDto: UpdateUserProfileInterestsDto,
@@ -178,7 +178,7 @@ export class AuthController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update email preferences for the user profile" })
-  @ApiBody({ type: UpdateUserDto })
+  @ApiBody({ type: UpdateUserEmailPreferencesDto })
   async updateEmailPreferencesForUserProfile (
     @UserId() userId: number,
       @Body() updateUserDto: UpdateUserEmailPreferencesDto,
