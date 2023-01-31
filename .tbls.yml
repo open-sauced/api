@@ -1,11 +1,11 @@
-name: hot.opensauced.pizza supabase
+name: opensauced.dev database structure
 desc: 🍕 The backend for the site that recommends the hottest projects on GitHub.
 
 include:
   - public.*
 
 exclude:
-  - public.auth_users
+  - public.subscriptions
 
 detectVirtualRelations:
   enabled: false
