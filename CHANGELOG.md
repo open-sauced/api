@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.1...v1.24.0-beta.2) (2023-01-31)
+
+
+### 🍕 Features
+
+* add endpoint to update user email preferences ([#90](https://github.com/open-sauced/api.opensauced.pizza/issues/90)) ([8c6884c](https://github.com/open-sauced/api.opensauced.pizza/commit/8c6884c2f2c2e8d81831ce16aef50801793304c6))
+
 ## [1.24.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0-beta.1) (2023-01-30)
 
 
