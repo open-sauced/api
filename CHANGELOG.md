@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.2...v1.24.0-alpha.3) (2023-01-31)
+
+
+### 🧑‍💻 Code Refactoring
+
+* remove supabase, code split migrations and diagrams ([98980b0](https://github.com/open-sauced/api.opensauced.pizza/commit/98980b0f7260561e7dd355d16c69deb1b53be9de))
+
+
+### 🤖 Build System
+
+* correct diagram database generator inclusion ([afde490](https://github.com/open-sauced/api.opensauced.pizza/commit/afde49017075ab3b9ffb78295bc0efc603ad2ef5))
+
 ## [1.24.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.1...v1.24.0-alpha.2) (2023-01-31)
 
 
