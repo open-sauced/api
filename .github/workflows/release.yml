@@ -83,7 +83,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: database
-          path: supabase/diagrams/
+          path: public/diagrams/
 
   build:
     name: Build application

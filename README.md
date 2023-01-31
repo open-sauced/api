@@ -179,7 +179,7 @@ npm run db:push
 
 Click the image to see the schema diagram full documentation.
 
-[![er](./supabase/diagrams/schema.svg)](./supabase/diagrams/README.md)
+[![er](public/diagrams/schema.svg)](public/diagrams/README.md)
 
 ## 🤝 Contributing
 
