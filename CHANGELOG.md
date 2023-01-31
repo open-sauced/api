@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.2...v1.24.0-beta.3) (2023-01-31)
+
+
+### 🐛 Bug Fixes
+
+* update swagger docs for user profile endpoints ([5f9be41](https://github.com/open-sauced/api.opensauced.pizza/commit/5f9be415708e53092ad715d582cfb5a94d29a7c6))
+
 ## [1.24.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.1...v1.24.0-beta.2) (2023-01-31)
 
 
