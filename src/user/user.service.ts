@@ -3,19 +3,17 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
+import { DbUser } from "./user.entity";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { DbUser } from "./user.entity";
 
 @Injectable()
 export class UserService {
   constructor (
     @InjectRepository(DbUser)
     private userRepository: Repository<DbUser>,
-    @InjectRepository(DbUserHighlight)
-    private userHighlightRepository: Repository<DbUserHighlight>,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbUser> {
@@ -48,8 +46,7 @@ export class UserService {
   async findOneByUsername (username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("LOWER(login) = LOWER(:username)", { username });
+    queryBuilder.where("LOWER(login) = LOWER(:username)", { username });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
