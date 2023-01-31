@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module, RequestMethod } from "@nestjs/common";
-import {InjectDataSource, TypeOrmModule} from "@nestjs/typeorm";
+import { InjectDataSource, TypeOrmModule } from "@nestjs/typeorm";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { HttpModule } from "@nestjs/axios";
 import { TerminusModule } from "@nestjs/terminus";
