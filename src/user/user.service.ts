@@ -7,7 +7,6 @@ import { DbUser } from "./user.entity";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
-import { DbUserHighlight } from "./entities/user-highlight.entity";
 
 @Injectable()
 export class UserService {
