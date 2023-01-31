@@ -9,7 +9,7 @@ import { UserController } from "./user.controller";
   imports: [
     TypeOrmModule.forFeature([
       DbUser,
-    ]),
+    ], "ApiConnection"),
   ],
   controllers: [UserController],
   providers: [UserService, UserController],

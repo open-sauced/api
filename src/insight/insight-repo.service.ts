@@ -7,7 +7,7 @@ import { DbInsightRepo } from "./entities/insight-repo.entity";
 @Injectable()
 export class InsightRepoService {
   constructor (
-    @InjectRepository(DbInsightRepo)
+    @InjectRepository(DbInsightRepo, "ApiConnection")
     private insightRepoRepository: Repository<DbInsightRepo>,
   ) {}
 

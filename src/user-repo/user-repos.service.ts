@@ -11,7 +11,7 @@ import { UserRepoOptionsDto } from "./dtos/user-repo-options.dto";
 @Injectable()
 export class UserReposService {
   constructor (
-    @InjectRepository(DbUserRepo)
+    @InjectRepository(DbUserRepo, "ApiConnection")
     private userRepoRepository: Repository<DbUserRepo>,
   ) {}
 

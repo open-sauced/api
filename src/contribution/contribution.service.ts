@@ -10,7 +10,7 @@ import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from "./dtos/
 @Injectable()
 export class ContributionService {
   constructor (
-    @InjectRepository(DbContribution)
+    @InjectRepository(DbContribution, "ApiConnection")
     private contributionRepository: Repository<DbContribution>,
   ) {}
 

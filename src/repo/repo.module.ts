@@ -6,7 +6,7 @@ import { RepoService } from "./repo.service";
 import { RepoController } from "./repo.controller";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbRepo])],
+  imports: [TypeOrmModule.forFeature([DbRepo], "ApiConnection")],
   controllers: [RepoController],
   providers: [RepoService],
   exports: [RepoService],

@@ -9,7 +9,7 @@ import { UpdateUserDto } from "./dtos/update-user.dto";
 @Injectable()
 export class UserService {
   constructor (
-    @InjectRepository(DbUser)
+    @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
   ) {}
 

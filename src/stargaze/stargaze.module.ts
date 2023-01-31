@@ -11,7 +11,7 @@ import { RepoStargazeController } from "./repo-stargaze.controller";
   imports: [TypeOrmModule.forFeature([
     DbRepo,
     DbRepoToUserStargazers,
-  ])],
+  ], "ApiConnection")],
   controllers: [RepoStargazeController],
   providers: [RepoService, StargazeService],
   exports: [StargazeService],
