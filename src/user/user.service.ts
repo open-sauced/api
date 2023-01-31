@@ -5,6 +5,8 @@ import { User } from "@supabase/supabase-js";
 
 import { DbUser } from "./user.entity";
 import { UpdateUserDto } from "./dtos/update-user.dto";
+import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
+import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
 
 @Injectable()
 export class UserService {
@@ -55,7 +57,10 @@ export class UserService {
   }
 
   async checkAddUser (user: User): Promise<DbUser> {
-    const { user_metadata: { user_name, email }, identities } = user;
+    const {
+      user_metadata: { user_name, email },
+      identities,
+    } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
     const id = parseInt(github.id, 10);
 
@@ -120,7 +125,14 @@ export class UserService {
     }
   }
 
-  async updateInterests (id: number, user: UpdateUserDto) {
-    return this.userRepository.update(id, { interests: (user.interests ?? []).join(",") });
+  async updateInterests (id: number, user: UpdateUserProfileInterestsDto) {
+    return this.userRepository.update(id, { interests: user.interests.join(",") });
+  }
+
+  async updateEmailPreferences (id: number, user: UpdateUserEmailPreferencesDto) {
+    return this.userRepository.update(id, {
+      display_email: user.display_email,
+      receive_collaboration: user.receive_collaboration,
+    });
   }
 }

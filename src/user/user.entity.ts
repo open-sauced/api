@@ -197,6 +197,26 @@ export class DbUser extends BaseEntity {
   })
   readonly interests?: string;
 
+  @ApiModelProperty({
+    description: "User display public email",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  readonly display_email?: boolean;
+
+  @ApiModelProperty({
+    description: "User receives collaboration requests",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  readonly receive_collaboration?: boolean;
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];

@@ -10,6 +10,8 @@ import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
 import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
+import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
+import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -160,9 +162,28 @@ export class AuthController {
   @ApiBody({ type: UpdateUserDto })
   async updateInterestsForUserProfile (
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserDto,
+      @Body() updateUserDto: UpdateUserProfileInterestsDto,
   ): Promise<DbUser> {
     await this.userService.updateInterests(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
+
+  @Patch("/profile/email")
+  @ApiOperation({
+    operationId: "updateEmailPreferencesForUserProfile",
+    summary: "Updates the email preferences for the authenticated user profile",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update email preferences for the user profile" })
+  @ApiBody({ type: UpdateUserDto })
+  async updateEmailPreferencesForUserProfile (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserEmailPreferencesDto,
+  ): Promise<DbUser> {
+    await this.userService.updateEmailPreferences(userId, updateUserDto);
 
     return this.userService.findOneById(userId);
   }

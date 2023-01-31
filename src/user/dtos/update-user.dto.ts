@@ -1,5 +1,5 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsArray, IsEmail } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { IsEmail } from "class-validator";
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -9,13 +9,4 @@ export class UpdateUserDto {
   })
   @IsEmail()
   public email: string;
-
-  @ApiPropertyOptional({
-    description: "An array of interests",
-    type: [String],
-    isArray: true,
-    example: ["javascript", "react"],
-  })
-  @IsArray()
-  public interests?: string[];
 }
