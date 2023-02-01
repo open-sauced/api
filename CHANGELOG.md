@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.3...v1.24.0-beta.4) (2023-02-01)
+
+
+### 🐛 Bug Fixes
+
+* add user profile fields to migrations, endpoints ([#92](https://github.com/open-sauced/api.opensauced.pizza/issues/92)) ([c6c07c6](https://github.com/open-sauced/api.opensauced.pizza/commit/c6c07c6e4f48911a919d50c55724f3e1e3584bdf))
+
 ## [1.24.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.2...v1.24.0-beta.3) (2023-01-31)
 
 

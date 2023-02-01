@@ -4,16 +4,16 @@
 
 ## Columns
 
-| Name       | Type                | Default | Nullable | Children | Parents | Comment |
-| ---------- | ------------------- | ------- | -------- | -------- | ------- | ------- |
-| id         | bigint              |         | false    |          |         |         |
-| user_id    | bigint              |         | false    |          |         |         |
-| url        | varchar(255)        |         | true     |          |         |         |
-| highlight  | varchar(500)        |         | false    |          |         |         |
-| created_at | time with time zone | now()   | false    |          |         |         |
-| updated_at | time with time zone | now()   | false    |          |         |         |
-| deleted_at | time with time zone |         | true     |          |         |         |
-| pinned     | boolean             | false   | false    |          |         |         |
+| Name       | Type                     | Default | Nullable | Children | Parents | Comment |
+| ---------- | ------------------------ | ------- | -------- | -------- | ------- | ------- |
+| id         | bigint                   |         | false    |          |         |         |
+| user_id    | bigint                   |         | false    |          |         |         |
+| url        | varchar(255)             |         | true     |          |         |         |
+| highlight  | varchar(500)             |         | false    |          |         |         |
+| pinned     | boolean                  | false   | false    |          |         |         |
+| created_at | timestamp with time zone | now()   | false    |          |         |         |
+| updated_at | timestamp with time zone | now()   | false    |          |         |         |
+| deleted_at | timestamp with time zone |         | true     |          |         |         |
 
 ## Constraints
 
