@@ -77,7 +77,7 @@ jobs:
         run: tbls doc --rm-dist
         env:
           TBLS_DSN: ${{ secrets.SUPABASE_DB_URL }}
-          TBLS_DOC_PATH: ./supabase/diagrams
+          TBLS_DOC_PATH: ./public/diagrams
 
       - name: "📊 visualiser artifacts"
         uses: actions/upload-artifact@v2
