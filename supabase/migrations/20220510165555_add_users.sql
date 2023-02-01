@@ -25,6 +25,9 @@ CREATE TABLE IF NOT EXISTS public.users
   location character varying(50) COLLATE pg_catalog."default",
   display_local_time boolean NOT NULL DEFAULT false,
   interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
+  display_email boolean NOT NULL DEFAULT false,
+  receive_collaboration boolean NOT NULL DEFAULT false,
+  timezone character varying(50) COLLATE pg_catalog."default" NOT NULL DEFAULT 'UTC+1'::character varying,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",

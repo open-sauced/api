@@ -217,6 +217,16 @@ export class DbUser extends BaseEntity {
   })
   readonly receive_collaboration?: boolean;
 
+  @ApiModelProperty({
+    description: "User timezone in UTC",
+    example: "UTC-5",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly timezone?: string;
+
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];
