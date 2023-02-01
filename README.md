@@ -37,7 +37,6 @@ In order to run the project we need the following software binaries installed on
 - `node>=16.7.0`
 - `npm>=8.0.0`
 - `docker>=20.10.12`
-- `supabase>=0.18.0`
 
 You also need the `.env` environment file added to your repo for the project to run. To get it, kindly contact @open-sauced/triage team.
 > Note: For Windows users, the `API_HOST` key's value in the `.env` file should be `127.0.0.1`, instead of `0.0.0.0`, so that the project can run correctly on localhost.
@@ -129,53 +128,7 @@ A production deployment is a complete build of the project, including the build 
 npm run build
 ```
 
-## 🔑 Database commands
-
-The API is configured to connect to a local Docker backed PostGres instance however 
-you can also connect to a remote Supabase instance by logging in via the UI and 
-copying the connection string from the settings page.
-
-### Managing supabase migrations
-
-First thing we have to do for [local development](https://supabase.com/docs/guides/local-development) is start the studio locally at [localhost:54321](http://localhost:54321):
-
-```shell
-npm run db:start
-```
-
-### Make changes
-
-If we are adding a new table structure, first do it visually in the Supabase Studio and test locally.
-
-Check the migration difference with the following command:
-
-```shell
-npm run db:changes
-```
-
-If everything is fine we can run the following command to apply the changes to the database:
-
-```shell
-npm run db:commit add_table_name
-```
-
-### Test changes
-
-Simplest way to test the migrations are working is to reset the local database:
-
-```shell
-npm run db:reset
-```
-
-### Push changes
-
-If everything is fine we can push the changes to the remote database:
-
-```shell
-npm run db:push
-```
-
-## 🔑 Supabase structure
+## 🔑 Database structure
 
 Click the image to see the schema diagram full documentation.
 
