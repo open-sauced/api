@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.4...v1.24.0-beta.5) (2023-02-01)
+
+
+### 🐛 Bug Fixes
+
+* add extra fields to user data endpoint ([83c6888](https://github.com/open-sauced/api.opensauced.pizza/commit/83c68884be0a60f1cde698628a2243ad0bcd03d2))
+
 ## [1.24.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-beta.3...v1.24.0-beta.4) (2023-02-01)
 
 
