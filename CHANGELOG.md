@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-alpha.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.3...v1.24.0-alpha.4) (2023-02-01)
+
+
+### 🧑‍💻 Code Refactoring
+
+* move migrations to digital ocean structure and prepare for pgmigrate ([c8dab92](https://github.com/open-sauced/api.opensauced.pizza/commit/c8dab921a3b5b89244ffd6ecf1bdf4e93b6d15ba))
+* remove stray diagrams ([f57c5b6](https://github.com/open-sauced/api.opensauced.pizza/commit/f57c5b66a533dd513b54af5a8af3fe6b375a2132))
+
 ## [1.24.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.2...v1.24.0-alpha.3) (2023-01-31)
 
 
