@@ -455,8 +455,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/user/user.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/user/user.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -538,8 +538,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/user/user.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/user/user.service.ts:132</a></div>
                 </td>
             </tr>
 
@@ -621,8 +621,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/user/user.service.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/user/user.service.ts:102</a></div>
                 </td>
             </tr>
 
@@ -692,8 +692,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/user/user.service.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/user/user.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -858,8 +858,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/user/user.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/user/user.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -1002,7 +1002,11 @@ export class UserService {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { email: user.email });
+      await this.userRepository.update(id, {
+        email: user.email,
+        display_local_time: !!user.display_local_time,
+        timezone: user.timezone,
+      });
 
       return this.findOneById(id);
     } catch (e) {
