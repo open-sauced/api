@@ -10,6 +10,8 @@ import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
 import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
+import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
+import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -41,9 +43,9 @@ export class AuthController {
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time };
     } catch (e) {
       // leave user profile as-is
     }
@@ -157,12 +159,31 @@ export class AuthController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update interests for the user profile" })
-  @ApiBody({ type: UpdateUserDto })
+  @ApiBody({ type: UpdateUserProfileInterestsDto })
   async updateInterestsForUserProfile (
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserDto,
+      @Body() updateUserDto: UpdateUserProfileInterestsDto,
   ): Promise<DbUser> {
     await this.userService.updateInterests(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
+
+  @Patch("/profile/email")
+  @ApiOperation({
+    operationId: "updateEmailPreferencesForUserProfile",
+    summary: "Updates the email preferences for the authenticated user profile",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to update email preferences for the user profile" })
+  @ApiBody({ type: UpdateUserEmailPreferencesDto })
+  async updateEmailPreferencesForUserProfile (
+    @UserId() userId: number,
+      @Body() updateUserDto: UpdateUserEmailPreferencesDto,
+  ): Promise<DbUser> {
+    await this.userService.updateEmailPreferences(userId, updateUserDto);
 
     return this.userService.findOneById(userId);
   }

@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsArray, IsEmail } from "class-validator";
+import { IsBoolean, IsEmail, IsString } from "class-validator";
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -11,11 +11,18 @@ export class UpdateUserDto {
   public email: string;
 
   @ApiPropertyOptional({
-    description: "An array of interests",
-    type: [String],
-    isArray: true,
-    example: ["javascript", "react"],
+    description: "Display user local time in profile",
+    type: Boolean,
+    example: false,
   })
-  @IsArray()
-  public interests?: string[];
+  @IsBoolean()
+  public display_local_time?: boolean;
+
+  @ApiPropertyOptional({
+    description: "User timezone in UTC",
+    type: String,
+    example: "UTC-5",
+  })
+  @IsString()
+  public timezone?: string;
 }
