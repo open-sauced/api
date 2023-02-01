@@ -182,7 +182,6 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "boolean",
-    select: false,
     default: false,
   })
   readonly display_local_time?: boolean;
