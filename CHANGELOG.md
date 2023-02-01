@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-alpha.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.5...v1.24.0-alpha.6) (2023-02-01)
+
+
+### 🧑‍💻 Code Refactoring
+
+* completely remove supabase outside auth connector ([6df9486](https://github.com/open-sauced/api.opensauced.pizza/commit/6df9486fd4291b68346f92b810bdd18e3daa5cd1))
+
 ## [1.24.0-alpha.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.4...v1.24.0-alpha.5) (2023-02-01)
 
 
