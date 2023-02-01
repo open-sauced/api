@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.24.0-alpha.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.4...v1.24.0-alpha.5) (2023-02-01)
+
+
+### 🤖 Build System
+
+* correct ci diagram generation ([475e5dd](https://github.com/open-sauced/api.opensauced.pizza/commit/475e5dd651570ccd00c9f0fd1546037f3dd0bf71))
+
 ## [1.24.0-alpha.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0-alpha.3...v1.24.0-alpha.4) (2023-02-01)
 
 
