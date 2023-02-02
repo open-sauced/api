@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import {ObjectLiteral, Repository, SelectQueryBuilder} from "typeorm";
+import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbRepo } from "./entities/repo.entity";
