@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { Repository, SelectQueryBuilder } from "typeorm";
+import {ObjectLiteral, Repository, SelectQueryBuilder} from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbRepo } from "./entities/repo.entity";
@@ -15,7 +15,7 @@ export class RepoService {
     private repoRepository: Repository<DbRepo>,
   ) {}
 
-  subQueryCount<T> (subQuery: SelectQueryBuilder<T>, entity: string, alias: string, target = "repo") {
+  subQueryCount<T extends ObjectLiteral> (subQuery: SelectQueryBuilder<T>, entity: string, alias: string, target = "repo") {
     const aliasName = `${alias}Count`;
     const aliasTable = `${alias}CountSelect`;
 
