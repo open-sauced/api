@@ -13,6 +13,32 @@
 * Revert "feat: add etl supporting repos and users metadata (#87)" (#88) ([0b85d93](https://github.com/open-sauced/api.opensauced.pizza/commit/0b85d936fa4b15c5a286ed95da79f0d786fe6624)), closes [#87](https://github.com/open-sauced/api.opensauced.pizza/issues/87) [#88](https://github.com/open-sauced/api.opensauced.pizza/issues/88)
 
 
+### 🐛 Bug Fixes
+
+* add extra fields to user data endpoint ([83c6888](https://github.com/open-sauced/api.opensauced.pizza/commit/83c68884be0a60f1cde698628a2243ad0bcd03d2))
+* add user profile fields to migrations, endpoints ([#92](https://github.com/open-sauced/api.opensauced.pizza/issues/92)) ([c6c07c6](https://github.com/open-sauced/api.opensauced.pizza/commit/c6c07c6e4f48911a919d50c55724f3e1e3584bdf))
+* update swagger docs for user profile endpoints ([5f9be41](https://github.com/open-sauced/api.opensauced.pizza/commit/5f9be415708e53092ad715d582cfb5a94d29a7c6))
+
+
+### 🍕 Features
+
+* add endpoint to update user email preferences ([#90](https://github.com/open-sauced/api.opensauced.pizza/issues/90)) ([8c6884c](https://github.com/open-sauced/api.opensauced.pizza/commit/8c6884c2f2c2e8d81831ce16aef50801793304c6))
+* add etl supporting repos and users metadata ([#87](https://github.com/open-sauced/api.opensauced.pizza/issues/87)) ([9c605d0](https://github.com/open-sauced/api.opensauced.pizza/commit/9c605d04d7863a7c9d71ba655059a77e157d2477))
+* update typescript and build packages ([6b832e4](https://github.com/open-sauced/api.opensauced.pizza/commit/6b832e4141f78520e8a73f9664fd2c8bc23dbc19))
+
+
+### 🤖 Build System
+
+* correct optional api parameters in user creation endpoints ([d50b86f](https://github.com/open-sauced/api.opensauced.pizza/commit/d50b86ffa645701c66e4d02f1ef2565628ad35c7))
+
+## [1.24.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0) (2023-02-02)
+
+
+### ⏩ Reverts
+
+* Revert "feat: add etl supporting repos and users metadata (#87)" (#88) ([0b85d93](https://github.com/open-sauced/api.opensauced.pizza/commit/0b85d936fa4b15c5a286ed95da79f0d786fe6624)), closes [#87](https://github.com/open-sauced/api.opensauced.pizza/issues/87) [#88](https://github.com/open-sauced/api.opensauced.pizza/issues/88)
+
+
 ### 🍕 Features
 
 * add endpoint to update user email preferences ([#90](https://github.com/open-sauced/api.opensauced.pizza/issues/90)) ([8c6884c](https://github.com/open-sauced/api.opensauced.pizza/commit/8c6884c2f2c2e8d81831ce16aef50801793304c6))
