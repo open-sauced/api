@@ -5,6 +5,33 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0...v1.25.0-alpha.1) (2023-02-02)
+
+
+### 🍕 Features
+
+* add etl supporting repos and users metadata ([#89](https://github.com/open-sauced/api.opensauced.pizza/issues/89)) ([286e864](https://github.com/open-sauced/api.opensauced.pizza/commit/286e8640721529dbb7e143b9125ad1b48ec4cb7f))
+* update environment and database connections to new logging model ([39bdd16](https://github.com/open-sauced/api.opensauced.pizza/commit/39bdd16761f46016daeb3ea88ef5c099111289be))
+
+
+### 🤖 Build System
+
+* correct ci diagram generation ([475e5dd](https://github.com/open-sauced/api.opensauced.pizza/commit/475e5dd651570ccd00c9f0fd1546037f3dd0bf71))
+* correct diagram database generator inclusion ([afde490](https://github.com/open-sauced/api.opensauced.pizza/commit/afde49017075ab3b9ffb78295bc0efc603ad2ef5))
+
+
+### 🧑‍💻 Code Refactoring
+
+* completely remove supabase outside auth connector ([6df9486](https://github.com/open-sauced/api.opensauced.pizza/commit/6df9486fd4291b68346f92b810bdd18e3daa5cd1))
+* move migrations to digital ocean structure and prepare for pgmigrate ([c8dab92](https://github.com/open-sauced/api.opensauced.pizza/commit/c8dab921a3b5b89244ffd6ecf1bdf4e93b6d15ba))
+* remove stray diagrams ([f57c5b6](https://github.com/open-sauced/api.opensauced.pizza/commit/f57c5b66a533dd513b54af5a8af3fe6b375a2132))
+* remove supabase, code split migrations and diagrams ([98980b0](https://github.com/open-sauced/api.opensauced.pizza/commit/98980b0f7260561e7dd355d16c69deb1b53be9de))
+
+
+### 🐛 Bug Fixes
+
+* correct missing alpha interests migrations ([58540e7](https://github.com/open-sauced/api.opensauced.pizza/commit/58540e70d2576956691e9b7f6594b8cbe8574e42))
+
 ## [1.24.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0) (2023-02-02)
 
 
