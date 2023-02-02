@@ -237,7 +237,6 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "boolean",
-    select: false,
     default: false,
   })
   readonly display_local_time?: boolean;
@@ -313,6 +312,36 @@ export class DbUser extends BaseEntity {
     default: "User",
   })
   public type: string;
+
+  @ApiModelProperty({
+    description: "User display public email",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  readonly display_email?: boolean;
+
+  @ApiModelProperty({
+    description: "User receives collaboration requests",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  readonly receive_collaboration?: boolean;
+
+  @ApiModelProperty({
+    description: "User timezone in UTC",
+    example: "UTC-5",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly timezone?: string;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
