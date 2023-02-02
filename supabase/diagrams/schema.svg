@@ -681,17 +681,17 @@
 <text text-anchor="start" x="5065" y="-1695.9" font-family="Arial" font-size="14.00" fill="#000000">highlight </text>
 <text text-anchor="start" x="5121.014" y="-1695.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(500)]</text>
 <polygon fill="none" stroke="#000000" points="5058,-1654.5 5058,-1684.5 5342,-1684.5 5342,-1654.5 5058,-1654.5"/>
-<text text-anchor="start" x="5065" y="-1665.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="5135.028" y="-1665.9" font-family="Arial" font-size="14.00" fill="#666666">[time with time zone]</text>
+<text text-anchor="start" x="5065" y="-1665.9" font-family="Arial" font-size="14.00" fill="#000000">pinned </text>
+<text text-anchor="start" x="5110.9102" y="-1665.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 <polygon fill="none" stroke="#000000" points="5058,-1624.5 5058,-1654.5 5342,-1654.5 5342,-1624.5 5058,-1624.5"/>
-<text text-anchor="start" x="5065" y="-1635.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="5138.9326" y="-1635.9" font-family="Arial" font-size="14.00" fill="#666666">[time with time zone]</text>
+<text text-anchor="start" x="5065" y="-1635.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="5135.028" y="-1635.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
 <polygon fill="none" stroke="#000000" points="5058,-1594.5 5058,-1624.5 5342,-1624.5 5342,-1594.5 5058,-1594.5"/>
-<text text-anchor="start" x="5065" y="-1605.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
-<text text-anchor="start" x="5134.2566" y="-1605.9" font-family="Arial" font-size="14.00" fill="#666666">[time with time zone]</text>
+<text text-anchor="start" x="5065" y="-1605.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
+<text text-anchor="start" x="5138.9326" y="-1605.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
 <polygon fill="none" stroke="#000000" points="5058,-1564.5 5058,-1594.5 5342,-1594.5 5342,-1564.5 5058,-1564.5"/>
-<text text-anchor="start" x="5065" y="-1575.9" font-family="Arial" font-size="14.00" fill="#000000">pinned </text>
-<text text-anchor="start" x="5110.9102" y="-1575.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
+<text text-anchor="start" x="5065" y="-1575.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
+<text text-anchor="start" x="5134.2566" y="-1575.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
 </g>
 </g>
 </svg>

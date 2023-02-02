@@ -43,9 +43,9 @@ export class AuthController {
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time };
     } catch (e) {
       // leave user profile as-is
     }

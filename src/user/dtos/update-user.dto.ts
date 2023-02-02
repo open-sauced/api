@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { IsBoolean, IsEmail, IsString } from "class-validator";
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -9,4 +9,20 @@ export class UpdateUserDto {
   })
   @IsEmail()
   public email: string;
+
+  @ApiPropertyOptional({
+    description: "Display user local time in profile",
+    type: Boolean,
+    example: false,
+  })
+  @IsBoolean()
+  public display_local_time?: boolean;
+
+  @ApiPropertyOptional({
+    description: "User timezone in UTC",
+    type: String,
+    example: "UTC-5",
+  })
+  @IsString()
+  public timezone?: string;
 }

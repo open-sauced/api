@@ -87,7 +87,11 @@ export class UserService {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { email: user.email });
+      await this.userRepository.update(id, {
+        email: user.email,
+        display_local_time: !!user.display_local_time,
+        timezone: user.timezone,
+      });
 
       return this.findOneById(id);
     } catch (e) {
