@@ -36,6 +36,7 @@ create table if not exists public.users
   gravatar_id character varying(255) collate pg_catalog."default" not null default '',
   url character varying(255) collate pg_catalog."default" not null default '',
   blog character varying(255) collate pg_catalog."default" not null default '',
+  interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
 
   -- dynamic columns
   constraint users_pkey primary key (id),
