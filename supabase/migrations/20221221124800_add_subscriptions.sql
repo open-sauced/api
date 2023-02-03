@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS public.subscriptions
 (
     id text COLLATE pg_catalog."default" NOT NULL,
     user_id bigint NOT NULL,
-    status subscription_status,
+    status varchar(255) collate pg_catalog."default" not null default 'trialing'::character varying,
     metadata jsonb,
     price_id text COLLATE pg_catalog."default",
     quantity integer,
