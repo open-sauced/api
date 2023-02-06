@@ -37,6 +37,13 @@ export class DbUserHighlight extends BaseEntity {
   public url?: string;
 
   @ApiModelProperty({
+    description: "Highlight Title",
+    example: "My First PR!",
+  })
+  @Column("text")
+  public title?: string;
+
+  @ApiModelProperty({
     description: "Highlight Text",
     example: `
     I made my first open source pull request!

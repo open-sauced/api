@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 
 export class CreateUserHighlightDto {
@@ -9,6 +9,14 @@ export class CreateUserHighlightDto {
   })
   @IsString()
   public url: string;
+
+  @ApiPropertyOptional({
+    description: "Highlight Title",
+    type: String,
+    example: `My first PR!`,
+  })
+  @IsString()
+  public title?: string;
 
   @ApiProperty({
     description: "Highlight Text",
