@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0...v1.25.0-beta.1) (2023-02-06)
+
+
+### 🍕 Features
+
+* add entity and endpoint to manage user highlights ([#99](https://github.com/open-sauced/api.opensauced.pizza/issues/99)) ([6894cf1](https://github.com/open-sauced/api.opensauced.pizza/commit/6894cf1ab7a8ea447b5d1c719636a54c21afc19d))
+
 ## [1.24.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0) (2023-02-02)
 
 
