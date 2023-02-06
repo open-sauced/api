@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllHighlightsByUsername" >findAllHighlightsByUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOneUserById" >findOneUserById</a>
                             </li>
                         </ul>
@@ -104,6 +108,96 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllHighlightsByUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllHighlightsByUsername</b></span>
+                        <a href="#findAllHighlightsByUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllHighlightsByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:username/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;findAllHighlightsByUsername&#x27;, summary: &#x27;Listing all Highlights for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Highlights not found&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/user/user.controller.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -133,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/user/user.controller.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/user/user.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -186,16 +280,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
+import { UserHighlightsService } from &quot;./user-highlights.service&quot;;
 import { DbUser } from &quot;./user.entity&quot;;
 import { UserService } from &quot;./user.service&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
 export class UserController {
-  constructor (private userService: UserService) {}
+  constructor (
+    private userService: UserService,
+    private userHighlightsService: UserHighlightsService,
+  ) {}
 
   @Get(&quot;/:username&quot;)
   @ApiOperation({
@@ -208,6 +310,23 @@ export class UserController {
     @Param(&quot;username&quot;) username: string,
   ): Promise&lt;DbUser&gt; {
     return this.userService.findOneByUsername(username);
+  }
+
+  @Get(&quot;/:username/highlights&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllHighlightsByUsername&quot;,
+    summary: &quot;Listing all Highlights for a user and paginate them&quot;,
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: &quot;Highlights not found&quot; })
+  async findAllHighlightsByUsername (
+    @Param(&quot;username&quot;) username: string,
+      @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    const user &#x3D; await this.userService.findOneByUsername(username);
+
+    return this.userHighlightsService.findAllByUserId(pageOptionsDto, user.id);
   }
 }
 </code></pre>

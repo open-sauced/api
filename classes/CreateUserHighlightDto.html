@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >UpdateUserDto</li>
+  <li >CreateUserHighlightDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/user/dtos/update-user.dto.ts</code>
+            <code>src/user/dtos/create-user-highlight.dto.ts</code>
         </p>
 
 
@@ -84,17 +84,11 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#display_local_time" >display_local_time</a>
+                                <a href="#highlight" >highlight</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#email" >email</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Optional</span>
-                                <a href="#timezone" >timezone</a>
+                                <a href="#url" >url</a>
                             </li>
                         </ul>
                     </td>
@@ -119,48 +113,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="display_local_time"></a>
+                    <a name="highlight"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>display_local_time</b></span>
-                        <a href="#display_local_time"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiPropertyOptional({description: &#x27;Display user local time in profile&#x27;, type: Boolean, example: false})<br />@IsBoolean()<br />@IsOptional()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user/dtos/update-user.dto.ts:20</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="email"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>email</b></span>
-                        <a href="#email"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>highlight</b></span>
+                        <a href="#highlight"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -175,13 +132,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;User Profile Email&#x27;, type: String, example: &#x27;hello@opensauced.pizza&#x27;})<br />@IsEmail()<br />
+                            @ApiProperty({description: &#x27;Highlight Text&#x27;, type: String, example: My first PR to Open Sauced!})<br />@IsString()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/user/dtos/update-user.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user/dtos/create-user-highlight.dto.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -192,12 +149,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="timezone"></a>
+                    <a name="url"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                            <span class="modifier">Optional</span>
-                        <span ><b>timezone</b></span>
-                        <a href="#timezone"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>url</b></span>
+                        <a href="#url"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -212,13 +168,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;User timezone in UTC&#x27;, type: String, example: &#x27;UTC-5&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                            @ApiProperty({description: &#x27;Highlight PR URL&#x27;, type: String, example: &#x27;github.com/open-sauced/insights/pull/1&#x27;})<br />@IsString()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/user/dtos/update-user.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/user/dtos/create-user-highlight.dto.ts:11</a></div>
                         </td>
                     </tr>
 
@@ -237,35 +193,25 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
-import { IsBoolean, IsEmail, IsOptional, IsString } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
+import { IsString } from &quot;class-validator&quot;;
 
-export class UpdateUserDto {
+export class CreateUserHighlightDto {
   @ApiProperty({
-    description: &quot;User Profile Email&quot;,
+    description: &quot;Highlight PR URL&quot;,
     type: String,
-    example: &quot;hello@opensauced.pizza&quot;,
-  })
-  @IsEmail()
-  public email: string;
-
-  @ApiPropertyOptional({
-    description: &quot;Display user local time in profile&quot;,
-    type: Boolean,
-    example: false,
-  })
-  @IsBoolean()
-  @IsOptional()
-  public display_local_time?: boolean;
-
-  @ApiPropertyOptional({
-    description: &quot;User timezone in UTC&quot;,
-    type: String,
-    example: &quot;UTC-5&quot;,
+    example: &quot;github.com/open-sauced/insights/pull/1&quot;,
   })
   @IsString()
-  @IsOptional()
-  public timezone?: string;
+  public url: string;
+
+  @ApiProperty({
+    description: &quot;Highlight Text&quot;,
+    type: String,
+    example: &#x60;My first PR to Open Sauced!&#x60;,
+  })
+  @IsString()
+  public highlight: string;
 }
 </code></pre>
     </div>
@@ -305,7 +251,7 @@ export class UpdateUserDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UpdateUserDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateUserHighlightDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

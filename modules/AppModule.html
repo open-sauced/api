@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/app.module.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app.module.ts:133</a></div>
                 </td>
             </tr>
 
@@ -446,6 +446,7 @@ import { CustomerModule } from &quot;./customer/customer.module&quot;;
 import { StripeWebHookModule } from &quot;./stripe-webhook/webhook.module&quot;;
 import { StripeSubscriptionModule } from &quot;./subscription/stripe-subscription.module&quot;;
 import { DbSubscription } from &quot;./subscription/stripe-subscription.dto&quot;;
+import { DbUserHighlight } from &quot;./user/entities/user-highlight.entity&quot;;
 
 @Module({
   imports: [
@@ -471,6 +472,7 @@ import { DbSubscription } from &quot;./subscription/stripe-subscription.dto&quot
         entities: [
           DbUser,
           DbUserRepo,
+          DbUserHighlight,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
