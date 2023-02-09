@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.2...v1.25.0-beta.3) (2023-02-09)
+
+
+### 🍕 Features
+
+* add support for updating all user profile information ([#101](https://github.com/open-sauced/api.opensauced.pizza/issues/101)) ([169d07b](https://github.com/open-sauced/api.opensauced.pizza/commit/169d07b1558fb59ca39b5cfe0ef088204d901e45))
+
 ## [1.25.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.1...v1.25.0-beta.2) (2023-02-06)
 
 
