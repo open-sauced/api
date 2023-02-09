@@ -88,7 +88,13 @@ export class UserService {
       await this.findOneById(id);
 
       await this.userRepository.update(id, {
+        name: user.name,
         email: user.email,
+        bio: user.bio ?? "",
+        url: user.url ?? "",
+        twitter_username: user.twitter_username ?? "",
+        company: user.company ?? "",
+        location: user.location ?? "",
         display_local_time: !!user.display_local_time,
         timezone: user.timezone,
       });

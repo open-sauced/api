@@ -147,6 +147,16 @@ export class DbUser extends BaseEntity {
   readonly name?: string;
 
   @ApiModelProperty({
+    description: "User URL",
+    example: "https://opensauced.pizza",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly url?: string;
+
+  @ApiModelProperty({
     description: "User Twitter information",
     example: "saucedopen",
   })

@@ -80,6 +80,12 @@ export class SupabaseAuthDto {
   readonly name?: string;
 
   @ApiPropertyOptional({
+    description: "User website",
+    example: "https://opensauced.pizza",
+  })
+  readonly url?: string;
+
+  @ApiPropertyOptional({
     description: "User Twitter information",
     example: "saucedopen",
   })
