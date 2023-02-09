@@ -85,6 +85,16 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#bio" >bio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#company" >company</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#display_local_time" >display_local_time</a>
                             </li>
                             <li>
@@ -94,7 +104,26 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#location" >location</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#name" >name</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#timezone" >timezone</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#twitter_username" >twitter_username</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#url" >url</a>
                             </li>
                         </ul>
                     </td>
@@ -115,6 +144,80 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="bio"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>bio</b></span>
+                        <a href="#bio"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;User Profile Bio&#x27;, type: String, example: &#x27;I make the pizza&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user/dtos/update-user.dto.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="company"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>company</b></span>
+                        <a href="#company"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;User Profile Company&#x27;, type: String, example: &#x27;OpenSauced&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/user/dtos/update-user.dto.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -145,7 +248,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user/dtos/update-user.dto.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/user/dtos/update-user.dto.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -176,6 +279,79 @@
                         <br />
                         <code>
                             @ApiProperty({description: &#x27;User Profile Email&#x27;, type: String, example: &#x27;hello@opensauced.pizza&#x27;})<br />@IsEmail()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user/dtos/update-user.dto.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="location"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>location</b></span>
+                        <a href="#location"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;User Profile Location&#x27;, type: String, example: &#x27;OpenSauced&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user/dtos/update-user.dto.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="name"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>name</b></span>
+                        <a href="#name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;User Profile Name&#x27;, type: String, example: &#x27;Pizza Maker&#x27;})<br />@IsString()<br />
                         </code>
                     </td>
                 </tr>
@@ -218,7 +394,81 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/user/dtos/update-user.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/user/dtos/update-user.dto.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="twitter_username"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>twitter_username</b></span>
+                        <a href="#twitter_username"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;User Profile Twitter Username&#x27;, type: String, example: &#x27;saucedopen&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/user/dtos/update-user.dto.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="url"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>url</b></span>
+                        <a href="#url"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;User Profile URL&#x27;, type: String, example: &#x27;https://opensauced.pizza&#x27;})<br />@IsUrl()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/user/dtos/update-user.dto.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -238,9 +488,17 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
-import { IsBoolean, IsEmail, IsOptional, IsString } from &quot;class-validator&quot;;
+import { IsBoolean, IsEmail, IsOptional, IsString, IsUrl } from &quot;class-validator&quot;;
 
 export class UpdateUserDto {
+  @ApiProperty({
+    description: &quot;User Profile Name&quot;,
+    type: String,
+    example: &quot;Pizza Maker&quot;,
+  })
+  @IsString()
+  public name: string;
+
   @ApiProperty({
     description: &quot;User Profile Email&quot;,
     type: String,
@@ -248,6 +506,51 @@ export class UpdateUserDto {
   })
   @IsEmail()
   public email: string;
+
+  @ApiPropertyOptional({
+    description: &quot;User Profile Bio&quot;,
+    type: String,
+    example: &quot;I make the pizza&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  public bio?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;User Profile URL&quot;,
+    type: String,
+    example: &quot;https://opensauced.pizza&quot;,
+  })
+  @IsUrl()
+  @IsOptional()
+  public url?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;User Profile Twitter Username&quot;,
+    type: String,
+    example: &quot;saucedopen&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  public twitter_username?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;User Profile Company&quot;,
+    type: String,
+    example: &quot;OpenSauced&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  public company?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;User Profile Location&quot;,
+    type: String,
+    example: &quot;OpenSauced&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  public location?: string;
 
   @ApiPropertyOptional({
     description: &quot;Display user local time in profile&quot;,
