@@ -64,7 +64,7 @@ export class UserHighlightsService {
       user_id: userId,
       url: highlight.url,
       highlight: highlight.highlight,
-      title: highlight.title || "",
+      title: highlight.title ?? "",
     });
 
     return this.userHighlightRepoRepository.save(newUserHighlight);
