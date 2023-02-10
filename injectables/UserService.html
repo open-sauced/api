@@ -242,8 +242,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user/user.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/user/user.service.ts:65</a></div>
                 </td>
             </tr>
 
@@ -306,7 +306,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, includeEmail)</code>
                 </td>
             </tr>
 
@@ -331,6 +331,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -344,6 +345,22 @@
                                         No
                                     </td>
 
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>includeEmail</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>false</code>
+                                    </td>
 
                                 </tr>
                             </tbody>
@@ -384,8 +401,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/user/user.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/user/user.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -455,8 +472,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/user/user.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/user/user.service.ts:148</a></div>
                 </td>
             </tr>
 
@@ -538,8 +555,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/user/user.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/user/user.service.ts:144</a></div>
                 </td>
             </tr>
 
@@ -621,8 +638,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/user/user.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/user/user.service.ts:114</a></div>
                 </td>
             </tr>
 
@@ -692,8 +709,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/user/user.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/user/user.service.ts:134</a></div>
                 </td>
             </tr>
 
@@ -775,8 +792,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/user/user.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/user/user.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -858,8 +875,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/user/user.service.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/user/user.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -936,10 +953,15 @@ export class UserService {
     return builder;
   }
 
-  async findOneById (id: number): Promise&lt;DbUser&gt; {
+  async findOneById (id: number, includeEmail &#x3D; false): Promise&lt;DbUser&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;id &#x3D; :id&quot;, { id });
+    queryBuilder
+      .where(&quot;id &#x3D; :id&quot;, { id });
+
+    if (includeEmail) {
+      queryBuilder.addSelect(&quot;users.email&quot;, &quot;users_email&quot;);
+    }
 
     let item: DbUser | null;
 
@@ -960,7 +982,8 @@ export class UserService {
   async findOneByUsername (username: string): Promise&lt;DbUser&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;LOWER(login) &#x3D; LOWER(:username)&quot;, { username });
+    queryBuilder
+      .where(&quot;LOWER(login) &#x3D; LOWER(:username)&quot;, { username });
 
     const item: DbUser | null &#x3D; await queryBuilder.getOne();
 
@@ -980,7 +1003,7 @@ export class UserService {
     const id &#x3D; parseInt(github.id, 10);
 
     try {
-      return await this.findOneById(id);
+      return await this.findOneById(id, true);
     } catch (e) {
       // create new user
       const newUser &#x3D; this.userRepository.create({

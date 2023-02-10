@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/auth/auth.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/auth/auth.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/auth/auth.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/auth/auth.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -403,8 +403,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/auth/auth.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/auth/auth.controller.ts:100</a></div>
                 </td>
             </tr>
 
@@ -481,8 +481,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">src/auth/auth.controller.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/auth/auth.controller.ts:181</a></div>
                 </td>
             </tr>
 
@@ -571,8 +571,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/auth/auth.controller.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/auth/auth.controller.ts:162</a></div>
                 </td>
             </tr>
 
@@ -661,8 +661,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/auth/auth.controller.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/auth/auth.controller.ts:145</a></div>
                 </td>
             </tr>
 
@@ -763,17 +763,16 @@ export class AuthController {
   async getSession (
     @User() user: SupabaseAuthUser,
   ): Promise&lt;SupabaseAuthDto&gt; {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
+    const { role, email: session_email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
 
     let userProfile: Partial&lt;SupabaseAuthDto&gt; &#x3D; {};
-
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url } &#x3D; await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email } &#x3D; await this.userService.checkAddUser(user);
 
-      userProfile &#x3D; { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url };
+      userProfile &#x3D; { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email };
     } catch (e) {
       // leave user profile as-is
     }
@@ -782,7 +781,7 @@ export class AuthController {
       id: &#x60;${String(id)}&#x60;,
       user_name: &#x60;${String(user_name)}&#x60;,
       role,
-      email,
+      email: userProfile.email ?? session_email,
       confirmed_at,
       last_sign_in_at,
       created_at,
