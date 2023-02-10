@@ -1,5 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 import { IsArray, IsBoolean, IsString } from "class-validator";
+
+import { RepoInfo } from "../../repo/dtos/repo-info.dto";
 
 export class CreateInsightDto {
   @ApiProperty({
@@ -19,11 +22,12 @@ export class CreateInsightDto {
     is_public: boolean;
 
   @ApiProperty({
-    description: "An array of repository IDs",
-    type: [Number],
+    description: "An array of repository information objects",
     isArray: true,
-    example: [1, 2, 3],
+    type: RepoInfo,
+    example: [{ id: 797, full_name: "open-sauced/open-sauced" }],
   })
+  @Type(() => RepoInfo)
   @IsArray()
-    ids: number[];
+    repos: RepoInfo[];
 }
