@@ -309,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/user/user-highlights.service.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/user/user-highlights.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -546,8 +546,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/user/user-highlights.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/user/user-highlights.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -679,6 +679,7 @@ export class UserHighlightsService {
       user_id: userId,
       url: highlight.url,
       highlight: highlight.highlight,
+      title: highlight.title ?? &quot;&quot;,
     });
 
     return this.userHighlightRepoRepository.save(newUserHighlight);
