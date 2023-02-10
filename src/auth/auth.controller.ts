@@ -35,17 +35,16 @@ export class AuthController {
   async getSession (
     @User() user: SupabaseAuthUser,
   ): Promise<SupabaseAuthDto> {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
+    const { role, email: session_email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
     let userProfile: Partial<SupabaseAuthDto> = {};
-
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email };
     } catch (e) {
       // leave user profile as-is
     }
@@ -54,7 +53,7 @@ export class AuthController {
       id: `${String(id)}`,
       user_name: `${String(user_name)}`,
       role,
-      email,
+      email: userProfile.email ?? session_email,
       confirmed_at,
       last_sign_in_at,
       created_at,
