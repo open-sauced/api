@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.1...v1.25.0-alpha.2) (2023-02-10)
+
+
+### 🍕 Features
+
+* add support for capturing repo fullname on onboarding/insight repos ([#103](https://github.com/open-sauced/api.opensauced.pizza/issues/103)) ([be5fae7](https://github.com/open-sauced/api.opensauced.pizza/commit/be5fae7a7c953daa93dab13fb5e2db577bea06d9))
+
 ## [1.25.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0...v1.25.0-alpha.1) (2023-02-02)
 
 

@@ -14,6 +14,7 @@
 | created_at | timestamp with time zone | now()   | false    |          |         |         |
 | updated_at | timestamp with time zone | now()   | false    |          |         |         |
 | deleted_at | timestamp with time zone |         | true     |          |         |         |
+| title      | varchar(100)             |         | true     |          |         |         |
 
 ## Constraints
 
