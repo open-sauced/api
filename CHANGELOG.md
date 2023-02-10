@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.3...v1.25.0-beta.4) (2023-02-10)
+
+
+### 🐛 Bug Fixes
+
+* add title to new user highlight method ([#102](https://github.com/open-sauced/api.opensauced.pizza/issues/102)) ([15d4f30](https://github.com/open-sauced/api.opensauced.pizza/commit/15d4f30111c69e80f448d1c2a7160a6367a6624d))
+
 ## [1.25.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.2...v1.25.0-beta.3) (2023-02-09)
 
 
