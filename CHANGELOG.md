@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.4...v1.25.0-beta.5) (2023-02-10)
+
+
+### 🐛 Bug Fixes
+
+* fetch user email as default with fallback to session email ([#104](https://github.com/open-sauced/api.opensauced.pizza/issues/104)) ([2cfec69](https://github.com/open-sauced/api.opensauced.pizza/commit/2cfec6937c4953116beed9fb5f43c141a27c1b94))
+
 ## [1.25.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.3...v1.25.0-beta.4) (2023-02-10)
 
 
