@@ -217,7 +217,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "character varying",
-    length: 50,
+    length: 255,
   })
   readonly company?: string;
 
@@ -227,7 +227,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "character varying",
-    length: 50,
+    length: 255,
   })
   readonly location?: string;
 

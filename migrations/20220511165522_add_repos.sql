@@ -47,7 +47,7 @@ create table if not exists public.repos
   homepage character varying(255) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
-  constraint user_stars_pkey primary key (id)
+  constraint repos_pkey primary key (id)
 )
 
 tablespace pg_default;
