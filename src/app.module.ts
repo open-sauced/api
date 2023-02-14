@@ -41,6 +41,7 @@ import { CustomerModule } from "./customer/customer.module";
 import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
+import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { DbSubscription } from "./subscription/stripe-subscription.dto";
         entities: [
           DbUser,
           DbUserRepo,
+          DbUserHighlight,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,

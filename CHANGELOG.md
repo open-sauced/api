@@ -5,6 +5,41 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.4...v1.25.0-beta.5) (2023-02-10)
+
+
+### 🐛 Bug Fixes
+
+* fetch user email as default with fallback to session email ([#104](https://github.com/open-sauced/api.opensauced.pizza/issues/104)) ([2cfec69](https://github.com/open-sauced/api.opensauced.pizza/commit/2cfec6937c4953116beed9fb5f43c141a27c1b94))
+
+## [1.25.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.3...v1.25.0-beta.4) (2023-02-10)
+
+
+### 🐛 Bug Fixes
+
+* add title to new user highlight method ([#102](https://github.com/open-sauced/api.opensauced.pizza/issues/102)) ([15d4f30](https://github.com/open-sauced/api.opensauced.pizza/commit/15d4f30111c69e80f448d1c2a7160a6367a6624d))
+
+## [1.25.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.2...v1.25.0-beta.3) (2023-02-09)
+
+
+### 🍕 Features
+
+* add support for updating all user profile information ([#101](https://github.com/open-sauced/api.opensauced.pizza/issues/101)) ([169d07b](https://github.com/open-sauced/api.opensauced.pizza/commit/169d07b1558fb59ca39b5cfe0ef088204d901e45))
+
+## [1.25.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-beta.1...v1.25.0-beta.2) (2023-02-06)
+
+
+### 🐛 Bug Fixes
+
+* add optional title field to user highlights ([#100](https://github.com/open-sauced/api.opensauced.pizza/issues/100)) ([eb707a0](https://github.com/open-sauced/api.opensauced.pizza/commit/eb707a0384593ce5d70d1bcc9ca6e9791eb3e885))
+
+## [1.25.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0...v1.25.0-beta.1) (2023-02-06)
+
+
+### 🍕 Features
+
+* add entity and endpoint to manage user highlights ([#99](https://github.com/open-sauced/api.opensauced.pizza/issues/99)) ([6894cf1](https://github.com/open-sauced/api.opensauced.pizza/commit/6894cf1ab7a8ea447b5d1c719636a54c21afc19d))
+
 ## [1.24.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.23.0...v1.24.0) (2023-02-02)
 
 

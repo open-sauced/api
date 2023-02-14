@@ -21,10 +21,15 @@ export class UserService {
     return builder;
   }
 
-  async findOneById (id: number): Promise<DbUser> {
+  async findOneById (id: number, includeEmail = false): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("id = :id", { id });
+    queryBuilder
+      .where("id = :id", { id });
+
+    if (includeEmail) {
+      queryBuilder.addSelect("users.email", "users_email");
+    }
 
     let item: DbUser | null;
 
@@ -45,7 +50,8 @@ export class UserService {
   async findOneByUsername (username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("LOWER(login) = LOWER(:username)", { username });
+    queryBuilder
+      .where("LOWER(login) = LOWER(:username)", { username });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
@@ -65,7 +71,7 @@ export class UserService {
     const id = parseInt(github.id, 10);
 
     try {
-      return await this.findOneById(id);
+      return await this.findOneById(id, true);
     } catch (e) {
       // create new user
       const newUser = this.userRepository.create({
@@ -88,7 +94,13 @@ export class UserService {
       await this.findOneById(id);
 
       await this.userRepository.update(id, {
+        name: user.name,
         email: user.email,
+        bio: user.bio ?? "",
+        url: user.url ?? "",
+        twitter_username: user.twitter_username ?? "",
+        company: user.company ?? "",
+        location: user.location ?? "",
         display_local_time: !!user.display_local_time,
         timezone: user.timezone,
       });
