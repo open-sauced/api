@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.3...v1.25.0-alpha.4) (2023-02-16)
+
+
+### 🍕 Features
+
+* add repo topics ([d08173f](https://github.com/open-sauced/api.opensauced.pizza/commit/d08173f198abf27d6992f8ff167f753af99ba280))
+
 ## [1.25.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.2...v1.25.0-alpha.3) (2023-02-14)
 
 
