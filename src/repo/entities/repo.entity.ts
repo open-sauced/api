@@ -372,6 +372,17 @@ export class DbRepo extends BaseEntity {
   })
   public homepage: string;
 
+  @ApiModelProperty({
+    description: "Repository GitHub topics",
+    example: ["open-sauced", "open-source", "github"],
+  })
+  @Column({
+    type: "varchar",
+    array: true,
+    default: "{}",
+  })
+  public topics: string[];
+
   @ApiHideProperty()
   @Column({
     type: "timestamp without time zone",

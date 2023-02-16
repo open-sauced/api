@@ -45,6 +45,7 @@ create table if not exists public.repos
   license character varying(64) collate pg_catalog."default" not null default '',
   url character varying(255) collate pg_catalog."default" not null default '',
   homepage character varying(255) collate pg_catalog."default" not null default '',
+  topics varchar[] not null default array[]::varchar[],
 
   -- dynamic columns
   constraint repos_pkey primary key (id)
@@ -81,3 +82,4 @@ create index if not exists repos_idx_name on repos (name);
 create index if not exists repos_idx_full_name on repos (full_name);
 create index if not exists repos_idx_language on repos (language);
 create index if not exists repos_idx_license on repos (license);
+create index if not exists repos_idx_topics on repos (topics);
