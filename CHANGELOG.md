@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.4...v1.25.0-alpha.5) (2023-02-16)
+
+
+### 🐛 Bug Fixes
+
+* add migration for pull requests table ([1680fb3](https://github.com/open-sauced/api.opensauced.pizza/commit/1680fb32445f2fe63afe617c4a847d7026b80426))
+
 ## [1.25.0-alpha.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.3...v1.25.0-alpha.4) (2023-02-16)
 
 
