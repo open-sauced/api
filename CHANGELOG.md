@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.25.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0...v1.25.1-beta.1) (2023-02-17)
+
+
+### 🐛 Bug Fixes
+
+* force coercion of userId in UserId decorator into a number ([bb1f3e5](https://github.com/open-sauced/api.opensauced.pizza/commit/bb1f3e548634cd69fd75c2f9a9540f1942fd071b))
+
 ## [1.25.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.24.0...v1.25.0) (2023-02-14)
 
 
