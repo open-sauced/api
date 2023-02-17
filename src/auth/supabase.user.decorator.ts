@@ -15,6 +15,6 @@ export const UserId = createParamDecorator(
   (_data: unknown, context: ExecutionContext) => {
     const request = context.switchToHttp().getRequest<SupabaseAuthRequest>();
 
-    return request.user?.user_metadata.sub as string;
+    return parseInt(request.user?.user_metadata.sub as string, 10);
   },
 );
