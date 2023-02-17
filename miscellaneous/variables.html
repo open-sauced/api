@@ -279,7 +279,7 @@
   (_data: unknown, context: ExecutionContext) &#x3D;&gt; {
     const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
 
-    return request.user?.user_metadata.sub as string;
+    return parseInt(request.user?.user_metadata.sub as string, 10);
   },
 )</code>
                     </td>
