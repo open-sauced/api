@@ -157,8 +157,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/auth/auth.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/auth/auth.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -299,7 +299,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, body: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, body: <a href="../classes/UserRepoOptionsDto.html" target="_self">UserRepoOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/auth/auth.controller.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/auth/auth.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -349,7 +349,7 @@
                                 <tr>
                                     <td>body</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/UserRepoOptionsDto.html" target="_self" >UserRepoOptionsDto</a></code>
                                     </td>
 
                                     <td>
@@ -740,6 +740,8 @@ import { DbUser } from &quot;../user/user.entity&quot;;
 import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 import { UpdateUserEmailPreferencesDto } from &quot;../user/dtos/update-user-email-prefs.dto&quot;;
 import { UpdateUserProfileInterestsDto } from &quot;../user/dtos/update-user-interests.dto&quot;;
+import { DbUserRepo } from &quot;../user-repo/user-repo.entity&quot;;
+import { UserRepoOptionsDto } from &quot;../user-repo/dtos/user-repos.dto&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
@@ -801,17 +803,15 @@ export class AuthController {
   @ApiNotFoundResponse({ description: &quot;Unable to update onboarding information for the user&quot; })
   async postOnboarding (
     @UserId() userId: number,
-      @Body() body: string,
+      @Body() body: UserRepoOptionsDto,
   ): Promise&lt;void&gt; {
-    const data &#x3D; JSON.parse(body) as { ids: number[] } | null;
+    const promises: Promise&lt;DbUserRepo&gt;[] &#x3D; [];
 
-    if (data &amp;&amp; Array.isArray(data.ids)) {
-      const repoIds &#x3D; data.ids;
+    body.ids.forEach(repo &#x3D;&gt; {
+      promises.push(this.userReposService.addUserRepo(userId, repo));
+    });
 
-      repoIds.forEach(async repoId &#x3D;&gt; {
-        await this.userReposService.addUserRepo(userId, repoId);
-      });
-    }
+    await Promise.all(promises);
 
     return this.userService.updateOnboarding(userId);
   }
