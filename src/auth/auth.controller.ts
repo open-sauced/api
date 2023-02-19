@@ -12,8 +12,8 @@ import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
-import {DbUserRepo} from "../user-repo/user-repo.entity";
-import {UserRepoOptionsDto} from "../user-repo/dtos/user-repos.dto";
+import { DbUserRepo } from "../user-repo/user-repo.entity";
+import { UserRepoOptionsDto } from "../user-repo/dtos/user-repos.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -75,17 +75,13 @@ export class AuthController {
   @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
   async postOnboarding (
     @UserId() userId: number,
-      @Body() ids: UserRepoOptionsDto,
+      @Body() body: UserRepoOptionsDto,
   ): Promise<void> {
     const promises: Promise<DbUserRepo>[] = [];
 
-    console.log(ids);
-
-    if (Array.isArray(ids)) {
-      ids.forEach(repo => {
-        promises.push(this.userReposService.addUserRepo(userId, repo));
-      });
-    }
+    body.ids.forEach(repo => {
+      promises.push(this.userReposService.addUserRepo(userId, repo));
+    });
 
     await Promise.all(promises);
 
