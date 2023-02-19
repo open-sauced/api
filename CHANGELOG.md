@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.25.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.1...v1.25.1-beta.2) (2023-02-19)
+
+
+### 🐛 Bug Fixes
+
+* correct user_repos type mismatch ([#106](https://github.com/open-sauced/api.opensauced.pizza/issues/106)) ([33a31ff](https://github.com/open-sauced/api.opensauced.pizza/commit/33a31ff50e629b4a8b93829b51e8cf7d050b8722))
+
 ### [1.25.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0...v1.25.1-beta.1) (2023-02-17)
 
 
