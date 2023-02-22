@@ -157,8 +157,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/auth/auth.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/auth/auth.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/auth/auth.controller.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/auth/auth.controller.ts:109</a></div>
                 </td>
             </tr>
 
@@ -299,7 +299,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, body: <a href="../classes/UserRepoOptionsDto.html" target="_self">UserRepoOptionsDto</a>)</code>
+                    <code>postOnboarding(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, body: <a href="../classes/UserOnboardingDto.html" target="_self">UserOnboardingDto</a>)</code>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/auth/auth.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/auth/auth.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -349,7 +349,7 @@
                                 <tr>
                                     <td>body</td>
                                     <td>
-                                                <code><a href="../classes/UserRepoOptionsDto.html" target="_self" >UserRepoOptionsDto</a></code>
+                                                <code><a href="../classes/UserOnboardingDto.html" target="_self" >UserOnboardingDto</a></code>
                                     </td>
 
                                     <td>
@@ -403,8 +403,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/auth/auth.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/auth/auth.controller.ts:94</a></div>
                 </td>
             </tr>
 
@@ -481,8 +481,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/auth/auth.controller.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/auth/auth.controller.ts:175</a></div>
                 </td>
             </tr>
 
@@ -571,8 +571,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="162"
-                            class="link-to-prism">src/auth/auth.controller.ts:162</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/auth/auth.controller.ts:156</a></div>
                 </td>
             </tr>
 
@@ -661,8 +661,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/auth/auth.controller.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/auth/auth.controller.ts:139</a></div>
                 </td>
             </tr>
 
@@ -733,22 +733,19 @@ import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { User, UserId } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { UserService } from &quot;../user/user.service&quot;;
-import { UserReposService } from &quot;../user-repo/user-repos.service&quot;;
 import { StripeService } from &quot;../stripe/stripe.service&quot;;
 import { CustomerService } from &quot;../customer/customer.service&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
 import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 import { UpdateUserEmailPreferencesDto } from &quot;../user/dtos/update-user-email-prefs.dto&quot;;
 import { UpdateUserProfileInterestsDto } from &quot;../user/dtos/update-user-interests.dto&quot;;
-import { DbUserRepo } from &quot;../user-repo/user-repo.entity&quot;;
-import { UserRepoOptionsDto } from &quot;../user-repo/dtos/user-repos.dto&quot;;
+import { UserOnboardingDto } from &quot;./dtos/user-onboarding.dto&quot;;
 
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
 export class AuthController {
   constructor (
     private userService: UserService,
-    private userReposService: UserReposService,
     private stripeService: StripeService,
     private customerService: CustomerService,
   ) {}
@@ -803,17 +800,14 @@ export class AuthController {
   @ApiNotFoundResponse({ description: &quot;Unable to update onboarding information for the user&quot; })
   async postOnboarding (
     @UserId() userId: number,
-      @Body() body: UserRepoOptionsDto,
+      @Body() body: UserOnboardingDto,
   ): Promise&lt;void&gt; {
-    const promises: Promise&lt;DbUserRepo&gt;[] &#x3D; [];
+    const userData &#x3D; {
+      timezone: body.timezone,
+      interests: body.interests,
+    };
 
-    body.ids.forEach(repo &#x3D;&gt; {
-      promises.push(this.userReposService.addUserRepo(userId, repo));
-    });
-
-    await Promise.all(promises);
-
-    return this.userService.updateOnboarding(userId);
+    return this.userService.updateOnboarding(userId, userData);
   }
 
   @Post(&quot;/waitlist&quot;)

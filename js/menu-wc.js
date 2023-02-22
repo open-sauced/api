@@ -576,6 +576,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/UpdateUserProfileInterestsDto.html" data-type="entity-link" >UpdateUserProfileInterestsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/UserOnboardingDto.html" data-type="entity-link" >UserOnboardingDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/UserRepoOptionsDto.html" data-type="entity-link" >UserRepoOptionsDto</a>
                             </li>
                             <li class="link">
