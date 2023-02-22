@@ -137,13 +137,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Highlight Text&#x27;, type: String, example: My first PR to Open Sauced!})<br />@IsString()<br />
+                            @ApiProperty({description: &#x27;Highlight Text&#x27;, type: String, example: My first PR to Open Sauced!})<br />@IsString()<br />@MinLength(3)<br />@MaxLength(500)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user/dtos/create-user-highlight.dto.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/user/dtos/create-user-highlight.dto.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -236,7 +236,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
-import { IsOptional, IsString } from &quot;class-validator&quot;;
+import { IsOptional, IsString, MaxLength, MinLength } from &quot;class-validator&quot;;
 
 export class CreateUserHighlightDto {
   @ApiProperty({
@@ -262,6 +262,8 @@ export class CreateUserHighlightDto {
     example: &#x60;My first PR to Open Sauced!&#x60;,
   })
   @IsString()
+  @MinLength(3)
+  @MaxLength(500)
   public highlight: string;
 }
 </code></pre>
