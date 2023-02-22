@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.2...v1.26.0-beta.1) (2023-02-22)
+
+
+### 🍕 Features
+
+* add new data when user is onboarding ([#110](https://github.com/open-sauced/api.opensauced.pizza/issues/110)) ([2b7a94c](https://github.com/open-sauced/api.opensauced.pizza/commit/2b7a94cf82f199d0475a6f46cb6744be13307ec5))
+
 ### [1.25.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.1...v1.25.1-beta.2) (2023-02-19)
 
 
