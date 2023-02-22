@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.1...v1.26.0-beta.2) (2023-02-22)
+
+
+### 🐛 Bug Fixes
+
+* add max length restriction to creating/updating a user highlight ([#109](https://github.com/open-sauced/api.opensauced.pizza/issues/109)) ([0a57d6d](https://github.com/open-sauced/api.opensauced.pizza/commit/0a57d6d13cf92b68a7280a905121fab2c377e000))
+
 ## [1.26.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.2...v1.26.0-beta.1) (2023-02-22)
 
 
