@@ -7,6 +7,7 @@ import { DbUser } from "./user.entity";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
+import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
 
 @Injectable()
 export class UserService {
@@ -76,7 +77,7 @@ export class UserService {
       // create new user
       const newUser = this.userRepository.create({
         id,
-        is_open_sauced_member: false,
+        is_open_sauced_member: true,
         login: user_name as string,
         email: email as string,
         created_at: (new Date),
@@ -111,11 +112,16 @@ export class UserService {
     }
   }
 
-  async updateOnboarding (id: number) {
+  async updateOnboarding (id: number, user: UserOnboardingDto) {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { is_onboarded: true, is_waitlisted: false });
+      await this.userRepository.update(id, {
+        is_onboarded: true,
+        is_waitlisted: false,
+        timezone: user.timezone,
+        interests: user.interests.join(","),
+      });
     } catch (e) {
       throw new NotFoundException("Unable to update user onboarding status");
     }
