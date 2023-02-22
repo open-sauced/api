@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator";
+import { IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserHighlightDto {
   @ApiProperty({
@@ -25,5 +25,7 @@ export class CreateUserHighlightDto {
     example: `My first PR to Open Sauced!`,
   })
   @IsString()
+  @MinLength(3)
+  @MaxLength(500)
   public highlight: string;
 }
