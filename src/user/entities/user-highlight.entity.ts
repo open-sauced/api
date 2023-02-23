@@ -96,7 +96,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   @Column({
     type: "text",
-    select: false
+    select: false,
   })
   public full_name?: string;
 }

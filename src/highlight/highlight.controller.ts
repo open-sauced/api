@@ -40,5 +40,5 @@ export class HighlightController {
     @Query() pageOptionsDto: PageOptionsDto,
   ): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
-  }  
+  }
 }

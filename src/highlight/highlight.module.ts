@@ -11,7 +11,7 @@ import { UserModule } from "../user/user.module";
     TypeOrmModule.forFeature([
       DbUserHighlight,
     ]),
-    UserModule
-  ]
+    UserModule,
+  ],
 })
 export class HighlightModule {}

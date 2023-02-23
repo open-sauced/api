@@ -46,7 +46,9 @@ export class UserHighlightsService {
 
     if (pageOptionsDto.repo) {
       queryBuilder
-        .where(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) })
+
+        // eslint-disable-next-line no-useless-escape
+        .where(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) });
     }
 
     queryBuilder
@@ -61,13 +63,15 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllHighlightRepos(pageOptionsDto: PageOptionsDto) {
+  async findAllHighlightRepos (pageOptionsDto: PageOptionsDto) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .distinct(true)
-      .select(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`, 'full_name')
-      .where(`user_highlights.url LIKE '%github.com%'`)
+
+      // eslint-disable-next-line no-useless-escape
+      .select(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`, "full_name")
+      .where(`user_highlights.url LIKE '%github.com%'`);
 
     queryBuilder
       .offset(pageOptionsDto.skip)
