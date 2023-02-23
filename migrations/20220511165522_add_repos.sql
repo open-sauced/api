@@ -2,7 +2,7 @@ create table if not exists public.repos
 (
   -- static columns
   id bigint not null,
-  user_id bigint not null references public.users (id),
+  user_id bigint not null references public.users (id) on delete cascade on update cascade,
   size bigint not null default 0,
   issues bigint not null default 0,
   stars bigint not null default 0,
