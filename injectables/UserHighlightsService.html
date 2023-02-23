@@ -91,7 +91,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllByUserId" >findAllByUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllHighlightRepos" >findAllHighlightRepos</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -119,12 +127,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userHighlightRepoRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>)</code>
+<code>constructor(userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/user/user-highlights.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user/user-highlights.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -142,7 +150,7 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>userHighlightRepoRepository</td>
+                                                        <td>userHighlightRepository</td>
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserHighlight&gt;</a></code>
@@ -189,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user/user-highlights.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user/user-highlights.service.ts:116</a></div>
                 </td>
             </tr>
 
@@ -270,8 +278,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/user/user-highlights.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/user/user-highlights.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -309,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user/user-highlights.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/user/user-highlights.service.ts:131</a></div>
                 </td>
             </tr>
 
@@ -362,6 +370,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(pageOptionsDto: <a href="../classes/HighlightOptionsDto.html" target="_self">HighlightOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/user/user-highlights.service.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/HighlightOptionsDto.html" target="_self" >HighlightOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllByUserId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -380,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/user/user-highlights.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/user/user-highlights.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -445,6 +524,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllHighlightRepos"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllHighlightRepos</b></span>
+                        <a href="#findAllHighlightRepos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllHighlightRepos(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/user/user-highlights.service.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -463,8 +613,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/user/user-highlights.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/user/user-highlights.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -546,8 +696,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user/user-highlights.service.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/user/user-highlights.service.ts:127</a></div>
                 </td>
             </tr>
 
@@ -622,16 +772,17 @@ import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&qu
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
 
 @Injectable()
 export class UserHighlightsService {
   constructor (
     @InjectRepository(DbUserHighlight)
-    private userHighlightRepoRepository: Repository&lt;DbUserHighlight&gt;,
+    private userHighlightRepository: Repository&lt;DbUserHighlight&gt;,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder&lt;DbUserHighlight&gt; {
-    const builder &#x3D; this.userHighlightRepoRepository.createQueryBuilder(&quot;user_highlights&quot;);
+    const builder &#x3D; this.userHighlightRepository.createQueryBuilder(&quot;user_highlights&quot;);
 
     return builder;
   }
@@ -650,6 +801,59 @@ export class UserHighlightsService {
     }
 
     return item;
+  }
+
+  async findAll (pageOptionsDto: HighlightOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .orderBy(&quot;user_highlights.updated_at&quot;, &quot;DESC&quot;);
+
+    if (pageOptionsDto.repo) {
+      queryBuilder
+
+        // eslint-disable-next-line no-useless-escape
+        .where(&#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x3D;:repo&#x60;, { repo: decodeURIComponent(pageOptionsDto.repo) });
+    }
+
+    queryBuilder
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllHighlightRepos (pageOptionsDto: PageOptionsDto) {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .distinct(true)
+
+      // eslint-disable-next-line no-useless-escape
+      .select(&#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x60;, &quot;full_name&quot;)
+      .where(&#x60;user_highlights.url LIKE &#x27;%github.com%&#x27;&#x60;);
+
+    queryBuilder
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const subQuery &#x3D; this.userHighlightRepository.manager.createQueryBuilder()
+      .from(&#x60;(${queryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
+      .setParameters(queryBuilder.getParameters())
+      .select(&quot;count(full_name)&quot;);
+
+    const countQueryResult &#x3D; await subQuery.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${countQueryResult?.count ?? &quot;0&quot;}&#x60;, 10);
+    const entities &#x3D; DbUserHighlight.create(await queryBuilder.getRawMany());
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async findAllByUserId (
@@ -675,22 +879,22 @@ export class UserHighlightsService {
   }
 
   async addUserHighlight (userId: number, highlight: CreateUserHighlightDto) {
-    const newUserHighlight &#x3D; this.userHighlightRepoRepository.create({
+    const newUserHighlight &#x3D; this.userHighlightRepository.create({
       user_id: userId,
       url: highlight.url,
       highlight: highlight.highlight,
       title: highlight.title ?? &quot;&quot;,
     });
 
-    return this.userHighlightRepoRepository.save(newUserHighlight);
+    return this.userHighlightRepository.save(newUserHighlight);
   }
 
   async updateUserHighlight (highlightId: number, highlight: Partial&lt;DbUserHighlight&gt;) {
-    return this.userHighlightRepoRepository.update(highlightId, highlight);
+    return this.userHighlightRepository.update(highlightId, highlight);
   }
 
   async deleteUserHighlight (highlightId: number) {
-    return this.userHighlightRepoRepository.softDelete(highlightId);
+    return this.userHighlightRepository.softDelete(highlightId);
   }
 }
 </code></pre>
