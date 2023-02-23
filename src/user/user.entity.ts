@@ -167,6 +167,26 @@ export class DbUser extends BaseEntity {
   readonly twitter_username?: string;
 
   @ApiModelProperty({
+    description: "LinkedIn URL",
+    example: "https://www.linkedin.com/company/open-sauced/",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly linkedin_url?: string;
+
+  @ApiModelProperty({
+    description: "GitHub Sponsors URL",
+    example: "https://github.com/sponsors/open-sauced",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly github_sponsors_url?: string;
+
+  @ApiModelProperty({
     description: "User company information",
     example: "OpenSauced",
   })

@@ -80,4 +80,20 @@ export class UpdateUserDto {
   @IsString()
   @IsOptional()
   public timezone?: string;
+
+  @ApiPropertyOptional({
+    description: "LinkedIn URL",
+    example: "https://www.linkedin.com/company/open-sauced/",
+  })
+  @IsUrl()
+  @IsOptional()
+  readonly linkedin_url?: string;
+
+  @ApiPropertyOptional({
+    description: "GitHub Sponsors URL",
+    example: "https://github.com/sponsors/open-sauced",
+  })
+  @IsUrl()
+  @IsOptional()
+  readonly github_sponsors_url?: string;
 }

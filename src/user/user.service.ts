@@ -104,6 +104,8 @@ export class UserService {
         location: user.location ?? "",
         display_local_time: !!user.display_local_time,
         timezone: user.timezone,
+        github_sponsors_url: user.github_sponsors_url ?? "",
+        linkedin_url: user.linkedin_url ?? "",
       });
 
       return this.findOneById(id);
