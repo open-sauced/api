@@ -89,4 +89,14 @@ export class DbUserHighlight extends BaseEntity {
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
+
+  @ApiModelProperty({
+    description: "Highlight Repo Full Name",
+    example: "open-sauced/insights",
+  })
+  @Column({
+    type: "text",
+    select: false
+  })
+  public full_name?: string;
 }

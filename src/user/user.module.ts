@@ -17,6 +17,6 @@ import { UserHighlightsService } from "./user-highlights.service";
   ],
   controllers: [UserController, UserHighlightsController],
   providers: [UserService, UserController, UserHighlightsService, UserHighlightsController],
-  exports: [UserService],
+  exports: [UserService, UserHighlightsService],
 })
 export class UserModule {}
