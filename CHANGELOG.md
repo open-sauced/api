@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.2...v1.26.0-beta.3) (2023-02-23)
+
+
+### 🍕 Features
+
+* add user fields for LinkedIn, GitHub Sponsors ([#111](https://github.com/open-sauced/api.opensauced.pizza/issues/111)) ([54a8a60](https://github.com/open-sauced/api.opensauced.pizza/commit/54a8a60c0f3263bbeda84059b52290402241b1d4))
+
 ## [1.26.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.1...v1.26.0-beta.2) (2023-02-22)
 
 
