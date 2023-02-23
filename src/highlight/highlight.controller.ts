@@ -7,6 +7,7 @@ import { HighlightOptionsDto } from "./dtos/highlight-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
+import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
 
 @Controller("highlights")
@@ -34,11 +35,11 @@ export class HighlightController {
     operationId: "findAllHighlightRepos",
     summary: "Finds all highlight repos and paginates them",
   })
-  @ApiPaginatedResponse(DbUserHighlight)
-  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiPaginatedResponse(DbUserHighlightRepo)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
   async findAllHighlightRepos (
     @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<DbUserHighlight>> {
+  ): Promise<PageDto<DbUserHighlightRepo>> {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 }
