@@ -168,7 +168,7 @@ export class DbUser extends BaseEntity {
 
   @ApiModelProperty({
     description: "LinkedIn URL",
-    example: "https://www.linkedin.com/company/open-sauced/",
+    example: "https://www.linkedin.com/in/brianldouglas",
   })
   @Column({
     type: "character varying",

@@ -111,7 +111,7 @@ export class SupabaseAuthDto {
 
   @ApiPropertyOptional({
     description: "LinkedIn URL",
-    example: "https://www.linkedin.com/company/open-sauced/",
+    example: "https://www.linkedin.com/in/brianldouglas",
   })
   readonly linkedin_url?: string;
 
