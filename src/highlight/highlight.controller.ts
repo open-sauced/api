@@ -3,6 +3,7 @@ import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { HighlightOptionsDto } from "./dtos/highlight-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
@@ -23,7 +24,7 @@ export class HighlightController {
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
   async findAllHighlights (
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: HighlightOptionsDto,
   ): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAll(pageOptionsDto);
   }

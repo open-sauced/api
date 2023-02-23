@@ -7,6 +7,7 @@ import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 
 @Injectable()
 export class UserHighlightsService {
@@ -37,11 +38,16 @@ export class UserHighlightsService {
     return item;
   }
 
-  async findAll (pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+  async findAll (pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .orderBy("user_highlights.updated_at", "DESC");
+
+    if (pageOptionsDto.repo) {
+      queryBuilder
+        .where(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) })
+    }
 
     queryBuilder
       .offset(pageOptionsDto.skip)
