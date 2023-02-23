@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.5...v1.25.0-alpha.6) (2023-02-23)
+
+
+### 🐛 Bug Fixes
+
+* correct references cascade options ([a5a4789](https://github.com/open-sauced/api.opensauced.pizza/commit/a5a4789f9643d4225617bb10146735afc65303d3))
+
 ## [1.25.0-alpha.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.4...v1.25.0-alpha.5) (2023-02-16)
 
 
