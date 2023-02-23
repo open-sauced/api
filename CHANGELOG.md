@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.3...v1.26.0-beta.4) (2023-02-23)
+
+
+### 🍕 Features
+
+* add endpoints to list all highlights and repos ([#112](https://github.com/open-sauced/api.opensauced.pizza/issues/112)) ([b4785d9](https://github.com/open-sauced/api.opensauced.pizza/commit/b4785d9d5ef707624c441c42111e0cd4e45a17c0)), closes [open-sauced/ops-backend#24](https://github.com/open-sauced/ops-backend/issues/24)
+
 ## [1.26.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.2...v1.26.0-beta.3) (2023-02-23)
 
 
