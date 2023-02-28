@@ -91,12 +91,12 @@ export class DbUserHighlight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiModelProperty({
-    description: "Highlight Repo Full Name",
-    example: "open-sauced/insights",
+    description: "Highlight User Full Name",
+    example: "Brian Douglas",
   })
   @Column({
     type: "text",
     select: false,
   })
-  public full_name?: string;
+  public name?: string;
 }

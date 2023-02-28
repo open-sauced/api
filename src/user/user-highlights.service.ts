@@ -42,6 +42,8 @@ export class UserHighlightsService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .innerJoin("users", "users", "user_highlights.user_id=users.id")
+      .addSelect("users.name", "user_highlights_name")
       .orderBy("user_highlights.updated_at", "DESC");
 
     if (pageOptionsDto.repo) {

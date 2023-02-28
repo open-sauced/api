@@ -39,7 +39,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightRepo })
   async findAllHighlightRepos (
     @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<DbUserHighlightRepo>> {
+  ): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 }
