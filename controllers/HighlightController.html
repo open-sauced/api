@@ -176,7 +176,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -309,7 +309,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightRepo })
   async findAllHighlightRepos (
     @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
+  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 }

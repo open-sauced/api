@@ -197,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user/user-highlights.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/user/user-highlights.service.ts:118</a></div>
                 </td>
             </tr>
 
@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/user/user-highlights.service.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/user/user-highlights.service.ts:133</a></div>
                 </td>
             </tr>
 
@@ -459,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/user/user-highlights.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/user/user-highlights.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -542,8 +542,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/user/user-highlights.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/user/user-highlights.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -696,8 +696,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">src/user/user-highlights.service.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/user/user-highlights.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -807,6 +807,8 @@ export class UserHighlightsService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_highlights.user_id&#x3D;users.id&quot;)
+      .addSelect(&quot;users.name&quot;, &quot;user_highlights_name&quot;)
       .orderBy(&quot;user_highlights.updated_at&quot;, &quot;DESC&quot;);
 
     if (pageOptionsDto.repo) {
