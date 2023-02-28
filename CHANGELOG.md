@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.4...v1.26.0-beta.5) (2023-02-28)
+
+
+### 🍕 Features
+
+* add user full name to highlights list data ([#113](https://github.com/open-sauced/api.opensauced.pizza/issues/113)) ([909005f](https://github.com/open-sauced/api.opensauced.pizza/commit/909005f288d520a725d2a19b9d788b3487017660))
+
 ## [1.26.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.3...v1.26.0-beta.4) (2023-02-23)
 
 
