@@ -5,6 +5,22 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.26.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1...v1.26.0) (2023-02-28)
+
+
+### 🐛 Bug Fixes
+
+* add max length restriction to creating/updating a user highlight ([#109](https://github.com/open-sauced/api.opensauced.pizza/issues/109)) ([0a57d6d](https://github.com/open-sauced/api.opensauced.pizza/commit/0a57d6d13cf92b68a7280a905121fab2c377e000))
+
+
+### 🍕 Features
+
+* add endpoints to list all highlights and repos ([#112](https://github.com/open-sauced/api.opensauced.pizza/issues/112)) ([b4785d9](https://github.com/open-sauced/api.opensauced.pizza/commit/b4785d9d5ef707624c441c42111e0cd4e45a17c0)), closes [open-sauced/ops-backend#24](https://github.com/open-sauced/ops-backend/issues/24)
+* add new data when user is onboarding ([#110](https://github.com/open-sauced/api.opensauced.pizza/issues/110)) ([2b7a94c](https://github.com/open-sauced/api.opensauced.pizza/commit/2b7a94cf82f199d0475a6f46cb6744be13307ec5))
+* add user fields for LinkedIn, GitHub Sponsors ([#111](https://github.com/open-sauced/api.opensauced.pizza/issues/111)) ([54a8a60](https://github.com/open-sauced/api.opensauced.pizza/commit/54a8a60c0f3263bbeda84059b52290402241b1d4))
+* add user full name to highlights list data ([#113](https://github.com/open-sauced/api.opensauced.pizza/issues/113)) ([909005f](https://github.com/open-sauced/api.opensauced.pizza/commit/909005f288d520a725d2a19b9d788b3487017660))
+* add user login to highlights list data ([b59ff45](https://github.com/open-sauced/api.opensauced.pizza/commit/b59ff45b12ced26472ce870d75611f60f87b31d3))
+
 ### [1.25.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0...v1.25.1) (2023-02-19)
 
 
