@@ -89,4 +89,37 @@ export class DbUserHighlight extends BaseEntity {
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
+
+  @ApiModelProperty({
+    description: "Highlight Repo Full Name",
+    example: "open-sauced/insights",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public full_name?: string;
+
+  @ApiModelProperty({
+    description: "Highlight User Full Name",
+    example: "Brian Douglas",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public name?: string;
+
+  @ApiModelProperty({
+    description: "Highlight User Login",
+    example: "bdougie",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public login?: string;
 }

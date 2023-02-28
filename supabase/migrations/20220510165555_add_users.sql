@@ -28,6 +28,8 @@ CREATE TABLE IF NOT EXISTS public.users
   display_email boolean NOT NULL DEFAULT false,
   receive_collaboration boolean NOT NULL DEFAULT false,
   timezone character varying(50) COLLATE pg_catalog."default" NOT NULL DEFAULT 'UTC+1'::character varying,
+  linkedin_url character varying(255) COLLATE pg_catalog."default" NOT NULL DEFAULT ''::character varying,
+  github_sponsors_url character varying(255) COLLATE pg_catalog."default" NOT NULL DEFAULT ''::character varying,
 
   -- Elastic columns
   login character varying(255) COLLATE pg_catalog."default",

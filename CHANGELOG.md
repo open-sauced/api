@@ -13,6 +13,48 @@
 * correct user_repos type mismatch ([#106](https://github.com/open-sauced/api.opensauced.pizza/issues/106)) ([33a31ff](https://github.com/open-sauced/api.opensauced.pizza/commit/33a31ff50e629b4a8b93829b51e8cf7d050b8722))
 * force coercion of userId in UserId decorator into a number ([bb1f3e5](https://github.com/open-sauced/api.opensauced.pizza/commit/bb1f3e548634cd69fd75c2f9a9540f1942fd071b))
 
+## [1.26.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.5...v1.26.0-beta.6) (2023-02-28)
+
+
+### 🍕 Features
+
+* add user login to highlights list data ([b59ff45](https://github.com/open-sauced/api.opensauced.pizza/commit/b59ff45b12ced26472ce870d75611f60f87b31d3))
+
+## [1.26.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.4...v1.26.0-beta.5) (2023-02-28)
+
+
+### 🍕 Features
+
+* add user full name to highlights list data ([#113](https://github.com/open-sauced/api.opensauced.pizza/issues/113)) ([909005f](https://github.com/open-sauced/api.opensauced.pizza/commit/909005f288d520a725d2a19b9d788b3487017660))
+
+## [1.26.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.3...v1.26.0-beta.4) (2023-02-23)
+
+
+### 🍕 Features
+
+* add endpoints to list all highlights and repos ([#112](https://github.com/open-sauced/api.opensauced.pizza/issues/112)) ([b4785d9](https://github.com/open-sauced/api.opensauced.pizza/commit/b4785d9d5ef707624c441c42111e0cd4e45a17c0)), closes [open-sauced/ops-backend#24](https://github.com/open-sauced/ops-backend/issues/24)
+
+## [1.26.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.2...v1.26.0-beta.3) (2023-02-23)
+
+
+### 🍕 Features
+
+* add user fields for LinkedIn, GitHub Sponsors ([#111](https://github.com/open-sauced/api.opensauced.pizza/issues/111)) ([54a8a60](https://github.com/open-sauced/api.opensauced.pizza/commit/54a8a60c0f3263bbeda84059b52290402241b1d4))
+
+## [1.26.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0-beta.1...v1.26.0-beta.2) (2023-02-22)
+
+
+### 🐛 Bug Fixes
+
+* add max length restriction to creating/updating a user highlight ([#109](https://github.com/open-sauced/api.opensauced.pizza/issues/109)) ([0a57d6d](https://github.com/open-sauced/api.opensauced.pizza/commit/0a57d6d13cf92b68a7280a905121fab2c377e000))
+
+## [1.26.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.2...v1.26.0-beta.1) (2023-02-22)
+
+
+### 🍕 Features
+
+* add new data when user is onboarding ([#110](https://github.com/open-sauced/api.opensauced.pizza/issues/110)) ([2b7a94c](https://github.com/open-sauced/api.opensauced.pizza/commit/2b7a94cf82f199d0475a6f46cb6744be13307ec5))
+
 ### [1.25.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.1-beta.1...v1.25.1-beta.2) (2023-02-19)
 
 

@@ -42,6 +42,7 @@ import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
+import { HighlightModule } from "./highlight/highlight.module";
 
 @Module({
   imports: [
@@ -124,6 +125,7 @@ import { DbUserHighlight } from "./user/entities/user-highlight.entity";
     CustomerModule,
     StripeWebHookModule,
     StripeSubscriptionModule,
+    HighlightModule,
   ],
   controllers: [],
   providers: [],
