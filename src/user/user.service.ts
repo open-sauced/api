@@ -65,7 +65,7 @@ export class UserService {
 
   async checkAddUser (user: User): Promise<DbUser> {
     const {
-      user_metadata: { user_name, email },
+      user_metadata: { user_name, email, name },
       identities,
     } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
@@ -77,6 +77,7 @@ export class UserService {
       // create new user
       const newUser = this.userRepository.create({
         id,
+        name: name as string,
         is_open_sauced_member: true,
         login: user_name as string,
         email: email as string,
