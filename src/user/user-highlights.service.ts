@@ -44,6 +44,7 @@ export class UserHighlightsService {
     queryBuilder
       .innerJoin("users", "users", "user_highlights.user_id=users.id")
       .addSelect("users.name", "user_highlights_name")
+      .addSelect("users.login", "user_highlights_login")
       .orderBy("user_highlights.updated_at", "DESC");
 
     if (pageOptionsDto.repo) {
