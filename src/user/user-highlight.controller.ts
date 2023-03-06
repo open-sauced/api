@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -30,6 +30,20 @@ export class UserHighlightsController {
       @UserId() userId: number,
   ): Promise<DbUserHighlight> {
     return this.userHighlightsService.addUserHighlight(userId, createHighlightDto);
+  }
+
+  @Get("/:id")
+  @ApiOperation({
+    operationId: "getUserHighlight",
+    summary: "Retrieves a highlight",
+  })
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: "Unable to get user highlight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async getUserHighlight (
+    @Param("id") id: number,
+  ): Promise<DbUserHighlight> {
+    return this.userHighlightsService.findOneById(id);
   }
 
   @Patch("/:id")
