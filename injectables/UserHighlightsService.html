@@ -197,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/user/user-highlights.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/user/user-highlights.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/user/user-highlights.service.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/user/user-highlights.service.ts:140</a></div>
                 </td>
             </tr>
 
@@ -388,8 +388,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/user/user-highlights.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/user/user-highlights.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -459,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/user/user-highlights.service.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/user/user-highlights.service.ts:103</a></div>
                 </td>
             </tr>
 
@@ -542,8 +542,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/user/user-highlights.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/user/user-highlights.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -606,7 +606,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -653,7 +653,7 @@
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
                                     </td>
 
 
@@ -696,8 +696,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/user/user-highlights.service.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/user/user-highlights.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -787,12 +787,18 @@ export class UserHighlightsService {
     return builder;
   }
 
-  async findOneById (id: number, userId: number): Promise&lt;DbUserHighlight&gt; {
+  async findOneById (id: number, userId?: number): Promise&lt;DbUserHighlight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;user_highlights.id &#x3D; :id&quot;, { id })
-      .andWhere(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId });
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_highlights.user_id&#x3D;users.id&quot;)
+      .addSelect(&quot;users.login&quot;, &quot;user_highlights_login&quot;)
+      .where(&quot;user_highlights.id &#x3D; :id&quot;, { id });
+
+    if (userId) {
+      queryBuilder
+        .andWhere(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId });
+    }
 
     const item: DbUserHighlight | null &#x3D; await queryBuilder.getOne();
 
