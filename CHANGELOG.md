@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.7...v1.25.0-alpha.8) (2023-03-07)
+
+
+### 🍕 Features
+
+* add endpoint for pull requests ([#116](https://github.com/open-sauced/api.opensauced.pizza/issues/116)) ([86e013f](https://github.com/open-sauced/api.opensauced.pizza/commit/86e013f1431a700e9e67d10adf10468846b3ff26))
+
 ## [1.25.0-alpha.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.6...v1.25.0-alpha.7) (2023-03-07)
 
 
