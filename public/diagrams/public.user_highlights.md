@@ -4,17 +4,18 @@
 
 ## Columns
 
-| Name       | Type                     | Default | Nullable | Children | Parents | Comment |
-| ---------- | ------------------------ | ------- | -------- | -------- | ------- | ------- |
-| id         | bigint                   |         | false    |          |         |         |
-| user_id    | bigint                   |         | false    |          |         |         |
-| url        | varchar(255)             |         | true     |          |         |         |
-| highlight  | varchar(500)             |         | false    |          |         |         |
-| pinned     | boolean                  | false   | false    |          |         |         |
-| created_at | timestamp with time zone | now()   | false    |          |         |         |
-| updated_at | timestamp with time zone | now()   | false    |          |         |         |
-| deleted_at | timestamp with time zone |         | true     |          |         |         |
-| title      | varchar(100)             |         | true     |          |         |         |
+| Name       | Type                     | Default               | Nullable | Children | Parents | Comment |
+| ---------- | ------------------------ | --------------------- | -------- | -------- | ------- | ------- |
+| id         | bigint                   |                       | false    |          |         |         |
+| user_id    | bigint                   |                       | false    |          |         |         |
+| url        | varchar(255)             |                       | true     |          |         |         |
+| highlight  | varchar(500)             |                       | false    |          |         |         |
+| pinned     | boolean                  | false                 | false    |          |         |         |
+| created_at | timestamp with time zone | now()                 | false    |          |         |         |
+| updated_at | timestamp with time zone | now()                 | false    |          |         |         |
+| deleted_at | timestamp with time zone |                       | true     |          |         |         |
+| title      | varchar(100)             |                       | true     |          |         |         |
+| full_name  | varchar(100)             | ''::character varying | false    |          |         |         |
 
 ## Constraints
 

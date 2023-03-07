@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.6...v1.25.0-alpha.7) (2023-03-07)
+
+
+### 🐛 Bug Fixes
+
+* correct user entity name length ([66fb61e](https://github.com/open-sauced/api.opensauced.pizza/commit/66fb61e08ef308e9392c0579fc834d7eebe3c11e))
+
 ## [1.25.0-alpha.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.5...v1.25.0-alpha.6) (2023-02-23)
 
 
