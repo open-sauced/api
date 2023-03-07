@@ -27,7 +27,7 @@ create table if not exists public.users
   login character varying(255) collate pg_catalog."default" not null default '',
   email character varying(255) collate pg_catalog."default" not null default '',
   bio character varying(255) collate pg_catalog."default" not null default '',
-  name character varying(100) collate pg_catalog."default" not null default '',
+  name character varying(255) collate pg_catalog."default" not null default '',
   twitter_username character varying(15) collate pg_catalog."default" not null default '',
   company character varying(255) collate pg_catalog."default" not null default '',
   location character varying(255) collate pg_catalog."default" not null default '',

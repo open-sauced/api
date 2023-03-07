@@ -197,7 +197,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "character varying",
-    length: 100,
+    length: 255,
   })
   readonly name?: string;
 
