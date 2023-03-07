@@ -16,7 +16,7 @@ export class PullRequestService {
   ) {}
 
   baseQueryBuilder () {
-    const builder = this.pullRequestRepository.createQueryBuilder("pr");
+    const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
   }
@@ -27,7 +27,7 @@ export class PullRequestService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .addOrderBy(`"pr"."updated_at"`, OrderDirectionEnum.DESC)
+      .addOrderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 

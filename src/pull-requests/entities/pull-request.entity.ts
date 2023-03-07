@@ -15,7 +15,7 @@ export class DbPullRequest extends BaseEntity {
     example: 1045024650,
   })
   @PrimaryColumn("integer")
-  public id: number;
+  public id!: number;
 
   @ApiHideProperty()
   @Column({
@@ -77,14 +77,20 @@ export class DbPullRequest extends BaseEntity {
     description: "Pull request source ref",
     example: "Th3nn3ss:cli_split_kwargs",
   })
-  @Column("text")
+  @Column({
+    type: "text",
+    default: ""
+  })
   public source_label?: string;
 
   @ApiModelProperty({
     description: "Pull request target ref",
     example: "aws:main",
   })
-  @Column("text")
+  @Column({
+    type: "text",
+    default: ""
+  })
   public target_label?: string;
 
   @ApiModelProperty({
@@ -149,14 +155,20 @@ export class DbPullRequest extends BaseEntity {
     description: "Pull request assignee username",
     example: null,
   })
-  @Column("text")
+  @Column({
+    type: "text",
+    default: ""
+  })
   public assignee_login?: string;
 
   @ApiModelProperty({
     description: "Pull request assignee avatar",
     example: null,
   })
-  @Column("text")
+  @Column({
+    type: "text",
+    default: ""
+  })
   public assignee_avatar?: string;
 
   @ApiModelPropertyOptional({
