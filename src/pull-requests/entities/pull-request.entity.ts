@@ -79,7 +79,7 @@ export class DbPullRequest extends BaseEntity {
   })
   @Column({
     type: "text",
-    default: ""
+    default: "",
   })
   public source_label?: string;
 
@@ -89,7 +89,7 @@ export class DbPullRequest extends BaseEntity {
   })
   @Column({
     type: "text",
-    default: ""
+    default: "",
   })
   public target_label?: string;
 
@@ -157,7 +157,7 @@ export class DbPullRequest extends BaseEntity {
   })
   @Column({
     type: "text",
-    default: ""
+    default: "",
   })
   public assignee_login?: string;
 
@@ -167,7 +167,7 @@ export class DbPullRequest extends BaseEntity {
   })
   @Column({
     type: "text",
-    default: ""
+    default: "",
   })
   public assignee_avatar?: string;
 
