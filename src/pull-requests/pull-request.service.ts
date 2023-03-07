@@ -38,4 +38,24 @@ export class PullRequestService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
+  async findAllByContributor (
+    contributor: string,
+    pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<DbPullRequest>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .where(`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor })
+      .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const itemCount = await queryBuilder.getCount();
+    const entities = await queryBuilder.getMany();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
 }
