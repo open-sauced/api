@@ -43,6 +43,8 @@ import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
+import { PullRequestModule } from "./pull-requests/pull-request.module";
+import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 
 @Module({
   imports: [
@@ -80,6 +82,7 @@ import { DbLog } from "./log/log.entity";
           DbInsightRepo,
           DbCustomer,
           DbSubscription,
+          DbPullRequest,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),
@@ -154,6 +157,7 @@ import { DbLog } from "./log/log.entity";
     CustomerModule,
     StripeWebHookModule,
     StripeSubscriptionModule,
+    PullRequestModule,
   ],
   controllers: [],
   providers: [],
