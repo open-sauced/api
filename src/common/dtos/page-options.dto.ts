@@ -1,6 +1,7 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsEnum, IsInt, IsOptional, Max, Min } from "class-validator";
+import { IsEnum, IsIn, IsInt, IsOptional, Max, Min } from "class-validator";
+
 import { OrderDirectionEnum } from "../constants/order-direction.constant";
 
 export class PageOptionsDto {
@@ -16,13 +17,13 @@ export class PageOptionsDto {
 
   @ApiPropertyOptional({
     minimum: 1,
-    maximum: 50,
+    maximum: 1000,
     default: 10,
   })
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  @Max(500)
+  @Max(10000)
   @IsOptional()
   readonly limit?: number = 50;
 
@@ -30,6 +31,16 @@ export class PageOptionsDto {
   @IsEnum(OrderDirectionEnum)
   @IsOptional()
   readonly orderDirection?: OrderDirectionEnum = OrderDirectionEnum.DESC;
+
+  @ApiPropertyOptional({
+    description: "Range in days",
+    default: 30,
+  })
+  @Type(() => Number)
+  @IsIn([7, 30, 90])
+  @IsInt()
+  @IsOptional()
+  readonly range?: number = 30;
 
   get skip (): number {
     return ((this.page ?? 1) - 1) * (this.limit ?? 50);
