@@ -6,14 +6,14 @@ create table if not exists public.pull_requests
 	state text,
 	draft boolean default false,
 	title text not null,
-	source_label text,
-	target_label text,
+	source_label text default ''::text,
+	target_label text default ''::text,
 	target_branch text,
 	source_branch text,
 	author_login text,
 	author_avatar text,
-	assignee_login text,
-	assignee_avatar text,
+	assignee_login text default ''::text,
+	assignee_avatar text default ''::text,
 	assignees_login text[],
 	assignees_avatar text[],
 	requested_reviewers_login text[],
@@ -35,7 +35,10 @@ create table if not exists public.pull_requests
 		primary key (id)
 );
 
-create index if not exists gh_prs_idx
-	on public.pull_requests (repo_id, id, number, state, draft, title, target_branch, created_at, updated_at);
+create index pull_requests_idx_repo_id
+    on pull_requests (repo_id);
+
+create index pull_requests_idx_author
+    on pull_requests (author_login);
 
 tablespace pg_default;
