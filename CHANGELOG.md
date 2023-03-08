@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.25.0-alpha.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.9...v1.25.0-alpha.10) (2023-03-08)
+
+
+### 🍕 Features
+
+* add common filter service and add filtering support for pull requests ([#118](https://github.com/open-sauced/api.opensauced.pizza/issues/118)) ([cfe2a69](https://github.com/open-sauced/api.opensauced.pizza/commit/cfe2a693a8d8df42e4fddbff2a1f1950a43c9a3d))
+
 ## [1.25.0-alpha.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.25.0-alpha.8...v1.25.0-alpha.9) (2023-03-07)
 
 
