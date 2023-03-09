@@ -7,6 +7,7 @@ import { DbUser } from "./user.entity";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
+import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
 
 @Injectable()
 export class UserService {
@@ -21,10 +22,15 @@ export class UserService {
     return builder;
   }
 
-  async findOneById (id: number): Promise<DbUser> {
+  async findOneById (id: number, includeEmail = false): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("id = :id", { id });
+    queryBuilder
+      .where("id = :id", { id });
+
+    if (includeEmail) {
+      queryBuilder.addSelect("users.email", "users_email");
+    }
 
     let item: DbUser | null;
 
@@ -45,7 +51,8 @@ export class UserService {
   async findOneByUsername (username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("LOWER(login) = LOWER(:username)", { username });
+    queryBuilder
+      .where("LOWER(login) = LOWER(:username)", { username });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
@@ -58,19 +65,20 @@ export class UserService {
 
   async checkAddUser (user: User): Promise<DbUser> {
     const {
-      user_metadata: { user_name, email },
+      user_metadata: { user_name, email, name },
       identities,
     } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
     const id = parseInt(github.id, 10);
 
     try {
-      return await this.findOneById(id);
+      return await this.findOneById(id, true);
     } catch (e) {
       // create new user
       const newUser = this.userRepository.create({
         id,
-        is_open_sauced_member: false,
+        name: name as string,
+        is_open_sauced_member: true,
         login: user_name as string,
         email: email as string,
         created_at: (new Date),
@@ -88,9 +96,17 @@ export class UserService {
       await this.findOneById(id);
 
       await this.userRepository.update(id, {
+        name: user.name,
         email: user.email,
+        bio: user.bio ?? "",
+        url: user.url ?? "",
+        twitter_username: user.twitter_username ?? "",
+        company: user.company ?? "",
+        location: user.location ?? "",
         display_local_time: !!user.display_local_time,
         timezone: user.timezone,
+        github_sponsors_url: user.github_sponsors_url ?? "",
+        linkedin_url: user.linkedin_url ?? "",
       });
 
       return this.findOneById(id);
@@ -99,11 +115,16 @@ export class UserService {
     }
   }
 
-  async updateOnboarding (id: number) {
+  async updateOnboarding (id: number, user: UserOnboardingDto) {
     try {
       await this.findOneById(id);
 
-      await this.userRepository.update(id, { is_onboarded: true, is_waitlisted: false });
+      await this.userRepository.update(id, {
+        is_onboarded: true,
+        is_waitlisted: false,
+        timezone: user.timezone,
+        interests: user.interests.join(","),
+      });
     } catch (e) {
       throw new NotFoundException("Unable to update user onboarding status");
     }

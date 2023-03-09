@@ -45,6 +45,8 @@ import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
+import { DbUserHighlight } from "./user/entities/user-highlight.entity";
+import { HighlightModule } from "./highlight/highlight.module";
 
 @Module({
   imports: [
@@ -72,6 +74,7 @@ import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
         entities: [
           DbUser,
           DbUserRepo,
+          DbUserHighlight,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
@@ -158,6 +161,7 @@ import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
     StripeWebHookModule,
     StripeSubscriptionModule,
     PullRequestModule,
+    HighlightModule,
   ],
   controllers: [],
   providers: [],

@@ -80,6 +80,12 @@ export class SupabaseAuthDto {
   readonly name?: string;
 
   @ApiPropertyOptional({
+    description: "User website",
+    example: "https://opensauced.pizza",
+  })
+  readonly url?: string;
+
+  @ApiPropertyOptional({
     description: "User Twitter information",
     example: "saucedopen",
   })
@@ -102,4 +108,16 @@ export class SupabaseAuthDto {
     example: false,
   })
   readonly display_local_time?: boolean;
+
+  @ApiPropertyOptional({
+    description: "LinkedIn URL",
+    example: "https://www.linkedin.com/in/brianldouglas",
+  })
+  readonly linkedin_url?: string;
+
+  @ApiPropertyOptional({
+    description: "GitHub Sponsors URL",
+    example: "https://github.com/sponsors/open-sauced",
+  })
+  readonly github_sponsors_url?: string;
 }

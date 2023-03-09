@@ -5,7 +5,6 @@ import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/user.service";
-import { UserReposService } from "../user-repo/user-repos.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
 import { DbUser } from "../user/user.entity";
@@ -13,13 +12,13 @@ import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
 import { RepoInfo } from "../repo/dtos/repo-info.dto";
+import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
 
 @Controller("auth")
 @ApiTags("Authentication service")
 export class AuthController {
   constructor (
     private userService: UserService,
-    private userReposService: UserReposService,
     private stripeService: StripeService,
     private customerService: CustomerService,
   ) {}
@@ -36,17 +35,16 @@ export class AuthController {
   async getSession (
     @User() user: SupabaseAuthUser,
   ): Promise<SupabaseAuthDto> {
-    const { role, email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
+    const { role, email: session_email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
 
     let userProfile: Partial<SupabaseAuthDto> = {};
-
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url };
     } catch (e) {
       // leave user profile as-is
     }
@@ -55,7 +53,7 @@ export class AuthController {
       id: `${String(id)}`,
       user_name: `${String(user_name)}`,
       role,
-      email,
+      email: userProfile.email ?? session_email,
       confirmed_at,
       last_sign_in_at,
       created_at,
@@ -75,17 +73,14 @@ export class AuthController {
   @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
   async postOnboarding (
     @UserId() userId: number,
-      @Body() body: string,
+      @Body() body: UserOnboardingDto,
   ): Promise<void> {
-    const data = JSON.parse(body) as { repos: RepoInfo[] } | null;
+    const userData = {
+      timezone: body.timezone,
+      interests: body.interests,
+    };
 
-    if (data && Array.isArray(data.repos)) {
-      data.repos.forEach(async repo => {
-        await this.userReposService.addUserRepo(userId, repo);
-      });
-    }
-
-    return this.userService.updateOnboarding(userId);
+    return this.userService.updateOnboarding(userId, userData);
   }
 
   @Post("/waitlist")
