@@ -48,7 +48,7 @@ export class UserController {
   ): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }
-  
+
   @Get("/:username/highlights")
   @ApiOperation({
     operationId: "findAllHighlightsByUsername",
