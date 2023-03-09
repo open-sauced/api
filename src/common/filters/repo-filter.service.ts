@@ -76,7 +76,7 @@ export class RepoFilterService {
    * @param filters
    */
 
-  applyQueryBuilderFilters<T extends ObjectLiteral> (qb: SelectQueryBuilder<T>, filters: [string, object][] = []) {
+  applyQueryBuilderFilters<T extends ObjectLiteral> (qb: SelectQueryBuilder<T>, filters: [string, object?][] = []) {
     filters.forEach(([sql, data], index) => {
       if (index === 0) {
         qb.where(sql, data);
