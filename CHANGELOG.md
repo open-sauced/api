@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.27.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.27.0-beta.1...v1.27.0-beta.2) (2023-03-10)
+
+
+### 🐛 Bug Fixes
+
+* use take instead of limit for insight pages with join ([#120](https://github.com/open-sauced/api.opensauced.pizza/issues/120)) ([c000984](https://github.com/open-sauced/api.opensauced.pizza/commit/c000984d3aaec5c75c79c79adb8c7069d4e9967d))
+
 ## [1.27.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.26.0...v1.27.0-beta.1) (2023-03-06)
 
 

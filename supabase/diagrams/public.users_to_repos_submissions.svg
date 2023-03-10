@@ -92,7 +92,7 @@
 <text text-anchor="start" x="579.5624" y="-803.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="550,-762.5 550,-792.5 803,-792.5 803,-762.5 550,-762.5"/>
 <text text-anchor="start" x="557" y="-773.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
-<text text-anchor="start" x="595.899" y="-773.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(100)]</text>
+<text text-anchor="start" x="595.899" y="-773.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="550,-732.5 550,-762.5 803,-762.5 803,-732.5 550,-732.5"/>
 <text text-anchor="start" x="557" y="-743.9" font-family="Arial" font-size="14.00" fill="#000000">twitter_username </text>
 <text text-anchor="start" x="668.2356" y="-743.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(15)]</text>
