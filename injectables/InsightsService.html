@@ -650,8 +650,8 @@ export class InsightsService {
       .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
 
     queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
