@@ -274,7 +274,7 @@
 <text text-anchor="start" x="623.5624" y="-806.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="594,-765.5 594,-795.5 847,-795.5 847,-765.5 594,-765.5"/>
 <text text-anchor="start" x="601" y="-776.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
-<text text-anchor="start" x="639.899" y="-776.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(100)]</text>
+<text text-anchor="start" x="639.899" y="-776.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="594,-735.5 594,-765.5 847,-765.5 847,-735.5 594,-735.5"/>
 <text text-anchor="start" x="601" y="-746.9" font-family="Arial" font-size="14.00" fill="#000000">twitter_username </text>
 <text text-anchor="start" x="712.2356" y="-746.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(15)]</text>
