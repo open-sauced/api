@@ -60,7 +60,7 @@ export class InsightsService {
 
     queryBuilder
       .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
