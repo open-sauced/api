@@ -22,12 +22,18 @@ export class UserHighlightsService {
     return builder;
   }
 
-  async findOneById (id: number, userId: number): Promise<DbUserHighlight> {
+  async findOneById (id: number, userId?: number): Promise<DbUserHighlight> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .where("user_highlights.id = :id", { id })
-      .andWhere("user_highlights.user_id = :userId", { userId });
+      .innerJoin("users", "users", "user_highlights.user_id=users.id")
+      .addSelect("users.login", "user_highlights_login")
+      .where("user_highlights.id = :id", { id });
+
+    if (userId) {
+      queryBuilder
+        .andWhere("user_highlights.user_id = :userId", { userId });
+    }
 
     const item: DbUserHighlight | null = await queryBuilder.getOne();
 
