@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.28.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0-beta.1...v1.28.0-beta.2) (2023-03-15)
+
+
+### 🍕 Features
+
+* add repo full_name to pull request endpoints ([#124](https://github.com/open-sauced/api.opensauced.pizza/issues/124)) ([8bfda45](https://github.com/open-sauced/api.opensauced.pizza/commit/8bfda45bb06289f21d12b9418f94952540f5aee2))
+
 ## [1.28.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.27.0...v1.28.0-beta.1) (2023-03-15)
 
 
