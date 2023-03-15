@@ -384,8 +384,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -489,9 +489,13 @@ export class PullRequestService {
     pageOptionsDto: PageOptionsDto,
   ): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
+    const range &#x3D; pageOptionsDto.range!;
 
     queryBuilder
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
       .where(&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;LOWER(:contributor)&#x60;, { contributor })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;)
+      .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;)
       .orderBy(&#x60;&quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
@@ -511,7 +515,8 @@ export class PullRequestService {
     const range &#x3D; pageOptionsDto.range!;
 
     queryBuilder
-      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;repos.id&#x60;);
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
+      .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
