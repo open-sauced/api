@@ -6,7 +6,7 @@ import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissio
 @Injectable()
 export class SubmitService {
   constructor (
-    @InjectRepository(DbRepoToUserSubmissions)
+    @InjectRepository(DbRepoToUserSubmissions, "ApiConnection")
     private repoSubmitRepository: Repository<DbRepoToUserSubmissions>,
   ) {}
 

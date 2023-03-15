@@ -11,7 +11,7 @@ import { RepoSubmitController } from "./repo-submit.controller";
   imports: [TypeOrmModule.forFeature([
     DbRepo,
     DbRepoToUserSubmissions,
-  ])],
+  ], "ApiConnection")],
   controllers: [RepoSubmitController],
   providers: [RepoService, SubmitService],
   exports: [SubmitService],

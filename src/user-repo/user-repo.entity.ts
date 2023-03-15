@@ -31,6 +31,13 @@ export class DbUserRepo extends BaseEntity {
   @Column("bigint")
   public repo_id: number;
 
+  @ApiModelProperty({
+    description: "Repo Full Name",
+    example: "open-sauced/open-sauced",
+  })
+  @Column({ type: "text" })
+  public full_name: string;
+
   @ApiModelPropertyOptional({
     description: "Timestamp representing user creation",
     example: "2022-10-19 13:24:51.000000",

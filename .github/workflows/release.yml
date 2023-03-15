@@ -77,13 +77,13 @@ jobs:
         run: tbls doc --rm-dist
         env:
           TBLS_DSN: ${{ secrets.SUPABASE_DB_URL }}
-          TBLS_DOC_PATH: ./supabase/diagrams
+          TBLS_DOC_PATH: ./public/diagrams
 
       - name: "📊 visualiser artifacts"
         uses: actions/upload-artifact@v2
         with:
           name: database
-          path: supabase/diagrams/
+          path: public/diagrams/
 
   build:
     name: Build application
@@ -152,7 +152,7 @@ jobs:
       - name: "♻️ clean up artifact paths"
         run: |
           rm -rf public/diagram.svg
-          rm -rf supabase/diagrams/
+          rm -rf public/diagrams/
 
       - name: "📂 download diagram artifacts"
         uses: actions/download-artifact@v2
@@ -164,7 +164,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: database
-          path: supabase/diagrams/
+          path: public/diagrams/
 
       - name: "📂 download docker artifacts"
         uses: actions/download-artifact@v2

@@ -7,7 +7,7 @@ import { DbCustomer } from "./customer.entity";
 @Injectable()
 export class CustomerService {
   constructor (
-    @InjectRepository(DbCustomer)
+    @InjectRepository(DbCustomer, "ApiConnection")
     private customerRepository: Repository<DbCustomer>,
   ) {}
 

@@ -12,7 +12,7 @@ import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
 @Injectable()
 export class UserService {
   constructor (
-    @InjectRepository(DbUser)
+    @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
   ) {}
 

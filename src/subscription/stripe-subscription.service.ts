@@ -7,7 +7,7 @@ import { DbSubscription } from "./stripe-subscription.dto";
 @Injectable()
 export class StripeSubscriptionService {
   constructor (
-    @InjectRepository(DbSubscription)
+    @InjectRepository(DbSubscription, "ApiConnection")
     private subscriptionRepository: Repository<DbSubscription>,
   ) {}
 

@@ -84,6 +84,7 @@ code | condition
   options
     .addServer(`https://${apiDomain}`, "Production")
     .addServer(`https://beta.${apiDomain}`, "Beta")
+    .addServer(`https://alpha.${apiDomain}`, "Alpha")
     .setTitle(name)
     .setDescription(markdownDescription)
     .setVersion(version)

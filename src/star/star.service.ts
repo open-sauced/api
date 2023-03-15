@@ -6,7 +6,7 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 @Injectable()
 export class StarService {
   constructor (
-    @InjectRepository(DbRepoToUserStars)
+    @InjectRepository(DbRepoToUserStars, "ApiConnection")
     private repoStarRepository: Repository<DbRepoToUserStars>,
   ) {}
 

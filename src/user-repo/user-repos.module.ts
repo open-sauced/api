@@ -8,7 +8,7 @@ import { UserReposService } from "./user-repos.service";
   imports: [
     TypeOrmModule.forFeature([
       DbUserRepo,
-    ]),
+    ], "ApiConnection"),
   ],
   providers: [UserReposService],
   exports: [UserReposService],

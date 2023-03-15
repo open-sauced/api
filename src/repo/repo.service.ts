@@ -11,7 +11,7 @@ import { OrderDirectionEnum } from "../common/constants/order-direction.constant
 @Injectable()
 export class RepoService {
   constructor (
-    @InjectRepository(DbRepo)
+    @InjectRepository(DbRepo, "ApiConnection")
     private repoRepository: Repository<DbRepo>,
   ) {}
 

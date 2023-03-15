@@ -8,12 +8,16 @@ import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
 import { DbUser } from "./user.entity";
 import { UserService } from "./user.service";
+import { PullRequestService } from "../pull-requests/pull-request.service";
+import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
+
 
 @Controller("users")
 @ApiTags("User service")
 export class UserController {
   constructor (
     private userService: UserService,
+    private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
   ) {}
 
@@ -28,6 +32,21 @@ export class UserController {
     @Param("username") username: string,
   ): Promise<DbUser> {
     return this.userService.findOneByUsername(username);
+  }
+
+  @Get("/:username/prs")
+  @ApiOperation({
+    operationId: "findContributorPullRequests",
+    summary: "Finds pull requests by :username",
+  })
+  @ApiPaginatedResponse(DbPullRequest)
+  @ApiOkResponse({ type: DbPullRequest })
+  @ApiNotFoundResponse({ description: "User not found" })
+  async findContributorPullRequests (
+    @Param("username") username: string,
+      @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<DbPullRequest>> {
+    return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }
 
   @Get("/:username/highlights")
