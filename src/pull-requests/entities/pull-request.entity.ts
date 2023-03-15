@@ -248,4 +248,15 @@ export class DbPullRequest extends BaseEntity {
   })
   @Column({ type: "bigint" })
   public changed_files?: number;
+
+  @ApiModelProperty({
+    description: "Pull request repo full name",
+    example: "open-sauced/insights",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public full_name?: string;
 }
