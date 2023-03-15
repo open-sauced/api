@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllReposWithFilters" >findAllReposWithFilters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOneById" >findOneById</a>
                             </li>
                             <li>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/repo/repo.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/repo/repo.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -166,6 +170,84 @@
                                     <td>pageOptionsDto</td>
                                     <td>
                                                 <code><a href="../classes/RepoPageOptionsDto.html" target="_self" >RepoPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllReposWithFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllReposWithFilters</b></span>
+                        <a href="#findAllReposWithFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllReposWithFilters(pageOptionsDto: <a href="../classes/RepoSearchOptionsDto.html" target="_self">RepoSearchOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;findAllReposWithFilters&#x27;, summary: &#x27;Finds all repos using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/repo/repo.controller.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/RepoSearchOptionsDto.html" target="_self" >RepoSearchOptionsDto</a></code>
                                     </td>
 
                                     <td>
@@ -219,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/repo/repo.controller.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/repo/repo.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -297,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/repo/repo.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/repo/repo.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -369,6 +451,7 @@ import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
+import { RepoSearchOptionsDto } from &quot;./dtos/repo-search-options.dto&quot;;
 
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service&quot;)
@@ -413,6 +496,19 @@ export class RepoController {
     @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto);
+  }
+
+  @Get(&quot;/search&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllReposWithFilters&quot;,
+    summary: &quot;Finds all repos using filters and paginates them&quot;,
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findAllReposWithFilters (
+    @Query() pageOptionsDto: RepoSearchOptionsDto,
+  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
+    return this.repoService.findAllWithFilters(pageOptionsDto);
   }
 }
 </code></pre>
