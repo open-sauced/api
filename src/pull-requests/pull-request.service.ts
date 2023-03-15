@@ -49,7 +49,7 @@ export class PullRequestService {
   ): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
     const range = pageOptionsDto.range!;
-    
+
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .where(`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor })
