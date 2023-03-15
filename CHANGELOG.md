@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.28.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0-beta.2...v1.28.0-beta.3) (2023-03-15)
+
+
+### 🍕 Features
+
+* add search endpoint for repos with filters ([#125](https://github.com/open-sauced/api.opensauced.pizza/issues/125)) ([85a7549](https://github.com/open-sauced/api.opensauced.pizza/commit/85a7549ee83e20f46c610f1254fab846a5da840f))
+
 ## [1.28.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0-beta.1...v1.28.0-beta.2) (2023-03-15)
 
 
