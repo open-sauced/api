@@ -5,6 +5,7 @@ import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nest
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
+import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
 
 @Controller("repos")
 @ApiTags("Repository service")
@@ -49,5 +50,18 @@ export class RepoController {
     @Query() pageOptionsDto: RepoPageOptionsDto,
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);
+  }
+
+  @Get("/search")
+  @ApiOperation({
+    operationId: "findAllReposWithFilters",
+    summary: "Finds all repos using filters and paginates them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  async findAllReposWithFilters (
+    @Query() pageOptionsDto: RepoSearchOptionsDto,
+  ): Promise<PageDto<DbRepo>> {
+    return this.repoService.findAllWithFilters(pageOptionsDto);
   }
 }
