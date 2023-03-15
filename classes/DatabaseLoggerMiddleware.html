@@ -139,6 +139,54 @@
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/common/middleware/database-logger.middleware.ts:6</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>name</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -158,11 +206,6 @@
                     </span>
                 </td>
             </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new NestLogger(&quot;SQL&quot;)</code>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/common/middleware/database-logger.middleware.ts:6</a></div>
@@ -192,15 +235,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>log(level: "log" | "info" | "warn", message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>log(level: "log" | "info" | "warn", message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryRunner?: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:44</a></div>
                 </td>
             </tr>
 
@@ -244,6 +287,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -280,8 +335,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:36</a></div>
                 </td>
             </tr>
 
@@ -342,15 +397,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>logQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [])</code>
+<code>logQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [], queryRunner?: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="8"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:8</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:12</a></div>
                 </td>
             </tr>
 
@@ -394,6 +449,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -423,15 +490,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>logQueryError(error: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [])</code>
+<code>logQueryError(error: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [], queryRunner?: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:20</a></div>
                 </td>
             </tr>
 
@@ -487,6 +554,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -516,15 +595,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>logQuerySlow(time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [])</code>
+<code>logQuerySlow(time: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, parameters?: [], queryRunner?: QueryRunner)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:28</a></div>
                 </td>
             </tr>
 
@@ -580,6 +659,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>queryRunner</td>
+                                    <td>
+                                            <code>QueryRunner</code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -616,8 +707,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:40</a></div>
                 </td>
             </tr>
 
@@ -687,8 +778,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:59</a></div>
                 </td>
             </tr>
 
@@ -746,22 +837,38 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Logger as TypeOrmLogger } from &quot;typeorm&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Logger as TypeOrmLogger, QueryRunner } from &quot;typeorm&quot;;
 import { Logger as NestLogger } from &quot;@nestjs/common&quot;;
 import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
 
 export class DatabaseLoggerMiddleware implements TypeOrmLogger {
-  private readonly logger &#x3D; new NestLogger(&quot;SQL&quot;);
+  private readonly logger;
 
-  logQuery (query: string, parameters?: unknown[]) {
+  constructor (name &#x3D; &quot;SQL&quot;) {
+    this.logger &#x3D; new NestLogger(name);
+  }
+
+  logQuery (query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+    if (queryRunner?.data.isCreatingLogs) {
+      return;
+    }
+
     this.logger.log(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)}&#x60;);
   }
 
-  logQueryError (error: string, query: string, parameters?: unknown[]) {
+  logQueryError (error: string, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+    if (queryRunner?.data.isCreatingLogs) {
+      return;
+    }
+
     this.logger.error(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)} -- ${error}&#x60;);
   }
 
-  logQuerySlow (time: number, query: string, parameters?: unknown[]) {
+  logQuerySlow (time: number, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+    if (queryRunner?.data.isCreatingLogs) {
+      return;
+    }
+
     this.logger.error(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)} ${clc.red(&#x60;+${String(time)}ms&#x60;)}&#x60;);
   }
 
@@ -773,7 +880,11 @@ export class DatabaseLoggerMiddleware implements TypeOrmLogger {
     this.logger.warn(message);
   }
 
-  log (level: &quot;log&quot; | &quot;info&quot; | &quot;warn&quot;, message: string) {
+  log (level: &quot;log&quot; | &quot;info&quot; | &quot;warn&quot;, message: string, queryRunner?: QueryRunner) {
+    if (queryRunner?.data.isCreatingLogs) {
+      return;
+    }
+
     if (level &#x3D;&#x3D;&#x3D; &quot;log&quot;) {
       return this.logger.log(message);
     }

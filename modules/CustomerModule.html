@@ -169,7 +169,7 @@ import { CustomerService } from &quot;./customer.service&quot;;
   imports: [
     TypeOrmModule.forFeature([
       DbCustomer,
-    ]),
+    ], &quot;ApiConnection&quot;),
   ],
   providers: [CustomerService],
   exports: [CustomerService],

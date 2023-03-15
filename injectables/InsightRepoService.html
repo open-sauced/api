@@ -109,7 +109,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/insight/insight-repo.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/insight/insight-repo.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -167,15 +167,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsightRepo(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addInsightRepo(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repo: <a href="../classes/RepoInfo.html" target="_self">RepoInfo</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:15</a></div>
                 </td>
             </tr>
 
@@ -208,9 +208,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>repoId</td>
+                                    <td>repo</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="../classes/RepoInfo.html" target="_self" >RepoInfo</a></code>
                                     </td>
 
                                     <td>
@@ -257,8 +257,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -317,16 +317,17 @@ import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
 import { DbInsightRepo } from &quot;./entities/insight-repo.entity&quot;;
+import { RepoInfo } from &quot;../repo/dtos/repo-info.dto&quot;;
 
 @Injectable()
 export class InsightRepoService {
   constructor (
-    @InjectRepository(DbInsightRepo)
+    @InjectRepository(DbInsightRepo, &quot;ApiConnection&quot;)
     private insightRepoRepository: Repository&lt;DbInsightRepo&gt;,
   ) {}
 
-  async addInsightRepo (insightId: number, repoId: number) {
-    return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repoId });
+  async addInsightRepo (insightId: number, repo: RepoInfo) {
+    return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
   }
 
   async removeInsightRepo (id: number) {

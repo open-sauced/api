@@ -602,7 +602,7 @@ import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot
 @Injectable()
 export class InsightsService {
   constructor (
-    @InjectRepository(DbInsight)
+    @InjectRepository(DbInsight, &quot;ApiConnection&quot;)
     private insightRepository: Repository&lt;DbInsight&gt;,
   ) {}
 

@@ -56,13 +56,13 @@
 <title>cluster_UserReposModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 204,-230.8 204,-32.8 8,-32.8"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_UserReposModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 196,-92.8 196,-40.8 16,-40.8"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_UserReposModule_exports</title>
 <polygon fill="none" stroke="black" points="37,-170.8 37,-222.8 175,-222.8 175,-170.8 37,-170.8"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_UserReposModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 196,-92.8 196,-40.8 16,-40.8"/>
 </g>
 <!-- UserReposService  -->
 <g id="node1" class="node">
@@ -169,7 +169,7 @@ import { UserReposService } from &quot;./user-repos.service&quot;;
   imports: [
     TypeOrmModule.forFeature([
       DbUserRepo,
-    ]),
+    ], &quot;ApiConnection&quot;),
   ],
   providers: [UserReposService],
   exports: [UserReposService],

@@ -196,7 +196,7 @@ import { RepoStarController } from &quot;./repo-star.controller&quot;;
   imports: [TypeOrmModule.forFeature([
     DbRepo,
     DbRepoToUserStars,
-  ])],
+  ], &quot;ApiConnection&quot;)],
   controllers: [RepoStarController],
   providers: [RepoService, StarService],
   exports: [StarService],

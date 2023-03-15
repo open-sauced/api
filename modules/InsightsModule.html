@@ -217,7 +217,7 @@ import { InsightRepoService } from &quot;./insight-repo.service&quot;;
     TypeOrmModule.forFeature([
       DbInsight,
       DbInsightRepo,
-    ]),
+    ], &quot;ApiConnection&quot;),
   ],
   providers: [InsightsService, InsightRepoService],
   exports: [InsightsService, InsightRepoService],

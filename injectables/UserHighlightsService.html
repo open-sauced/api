@@ -777,7 +777,7 @@ import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dt
 @Injectable()
 export class UserHighlightsService {
   constructor (
-    @InjectRepository(DbUserHighlight)
+    @InjectRepository(DbUserHighlight, &quot;ApiConnection&quot;)
     private userHighlightRepository: Repository&lt;DbUserHighlight&gt;,
   ) {}
 

@@ -372,7 +372,7 @@ import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.starg
 @Injectable()
 export class StargazeService {
   constructor (
-    @InjectRepository(DbRepoToUserStargazers)
+    @InjectRepository(DbRepoToUserStargazers, &quot;ApiConnection&quot;)
     private repoStargazeRepository: Repository&lt;DbRepoToUserStargazers&gt;,
   ) {}
 

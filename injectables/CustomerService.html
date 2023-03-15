@@ -436,7 +436,7 @@ import { DbCustomer } from &quot;./customer.entity&quot;;
 @Injectable()
 export class CustomerService {
   constructor (
-    @InjectRepository(DbCustomer)
+    @InjectRepository(DbCustomer, &quot;ApiConnection&quot;)
     private customerRepository: Repository&lt;DbCustomer&gt;,
   ) {}
 

@@ -956,7 +956,7 @@ import { UserOnboardingDto } from &quot;../auth/dtos/user-onboarding.dto&quot;;
 @Injectable()
 export class UserService {
   constructor (
-    @InjectRepository(DbUser)
+    @InjectRepository(DbUser, &quot;ApiConnection&quot;)
     private userRepository: Repository&lt;DbUser&gt;,
   ) {}
 

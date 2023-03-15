@@ -34,7 +34,7 @@
 <div align="center">
   <br>
   <img alt="Open Sauced" src="https://i.ibb.co/7jPXt0Z/logo1-92f1a87f.png" width="300px">
-  <h1>🍕 Open Sauced Nest Supabase API 🍕</h1>
+  <h1>🍕 Open Sauced Insights API 🍕</h1>
   <strong>The path to your next Open Source contribution</strong>
   <br>
   <br>
@@ -69,7 +69,6 @@
 <li><code>node&gt;=16.7.0</code></li>
 <li><code>npm&gt;=8.0.0</code></li>
 <li><code>docker&gt;=20.10.12</code></li>
-<li><code>supabase&gt;=0.18.0</code></li>
 </ul>
 <p>You also need the <code>.env</code> environment file added to your repo for the project to run. To get it, kindly contact @open-sauced/triage team.</p>
 <blockquote>
@@ -97,23 +96,9 @@ docker run -p 8080:3001 api.opensauced.pizza</code></pre></div><p>Alternatively 
 <div><pre class="line-numbers"><code class="language-shell">npm run types:auto-check </code></pre></div><p>In order to add any missing types to <code>package.json</code>:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run types:auto-add</code></pre></div><h3 id="🚀-production-deployment">🚀 Production deployment</h3>
 <p>A production deployment is a complete build of the project, including the build of the static assets.</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run build</code></pre></div><h2 id="🔑-database-commands">🔑 Database commands</h2>
-<p>The API is configured to connect to a local Docker backed PostGres instance however 
-you can also connect to a remote Supabase instance by logging in via the UI and 
-copying the connection string from the settings page.</p>
-<h3 id="managing-supabase-migrations">Managing supabase migrations</h3>
-<p>First thing we have to do for <a href="https://supabase.com/docs/guides/local-development">local development</a> is start the studio locally at <a href="http://localhost:54321">localhost:54321</a>:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:start</code></pre></div><h3 id="make-changes">Make changes</h3>
-<p>If we are adding a new table structure, first do it visually in the Supabase Studio and test locally.</p>
-<p>Check the migration difference with the following command:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:changes</code></pre></div><p>If everything is fine we can run the following command to apply the changes to the database:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:commit add_table_name</code></pre></div><h3 id="test-changes">Test changes</h3>
-<p>Simplest way to test the migrations are working is to reset the local database:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:reset</code></pre></div><h3 id="push-changes">Push changes</h3>
-<p>If everything is fine we can push the changes to the remote database:</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run db:push</code></pre></div><h2 id="🔑-supabase-structure">🔑 Supabase structure</h2>
+<div><pre class="line-numbers"><code class="language-shell">npm run build</code></pre></div><h2 id="🔑-database-structure">🔑 Database structure</h2>
 <p>Click the image to see the schema diagram full documentation.</p>
-<p><a href="./supabase/diagrams/README.md"><img src="./supabase/diagrams/schema.svg" alt="er" class="img-responsive"></a></p>
+<p><a href="public/diagrams/README.md"><img src="public/diagrams/schema.svg" alt="er" class="img-responsive"></a></p>
 <h2 id="🤝-contributing">🤝 Contributing</h2>
 <p>We encourage you to contribute to Open Sauced! Please check out the <a href="https://docs.opensauced.pizza/contributing/introduction-to-contributing/">Contributing guide</a> for guidelines about how to proceed.</p>
 <img align="right" src="https://i.ibb.co/CJfW18H/ship.gif" width="200"/>

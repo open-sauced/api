@@ -75,9 +75,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#avatar_url" >avatar_url</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#bio" >bio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#blog" >blog</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -109,13 +118,31 @@
                                 <a href="#email" >email</a>
                             </li>
                             <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#followers" >followers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#following" >following</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#github_sponsors_url" >github_sponsors_url</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#gravatar_id" >gravatar_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#has_stars_data" >has_stars_data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#hireable" >hireable</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -163,7 +190,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#node_id" >node_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#open_issues" >open_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#public_gists" >public_gists</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#public_repos" >public_repos</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -206,11 +245,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#type" >type</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#updated_at" >updated_at</a>
                             </li>
                             <li>
-                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#url" >url</a>
                             </li>
@@ -232,6 +275,42 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="avatar_url"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>avatar_url</b></span>
+                        <a href="#avatar_url"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;User GitHub avatar URL&#x27;, example: &#x27;https://avatars.githubusercontent.com/u/237133?v&#x3D;4&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/user/user.entity.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -262,7 +341,44 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/user/user.entity.ts:137</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/user/user.entity.ts:182</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blog"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>blog</b></span>
+                        <a href="#blog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub blog information&#x27;, example: &#x27;https://opensauced.pizza/blog&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="192" class="link-to-prism">src/user/user.entity.ts:192</a></div>
                         </td>
                     </tr>
 
@@ -293,13 +409,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User company information&#x27;, example: &#x27;OpenSauced&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 50})<br />
+                            @ApiModelProperty({description: &#x27;User company information&#x27;, example: &#x27;OpenSauced&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/user/user.entity.ts:197</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="242" class="link-to-prism">src/user/user.entity.ts:242</a></div>
                         </td>
                     </tr>
 
@@ -336,7 +452,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/user/user.entity.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/user/user.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -373,7 +489,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/user/user.entity.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user/user.entity.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -410,7 +526,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="237" class="link-to-prism">src/user/user.entity.ts:237</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="344" class="link-to-prism">src/user/user.entity.ts:344</a></div>
                         </td>
                     </tr>
 
@@ -447,7 +563,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="217" class="link-to-prism">src/user/user.entity.ts:217</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="262" class="link-to-prism">src/user/user.entity.ts:262</a></div>
                         </td>
                     </tr>
 
@@ -483,7 +599,79 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/user/user.entity.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/user/user.entity.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="followers"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>followers</b></span>
+                        <a href="#followers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user public followers number&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="312" class="link-to-prism">src/user/user.entity.ts:312</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="following"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>following</b></span>
+                        <a href="#following"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user public following number&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="322" class="link-to-prism">src/user/user.entity.ts:322</a></div>
                         </td>
                     </tr>
 
@@ -520,7 +708,44 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/user/user.entity.ts:187</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="232" class="link-to-prism">src/user/user.entity.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="gravatar_id"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>gravatar_id</b></span>
+                        <a href="#gravatar_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;User GitHub gravatar URL&#x27;, example: &#x27;&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/user/user.entity.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -556,7 +781,44 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/user/user.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/user/user.entity.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hireable"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>hireable</b></span>
+                        <a href="#hireable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user hireable status&#x27;, example: false})<br />@Column({type: &#x27;boolean&#x27;, default: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/user/user.entity.ts:282</a></div>
                         </td>
                     </tr>
 
@@ -629,7 +891,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="227" class="link-to-prism">src/user/user.entity.ts:227</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="272" class="link-to-prism">src/user/user.entity.ts:272</a></div>
                         </td>
                     </tr>
 
@@ -659,13 +921,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating user&#x27;s onboarding status&#x27;, example: false})<br />@Column({default: false})<br />
+                            @ApiModelProperty({description: &#x27;Flag indicating user&#x27;s onboarding status&#x27;, example: false, default: false})<br />@Column({default: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/user/user.entity.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="156" class="link-to-prism">src/user/user.entity.ts:156</a></div>
                         </td>
                     </tr>
 
@@ -695,13 +957,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating app.opensauced user status&#x27;, example: false})<br />@Column({default: false})<br />
+                            @ApiModelProperty({description: &#x27;Flag indicating app.opensauced user status&#x27;, example: false, default: false})<br />@Column({default: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/user/user.entity.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/user/user.entity.ts:148</a></div>
                         </td>
                     </tr>
 
@@ -731,13 +993,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating whether user opted to have a private profile (beta feature&#x27;, example: false})<br />@Column({default: false})<br />
+                            @ApiModelProperty({description: &#x27;Flag indicating whether user opted to have a private profile (beta feature&#x27;, example: false, default: false})<br />@Column({default: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/user/user.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/user/user.entity.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -767,13 +1029,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating user&#x27;s waitlist status&#x27;, example: false})<br />@Column({default: false})<br />
+                            @ApiModelProperty({description: &#x27;Flag indicating user&#x27;s waitlist status&#x27;, example: false, default: false})<br />@Column({default: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/user/user.entity.ts:120</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/user/user.entity.ts:164</a></div>
                         </td>
                     </tr>
 
@@ -810,7 +1072,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/user/user.entity.ts:177</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="222" class="link-to-prism">src/user/user.entity.ts:222</a></div>
                         </td>
                     </tr>
 
@@ -841,13 +1103,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User location information&#x27;, example: &#x27;San Francisco, CA&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 50})<br />
+                            @ApiModelProperty({description: &#x27;User location information&#x27;, example: &#x27;San Francisco, CA&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="207" class="link-to-prism">src/user/user.entity.ts:207</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="252" class="link-to-prism">src/user/user.entity.ts:252</a></div>
                         </td>
                     </tr>
 
@@ -883,7 +1145,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user/user.entity.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/user/user.entity.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -914,13 +1176,49 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User name information&#x27;, example: &#x27;MrPizza&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 100})<br />
+                            @ApiModelProperty({description: &#x27;User name information&#x27;, example: &#x27;MrPizza&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/user/user.entity.ts:147</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="202" class="link-to-prism">src/user/user.entity.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="node_id"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>node_id</b></span>
+                        <a href="#node_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;User GitHub node id&#x27;, example: &#x27;MDQ6VXNlcjIzNzEzMw&#x3D;&#x3D;&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 20})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/user/user.entity.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -967,6 +1265,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="public_gists"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>public_gists</b></span>
+                        <a href="#public_gists"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user public gists number&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="302" class="link-to-prism">src/user/user.entity.ts:302</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="public_repos"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>public_repos</b></span>
+                        <a href="#public_repos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user public repos number&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, default: 0})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="292" class="link-to-prism">src/user/user.entity.ts:292</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="receive_collaboration"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
@@ -993,7 +1363,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="247" class="link-to-prism">src/user/user.entity.ts:247</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="354" class="link-to-prism">src/user/user.entity.ts:354</a></div>
                         </td>
                     </tr>
 
@@ -1029,7 +1399,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="261" class="link-to-prism">src/user/user.entity.ts:261</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="368" class="link-to-prism">src/user/user.entity.ts:368</a></div>
                         </td>
                     </tr>
 
@@ -1065,7 +1435,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="277" class="link-to-prism">src/user/user.entity.ts:277</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="384" class="link-to-prism">src/user/user.entity.ts:384</a></div>
                         </td>
                     </tr>
 
@@ -1101,7 +1471,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="269" class="link-to-prism">src/user/user.entity.ts:269</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="376" class="link-to-prism">src/user/user.entity.ts:376</a></div>
                         </td>
                     </tr>
 
@@ -1137,7 +1507,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="273" class="link-to-prism">src/user/user.entity.ts:273</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="380" class="link-to-prism">src/user/user.entity.ts:380</a></div>
                         </td>
                     </tr>
 
@@ -1173,7 +1543,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="265" class="link-to-prism">src/user/user.entity.ts:265</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="372" class="link-to-prism">src/user/user.entity.ts:372</a></div>
                         </td>
                     </tr>
 
@@ -1203,13 +1573,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Insights Role&#x27;, example: 10})<br />@Column({default: 10})<br />
+                            @ApiModelProperty({description: &#x27;Insights Role&#x27;, example: 10, default: 10})<br />@Column({default: 10})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/user/user.entity.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="172" class="link-to-prism">src/user/user.entity.ts:172</a></div>
                         </td>
                     </tr>
 
@@ -1246,7 +1616,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="257" class="link-to-prism">src/user/user.entity.ts:257</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="364" class="link-to-prism">src/user/user.entity.ts:364</a></div>
                         </td>
                     </tr>
 
@@ -1283,7 +1653,43 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/user/user.entity.ts:167</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="212" class="link-to-prism">src/user/user.entity.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="type"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>type</b></span>
+                        <a href="#type"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;GitHub user type&#x27;, example: &#x27;User&#x27;, default: &#x27;User&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 20, default: &#x27;User&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="334" class="link-to-prism">src/user/user.entity.ts:334</a></div>
                         </td>
                     </tr>
 
@@ -1320,7 +1726,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/user/user.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/user/user.entity.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -1333,7 +1739,7 @@
                 <td class="col-md-4">
                     <a name="url"></a>
                     <span class="name">
-                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Public</span>
                             <span class="modifier">Optional</span>
                         <span ><b>url</b></span>
                         <a href="#url"><span class="icon ion-ios-link"></span></a>
@@ -1351,13 +1757,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User URL&#x27;, example: &#x27;https://opensauced.pizza&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
+                            @ApiModelProperty({description: &#x27;User GitHub profile URL&#x27;, example: &#x27;https://api.github.com/users/0-vortex&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/user/user.entity.ts:157</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/user/user.entity.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -1407,27 +1813,6 @@ export class DbUser extends BaseEntity {
   })
   public open_issues: number;
 
-  @ApiHideProperty()
-  @Column({
-    default: false,
-    select: false,
-  })
-  public has_stars_data: boolean;
-
-  @ApiModelProperty({
-    description: &quot;Flag indicating whether user opted to have a private profile (beta feature&quot;,
-    example: false,
-  })
-  @Column({ default: false })
-  public is_private: boolean;
-
-  @ApiModelProperty({
-    description: &quot;Flag indicating app.opensauced user status&quot;,
-    example: false,
-  })
-  @Column({ default: false })
-  public is_open_sauced_member: boolean;
-
   @ApiModelPropertyOptional({
     description: &quot;Timestamp representing user creation&quot;,
     example: &quot;2016-10-19 13:24:51.000000&quot;,
@@ -1447,6 +1832,53 @@ export class DbUser extends BaseEntity {
     default: () &#x3D;&gt; &quot;now()&quot;,
   })
   public updated_at?: Date;
+
+  @ApiHideProperty()
+  @DeleteDateColumn({
+    type: &quot;timestamp without time zone&quot;,
+    select: false,
+  })
+  public deleted_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;User GitHub node id&quot;,
+    example: &quot;MDQ6VXNlcjIzNzEzMw&#x3D;&#x3D;&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 20,
+  })
+  public node_id: string;
+
+  @ApiModelProperty({
+    description: &quot;User GitHub avatar URL&quot;,
+    example: &quot;https://avatars.githubusercontent.com/u/237133?v&#x3D;4&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 255,
+  })
+  public avatar_url: string;
+
+  @ApiModelProperty({
+    description: &quot;User GitHub gravatar URL&quot;,
+    example: &quot;&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 255,
+  })
+  public gravatar_id?: string;
+
+  @ApiModelProperty({
+    description: &quot;User GitHub profile URL&quot;,
+    example: &quot;https://api.github.com/users/0-vortex&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 255,
+  })
+  public url?: string;
 
   @ApiModelProperty({
     description: &quot;User unique login name&quot;,
@@ -1470,15 +1902,32 @@ export class DbUser extends BaseEntity {
   public email: string;
 
   @ApiHideProperty()
-  @DeleteDateColumn({
-    type: &quot;timestamp without time zone&quot;,
+  @Column({
+    default: false,
     select: false,
   })
-  public deleted_at?: Date;
+  public has_stars_data: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Flag indicating whether user opted to have a private profile (beta feature&quot;,
+    example: false,
+    default: false,
+  })
+  @Column({ default: false })
+  public is_private: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Flag indicating app.opensauced user status&quot;,
+    example: false,
+    default: false,
+  })
+  @Column({ default: false })
+  public is_open_sauced_member: boolean;
 
   @ApiModelProperty({
     description: &quot;Flag indicating user&#x27;s onboarding status&quot;,
     example: false,
+    default: false,
   })
   @Column({ default: false })
   public is_onboarded: boolean;
@@ -1486,6 +1935,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Flag indicating user&#x27;s waitlist status&quot;,
     example: false,
+    default: false,
   })
   @Column({ default: false })
   public is_waitlisted: boolean;
@@ -1493,6 +1943,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Insights Role&quot;,
     example: 10,
+    default: 10,
   })
   @Column({ default: 10 })
   public role: number;
@@ -1508,24 +1959,24 @@ export class DbUser extends BaseEntity {
   readonly bio?: string;
 
   @ApiModelProperty({
-    description: &quot;User name information&quot;,
-    example: &quot;MrPizza&quot;,
-  })
-  @Column({
-    type: &quot;character varying&quot;,
-    length: 100,
-  })
-  readonly name?: string;
-
-  @ApiModelProperty({
-    description: &quot;User URL&quot;,
-    example: &quot;https://opensauced.pizza&quot;,
+    description: &quot;GitHub blog information&quot;,
+    example: &quot;https://opensauced.pizza/blog&quot;,
   })
   @Column({
     type: &quot;character varying&quot;,
     length: 255,
   })
-  readonly url?: string;
+  public blog?: string;
+
+  @ApiModelProperty({
+    description: &quot;User name information&quot;,
+    example: &quot;MrPizza&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 255,
+  })
+  readonly name?: string;
 
   @ApiModelProperty({
     description: &quot;User Twitter information&quot;,
@@ -1563,7 +2014,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: &quot;character varying&quot;,
-    length: 50,
+    length: 255,
   })
   readonly company?: string;
 
@@ -1573,7 +2024,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: &quot;character varying&quot;,
-    length: 50,
+    length: 255,
   })
   readonly location?: string;
 
@@ -1596,6 +2047,68 @@ export class DbUser extends BaseEntity {
     length: 200,
   })
   readonly interests?: string;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user hireable status&quot;,
+    example: false,
+  })
+  @Column({
+    type: &quot;boolean&quot;,
+    default: false,
+  })
+  public hireable?: boolean;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user public repos number&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    default: 0,
+  })
+  public public_repos: number;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user public gists number&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    default: 0,
+  })
+  public public_gists: number;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user public followers number&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    default: 0,
+  })
+  public followers: number;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user public following number&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    default: 0,
+  })
+  public following: number;
+
+  @ApiModelProperty({
+    description: &quot;GitHub user type&quot;,
+    example: &quot;User&quot;,
+    default: &quot;User&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 20,
+    default: &quot;User&quot;,
+  })
+  public type: string;
 
   @ApiModelProperty({
     description: &quot;User display public email&quot;,

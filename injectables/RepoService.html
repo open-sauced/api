@@ -590,7 +590,7 @@ import { OrderDirectionEnum } from &quot;../common/constants/order-direction.con
 @Injectable()
 export class RepoService {
   constructor (
-    @InjectRepository(DbRepo)
+    @InjectRepository(DbRepo, &quot;ApiConnection&quot;)
     private repoRepository: Repository&lt;DbRepo&gt;,
   ) {}
 

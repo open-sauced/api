@@ -155,7 +155,7 @@ import { UserModule } from &quot;../user/user.module&quot;;
   imports: [
     TypeOrmModule.forFeature([
       DbUserHighlight,
-    ]),
+    ], &quot;ApiConnection&quot;),
     UserModule,
   ],
 })

@@ -372,7 +372,7 @@ import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.enti
 @Injectable()
 export class VoteService {
   constructor (
-    @InjectRepository(DbRepoToUserVotes)
+    @InjectRepository(DbRepoToUserVotes, &quot;ApiConnection&quot;)
     private repoVoteRepository: Repository&lt;DbRepoToUserVotes&gt;,
   ) {}
 

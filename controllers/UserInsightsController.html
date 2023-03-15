@@ -321,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:85</a></div>
                 </td>
             </tr>
 
@@ -453,7 +453,7 @@ export class UserInsightsController {
     @Body() createInsightDto: CreateInsightDto,
       @UserId() userId: number,
   ): Promise&lt;DbInsight&gt; {
-    if (!createInsightDto.name || !Array.isArray(createInsightDto.ids)) {
+    if (!createInsightDto.name || !Array.isArray(createInsightDto.repos)) {
       throw (new BadRequestException);
     }
 
@@ -463,10 +463,8 @@ export class UserInsightsController {
       user_id: userId,
     });
 
-    const repoIds &#x3D; createInsightDto.ids;
-
-    repoIds.forEach(async repoId &#x3D;&gt; {
-      await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
+    createInsightDto.repos.forEach(async repo &#x3D;&gt; {
+      await this.insightsRepoService.addInsightRepo(newInsight.id, repo);
     });
 
     return newInsight;
@@ -506,7 +504,7 @@ export class UserInsightsController {
       const currentRepos &#x3D; insight.repos.filter(insightRepo &#x3D;&gt; !insightRepo.deleted_at);
 
       // remove deleted repos
-      const reposToRemove &#x3D; currentRepos.filter(repo &#x3D;&gt; !updateInsightDto.ids.find(id &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;));
+      const reposToRemove &#x3D; currentRepos.filter(repo &#x3D;&gt; !updateInsightDto.repos.find(repoInfo &#x3D;&gt; &#x60;${repoInfo.id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;));
 
       const reposToRemoveRequests &#x3D; reposToRemove.map(async insightRepo &#x3D;&gt; this.insightsRepoService.removeInsightRepo(insightRepo.id));
 
@@ -514,9 +512,9 @@ export class UserInsightsController {
 
       // add new repos
       const currentRepoIds &#x3D; currentRepos.map(cr &#x3D;&gt; cr.repo_id);
-      const reposToAdd &#x3D; updateInsightDto.ids.filter(repoId &#x3D;&gt; !currentRepoIds.find(id &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoId}&#x60;));
+      const reposToAdd &#x3D; updateInsightDto.repos.filter(repoInfo &#x3D;&gt; !currentRepoIds.find(id &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id}&#x60;));
 
-      const repoToAddRequests &#x3D; reposToAdd.map(async repoId &#x3D;&gt; this.insightsRepoService.addInsightRepo(insight.id, repoId));
+      const repoToAddRequests &#x3D; reposToAdd.map(async repo &#x3D;&gt; this.insightsRepoService.addInsightRepo(insight.id, repo));
 
       await Promise.all(repoToAddRequests);
     } catch (e) {
