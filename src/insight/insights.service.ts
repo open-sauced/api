@@ -11,7 +11,7 @@ import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 @Injectable()
 export class InsightsService {
   constructor (
-    @InjectRepository(DbInsight)
+    @InjectRepository(DbInsight, "ApiConnection")
     private insightRepository: Repository<DbInsight>,
   ) {}
 

@@ -275,5 +275,3 @@ Temporary Items
 dist
 .env
 !.envrc
-**/supabase/.branches
-**/supabase/.temp

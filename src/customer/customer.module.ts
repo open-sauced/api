@@ -8,7 +8,7 @@ import { CustomerService } from "./customer.service";
   imports: [
     TypeOrmModule.forFeature([
       DbCustomer,
-    ]),
+    ], "ApiConnection"),
   ],
   providers: [CustomerService],
   exports: [CustomerService],

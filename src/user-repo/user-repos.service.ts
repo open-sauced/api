@@ -7,11 +7,12 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { DbUserRepo } from "./user-repo.entity";
 import { UserRepoOptionsDto } from "./dtos/user-repo-options.dto";
+import { RepoInfo } from "../repo/dtos/repo-info.dto";
 
 @Injectable()
 export class UserReposService {
   constructor (
-    @InjectRepository(DbUserRepo)
+    @InjectRepository(DbUserRepo, "ApiConnection")
     private userRepoRepository: Repository<DbUserRepo>,
   ) {}
 
@@ -35,10 +36,11 @@ export class UserReposService {
     return item;
   }
 
-  async addUserRepo (userId: number, repoId: number) {
+  async addUserRepo (userId: number, repo: RepoInfo) {
     const newUserRepo = this.userRepoRepository.create({
       user_id: userId,
-      repo_id: repoId,
+      repo_id: repo.id,
+      full_name: repo.fullName,
     });
 
     return this.userRepoRepository.save(newUserRepo);

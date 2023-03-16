@@ -7,12 +7,16 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
+import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { RepoFilterService } from "../common/filters/repo-filter.service";
+import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
 
 @Injectable()
 export class RepoService {
   constructor (
-    @InjectRepository(DbRepo)
+    @InjectRepository(DbRepo, "ApiConnection")
     private repoRepository: Repository<DbRepo>,
+    private filterService: RepoFilterService,
   ) {}
 
   subQueryCount<T extends ObjectLiteral> (subQuery: SelectQueryBuilder<T>, entity: string, alias: string, target = "repo") {
@@ -103,6 +107,40 @@ export class RepoService {
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
 
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllWithFilters (pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
+    const queryBuilder = this.repoRepository.createQueryBuilder("repos");
+    const orderField = pageOptionsDto.orderBy ?? "stars";
+    const range = pageOptionsDto.range!;
+
+    const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
+
+    filters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+
+    this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
+
+    if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
+      queryBuilder.orderBy(`"repos"."${orderField}"`, "DESC");
+    }
+
+    const subQuery = this.repoRepository.manager.createQueryBuilder()
+      .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
+      .setParameters(queryBuilder.getParameters())
+      .select("count(repos_id)");
+
+    const countQueryResult = await subQuery.getRawOne<{ count: number }>();
+    const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
+
+    queryBuilder
+      .orderBy(`"repos"."${orderField}"`, OrderDirectionEnum.DESC)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getMany();
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);

@@ -53,7 +53,7 @@ export class UserInsightsController {
     @Body() createInsightDto: CreateInsightDto,
       @UserId() userId: number,
   ): Promise<DbInsight> {
-    if (!createInsightDto.name || !Array.isArray(createInsightDto.ids)) {
+    if (!createInsightDto.name || !Array.isArray(createInsightDto.repos)) {
       throw (new BadRequestException);
     }
 
@@ -63,10 +63,8 @@ export class UserInsightsController {
       user_id: userId,
     });
 
-    const repoIds = createInsightDto.ids;
-
-    repoIds.forEach(async repoId => {
-      await this.insightsRepoService.addInsightRepo(newInsight.id, repoId);
+    createInsightDto.repos.forEach(async repo => {
+      await this.insightsRepoService.addInsightRepo(newInsight.id, repo);
     });
 
     return newInsight;
@@ -106,7 +104,7 @@ export class UserInsightsController {
       const currentRepos = insight.repos.filter(insightRepo => !insightRepo.deleted_at);
 
       // remove deleted repos
-      const reposToRemove = currentRepos.filter(repo => !updateInsightDto.ids.find(id => `${id}` === `${repo.repo_id}`));
+      const reposToRemove = currentRepos.filter(repo => !updateInsightDto.repos.find(repoInfo => `${repoInfo.id}` === `${repo.repo_id}`));
 
       const reposToRemoveRequests = reposToRemove.map(async insightRepo => this.insightsRepoService.removeInsightRepo(insightRepo.id));
 
@@ -114,9 +112,9 @@ export class UserInsightsController {
 
       // add new repos
       const currentRepoIds = currentRepos.map(cr => cr.repo_id);
-      const reposToAdd = updateInsightDto.ids.filter(repoId => !currentRepoIds.find(id => `${id}` === `${repoId}`));
+      const reposToAdd = updateInsightDto.repos.filter(repoInfo => !currentRepoIds.find(id => `${id}` === `${repoInfo.id}`));
 
-      const repoToAddRequests = reposToAdd.map(async repoId => this.insightsRepoService.addInsightRepo(insight.id, repoId));
+      const repoToAddRequests = reposToAdd.map(async repo => this.insightsRepoService.addInsightRepo(insight.id, repo));
 
       await Promise.all(repoToAddRequests);
     } catch (e) {

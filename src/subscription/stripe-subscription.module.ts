@@ -6,7 +6,7 @@ import { StripeSubscriptionService } from "./stripe-subscription.service";
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([DbSubscription]),
+    TypeOrmModule.forFeature([DbSubscription], "ApiConnection"),
   ],
   providers: [StripeSubscriptionService],
   exports: [StripeSubscriptionService],
