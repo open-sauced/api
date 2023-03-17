@@ -53,6 +53,90 @@ export class RepoService {
     return builder;
   }
 
+  private baseFilterQueryBuilder (range = 30) {
+    return this.repoRepository
+      .createQueryBuilder("repos")
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("open_pull_requests"."id"), 0)
+          FROM "pull_requests" "open_pull_requests"
+          WHERE
+            "open_pull_requests"."state" = 'open'
+            AND "open_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
+        )::INTEGER`,
+        "repos_open_prs_count",
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("closed_pull_requests"."id"), 0)
+          FROM "pull_requests" "closed_pull_requests"
+          WHERE
+            "closed_pull_requests"."state" = 'closed'
+            AND "closed_pull_requests"."merged" = false
+            AND "closed_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
+        )::INTEGER`,
+        `repos_closed_prs_count`,
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("merged_pull_requests"."id"), 0)
+          FROM "pull_requests" "merged_pull_requests"
+          WHERE
+            "merged_pull_requests"."state" = 'closed'
+            AND "merged_pull_requests"."merged" = true
+            AND "merged_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
+        )::INTEGER`,
+        `repos_merged_prs_count`,
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("draft_pull_requests"."id"), 0)
+          FROM "pull_requests" "draft_pull_requests"
+          WHERE
+            "draft_pull_requests"."draft" = true
+            AND "draft_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
+        )::INTEGER`,
+        `repos_draft_prs_count`,
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("spam_pull_requests"."id"), 0)
+          FROM "pull_requests" "spam_pull_requests"
+          WHERE
+            'spam' = ANY("spam_pull_requests"."label_names")
+            AND "spam_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
+        )::INTEGER`,
+        `repos_spam_prs_count`,
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(AVG(("pull_requests_velocity"."closed_at"::DATE-"pull_requests_velocity"."created_at"::DATE)/(1000*60*60*24)), 0)
+          FROM "pull_requests" "pull_requests_velocity"
+          WHERE
+            "pull_requests_velocity"."repo_id" = "repos"."id"
+            AND "pull_requests_velocity"."closed_at" > "pull_requests_velocity"."created_at"
+            AND now() - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
+        )::INTEGER`,
+        `repos_pr_velocity_count`,
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("active_pull_requests"."id"), 0)
+          FROM "pull_requests" "active_pull_requests"
+          WHERE
+            "active_pull_requests"."repo_id" = "repos"."id"
+            AND now() - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
+            AND "active_pull_requests".state != 'closed'
+        )::INTEGER`,
+        `repo_active_prs_count`,
+      );
+  }
+
   async findOneById (id: number): Promise<DbRepo> {
     const queryBuilder = this.baseQueryBuilder();
 
@@ -113,9 +197,9 @@ export class RepoService {
   }
 
   async findAllWithFilters (pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
-    const queryBuilder = this.repoRepository.createQueryBuilder("repos");
     const orderField = pageOptionsDto.orderBy ?? "stars";
     const range = pageOptionsDto.range!;
+    const queryBuilder = this.baseFilterQueryBuilder(range);
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
 
@@ -124,7 +208,7 @@ export class RepoService {
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
     if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
-      queryBuilder.orderBy(`"repos"."${orderField}"`, "DESC");
+      queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
     const subQuery = this.repoRepository.manager.createQueryBuilder()
@@ -136,7 +220,7 @@ export class RepoService {
     const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
 
     queryBuilder
-      .orderBy(`"repos"."${orderField}"`, OrderDirectionEnum.DESC)
+      .addOrderBy(`"repos"."${orderField}"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
