@@ -64,6 +64,7 @@ import { HighlightModule } from "./highlight/highlight.module";
       imports: [ConfigModule],
       name: "ApiConnection",
       useFactory: (configService: ConfigService) => ({
+        parseInt8: true,
         type: configService.get("db-api.connection"),
         host: configService.get("db-api.host"),
         port: configService.get("db-api.port"),
@@ -101,6 +102,7 @@ import { HighlightModule } from "./highlight/highlight.module";
       imports: [ConfigModule],
       name: "LogConnection",
       useFactory: (configService: ConfigService) => ({
+        parseInt8: true,
         type: configService.get("db-logging.connection"),
         host: configService.get("db-logging.host"),
         port: configService.get("db-logging.port"),

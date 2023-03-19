@@ -182,6 +182,7 @@ jobs:
         uses: open-sauced/release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     if: github.event.repository.default_branch == github.ref_name
