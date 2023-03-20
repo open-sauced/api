@@ -30,7 +30,7 @@ import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
 import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
-import { version } from "../package.json";
+// import { version } from "../package.json";
 import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
 import { InsightsModule } from "./insight/insights.module";
 import { DbInsight } from "./insight/entities/insight.entity";
@@ -180,6 +180,6 @@ export class AppModule {
   configure (consumer: MiddlewareConsumer) {
     consumer
       .apply(HttpLoggerMiddleware)
-      .forRoutes(`v${version.charAt(0)}`);
+      .forRoutes(`v${/*version ?? */"1".charAt(0)}`);
   }
 }

@@ -5,8 +5,9 @@
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
   "author": "TED Vortex <ted.vortex@gmail.com>",
   "files": [
-    "src"
+    "dist/**"
   ],
+  "main": "dist/index.js",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
@@ -32,8 +33,9 @@
     "start": "npm run nest -- start",
     "start:dev": "npm run start -- --watch",
     "start:debug": "npm run start:dev -- --debug",
-    "prebuild": "rimraf dist",
+    "prebuild": "npx rimraf dist",
     "build": "npm run nest -- build",
+    "build:package": "npx tsc -p tsconfig.package.json",
     "eslint": "npx eslint",
     "lint": "npm run eslint -- . --ext .ts,.js",
     "format": "npm run lint -- --fix",
