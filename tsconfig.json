@@ -25,9 +25,5 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ],
-  "references": [
-    { "path": "tsconfig.build.json"},
-    { "path": "tsconfig.package.json"},
   ]
 }

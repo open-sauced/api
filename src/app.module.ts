@@ -8,12 +8,8 @@ import { DataSource } from "typeorm";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { clc } from "@nestjs/common/utils/cli-colors.util";
 
+import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig } from "./config";
 import { RepoModule } from "./repo/repo.module";
-import apiConfig from "./config/api.config";
-import DbApiConfig from "./config/db-api.config";
-import DbLoggingConfig from "./config/db-logging.config";
-import endpointConfig from "./config/endpoint.config";
-import stripeConfig from "./config/stripe.config";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
@@ -30,6 +26,7 @@ import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
 import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
+
 // import { version } from "../package.json";
 import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
 import { InsightsModule } from "./insight/insights.module";
@@ -52,11 +49,11 @@ import { HighlightModule } from "./highlight/highlight.module";
   imports: [
     ConfigModule.forRoot({
       load: [
-        apiConfig,
+        ApiConfig,
         DbApiConfig,
         DbLoggingConfig,
-        endpointConfig,
-        stripeConfig,
+        EndpointConfig,
+        StripeConfig,
       ],
       isGlobal: true,
     }),
@@ -180,6 +177,6 @@ export class AppModule {
   configure (consumer: MiddlewareConsumer) {
     consumer
       .apply(HttpLoggerMiddleware)
-      .forRoutes(`v${/*version ?? */"1".charAt(0)}`);
+      .forRoutes(`v${/* version ?? */"1".charAt(0)}`);
   }
 }

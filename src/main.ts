@@ -14,6 +14,7 @@ import { writeFile } from "node:fs/promises";
 import { major } from "semver";
 
 import { AppModule } from "./app.module";
+
 // import { name, version, license } from "../package.json";
 
 async function bootstrap () {
@@ -85,11 +86,14 @@ code | condition
     .addServer(`https://${apiDomain}`, "Production")
     .addServer(`https://beta.${apiDomain}`, "Beta")
     .addServer(`https://alpha.${apiDomain}`, "Alpha")
+
     // .setTitle(name)
     .setDescription(markdownDescription)
+
     // .setVersion(version)
     .setContact("Open Sauced", "https://opensauced.pizza", "hello@opensauced.pizza")
     .setTermsOfService("https://github.com/open-sauced/code-of-conduct")
+
     // .setLicense(`The ${license} License`, `https://opensource.org/licenses/${license}`)
     .addBearerAuth();
 
