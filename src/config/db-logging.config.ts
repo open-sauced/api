@@ -1,6 +1,6 @@
 import { registerAs } from "@nestjs/config";
 
-export default registerAs("db-logging", () => ({
+export const DbLoggingConfig = registerAs("db-logging", () => ({
   connection: String(process.env.TYPEORM_CONNECTION_LOGGING ?? "postgres"),
   host: String(process.env.TYPEORM_HOST_LOGGING ?? "localhost"),
   port: String(process.env.TYPEORM_PORT_LOGGING ?? "5432"),
@@ -10,3 +10,5 @@ export default registerAs("db-logging", () => ({
   certificate: String(process.env.TYPEORM_SSL_CERT_LOGGING ?? "-----------------------------"),
   maxQueryExecutionTime: Number(parseInt(process.env.TYPEORM_MAX_QUERY_EXECUTION_TIME_LOGGING ?? "2000", 10)),
 }));
+
+export default DbLoggingConfig;
