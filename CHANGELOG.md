@@ -5,6 +5,24 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.29.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-alpha.1) (2023-03-20)
+
+
+### 🍕 Features
+
+* experimental build improvements ([70a6e7b](https://github.com/open-sauced/api.opensauced.pizza/commit/70a6e7b16a8cf2f386a96604909bf3acc6fdd83c))
+
+
+### 🤖 Build System
+
+* experiment with published package without json path hack ([d3afb4b](https://github.com/open-sauced/api.opensauced.pizza/commit/d3afb4b9393a1eca2ba9b8debc9348499f25463e))
+* re-use code across private repos and small fixes ([3d2b7eb](https://github.com/open-sauced/api.opensauced.pizza/commit/3d2b7ebe1d54595ae28f84eeae62181578495948))
+
+
+### 🐛 Bug Fixes
+
+* correct build errors ([20491d8](https://github.com/open-sauced/api.opensauced.pizza/commit/20491d8ada30139b2669d12062b80335381ded86))
+
 ## [1.28.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.27.0...v1.28.0) (2023-03-16)
 
 
