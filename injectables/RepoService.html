@@ -860,7 +860,7 @@ export class RepoService {
       )
       .addSelect(
         &#x60;(
-          SELECT COALESCE(AVG((&quot;pull_requests_velocity&quot;.&quot;closed_at&quot;::DATE-&quot;pull_requests_velocity&quot;.&quot;created_at&quot;::DATE)/(1000*60*60*24)), 0)
+          SELECT COALESCE(AVG(&quot;pull_requests_velocity&quot;.&quot;closed_at&quot;::DATE-&quot;pull_requests_velocity&quot;.&quot;created_at&quot;::DATE), 0)
           FROM &quot;pull_requests&quot; &quot;pull_requests_velocity&quot;
           WHERE
             &quot;pull_requests_velocity&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
