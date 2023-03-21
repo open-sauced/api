@@ -80,6 +80,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#closed_prs_count" >closed_prs_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#contributions" >contributions</a>
                             </li>
                             <li>
@@ -99,6 +104,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#description" >description</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#draft_prs_count" >draft_prs_count</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -199,6 +209,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#merged_prs_count" >merged_prs_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#mirror_url" >mirror_url</a>
                             </li>
                             <li>
@@ -212,6 +227,21 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#node_id" >node_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#open_prs_count" >open_prs_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_active_count" >pr_active_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_velocity_count" >pr_velocity_count</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -237,6 +267,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#size" >size</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#spam_prs_count" >spam_prs_count</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -327,6 +362,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="281" class="link-to-prism">src/repo/entities/repo.entity.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closed_prs_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>closed_prs_count</b></span>
+                        <a href="#closed_prs_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository number of closed PRs&#x27;, example: 173})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="467" class="link-to-prism">src/repo/entities/repo.entity.ts:467</a></div>
                         </td>
                     </tr>
 
@@ -509,6 +581,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="331" class="link-to-prism">src/repo/entities/repo.entity.ts:331</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draft_prs_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>draft_prs_count</b></span>
+                        <a href="#draft_prs_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository number of draft PRs&#x27;, example: 2})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="489" class="link-to-prism">src/repo/entities/repo.entity.ts:489</a></div>
                         </td>
                     </tr>
 
@@ -1351,6 +1460,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="merged_prs_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>merged_prs_count</b></span>
+                        <a href="#merged_prs_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository number of merged PRs&#x27;, example: 276})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="478" class="link-to-prism">src/repo/entities/repo.entity.ts:478</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="mirror_url"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
@@ -1486,6 +1632,117 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="251" class="link-to-prism">src/repo/entities/repo.entity.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open_prs_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>open_prs_count</b></span>
+                        <a href="#open_prs_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository number of open PRs&#x27;, example: 5})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="456" class="link-to-prism">src/repo/entities/repo.entity.ts:456</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_active_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_active_count</b></span>
+                        <a href="#pr_active_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of non-closed PRs updated within the day range&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="522" class="link-to-prism">src/repo/entities/repo.entity.ts:522</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_velocity_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_velocity_count</b></span>
+                        <a href="#pr_velocity_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository average open/close time for PRs&#x27;, example: 0})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="511" class="link-to-prism">src/repo/entities/repo.entity.ts:511</a></div>
                         </td>
                     </tr>
 
@@ -1703,6 +1960,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/repo/entities/repo.entity.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spam_prs_count"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>spam_prs_count</b></span>
+                        <a href="#spam_prs_count"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Repository number of spam PRs&#x27;, example: 2})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="500" class="link-to-prism">src/repo/entities/repo.entity.ts:500</a></div>
                         </td>
                     </tr>
 
@@ -2519,6 +2813,84 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() &#x3D;&gt; DbRepoToUserStargazers, repoToUserStargazers &#x3D;&gt; repoToUserStargazers.repo)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  // virtual columns
+  @ApiModelProperty({
+    description: &quot;Repository number of open PRs&quot;,
+    example: 5,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public open_prs_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Repository number of closed PRs&quot;,
+    example: 173,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public closed_prs_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Repository number of merged PRs&quot;,
+    example: 276,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public merged_prs_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Repository number of draft PRs&quot;,
+    example: 2,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public draft_prs_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Repository number of spam PRs&quot;,
+    example: 2,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public spam_prs_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Repository average open/close time for PRs&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_velocity_count?: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of non-closed PRs updated within the day range&quot;,
+    example: 0,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_active_count?: number;
 }
 </code></pre>
     </div>

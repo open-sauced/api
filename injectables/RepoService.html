@@ -79,6 +79,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#baseFilterQueryBuilder" >baseFilterQueryBuilder</a>
+                            </li>
+                            <li>
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
@@ -182,6 +186,81 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="baseFilterQueryBuilder"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>baseFilterQueryBuilder</b></span>
+                        <a href="#baseFilterQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>baseFilterQueryBuilder(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/repo/repo.service.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="baseQueryBuilder"></a>
                     <span class="name">
                         <span ><b>baseQueryBuilder</b></span>
@@ -237,8 +316,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/repo/repo.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/repo/repo.service.ts:170</a></div>
                 </td>
             </tr>
 
@@ -332,8 +411,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/repo/repo.service.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/repo/repo.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -403,8 +482,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/repo/repo.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/repo/repo.service.ts:140</a></div>
                 </td>
             </tr>
 
@@ -474,8 +553,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/repo/repo.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/repo/repo.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -719,6 +798,90 @@ export class RepoService {
     return builder;
   }
 
+  private baseFilterQueryBuilder (range &#x3D; 30) {
+    return this.repoRepository
+      .createQueryBuilder(&quot;repos&quot;)
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;open_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;open_pull_requests&quot;
+          WHERE
+            &quot;open_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;open&#x27;
+            AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &quot;repos_open_prs_count&quot;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;closed_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;closed_pull_requests&quot;
+          WHERE
+            &quot;closed_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;closed&#x27;
+            AND &quot;closed_pull_requests&quot;.&quot;merged&quot; &#x3D; false
+            AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;repos_closed_prs_count&#x60;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;merged_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;merged_pull_requests&quot;
+          WHERE
+            &quot;merged_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;closed&#x27;
+            AND &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true
+            AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;repos_merged_prs_count&#x60;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;draft_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;draft_pull_requests&quot;
+          WHERE
+            &quot;draft_pull_requests&quot;.&quot;draft&quot; &#x3D; true
+            AND &quot;draft_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;repos_draft_prs_count&#x60;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;spam_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
+          WHERE
+            &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
+            AND &quot;spam_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;repos_spam_prs_count&#x60;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(AVG((&quot;pull_requests_velocity&quot;.&quot;closed_at&quot;::DATE-&quot;pull_requests_velocity&quot;.&quot;created_at&quot;::DATE)/(1000*60*60*24)), 0)
+          FROM &quot;pull_requests&quot; &quot;pull_requests_velocity&quot;
+          WHERE
+            &quot;pull_requests_velocity&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND &quot;pull_requests_velocity&quot;.&quot;closed_at&quot; &gt; &quot;pull_requests_velocity&quot;.&quot;created_at&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;repos_pr_velocity_count&#x60;,
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;active_pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot; &quot;active_pull_requests&quot;
+          WHERE
+            &quot;active_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
+            AND &quot;active_pull_requests&quot;.state !&#x3D; &#x27;closed&#x27;
+        )::INTEGER&#x60;,
+        &#x60;repo_active_prs_count&#x60;,
+      );
+  }
+
   async findOneById (id: number): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
@@ -779,9 +942,9 @@ export class RepoService {
   }
 
   async findAllWithFilters (pageOptionsDto: RepoSearchOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
-    const queryBuilder &#x3D; this.repoRepository.createQueryBuilder(&quot;repos&quot;);
     const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;stars&quot;;
     const range &#x3D; pageOptionsDto.range!;
+    const queryBuilder &#x3D; this.baseFilterQueryBuilder(range);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
@@ -790,7 +953,7 @@ export class RepoService {
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
     if (pageOptionsDto.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Recent) {
-      queryBuilder.orderBy(&#x60;&quot;repos&quot;.&quot;${orderField}&quot;&#x60;, &quot;DESC&quot;);
+      queryBuilder.orderBy(&#x60;&quot;repos&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;);
     }
 
     const subQuery &#x3D; this.repoRepository.manager.createQueryBuilder()
@@ -802,7 +965,7 @@ export class RepoService {
     const itemCount &#x3D; parseInt(&#x60;${countQueryResult?.count ?? &quot;0&quot;}&#x60;, 10);
 
     queryBuilder
-      .orderBy(&#x60;&quot;repos&quot;.&quot;${orderField}&quot;&#x60;, OrderDirectionEnum.DESC)
+      .addOrderBy(&#x60;&quot;repos&quot;.&quot;${orderField}&quot;&#x60;, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
