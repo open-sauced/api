@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.29.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.2...v1.29.0-alpha.3) (2023-03-21)
+
+
+### 🐛 Bug Fixes
+
+* correct npm package not releasing ([672ea80](https://github.com/open-sauced/api.opensauced.pizza/commit/672ea803fabb1940bf5e28dc0a1edecdf80b6d42))
+
 ## [1.29.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.1...v1.29.0-alpha.2) (2023-03-21)
 
 
