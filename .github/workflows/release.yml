@@ -154,6 +154,12 @@ jobs:
           rm -rf public/diagram.svg
           rm -rf public/diagrams/
 
+      - name: "📂 download npm package artifacts"
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist/
+
       - name: "📂 download diagram artifacts"
         uses: actions/download-artifact@v2
         with:
