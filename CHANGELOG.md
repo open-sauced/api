@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.29.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.1...v1.29.0-alpha.2) (2023-03-21)
+
+
+### 🐛 Bug Fixes
+
+* correct dockerfile paths for library usage ([f73f891](https://github.com/open-sauced/api.opensauced.pizza/commit/f73f891b1ce1a1b2c5744a30bc6a5e3bb68ee605))
+
 ## [1.29.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-alpha.1) (2023-03-20)
 
 
