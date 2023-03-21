@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.29.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-beta.1...v1.29.0-beta.2) (2023-03-21)
+
+
+### 🐛 Bug Fixes
+
+* remove day conversion from pr velocity ([5ee770b](https://github.com/open-sauced/api.opensauced.pizza/commit/5ee770b589d05bdca629e4950146a8df538d3899))
+
 ## [1.29.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-beta.1) (2023-03-21)
 
 
