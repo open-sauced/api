@@ -18,13 +18,13 @@
 <title>cluster_PullRequestModule_providers</title>
 <polygon fill="none" stroke="black" points="160,-40.8 160,-92.8 350,-92.8 350,-40.8 160,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_PullRequestModule_exports</title>
-<polygon fill="none" stroke="black" points="99,-170.8 99,-222.8 245,-222.8 245,-170.8 99,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_PullRequestModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 152,-92.8 152,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_PullRequestModule_exports</title>
+<polygon fill="none" stroke="black" points="99,-170.8 99,-222.8 245,-222.8 245,-170.8 99,-170.8"/>
 </g>
 <!-- RepoFilterModule -->
 <g id="node1" class="node">
