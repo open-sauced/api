@@ -442,4 +442,82 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  // virtual columns
+  @ApiModelProperty({
+    description: "Repository number of open PRs",
+    example: 5,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public open_prs_count?: number;
+
+  @ApiModelProperty({
+    description: "Repository number of closed PRs",
+    example: 173,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public closed_prs_count?: number;
+
+  @ApiModelProperty({
+    description: "Repository number of merged PRs",
+    example: 276,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public merged_prs_count?: number;
+
+  @ApiModelProperty({
+    description: "Repository number of draft PRs",
+    example: 2,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public draft_prs_count?: number;
+
+  @ApiModelProperty({
+    description: "Repository number of spam PRs",
+    example: 2,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public spam_prs_count?: number;
+
+  @ApiModelProperty({
+    description: "Repository average open/close time for PRs",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public pr_velocity_count?: number;
+
+  @ApiModelProperty({
+    description: "Number of non-closed PRs updated within the day range",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public pr_active_count?: number;
 }

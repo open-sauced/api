@@ -47,6 +47,7 @@ import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
+import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
 
 @Module({
   imports: [
@@ -86,6 +87,7 @@ import { HighlightModule } from "./highlight/highlight.module";
           DbCustomer,
           DbSubscription,
           DbPullRequest,
+          DbUserToUserFollows,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),
