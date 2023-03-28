@@ -647,7 +647,8 @@ export class InsightsService {
 
     queryBuilder
       .where(&quot;insights.user_id &#x3D; :userId&quot;, { userId })
-      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
+      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
+      .orderBy(&quot;insights.updated_at&quot;, &quot;DESC&quot;);
 
     queryBuilder
       .skip(pageOptionsDto.skip)
