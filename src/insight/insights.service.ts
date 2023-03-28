@@ -56,7 +56,8 @@ export class InsightsService {
 
     queryBuilder
       .where("insights.user_id = :userId", { userId })
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .orderBy("insights.updated_at", "DESC");
 
     queryBuilder
       .skip(pageOptionsDto.skip)
