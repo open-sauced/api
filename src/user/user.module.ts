@@ -9,17 +9,21 @@ import { UserController } from "./user.controller";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsController } from "./user-highlight.controller";
 import { UserHighlightsService } from "./user-highlights.service";
+import { UserFollowsController } from "./user-follow.controller";
+import { UserFollowService } from "./user-follow.service";
+import { DbUserToUserFollows } from "./entities/user-follows.entity";
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       DbUser,
       DbUserHighlight,
+      DbUserToUserFollows,
     ], "ApiConnection"),
     PullRequestModule,
   ],
-  controllers: [UserController, UserHighlightsController],
-  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController],
-  exports: [UserService, UserHighlightsService],
+  controllers: [UserController, UserHighlightsController, UserFollowsController],
+  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService],
+  exports: [UserService, UserHighlightsService, UserFollowService],
 })
 export class UserModule {}
