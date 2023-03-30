@@ -48,6 +48,7 @@ import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
+import { DbInsightMember } from "./insight/entities/insight-member.entity";
 
 @Module({
   imports: [
@@ -83,6 +84,7 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
           DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
           DbInsight,
+          DbInsightMember,
           DbInsightRepo,
           DbCustomer,
           DbSubscription,
