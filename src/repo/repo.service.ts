@@ -211,9 +211,19 @@ export class RepoService {
       queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
+    const countQueryBuilder = this.baseFilterQueryBuilder(range);
+
+    countQueryBuilder.select("repos.id", "repos_id");
+
+    const countFilters = this.filterService.getRepoFilters(pageOptionsDto, range);
+
+    countFilters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+
+    this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
+
     const subQuery = this.repoRepository.manager.createQueryBuilder()
-      .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
-      .setParameters(queryBuilder.getParameters())
+      .from(`(${countQueryBuilder.getQuery()})`, "subquery_for_count")
+      .setParameters(countQueryBuilder.getParameters())
       .select("count(repos_id)");
 
     const countQueryResult = await subQuery.getRawOne<{ count: number }>();
