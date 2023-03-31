@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.29.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1) (2023-03-31)
+
+
+### 🐛 Bug Fixes
+
+* only use repos_id for count query when using filters ([#133](https://github.com/open-sauced/api.opensauced.pizza/issues/133)) ([cae5dbd](https://github.com/open-sauced/api.opensauced.pizza/commit/cae5dbdc28cd409decfcdad9effb13b860f35be0))
+
+
+### 🤖 Build System
+
+* force release with dependency upgrades ([293c4d3](https://github.com/open-sauced/api.opensauced.pizza/commit/293c4d39337fed8659db3cecc3069280e0f3dac5))
+* update typescript and other non-blocking deps ([c54dcd9](https://github.com/open-sauced/api.opensauced.pizza/commit/c54dcd969489a343bb64ba5351fcc751def22704))
+
 ### [1.29.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1-beta.1) (2023-03-31)
 
 
