@@ -24,7 +24,7 @@ create table if not exists public.users
 
   -- elastic columns
   timezone character varying(50) COLLATE pg_catalog."default" NOT NULL DEFAULT 'UTC+1'::character varying,
-  login character varying(255) collate pg_catalog."default" not null default '',
+  login character varying(255) collate pg_catalog."default" not null default '' unique,
   email character varying(255) collate pg_catalog."default" not null default '',
   bio character varying(255) collate pg_catalog."default" not null default '',
   name character varying(255) collate pg_catalog."default" not null default '',
@@ -64,7 +64,6 @@ create index if not exists users_idx_receive_collaboration on public.users (rece
 create index if not exists users_idx_created_at on public.users (created_at);
 create index if not exists users_idx_updated_at on public.users (updated_at);
 create index if not exists users_idx_deleted_at on public.users (deleted_at);
-create index if not exists users_idx_login on public.users (login);
 create index if not exists users_idx_email on public.users (email);
 create index if not exists users_idx_name on public.users (name);
 create index if not exists users_idx_node_id on public.users (node_id);

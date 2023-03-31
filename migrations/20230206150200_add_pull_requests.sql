@@ -1,44 +1,45 @@
 create table if not exists public.pull_requests
 (
-	id integer not null,
-	repo_id integer not null,
-	number integer,
-	state text,
-	draft boolean default false,
-	title text not null,
-	source_label text default ''::text,
-	target_label text default ''::text,
-	target_branch text,
-	source_branch text,
-	author_login text,
-	author_avatar text,
-	assignee_login text default ''::text,
-	assignee_avatar text default ''::text,
-	assignees_login text[],
-	assignees_avatar text[],
-	requested_reviewers_login text[],
-	label_names text[],
-	labels jsonb,
-	merged boolean default false,
-	mergeable boolean default false,
-	rebaseable boolean default false,
-	created_at timestamp default now() not null,
-	merged_at timestamp,
-	updated_at timestamp default now() not null,
-	last_updated_at timestamp default now() not null,
-	closed_at timestamp,
-	additions integer default 0,
-	deletions integer default 0,
-	changed_files integer default 0,
-	comments integer default 0,
-	constraint gh_prs_pkey
-		primary key (id)
+  -- static columns
+  id bigint not null,
+  repo_id bigint not null references public.repos(id) on delete cascade on update cascade,
+  number bigint not null default 0,
+  additions bigint not null default 0,
+  deletions bigint not null default 0,
+  changed_files bigint not null default 0,
+  comments bigint not null default 0,
+  draft boolean not null default true,
+  merged boolean not null default false,
+  mergeable boolean not null default false,
+  rebaseable boolean not null default false,
+  created_at timestamp without time zone not null default now(),
+  merged_at timestamp without time zone default null,
+  updated_at timestamp without time zone not null default now(),
+  last_updated_at timestamp without time zone not null default now(),
+  closed_at timestamp without time zone default null,
+
+  -- elastic columns
+  state text,
+  title text not null,
+  source_label text default ''::text,
+  target_label text default ''::text,
+  target_branch text,
+  source_branch text,
+  author_login text,
+  author_avatar text,
+  assignee_login text default ''::text,
+  assignee_avatar text default ''::text,
+  assignees_login text[],
+  assignees_avatar text[],
+  requested_reviewers_login text[],
+  label_names text[],
+  labels jsonb,
+
+  -- dynamic columns
+  constraint pull_requests_pkey primary key (id)
 );
 
-create index pull_requests_idx_repo_id
-    on pull_requests (repo_id);
-
-create index pull_requests_idx_author
-    on pull_requests (author_login);
-
 tablespace pg_default;
+
+create index pull_requests_idx_repo_id on public.pull_requests (repo_id);
+create index pull_requests_idx_author on public.pull_requests (lower(author_login));
