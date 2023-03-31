@@ -956,9 +956,19 @@ export class RepoService {
       queryBuilder.orderBy(&#x60;&quot;repos&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;);
     }
 
+    const countQueryBuilder &#x3D; this.baseFilterQueryBuilder(range);
+
+    countQueryBuilder.select(&quot;repos.id&quot;, &quot;repos_id&quot;);
+
+    const countFilters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
+
+    countFilters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+
+    this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
+
     const subQuery &#x3D; this.repoRepository.manager.createQueryBuilder()
-      .from(&#x60;(${queryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
-      .setParameters(queryBuilder.getParameters())
+      .from(&#x60;(${countQueryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
+      .setParameters(countQueryBuilder.getParameters())
       .select(&quot;count(repos_id)&quot;);
 
     const countQueryResult &#x3D; await subQuery.getRawOne&lt;{ count: number }&gt;();
