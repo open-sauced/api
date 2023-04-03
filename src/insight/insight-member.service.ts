@@ -7,12 +7,14 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { DbInsightMember } from "./entities/insight-member.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { InsightsService } from "./insights.service";
 
 @Injectable()
 export class InsightMemberService {
   constructor (
     @InjectRepository(DbInsightMember, "ApiConnection")
     private insightMemberRepository: Repository<DbInsightMember>,
+    private insightService: InsightsService,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbInsightMember> {
@@ -45,6 +47,29 @@ export class InsightMemberService {
 
   async removeInsightMember (id: string) {
     return this.insightMemberRepository.softDelete(id);
+  }
+
+  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[]): Promise<boolean> {
+    const insight = await this.insightService.findOneById(insightId);
+
+    if (Number(insight.user_id) === userId) {
+      return true;
+    }
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .where("insight_members.insight_id = :insightId", { insightId })
+      .andWhere("insight_members.user_id = :userId", { userId })
+      .andWhere("AND insight_members.access IN (:...accessRoles))", { accessRoles });
+
+    const item: DbInsightMember | null = await queryBuilder.getOne();
+
+    if (!item) {
+      return false;
+    }
+
+    return true;
   }
 
   async findAllInsightMembers (

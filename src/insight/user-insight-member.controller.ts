@@ -38,8 +38,9 @@ export class UserInsightMemberController {
       @UserId() userId: number,
   ): Promise<PageDto<DbInsightMember>> {
     const insight = await this.insightsService.findOneById(insightId);
+    const canAccess = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit", "view"]);
 
-    if (Number(insight.user_id) !== userId) {
+    if (!canAccess) {
       throw new (UnauthorizedException);
     }
 
@@ -63,8 +64,9 @@ export class UserInsightMemberController {
       @UserId() userId: number,
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(insightId);
+    const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
 
-    if (Number(insight.user_id) !== userId) {
+    if (!canUpdate) {
       throw new (UnauthorizedException);
     }
 
@@ -87,7 +89,7 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to update user insight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  @ApiUnprocessableEntityResponse({ description: "Unable to unable insight repos" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to unable insight members" })
   @ApiBody({ type: UpdateInsightMemberDto })
   async updateInsightMember (
     @Param("id") id: number,
@@ -96,8 +98,9 @@ export class UserInsightMemberController {
       @Body() updateInsightMemberDto: UpdateInsightMemberDto,
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(id);
+    const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
 
-    if (Number(insight.user_id) !== userId) {
+    if (!canUpdate) {
       throw new (UnauthorizedException);
     }
 
@@ -124,8 +127,9 @@ export class UserInsightMemberController {
       @UserId() userId: number,
   ): Promise<void> {
     const insight = await this.insightsService.findOneById(id);
+    const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
 
-    if (Number(insight.user_id) !== userId) {
+    if (!canUpdate) {
       throw new (UnauthorizedException);
     }
 
