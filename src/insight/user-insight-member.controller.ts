@@ -81,13 +81,13 @@ export class UserInsightMemberController {
 
   @Patch(":id/members/:memberId")
   @ApiOperation({
-    operationId: "updateInsightForUser",
-    summary: "Updates an insight page for the authenticated user",
+    operationId: "updateInsightMember",
+    summary: "Updates an insight member information",
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
-  @ApiNotFoundResponse({ description: "Unable to update user insight" })
+  @ApiNotFoundResponse({ description: "Unable to find insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight members" })
   @ApiBody({ type: UpdateInsightMemberDto })
