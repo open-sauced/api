@@ -781,6 +781,7 @@ export class InsightMemberService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect(&quot;users.name&quot;, &quot;insight_members_name&quot;)
       .innerJoin(&quot;insights&quot;, &quot;insights&quot;, &quot;insight_members.insight_id&#x3D;insights.id&quot;)
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;insight_members.user_id&#x3D;users.id&quot;)
       .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
