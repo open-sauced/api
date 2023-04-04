@@ -37,7 +37,7 @@
 
 <ol class="breadcrumb">
   <li>Controllers</li>
-  <li >UserInsightsController</li>
+  <li >UserInsightMemberController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/insight/user-insight.controller.ts</code>
+            <code>src/insight/user-insight-member.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -85,7 +85,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#addInsightForUser" >addInsightForUser</a>
+                                <a href="#addInsightMember" >addInsightMember</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -93,7 +93,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#updateInsightForUser" >updateInsightForUser</a>
+                                <a href="#removeInsightMemberById" >removeInsightMemberById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateInsightMember" >updateInsightMember</a>
                             </li>
                         </ul>
                     </td>
@@ -116,18 +120,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addInsightForUser"></a>
+                    <a name="addInsightMember"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>addInsightForUser</b></span>
-                        <a href="#addInsightForUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addInsightMember</b></span>
+                        <a href="#addInsightMember"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsightForUser(createInsightDto: <a href="../classes/CreateInsightDto.html" target="_self">CreateInsightDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addInsightMember(createInsightMemberDto: <a href="../classes/CreateInsightMemberDto.html" target="_self">CreateInsightMemberDto</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -135,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addInsightForUser&#x27;, summary: &#x27;Adds a new insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user insight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateInsightDto})<br /></code>
+                    <code>@Post(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;addMemberForInsight&#x27;, summary: &#x27;Adds a new member for the insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Unable to add insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateInsightMemberDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -163,9 +167,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>createInsightDto</td>
+                                    <td>createInsightMemberDto</td>
                                     <td>
-                                                <code><a href="../classes/CreateInsightDto.html" target="_self" >CreateInsightDto</a></code>
+                                                <code><a href="../classes/CreateInsightMemberDto.html" target="_self" >CreateInsightMemberDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>insightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -192,7 +208,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;DbInsightMember&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -217,7 +233,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllInsightsByUserId(pageOptionsDto: <a href="../classes/InsightPageOptionsDto.html" target="_self">InsightPageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findAllInsightsByUserId(pageOptionsDto: <a href="../classes/InsightPageOptionsDto.html" target="_self">InsightPageOptionsDto</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -225,14 +241,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;findAllInsightsByUserId&#x27;, summary: &#x27;Listing all insights for a user and paginate them&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbInsight)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Insights not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;findAllInsightMembers&#x27;, summary: &#x27;Listing all members for an insight and paginate them&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbInsightMember)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Insight not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -265,9 +281,21 @@
 
                                 </tr>
                                 <tr>
+                                    <td>insightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -282,7 +310,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsight&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsightMember&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -296,18 +324,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateInsightForUser"></a>
+                    <a name="removeInsightMemberById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>updateInsightForUser</b></span>
-                        <a href="#updateInsightForUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>removeInsightMemberById</b></span>
+                        <a href="#removeInsightMemberById"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateInsightForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateInsightDto: <a href="../classes/UpdateInsightDto.html" target="_self">UpdateInsightDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>removeInsightMemberById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, memberId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -315,14 +343,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightForUser&#x27;, summary: &#x27;Updates an insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user insight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight repos&#x27;})<br />@ApiBody({type: UpdateInsightDto})<br /></code>
+                    <code>@Delete(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;removeInsightMemberById&#x27;, summary: &#x27;Removes a member from an insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to remove insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:124</a></div>
                 </td>
             </tr>
 
@@ -355,9 +383,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>updateInsightDto</td>
+                                    <td>memberId</td>
                                     <td>
-                                                <code><a href="../classes/UpdateInsightDto.html" target="_self" >UpdateInsightDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -384,7 +412,121 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateInsightMember"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateInsightMember</b></span>
+                        <a href="#updateInsightMember"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateInsightMember(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, memberId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateInsightMemberDto: <a href="../classes/UpdateInsightMemberDto.html" target="_self">UpdateInsightMemberDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightMember&#x27;, summary: &#x27;Updates an insight member information&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight members&#x27;})<br />@ApiBody({type: UpdateInsightMemberDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>memberId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateInsightMemberDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateInsightMemberDto.html" target="_self" >UpdateInsightMemberDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbInsightMember&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -398,134 +540,142 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Query, UnauthorizedException, UnprocessableEntityException, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { CreateInsightDto } from &quot;./dtos/create-insight.dto&quot;;
+import { CreateInsightMemberDto } from &quot;./dtos/create-insight-member.dto&quot;;
 
 import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
-import { UpdateInsightDto } from &quot;./dtos/update-insight.dto&quot;;
+import { UpdateInsightMemberDto } from &quot;./dtos/update-insight-member.dto&quot;;
+import { DbInsightMember } from &quot;./entities/insight-member.entity&quot;;
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
 import { InsightMemberService } from &quot;./insight-member.service&quot;;
-import { InsightRepoService } from &quot;./insight-repo.service&quot;;
 import { InsightsService } from &quot;./insights.service&quot;;
 
 @Controller(&quot;user/insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
-export class UserInsightsController {
+export class UserInsightMemberController {
   constructor (
     private readonly insightsService: InsightsService,
-    private readonly insightsRepoService: InsightRepoService,
-    private insightMemberService: InsightMemberService,
+    private readonly insightMemberService: InsightMemberService,
   ) {}
 
-  @Get(&quot;/&quot;)
+  @Get(&quot;:id/members&quot;)
   @ApiOperation({
-    operationId: &quot;findAllInsightsByUserId&quot;,
-    summary: &quot;Listing all insights for a user and paginate them&quot;,
+    operationId: &quot;findAllInsightMembers&quot;,
+    summary: &quot;Listing all members for an insight and paginate them&quot;,
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiPaginatedResponse(DbInsight)
-  @ApiOkResponse({ type: DbInsight })
-  @ApiNotFoundResponse({ description: &quot;Insights not found&quot; })
+  @ApiPaginatedResponse(DbInsightMember)
+  @ApiOkResponse({ type: DbInsightMember })
+  @ApiNotFoundResponse({ description: &quot;Insight not found&quot; })
   async findAllInsightsByUserId (
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @UserId() userId: string,
-  ): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
-    return this.insightsService.findAllByUserId(pageOptionsDto, userId);
-  }
-
-  @Post(&quot;/&quot;)
-  @ApiOperation({
-    operationId: &quot;addInsightForUser&quot;,
-    summary: &quot;Adds a new insight page for the authenticated user&quot;,
-  })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbInsight })
-  @ApiNotFoundResponse({ description: &quot;Unable to add user insight&quot; })
-  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  @ApiBody({ type: CreateInsightDto })
-  async addInsightForUser (
-    @Body() createInsightDto: CreateInsightDto,
+      @Param(&quot;id&quot;) insightId: number,
       @UserId() userId: number,
-  ): Promise&lt;DbInsight&gt; {
-    if (!createInsightDto.name || !Array.isArray(createInsightDto.repos)) {
-      throw (new BadRequestException);
+  ): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
+    const insight &#x3D; await this.insightsService.findOneById(insightId);
+    const canAccess &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;, &quot;view&quot;]);
+
+    if (!canAccess) {
+      throw new (UnauthorizedException);
     }
 
-    const newInsight &#x3D; await this.insightsService.addInsight({
-      name: createInsightDto.name,
-      is_public: createInsightDto.is_public,
-      user_id: userId,
-    });
-
-    createInsightDto.repos.forEach(async repo &#x3D;&gt; {
-      await this.insightsRepoService.addInsightRepo(newInsight.id, repo);
-    });
-
-    return newInsight;
+    return this.insightMemberService.findAllInsightMembers(pageOptionsDto, insightId);
   }
 
-  @Patch(&quot;/:id&quot;)
+  @Post(&quot;:id/members&quot;)
   @ApiOperation({
-    operationId: &quot;updateInsightForUser&quot;,
-    summary: &quot;Updates an insight page for the authenticated user&quot;,
+    operationId: &quot;addMemberForInsight&quot;,
+    summary: &quot;Adds a new member for the insight&quot;,
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbInsight })
-  @ApiNotFoundResponse({ description: &quot;Unable to update user insight&quot; })
+  @ApiOkResponse({ type: DbInsightMember })
+  @ApiNotFoundResponse({ description: &quot;Unable to add insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight repos&quot; })
-  @ApiBody({ type: UpdateInsightDto })
-  async updateInsightForUser (
-    @Param(&quot;id&quot;) id: number,
-      @Body() updateInsightDto: UpdateInsightDto,
+  @ApiBody({ type: CreateInsightMemberDto })
+  async addInsightMember (
+    @Body() createInsightMemberDto: CreateInsightMemberDto,
+      @Param(&quot;id&quot;) insightId: number,
       @UserId() userId: number,
-  ): Promise&lt;DbInsight&gt; {
-    const insight &#x3D; await this.insightsService.findOneById(id);
-
+  ): Promise&lt;DbInsightMember&gt; {
+    const insight &#x3D; await this.insightsService.findOneById(insightId);
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
 
     if (!canUpdate) {
       throw new (UnauthorizedException);
     }
 
-    // update insight
-    await this.insightsService.updateInsight(id, {
-      name: updateInsightDto.name,
-      is_public: updateInsightDto.is_public,
+    const newInsightMember &#x3D; await this.insightMemberService.addInsightMember({
+      insight_id: insightId,
+      user_id: createInsightMemberDto.user_id,
+      access: createInsightMemberDto.access,
     });
 
-    try {
-      // current set of insight repos
-      const currentRepos &#x3D; insight.repos.filter(insightRepo &#x3D;&gt; !insightRepo.deleted_at);
+    return newInsightMember;
+  }
 
-      // remove deleted repos
-      const reposToRemove &#x3D; currentRepos.filter(repo &#x3D;&gt; !updateInsightDto.repos.find(repoInfo &#x3D;&gt; &#x60;${repoInfo.id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;));
+  @Patch(&quot;:id/members/:memberId&quot;)
+  @ApiOperation({
+    operationId: &quot;updateInsightMember&quot;,
+    summary: &quot;Updates an insight member information&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbInsight })
+  @ApiNotFoundResponse({ description: &quot;Unable to find insight member&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight members&quot; })
+  @ApiBody({ type: UpdateInsightMemberDto })
+  async updateInsightMember (
+    @Param(&quot;id&quot;) id: number,
+      @Param(&quot;memberId&quot;) memberId: string,
+      @UserId() userId: number,
+      @Body() updateInsightMemberDto: UpdateInsightMemberDto,
+  ): Promise&lt;DbInsightMember&gt; {
+    const insight &#x3D; await this.insightsService.findOneById(id);
+    const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
 
-      const reposToRemoveRequests &#x3D; reposToRemove.map(async insightRepo &#x3D;&gt; this.insightsRepoService.removeInsightRepo(insightRepo.id));
-
-      await Promise.all(reposToRemoveRequests);
-
-      // add new repos
-      const currentRepoIds &#x3D; currentRepos.map(cr &#x3D;&gt; cr.repo_id);
-      const reposToAdd &#x3D; updateInsightDto.repos.filter(repoInfo &#x3D;&gt; !currentRepoIds.find(id &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id}&#x60;));
-
-      const repoToAddRequests &#x3D; reposToAdd.map(async repo &#x3D;&gt; this.insightsRepoService.addInsightRepo(insight.id, repo));
-
-      await Promise.all(repoToAddRequests);
-    } catch (e) {
-      throw new (UnprocessableEntityException);
+    if (!canUpdate) {
+      throw new (UnauthorizedException);
     }
 
-    return this.insightsService.findOneById(id);
+    const updatedInsightMember: Partial&lt;DbInsightMember&gt; &#x3D; { access: updateInsightMemberDto.access };
+
+    await this.insightMemberService.updateInsightMember(memberId, updatedInsightMember);
+
+    return this.insightMemberService.findOneById(memberId);
+  }
+
+  @Delete(&quot;:id/members/:memberId&quot;)
+  @ApiOperation({
+    operationId: &quot;removeInsightMemberById&quot;,
+    summary: &quot;Removes a member from an insight&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbInsight })
+  @ApiNotFoundResponse({ description: &quot;Unable to remove insight member&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async removeInsightMemberById (
+    @Param(&quot;id&quot;) id: number,
+      @Param(&quot;memberId&quot;) memberId: string,
+      @UserId() userId: number,
+  ): Promise&lt;void&gt; {
+    const insight &#x3D; await this.insightsService.findOneById(id);
+    const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
+
+    if (!canUpdate) {
+      throw new (UnauthorizedException);
+    }
+
+    await this.insightMemberService.removeInsightMember(memberId);
   }
 }
 </code></pre>
@@ -573,7 +723,7 @@ export class UserInsightsController {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserInsightsController.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserInsightMemberController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

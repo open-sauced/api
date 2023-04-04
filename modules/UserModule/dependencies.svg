@@ -18,13 +18,13 @@
 <title>cluster_UserModule_providers</title>
 <polygon fill="none" stroke="black" points="168,-40.8 168,-92.8 706,-92.8 706,-40.8 168,-40.8"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_UserModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 160,-92.8 160,-40.8 16,-40.8"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_UserModule_exports</title>
 <polygon fill="none" stroke="black" points="134,-170.8 134,-222.8 548,-222.8 548,-170.8 134,-170.8"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_UserModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 160,-92.8 160,-40.8 16,-40.8"/>
 </g>
 <!-- PullRequestModule -->
 <g id="node1" class="node">

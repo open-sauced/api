@@ -379,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="180"
-                            class="link-to-prism">src/app.module.ts:180</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app.module.ts:182</a></div>
                 </td>
             </tr>
 
@@ -483,6 +483,7 @@ import { DbPullRequest } from &quot;./pull-requests/entities/pull-request.entity
 import { DbUserHighlight } from &quot;./user/entities/user-highlight.entity&quot;;
 import { HighlightModule } from &quot;./highlight/highlight.module&quot;;
 import { DbUserToUserFollows } from &quot;./user/entities/user-follows.entity&quot;;
+import { DbInsightMember } from &quot;./insight/entities/insight-member.entity&quot;;
 
 @Module({
   imports: [
@@ -518,6 +519,7 @@ import { DbUserToUserFollows } from &quot;./user/entities/user-follows.entity&qu
           DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
           DbInsight,
+          DbInsightMember,
           DbInsightRepo,
           DbCustomer,
           DbSubscription,
