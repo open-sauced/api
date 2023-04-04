@@ -55,15 +55,13 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .where(`
-        (insights.user_id = :userId)
-        OR (insights.user_id IN (
-            SELECT user_id
-            FROM insight_members
-            WHERE insight_id = insights.id
-            AND user_id = :userId
-            AND deleted_at IS NULL
-          )
+      .where("insights.user_id = :userId")
+      .orWhere(`insights.user_id IN (
+          SELECT user_id
+          FROM insight_members
+          WHERE insight_id = insights.id
+          AND user_id = :userId
+          AND deleted_at IS NULL
         )
       `, { userId })
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
