@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.1...v1.30.0-beta.2) (2023-04-04)
+
+
+### 🐛 Bug Fixes
+
+* add user name to insight members list ([7e2756b](https://github.com/open-sauced/api.opensauced.pizza/commit/7e2756b71d48645a8823e56338fb1c0f42c75c61))
+
 ## [1.30.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0-beta.1) (2023-04-04)
 
 
