@@ -16,6 +16,7 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbInsight } from "../insight/entities/insight.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -362,6 +363,10 @@ export class DbUser extends BaseEntity {
     length: 50,
   })
   readonly timezone?: string;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbInsight, insight => insight.user)
+  public insights: DbInsight[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
