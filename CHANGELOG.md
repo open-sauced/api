@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.2...v1.30.0-beta.3) (2023-04-06)
+
+
+### 🍕 Features
+
+* add owner information and relationships to insight pages ([#136](https://github.com/open-sauced/api.opensauced.pizza/issues/136)) ([94331ba](https://github.com/open-sauced/api.opensauced.pizza/commit/94331baea2a707aa05344df9ddc41d828d10f992))
+
 ## [1.30.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.1...v1.30.0-beta.2) (2023-04-04)
 
 
