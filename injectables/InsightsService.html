@@ -189,8 +189,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/insight/insights.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/insight/insights.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/insight/insights.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/insight/insights.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -451,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/insight/insights.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/insight/insights.service.ts:49</a></div>
                 </td>
             </tr>
 
@@ -522,8 +522,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/insight/insights.service.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/insight/insights.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -615,7 +615,9 @@ export class InsightsService {
   async findOneById (id: number): Promise&lt;DbInsight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;insights.id &#x3D; :id&quot;, { id })
+    queryBuilder
+      .where(&quot;insights.id &#x3D; :id&quot;, { id })
+      .innerJoinAndSelect(&#x60;insights.user&#x60;, &#x60;user&#x60;)
       .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
 
     const item: DbInsight | null &#x3D; await queryBuilder.getOne();
