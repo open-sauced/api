@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.3...v1.30.0-beta.4) (2023-04-07)
+
+
+### 🍕 Features
+
+* add endpoints to manage user highlight reactions ([#137](https://github.com/open-sauced/api.opensauced.pizza/issues/137)) ([5e0b1c5](https://github.com/open-sauced/api.opensauced.pizza/commit/5e0b1c5a176ef73124d76564d875e864918730a0))
+
 ## [1.30.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.2...v1.30.0-beta.3) (2023-04-06)
 
 
