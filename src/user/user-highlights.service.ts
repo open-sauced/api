@@ -165,7 +165,7 @@ export class UserHighlightsService {
     return entities;
   }
 
-  async findOneUserHighlightReaction (highlightId: number, userId: number, emojiId: number) {
+  async findOneUserHighlightReaction (highlightId: number, userId: number, emojiId: string) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
 
     queryBuilder
@@ -182,7 +182,7 @@ export class UserHighlightsService {
     return item;
   }
 
-  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: number) {
+  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions")
       .withDeleted();
 
@@ -210,7 +210,7 @@ export class UserHighlightsService {
     });
   }
 
-  async deleteUserHighlightReaction (id: number) {
+  async deleteUserHighlightReaction (id: string) {
     return this.userHighlightReactionRepository.softDelete(id);
   }
 }

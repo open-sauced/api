@@ -16,8 +16,8 @@ export class EmojiController {
 
   @Get("/")
   @ApiOperation({
-    operationId: "findAllInsightsByUserId",
-    summary: "Listing all insights for a user and paginate them",
+    operationId: "findAllEmojis",
+    summary: "Listing all emojis and paginates them",
   })
   @ApiPaginatedResponse(DbEmoji)
   @ApiOkResponse({ type: DbEmoji })

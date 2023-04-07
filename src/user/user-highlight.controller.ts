@@ -118,7 +118,7 @@ export class UserHighlightsController {
   @ApiConflictResponse({ description: "Unable to add user highlight reaction" })
   async addHighlightReactionForUser (
     @Param("id") highlightId: number,
-      @Param("emojiId") emojiId: number,
+      @Param("emojiId") emojiId: string,
       @UserId() userId: number,
   ): Promise<void> {
     const highlight = await this.userHighlightsService.findOneById(highlightId);
@@ -142,7 +142,7 @@ export class UserHighlightsController {
   async deleteHighlightReactionForUser (
     @UserId() userId: number,
       @Param("id") highlightId: number,
-      @Param("emojiId") emojiId: number,
+      @Param("emojiId") emojiId: string,
   ): Promise<void> {
     const userHighlightReaction = await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
 

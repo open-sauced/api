@@ -17,6 +17,8 @@ import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissio
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbInsight } from "../insight/entities/insight.entity";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -371,6 +373,14 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbInsight, highlight => highlight.user)
+  public highlights: DbUserHighlight[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.user)
+  public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)

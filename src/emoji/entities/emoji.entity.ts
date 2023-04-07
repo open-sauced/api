@@ -1,18 +1,20 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
+import { DbUserHighlightReaction } from "../../user/entities/user-highlight-reaction.entity";
+
 @Entity({ name: "emojis" })
 export class DbEmoji {
   @ApiModelProperty({
     description: "Emoji identifier",
-    example: 196,
+    example: "uuid-v4",
   })
   @PrimaryGeneratedColumn()
-  public id!: number;
+  public id!: string;
 
   @ApiModelProperty({
     description: "Emoji Name",
@@ -61,4 +63,8 @@ export class DbEmoji {
     select: false,
   })
   public deleted_at?: Date;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.emoji)
+  public reactions: DbUserHighlightReaction[];
 }
