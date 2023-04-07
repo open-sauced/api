@@ -23,7 +23,7 @@ export class DbUserHighlightReaction {
   })
   @Column({
     type: "integer",
-    select: false
+    select: false,
   })
   public highlight_id!: number;
 
