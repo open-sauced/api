@@ -375,11 +375,11 @@ export class DbUser extends BaseEntity {
   public repos: DbRepo[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, highlight => highlight.user)
+  @OneToMany(() => DbInsight, highlights => highlights.user)
   public highlights: DbUserHighlight[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.user)
+  @OneToMany(() => DbUserHighlightReaction, highlightReactions => highlightReactions.user)
   public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()

@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
   OneToMany,
   ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import {
@@ -130,9 +131,17 @@ export class DbUserHighlight extends BaseEntity {
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, user => user.highlights)
+  @JoinColumn({
+    name: "user_id",
+    referencedColumnName: "id",
+  })
   public user: DbUser;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.highlight)
+  @JoinColumn({
+    name: "highlight_id",
+    referencedColumnName: "id",
+  })
   public reactions: DbUserHighlightReaction[];
 }

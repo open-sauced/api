@@ -71,6 +71,7 @@ export class DbUserHighlightReaction {
   @Column({
     type: "integer",
     select: false,
+    insert: false,
   })
   public reaction_count?: number;
 
