@@ -12,12 +12,14 @@ import { UserHighlightsService } from "./user-highlights.service";
 import { UserFollowsController } from "./user-follow.controller";
 import { UserFollowService } from "./user-follow.service";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
+import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
       DbUser,
       DbUserHighlight,
+      DbUserHighlightReaction,
       DbUserToUserFollows,
     ], "ApiConnection"),
     PullRequestModule,
