@@ -14,107 +14,107 @@
 <title>cluster_UserModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 714,-230.8 714,-32.8 8,-32.8"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_UserModule_providers</title>
-<polygon fill="none" stroke="black" points="168,-40.8 168,-92.8 706,-92.8 706,-40.8 168,-40.8"/>
+<g id="clust3" class="cluster">
+<title>cluster_UserModule_imports</title>
+<polygon fill="none" stroke="black" points="562,-40.8 562,-92.8 706,-92.8 706,-40.8 562,-40.8"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_UserModule_exports</title>
-<polygon fill="none" stroke="black" points="134,-170.8 134,-222.8 548,-222.8 548,-170.8 134,-170.8"/>
+<polygon fill="none" stroke="black" points="171,-170.8 171,-222.8 585,-222.8 585,-170.8 171,-170.8"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_UserModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 160,-92.8 160,-40.8 16,-40.8"/>
+<g id="clust6" class="cluster">
+<title>cluster_UserModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 554,-92.8 554,-40.8 16,-40.8"/>
 </g>
 <!-- PullRequestModule -->
 <g id="node1" class="node">
 <title>PullRequestModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="151.72,-84.8 148.72,-88.8 127.72,-88.8 124.72,-84.8 24.28,-84.8 24.28,-48.8 151.72,-48.8 151.72,-84.8"/>
-<text text-anchor="middle" x="88" y="-62.6" font-family="Times,serif" font-size="14.00">PullRequestModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="697.72,-84.8 694.72,-88.8 673.72,-88.8 670.72,-84.8 570.28,-84.8 570.28,-48.8 697.72,-48.8 697.72,-84.8"/>
+<text text-anchor="middle" x="634" y="-62.6" font-family="Times,serif" font-size="14.00">PullRequestModule</text>
 </g>
 <!-- UserModule -->
 <g id="node2" class="node">
 <title>UserModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="363.99,-149.8 360.99,-153.8 339.99,-153.8 336.99,-149.8 278.01,-149.8 278.01,-113.8 363.99,-113.8 363.99,-149.8"/>
-<text text-anchor="middle" x="321" y="-127.6" font-family="Times,serif" font-size="14.00">UserModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="400.99,-149.8 397.99,-153.8 376.99,-153.8 373.99,-149.8 315.01,-149.8 315.01,-113.8 400.99,-113.8 400.99,-149.8"/>
+<text text-anchor="middle" x="358" y="-127.6" font-family="Times,serif" font-size="14.00">UserModule</text>
 </g>
 <!-- PullRequestModule&#45;&gt;UserModule -->
 <g id="edge1" class="edge">
 <title>PullRequestModule&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M146.83,-84.82C146.83,-102.17 146.83,-125.8 146.83,-125.8 146.83,-125.8 267.95,-125.8 267.95,-125.8"/>
-<polygon fill="black" stroke="black" points="267.95,-129.3 277.95,-125.8 267.95,-122.3 267.95,-129.3"/>
+<path fill="none" stroke="black" d="M637.2,-84.82C637.2,-102.17 637.2,-125.8 637.2,-125.8 637.2,-125.8 411.01,-125.8 411.01,-125.8"/>
+<polygon fill="black" stroke="black" points="411.01,-122.3 401.01,-125.8 411.01,-129.3 411.01,-122.3"/>
 </g>
 <!-- UserFollowService  -->
 <g id="node3" class="node">
 <title>UserFollowService </title>
-<polygon fill="#fb8072" stroke="black" points="539.59,-214.8 412.41,-214.8 412.41,-178.8 539.59,-178.8 539.59,-214.8"/>
-<text text-anchor="middle" x="476" y="-192.6" font-family="Times,serif" font-size="14.00">UserFollowService </text>
+<polygon fill="#fb8072" stroke="black" points="576.59,-214.8 449.41,-214.8 449.41,-178.8 576.59,-178.8 576.59,-214.8"/>
+<text text-anchor="middle" x="513" y="-192.6" font-family="Times,serif" font-size="14.00">UserFollowService </text>
 </g>
 <!-- UserModule&#45;&gt;UserFollowService  -->
 <g id="edge2" class="edge">
 <title>UserModule&#45;&gt;UserFollowService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M364.25,-137.8C405.09,-137.8 460.11,-137.8 460.11,-137.8 460.11,-137.8 460.11,-168.78 460.11,-168.78"/>
-<polygon fill="black" stroke="black" points="456.61,-168.78 460.11,-178.78 463.61,-168.78 456.61,-168.78"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M401.34,-137.8C442.26,-137.8 497.4,-137.8 497.4,-137.8 497.4,-137.8 497.4,-168.78 497.4,-168.78"/>
+<polygon fill="black" stroke="black" points="493.9,-168.78 497.4,-178.78 500.9,-168.78 493.9,-168.78"/>
 </g>
 <!-- UserHighlightsService  -->
 <g id="node4" class="node">
 <title>UserHighlightsService </title>
-<polygon fill="#fb8072" stroke="black" points="394.53,-214.8 247.47,-214.8 247.47,-178.8 394.53,-178.8 394.53,-214.8"/>
-<text text-anchor="middle" x="321" y="-192.6" font-family="Times,serif" font-size="14.00">UserHighlightsService </text>
+<polygon fill="#fb8072" stroke="black" points="431.53,-214.8 284.47,-214.8 284.47,-178.8 431.53,-178.8 431.53,-214.8"/>
+<text text-anchor="middle" x="358" y="-192.6" font-family="Times,serif" font-size="14.00">UserHighlightsService </text>
 </g>
 <!-- UserModule&#45;&gt;UserHighlightsService  -->
 <g id="edge3" class="edge">
 <title>UserModule&#45;&gt;UserHighlightsService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M321,-149.91C321,-149.91 321,-168.79 321,-168.79"/>
-<polygon fill="black" stroke="black" points="317.5,-168.79 321,-178.79 324.5,-168.79 317.5,-168.79"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M358,-149.91C358,-149.91 358,-168.79 358,-168.79"/>
+<polygon fill="black" stroke="black" points="354.5,-168.79 358,-178.79 361.5,-168.79 354.5,-168.79"/>
 </g>
 <!-- UserService  -->
 <g id="node5" class="node">
 <title>UserService </title>
-<polygon fill="#fb8072" stroke="black" points="229.91,-214.8 142.09,-214.8 142.09,-178.8 229.91,-178.8 229.91,-214.8"/>
-<text text-anchor="middle" x="186" y="-192.6" font-family="Times,serif" font-size="14.00">UserService </text>
+<polygon fill="#fb8072" stroke="black" points="266.91,-214.8 179.09,-214.8 179.09,-178.8 266.91,-178.8 266.91,-214.8"/>
+<text text-anchor="middle" x="223" y="-192.6" font-family="Times,serif" font-size="14.00">UserService </text>
 </g>
 <!-- UserModule&#45;&gt;UserService  -->
 <g id="edge4" class="edge">
 <title>UserModule&#45;&gt;UserService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M277.68,-137.8C243.97,-137.8 202.86,-137.8 202.86,-137.8 202.86,-137.8 202.86,-168.78 202.86,-168.78"/>
-<polygon fill="black" stroke="black" points="199.36,-168.78 202.86,-178.78 206.36,-168.78 199.36,-168.78"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M314.91,-137.8C275.41,-137.8 223,-137.8 223,-137.8 223,-137.8 223,-168.78 223,-168.78"/>
+<polygon fill="black" stroke="black" points="219.5,-168.78 223,-178.78 226.5,-168.78 219.5,-168.78"/>
 </g>
 <!-- UserFollowService -->
 <g id="node6" class="node">
 <title>UserFollowService</title>
-<ellipse fill="#fdb462" stroke="black" cx="612" cy="-66.8" rx="85.69" ry="18"/>
-<text text-anchor="middle" x="612" y="-62.6" font-family="Times,serif" font-size="14.00">UserFollowService</text>
+<ellipse fill="#fdb462" stroke="black" cx="460" cy="-66.8" rx="85.69" ry="18"/>
+<text text-anchor="middle" x="460" y="-62.6" font-family="Times,serif" font-size="14.00">UserFollowService</text>
 </g>
 <!-- UserFollowService&#45;&gt;UserModule -->
 <g id="edge5" class="edge">
 <title>UserFollowService&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M533.1,-74.03C533.1,-89.79 533.1,-125.8 533.1,-125.8 533.1,-125.8 374.18,-125.8 374.18,-125.8"/>
-<polygon fill="black" stroke="black" points="374.18,-122.3 364.18,-125.8 374.18,-129.3 374.18,-122.3"/>
+<path fill="none" stroke="black" d="M387.7,-76.67C387.7,-76.67 387.7,-103.71 387.7,-103.71"/>
+<polygon fill="black" stroke="black" points="384.2,-103.71 387.7,-113.71 391.2,-103.71 384.2,-103.71"/>
 </g>
 <!-- UserHighlightsService -->
 <g id="node7" class="node">
 <title>UserHighlightsService</title>
-<ellipse fill="#fdb462" stroke="black" cx="409" cy="-66.8" rx="99.01" ry="18"/>
-<text text-anchor="middle" x="409" y="-62.6" font-family="Times,serif" font-size="14.00">UserHighlightsService</text>
+<ellipse fill="#fdb462" stroke="black" cx="257" cy="-66.8" rx="99.01" ry="18"/>
+<text text-anchor="middle" x="257" y="-62.6" font-family="Times,serif" font-size="14.00">UserHighlightsService</text>
 </g>
 <!-- UserHighlightsService&#45;&gt;UserModule -->
 <g id="edge6" class="edge">
 <title>UserHighlightsService&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M336.99,-79.33C336.99,-79.33 336.99,-103.65 336.99,-103.65"/>
-<polygon fill="black" stroke="black" points="333.49,-103.65 336.99,-113.65 340.49,-103.65 333.49,-103.65"/>
+<path fill="none" stroke="black" d="M335.51,-77.83C335.51,-77.83 335.51,-103.58 335.51,-103.58"/>
+<polygon fill="black" stroke="black" points="332.01,-103.58 335.51,-113.58 339.01,-103.58 332.01,-103.58"/>
 </g>
 <!-- UserService -->
 <g id="node8" class="node">
 <title>UserService</title>
-<ellipse fill="#fdb462" stroke="black" cx="234" cy="-66.8" rx="58.46" ry="18"/>
-<text text-anchor="middle" x="234" y="-62.6" font-family="Times,serif" font-size="14.00">UserService</text>
+<ellipse fill="#fdb462" stroke="black" cx="82" cy="-66.8" rx="58.46" ry="18"/>
+<text text-anchor="middle" x="82" y="-62.6" font-family="Times,serif" font-size="14.00">UserService</text>
 </g>
 <!-- UserService&#45;&gt;UserModule -->
 <g id="edge7" class="edge">
 <title>UserService&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M285.12,-75.57C285.12,-75.57 285.12,-103.6 285.12,-103.6"/>
-<polygon fill="black" stroke="black" points="281.62,-103.6 285.12,-113.6 288.62,-103.6 281.62,-103.6"/>
+<path fill="none" stroke="black" d="M82,-84.82C82,-102.17 82,-125.8 82,-125.8 82,-125.8 304.88,-125.8 304.88,-125.8"/>
+<polygon fill="black" stroke="black" points="304.88,-129.3 314.88,-125.8 304.87,-122.3 304.88,-129.3"/>
 </g>
 </g>
 </svg>

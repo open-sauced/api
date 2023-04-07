@@ -85,11 +85,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#addHighlightReactionForUser" >addHighlightReactionForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addInsightForUser" >addInsightForUser</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteHighlightForUser" >deleteHighlightForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteHighlightReactionForUser" >deleteHighlightReactionForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getAllHighlightUserReactions" >getAllHighlightUserReactions</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -120,6 +132,108 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="addHighlightReactionForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addHighlightReactionForUser</b></span>
+                        <a href="#addHighlightReactionForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addHighlightReactionForUser(highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, emojiId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;addHighlightReactionForUser&#x27;, summary: &#x27;Adds a new highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Highlight does not exist&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiConflictResponse({description: &#x27;Unable to add user highlight reaction&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:119</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>highlightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>emojiId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="addInsightForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -145,8 +259,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -235,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -300,6 +414,198 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteHighlightReactionForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteHighlightReactionForUser</b></span>
+                        <a href="#deleteHighlightReactionForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteHighlightReactionForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, emojiId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHighlightReactionForUser&#x27;, summary: &#x27;Deletes the highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user highlight reaction&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:142</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>highlightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>emojiId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllHighlightUserReactions"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getAllHighlightUserReactions</b></span>
+                        <a href="#getAllHighlightUserReactions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAllHighlightUserReactions(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightUserReactions&#x27;, summary: &#x27;Retrieves a highlight reactions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlightReaction[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getUserHighlight"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -325,8 +631,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -403,8 +709,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -480,12 +786,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&quot;;
+import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
 import { UserHighlightsService } from &quot;./user-highlights.service&quot;;
 
@@ -567,6 +874,67 @@ export class UserHighlightsController {
     const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId, userId);
 
     await this.userHighlightsService.deleteUserHighlight(highlight.id);
+  }
+
+  @Get(&quot;/:id/reactions&quot;)
+  @ApiOperation({
+    operationId: &quot;getAllHighlightUserReactions&quot;,
+    summary: &quot;Retrieves a highlight reactions for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async getAllHighlightUserReactions (
+    @Param(&quot;id&quot;) id: number,
+      @UserId() userId: number,
+  ): Promise&lt;DbUserHighlightReaction[]&gt; {
+    return this.userHighlightsService.findAllHighlightReactions(id, userId);
+  }
+
+  @Post(&quot;/:id/reactions/:emojiId&quot;)
+  @ApiOperation({
+    operationId: &quot;addHighlightReactionForUser&quot;,
+    summary: &quot;Adds a new highlight reaction for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiNotFoundResponse({ description: &quot;Highlight does not exist&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiConflictResponse({ description: &quot;Unable to add user highlight reaction&quot; })
+  async addHighlightReactionForUser (
+    @Param(&quot;id&quot;) highlightId: number,
+      @Param(&quot;emojiId&quot;) emojiId: string,
+      @UserId() userId: number,
+  ): Promise&lt;void&gt; {
+    const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId);
+
+    if (Number(highlight.user_id) &#x3D;&#x3D;&#x3D; userId) {
+      throw new ConflictException(&quot;You cannot react to your own highlight&quot;);
+    }
+
+    await this.userHighlightsService.addUserHighlightReaction(userId, highlightId, emojiId);
+  }
+
+  @Delete(&quot;/:id/reactions/:emojiId&quot;)
+  @ApiOperation({
+    operationId: &quot;deleteHighlightReactionForUser&quot;,
+    summary: &quot;Deletes the highlight reaction for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to delete user highlight reaction&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async deleteHighlightReactionForUser (
+    @UserId() userId: number,
+      @Param(&quot;id&quot;) highlightId: number,
+      @Param(&quot;emojiId&quot;) emojiId: string,
+  ): Promise&lt;void&gt; {
+    const userHighlightReaction &#x3D; await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
+
+    await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
   }
 }
 </code></pre>
