@@ -21,7 +21,10 @@ export class DbUserHighlightReaction {
     description: "Highlight identifier",
     example: 71359796,
   })
-  @Column({ type: "integer" })
+  @Column({
+    type: "integer",
+    select: false
+  })
   public highlight_id!: number;
 
   @ApiModelProperty({
@@ -38,7 +41,10 @@ export class DbUserHighlightReaction {
     description: "Emoji identifier",
     example: "uuid-v4",
   })
-  @Column({ type: "text" })
+  @Column({
+    type: "text",
+    select: false,
+  })
   public emoji_id!: string;
 
   @ApiModelPropertyOptional({
