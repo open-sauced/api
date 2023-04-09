@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsBoolean, IsEmail, IsOptional, IsString, IsUrl } from "class-validator";
+import { IsBoolean, IsEmail, IsOptional, IsString, IsUrl, Matches } from "class-validator";
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -42,6 +42,7 @@ export class UpdateUserDto {
     example: "saucedopen",
   })
   @IsString()
+  @Matches(/^(?!.*?admin)(?!.*?twitter)\w{0,15}$/i, { message: "Username can only contain letters, numbers, and underscores. It also cannot contain reserved Twitter usernames (twitter and admin)." })
   @IsOptional()
   public twitter_username?: string;
 
