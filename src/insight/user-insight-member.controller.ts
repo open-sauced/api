@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from "@nestjs/common";
+import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -13,6 +13,7 @@ import { DbInsightMember } from "./entities/insight-member.entity";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightMemberService } from "./insight-member.service";
 import { InsightsService } from "./insights.service";
+import { UserService } from "../user/user.service";
 
 @Controller("user/insights")
 @ApiTags("Insights service")
@@ -20,6 +21,7 @@ export class UserInsightMemberController {
   constructor (
     private readonly insightsService: InsightsService,
     private readonly insightMemberService: InsightMemberService,
+    private userService: UserService
   ) {}
 
   @Get(":id/members")
@@ -70,10 +72,19 @@ export class UserInsightMemberController {
       throw new (UnauthorizedException);
     }
 
+    const isMember = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit", "view"], false);
+
+    if (isMember) {
+      throw new ConflictException("The user is already a team member of this insight");
+    }
+
+    const existingUser = await this.userService.findOneByEmail(createInsightMemberDto.email);
+
     const newInsightMember = await this.insightMemberService.addInsightMember({
       insight_id: insightId,
-      user_id: createInsightMemberDto.user_id,
-      access: createInsightMemberDto.access,
+      user_id: existingUser?.id,
+      invitation_email: existingUser?.email ?? createInsightMemberDto.email,
+      access: 'pending',
     });
 
     return newInsightMember;

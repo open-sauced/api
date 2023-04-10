@@ -22,11 +22,16 @@ export class UserService {
     return builder;
   }
 
-  async findOneById (id: number, includeEmail = false): Promise<DbUser> {
+  async findOneById (id: number, includeEmail = false, email?: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .where("id = :id", { id });
+
+    if (email) {
+      queryBuilder
+        .orWhere("users.email = :email", { email: email.toLowerCase() });
+    }
 
     if (includeEmail) {
       queryBuilder.addSelect("users.email", "users_email");
@@ -159,5 +164,23 @@ export class UserService {
       display_email: user.display_email,
       receive_collaboration: user.receive_collaboration,
     });
+  }
+
+  async findOneByEmail (email: string): Promise<DbUser | null> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .where(`users.email = :email`, { email: email.toLowerCase() });
+
+    let item: DbUser | null;
+
+    try {
+      item = await queryBuilder.getOne();
+    } catch (e) {
+      // handle error
+      item = null;
+    }
+
+    return item;
   }
 }
