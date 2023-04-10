@@ -63,6 +63,7 @@ export class InsightsService {
           FROM insight_members
           WHERE insight_id = insights.id
           AND user_id = :userId
+          AND access != 'pending'
           AND deleted_at IS NULL
         )
       `, { userId })

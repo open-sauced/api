@@ -32,8 +32,10 @@ export class DbInsightMember extends BaseEntity {
     description: "User ID",
     example: 237133,
   })
-  @Column()
-  public user_id: number;
+  @Column({
+    type: "integer"
+  })
+  public user_id?: number;
 
   @ApiModelProperty({
     description: "User's Name",
@@ -83,4 +85,22 @@ export class DbInsightMember extends BaseEntity {
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing team member invitation email sent date",
+    example: "2023-04-10 13:24:51.000000",
+  })
+  @Column({
+    type: "timestamp without time zone"
+  })
+  public invitation_emailed_at?: Date;
+
+  @ApiModelProperty({
+    description: "Team Member Invitation Email",
+    example: "hello@opensauced.pizza",
+  })
+  @Column({
+    type: "text"
+  })
+  public invitation_email?: string;
 }
