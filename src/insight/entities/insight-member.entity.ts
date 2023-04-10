@@ -38,6 +38,17 @@ export class DbInsightMember extends BaseEntity {
   public user_id?: number;
 
   @ApiModelProperty({
+    description: "User's Name",
+    example: "Brian Douglas",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public name?: string;
+
+  @ApiModelProperty({
     description: "Insight Member Access",
     example: "view",
   })

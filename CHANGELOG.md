@@ -5,6 +5,74 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.3...v1.30.0-beta.4) (2023-04-07)
+
+
+### 🍕 Features
+
+* add endpoints to manage user highlight reactions ([#137](https://github.com/open-sauced/api.opensauced.pizza/issues/137)) ([5e0b1c5](https://github.com/open-sauced/api.opensauced.pizza/commit/5e0b1c5a176ef73124d76564d875e864918730a0))
+
+## [1.30.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.2...v1.30.0-beta.3) (2023-04-06)
+
+
+### 🍕 Features
+
+* add owner information and relationships to insight pages ([#136](https://github.com/open-sauced/api.opensauced.pizza/issues/136)) ([94331ba](https://github.com/open-sauced/api.opensauced.pizza/commit/94331baea2a707aa05344df9ddc41d828d10f992))
+
+## [1.30.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.1...v1.30.0-beta.2) (2023-04-04)
+
+
+### 🐛 Bug Fixes
+
+* add user name to insight members list ([7e2756b](https://github.com/open-sauced/api.opensauced.pizza/commit/7e2756b71d48645a8823e56338fb1c0f42c75c61))
+
+## [1.30.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0-beta.1) (2023-04-04)
+
+
+### 🍕 Features
+
+* add endpoints for managing insight team members ([#135](https://github.com/open-sauced/api.opensauced.pizza/issues/135)) ([9b12042](https://github.com/open-sauced/api.opensauced.pizza/commit/9b12042caa8978ca8e218844c8510bdfaed14340))
+
+### [1.29.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1) (2023-03-31)
+
+
+### 🐛 Bug Fixes
+
+* only use repos_id for count query when using filters ([#133](https://github.com/open-sauced/api.opensauced.pizza/issues/133)) ([cae5dbd](https://github.com/open-sauced/api.opensauced.pizza/commit/cae5dbdc28cd409decfcdad9effb13b860f35be0))
+
+
+### 🤖 Build System
+
+* force release with dependency upgrades ([293c4d3](https://github.com/open-sauced/api.opensauced.pizza/commit/293c4d39337fed8659db3cecc3069280e0f3dac5))
+* update typescript and other non-blocking deps ([c54dcd9](https://github.com/open-sauced/api.opensauced.pizza/commit/c54dcd969489a343bb64ba5351fcc751def22704))
+
+### [1.29.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1-beta.1) (2023-03-31)
+
+
+### 🐛 Bug Fixes
+
+* only use repos_id for count query when using filters ([#133](https://github.com/open-sauced/api.opensauced.pizza/issues/133)) ([cae5dbd](https://github.com/open-sauced/api.opensauced.pizza/commit/cae5dbdc28cd409decfcdad9effb13b860f35be0))
+
+
+### 🤖 Build System
+
+* force release with dependency upgrades ([293c4d3](https://github.com/open-sauced/api.opensauced.pizza/commit/293c4d39337fed8659db3cecc3069280e0f3dac5))
+* update typescript and other non-blocking deps ([c54dcd9](https://github.com/open-sauced/api.opensauced.pizza/commit/c54dcd969489a343bb64ba5351fcc751def22704))
+
+## [1.29.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0) (2023-03-28)
+
+
+### 🍕 Features
+
+* add endpoints for managing user follows ([#130](https://github.com/open-sauced/api.opensauced.pizza/issues/130)) ([7728bc8](https://github.com/open-sauced/api.opensauced.pizza/commit/7728bc8bb02990a0c2cce94bc8f1f218d6bdc5b1))
+* add insights to repo search endpoint ([#128](https://github.com/open-sauced/api.opensauced.pizza/issues/128)) ([d3cb75a](https://github.com/open-sauced/api.opensauced.pizza/commit/d3cb75ab78c82e54e3ced93f0f55211f352a6750))
+
+
+### 🐛 Bug Fixes
+
+* remove day conversion from pr velocity ([5ee770b](https://github.com/open-sauced/api.opensauced.pizza/commit/5ee770b589d05bdca629e4950146a8df538d3899))
+* sort insights by updated at, fix user_id checks ([#131](https://github.com/open-sauced/api.opensauced.pizza/issues/131)) ([2d6609a](https://github.com/open-sauced/api.opensauced.pizza/commit/2d6609a133035b8e3c2e9e1b8aa3c8b17bbaa262))
+
 ## [1.29.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-beta.3...v1.29.0-beta.4) (2023-03-28)
 
 

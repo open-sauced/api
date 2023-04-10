@@ -79,6 +79,7 @@ export class InsightMemberService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect("users.name", "insight_members_name")
       .innerJoin("insights", "insights", "insight_members.insight_id=insights.id")
       .innerJoin("users", "users", "insight_members.user_id=users.id")
       .where("insight_members.insight_id = :insightId", { insightId })

@@ -24,7 +24,9 @@ export class InsightsService {
   async findOneById (id: number): Promise<DbInsight> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("insights.id = :id", { id })
+    queryBuilder
+      .where("insights.id = :id", { id })
+      .innerJoinAndSelect(`insights.user`, `user`)
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
