@@ -22,16 +22,11 @@ export class UserService {
     return builder;
   }
 
-  async findOneById (id: number, includeEmail = false, email?: string): Promise<DbUser> {
+  async findOneById (id: number, includeEmail = false): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .where("id = :id", { id });
-
-    if (email) {
-      queryBuilder
-        .orWhere("users.email = :email", { email: email.toLowerCase() });
-    }
 
     if (includeEmail) {
       queryBuilder.addSelect("users.email", "users_email");
