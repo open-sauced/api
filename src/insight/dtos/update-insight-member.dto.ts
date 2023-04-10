@@ -1,9 +1,8 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsIn } from "class-validator";
 
 export class UpdateInsightMemberDto {
-
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "Insight Member Access",
     type: String,
     example: "view",

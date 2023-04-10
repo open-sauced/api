@@ -1,8 +1,8 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail } from "class-validator";
 
 export class CreateInsightMemberDto {
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "Insight Team Member Invite Email",
     type: String,
     example: "hello@opensauced.pizza",

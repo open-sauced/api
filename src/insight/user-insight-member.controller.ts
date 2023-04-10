@@ -21,7 +21,7 @@ export class UserInsightMemberController {
   constructor (
     private readonly insightsService: InsightsService,
     private readonly insightMemberService: InsightMemberService,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   @Get(":id/members")
@@ -84,7 +84,7 @@ export class UserInsightMemberController {
       insight_id: insightId,
       user_id: existingUser?.id,
       invitation_email: existingUser?.email ?? createInsightMemberDto.email,
-      access: 'pending',
+      access: "pending",
     });
 
     return newInsightMember;
@@ -100,7 +100,7 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to find insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  @ApiUnprocessableEntityResponse({ description: "Unable to unable insight members" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to unable insight member" })
   @ApiBody({ type: UpdateInsightMemberDto })
   async updateInsightMember (
     @Param("id") id: number,
@@ -110,12 +110,19 @@ export class UserInsightMemberController {
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(id);
     const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
+    const insightMember = await this.insightMemberService.findOneById(memberId);
 
-    if (!canUpdate) {
+    if (!canUpdate && insightMember.access !== "pending") {
       throw new (UnauthorizedException);
     }
 
     const updatedInsightMember: Partial<DbInsightMember> = { access: updateInsightMemberDto.access };
+
+    if (insightMember.access === "pending") {
+      // the user is accepting the invitation, update the user_id
+      updatedInsightMember.user_id = userId;
+      updatedInsightMember.access = "view";
+    }
 
     await this.insightMemberService.updateInsightMember(memberId, updatedInsightMember);
 

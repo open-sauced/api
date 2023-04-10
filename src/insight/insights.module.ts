@@ -20,7 +20,7 @@ import { UserModule } from "../user/user.module";
       DbInsightRepo,
       DbInsightMember,
     ], "ApiConnection"),
-    UserModule
+    UserModule,
   ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
