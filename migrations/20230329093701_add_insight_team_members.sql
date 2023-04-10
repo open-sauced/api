@@ -2,7 +2,7 @@ create table if not exists public.insight_members
 (
   -- static columns
   id uuid default uuid_generate_v4() not null,
-  user_id bigint not null references public.users (id) on delete cascade on update cascade,
+  user_id bigint null references public.users (id) on delete cascade on update cascade,
   insight_id bigint not null references public.insights (id) on delete cascade on update cascade,
   created_at timestamp without time zone default now() not null,
   updated_at timestamp without time zone default now() not null,
