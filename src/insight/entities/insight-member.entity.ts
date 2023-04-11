@@ -14,7 +14,7 @@ import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist
 @Entity({ name: "insight_members" })
 export class DbInsightMember extends BaseEntity {
   @ApiModelProperty({
-    description: "Insight identifier",
+    description: "Insight Member identifier",
     example: "uuid-v4",
   })
   @PrimaryColumn()

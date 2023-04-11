@@ -10,7 +10,7 @@ create table if not exists public.insight_members
   invitation_emailed_at timestamp without time zone default null,
 
   -- elastic columns
-  access character varying(20) collate pg_catalog."default" not null default 'view',
+  access character varying(20) collate pg_catalog."default" not null default 'pending',
   invitation_email character varying(255) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
