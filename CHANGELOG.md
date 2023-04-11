@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.4...v1.30.0-beta.5) (2023-04-11)
+
+
+### 🍕 Features
+
+* add endpoints for managing insight team members ([#139](https://github.com/open-sauced/api.opensauced.pizza/issues/139)) ([3f9e756](https://github.com/open-sauced/api.opensauced.pizza/commit/3f9e756904d392de84cd51290699577bac234853))
+
 ## [1.30.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.3...v1.30.0-beta.4) (2023-04-07)
 
 
