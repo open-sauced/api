@@ -48,12 +48,12 @@ export class DbInsightMember extends BaseEntity {
 
   @ApiModelProperty({
     description: "Insight Member Access",
-    example: "view",
+    example: "pending",
   })
   @Column({
     type: "character varying",
     length: 20,
-    default: "view",
+    default: "pending",
   })
   public access: string;
 
