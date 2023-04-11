@@ -1,20 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsString } from "class-validator";
+import { IsEmail } from "class-validator";
 
 export class CreateInsightMemberDto {
   @ApiProperty({
-    description: "User ID",
-    type: Number,
-    example: 1337331,
-  })
-  @IsInt()
-    user_id: number;
-
-  @ApiProperty({
-    description: "Insight Member Access",
+    description: "Insight Team Member Invite Email",
     type: String,
-    example: "view",
+    example: "hello@opensauced.pizza",
   })
-  @IsString()
-    access: string;
+  @IsEmail()
+    email: string;
 }
