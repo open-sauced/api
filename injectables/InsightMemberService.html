@@ -306,7 +306,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>canUserManageInsight(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, accessRoles: string[])</code>
+                    <code>canUserManageInsight(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, accessRoles: string[], checkOwner)</code>
                 </td>
             </tr>
 
@@ -331,6 +331,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -344,6 +345,8 @@
                                         No
                                     </td>
 
+                                    <td>
+                                    </td>
 
                                 </tr>
                                 <tr>
@@ -356,6 +359,8 @@
                                         No
                                     </td>
 
+                                    <td>
+                                    </td>
 
                                 </tr>
                                 <tr>
@@ -368,6 +373,22 @@
                                         No
                                     </td>
 
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>checkOwner</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>true</code>
+                                    </td>
 
                                 </tr>
                             </tbody>
@@ -751,10 +772,10 @@ export class InsightMemberService {
     return this.insightMemberRepository.softDelete(id);
   }
 
-  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[]): Promise&lt;boolean&gt; {
+  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[], checkOwner &#x3D; true): Promise&lt;boolean&gt; {
     const insight &#x3D; await this.insightService.findOneById(insightId);
 
-    if (Number(insight.user_id) &#x3D;&#x3D;&#x3D; userId) {
+    if (checkOwner &amp;&amp; Number(insight.user.id) &#x3D;&#x3D;&#x3D; userId) {
       return true;
     }
 
@@ -763,7 +784,7 @@ export class InsightMemberService {
     queryBuilder
       .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
       .andWhere(&quot;insight_members.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;AND insight_members.access IN (:...accessRoles))&quot;, { accessRoles });
+      .andWhere(&quot;insight_members.access IN (:...accessRoles)&quot;, { accessRoles });
 
     const item: DbInsightMember | null &#x3D; await queryBuilder.getOne();
 

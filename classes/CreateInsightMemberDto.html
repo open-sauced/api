@@ -83,10 +83,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#access" >access</a>
-                            </li>
-                            <li>
-                                <a href="#user_id" >user_id</a>
+                                <a href="#email" >email</a>
                             </li>
                         </ul>
                     </td>
@@ -111,10 +108,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="access"></a>
+                    <a name="email"></a>
                     <span class="name">
-                        <span ><b>access</b></span>
-                        <a href="#access"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>email</b></span>
+                        <a href="#email"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -129,42 +126,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Insight Member Access&#x27;, type: String, example: &#x27;view&#x27;})<br />@IsString()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/insight/dtos/create-insight-member.dto.ts:19</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="user_id"></a>
-                    <span class="name">
-                        <span ><b>user_id</b></span>
-                        <a href="#user_id"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiProperty({description: &#x27;User ID&#x27;, type: Number, example: 1337331})<br />@IsInt()<br />
+                            @ApiProperty({description: &#x27;Insight Team Member Invite Email&#x27;, type: String, example: &#x27;hello@opensauced.pizza&#x27;})<br />@IsEmail()<br />
                         </code>
                     </td>
                 </tr>
@@ -190,24 +152,16 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsInt, IsString } from &quot;class-validator&quot;;
+import { IsEmail } from &quot;class-validator&quot;;
 
 export class CreateInsightMemberDto {
   @ApiProperty({
-    description: &quot;User ID&quot;,
-    type: Number,
-    example: 1337331,
-  })
-  @IsInt()
-    user_id: number;
-
-  @ApiProperty({
-    description: &quot;Insight Member Access&quot;,
+    description: &quot;Insight Team Member Invite Email&quot;,
     type: String,
-    example: &quot;view&quot;,
+    example: &quot;hello@opensauced.pizza&quot;,
   })
-  @IsString()
-    access: string;
+  @IsEmail()
+    email: string;
 }
 </code></pre>
     </div>

@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:63</a></div>
                 </td>
             </tr>
 
@@ -247,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:142</a></div>
                 </td>
             </tr>
 
@@ -445,14 +445,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightMember&#x27;, summary: &#x27;Updates an insight member information&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight members&#x27;})<br />@ApiBody({type: UpdateInsightMemberDto})<br /></code>
+                    <code>@Patch(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightMember&#x27;, summary: &#x27;Updates an insight member information&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight member&#x27;})<br />@ApiBody({type: UpdateInsightMemberDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -540,7 +540,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -555,6 +555,7 @@ import { DbInsightMember } from &quot;./entities/insight-member.entity&quot;;
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
 import { InsightMemberService } from &quot;./insight-member.service&quot;;
 import { InsightsService } from &quot;./insights.service&quot;;
+import { UserService } from &quot;../user/user.service&quot;;
 
 @Controller(&quot;user/insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
@@ -562,6 +563,7 @@ export class UserInsightMemberController {
   constructor (
     private readonly insightsService: InsightsService,
     private readonly insightMemberService: InsightMemberService,
+    private userService: UserService,
   ) {}
 
   @Get(&quot;:id/members&quot;)
@@ -612,10 +614,19 @@ export class UserInsightMemberController {
       throw new (UnauthorizedException);
     }
 
+    const isMember &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;, &quot;view&quot;], false);
+
+    if (isMember) {
+      throw new ConflictException(&quot;The user is already a team member of this insight&quot;);
+    }
+
+    const existingUser &#x3D; await this.userService.findOneByEmail(createInsightMemberDto.email);
+
     const newInsightMember &#x3D; await this.insightMemberService.addInsightMember({
       insight_id: insightId,
-      user_id: createInsightMemberDto.user_id,
-      access: createInsightMemberDto.access,
+      user_id: existingUser?.id,
+      invitation_email: existingUser?.email ?? createInsightMemberDto.email,
+      access: &quot;pending&quot;,
     });
 
     return newInsightMember;
@@ -631,7 +642,7 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to find insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight members&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight member&quot; })
   @ApiBody({ type: UpdateInsightMemberDto })
   async updateInsightMember (
     @Param(&quot;id&quot;) id: number,
@@ -641,12 +652,19 @@ export class UserInsightMemberController {
   ): Promise&lt;DbInsightMember&gt; {
     const insight &#x3D; await this.insightsService.findOneById(id);
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
+    const insightMember &#x3D; await this.insightMemberService.findOneById(memberId);
 
-    if (!canUpdate) {
+    if (!canUpdate &amp;&amp; insightMember.access !&#x3D;&#x3D; &quot;pending&quot;) {
       throw new (UnauthorizedException);
     }
 
     const updatedInsightMember: Partial&lt;DbInsightMember&gt; &#x3D; { access: updateInsightMemberDto.access };
+
+    if (insightMember.access &#x3D;&#x3D;&#x3D; &quot;pending&quot;) {
+      // the user is accepting the invitation, update the user_id
+      updatedInsightMember.user_id &#x3D; userId;
+      updatedInsightMember.access &#x3D; &quot;view&quot;;
+    }
 
     await this.insightMemberService.updateInsightMember(memberId, updatedInsightMember);
 
