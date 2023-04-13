@@ -40,6 +40,7 @@ import { DbUserRepo } from "./user-repo/user-repo.entity";
 import { DbCustomer } from "./customer/customer.entity";
 import { CustomerModule } from "./customer/customer.module";
 import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
+import { EmojiModule } from "./emoji/emoji.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
@@ -48,6 +49,9 @@ import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
+import { DbInsightMember } from "./insight/entities/insight-member.entity";
+import { DbEmoji } from "./emoji/entities/emoji.entity";
+import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
 
 @Module({
   imports: [
@@ -76,6 +80,7 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
           DbUser,
           DbUserRepo,
           DbUserHighlight,
+          DbUserHighlightReaction,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
@@ -83,11 +88,13 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
           DbRepoToUserSubmissions,
           DbRepoToUserStargazers,
           DbInsight,
+          DbInsightMember,
           DbInsightRepo,
           DbCustomer,
           DbSubscription,
           DbPullRequest,
           DbUserToUserFollows,
+          DbEmoji,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),
@@ -164,8 +171,8 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
     StripeSubscriptionModule,
     PullRequestModule,
     HighlightModule,
+    EmojiModule,
   ],
-  controllers: [],
   providers: [],
 })
 export class AppModule {

@@ -16,6 +16,9 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbInsight } from "../insight/entities/insight.entity";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -364,8 +367,20 @@ export class DbUser extends BaseEntity {
   readonly timezone?: string;
 
   @ApiHideProperty()
+  @OneToMany(() => DbInsight, insight => insight.user)
+  public insights: DbInsight[];
+
+  @ApiHideProperty()
   @OneToMany(() => DbRepo, repo => repo.user)
   public repos: DbRepo[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbInsight, highlights => highlights.user)
+  public highlights: DbUserHighlight[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserHighlightReaction, highlightReactions => highlightReactions.user)
+  public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)

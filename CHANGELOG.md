@@ -5,6 +5,41 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.4...v1.30.0-beta.5) (2023-04-11)
+
+
+### 🍕 Features
+
+* add endpoints for managing insight team members ([#139](https://github.com/open-sauced/api.opensauced.pizza/issues/139)) ([3f9e756](https://github.com/open-sauced/api.opensauced.pizza/commit/3f9e756904d392de84cd51290699577bac234853))
+
+## [1.30.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.3...v1.30.0-beta.4) (2023-04-07)
+
+
+### 🍕 Features
+
+* add endpoints to manage user highlight reactions ([#137](https://github.com/open-sauced/api.opensauced.pizza/issues/137)) ([5e0b1c5](https://github.com/open-sauced/api.opensauced.pizza/commit/5e0b1c5a176ef73124d76564d875e864918730a0))
+
+## [1.30.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.2...v1.30.0-beta.3) (2023-04-06)
+
+
+### 🍕 Features
+
+* add owner information and relationships to insight pages ([#136](https://github.com/open-sauced/api.opensauced.pizza/issues/136)) ([94331ba](https://github.com/open-sauced/api.opensauced.pizza/commit/94331baea2a707aa05344df9ddc41d828d10f992))
+
+## [1.30.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.1...v1.30.0-beta.2) (2023-04-04)
+
+
+### 🐛 Bug Fixes
+
+* add user name to insight members list ([7e2756b](https://github.com/open-sauced/api.opensauced.pizza/commit/7e2756b71d48645a8823e56338fb1c0f42c75c61))
+
+## [1.30.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0-beta.1) (2023-04-04)
+
+
+### 🍕 Features
+
+* add endpoints for managing insight team members ([#135](https://github.com/open-sauced/api.opensauced.pizza/issues/135)) ([9b12042](https://github.com/open-sauced/api.opensauced.pizza/commit/9b12042caa8978ca8e218844c8510bdfaed14340))
+
 ### [1.29.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1) (2023-03-31)
 
 
