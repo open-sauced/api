@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.30.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.5...v1.30.0-beta.6) (2023-04-14)
+
+
+### 🐛 Bug Fixes
+
+* left join users for insight members to show pending invites ([611b923](https://github.com/open-sauced/api.opensauced.pizza/commit/611b923274d5f178fdf20071712fa08c00a26e54))
+
 ## [1.30.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.4...v1.30.0-beta.5) (2023-04-11)
 
 
