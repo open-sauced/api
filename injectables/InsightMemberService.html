@@ -803,8 +803,9 @@ export class InsightMemberService {
 
     queryBuilder
       .addSelect(&quot;users.name&quot;, &quot;insight_members_name&quot;)
+      .addSelect(&quot;insight_members.invitation_email&quot;, &quot;insight_members_invitation_email&quot;)
       .innerJoin(&quot;insights&quot;, &quot;insights&quot;, &quot;insight_members.insight_id&#x3D;insights.id&quot;)
-      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;insight_members.user_id&#x3D;users.id&quot;)
+      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;insight_members.user_id&#x3D;users.id&quot;)
       .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
       .orderBy(&quot;users.name&quot;, &quot;ASC&quot;);
 
