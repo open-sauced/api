@@ -45,7 +45,7 @@ export class InsightController {
   ): Promise<void> {
     const insight = await this.insightsService.findOneById(id);
 
-    if (insight.user_id !== userId) {
+    if (Number(insight.user.id) !== userId) {
       throw new (UnauthorizedException);
     }
 

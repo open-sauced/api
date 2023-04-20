@@ -10,6 +10,7 @@ import { CreateInsightDto } from "./dtos/create-insight.dto";
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 import { UpdateInsightDto } from "./dtos/update-insight.dto";
 import { DbInsight } from "./entities/insight.entity";
+import { InsightMemberService } from "./insight-member.service";
 import { InsightRepoService } from "./insight-repo.service";
 import { InsightsService } from "./insights.service";
 
@@ -19,6 +20,7 @@ export class UserInsightsController {
   constructor (
     private readonly insightsService: InsightsService,
     private readonly insightsRepoService: InsightRepoService,
+    private insightMemberService: InsightMemberService,
   ) {}
 
   @Get("/")
@@ -89,7 +91,9 @@ export class UserInsightsController {
   ): Promise<DbInsight> {
     const insight = await this.insightsService.findOneById(id);
 
-    if (insight.user_id !== userId) {
+    const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
+
+    if (!canUpdate) {
       throw new (UnauthorizedException);
     }
 

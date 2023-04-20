@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -8,12 +8,15 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 
 @Injectable()
 export class UserHighlightsService {
   constructor (
     @InjectRepository(DbUserHighlight, "ApiConnection")
     private userHighlightRepository: Repository<DbUserHighlight>,
+    @InjectRepository(DbUserHighlightReaction, "ApiConnection")
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbUserHighlight> {
@@ -139,5 +142,75 @@ export class UserHighlightsService {
 
   async deleteUserHighlight (highlightId: number) {
     return this.userHighlightRepository.softDelete(highlightId);
+  }
+
+  async findAllHighlightReactions (highlightId: number, userId?: number) {
+    const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
+
+    queryBuilder
+      .select("emoji_id", "emoji_id")
+      .addSelect("COUNT(emoji_id)", "reaction_count")
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId });
+
+    if (userId) {
+      queryBuilder
+        .andWhere("user_highlight_reactions.user_id = :userId", { userId });
+    }
+
+    queryBuilder
+      .addGroupBy("emoji_id");
+
+    const entities: DbUserHighlightReaction[] = await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  async findOneUserHighlightReaction (highlightId: number, userId: number, emojiId: string) {
+    const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
+
+    queryBuilder
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId })
+      .andWhere("user_highlight_reactions.user_id = :userId", { userId })
+      .andWhere("user_highlight_reactions.emoji_id = :emojiId", { emojiId });
+
+    const item: DbUserHighlightReaction | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw (new NotFoundException);
+    }
+
+    return item;
+  }
+
+  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string) {
+    const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions")
+      .withDeleted();
+
+    queryBuilder
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId })
+      .andWhere("user_highlight_reactions.user_id = :userId", { userId })
+      .andWhere("user_highlight_reactions.emoji_id = :emojiId", { emojiId });
+
+    const reactionExists = await queryBuilder.getOne();
+
+    if (reactionExists) {
+      if (!reactionExists.deleted_at) {
+        throw new ConflictException("You have already added this reaction for this highlight");
+      }
+
+      await this.userHighlightReactionRepository.restore(reactionExists.id);
+
+      return reactionExists;
+    }
+
+    return this.userHighlightReactionRepository.save({
+      user_id: userId,
+      highlight_id: highlightId,
+      emoji_id: emojiId,
+    });
+  }
+
+  async deleteUserHighlightReaction (id: string) {
+    return this.userHighlightReactionRepository.softDelete(id);
   }
 }
