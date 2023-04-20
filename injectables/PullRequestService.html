@@ -384,8 +384,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:71</a></div>
                 </td>
             </tr>
 
@@ -496,6 +496,7 @@ export class PullRequestService {
       .where(&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;LOWER(:contributor)&#x60;, { contributor })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;)
       .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;)
+      .addSelect(&quot;repos.id&quot;, &quot;pull_requests_repo_id&quot;)
       .orderBy(&#x60;&quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
@@ -516,7 +517,8 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
-      .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;);
+      .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;)
+      .addSelect(&quot;repos.id&quot;, &quot;pull_requests_repo_id&quot;);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
