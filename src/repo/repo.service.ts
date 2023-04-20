@@ -203,7 +203,9 @@ export class RepoService {
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
 
-    filters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+    if (!pageOptionsDto.repoIds) {
+      filters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+    }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
@@ -217,7 +219,9 @@ export class RepoService {
 
     const countFilters = this.filterService.getRepoFilters(pageOptionsDto, range);
 
-    countFilters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+    if (!pageOptionsDto.repoIds) {
+      countFilters.push([`now() - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+    }
 
     this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
 
