@@ -5,12 +5,36 @@
 
 > All notable changes to this project will be documented in this file
 
-## [1.30.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0) (2023-04-13)
+### [1.30.1-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1-beta.2...v1.30.1-beta.3) (2023-04-20)
 
 
 ### 🐛 Bug Fixes
 
+* add repo id to pull request data ([38f1dc9](https://github.com/open-sauced/api.opensauced.pizza/commit/38f1dc953e6c34ae74195ab196f037e1e16d2b19))
+
+### [1.30.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1-beta.1...v1.30.1-beta.2) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* only add range filter when not requesting specific repos ([#141](https://github.com/open-sauced/api.opensauced.pizza/issues/141)) ([28f6699](https://github.com/open-sauced/api.opensauced.pizza/commit/28f669915342d569bddc4752a70fc7e19b6079bf))
+
+### [1.30.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0...v1.30.1-beta.1) (2023-04-18)
+
+
+### 🐛 Bug Fixes
+
+* left join users for insight members to show pending invites ([611b923](https://github.com/open-sauced/api.opensauced.pizza/commit/611b923274d5f178fdf20071712fa08c00a26e54))
+
+## [1.30.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.5...v1.30.0-beta.6) (2023-04-14)
+
+
+### 🐛 Bug Fixes
+
+* left join users for insight members to show pending invites ([611b923](https://github.com/open-sauced/api.opensauced.pizza/commit/611b923274d5f178fdf20071712fa08c00a26e54))
 * add user name to insight members list ([7e2756b](https://github.com/open-sauced/api.opensauced.pizza/commit/7e2756b71d48645a8823e56338fb1c0f42c75c61))
+
+## [1.30.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0) (2023-04-13)
 
 
 ### 🍕 Features

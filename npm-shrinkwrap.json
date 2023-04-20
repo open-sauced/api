@@ -1,12 +1,12 @@
 {
   "name": "@open-sauced/api.opensauced.pizza",
-  "version": "1.30.0",
+  "version": "1.30.1-beta.3",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@open-sauced/api.opensauced.pizza",
-      "version": "1.30.0",
+      "version": "1.30.1-beta.3",
       "license": "MIT",
       "dependencies": {
         "@fastify/express": "^2.3.0",
