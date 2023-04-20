@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.30.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1-beta.1...v1.30.1-beta.2) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* only add range filter when not requesting specific repos ([#141](https://github.com/open-sauced/api.opensauced.pizza/issues/141)) ([28f6699](https://github.com/open-sauced/api.opensauced.pizza/commit/28f669915342d569bddc4752a70fc7e19b6079bf))
+
 ### [1.30.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0...v1.30.1-beta.1) (2023-04-18)
 
 
