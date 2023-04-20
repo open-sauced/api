@@ -948,7 +948,9 @@ export class RepoService {
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
-    filters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+    if (!pageOptionsDto.repoIds) {
+      filters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+    }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
@@ -962,7 +964,9 @@ export class RepoService {
 
     const countFilters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
-    countFilters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+    if (!pageOptionsDto.repoIds) {
+      countFilters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+    }
 
     this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
 
