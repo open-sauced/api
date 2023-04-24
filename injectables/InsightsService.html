@@ -649,7 +649,7 @@ export class InsightsService {
 
     queryBuilder
       .where(&quot;insights.user_id &#x3D; :userId&quot;, { userId })
-      .orWhere(&#x60;insights.user_id IN (
+      .orWhere(&#x60;:userId IN (
           SELECT user_id
           FROM insight_members
           WHERE insight_id &#x3D; insights.id
