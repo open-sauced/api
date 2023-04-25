@@ -52,6 +52,7 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
 import { DbInsightMember } from "./insight/entities/insight-member.entity";
 import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
+import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 
 @Module({
   imports: [
@@ -93,6 +94,7 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
           DbCustomer,
           DbSubscription,
           DbPullRequest,
+          DbPRInsight,
           DbUserToUserFollows,
           DbEmoji,
         ],
