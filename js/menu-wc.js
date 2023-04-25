@@ -277,13 +277,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/PullRequestModule.html" data-type="entity-link" >PullRequestModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' : 'data-target="#xs-controllers-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' }>
+                                            'data-target="#controllers-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' : 'data-target="#xs-controllers-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' :
-                                            'id="xs-controllers-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' :
+                                            'id="xs-controllers-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' }>
                                             <li class="link">
                                                 <a href="controllers/PullRequestController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PullRequestController</a>
                                             </li>
@@ -291,13 +291,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' : 'data-target="#xs-injectables-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' }>
+                                        'data-target="#injectables-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' : 'data-target="#xs-injectables-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' :
-                                        'id="xs-injectables-links-module-PullRequestModule-71c3fa143f7202f95e1a83209fceda88d5d85ade6dcd0ca6419afdd4ea5c7357ff97fb71f57c841ab0cc1ec50294be053fffa06ce407031c8b83ab38706ae239"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' :
+                                        'id="xs-injectables-links-module-PullRequestModule-60d9045ed842976d9927d2acbc2caf9ded3c21f3995f62e00d99d7d79b59683600bfbb87e9efed220b3ad169b9aad71c6d2a2ded005d7a357bc1bbe35f81169f"' }>
+                                        <li class="link">
+                                            <a href="injectables/PullRequestInsightsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PullRequestInsightsService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/PullRequestService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PullRequestService</a>
                                         </li>
@@ -617,6 +620,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbLog.html" data-type="entity-link" >DbLog</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbPRInsight.html" data-type="entity-link" >DbPRInsight</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbPullRequest.html" data-type="entity-link" >DbPullRequest</a>

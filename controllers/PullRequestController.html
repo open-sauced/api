@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getPullRequestInsights" >getPullRequestInsights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#listAllPullRequests" >listAllPullRequests</a>
                             </li>
                             <li>
@@ -108,6 +112,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPullRequestInsights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getPullRequestInsights</b></span>
+                        <a href="#getPullRequestInsights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPullRequestInsights(pageOptionsDto: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/insights&#x27;)<br />@ApiOperation({operationId: &#x27;getPullRequestInsights&#x27;, summary: &#x27;Find pull request insights over the last 2 months&#x27;})<br />@ApiOkResponse({type: undefined})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/FilterOptionsDto.html" target="_self" >FilterOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPRInsight.html" target="_self" >Promise&lt;DbPRInsight[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -137,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -215,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:42</a></div>
                 </td>
             </tr>
 
@@ -277,12 +359,16 @@ import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PullRequestService } from &quot;./pull-request.service&quot;;
 import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
+import { PullRequestInsightsService } from &quot;./pull-request-insights.service&quot;;
+import { DbPRInsight } from &quot;./entities/pull-request-insight.entity&quot;;
+import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
 
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class PullRequestController {
   constructor (
     private readonly pullRequestService: PullRequestService,
+    private readonly pullRequestsInsightService: PullRequestInsightsService,
   ) {}
 
   @Get(&quot;/list&quot;)
@@ -309,6 +395,18 @@ export class PullRequestController {
     @Query() pageOptionsDto: PullRequestPageOptionsDto,
   ): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     return this.pullRequestService.findAllWithFilters(pageOptionsDto);
+  }
+
+  @Get(&quot;/insights&quot;)
+  @ApiOperation({
+    operationId: &quot;getPullRequestInsights&quot;,
+    summary: &quot;Find pull request insights over the last 2 months&quot;,
+  })
+  @ApiOkResponse({ type: [DbPRInsight] })
+  async getPullRequestInsights (
+    @Query() pageOptionsDto: FilterOptionsDto,
+  ): Promise&lt;DbPRInsight[]&gt; {
+    return Promise.all([30, 60].map(async interval &#x3D;&gt; this.pullRequestsInsightService.getInsight(interval, pageOptionsDto)));
   }
 }
 </code></pre>

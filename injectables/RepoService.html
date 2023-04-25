@@ -948,7 +948,7 @@ export class RepoService {
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
 
-    if (!pageOptionsDto.repoIds) {
+    if (!pageOptionsDto.repoIds &amp;&amp; !pageOptionsDto.repo) {
       filters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
     }
 
