@@ -131,6 +131,7 @@ export class UserHighlightsService {
       url: highlight.url,
       highlight: highlight.highlight,
       title: highlight.title ?? "",
+      shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : (new Date),
     });
 
     return this.userHighlightRepository.save(newUserHighlight);

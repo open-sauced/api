@@ -63,11 +63,11 @@ export class UserHighlightsController {
       @UserId() userId: number,
       @Param("id") highlightId: number,
   ): Promise<DbUserHighlight> {
-    await this.userHighlightsService.findOneById(highlightId, userId);
+    const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
-    await this.userHighlightsService.updateUserHighlight(highlightId, updateHighlightDto);
+    await this.userHighlightsService.updateUserHighlight(highlight.id, { ...updateHighlightDto, shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at });
 
-    return this.userHighlightsService.findOneById(highlightId, userId);
+    return this.userHighlightsService.findOneById(highlight.id, userId);
   }
 
   @Delete("/:id")
