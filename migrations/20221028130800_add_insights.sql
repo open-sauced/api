@@ -11,10 +11,18 @@ create table if not exists public.insights
 
   -- elastic columns
   name character varying(255) collate pg_catalog."default" not null,
-  short_code character varying(50) collate pg_catalog."default",
+  short_code character varying(50) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
   constraint insights_pkey primary key (id)
 )
 
 tablespace pg_default;
+
+-- indexes
+create index if not exists insights_idx_is_public on public.insights (is_public);
+create index if not exists insights_idx_is_favorite on public.insights (is_favorite);
+create index if not exists insights_idx_created_at on public.insights (created_at);
+create index if not exists insights_idx_updated_at on public.insights (updated_at);
+create index if not exists insights_idx_deleted_at on public.insights (deleted_at);
+create index if not exists insights_idx_short_code on public.insights (short_code);

@@ -42,5 +42,4 @@ create table if not exists public.pull_requests
 tablespace pg_default;
 
 -- indexes
-create index pull_requests_idx_repo_id on public.pull_requests (repo_id);
-create index pull_requests_idx_author on public.pull_requests (lower(author_login));
+create index if not exists pull_requests_idx_author_login on public.pull_requests (lower(author_login));
