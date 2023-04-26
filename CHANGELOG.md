@@ -6,6 +6,63 @@
 > All notable changes to this project will be documented in this file
 
 ## [1.29.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.2...v1.29.0-alpha.3) (2023-03-21)
+## [1.31.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1...v1.31.0) (2023-04-25)
+
+
+### 🐛 Bug Fixes
+
+* update query for insight members list ([#143](https://github.com/open-sauced/api.opensauced.pizza/issues/143)) ([544673a](https://github.com/open-sauced/api.opensauced.pizza/commit/544673ac801880148ab4129301ad73d4d654b7d9))
+
+
+### 🍕 Features
+
+* add endpoint to retrieve pull request insights ([#144](https://github.com/open-sauced/api.opensauced.pizza/issues/144)) ([828b7d2](https://github.com/open-sauced/api.opensauced.pizza/commit/828b7d237d2f0df1b153dc183dea29103ad028ec))
+
+## [1.31.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.2-beta.1...v1.31.0-beta.1) (2023-04-25)
+
+
+### 🍕 Features
+
+* add endpoint to retrieve pull request insights ([#144](https://github.com/open-sauced/api.opensauced.pizza/issues/144)) ([828b7d2](https://github.com/open-sauced/api.opensauced.pizza/commit/828b7d237d2f0df1b153dc183dea29103ad028ec))
+
+### [1.30.2-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1...v1.30.2-beta.1) (2023-04-24)
+
+
+### 🐛 Bug Fixes
+
+* update query for insight members list ([#143](https://github.com/open-sauced/api.opensauced.pizza/issues/143)) ([544673a](https://github.com/open-sauced/api.opensauced.pizza/commit/544673ac801880148ab4129301ad73d4d654b7d9))
+
+### [1.30.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0...v1.30.1) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* add repo id to pull request data ([38f1dc9](https://github.com/open-sauced/api.opensauced.pizza/commit/38f1dc953e6c34ae74195ab196f037e1e16d2b19))
+* left join users for insight members to show pending invites ([611b923](https://github.com/open-sauced/api.opensauced.pizza/commit/611b923274d5f178fdf20071712fa08c00a26e54))
+* only add range filter when not requesting specific repos ([#141](https://github.com/open-sauced/api.opensauced.pizza/issues/141)) ([28f6699](https://github.com/open-sauced/api.opensauced.pizza/commit/28f669915342d569bddc4752a70fc7e19b6079bf))
+
+### [1.30.1-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1-beta.2...v1.30.1-beta.3) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* add repo id to pull request data ([38f1dc9](https://github.com/open-sauced/api.opensauced.pizza/commit/38f1dc953e6c34ae74195ab196f037e1e16d2b19))
+
+### [1.30.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1-beta.1...v1.30.1-beta.2) (2023-04-20)
+
+
+### 🐛 Bug Fixes
+
+* only add range filter when not requesting specific repos ([#141](https://github.com/open-sauced/api.opensauced.pizza/issues/141)) ([28f6699](https://github.com/open-sauced/api.opensauced.pizza/commit/28f669915342d569bddc4752a70fc7e19b6079bf))
+
+### [1.30.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0...v1.30.1-beta.1) (2023-04-18)
+
+
+### 🐛 Bug Fixes
+
+* left join users for insight members to show pending invites ([611b923](https://github.com/open-sauced/api.opensauced.pizza/commit/611b923274d5f178fdf20071712fa08c00a26e54))
+
+## [1.30.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.5...v1.30.0-beta.6) (2023-04-14)
 
 
 ### 🐛 Bug Fixes
@@ -24,7 +81,27 @@
 
 ### 🍕 Features
 
-* experimental build improvements ([70a6e7b](https://github.com/open-sauced/api.opensauced.pizza/commit/70a6e7b16a8cf2f386a96604909bf3acc6fdd83c))
+* add endpoints for managing insight team members ([#135](https://github.com/open-sauced/api.opensauced.pizza/issues/135)) ([9b12042](https://github.com/open-sauced/api.opensauced.pizza/commit/9b12042caa8978ca8e218844c8510bdfaed14340))
+
+### [1.29.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1) (2023-03-31)
+
+
+### 🐛 Bug Fixes
+
+* only use repos_id for count query when using filters ([#133](https://github.com/open-sauced/api.opensauced.pizza/issues/133)) ([cae5dbd](https://github.com/open-sauced/api.opensauced.pizza/commit/cae5dbdc28cd409decfcdad9effb13b860f35be0))
+
+
+### 🤖 Build System
+
+* force release with dependency upgrades ([293c4d3](https://github.com/open-sauced/api.opensauced.pizza/commit/293c4d39337fed8659db3cecc3069280e0f3dac5))
+* update typescript and other non-blocking deps ([c54dcd9](https://github.com/open-sauced/api.opensauced.pizza/commit/c54dcd969489a343bb64ba5351fcc751def22704))
+
+### [1.29.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0...v1.29.1-beta.1) (2023-03-31)
+
+
+### 🐛 Bug Fixes
+
+* only use repos_id for count query when using filters ([#133](https://github.com/open-sauced/api.opensauced.pizza/issues/133)) ([cae5dbd](https://github.com/open-sauced/api.opensauced.pizza/commit/cae5dbdc28cd409decfcdad9effb13b860f35be0))
 
 
 ### 🤖 Build System
