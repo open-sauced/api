@@ -37,9 +37,10 @@ create table if not exists public.pull_requests
 
   -- dynamic columns
   constraint pull_requests_pkey primary key (id)
-);
+)
 
 tablespace pg_default;
 
+-- indexes
 create index pull_requests_idx_repo_id on public.pull_requests (repo_id);
 create index pull_requests_idx_author on public.pull_requests (lower(author_login));

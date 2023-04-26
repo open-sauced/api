@@ -63,6 +63,14 @@ export class DbUser extends BaseEntity {
   })
   public deleted_at?: Date;
 
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_users_at?: Date;
+
   @ApiModelProperty({
     description: "User GitHub node id",
     example: "MDQ6VXNlcjIzNzEzMw==",
