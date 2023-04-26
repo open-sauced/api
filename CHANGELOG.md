@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.31.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.31.0...v1.31.1-beta.1) (2023-04-26)
+
+
+### 🐛 Bug Fixes
+
+* lowercase contributor value before using in queries ([#150](https://github.com/open-sauced/api.opensauced.pizza/issues/150)) ([762c1cb](https://github.com/open-sauced/api.opensauced.pizza/commit/762c1cb5008b25b2618ef08f1dbf023beb308d12))
+
 ## [1.31.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1...v1.31.0) (2023-04-25)
 
 
