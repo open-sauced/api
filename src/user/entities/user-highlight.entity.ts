@@ -96,6 +96,13 @@ export class DbUserHighlight extends BaseEntity {
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing highlight shipped date",
+    example: "2023-01-19 13:24:51.000000",
+  })
+  @Column({ type: "timestamp without time zone" })
+  public shipped_at?: Date;
+
   @ApiModelProperty({
     description: "Highlight Repo Full Name",
     example: "open-sauced/insights",
