@@ -851,11 +851,11 @@ export class UserHighlightsController {
       @UserId() userId: number,
       @Param(&quot;id&quot;) highlightId: number,
   ): Promise&lt;DbUserHighlight&gt; {
-    await this.userHighlightsService.findOneById(highlightId, userId);
+    const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId, userId);
 
-    await this.userHighlightsService.updateUserHighlight(highlightId, updateHighlightDto);
+    await this.userHighlightsService.updateUserHighlight(highlight.id, { ...updateHighlightDto, shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at });
 
-    return this.userHighlightsService.findOneById(highlightId, userId);
+    return this.userHighlightsService.findOneById(highlight.id, userId);
   }
 
   @Delete(&quot;/:id&quot;)
