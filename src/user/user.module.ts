@@ -13,6 +13,7 @@ import { UserFollowsController } from "./user-follow.controller";
 import { UserFollowService } from "./user-follow.service";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.enti
       DbUserHighlight,
       DbUserHighlightReaction,
       DbUserToUserFollows,
+      DbUserTopRepo,
     ], "ApiConnection"),
     PullRequestModule,
   ],

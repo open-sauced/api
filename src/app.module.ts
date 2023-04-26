@@ -50,6 +50,7 @@ import { DbInsightMember } from "./insight/entities/insight-member.entity";
 import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
 import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
+import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 
 @Module({
   imports: [
@@ -95,6 +96,7 @@ import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entit
           DbPRInsight,
           DbUserToUserFollows,
           DbEmoji,
+          DbUserTopRepo,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),

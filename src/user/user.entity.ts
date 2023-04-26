@@ -19,6 +19,7 @@ import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist
 import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -374,6 +375,18 @@ export class DbUser extends BaseEntity {
   })
   readonly timezone?: string;
 
+  @ApiModelProperty({
+    description: "GitHub top languages",
+    example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }",
+    default: "{}",
+  })
+  @Column({
+    type: "jsonb",
+    default: {},
+    nullable: false,
+  })
+  public languages: object;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsight, insight => insight.user)
   public insights: DbInsight[];
@@ -405,4 +418,8 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.user)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.user)
+  public topRepos: DbUserTopRepo[];
 }
