@@ -24,7 +24,9 @@ export class InsightsService {
   async findOneById (id: number): Promise<DbInsight> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("insights.id = :id", { id })
+    queryBuilder
+      .where("insights.id = :id", { id })
+      .innerJoinAndSelect(`insights.user`, `user`)
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
@@ -56,7 +58,17 @@ export class InsightsService {
 
     queryBuilder
       .where("insights.user_id = :userId", { userId })
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+      .orWhere(`insights.user_id IN (
+          SELECT user_id
+          FROM insight_members
+          WHERE insight_id = insights.id
+          AND user_id = :userId
+          AND access != 'pending'
+          AND deleted_at IS NULL
+        )
+      `, { userId })
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .orderBy("insights.updated_at", "DESC");
 
     queryBuilder
       .skip(pageOptionsDto.skip)

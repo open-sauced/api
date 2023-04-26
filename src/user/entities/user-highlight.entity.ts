@@ -6,12 +6,18 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUserHighlightReaction } from "./user-highlight-reaction.entity";
+import { ApiHideProperty } from "@nestjs/swagger";
+import { DbUser } from "../user.entity";
 
 @Entity({ name: "user_highlights" })
 export class DbUserHighlight extends BaseEntity {
@@ -122,4 +128,20 @@ export class DbUserHighlight extends BaseEntity {
     insert: false,
   })
   public login?: string;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, user => user.highlights)
+  @JoinColumn({
+    name: "user_id",
+    referencedColumnName: "id",
+  })
+  public user: DbUser;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.highlight)
+  @JoinColumn({
+    name: "highlight_id",
+    referencedColumnName: "id",
+  })
+  public reactions: DbUserHighlightReaction[];
 }

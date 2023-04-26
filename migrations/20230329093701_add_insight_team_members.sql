@@ -1,13 +1,13 @@
-create table public.insight_members
+create table if not exists public.insight_members
 (
   -- static columns
   id uuid default uuid_generate_v4() not null,
-  user_id bigint references public.users (id) on delete cascade on update cascade,
+  user_id bigint null references public.users (id) on delete cascade on update cascade,
   insight_id bigint not null references public.insights (id) on delete cascade on update cascade,
   created_at timestamp without time zone not null default now(),
   updated_at timestamp without time zone not null default now(),
   deleted_at timestamp without time zone default null,
-  invitation_emailed_at timestamp,
+  invitation_emailed_at timestamp without time zone default null,
 
   -- elastic columns
   access character varying(20) collate pg_catalog."default" not null default 'pending',
@@ -17,7 +17,7 @@ create table public.insight_members
   constraint insight_team_members_pkey primary key (id)
 )
 
-tablespace pg_default;
+  tablespace pg_default;
 
 -- indexes
 create index insight_members_idx_created_at on public.insight_members (created_at);

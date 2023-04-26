@@ -55,6 +55,7 @@ export class PullRequestService {
       .where(`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor })
       .andWhere(`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
+      .addSelect("repos.id", "pull_requests_repo_id")
       .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
@@ -75,7 +76,8 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name");
+      .addSelect("repos.full_name", "pull_requests_full_name")
+      .addSelect("repos.id", "pull_requests_repo_id");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
 

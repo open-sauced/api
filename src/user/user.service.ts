@@ -160,4 +160,22 @@ export class UserService {
       receive_collaboration: user.receive_collaboration,
     });
   }
+
+  async findOneByEmail (email: string): Promise<DbUser | null> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .where(`users.email = :email`, { email: email.toLowerCase() });
+
+    let item: DbUser | null;
+
+    try {
+      item = await queryBuilder.getOne();
+    } catch (e) {
+      // handle error
+      item = null;
+    }
+
+    return item;
+  }
 }
