@@ -38,6 +38,7 @@ create table if not exists public.users
   url character varying(255) collate pg_catalog."default" not null default '',
   blog character varying(255) collate pg_catalog."default" not null default '',
   interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
+  languages jsonb default '{}' not null,
 
   -- dynamic columns
   constraint users_pkey primary key (id),
@@ -72,3 +73,4 @@ create index if not exists users_idx_node_id on public.users (node_id);
 create index if not exists users_idx_type on public.users (type);
 create index if not exists users_idx_location on public.users (location);
 create index if not exists users_idx_timezone on public.users (timezone);
+create index if not exists users_idx_languages on public.users using gin (languages jsonb_path_ops);
