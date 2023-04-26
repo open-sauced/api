@@ -1071,7 +1071,7 @@ export class UserService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;LOWER(login) &#x3D; LOWER(:username)&quot;, { username });
+      .where(&quot;LOWER(login) &#x3D; :username&quot;, { username: username.toLowerCase() });
 
     const item: DbUser | null &#x3D; await queryBuilder.getOne();
 

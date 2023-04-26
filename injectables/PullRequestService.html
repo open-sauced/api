@@ -493,7 +493,7 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
-      .where(&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;LOWER(:contributor)&#x60;, { contributor })
+      .where(&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;:contributor&#x60;, { contributor: contributor.toLowerCase() })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;)
       .addSelect(&quot;repos.full_name&quot;, &quot;pull_requests_full_name&quot;)
       .addSelect(&quot;repos.id&quot;, &quot;pull_requests_repo_id&quot;)
@@ -525,7 +525,7 @@ export class PullRequestService {
     filters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;, {}]);
 
     if (pageOptionsDto.contributor) {
-      filters.push([&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;LOWER(:contributor)&#x60;, { contributor: decodeURIComponent(pageOptionsDto.contributor ) }]);
+      filters.push([&#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;:contributor&#x60;, { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) }]);
     }
 
     if (pageOptionsDto.status) {
