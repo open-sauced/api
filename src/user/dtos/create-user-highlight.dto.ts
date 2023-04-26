@@ -35,5 +35,6 @@ export class CreateUserHighlightDto {
     example: `2023-01-19 13:24:51.000000`,
   })
   @IsDateString()
+  @IsOptional()
   public shipped_at?: string;
 }
