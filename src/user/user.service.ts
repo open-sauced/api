@@ -52,7 +52,7 @@ export class UserService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .where("LOWER(login) = LOWER(:username)", { username });
+      .where("LOWER(login) = :username", { username: username.toLowerCase() });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
