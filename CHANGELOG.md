@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.32.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.31.1-beta.1...v1.32.0-beta.1) (2023-04-26)
+
+
+### 🍕 Features
+
+* add shipped_at field to user highlight data ([#151](https://github.com/open-sauced/api.opensauced.pizza/issues/151)) ([4deaadd](https://github.com/open-sauced/api.opensauced.pizza/commit/4deaadd1b158eb3dfdc10bb5dddc2963e2c3e0eb))
+
 ### [1.31.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.31.0...v1.31.1-beta.1) (2023-04-26)
 
 
