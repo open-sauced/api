@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { PullRequestModule } from "../pull-requests/pull-request.module";
+import { RepoModule } from "../repo/repo.module";
 
 import { DbUser } from "./user.entity";
 import { UserService } from "./user.service";
@@ -14,6 +15,9 @@ import { UserFollowService } from "./user-follow.service";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoService } from "../repo/repo.service";
+import { RepoFilterService } from "../common/filters/repo-filter.service";
 
 @Module({
   imports: [
@@ -23,11 +27,13 @@ import { DbUserTopRepo } from "./entities/user-top-repo.entity";
       DbUserHighlightReaction,
       DbUserToUserFollows,
       DbUserTopRepo,
+      DbRepo,
     ], "ApiConnection"),
     PullRequestModule,
+    RepoModule,
   ],
   controllers: [UserController, UserHighlightsController, UserFollowsController],
-  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService],
-  exports: [UserService, UserHighlightsService, UserFollowService],
+  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService, RepoService, RepoFilterService],
+  exports: [UserService, UserHighlightsService, UserFollowService, RepoService],
 })
 export class UserModule {}
