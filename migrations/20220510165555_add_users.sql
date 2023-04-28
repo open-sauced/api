@@ -21,6 +21,8 @@ create table if not exists public.users
   updated_at timestamp without time zone not null default now(),
   deleted_at timestamp without time zone default null,
   last_fetched_users_at timestamp without time zone default to_timestamp(0),
+  first_opened_pr_at timestamp without time zone default null,
+  first_pushed_commit_at timestamp without time zone default null,
   type character varying(20) collate pg_catalog."default" not null default 'User',
 
   -- elastic columns
@@ -67,6 +69,8 @@ create index if not exists users_idx_created_at on public.users (created_at);
 create index if not exists users_idx_updated_at on public.users (updated_at);
 create index if not exists users_idx_deleted_at on public.users (deleted_at);
 create index if not exists users_idx_last_fetched_users_at on public.users (last_fetched_users_at);
+create index if not exists users_idx_first_opened_pr_at on public.users (first_opened_pr_at);
+create index if not exists users_idx_first_pushed_commit_at on public.users (first_pushed_commit_at);
 create index if not exists users_idx_email on public.users (email);
 create index if not exists users_idx_name on public.users (name);
 create index if not exists users_idx_node_id on public.users (node_id);

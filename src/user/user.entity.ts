@@ -75,6 +75,26 @@ export class DbUser extends BaseEntity {
   })
   public last_fetched_users_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user first open PR",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public first_opened_pr_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user first commit push",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public first_pushed_commit_at?: Date;
+
   @ApiModelProperty({
     description: "User GitHub node id",
     example: "MDQ6VXNlcjIzNzEzMw==",
