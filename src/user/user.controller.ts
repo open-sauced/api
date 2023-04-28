@@ -10,7 +10,8 @@ import { DbUser } from "./user.entity";
 import { UserService } from "./user.service";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
-
+import { RepoService } from "../repo/repo.service";
+import { DbRepo } from "../repo/entities/repo.entity";
 
 @Controller("users")
 @ApiTags("User service")
@@ -19,6 +20,7 @@ export class UserController {
     private userService: UserService,
     private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
+    private repoService: RepoService,
   ) {}
 
   @Get("/:username")
@@ -64,5 +66,22 @@ export class UserController {
     const user = await this.userService.findOneByUsername(username);
 
     return this.userHighlightsService.findAllByUserId(pageOptionsDto, user.id);
+  }
+
+  @Get("/:username/top-repos")
+  @ApiOperation({
+    operationId: "findAllTopReposByUsername",
+    summary: "Listing all Top Repos for a user and paginate them",
+  })
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  @ApiNotFoundResponse({ description: "Top repos not found" })
+  async findAllTopReposByUsername (
+    @Param("username") username: string,
+      @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<DbRepo>> {
+    const user = await this.userService.findOneByUsername(username);
+
+    return this.repoService.findAll(pageOptionsDto, user.id, ["TopRepos"]);
   }
 }

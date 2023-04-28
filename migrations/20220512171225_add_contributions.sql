@@ -13,8 +13,11 @@ create table if not exists public.contributions
   contributor character varying(255) collate pg_catalog."default",
   url character varying(255) collate pg_catalog."default",
 
+  -- dynamic columns
   constraint contributions_pkey primary key (id),
   constraint contributions_hash unique (contributor, repo_id)
 )
 
 tablespace pg_default;
+
+-- indexes

@@ -11,6 +11,38 @@
 
 ### 🐛 Bug Fixes
 
+* correct npm package not releasing ([672ea80](https://github.com/open-sauced/api.opensauced.pizza/commit/672ea803fabb1940bf5e28dc0a1edecdf80b6d42))
+
+## [1.29.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.1...v1.29.0-alpha.2) (2023-03-21)
+
+
+### 🐛 Bug Fixes
+
+* correct dockerfile paths for library usage ([f73f891](https://github.com/open-sauced/api.opensauced.pizza/commit/f73f891b1ce1a1b2c5744a30bc6a5e3bb68ee605))
+
+## [1.29.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-alpha.1) (2023-03-20)
+
+
+### 🍕 Features
+
+* experimental build improvements ([70a6e7b](https://github.com/open-sauced/api.opensauced.pizza/commit/70a6e7b16a8cf2f386a96604909bf3acc6fdd83c))
+
+
+### 🤖 Build System
+
+* experiment with published package without json path hack ([d3afb4b](https://github.com/open-sauced/api.opensauced.pizza/commit/d3afb4b9393a1eca2ba9b8debc9348499f25463e))
+* re-use code across private repos and small fixes ([3d2b7eb](https://github.com/open-sauced/api.opensauced.pizza/commit/3d2b7ebe1d54595ae28f84eeae62181578495948))
+
+
+### 🐛 Bug Fixes
+
+* correct build errors ([20491d8](https://github.com/open-sauced/api.opensauced.pizza/commit/20491d8ada30139b2669d12062b80335381ded86))
+
+## [1.31.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.1...v1.31.0) (2023-04-25)
+
+
+### 🐛 Bug Fixes
+
 * update query for insight members list ([#143](https://github.com/open-sauced/api.opensauced.pizza/issues/143)) ([544673a](https://github.com/open-sauced/api.opensauced.pizza/commit/544673ac801880148ab4129301ad73d4d654b7d9))
 
 
@@ -70,6 +102,9 @@
 * correct npm package not releasing ([672ea80](https://github.com/open-sauced/api.opensauced.pizza/commit/672ea803fabb1940bf5e28dc0a1edecdf80b6d42))
 
 ## [1.29.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-alpha.1...v1.29.0-alpha.2) (2023-03-21)
+* add owner information and relationships to insight pages ([#136](https://github.com/open-sauced/api.opensauced.pizza/issues/136)) ([94331ba](https://github.com/open-sauced/api.opensauced.pizza/commit/94331baea2a707aa05344df9ddc41d828d10f992))
+
+## [1.30.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.30.0-beta.1...v1.30.0-beta.2) (2023-04-04)
 
 
 ### 🐛 Bug Fixes
@@ -77,6 +112,9 @@
 * correct dockerfile paths for library usage ([f73f891](https://github.com/open-sauced/api.opensauced.pizza/commit/f73f891b1ce1a1b2c5744a30bc6a5e3bb68ee605))
 
 ## [1.29.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-alpha.1) (2023-03-20)
+* add user name to insight members list ([7e2756b](https://github.com/open-sauced/api.opensauced.pizza/commit/7e2756b71d48645a8823e56338fb1c0f42c75c61))
+
+## [1.30.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.1...v1.30.0-beta.1) (2023-04-04)
 
 
 ### 🍕 Features
@@ -113,6 +151,36 @@
 ### 🐛 Bug Fixes
 
 * correct build errors ([20491d8](https://github.com/open-sauced/api.opensauced.pizza/commit/20491d8ada30139b2669d12062b80335381ded86))
+* remove day conversion from pr velocity ([5ee770b](https://github.com/open-sauced/api.opensauced.pizza/commit/5ee770b589d05bdca629e4950146a8df538d3899))
+* sort insights by updated at, fix user_id checks ([#131](https://github.com/open-sauced/api.opensauced.pizza/issues/131)) ([2d6609a](https://github.com/open-sauced/api.opensauced.pizza/commit/2d6609a133035b8e3c2e9e1b8aa3c8b17bbaa262))
+
+## [1.29.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-beta.3...v1.29.0-beta.4) (2023-03-28)
+
+
+### 🐛 Bug Fixes
+
+* sort insights by updated at, fix user_id checks ([#131](https://github.com/open-sauced/api.opensauced.pizza/issues/131)) ([2d6609a](https://github.com/open-sauced/api.opensauced.pizza/commit/2d6609a133035b8e3c2e9e1b8aa3c8b17bbaa262))
+
+## [1.29.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-beta.2...v1.29.0-beta.3) (2023-03-28)
+
+
+### 🍕 Features
+
+* add endpoints for managing user follows ([#130](https://github.com/open-sauced/api.opensauced.pizza/issues/130)) ([7728bc8](https://github.com/open-sauced/api.opensauced.pizza/commit/7728bc8bb02990a0c2cce94bc8f1f218d6bdc5b1))
+
+## [1.29.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.29.0-beta.1...v1.29.0-beta.2) (2023-03-21)
+
+
+### 🐛 Bug Fixes
+
+* remove day conversion from pr velocity ([5ee770b](https://github.com/open-sauced/api.opensauced.pizza/commit/5ee770b589d05bdca629e4950146a8df538d3899))
+
+## [1.29.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.28.0...v1.29.0-beta.1) (2023-03-21)
+
+
+### 🍕 Features
+
+* add insights to repo search endpoint ([#128](https://github.com/open-sauced/api.opensauced.pizza/issues/128)) ([d3cb75a](https://github.com/open-sauced/api.opensauced.pizza/commit/d3cb75ab78c82e54e3ced93f0f55211f352a6750))
 
 ## [1.28.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.27.0...v1.28.0) (2023-03-16)
 
