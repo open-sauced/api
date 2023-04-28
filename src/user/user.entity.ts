@@ -95,6 +95,16 @@ export class DbUser extends BaseEntity {
   })
   public first_pushed_commit_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user logging in to open sauced for the first time",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public connected_at?: Date;
+
   @ApiModelProperty({
     description: "User GitHub node id",
     example: "MDQ6VXNlcjIzNzEzMw==",
