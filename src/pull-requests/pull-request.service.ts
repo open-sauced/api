@@ -52,7 +52,7 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor })
+      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() })
       .andWhere(`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
       .addSelect("repos.id", "pull_requests_repo_id")
@@ -84,7 +84,7 @@ export class PullRequestService {
     filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     if (pageOptionsDto.contributor) {
-      filters.push([`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor: decodeURIComponent(pageOptionsDto.contributor ) }]);
+      filters.push([`LOWER("pull_requests"."author_login")=:contributor`, { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) }]);
     }
 
     if (pageOptionsDto.status) {

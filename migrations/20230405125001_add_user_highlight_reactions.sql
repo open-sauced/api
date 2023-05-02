@@ -7,6 +7,7 @@ create table if not exists public.user_highlight_reactions
   created_at timestamp without time zone not null default now(),
   updated_at timestamp without time zone not null default now(),
   deleted_at timestamp without time zone default null,
+  shipped_at timestamp without time zone default null,
 
   constraint highlight_reactions_pkey primary key (id),
   constraint highlight_reactions_hash unique (user_id, highlight_id, emoji_id)
