@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-alpha.1...v1.33.0-alpha.2) (2023-05-03)
+
+
+### 🐛 Bug Fixes
+
+* correct validation pipe error on numbers ([ae44652](https://github.com/open-sauced/api.opensauced.pizza/commit/ae44652da5d02d127f2ccbffb4159e9f6c4f9bf3)), closes [#154](https://github.com/open-sauced/api.opensauced.pizza/issues/154)
+
 ## [1.33.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.32.0...v1.33.0-alpha.1) (2023-05-03)
 
 
