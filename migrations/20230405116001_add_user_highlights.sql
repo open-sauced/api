@@ -7,6 +7,7 @@ create table public.user_highlights
   created_at timestamp without time zone default now() not null,
   updated_at timestamp without time zone default now() not null,
   deleted_at timestamp without time zone default null,
+  shipped_at timestamp without time zone default null,
 
   -- elastic columns
   title character varying(100) collate pg_catalog."default" not null default '',
@@ -24,4 +25,5 @@ create index user_highlights_idx_pinned on public.user_highlights (pinned);
 create index user_highlights_idx_created_at on public.user_highlights (created_at);
 create index user_highlights_idx_updated_at on public.user_highlights (updated_at);
 create index user_highlights_idx_deleted_at on public.user_highlights (deleted_at);
+create index user_highlights_idx_shipped_at on public.user_highlights (shipped_at);
 create index user_highlights_idx_title on public.user_highlights (title);
