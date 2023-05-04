@@ -304,7 +304,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
 import {
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -335,7 +335,7 @@ export class RepoContributionsController {
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
   async findAllByRepoId (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @Query() pageOptionsDto: ContributionPageOptionsDto,
   ): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
     const item &#x3D; await this.repoService.findOneById(id);

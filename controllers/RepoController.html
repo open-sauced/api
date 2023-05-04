@@ -444,7 +444,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
@@ -466,7 +466,7 @@ export class RepoController {
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   async findOneById (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
   ): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneById(id);
   }

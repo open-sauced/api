@@ -394,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/app.module.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/app.module.ts:190</a></div>
                 </td>
             </tr>
 
@@ -458,12 +458,8 @@ import { DataSource } from &quot;typeorm&quot;;
 import { TypeOrmModuleOptions } from &quot;@nestjs/typeorm/dist/interfaces/typeorm-options.interface&quot;;
 import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
 
+import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig } from &quot;./config&quot;;
 import { RepoModule } from &quot;./repo/repo.module&quot;;
-import apiConfig from &quot;./config/api.config&quot;;
-import DbApiConfig from &quot;./config/db-api.config&quot;;
-import DbLoggingConfig from &quot;./config/db-logging.config&quot;;
-import endpointConfig from &quot;./config/endpoint.config&quot;;
-import stripeConfig from &quot;./config/stripe.config&quot;;
 import { HealthModule } from &quot;./health/health.module&quot;;
 import { DbRepo } from &quot;./repo/entities/repo.entity&quot;;
 import { DbUser } from &quot;./user/user.entity&quot;;
@@ -480,7 +476,8 @@ import { SubmitModule } from &quot;./submit/submit.module&quot;;
 import { ContributionModule } from &quot;./contribution/contribution.module&quot;;
 import { UserModule } from &quot;./user/user.module&quot;;
 import { HttpLoggerMiddleware } from &quot;./common/middleware/http-logger.middleware&quot;;
-import { version } from &quot;../package.json&quot;;
+
+// import { version } from &quot;../package.json&quot;;
 import { DatabaseLoggerMiddleware } from &quot;./common/middleware/database-logger.middleware&quot;;
 import { InsightsModule } from &quot;./insight/insights.module&quot;;
 import { DbInsight } from &quot;./insight/entities/insight.entity&quot;;
@@ -503,16 +500,17 @@ import { DbInsightMember } from &quot;./insight/entities/insight-member.entity&q
 import { DbEmoji } from &quot;./emoji/entities/emoji.entity&quot;;
 import { DbUserHighlightReaction } from &quot;./user/entities/user-highlight-reaction.entity&quot;;
 import { DbPRInsight } from &quot;./pull-requests/entities/pull-request-insight.entity&quot;;
+import { DbUserTopRepo } from &quot;./user/entities/user-top-repo.entity&quot;;
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [
-        apiConfig,
+        ApiConfig,
         DbApiConfig,
         DbLoggingConfig,
-        endpointConfig,
-        stripeConfig,
+        EndpointConfig,
+        StripeConfig,
       ],
       isGlobal: true,
     }),
@@ -520,6 +518,7 @@ import { DbPRInsight } from &quot;./pull-requests/entities/pull-request-insight.
       imports: [ConfigModule],
       name: &quot;ApiConnection&quot;,
       useFactory: (configService: ConfigService) &#x3D;&gt; ({
+        parseInt8: true,
         type: configService.get(&quot;db-api.connection&quot;),
         host: configService.get(&quot;db-api.host&quot;),
         port: configService.get(&quot;db-api.port&quot;),
@@ -547,6 +546,7 @@ import { DbPRInsight } from &quot;./pull-requests/entities/pull-request-insight.
           DbPRInsight,
           DbUserToUserFollows,
           DbEmoji,
+          DbUserTopRepo,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
@@ -562,6 +562,7 @@ import { DbPRInsight } from &quot;./pull-requests/entities/pull-request-insight.
       imports: [ConfigModule],
       name: &quot;LogConnection&quot;,
       useFactory: (configService: ConfigService) &#x3D;&gt; ({
+        parseInt8: true,
         type: configService.get(&quot;db-logging.connection&quot;),
         host: configService.get(&quot;db-logging.host&quot;),
         port: configService.get(&quot;db-logging.port&quot;),
@@ -639,7 +640,7 @@ export class AppModule {
   configure (consumer: MiddlewareConsumer) {
     consumer
       .apply(HttpLoggerMiddleware)
-      .forRoutes(&#x60;v${version.charAt(0)}&#x60;);
+      .forRoutes(&#x60;v${/* version ?? */&quot;1&quot;.charAt(0)}&#x60;);
   }
 }
 </code></pre>

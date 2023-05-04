@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -247,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:155</a></div>
                 </td>
             </tr>
 
@@ -451,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:118</a></div>
                 </td>
             </tr>
 
@@ -540,7 +540,20 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Body,
+  ConflictException,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UnauthorizedException,
+  UseGuards,
+} from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -578,7 +591,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: &quot;Insight not found&quot; })
   async findAllInsightsByUserId (
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @Param(&quot;id&quot;) insightId: number,
+      @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
       @UserId() userId: number,
   ): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
     const insight &#x3D; await this.insightsService.findOneById(insightId);
@@ -604,7 +617,7 @@ export class UserInsightMemberController {
   @ApiBody({ type: CreateInsightMemberDto })
   async addInsightMember (
     @Body() createInsightMemberDto: CreateInsightMemberDto,
-      @Param(&quot;id&quot;) insightId: number,
+      @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
       @UserId() userId: number,
   ): Promise&lt;DbInsightMember&gt; {
     const insight &#x3D; await this.insightsService.findOneById(insightId);
@@ -645,7 +658,7 @@ export class UserInsightMemberController {
   @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight member&quot; })
   @ApiBody({ type: UpdateInsightMemberDto })
   async updateInsightMember (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @Param(&quot;memberId&quot;) memberId: string,
       @UserId() userId: number,
       @Body() updateInsightMemberDto: UpdateInsightMemberDto,
@@ -682,7 +695,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: &quot;Unable to remove insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async removeInsightMemberById (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @Param(&quot;memberId&quot;) memberId: string,
       @UserId() userId: number,
   ): Promise&lt;void&gt; {

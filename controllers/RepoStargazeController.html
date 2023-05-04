@@ -598,7 +598,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, Put, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, ParseIntPipe, Put, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -656,7 +656,7 @@ export class RepoStargazeController {
   @ApiNotFoundResponse({ description: &quot;Repo or follow not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already followed this repo&quot; })
   async stargazeOneById (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
@@ -701,7 +701,7 @@ export class RepoStargazeController {
   @ApiNotFoundResponse({ description: &quot;Repo or follow not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already unfollowed this repo&quot; })
   async downStargazeOneById (
-    @Param(&quot;id&quot;) id: number,
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise&lt;DbRepoToUserStargazers&gt; {
     const item &#x3D; await this.repoService.findOneById(id);

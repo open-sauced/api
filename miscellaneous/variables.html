@@ -61,16 +61,31 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
+                            <a href="#ApiConfig" title="src/config/api.config.ts" ><b>ApiConfig</b>&nbsp;&nbsp;&nbsp;(src/.../api.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#ApiPaginatedResponse" title="src/common/decorators/api-paginated-response.decorator.ts" ><b>ApiPaginatedResponse</b>&nbsp;&nbsp;&nbsp;(src/.../api-paginated-response.decorator.ts)</a>
                         </li>
                         <li>
                             <a href="#cliDuration" title="src/common/util/cli-duration.ts" ><b>cliDuration</b>&nbsp;&nbsp;&nbsp;(src/.../cli-duration.ts)</a>
                         </li>
                         <li>
+                            <a href="#DbApiConfig" title="src/config/db-api.config.ts" ><b>DbApiConfig</b>&nbsp;&nbsp;&nbsp;(src/.../db-api.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DbLoggingConfig" title="src/config/db-logging.config.ts" ><b>DbLoggingConfig</b>&nbsp;&nbsp;&nbsp;(src/.../db-logging.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#EndpointConfig" title="src/config/endpoint.config.ts" ><b>EndpointConfig</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
                             <a href="#relevantEvents" title="src/stripe-webhook/stripe-webhook.controller.ts" ><b>relevantEvents</b>&nbsp;&nbsp;&nbsp;(src/.../stripe-webhook.controller.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#StripeConfig" title="src/config/stripe.config.ts" ><b>StripeConfig</b>&nbsp;&nbsp;&nbsp;(src/.../stripe.config.ts)</a>
                         </li>
                         <li>
                             <a href="#toDateTime" title="src/stripe-webhook/utils.ts" ><b>toDateTime</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -88,6 +103,40 @@
     </table>
 </section>
 
+    <h3>src/config/api.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ApiConfig"></a>
+                    <span class="name">
+                        <span ><b>ApiConfig</b></span>
+                        <a href="#ApiConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;api&quot;, () &#x3D;&gt; ({
+  codename: String(process.env.API_CODENAME ?? &quot;api-local&quot;),
+  logging: process.env.NODE_ENV !&#x3D;&#x3D; &quot;production&quot; ? &quot;debug&quot; : &quot;info&quot;,
+  host: String(process.env.API_HOST ?? &quot;0.0.0.0&quot;),
+  port: String(process.env.API_PORT ?? &quot;3001&quot;),
+  domain: String(process.env.API_DOMAIN ?? &quot;api.opensauced.pizza&quot;),
+  development: !process.env.CI,
+  memory_heap: Number(parseInt(process.env.MEMORY_HEAP ?? &quot;200&quot;, 10) * 1024 * 1024),
+  memory_rss: Number(parseInt(process.env.MEMORY_RSS ?? &quot;3000&quot;, 10) * 1024 * 1024),
+  disk_percentage: Number(parseFloat(process.env.DISK_PERCENGATE ?? &quot;0.7&quot;)),
+  disk_size: Number(parseInt(process.env.DISK_SIZE ?? &quot;100&quot;, 10) * 1024 * 1024 * 1024),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/common/decorators/api-paginated-response.decorator.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -153,9 +202,100 @@
         </tbody>
     </table>
 </section>
+    <h3>src/config/db-api.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DbApiConfig"></a>
+                    <span class="name">
+                        <span ><b>DbApiConfig</b></span>
+                        <a href="#DbApiConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;db-api&quot;, () &#x3D;&gt; ({
+  connection: String(process.env.TYPEORM_CONNECTION_API ?? &quot;postgres&quot;),
+  host: String(process.env.TYPEORM_HOST_API ?? &quot;localhost&quot;),
+  port: String(process.env.TYPEORM_PORT_API ?? &quot;25060&quot;),
+  username: String(process.env.TYPEORM_USERNAME_API ?? &quot;doadmin&quot;),
+  password: String(process.env.TYPEORM_PASSWORD_API ?? &quot;UCN2zrH2WGxKck7tT2JG4MY6wbHkeX9s&quot;),
+  database: String(process.env.TYPEORM_DATABASE_API ?? &quot;defaultdb&quot;),
+  certificate: String(process.env.TYPEORM_SSL_CERT_API ?? &quot;-----------------------------&quot;),
+  maxQueryExecutionTime: Number(parseInt(process.env.TYPEORM_MAX_QUERY_EXECUTION_TIME_API ?? &quot;10000&quot;, 10)),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/db-logging.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DbLoggingConfig"></a>
+                    <span class="name">
+                        <span ><b>DbLoggingConfig</b></span>
+                        <a href="#DbLoggingConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;db-logging&quot;, () &#x3D;&gt; ({
+  connection: String(process.env.TYPEORM_CONNECTION_LOGGING ?? &quot;postgres&quot;),
+  host: String(process.env.TYPEORM_HOST_LOGGING ?? &quot;localhost&quot;),
+  port: String(process.env.TYPEORM_PORT_LOGGING ?? &quot;25060&quot;),
+  username: String(process.env.TYPEORM_USERNAME_LOGGING ?? &quot;doadmin&quot;),
+  password: String(process.env.TYPEORM_PASSWORD_LOGGING ?? &quot;UCN2zrH2WGxKck7tT2JG4MY6wbHkeX9s&quot;),
+  database: String(process.env.TYPEORM_DATABASE_LOGGING ?? &quot;defaultdb&quot;),
+  certificate: String(process.env.TYPEORM_SSL_CERT_LOGGING ?? &quot;-----------------------------&quot;),
+  maxQueryExecutionTime: Number(parseInt(process.env.TYPEORM_MAX_QUERY_EXECUTION_TIME_LOGGING ?? &quot;10000&quot;, 10)),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/config/endpoint.config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="EndpointConfig"></a>
+                    <span class="name">
+                        <span ><b>EndpointConfig</b></span>
+                        <a href="#EndpointConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;endpoint&quot;, () &#x3D;&gt; ({
+  landing: getDomain(),
+  app: getDomain(&quot;app&quot;),
+  hot: getDomain(&quot;hot&quot;),
+  docs: getDomain(&quot;docs&quot;),
+  explore: getDomain(&quot;explore&quot;),
+  admin: getDomain(&quot;admin&quot;),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
                 <td class="col-md-4">
@@ -198,6 +338,35 @@
   &quot;customer.subscription.updated&quot;,
   &quot;customer.subscription.deleted&quot;,
 ])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/stripe.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="StripeConfig"></a>
+                    <span class="name">
+                        <span ><b>StripeConfig</b></span>
+                        <a href="#StripeConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;stripe&quot;, () &#x3D;&gt; ({
+  secretKey: String(process.env.STRIPE_SECRET_KEY ?? &quot;&quot;),
+  webhookSecret: String(process.env.STRIPE_WEBHOOK_SECRET_LIVE ?? process.env.STRIPE_WEBHOOK_SECRET ?? &quot;&quot;),
+  subscriptionPriceID: String(process.env.STRIPE_SUBSCRIPTION_PRICE_ID ?? &quot;&quot;),
+  subscriptionSessionCheckoutSuccessURL: String(process.env.STRIPE_CHECKOUT_SESSION_SUCCESS_URL ?? &quot;&quot;),
+  subscriptionSessionCancelURL: String(process.env.STRIPE_CHECKOUT_SESSION_CANCEL_URL ?? &quot;&quot;),
+}))</code>
                     </td>
                 </tr>
 
