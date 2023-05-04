@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.1...v1.33.0-beta.2) (2023-05-04)
+
+
+### 🔁 Continuous Integration
+
+* fix some deprecated actions warnings ([64d869f](https://github.com/open-sauced/api.opensauced.pizza/commit/64d869fd6d99f59e316bcd96e651da2ab84c960b))
+* update git action workflows ([7c846ec](https://github.com/open-sauced/api.opensauced.pizza/commit/7c846ecdf852f03a19846bd310583c42803a1f61))
+
 ## [1.33.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.32.0...v1.33.0-beta.1) (2023-05-04)
 
 
