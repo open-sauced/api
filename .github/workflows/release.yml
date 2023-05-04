@@ -22,8 +22,8 @@ jobs:
       - name: "☁️ compute environment variables"
         id: env
         run: |
-          echo "::set-output name=DEPLOY_ENVIRONMENT::$([[ ${{ github.ref_name }} == 'main' ]] && echo 'production' || echo ${{ github.ref_name }})"
-          echo "::set-output name=DEPLOY_SUBDOMAIN::$([[ ${{ github.ref_name }} == 'main' ]] && echo '' || echo '${{ github.ref_name }}.')"
+          echo "DEPLOY_ENVIRONMENT=$([[ ${{ github.ref_name }} == 'main' ]] && echo 'production' || echo ${{ github.ref_name }})" >> $GITHUB_ENV
+          echo "DEPLOY_SUBDOMAIN=$([[ ${{ github.ref_name }} == 'main' ]] && echo '' || echo '${{ github.ref_name }}.')" >> $GITHUB_ENV
 
   test:
     name: Test and lint
@@ -132,7 +132,7 @@ jobs:
   release:
     environment:
       name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
-      url: https://${{ needs.setup.outputs.DEPLOY_SUBDOMAIN }}api.opensauced.pizza/docs
+      url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
     outputs:
       release-tag: ${{ steps.semantic-release.outputs.release-tag }}
     name: Semantic release
