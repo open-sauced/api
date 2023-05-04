@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-alpha.2...v1.33.0-alpha.3) (2023-05-04)
+
+
+### 🤖 Build System
+
+* update dependencies ([abb24de](https://github.com/open-sauced/api.opensauced.pizza/commit/abb24de977b2de10a037d15dc8436440b32d47e9))
+
 ## [1.33.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-alpha.1...v1.33.0-alpha.2) (2023-05-03)
 
 
