@@ -154,6 +154,12 @@ jobs:
           rm -rf public/diagram.svg
           rm -rf public/diagrams/
 
+      - name: "📂 download npm package artifacts"
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist/
+
       - name: "📂 download diagram artifacts"
         uses: actions/download-artifact@v2
         with:
@@ -182,6 +188,7 @@ jobs:
         uses: open-sauced/release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     if: github.event.repository.default_branch == github.ref_name

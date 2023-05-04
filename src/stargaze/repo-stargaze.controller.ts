@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -56,7 +56,7 @@ export class RepoStargazeController {
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already followed this repo" })
   async stargazeOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);
@@ -101,7 +101,7 @@ export class RepoStargazeController {
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already unfollowed this repo" })
   async downStargazeOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);

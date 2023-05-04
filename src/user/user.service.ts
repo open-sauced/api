@@ -67,6 +67,7 @@ export class UserService {
     const {
       user_metadata: { user_name, email, name },
       identities,
+      confirmed_at,
     } = user;
     const github = identities!.filter(identity => identity.provider === "github")[0];
     const id = parseInt(github.id, 10);
@@ -81,8 +82,9 @@ export class UserService {
         is_open_sauced_member: true,
         login: user_name as string,
         email: email as string,
-        created_at: (new Date),
+        created_at: new Date(github.created_at),
         updated_at: new Date(github.updated_at ?? github.created_at),
+        connected_at: confirmed_at ? new Date(confirmed_at) : (new Date),
       });
 
       await newUser.save();
