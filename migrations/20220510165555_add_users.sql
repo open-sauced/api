@@ -42,6 +42,8 @@ create table if not exists public.users
   blog character varying(255) collate pg_catalog."default" not null default '',
   interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
   languages jsonb default '{}' not null,
+  linkedin_url character varying(255) collate pg_catalog."default" not null default '',
+  github_sponsors_url character varying(255) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
   constraint users_pkey primary key (id),
@@ -80,3 +82,5 @@ create index if not exists users_idx_type on public.users (type);
 create index if not exists users_idx_location on public.users (location);
 create index if not exists users_idx_timezone on public.users (timezone);
 create index if not exists users_idx_languages on public.users using gin (languages jsonb_path_ops);
+create index if not exists users_idx_linkedin_url on public.users (linkedin_url);
+create index if not exists users_idx_github_sponsors_url on public.users (github_sponsors_url);
