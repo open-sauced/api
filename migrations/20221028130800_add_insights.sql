@@ -11,7 +11,7 @@ create table if not exists public.insights
 
   -- elastic columns
   name character varying(255) collate pg_catalog."default" not null,
-  short_code character varying(50) collate pg_catalog."default" not null default '',
+  short_code character varying(50) collate pg_catalog."default" null default null,
 
   -- dynamic columns
   constraint insights_pkey primary key (id)

@@ -12,7 +12,7 @@ create table public.user_highlights
   -- elastic columns
   title character varying(100) collate pg_catalog."default" not null default '',
   url character varying(255) collate pg_catalog."default" not null default '',
-  highlight character varying(255) collate pg_catalog."default" not null,
+  highlight character varying(500) collate pg_catalog."default" not null,
 
   -- dynamic columns
   constraint user_highlights_pkey primary key (id)
