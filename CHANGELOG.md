@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.2...v1.33.0-beta.3) (2023-05-05)
+
+
+### 🐛 Bug Fixes
+
+* add missing user field migrations ([2ee076b](https://github.com/open-sauced/api.opensauced.pizza/commit/2ee076ba454d8e41532fa86338ce7d36c0acb731))
+
 ## [1.33.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.1...v1.33.0-beta.2) (2023-05-04)
 
 
