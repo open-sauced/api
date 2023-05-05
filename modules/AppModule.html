@@ -394,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="190"
-                            class="link-to-prism">src/app.module.ts:190</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/app.module.ts:188</a></div>
                 </td>
             </tr>
 
@@ -476,8 +476,6 @@ import { SubmitModule } from &quot;./submit/submit.module&quot;;
 import { ContributionModule } from &quot;./contribution/contribution.module&quot;;
 import { UserModule } from &quot;./user/user.module&quot;;
 import { HttpLoggerMiddleware } from &quot;./common/middleware/http-logger.middleware&quot;;
-
-// import { version } from &quot;../package.json&quot;;
 import { DatabaseLoggerMiddleware } from &quot;./common/middleware/database-logger.middleware&quot;;
 import { InsightsModule } from &quot;./insight/insights.module&quot;;
 import { DbInsight } from &quot;./insight/entities/insight.entity&quot;;
@@ -640,7 +638,7 @@ export class AppModule {
   configure (consumer: MiddlewareConsumer) {
     consumer
       .apply(HttpLoggerMiddleware)
-      .forRoutes(&#x60;v${/* version ?? */&quot;1&quot;.charAt(0)}&#x60;);
+      .forRoutes(&#x60;v1&#x60;);
   }
 }
 </code></pre>
