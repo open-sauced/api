@@ -3,12 +3,16 @@ import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
+import { UserNotificationService } from "./user-notifcation.service";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class UserFollowService {
   constructor (
     @InjectRepository(DbUserToUserFollows, "ApiConnection")
     private userFollowRepository: Repository<DbUserToUserFollows>,
+    private userService: UserService,
+    private userNotificationService: UserNotificationService,
   ) {}
 
   baseQueryBuilder () {
@@ -50,6 +54,7 @@ export class UserFollowService {
       }
 
       await this.userFollowRepository.restore(followExists.id);
+      await this.userNotificationService.addUserFollowerNotification(userId, followerUserId);
 
       return followExists;
     }

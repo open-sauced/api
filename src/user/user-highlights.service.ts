@@ -9,6 +9,7 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { UserNotificationService } from "./user-notifcation.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -17,6 +18,7 @@ export class UserHighlightsService {
     private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
+    private userNotificationService: UserNotificationService,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbUserHighlight> {
@@ -183,7 +185,7 @@ export class UserHighlightsService {
     return item;
   }
 
-  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string) {
+  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions")
       .withDeleted();
 
@@ -200,6 +202,7 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
+      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId);
 
       return reactionExists;
     }

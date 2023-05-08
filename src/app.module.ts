@@ -49,6 +49,7 @@ import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
 import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
+import { DbUserNotification } from "./user/entities/user-notification.entity";
 
 @Module({
   imports: [
@@ -79,6 +80,7 @@ import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
           DbUserRepo,
           DbUserHighlight,
           DbUserHighlightReaction,
+          DbUserNotification,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
