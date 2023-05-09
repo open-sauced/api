@@ -18,7 +18,7 @@ export class UserFollowService {
     return builder;
   }
 
-  async findUserFollowerById (userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
+  async findUserFollowerById (userId: number, followerUserId: number): Promise<{ follows_user: boolean }> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -28,10 +28,10 @@ export class UserFollowService {
     const followExists = await queryBuilder.getOne();
 
     if (!followExists) {
-      throw new NotFoundException("You are not following this user");
+      return { follows_user: true };
     }
 
-    return followExists;
+    return { follows_user: false };
   }
 
   async addUserFollowerByUserId (userId: number, followerUserId: number): Promise<DbUserToUserFollows> {

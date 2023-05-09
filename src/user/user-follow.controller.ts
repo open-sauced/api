@@ -33,7 +33,7 @@ export class UserFollowsController {
   async getFollowStatusByUsername (
     @Param("username") username: string,
       @UserId() userId: number,
-  ): Promise<DbUserToUserFollows> {
+  ): Promise<{ follows_user: boolean }> {
     const user = await this.userService.findOneByUsername(username);
 
     return this.userFollowService.findUserFollowerById(userId, user.id);
