@@ -49,7 +49,7 @@ export class UserNotificationService {
       notified_at: (new Date),
       user_id: userNotification.user_id,
       message: userNotification.message,
-      from_user_id: userNotification.from_user_id
+      from_user_id: userNotification.from_user_id,
     });
   }
 
