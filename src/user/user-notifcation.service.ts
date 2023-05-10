@@ -48,27 +48,29 @@ export class UserNotificationService {
       type: userNotification.type,
       notified_at: (new Date),
       user_id: userNotification.user_id,
+      message: userNotification.message,
+      from_user_id: userNotification.from_user_id
     });
   }
 
-  async addUserFollowerNotification (userId: number, followerUserId: number ) {
-    const followUser = await this.userService.findOneById(followerUserId);
+  async addUserFollowerNotification (userId: number, followedUserId: number ) {
+    const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
       type: UserNotificationTypes.Follow,
-      user_id: userId,
-      from_user_id: followerUserId,
+      user_id: followedUserId,
+      from_user_id: userId,
       message: `${followUser.login} followed you`,
     });
   }
 
   async addUserHighlightNotification (userId: number, highlightUserId: number ) {
-    const followUser = await this.userService.findOneById(highlightUserId);
+    const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
       type: UserNotificationTypes.HighlightReaction,
-      user_id: userId,
-      from_user_id: highlightUserId,
+      user_id: highlightUserId,
+      from_user_id: userId,
       message: `${followUser.login} reacted to your highlight`,
     });
   }

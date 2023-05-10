@@ -38,13 +38,13 @@ export class UserFollowService {
     return followExists;
   }
 
-  async addUserFollowerByUserId (userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
+  async addUserFollowerByUserId (userId: number, followedUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .addSelect("user_follows.deleted_at", "user_follows_deleted_at")
       .where("user_follows.user_id = :userId", { userId })
-      .andWhere("user_follows.following_user_id = :followerUserId", { followerUserId });
+      .andWhere("user_follows.following_user_id = :followedUserId", { followedUserId });
 
     const followExists = await queryBuilder.getOne();
 
@@ -54,14 +54,16 @@ export class UserFollowService {
       }
 
       await this.userFollowRepository.restore(followExists.id);
-      await this.userNotificationService.addUserFollowerNotification(userId, followerUserId);
+      await this.userNotificationService.addUserFollowerNotification(userId, followedUserId);
 
       return followExists;
     }
 
+    await this.userNotificationService.addUserFollowerNotification(userId, followedUserId);
+
     return this.userFollowRepository.save({
       user_id: userId,
-      following_user_id: followerUserId,
+      following_user_id: followedUserId,
     });
   }
 

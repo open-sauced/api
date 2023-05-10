@@ -50,7 +50,7 @@ export class DbUserNotification extends BaseEntity {
     type: "character varying",
     length: 100,
   })
-  public message: string;
+  public message?: string;
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing db-user-notification creation",
