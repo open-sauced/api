@@ -529,7 +529,7 @@ export class PullRequestService {
     }
 
     if (pageOptionsDto.status) {
-      filters.push([&#x60;(&quot;pull_requests&quot;.&quot;state&quot;&#x3D;:status)&#x60;, { status: pageOptionsDto.status }]);
+      filters.push([&#x60;(LOWER(&quot;pull_requests&quot;.&quot;state&quot;)&#x3D;:status)&#x60;, { status: pageOptionsDto.status.toUpperCase() }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);

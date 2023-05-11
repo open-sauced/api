@@ -806,7 +806,7 @@ export class RepoService {
           SELECT COALESCE(COUNT(&quot;open_pull_requests&quot;.&quot;id&quot;), 0)
           FROM &quot;pull_requests&quot; &quot;open_pull_requests&quot;
           WHERE
-            &quot;open_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;open&#x27;
+            LOWER(&quot;open_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;open&#x27;
             AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
@@ -817,7 +817,7 @@ export class RepoService {
           SELECT COALESCE(COUNT(&quot;closed_pull_requests&quot;.&quot;id&quot;), 0)
           FROM &quot;pull_requests&quot; &quot;closed_pull_requests&quot;
           WHERE
-            &quot;closed_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;closed&#x27;
+            LOWER(&quot;closed_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
             AND &quot;closed_pull_requests&quot;.&quot;merged&quot; &#x3D; false
             AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
@@ -829,7 +829,7 @@ export class RepoService {
           SELECT COALESCE(COUNT(&quot;merged_pull_requests&quot;.&quot;id&quot;), 0)
           FROM &quot;pull_requests&quot; &quot;merged_pull_requests&quot;
           WHERE
-            &quot;merged_pull_requests&quot;.&quot;state&quot; &#x3D; &#x27;closed&#x27;
+            LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
             AND &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true
             AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
