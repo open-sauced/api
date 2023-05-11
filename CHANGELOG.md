@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.6...v1.33.0-beta.7) (2023-05-11)
+
+
+### 🍕 Features
+
+* add user notification count to session data ([#158](https://github.com/open-sauced/api.opensauced.pizza/issues/158)) ([1c3378e](https://github.com/open-sauced/api.opensauced.pizza/commit/1c3378e19c79e846abbbd4232e7eebf2064cb713))
+
 ## [1.33.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.5...v1.33.0-beta.6) (2023-05-11)
 
 
