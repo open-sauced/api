@@ -1,6 +1,6 @@
 import { registerAs } from "@nestjs/config";
 
-export default registerAs("api", () => ({
+export const ApiConfig = registerAs("api", () => ({
   codename: String(process.env.API_CODENAME ?? "api-local"),
   logging: process.env.NODE_ENV !== "production" ? "debug" : "info",
   host: String(process.env.API_HOST ?? "0.0.0.0"),
@@ -12,3 +12,5 @@ export default registerAs("api", () => ({
   disk_percentage: Number(parseFloat(process.env.DISK_PERCENGATE ?? "0.7")),
   disk_size: Number(parseInt(process.env.DISK_SIZE ?? "100", 10) * 1024 * 1024 * 1024),
 }));
+
+export default ApiConfig;

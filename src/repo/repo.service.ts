@@ -61,7 +61,7 @@ export class RepoService {
           SELECT COALESCE(COUNT("open_pull_requests"."id"), 0)
           FROM "pull_requests" "open_pull_requests"
           WHERE
-            "open_pull_requests"."state" = 'open'
+            LOWER("open_pull_requests"."state") = 'open'
             AND "open_pull_requests"."repo_id" = "repos"."id"
             AND now() - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
         )::INTEGER`,
@@ -72,7 +72,7 @@ export class RepoService {
           SELECT COALESCE(COUNT("closed_pull_requests"."id"), 0)
           FROM "pull_requests" "closed_pull_requests"
           WHERE
-            "closed_pull_requests"."state" = 'closed'
+            LOWER("closed_pull_requests"."state") = 'closed'
             AND "closed_pull_requests"."merged" = false
             AND "closed_pull_requests"."repo_id" = "repos"."id"
             AND now() - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
@@ -84,7 +84,7 @@ export class RepoService {
           SELECT COALESCE(COUNT("merged_pull_requests"."id"), 0)
           FROM "pull_requests" "merged_pull_requests"
           WHERE
-            "merged_pull_requests"."state" = 'closed'
+            LOWER("merged_pull_requests"."state") = 'closed'
             AND "merged_pull_requests"."merged" = true
             AND "merged_pull_requests"."repo_id" = "repos"."id"
             AND now() - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"

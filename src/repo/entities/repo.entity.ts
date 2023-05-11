@@ -19,6 +19,7 @@ import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 
 @Entity({
   name: "repos",
@@ -442,6 +443,10 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.repo)
+  public repoToUserTopRepos: DbUserTopRepo[];
 
   // virtual columns
   @ApiModelProperty({

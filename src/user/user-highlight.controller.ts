@@ -1,4 +1,15 @@
-import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UseGuards,
+} from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -42,7 +53,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Unable to get user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getUserHighlight (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
   ): Promise<DbUserHighlight> {
     return this.userHighlightsService.findOneById(id);
   }
@@ -61,7 +72,7 @@ export class UserHighlightsController {
   async updateHighlightForUser (
     @Body() updateHighlightDto: CreateUserHighlightDto,
       @UserId() userId: number,
-      @Param("id") highlightId: number,
+      @Param("id", ParseIntPipe) highlightId: number,
   ): Promise<DbUserHighlight> {
     const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
@@ -81,7 +92,7 @@ export class UserHighlightsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   async deleteHighlightForUser (
     @UserId() userId: number,
-      @Param("id") highlightId: number,
+      @Param("id", ParseIntPipe) highlightId: number,
   ): Promise<void> {
     const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
@@ -99,7 +110,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getAllHighlightUserReactions (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbUserHighlightReaction[]> {
     return this.userHighlightsService.findAllHighlightReactions(id, userId);
@@ -117,7 +128,7 @@ export class UserHighlightsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiConflictResponse({ description: "Unable to add user highlight reaction" })
   async addHighlightReactionForUser (
-    @Param("id") highlightId: number,
+    @Param("id", ParseIntPipe) highlightId: number,
       @Param("emojiId") emojiId: string,
       @UserId() userId: number,
   ): Promise<void> {
@@ -127,7 +138,7 @@ export class UserHighlightsController {
       throw new ConflictException("You cannot react to your own highlight");
     }
 
-    await this.userHighlightsService.addUserHighlightReaction(userId, highlightId, emojiId);
+    await this.userHighlightsService.addUserHighlightReaction(userId, highlightId, emojiId, highlight.user_id);
   }
 
   @Delete("/:id/reactions/:emojiId")
@@ -141,7 +152,7 @@ export class UserHighlightsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   async deleteHighlightReactionForUser (
     @UserId() userId: number,
-      @Param("id") highlightId: number,
+      @Param("id", ParseIntPipe) highlightId: number,
       @Param("emojiId") emojiId: string,
   ): Promise<void> {
     const userHighlightReaction = await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);

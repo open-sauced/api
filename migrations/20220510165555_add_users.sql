@@ -20,11 +20,15 @@ create table if not exists public.users
   created_at timestamp without time zone not null default now(),
   updated_at timestamp without time zone not null default now(),
   deleted_at timestamp without time zone default null,
+  last_fetched_users_at timestamp without time zone default to_timestamp(0),
+  first_opened_pr_at timestamp without time zone default null,
+  first_pushed_commit_at timestamp without time zone default null,
+  connected_at timestamp without time zone default null,
   type character varying(20) collate pg_catalog."default" not null default 'User',
 
   -- elastic columns
   timezone character varying(50) COLLATE pg_catalog."default" NOT NULL DEFAULT 'UTC+1'::character varying,
-  login character varying(255) collate pg_catalog."default" not null default '',
+  login character varying(255) collate pg_catalog."default" not null default '' unique,
   email character varying(255) collate pg_catalog."default" not null default '',
   bio character varying(255) collate pg_catalog."default" not null default '',
   name character varying(255) collate pg_catalog."default" not null default '',
@@ -37,6 +41,9 @@ create table if not exists public.users
   url character varying(255) collate pg_catalog."default" not null default '',
   blog character varying(255) collate pg_catalog."default" not null default '',
   interests character varying(200) COLLATE pg_catalog."default" NOT NULL DEFAULT 'javascript'::character varying,
+  languages jsonb default '{}' not null,
+  linkedin_url character varying(255) collate pg_catalog."default" not null default '',
+  github_sponsors_url character varying(255) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
   constraint users_pkey primary key (id),
@@ -64,10 +71,16 @@ create index if not exists users_idx_receive_collaboration on public.users (rece
 create index if not exists users_idx_created_at on public.users (created_at);
 create index if not exists users_idx_updated_at on public.users (updated_at);
 create index if not exists users_idx_deleted_at on public.users (deleted_at);
-create index if not exists users_idx_login on public.users (login);
+create index if not exists users_idx_last_fetched_users_at on public.users (last_fetched_users_at);
+create index if not exists users_idx_first_opened_pr_at on public.users (first_opened_pr_at);
+create index if not exists users_idx_first_pushed_commit_at on public.users (first_pushed_commit_at);
+create index if not exists users_idx_connected_at on public.users (connected_at);
 create index if not exists users_idx_email on public.users (email);
 create index if not exists users_idx_name on public.users (name);
 create index if not exists users_idx_node_id on public.users (node_id);
 create index if not exists users_idx_type on public.users (type);
 create index if not exists users_idx_location on public.users (location);
 create index if not exists users_idx_timezone on public.users (timezone);
+create index if not exists users_idx_languages on public.users using gin (languages jsonb_path_ops);
+create index if not exists users_idx_linkedin_url on public.users (linkedin_url);
+create index if not exists users_idx_github_sponsors_url on public.users (github_sponsors_url);

@@ -1,4 +1,17 @@
-import { Body, ConflictException, Controller, Delete, Get, Param, Patch, Post, Query, UnauthorizedException, UseGuards } from "@nestjs/common";
+import {
+  Body,
+  ConflictException,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UnauthorizedException,
+  UseGuards,
+} from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -36,7 +49,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: "Insight not found" })
   async findAllInsightsByUserId (
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @Param("id") insightId: number,
+      @Param("id", ParseIntPipe) insightId: number,
       @UserId() userId: number,
   ): Promise<PageDto<DbInsightMember>> {
     const insight = await this.insightsService.findOneById(insightId);
@@ -62,7 +75,7 @@ export class UserInsightMemberController {
   @ApiBody({ type: CreateInsightMemberDto })
   async addInsightMember (
     @Body() createInsightMemberDto: CreateInsightMemberDto,
-      @Param("id") insightId: number,
+      @Param("id", ParseIntPipe) insightId: number,
       @UserId() userId: number,
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(insightId);
@@ -103,7 +116,7 @@ export class UserInsightMemberController {
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight member" })
   @ApiBody({ type: UpdateInsightMemberDto })
   async updateInsightMember (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @Param("memberId") memberId: string,
       @UserId() userId: number,
       @Body() updateInsightMemberDto: UpdateInsightMemberDto,
@@ -140,7 +153,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: "Unable to remove insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async removeInsightMemberById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @Param("memberId") memberId: string,
       @UserId() userId: number,
   ): Promise<void> {

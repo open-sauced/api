@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -56,7 +56,7 @@ export class RepoStarController {
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already starred this repo" })
   async starOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
@@ -101,7 +101,7 @@ export class RepoStarController {
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already removed your star" })
   async downStarOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);

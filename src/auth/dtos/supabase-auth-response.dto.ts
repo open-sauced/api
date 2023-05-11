@@ -120,4 +120,10 @@ export class SupabaseAuthDto {
     example: "https://github.com/sponsors/open-sauced",
   })
   readonly github_sponsors_url?: string;
+
+  @ApiPropertyOptional({
+    description: "Unread User Notification Count",
+    example: 5,
+  })
+  readonly notification_count?: number;
 }

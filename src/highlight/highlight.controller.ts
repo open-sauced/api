@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags, ApiBadRequestResponse, ApiNotFoundResponse } from "@nestjs/swagger";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -53,7 +53,7 @@ export class HighlightController {
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getAllHighlightReactions (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
   ): Promise<DbUserHighlightReaction[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }

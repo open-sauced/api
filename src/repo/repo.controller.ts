@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { RepoService } from "./repo.service";
 import { DbRepo } from "./entities/repo.entity";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
@@ -20,7 +20,7 @@ export class RepoController {
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
   async findOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
   ): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }

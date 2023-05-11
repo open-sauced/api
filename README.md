@@ -27,8 +27,8 @@
 
 ## 🚀 Live release environments
 
-- [api.opensauced.pizza](https://api.opensauced.pizza/docs)
-- [beta.api.opensauced.pizza](https://beta.api.opensauced.pizza/docs)
+- [api.opensauced.pizza](https://api.opensauced.pizza/)
+- [beta.api.opensauced.pizza](https://beta.api.opensauced.pizza/)
 
 ## 📖 Prerequisites
 

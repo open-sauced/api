@@ -1,4 +1,17 @@
-import { BadRequestException, Body, Controller, Get, Param, Patch, Post, Query, UnauthorizedException, UnprocessableEntityException, UseGuards } from "@nestjs/common";
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UnauthorizedException,
+  UnprocessableEntityException,
+  UseGuards,
+} from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -85,7 +98,7 @@ export class UserInsightsController {
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight repos" })
   @ApiBody({ type: UpdateInsightDto })
   async updateInsightForUser (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @Body() updateInsightDto: UpdateInsightDto,
       @UserId() userId: number,
   ): Promise<DbInsight> {
