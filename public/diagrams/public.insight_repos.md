@@ -2,18 +2,16 @@
 
 ## Description
 
-Insights Repositories
-
 ## Columns
 
-| Name       | Type                     | Default | Nullable | Children | Parents | Comment |
-| ---------- | ------------------------ | ------- | -------- | -------- | ------- | ------- |
-| id         | bigint                   |         | false    |          |         |         |
-| insight_id | bigint                   |         | false    |          |         |         |
-| repo_id    | bigint                   |         | false    |          |         |         |
-| created_at | timestamp with time zone | now()   | true     |          |         |         |
-| deleted_at | timestamp with time zone |         | true     |          |         |         |
-| full_name  | varchar(255)             |         | true     |          |         |         |
+| Name       | Type                        | Default | Nullable | Children | Parents | Comment |
+| ---------- | --------------------------- | ------- | -------- | -------- | ------- | ------- |
+| id         | bigint                      |         | false    |          |         |         |
+| insight_id | bigint                      |         | false    |          |         |         |
+| repo_id    | bigint                      |         | false    |          |         |         |
+| full_name  | varchar(255)                |         | true     |          |         |         |
+| created_at | timestamp with time zone    | now()   | true     |          |         |         |
+| deleted_at | timestamp without time zone |         | true     |          |         |         |
 
 ## Constraints
 

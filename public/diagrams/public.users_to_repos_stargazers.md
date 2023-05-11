@@ -15,12 +15,12 @@
 
 ## Constraints
 
-| Name                                   | Type        | Definition                                 |
-| -------------------------------------- | ----------- | ------------------------------------------ |
-| users_to_repos_stargazers_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) |
-| users_to_repos_stargazers_user_id_fkey | FOREIGN KEY | FOREIGN KEY (user_id) REFERENCES users(id) |
-| stargazers_pkey                        | PRIMARY KEY | PRIMARY KEY (id)                           |
-| stargazers_hash                        | UNIQUE      | UNIQUE (user_id, repo_id)                  |
+| Name                                   | Type        | Definition                                                                     |
+| -------------------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| users_to_repos_stargazers_user_id_fkey | FOREIGN KEY | FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE |
+| users_to_repos_stargazers_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) ON UPDATE CASCADE ON DELETE CASCADE |
+| stargazers_pkey                        | PRIMARY KEY | PRIMARY KEY (id)                                                               |
+| stargazers_hash                        | UNIQUE      | UNIQUE (user_id, repo_id)                                                      |
 
 ## Indexes
 

@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.5...v1.33.0-beta.6) (2023-05-11)
+
+
+### 🍕 Features
+
+* add endpoint for fetching user notifications ([#155](https://github.com/open-sauced/api.opensauced.pizza/issues/155)) ([01301c9](https://github.com/open-sauced/api.opensauced.pizza/commit/01301c9c6f5164cdeb75dfe085f93aaaca67f562))
+
+
+### 🐛 Bug Fixes
+
+* trigger deploy ([fed79a1](https://github.com/open-sauced/api.opensauced.pizza/commit/fed79a157f9fcc2d5b1ced4821e2eb5ec2a16f61))
+* update deploy URLs ([83fe57d](https://github.com/open-sauced/api.opensauced.pizza/commit/83fe57de76fe0ed9147c274d5a3a637b50352d5a))
+* update license year ([#157](https://github.com/open-sauced/api.opensauced.pizza/issues/157)) ([9fc3be7](https://github.com/open-sauced/api.opensauced.pizza/commit/9fc3be77762ece401e89ed862ba1485064d90596))
+
 ## [1.33.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.4...v1.33.0-beta.5) (2023-05-05)
 
 
