@@ -88,7 +88,7 @@ export class PullRequestService {
     }
 
     if (pageOptionsDto.status) {
-      filters.push([`("pull_requests"."state"=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
+      filters.push([`(LOWER("pull_requests"."state")=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
