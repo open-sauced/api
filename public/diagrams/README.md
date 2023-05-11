@@ -21,7 +21,7 @@
 | [public.customers](public.customers.md)                                   | 2       |         | BASE TABLE |
 | [public.user_highlights](public.user_highlights.md)                       | 10      |         | BASE TABLE |
 | [public.pull_requests](public.pull_requests.md)                           | 31      |         | BASE TABLE |
-| [public.user_notifications](public.user_notifications.md)                 | 4       |         | BASE TABLE |
+| [public.user_notifications](public.user_notifications.md)                 | 7       |         | BASE TABLE |
 | [public.users_to_users_followers](public.users_to_users_followers.md)     | 6       |         | BASE TABLE |
 | [public.insight_members](public.insight_members.md)                       | 9       |         | BASE TABLE |
 | [public.emojis](public.emojis.md)                                         | 7       |         | BASE TABLE |
