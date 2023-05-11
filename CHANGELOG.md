@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.7...v1.33.0-beta.8) (2023-05-11)
+
+
+### 🐛 Bug Fixes
+
+* update queries for pull requests based on status ([#159](https://github.com/open-sauced/api.opensauced.pizza/issues/159)) ([88e0adc](https://github.com/open-sauced/api.opensauced.pizza/commit/88e0adce63672043527dee4a0537573ed0788458))
+
 ## [1.33.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.6...v1.33.0-beta.7) (2023-05-11)
 
 
