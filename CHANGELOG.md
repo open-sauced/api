@@ -5,6 +5,61 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.33.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.32.0...v1.33.0) (2023-05-11)
+
+
+### 🔥 Performance Improvements
+
+* simplify digital ocean static globals ([88e08d2](https://github.com/open-sauced/api.opensauced.pizza/commit/88e08d274b30790cee945b9e3c90bd3cf8d188c4))
+* stash stress tester changes ([6fa4a7d](https://github.com/open-sauced/api.opensauced.pizza/commit/6fa4a7d75862ea982543d2fe14f51d690528e058))
+
+
+### 🤖 Build System
+
+* experiment with published package without json path hack ([d3afb4b](https://github.com/open-sauced/api.opensauced.pizza/commit/d3afb4b9393a1eca2ba9b8debc9348499f25463e))
+* re-use code across private repos and small fixes ([3d2b7eb](https://github.com/open-sauced/api.opensauced.pizza/commit/3d2b7ebe1d54595ae28f84eeae62181578495948))
+* update dependencies ([abb24de](https://github.com/open-sauced/api.opensauced.pizza/commit/abb24de977b2de10a037d15dc8436440b32d47e9))
+* update deps ([47dc78b](https://github.com/open-sauced/api.opensauced.pizza/commit/47dc78bda5faa9bdeba3c7ea507783e83bd957e0))
+
+
+### 🔁 Continuous Integration
+
+* fix some deprecated actions warnings ([64d869f](https://github.com/open-sauced/api.opensauced.pizza/commit/64d869fd6d99f59e316bcd96e651da2ab84c960b))
+* update git action workflows ([7c846ec](https://github.com/open-sauced/api.opensauced.pizza/commit/7c846ecdf852f03a19846bd310583c42803a1f61))
+
+
+### 🍕 Features
+
+* add connected_at auth timestamp and correct login backfill created_at ([7338f09](https://github.com/open-sauced/api.opensauced.pizza/commit/7338f09d3e6a4c9a00a973b34a02481907631194)), closes [#147](https://github.com/open-sauced/api.opensauced.pizza/issues/147)
+* add endpoint for fetching user notifications ([#155](https://github.com/open-sauced/api.opensauced.pizza/issues/155)) ([01301c9](https://github.com/open-sauced/api.opensauced.pizza/commit/01301c9c6f5164cdeb75dfe085f93aaaca67f562))
+* add first commit and pull request date ([08f1679](https://github.com/open-sauced/api.opensauced.pizza/commit/08f16799a513c065fdf01b6925760152f7b568d4))
+* add user notification count to session data ([#158](https://github.com/open-sauced/api.opensauced.pizza/issues/158)) ([1c3378e](https://github.com/open-sauced/api.opensauced.pizza/commit/1c3378e19c79e846abbbd4232e7eebf2064cb713))
+* add user top repos bag ([5238f58](https://github.com/open-sauced/api.opensauced.pizza/commit/5238f58b69d40fe42d26e6498f26849800c6f0f6))
+* add user top repos route ([17d7725](https://github.com/open-sauced/api.opensauced.pizza/commit/17d772565ef88def39089b7e2b221b324157192e))
+* add user top repositories entities ([7e29c6e](https://github.com/open-sauced/api.opensauced.pizza/commit/7e29c6eb56588a5bce47e1cb79a7fdb1066cf2d9))
+* experimental build improvements ([70a6e7b](https://github.com/open-sauced/api.opensauced.pizza/commit/70a6e7b16a8cf2f386a96604909bf3acc6fdd83c))
+
+
+### 🐛 Bug Fixes
+
+* add missing user field migrations ([2ee076b](https://github.com/open-sauced/api.opensauced.pizza/commit/2ee076ba454d8e41532fa86338ce7d36c0acb731))
+* correct all migrations up to not including pull requests ([9bee970](https://github.com/open-sauced/api.opensauced.pizza/commit/9bee970ce7588c321b4dd0b88e24633ed96e28f3))
+* correct build errors ([20491d8](https://github.com/open-sauced/api.opensauced.pizza/commit/20491d8ada30139b2669d12062b80335381ded86))
+* correct dockerfile paths for library usage ([f73f891](https://github.com/open-sauced/api.opensauced.pizza/commit/f73f891b1ce1a1b2c5744a30bc6a5e3bb68ee605))
+* correct merge conflict ([436f2db](https://github.com/open-sauced/api.opensauced.pizza/commit/436f2dbd5d7b75a850f1e71fe14c5e6b2ecb192c))
+* correct misaligned migrations to real values ([bb26d27](https://github.com/open-sauced/api.opensauced.pizza/commit/bb26d279b1cc9479afa10bc360299f1688503b6f))
+* correct npm package not releasing ([672ea80](https://github.com/open-sauced/api.opensauced.pizza/commit/672ea803fabb1940bf5e28dc0a1edecdf80b6d42))
+* correct server versioning ([1225197](https://github.com/open-sauced/api.opensauced.pizza/commit/1225197d637d39ef59cecdd0ebb02cd4dc9350f5))
+* correct some migration indexes ([971adeb](https://github.com/open-sauced/api.opensauced.pizza/commit/971adebc6e34aa9b5174f6700c13d6ba2c0ae0fd))
+* correct some migration indexes and use new user indexer meta ([23b2a83](https://github.com/open-sauced/api.opensauced.pizza/commit/23b2a8397683a21e129edbacdcbe4d6949f115bf))
+* correct user highlight migrations ([80a866f](https://github.com/open-sauced/api.opensauced.pizza/commit/80a866fbf89cc750f1c1b6e6e6e87d12580afe3c))
+* correct validation pipe error on numbers ([ae44652](https://github.com/open-sauced/api.opensauced.pizza/commit/ae44652da5d02d127f2ccbffb4159e9f6c4f9bf3)), closes [#154](https://github.com/open-sauced/api.opensauced.pizza/issues/154)
+* normalize pull requests status for queries ([a057e0e](https://github.com/open-sauced/api.opensauced.pizza/commit/a057e0e4eed96bf6e70bd07521c5aeda92a83567))
+* trigger deploy ([fed79a1](https://github.com/open-sauced/api.opensauced.pizza/commit/fed79a157f9fcc2d5b1ced4821e2eb5ec2a16f61))
+* update deploy URLs ([83fe57d](https://github.com/open-sauced/api.opensauced.pizza/commit/83fe57de76fe0ed9147c274d5a3a637b50352d5a))
+* update license year ([#157](https://github.com/open-sauced/api.opensauced.pizza/issues/157)) ([9fc3be7](https://github.com/open-sauced/api.opensauced.pizza/commit/9fc3be77762ece401e89ed862ba1485064d90596))
+* update queries for pull requests based on status ([#159](https://github.com/open-sauced/api.opensauced.pizza/issues/159)) ([88e0adc](https://github.com/open-sauced/api.opensauced.pizza/commit/88e0adce63672043527dee4a0537573ed0788458))
+
 ## [1.33.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0-beta.8...v1.33.0-beta.9) (2023-05-11)
 
 
