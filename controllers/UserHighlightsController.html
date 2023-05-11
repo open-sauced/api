@@ -926,7 +926,7 @@ export class UserHighlightsController {
       throw new ConflictException(&quot;You cannot react to your own highlight&quot;);
     }
 
-    await this.userHighlightsService.addUserHighlightReaction(userId, highlightId, emojiId);
+    await this.userHighlightsService.addUserHighlightReaction(userId, highlightId, emojiId, highlight.user_id);
   }
 
   @Delete(&quot;/:id/reactions/:emojiId&quot;)

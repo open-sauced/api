@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >UserFollowService</li>
+  <li >UserNotificationService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/user/user-follow.service.ts</code>
+            <code>src/user/user-notifcation.service.ts</code>
         </p>
 
 
@@ -80,18 +80,26 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#addUserFollowerByUserId" >addUserFollowerByUserId</a>
+                                <a href="#addUserFollowerNotification" >addUserFollowerNotification</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addUserHighlightNotification" >addUserHighlightNotification</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addUserNotification" >addUserNotification</a>
                             </li>
                             <li>
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findUserFollowerById" >findUserFollowerById</a>
+                                <a href="#findAllByUserId" >findAllByUserId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#removeUserFollowerById" >removeUserFollowerById</a>
+                                <a href="#markNotificationsAsRead" >markNotificationsAsRead</a>
                             </li>
                         </ul>
                     </td>
@@ -111,12 +119,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userFollowRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserToUserFollows&gt;</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, userNotificationService: <a href="../injectables/UserNotificationService.html" target="_self">UserNotificationService</a>)</code>
+<code>constructor(userNotificationRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserNotification&gt;</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/user/user-follow.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user/user-notifcation.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -134,10 +142,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>userFollowRepository</td>
+                                                        <td>userNotificationRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserToUserFollows&gt;</a></code>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserNotification&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -150,18 +158,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>userNotificationService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UserNotificationService.html" target="_self" >UserNotificationService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -187,26 +183,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addUserFollowerByUserId"></a>
+                    <a name="addUserFollowerNotification"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>addUserFollowerByUserId</b></span>
-                        <a href="#addUserFollowerByUserId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addUserFollowerNotification</b></span>
+                        <a href="#addUserFollowerNotification"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserFollowerByUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, followedUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserFollowerNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, followedUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/user/user-follow.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:56</a></div>
                 </td>
             </tr>
 
@@ -256,7 +252,161 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserToUserFollows&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserHighlightNotification"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addUserHighlightNotification</b></span>
+                        <a href="#addUserHighlightNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>highlightUserId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserNotification"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addUserNotification</b></span>
+                        <a href="#addUserNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addUserNotification(userNotification: <a href="../s/User.html" target="_self">Partial&lt;DbUserNotification&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userNotification</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >Partial&lt;DbUserNotification&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -286,8 +436,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/user/user-follow.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -295,171 +445,159 @@
             <tr>
                 <td class="col-md-4">
 
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserNotification&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllByUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllByUserId</b></span>
+                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllByUserId(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="markNotificationsAsRead"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>markNotificationsAsRead</b></span>
+                        <a href="#markNotificationsAsRead"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>markNotificationsAsRead(notificationIds: number[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>notificationIds</td>
+                                    <td>
+                                            <code>number[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findUserFollowerById"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findUserFollowerById</b></span>
-                        <a href="#findUserFollowerById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findUserFollowerById(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, followerUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/user/user-follow.service.ts:25</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>userId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>followerUserId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserToUserFollows&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeUserFollowerById"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>removeUserFollowerById</b></span>
-                        <a href="#removeUserFollowerById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeUserFollowerById(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, followerUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/user/user-follow.service.ts:70</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>userId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>followerUserId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserToUserFollows&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -475,96 +613,87 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
-import { Repository } from &quot;typeorm&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { DbUserToUserFollows } from &quot;./entities/user-follows.entity&quot;;
-import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
+import { DbUserNotification } from &quot;./entities/user-notification.entity&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { UserNotificationTypes, userNotificationTypes } from &quot;./entities/user-notification.constants&quot;;
 import { UserService } from &quot;./user.service&quot;;
 
 @Injectable()
-export class UserFollowService {
+export class UserNotificationService {
   constructor (
-    @InjectRepository(DbUserToUserFollows, &quot;ApiConnection&quot;)
-    private userFollowRepository: Repository&lt;DbUserToUserFollows&gt;,
+    @InjectRepository(DbUserNotification, &quot;ApiConnection&quot;)
+    private userNotificationRepository: Repository&lt;DbUserNotification&gt;,
     private userService: UserService,
-    private userNotificationService: UserNotificationService,
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.userFollowRepository.createQueryBuilder(&quot;user_follows&quot;)
-      .withDeleted();
+  baseQueryBuilder (): SelectQueryBuilder&lt;DbUserNotification&gt; {
+    const builder &#x3D; this.userNotificationRepository.createQueryBuilder(&quot;user_notifications&quot;);
 
     return builder;
   }
 
-  async findUserFollowerById (userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
+  async findAllByUserId (userId: number, pageOptionsDto: PageOptionsDto) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;user_follows.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;user_follows.following_user_id &#x3D; :followerUserId&quot;, { followerUserId })
-      .andWhere(&quot;user_follows.deleted_at IS NULL&quot;);
-    const followExists &#x3D; await queryBuilder.getOne();
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_notifications.user_id&#x3D;users.id&quot;)
+      .where(&quot;user_id &#x3D; :userId&quot;, { userId })
+      .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes })
+      .andWhere(&quot;user_notifications.read_at IS NULL&quot;);
 
-    if (!followExists) {
-      throw new NotFoundException(&quot;You are not following this user&quot;);
-    }
+    const entities &#x3D; await queryBuilder.getMany();
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const notificationIds &#x3D; entities.map(notification &#x3D;&gt; notification.id);
 
-    return followExists;
+    await this.markNotificationsAsRead(notificationIds);
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
-  async addUserFollowerByUserId (userId: number, followedUserId: number): Promise&lt;DbUserToUserFollows&gt; {
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    queryBuilder
-      .addSelect(&quot;user_follows.deleted_at&quot;, &quot;user_follows_deleted_at&quot;)
-      .where(&quot;user_follows.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;user_follows.following_user_id &#x3D; :followedUserId&quot;, { followedUserId });
-
-    const followExists &#x3D; await queryBuilder.getOne();
-
-    if (followExists) {
-      if (!followExists.deleted_at) {
-        throw new ConflictException(&quot;You have already followed this user&quot;);
-      }
-
-      await this.userFollowRepository.restore(followExists.id);
-      await this.userNotificationService.addUserFollowerNotification(userId, followedUserId);
-
-      return followExists;
-    }
-
-    await this.userNotificationService.addUserFollowerNotification(userId, followedUserId);
-
-    return this.userFollowRepository.save({
-      user_id: userId,
-      following_user_id: followedUserId,
+  async addUserNotification (userNotification: Partial&lt;DbUserNotification&gt;) {
+    return this.userNotificationRepository.save({
+      type: userNotification.type,
+      notified_at: (new Date),
+      user_id: userNotification.user_id,
+      message: userNotification.message,
+      from_user_id: userNotification.from_user_id,
     });
   }
 
-  async removeUserFollowerById (userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
-    const queryBuilder &#x3D; this.baseQueryBuilder();
+  async addUserFollowerNotification (userId: number, followedUserId: number ) {
+    const followUser &#x3D; await this.userService.findOneById(userId);
 
-    queryBuilder
-      .addSelect(&quot;user_follows.deleted_at&quot;, &quot;user_follows_deleted_at&quot;)
-      .where(&quot;user_follows.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;user_follows.following_user_id &#x3D; :followerUserId&quot;, { followerUserId });
+    return this.addUserNotification({
+      type: UserNotificationTypes.Follow,
+      user_id: followedUserId,
+      from_user_id: userId,
+      message: &#x60;${followUser.login} followed you&#x60;,
+    });
+  }
 
-    const followExists &#x3D; await queryBuilder.getOne();
+  async addUserHighlightNotification (userId: number, highlightUserId: number ) {
+    const followUser &#x3D; await this.userService.findOneById(userId);
 
-    if (!followExists) {
-      throw new NotFoundException(&quot;You have not followed this user&quot;);
-    }
+    return this.addUserNotification({
+      type: UserNotificationTypes.HighlightReaction,
+      user_id: highlightUserId,
+      from_user_id: userId,
+      message: &#x60;${followUser.login} reacted to your highlight&#x60;,
+    });
+  }
 
-    if (followExists.deleted_at) {
-      throw new ConflictException(&quot;You are not following this user&quot;);
-    }
+  async markNotificationsAsRead (notificationIds: number[]) {
+    const updates &#x3D; notificationIds.map(async id &#x3D;&gt; this.userNotificationRepository.update(id, { read_at: (new Date) }));
 
-    await this.userFollowRepository.softDelete(followExists.id);
-
-    return queryBuilder.getOneOrFail();
+    await Promise.all(updates);
   }
 }
 </code></pre>
@@ -610,7 +739,7 @@ export class UserFollowService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserFollowService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserNotificationService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
