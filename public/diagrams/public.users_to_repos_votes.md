@@ -4,23 +4,23 @@
 
 ## Columns
 
-| Name       | Type                     | Default | Nullable | Children | Parents                         | Comment |
-| ---------- | ------------------------ | ------- | -------- | -------- | ------------------------------- | ------- |
-| id         | bigint                   |         | false    |          |                                 |         |
-| user_id    | bigint                   |         | false    |          | [public.users](public.users.md) |         |
-| repo_id    | bigint                   |         | false    |          | [public.repos](public.repos.md) |         |
-| created_at | timestamp with time zone | now()   | true     |          |                                 |         |
-| updated_at | timestamp with time zone | now()   | false    |          |                                 |         |
-| deleted_at | timestamp with time zone |         | true     |          |                                 |         |
+| Name       | Type                        | Default | Nullable | Children | Parents                         | Comment |
+| ---------- | --------------------------- | ------- | -------- | -------- | ------------------------------- | ------- |
+| id         | bigint                      |         | false    |          |                                 |         |
+| user_id    | bigint                      |         | false    |          | [public.users](public.users.md) |         |
+| repo_id    | bigint                      |         | false    |          | [public.repos](public.repos.md) |         |
+| created_at | timestamp without time zone | now()   | false    |          |                                 |         |
+| updated_at | timestamp without time zone | now()   | false    |          |                                 |         |
+| deleted_at | timestamp without time zone |         | true     |          |                                 |         |
 
 ## Constraints
 
-| Name                              | Type        | Definition                                 |
-| --------------------------------- | ----------- | ------------------------------------------ |
-| users_to_repos_votes_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) |
-| users_to_repos_votes_user_id_fkey | FOREIGN KEY | FOREIGN KEY (user_id) REFERENCES users(id) |
-| votes_pkey                        | PRIMARY KEY | PRIMARY KEY (id)                           |
-| votes_hash                        | UNIQUE      | UNIQUE (user_id, repo_id)                  |
+| Name                              | Type        | Definition                                                                     |
+| --------------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| users_to_repos_votes_user_id_fkey | FOREIGN KEY | FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE |
+| users_to_repos_votes_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) ON UPDATE CASCADE ON DELETE CASCADE |
+| votes_pkey                        | PRIMARY KEY | PRIMARY KEY (id)                                                               |
+| votes_hash                        | UNIQUE      | UNIQUE (user_id, repo_id)                                                      |
 
 ## Indexes
 
