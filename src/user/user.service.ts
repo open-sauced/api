@@ -8,6 +8,7 @@ import { UpdateUserDto } from "./dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
 import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
+import { userNotificationTypes } from "./entities/user-notification.constants";
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,16 @@ export class UserService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("user_notifications"."id"), 0)
+          FROM user_notifications
+          WHERE user_id = :userId
+          AND user_notifications.type IN (:...userNotificationTypes)
+          AND user_notifications.read_at IS NULL
+        )::INTEGER`,
+        "users_notification_count",
+      )
       .where("id = :id", { id });
 
     if (includeEmail) {
@@ -35,6 +46,7 @@ export class UserService {
     let item: DbUser | null;
 
     try {
+      queryBuilder.setParameters({ userId: id, userNotificationTypes });
       item = await queryBuilder.getOne();
     } catch (e) {
       // handle error
@@ -51,8 +63,7 @@ export class UserService {
   async findOneByUsername (username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("LOWER(login) = :username", { username: username.toLowerCase() });
+    queryBuilder.where("LOWER(login) = :username", { username: username.toLowerCase() });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
@@ -166,8 +177,7 @@ export class UserService {
   async findOneByEmail (email: string): Promise<DbUser | null> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where(`users.email = :email`, { email: email.toLowerCase() });
+    queryBuilder.where(`users.email = :email`, { email: email.toLowerCase() });
 
     let item: DbUser | null;
 

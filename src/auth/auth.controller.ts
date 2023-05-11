@@ -41,9 +41,9 @@ export class AuthController {
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url } = await this.userService.checkAddUser(user);
+      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url };
+      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count };
     } catch (e) {
       // leave user profile as-is
     }

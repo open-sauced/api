@@ -417,6 +417,17 @@ export class DbUser extends BaseEntity {
   })
   public languages: object;
 
+  @ApiModelProperty({
+    description: "User notification count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public notification_count: number;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsight, insight => insight.user)
   public insights: DbInsight[];
