@@ -4,12 +4,15 @@
 
 ## Columns
 
-| Name        | Type                     | Default                             | Nullable | Children | Parents | Comment |
-| ----------- | ------------------------ | ----------------------------------- | -------- | -------- | ------- | ------- |
-| id          | bigint                   |                                     | false    |          |         |         |
-| user_id     | bigint                   |                                     | false    |          |         |         |
-| type        | varchar                  | 'internal-slack'::character varying | true     |          |         |         |
-| notified_at | timestamp with time zone | now()                               | true     |          |         |         |
+| Name         | Type                        | Default                             | Nullable | Children | Parents | Comment |
+| ------------ | --------------------------- | ----------------------------------- | -------- | -------- | ------- | ------- |
+| id           | bigint                      |                                     | false    |          |         |         |
+| user_id      | bigint                      |                                     | false    |          |         |         |
+| type         | varchar                     | 'internal-slack'::character varying | true     |          |         |         |
+| notified_at  | timestamp with time zone    | now()                               | true     |          |         |         |
+| read_at      | timestamp without time zone |                                     | true     |          |         |         |
+| message      | varchar(100)                | ''::character varying               | true     |          |         |         |
+| from_user_id | bigint                      |                                     | true     |          |         |         |
 
 ## Constraints
 
