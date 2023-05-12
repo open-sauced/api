@@ -21,6 +21,7 @@ export class VoteService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect("r2votes.deleted_at")
       .where("r2votes.repo_id = :repoId", { repoId })
       .andWhere("r2votes.user_id = :userId", { userId });
 
@@ -46,6 +47,7 @@ export class VoteService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect("r2votes.deleted_at")
       .where("r2votes.repo_id = :repoId", { repoId })
       .andWhere("r2votes.user_id = :userId", { userId });
 
