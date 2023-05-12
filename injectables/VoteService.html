@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/vote/vote.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/vote/vote.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -387,6 +387,7 @@ export class VoteService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect(&quot;r2votes.deleted_at&quot;)
       .where(&quot;r2votes.repo_id &#x3D; :repoId&quot;, { repoId })
       .andWhere(&quot;r2votes.user_id &#x3D; :userId&quot;, { userId });
 
@@ -412,6 +413,7 @@ export class VoteService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .addSelect(&quot;r2votes.deleted_at&quot;)
       .where(&quot;r2votes.repo_id &#x3D; :repoId&quot;, { repoId })
       .andWhere(&quot;r2votes.user_id &#x3D; :userId&quot;, { userId });
 
