@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.33.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0...v1.33.1) (2023-05-12)
+
+
+### 🐛 Bug Fixes
+
+* allow voting for a repo after removing old vote ([#161](https://github.com/open-sauced/api.opensauced.pizza/issues/161)) ([ff434b5](https://github.com/open-sauced/api.opensauced.pizza/commit/ff434b552ed0ee83645f2c6778b537c394b29fc4))
+
 ### [1.33.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.0...v1.33.1-beta.1) (2023-05-12)
 
 
