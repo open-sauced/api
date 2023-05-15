@@ -105,6 +105,14 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getFollowingHighlightRepos" >getFollowingHighlightRepos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getFollowingHighlights" >getFollowingHighlights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getUserHighlight" >getUserHighlight</a>
                             </li>
                             <li>
@@ -157,8 +165,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:134</a></div>
                 </td>
             </tr>
 
@@ -259,8 +267,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -349,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -439,8 +447,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="153"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:153</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:157</a></div>
                 </td>
             </tr>
 
@@ -541,8 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -606,6 +614,186 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getFollowingHighlightRepos"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingHighlightRepos</b></span>
+                        <a href="#getFollowingHighlightRepos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingHighlightRepos(pageOptionsDto: <a href="../classes/HighlightOptionsDto.html" target="_self">HighlightOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/following/repos&#x27;)<br />@ApiOperation({operationId: &#x27;getFollowingHighlightRepos&#x27;, summary: &#x27;Fetches highlight repos for users the authenticated user follows&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightRepo})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:191</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/HighlightOptionsDto.html" target="_self" >HighlightOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFollowingHighlights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getFollowingHighlights</b></span>
+                        <a href="#getFollowingHighlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFollowingHighlights(pageOptionsDto: <a href="../classes/HighlightOptionsDto.html" target="_self">HighlightOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/following&#x27;)<br />@ApiOperation({operationId: &#x27;getFollowingHighlights&#x27;, summary: &#x27;Fetches highlights for users the authenticated user follows&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlight})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:175</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/HighlightOptionsDto.html" target="_self" >HighlightOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getUserHighlight"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -631,8 +819,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -709,8 +897,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -796,9 +984,11 @@
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from &quot;@nestjs/swagger&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
@@ -806,6 +996,8 @@ import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&qu
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
 import { UserHighlightsService } from &quot;./user-highlights.service&quot;;
+import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 
 @Controller(&quot;user/highlights&quot;)
 @ApiTags(&quot;User Highlights service&quot;)
@@ -946,6 +1138,37 @@ export class UserHighlightsController {
     const userHighlightReaction &#x3D; await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
 
     await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
+  }
+
+  @Get(&quot;/following&quot;)
+  @ApiOperation({
+    operationId: &quot;getFollowingHighlights&quot;,
+    summary: &quot;Fetches highlights for users the authenticated user follows&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async getFollowingHighlights (
+    @Query() pageOptionsDto: HighlightOptionsDto,
+      @UserId() userId: number,
+  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    return this.userHighlightsService.findAll(pageOptionsDto, userId);
+  }
+
+  @Get(&quot;/following/repos&quot;)
+  @ApiOperation({
+    operationId: &quot;getFollowingHighlightRepos&quot;,
+    summary: &quot;Fetches highlight repos for users the authenticated user follows&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async getFollowingHighlightRepos (
+    @Query() pageOptionsDto: HighlightOptionsDto,
+      @UserId() userId: number,
+  ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
+    return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto, userId);
   }
 }
 </code></pre>
