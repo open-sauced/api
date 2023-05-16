@@ -91,6 +91,11 @@
                             <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#meta_id" >meta_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#notified_at" >notified_at</a>
                             </li>
                             <li>
@@ -228,6 +233,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/user/entities/user-notification.entity.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="meta_id"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>meta_id</b></span>
+                        <a href="#meta_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Notification Source ID (highlight, user, invite)&#x27;, example: &#x27;133&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 32})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/user/entities/user-notification.entity.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -458,6 +500,16 @@ export class DbUserNotification extends BaseEntity {
     select: false,
   })
   public read_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;Notification Source ID (highlight, user, invite)&quot;,
+    example: &quot;133&quot;,
+  })
+  @Column({
+    type: &quot;character varying&quot;,
+    length: 32,
+  })
+  public meta_id?: string;
 }
 </code></pre>
     </div>

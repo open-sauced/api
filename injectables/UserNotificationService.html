@@ -201,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:57</a></div>
                 </td>
             </tr>
 
@@ -277,15 +277,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -319,6 +319,18 @@
                                 </tr>
                                 <tr>
                                     <td>highlightUserId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>highlightId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -558,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -665,6 +677,7 @@ export class UserNotificationService {
       user_id: userNotification.user_id,
       message: userNotification.message,
       from_user_id: userNotification.from_user_id,
+      meta_id: userNotification.meta_id,
     });
   }
 
@@ -676,10 +689,11 @@ export class UserNotificationService {
       user_id: followedUserId,
       from_user_id: userId,
       message: &#x60;${followUser.login} followed you&#x60;,
+      meta_id: followUser.login,
     });
   }
 
-  async addUserHighlightNotification (userId: number, highlightUserId: number ) {
+  async addUserHighlightNotification (userId: number, highlightUserId: number, highlightId: number) {
     const followUser &#x3D; await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -687,6 +701,7 @@ export class UserNotificationService {
       user_id: highlightUserId,
       from_user_id: userId,
       message: &#x60;${followUser.login} reacted to your highlight&#x60;,
+      meta_id: &#x60;${highlightId}&#x60;,
     });
   }
 
