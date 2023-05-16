@@ -226,12 +226,12 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
-      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId);
+      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
 
       return reactionExists;
     }
 
-    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId);
+    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
 
     return this.userHighlightReactionRepository.save({
       user_id: userId,

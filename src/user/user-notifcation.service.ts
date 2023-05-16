@@ -50,6 +50,7 @@ export class UserNotificationService {
       user_id: userNotification.user_id,
       message: userNotification.message,
       from_user_id: userNotification.from_user_id,
+      meta_id: userNotification.meta_id,
     });
   }
 
@@ -61,10 +62,11 @@ export class UserNotificationService {
       user_id: followedUserId,
       from_user_id: userId,
       message: `${followUser.login} followed you`,
+      meta_id: followUser.login,
     });
   }
 
-  async addUserHighlightNotification (userId: number, highlightUserId: number ) {
+  async addUserHighlightNotification (userId: number, highlightUserId: number, highlightId: number) {
     const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -72,6 +74,7 @@ export class UserNotificationService {
       user_id: highlightUserId,
       from_user_id: userId,
       message: `${followUser.login} reacted to your highlight`,
+      meta_id: `${highlightId}`,
     });
   }
 

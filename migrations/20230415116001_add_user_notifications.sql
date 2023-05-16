@@ -13,6 +13,7 @@ create table public.user_notifications
   type character varying(100) collate pg_catalog."default" not null default 'internal-slack',
   message character varying(100) collate pg_catalog."default" not null default '',
   read_at timestamp without time zone default null,
+  meta_id character varying(32) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
   constraint user_notifications_pkey primary key (id)

@@ -71,4 +71,14 @@ export class DbUserNotification extends BaseEntity {
     select: false,
   })
   public read_at?: Date;
+
+  @ApiModelProperty({
+    description: "Notification Source ID (highlight, user, invite)",
+    example: "133",
+  })
+  @Column({
+    type: "character varying",
+    length: 32,
+  })
+  public meta_id?: string;
 }
