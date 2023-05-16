@@ -13,6 +13,7 @@
 | read_at      | timestamp without time zone |                                     | true     |          |         |         |
 | message      | varchar(100)                | ''::character varying               | true     |          |         |         |
 | from_user_id | bigint                      |                                     | true     |          |         |         |
+| meta_id      | varchar(32)                 | ''::character varying               | true     |          |         |         |
 
 ## Constraints
 
