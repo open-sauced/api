@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.34.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.34.0-beta.1...v1.34.0-beta.2) (2023-05-16)
+
+
+### 🍕 Features
+
+* add meta_id to user notifications for building URLs ([#165](https://github.com/open-sauced/api.opensauced.pizza/issues/165)) ([113e98b](https://github.com/open-sauced/api.opensauced.pizza/commit/113e98bfa41c6e43ee5a06e785497c80f0a1ddb5))
+
 ## [1.34.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.33.1...v1.34.0-beta.1) (2023-05-15)
 
 
