@@ -8,9 +8,11 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from "@nestjs/swagger";
+import { PageDto } from "../common/dtos/page.dto";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
@@ -18,6 +20,8 @@ import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 
 @Controller("user/highlights")
 @ApiTags("User Highlights service")
@@ -158,5 +162,36 @@ export class UserHighlightsController {
     const userHighlightReaction = await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
 
     await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
+  }
+
+  @Get("/following")
+  @ApiOperation({
+    operationId: "getFollowingHighlights",
+    summary: "Fetches highlights for users the authenticated user follows",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async getFollowingHighlights (
+    @Query() pageOptionsDto: HighlightOptionsDto,
+      @UserId() userId: number,
+  ): Promise<PageDto<DbUserHighlight>> {
+    return this.userHighlightsService.findAll(pageOptionsDto, userId);
+  }
+
+  @Get("/following/repos")
+  @ApiOperation({
+    operationId: "getFollowingHighlightRepos",
+    summary: "Fetches highlight repos for users the authenticated user follows",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async getFollowingHighlightRepos (
+    @Query() pageOptionsDto: HighlightOptionsDto,
+      @UserId() userId: number,
+  ): Promise<PageDto<DbUserHighlightRepo>> {
+    return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto, userId);
   }
 }
