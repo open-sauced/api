@@ -82,6 +82,9 @@
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#OpenAIConfig" title="src/config/openai.config.ts" ><b>OpenAIConfig</b>&nbsp;&nbsp;&nbsp;(src/.../openai.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#relevantEvents" title="src/stripe-webhook/stripe-webhook.controller.ts" ><b>relevantEvents</b>&nbsp;&nbsp;&nbsp;(src/.../stripe-webhook.controller.ts)</a>
                         </li>
                         <li>
@@ -313,6 +316,33 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(subdomain?: string) &#x3D;&gt;
   new URL(&#x60;https://${subdomain ? &#x60;${subdomain}.&#x60; : &quot;&quot;}${process.env.DOMAIN ?? &quot;opensauced.pizza&quot;}&#x60;).toString()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/openai.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OpenAIConfig"></a>
+                    <span class="name">
+                        <span ><b>OpenAIConfig</b></span>
+                        <a href="#OpenAIConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;openai&quot;, () &#x3D;&gt; ({
+  APIKey: String(process.env.OPENAI_API_KEY ?? &quot;apikey&quot;),
+  modelName: String(process.env.OPENAI_MODEL_NAME ?? &quot;gpt-3.5-turbo&quot;),
+  completionsURL: String(process.env.OPENAI_COMPLETIONS_API_URL ?? &quot;&quot;),
+}))</code>
                     </td>
                 </tr>
 

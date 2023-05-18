@@ -394,8 +394,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="190"
-                            class="link-to-prism">src/app.module.ts:190</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/app.module.ts:191</a></div>
                 </td>
             </tr>
 
@@ -458,7 +458,7 @@ import { DataSource } from &quot;typeorm&quot;;
 import { TypeOrmModuleOptions } from &quot;@nestjs/typeorm/dist/interfaces/typeorm-options.interface&quot;;
 import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
 
-import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig } from &quot;./config&quot;;
+import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig } from &quot;./config&quot;;
 import { RepoModule } from &quot;./repo/repo.module&quot;;
 import { HealthModule } from &quot;./health/health.module&quot;;
 import { DbRepo } from &quot;./repo/entities/repo.entity&quot;;
@@ -510,6 +510,7 @@ import { DbUserNotification } from &quot;./user/entities/user-notification.entit
         DbLoggingConfig,
         EndpointConfig,
         StripeConfig,
+        OpenAIConfig,
       ],
       isGlobal: true,
     }),
