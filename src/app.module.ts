@@ -8,7 +8,7 @@ import { DataSource } from "typeorm";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { clc } from "@nestjs/common/utils/cli-colors.util";
 
-import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig } from "./config";
+import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
@@ -60,6 +60,7 @@ import { DbUserNotification } from "./user/entities/user-notification.entity";
         DbLoggingConfig,
         EndpointConfig,
         StripeConfig,
+        OpenAIConfig,
       ],
       isGlobal: true,
     }),

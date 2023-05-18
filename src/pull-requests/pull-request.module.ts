@@ -7,6 +7,8 @@ import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { PullRequestController } from "./pull-request.controller";
 import { PullRequestService } from "./pull-request.service";
+import { PullRequestDescriptionService } from "./pull-request-description.service";
+import { PullRequestDescriptionController } from "./pull-request-description.controller";
 
 @Module({
   imports: [
@@ -16,8 +18,8 @@ import { PullRequestService } from "./pull-request.service";
     ], "ApiConnection"),
     RepoFilterModule,
   ],
-  controllers: [PullRequestController],
-  providers: [PullRequestService, PullRequestInsightsService],
+  controllers: [PullRequestController, PullRequestDescriptionController],
+  providers: [PullRequestService, PullRequestInsightsService, PullRequestDescriptionService],
   exports: [PullRequestService],
 })
 export class PullRequestModule {}
