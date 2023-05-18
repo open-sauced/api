@@ -41,7 +41,7 @@ export class PullRequestDescriptionService {
             messages: [
               {
                 role: "system",
-                content: this.generatePrompt(options.language, options.length, options.tone),
+                content: this.generatePrompt(options.language, options.descriptionLength, options.tone),
               },
               {
                 role: "user",

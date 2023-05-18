@@ -10,7 +10,7 @@ export class GeneratePullRequestDescriptionDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    length: number;
+    descriptionLength: number;
 
   @ApiProperty({
     description: "Description Temperature",
