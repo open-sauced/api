@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.36.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.36.0-beta.1...v1.36.0-beta.2) (2023-05-22)
+
+
+### 🍕 Features
+
+* add endpoint to generate code refactor suggestions ([#171](https://github.com/open-sauced/api.opensauced.pizza/issues/171)) ([0fe8b4d](https://github.com/open-sauced/api.opensauced.pizza/commit/0fe8b4da23044d9858d6e468e8c03f4a0110a648))
+
 ## [1.36.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.35.0...v1.36.0-beta.1) (2023-05-22)
 
 
