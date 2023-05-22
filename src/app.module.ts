@@ -50,6 +50,7 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
 import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
+import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
 
 @Module({
   imports: [
@@ -82,6 +83,7 @@ import { DbUserNotification } from "./user/entities/user-notification.entity";
           DbUserHighlight,
           DbUserHighlightReaction,
           DbUserNotification,
+          DbUserCollaboration,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,

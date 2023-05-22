@@ -20,6 +20,7 @@ import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
+import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -443,6 +444,14 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserHighlightReaction, highlightReactions => highlightReactions.user)
   public reactions: DbUserHighlightReaction[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.user)
+  public collaborations: DbUserCollaboration[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.request_user)
+  public request_collaborations: DbUserCollaboration[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)
