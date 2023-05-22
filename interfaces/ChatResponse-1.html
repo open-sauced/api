@@ -65,7 +65,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/pull-requests/code-refactor-suggestion.service.ts</code>
+            <code>src/pull-requests/pull-request-description.service.ts</code>
         </p>
 
 
@@ -142,28 +142,29 @@
 import { ConfigService } from &quot;@nestjs/config&quot;;
 import { Fetch } from &quot;@supabase/supabase-js/dist/module/lib/types&quot;;
 
-import { GenerateCodeRefactorSuggestionDto } from &quot;./dtos/create-code-refactor-suggestion.dto&quot;;
+import { GeneratePullRequestDescriptionDto } from &quot;./dtos/create-pull-request-description.dto&quot;;
 
 interface ChatResponse { choices: { message: { content: string } }[] }
 
 @Injectable()
-export class CodeRefactorSuggestionService {
+export class PullRequestDescriptionService {
   constructor (private configService: ConfigService) {}
-
 
   private generatePrompt (
     language: string,
     maxLength: number,
+    tone: string,
   ) {
     return [
-      &#x60;Generate a code refactor suggestion for a given code snippet written in ${language} with the specifications mentioned below&#x60;,
-      &#x60;The code snippet must be a maximum of ${maxLength} characters.&#x60;,
-      &quot;Exclude anything unnecessary such as translation and instructions. The code snippet you suggest should start with \&quot;&#x60;&#x60;&#x60;suggestion\&quot; and end with &#x60;&#x60;&#x60; to create a valid GitHub suggestion codeblock. All non-code text or description should be outside of the codeblock.&quot;,
+      &#x60;Generate an apt github PR description written in present tense and ${tone} tone for the given code diff/commit-messages with the specifications mentioned below&#x60;,
+      &#x60;Description language: ${language}&#x60;,
+      &#x60;Description must be a maximum of ${maxLength} characters.&#x60;,
+      &quot;Exclude anything unnecessary such as translation. Your entire response will be passed directly into a pull request description&quot;,
     ].join(&quot;\n&quot;);
   }
 
-  async generateDescription (options: GenerateCodeRefactorSuggestionDto) {
-    const content &#x3D; &#x60;Code: ${options.code}\n&#x60;;
+  async generateDescription (options: GeneratePullRequestDescriptionDto) {
+    const content &#x3D; &#x60;${options.diff ? &#x60;Diff: ${options.diff}\n&#x60; : &quot;&quot;}${options.commitMessages ? &#x60;\nCommit Messages: ${options.commitMessages.join(&quot;,&quot;)}&#x60; : &quot;&quot;}&#x60;;
 
     try {
       // eslint-disable-next-line
@@ -180,7 +181,7 @@ export class CodeRefactorSuggestionService {
             messages: [
               {
                 role: &quot;system&quot;,
-                content: this.generatePrompt(options.language, options.descriptionLength),
+                content: this.generatePrompt(options.language, options.descriptionLength, options.tone),
               },
               {
                 role: &quot;user&quot;,
@@ -244,7 +245,7 @@ export class CodeRefactorSuggestionService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'ChatResponse.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ChatResponse-1.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
