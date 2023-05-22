@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.36.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.35.0...v1.36.0-beta.1) (2023-05-22)
+
+
+### 🍕 Features
+
+* add endpoints for managing user collaborations ([#170](https://github.com/open-sauced/api.opensauced.pizza/issues/170)) ([28a3b76](https://github.com/open-sauced/api.opensauced.pizza/commit/28a3b76470983f839116ab4ed618a8c024d780d8))
+
 ## [1.35.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.34.0...v1.35.0) (2023-05-18)
 
 
