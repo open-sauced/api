@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.37.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.36.0...v1.37.0-beta.1) (2023-05-24)
+
+
+### 🍕 Features
+
+* remove open-sauced/open-sauced from ci yml ([#173](https://github.com/open-sauced/api.opensauced.pizza/issues/173)) ([a398b89](https://github.com/open-sauced/api.opensauced.pizza/commit/a398b89c207cadecba9e4da6aba4773bda9606a7))
+
 ## [1.36.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.35.0...v1.36.0) (2023-05-23)
 
 
