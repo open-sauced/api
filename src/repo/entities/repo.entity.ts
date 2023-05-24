@@ -253,7 +253,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository git url",
-    example: "git://github.com/open-sauced/open-sauced.git",
+    example: "git://github.com/open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -263,7 +263,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository ssh url",
-    example: "git@github.com:open-sauced/open-sauced.git",
+    example: "git@github.com:open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -273,7 +273,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository clone url",
-    example: "https://github.com/open-sauced/open-sauced.git",
+    example: "https://github.com/open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -283,7 +283,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository svn url",
-    example: "https://github.com/open-sauced/open-sauced",
+    example: "https://github.com/open-sauced/insights",
   })
   @Column({
     type: "character varying",
@@ -313,7 +313,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository full name",
-    example: "open-sauced/open-sauced",
+    example: "open-sauced/insights",
   })
   @Column({
     type: "character varying",
@@ -353,7 +353,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository GitHub linked URL",
-    example: "https://api.github.com/repos/open-sauced/open-sauced",
+    example: "https://api.github.com/repos/open-sauced/insights",
   })
   @Column({
     type: "character varying",
