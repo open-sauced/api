@@ -17,7 +17,12 @@
 //    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "~/*": [
+        "src/*"
+      ]
+    },
   },
   "include": [
     "src/**/*"
