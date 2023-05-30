@@ -28,7 +28,7 @@ export class EndorsementService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -47,7 +47,7 @@ export class EndorsementService {
 
     queryBuilder
       .where("endorsements.creator_user_id = :userId", { userId })
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -66,7 +66,7 @@ export class EndorsementService {
 
     queryBuilder
       .where("endorsements.recipient_user_id = :userId", { userId })
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -88,7 +88,7 @@ export class EndorsementService {
       .leftJoin("users", "users", "endorsements.recipient_user_id=users.id")
       .where("LOWER(repos.full_name) LIKE ':ownerOrUser/%'", { ownerOrUser: repoOwnerOrUser.toLowerCase() })
       .orWhere("LOWER(users.login) = :user", { user: repoOwnerOrUser.toLowerCase() })
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -108,7 +108,7 @@ export class EndorsementService {
     queryBuilder
       .innerJoin("repos", "repos", "endorsements.repo_id=repos.id")
       .where("LOWER(repos.full_name) = :repo", { repo: `${owner}/${repo}`.toLowerCase() })
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -133,7 +133,7 @@ export class EndorsementService {
       .addSelect("", "endorsements")
       .where("LOWER(repos.full_name) = :repo", { repo: `${owner}/${repo}`.toLowerCase() })
       .groupBy("users.login")
-      .orderBy("endorsements.updated_at", "DESC");
+      .orderBy("endorsements.created_at", "DESC");
 
     queryBuilder
       .offset(pageOptionsDto.skip)

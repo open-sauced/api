@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsNumber, IsUrl } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { IsString, IsNumber, IsOptional } from "class-validator";
 
 export class CreateEndorsementDto {
   @ApiProperty({
@@ -8,7 +8,7 @@ export class CreateEndorsementDto {
     example: 42211,
   })
   @IsNumber()
-  public creator_user_id?: number;
+  public creator_user_id: number;
 
   @ApiProperty({
     description: "Endorsement Recipient User ID",
@@ -16,7 +16,7 @@ export class CreateEndorsementDto {
     example: 5736810,
   })
   @IsNumber()
-  public recipient_user_id?: number;
+  public recipient_user_id: number;
 
   @ApiProperty({
     description: "Repository ID",
@@ -25,16 +25,19 @@ export class CreateEndorsementDto {
   @IsNumber()
   public repo_id: number;
 
-  @ApiProperty({
-    description: "Endorsement Source Comment URL"
+  @ApiPropertyOptional({
+    description: "Endorsement Source Comment URL",
+    default: "",
   })
-  @IsUrl()
-  public source_comment_url: string;
+  @IsString()
+  @IsOptional()
+  public source_comment_url?: string;
 
   @ApiProperty({
-    description: "Endorsement Source Context URL"
+    description: "Endorsement Source Context URL",
+    example: "https://github.com/open-sauced/insights/pulls",
   })
-  @IsUrl()
+  @IsString()
   public source_context_url: string;
 
   @ApiProperty({

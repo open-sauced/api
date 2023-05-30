@@ -1,5 +1,5 @@
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "endorsements" })
 export class DbEndorsement {
@@ -36,7 +36,7 @@ export class DbEndorsement {
     type: "character varying",
     length: 500,
   })
-  public source_comment_url: string;
+  public source_comment_url?: string;
 
   @ApiModelProperty({ description: "Endorsement Source Context URL" })
   @Column({
@@ -64,24 +64,4 @@ export class DbEndorsement {
     default: () => "now()",
   })
   public created_at?: Date;
-
-  @ApiModelPropertyOptional({
-    description: "Timestamp representing endorsement last updated",
-    example: "2022-10-19 13:24:51.000000",
-  })
-  @UpdateDateColumn({
-    type: "timestamp without time zone",
-    default: () => "now()",
-  })
-  public updated_at?: Date;
-
-  @ApiModelPropertyOptional({
-    description: "Timestamp representing endorsement deletion",
-    example: "2022-10-19 13:24:51.000000",
-  })
-  @DeleteDateColumn({
-    type: "timestamp without time zone",
-    select: false,
-  })
-  public deleted_at?: Date;
 }

@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Body, Param, Delete, Query } from "@nestjs/common";
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Controller, Get, Post, Body, Param, Delete, Query, UseGuards, Headers } from "@nestjs/common";
+import { ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -8,6 +8,7 @@ import { UserService } from "../user/user.service";
 import { EndorsementService } from "./endorsement.service";
 import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
 import { DbEndorsement } from "./entities/endorsement.entity";
+import { EndorsementTokenGuard } from "./endorsement-token.guard";
 
 @Controller("endorsements")
 @ApiTags("Endorsements service")
@@ -18,12 +19,17 @@ export class EndorsementController {
   ) {}
 
   @Post("/")
+  @UseGuards(EndorsementTokenGuard)
   @ApiOperation({
     operationId: "createEndorsement",
-    summary: "Finds all endorsements and paginates them",
+    summary: "Creates a new endorsement record",
   })
   @ApiOkResponse({ type: DbEndorsement })
-  async createEndorsement (@Body() createEndorsementDto: CreateEndorsementDto) {
+  @ApiBody({ type: CreateEndorsementDto })
+  async createEndorsement (
+  @Headers("X-OpenSauced-token")_token: string,
+    @Body() createEndorsementDto: CreateEndorsementDto,
+  ) {
     return this.endorsementService.create(createEndorsementDto);
   }
 
@@ -69,19 +75,21 @@ export class EndorsementController {
     return this.endorsementService.findAllEndorsementsByRepo(owner, repo, pageOptionsDto);
   }
 
-  @Get("/repos/:owner/:repo/byUser")
-  @ApiOperation({
-    operationId: "findAllEndorsementsByRepoByUser",
-    summary: "Finds all endorsements by repo owner grouped by user",
-  })
-  @ApiOkResponse({ type: DbEndorsement })
-  async findAllEndorsementsByRepoByUser (
-  @Param("owner") owner: string,
-    @Param("repo") repo: string,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
-    return this.endorsementService.findAllEndorsementsByRepoByUser(owner, repo, pageOptionsDto);
-  }
+  /*
+   * @Get("/repos/:owner/:repo/byUser")
+   * @ApiOperation({
+   *   operationId: "findAllEndorsementsByRepoByUser",
+   *   summary: "Finds all endorsements by repo owner grouped by user",
+   * })
+   * @ApiOkResponse({ type: DbEndorsement })
+   * async findAllEndorsementsByRepoByUser (
+   * @Param("owner") owner: string,
+   *   @Param("repo") repo: string,
+   *   @Query() pageOptionsDto: PageOptionsDto,
+   * ) {
+   *   return this.endorsementService.findAllEndorsementsByRepoByUser(owner, repo, pageOptionsDto);
+   * }
+   */
 
   @Get(":id")
   @ApiOperation({
