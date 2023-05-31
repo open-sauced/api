@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.37.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.2...v1.37.0-beta.3) (2023-05-31)
+
+
+### 🍕 Features
+
+* add endpoints for managing endorsements ([#176](https://github.com/open-sauced/api.opensauced.pizza/issues/176)) ([487c1a2](https://github.com/open-sauced/api.opensauced.pizza/commit/487c1a2e228d5452713f1e3d58eca5a3b377876e))
+
 ## [1.37.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.1...v1.37.0-beta.2) (2023-05-31)
 
 
