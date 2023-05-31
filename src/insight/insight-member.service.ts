@@ -49,10 +49,10 @@ export class InsightMemberService {
     return this.insightMemberRepository.softDelete(id);
   }
 
-  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[]): Promise<boolean> {
+  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[], checkOwner = true): Promise<boolean> {
     const insight = await this.insightService.findOneById(insightId);
 
-    if (Number(insight.user_id) === userId) {
+    if (checkOwner && Number(insight.user.id) === userId) {
       return true;
     }
 
@@ -61,7 +61,7 @@ export class InsightMemberService {
     queryBuilder
       .where("insight_members.insight_id = :insightId", { insightId })
       .andWhere("insight_members.user_id = :userId", { userId })
-      .andWhere("AND insight_members.access IN (:...accessRoles))", { accessRoles });
+      .andWhere("insight_members.access IN (:...accessRoles)", { accessRoles });
 
     const item: DbInsightMember | null = await queryBuilder.getOne();
 
@@ -80,8 +80,9 @@ export class InsightMemberService {
 
     queryBuilder
       .addSelect("users.name", "insight_members_name")
+      .addSelect("insight_members.invitation_email", "insight_members_invitation_email")
       .innerJoin("insights", "insights", "insight_members.insight_id=insights.id")
-      .innerJoin("users", "users", "insight_members.user_id=users.id")
+      .leftJoin("users", "users", "insight_members.user_id=users.id")
       .where("insight_members.insight_id = :insightId", { insightId })
       .orderBy("users.name", "ASC");
 

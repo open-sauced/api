@@ -57,12 +57,13 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .where("insights.user_id = :userId")
-      .orWhere(`insights.user_id IN (
+      .where("insights.user_id = :userId", { userId })
+      .orWhere(`:userId IN (
           SELECT user_id
           FROM insight_members
           WHERE insight_id = insights.id
           AND user_id = :userId
+          AND access != 'pending'
           AND deleted_at IS NULL
         )
       `, { userId })

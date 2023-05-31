@@ -19,6 +19,7 @@ import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 
 @Entity({
   name: "repos",
@@ -252,7 +253,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository git url",
-    example: "git://github.com/open-sauced/open-sauced.git",
+    example: "git://github.com/open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -262,7 +263,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository ssh url",
-    example: "git@github.com:open-sauced/open-sauced.git",
+    example: "git@github.com:open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -272,7 +273,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository clone url",
-    example: "https://github.com/open-sauced/open-sauced.git",
+    example: "https://github.com/open-sauced/insights.git",
   })
   @Column({
     type: "character varying",
@@ -282,7 +283,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository svn url",
-    example: "https://github.com/open-sauced/open-sauced",
+    example: "https://github.com/open-sauced/insights",
   })
   @Column({
     type: "character varying",
@@ -312,7 +313,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository full name",
-    example: "open-sauced/open-sauced",
+    example: "open-sauced/insights",
   })
   @Column({
     type: "character varying",
@@ -352,7 +353,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repository GitHub linked URL",
-    example: "https://api.github.com/repos/open-sauced/open-sauced",
+    example: "https://api.github.com/repos/open-sauced/insights",
   })
   @Column({
     type: "character varying",
@@ -442,6 +443,10 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.repo)
+  public repoToUserTopRepos: DbUserTopRepo[];
 
   // virtual columns
   @ApiModelProperty({

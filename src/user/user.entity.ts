@@ -19,6 +19,8 @@ import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist
 import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { DbUserTopRepo } from "./entities/user-top-repo.entity";
+import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -65,6 +67,44 @@ export class DbUser extends BaseEntity {
     select: false,
   })
   public deleted_at?: Date;
+
+  @ApiHideProperty()
+  @Column({
+    type: "timestamp without time zone",
+    default: () => "to_timestamp(0)",
+    select: false,
+  })
+  public last_fetched_users_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user first open PR",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public first_opened_pr_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user first commit push",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public first_pushed_commit_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user logging in to open sauced for the first time",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public connected_at?: Date;
 
   @ApiModelProperty({
     description: "User GitHub node id",
@@ -366,6 +406,29 @@ export class DbUser extends BaseEntity {
   })
   readonly timezone?: string;
 
+  @ApiModelProperty({
+    description: "GitHub top languages",
+    example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }",
+    default: "{}",
+  })
+  @Column({
+    type: "jsonb",
+    default: {},
+    nullable: false,
+  })
+  public languages: object;
+
+  @ApiModelProperty({
+    description: "User notification count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public notification_count: number;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsight, insight => insight.user)
   public insights: DbInsight[];
@@ -383,6 +446,14 @@ export class DbUser extends BaseEntity {
   public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
+  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.user)
+  public collaborations: DbUserCollaboration[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.request_user)
+  public request_collaborations: DbUserCollaboration[];
+
+  @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)
   public repoToUserVotes: DbRepoToUserVotes[];
 
@@ -397,4 +468,8 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.user)
   public repoToUserStargazers: DbRepoToUserStargazers[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.user)
+  public topRepos: DbUserTopRepo[];
 }

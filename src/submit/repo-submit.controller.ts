@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -56,7 +56,7 @@ export class RepoSubmitController {
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already submitted this repo" })
   async submitOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneById(id);
@@ -101,7 +101,7 @@ export class RepoSubmitController {
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already removed your submission" })
   async downSubmitOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneById(id);

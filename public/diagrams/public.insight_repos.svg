@@ -27,14 +27,14 @@
 <text text-anchor="start" x="53" y="-146.9" font-family="Arial" font-size="14.00" fill="#000000">repo_id </text>
 <text text-anchor="start" x="103.5708" y="-146.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
 <polygon fill="none" stroke="#000000" points="46,-105.5 46,-135.5 316,-135.5 316,-105.5 46,-105.5"/>
-<text text-anchor="start" x="53" y="-116.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="123.028" y="-116.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<text text-anchor="start" x="53" y="-116.9" font-family="Arial" font-size="14.00" fill="#000000">full_name </text>
+<text text-anchor="start" x="117.568" y="-116.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
 <polygon fill="none" stroke="#000000" points="46,-75.5 46,-105.5 316,-105.5 316,-75.5 46,-75.5"/>
-<text text-anchor="start" x="53" y="-86.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
-<text text-anchor="start" x="122.2566" y="-86.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<text text-anchor="start" x="53" y="-86.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="123.028" y="-86.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
 <polygon fill="none" stroke="#000000" points="46,-45.5 46,-75.5 316,-75.5 316,-45.5 46,-45.5"/>
-<text text-anchor="start" x="53" y="-56.9" font-family="Arial" font-size="14.00" fill="#000000">full_name </text>
-<text text-anchor="start" x="117.568" y="-56.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(255)]</text>
+<text text-anchor="start" x="53" y="-56.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
+<text text-anchor="start" x="122.2566" y="-56.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
 <polygon fill="none" stroke="#000000" stroke-width="3" points="44.5,-44.5 44.5,-262.5 317.5,-262.5 317.5,-44.5 44.5,-44.5"/>
 </g>
 </g>

@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { PullRequestModule } from "../pull-requests/pull-request.module";
+import { RepoModule } from "../repo/repo.module";
 
 import { DbUser } from "./user.entity";
 import { UserService } from "./user.service";
@@ -13,6 +14,16 @@ import { UserFollowsController } from "./user-follow.controller";
 import { UserFollowService } from "./user-follow.service";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { DbUserTopRepo } from "./entities/user-top-repo.entity";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoService } from "../repo/repo.service";
+import { RepoFilterService } from "../common/filters/repo-filter.service";
+import { DbUserNotification } from "./entities/user-notification.entity";
+import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { UserNotificationService } from "./user-notifcation.service";
+import { UserNotificationController } from "./user-notification.controller";
+import { UserCollaborationService } from "./user-collaboration.service";
+import { UserCollaborationController } from "./user-collaboration.controller";
 
 @Module({
   imports: [
@@ -21,11 +32,16 @@ import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.enti
       DbUserHighlight,
       DbUserHighlightReaction,
       DbUserToUserFollows,
+      DbUserTopRepo,
+      DbUserNotification,
+      DbUserCollaboration,
+      DbRepo,
     ], "ApiConnection"),
     PullRequestModule,
+    RepoModule,
   ],
-  controllers: [UserController, UserHighlightsController, UserFollowsController],
-  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService],
-  exports: [UserService, UserHighlightsService, UserFollowService],
+  controllers: [UserController, UserHighlightsController, UserFollowsController, UserNotificationController, UserCollaborationController],
+  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService, RepoService, RepoFilterService, UserNotificationService, UserCollaborationService],
+  exports: [UserService, UserHighlightsService, UserFollowService, RepoService],
 })
 export class UserModule {}

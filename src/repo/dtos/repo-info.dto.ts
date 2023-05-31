@@ -13,7 +13,7 @@ export class RepoInfo {
   @ApiProperty({
     description: "Repo Full Name",
     type: String,
-    example: "open-sauced/open-sauced",
+    example: "open-sauced/insights",
   })
   @IsString()
     fullName: string;

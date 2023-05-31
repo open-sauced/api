@@ -2,21 +2,19 @@
 
 ## Description
 
-Insight Pages
-
 ## Columns
 
-| Name        | Type                     | Default | Nullable | Children | Parents | Comment |
-| ----------- | ------------------------ | ------- | -------- | -------- | ------- | ------- |
-| id          | bigint                   |         | false    |          |         |         |
-| user_id     | bigint                   |         | false    |          |         |         |
-| name        | varchar                  |         | false    |          |         |         |
-| is_public   | boolean                  | false   | true     |          |         |         |
-| is_favorite | boolean                  | false   | true     |          |         |         |
-| short_code  | varchar                  |         | true     |          |         |         |
-| created_at  | timestamp with time zone | now()   | true     |          |         |         |
-| updated_at  | timestamp with time zone | now()   | true     |          |         |         |
-| deleted_at  | timestamp with time zone |         | true     |          |         |         |
+| Name        | Type                        | Default | Nullable | Children                                            | Parents | Comment |
+| ----------- | --------------------------- | ------- | -------- | --------------------------------------------------- | ------- | ------- |
+| id          | bigint                      |         | false    | [public.insight_members](public.insight_members.md) |         |         |
+| user_id     | bigint                      |         | false    |                                                     |         |         |
+| name        | varchar                     |         | false    |                                                     |         |         |
+| is_public   | boolean                     | false   | true     |                                                     |         |         |
+| is_favorite | boolean                     | false   | true     |                                                     |         |         |
+| short_code  | varchar                     |         | true     |                                                     |         |         |
+| created_at  | timestamp with time zone    | now()   | true     |                                                     |         |         |
+| updated_at  | timestamp with time zone    | now()   | true     |                                                     |         |         |
+| deleted_at  | timestamp without time zone |         | true     |                                                     |         |         |
 
 ## Constraints
 

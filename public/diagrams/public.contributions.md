@@ -9,20 +9,20 @@
 | id             | bigint                      |         | false    |          |                                 |         |
 | repo_id        | bigint                      |         | false    |          | [public.repos](public.repos.md) |         |
 | count          | bigint                      | 0       | false    |          |                                 |         |
+| created_at     | timestamp without time zone | now()   | false    |          |                                 |         |
+| updated_at     | timestamp without time zone | now()   | false    |          |                                 |         |
+| deleted_at     | timestamp without time zone |         | true     |          |                                 |         |
 | last_merged_at | timestamp without time zone |         | false    |          |                                 |         |
 | contributor    | varchar(255)                |         | true     |          |                                 |         |
 | url            | varchar(255)                |         | true     |          |                                 |         |
-| deleted_at     | timestamp with time zone    |         | true     |          |                                 |         |
-| updated_at     | timestamp with time zone    | now()   | false    |          |                                 |         |
-| created_at     | timestamp with time zone    | now()   | false    |          |                                 |         |
 
 ## Constraints
 
-| Name                       | Type        | Definition                                 |
-| -------------------------- | ----------- | ------------------------------------------ |
-| contributions_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) |
-| contributions_pkey         | PRIMARY KEY | PRIMARY KEY (id)                           |
-| contributions_hash         | UNIQUE      | UNIQUE (contributor, repo_id)              |
+| Name                       | Type        | Definition                                                                     |
+| -------------------------- | ----------- | ------------------------------------------------------------------------------ |
+| contributions_repo_id_fkey | FOREIGN KEY | FOREIGN KEY (repo_id) REFERENCES repos(id) ON UPDATE CASCADE ON DELETE CASCADE |
+| contributions_pkey         | PRIMARY KEY | PRIMARY KEY (id)                                                               |
+| contributions_hash         | UNIQUE      | UNIQUE (contributor, repo_id)                                                  |
 
 ## Indexes
 

@@ -14,7 +14,7 @@ import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist
 @Entity({ name: "insight_members" })
 export class DbInsightMember extends BaseEntity {
   @ApiModelProperty({
-    description: "Insight identifier",
+    description: "Insight Member identifier",
     example: "uuid-v4",
   })
   @PrimaryColumn()
@@ -32,8 +32,8 @@ export class DbInsightMember extends BaseEntity {
     description: "User ID",
     example: 237133,
   })
-  @Column()
-  public user_id: number;
+  @Column({ type: "integer" })
+  public user_id?: number;
 
   @ApiModelProperty({
     description: "User's Name",
@@ -48,12 +48,12 @@ export class DbInsightMember extends BaseEntity {
 
   @ApiModelProperty({
     description: "Insight Member Access",
-    example: "view",
+    example: "pending",
   })
   @Column({
     type: "character varying",
     length: 20,
-    default: "view",
+    default: "pending",
   })
   public access: string;
 
@@ -83,4 +83,24 @@ export class DbInsightMember extends BaseEntity {
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing team member invitation email sent date",
+    example: "2023-04-10 13:24:51.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    select: false,
+  })
+  public invitation_emailed_at?: Date;
+
+  @ApiModelProperty({
+    description: "Team Member Invitation Email",
+    example: "hello@opensauced.pizza",
+  })
+  @Column({
+    type: "text",
+    select: false,
+  })
+  public invitation_email?: string;
 }

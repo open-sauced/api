@@ -2,28 +2,30 @@
 
 ## Description
 
-Record of user notifications sent
-
 ## Columns
 
-| Name        | Type                     | Default                                                    | Nullable | Children | Parents | Comment |
-| ----------- | ------------------------ | ---------------------------------------------------------- | -------- | -------- | ------- | ------- |
-| id          | bigint                   |                                                            | false    |          |         |         |
-| user_id     | bigint                   |                                                            | false    |          |         |         |
-| type        | varchar                  | '''internal-slack''::character varying'::character varying | true     |          |         |         |
-| notified_at | timestamp with time zone | now()                                                      | true     |          |         |         |
+| Name         | Type                        | Default                             | Nullable | Children | Parents | Comment |
+| ------------ | --------------------------- | ----------------------------------- | -------- | -------- | ------- | ------- |
+| id           | bigint                      |                                     | false    |          |         |         |
+| user_id      | bigint                      |                                     | false    |          |         |         |
+| type         | varchar                     | 'internal-slack'::character varying | true     |          |         |         |
+| notified_at  | timestamp with time zone    | now()                               | true     |          |         |         |
+| read_at      | timestamp without time zone |                                     | true     |          |         |         |
+| message      | varchar(100)                | ''::character varying               | true     |          |         |         |
+| from_user_id | bigint                      |                                     | true     |          |         |         |
+| meta_id      | varchar(32)                 | ''::character varying               | true     |          |         |         |
 
 ## Constraints
 
-| Name                        | Type        | Definition       |
-| --------------------------- | ----------- | ---------------- |
-| users_to_notifications_pkey | PRIMARY KEY | PRIMARY KEY (id) |
+| Name                    | Type        | Definition       |
+| ----------------------- | ----------- | ---------------- |
+| user_notifications_pkey | PRIMARY KEY | PRIMARY KEY (id) |
 
 ## Indexes
 
-| Name                        | Definition                                                                                    |
-| --------------------------- | --------------------------------------------------------------------------------------------- |
-| users_to_notifications_pkey | CREATE UNIQUE INDEX users_to_notifications_pkey ON public.user_notifications USING btree (id) |
+| Name                    | Definition                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------- |
+| user_notifications_pkey | CREATE UNIQUE INDEX user_notifications_pkey ON public.user_notifications USING btree (id) |
 
 ## Relations
 

@@ -10,6 +10,7 @@ import { InsightsService } from "./insights.service";
 import { InsightRepoService } from "./insight-repo.service";
 import { UserInsightMemberController } from "./user-insight-member.controller";
 import { InsightMemberService } from "./insight-member.service";
+import { UserModule } from "../user/user.module";
 
 @Module({
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
@@ -19,6 +20,7 @@ import { InsightMemberService } from "./insight-member.service";
       DbInsightRepo,
       DbInsightMember,
     ], "ApiConnection"),
+    UserModule,
   ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],

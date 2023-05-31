@@ -6,22 +6,30 @@
 
 ## Tables
 
-| Name                                                                      | Columns | Comment                           | Type       |
-| ------------------------------------------------------------------------- | ------- | --------------------------------- | ---------- |
-| [public.repos](public.repos.md)                                           | 42      |                                   | BASE TABLE |
-| [public.contributions](public.contributions.md)                           | 9       |                                   | BASE TABLE |
-| [public.users](public.users.md)                                           | 36      |                                   | BASE TABLE |
-| [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |                                   | BASE TABLE |
-| [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |                                   | BASE TABLE |
-| [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |                                   | BASE TABLE |
-| [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |                                   | BASE TABLE |
-| [public.users_to_repos_insights](public.users_to_repos_insights.md)       | 3       |                                   | BASE TABLE |
-| [public.user_notifications](public.user_notifications.md)                 | 4       | Record of user notifications sent | BASE TABLE |
-| [public.insights](public.insights.md)                                     | 9       | Insight Pages                     | BASE TABLE |
-| [public.insight_repos](public.insight_repos.md)                           | 6       | Insights Repositories             | BASE TABLE |
-| [public.user_repos](public.user_repos.md)                                 | 5       |                                   | BASE TABLE |
-| [public.customers](public.customers.md)                                   | 2       |                                   | BASE TABLE |
-| [public.user_highlights](public.user_highlights.md)                       | 10      |                                   | BASE TABLE |
+| Name                                                                      | Columns | Comment | Type       |
+| ------------------------------------------------------------------------- | ------- | ------- | ---------- |
+| [public.users](public.users.md)                                           | 41      |         | BASE TABLE |
+| [public.repos](public.repos.md)                                           | 43      |         | BASE TABLE |
+| [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
+| [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
+| [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
+| [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |         | BASE TABLE |
+| [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |         | BASE TABLE |
+| [public.insights](public.insights.md)                                     | 9       |         | BASE TABLE |
+| [public.insight_repos](public.insight_repos.md)                           | 6       |         | BASE TABLE |
+| [public.user_repos](public.user_repos.md)                                 | 4       |         | BASE TABLE |
+| [public.customers](public.customers.md)                                   | 2       |         | BASE TABLE |
+| [public.user_highlights](public.user_highlights.md)                       | 10      |         | BASE TABLE |
+| [public.pull_requests](public.pull_requests.md)                           | 31      |         | BASE TABLE |
+| [public.user_notifications](public.user_notifications.md)                 | 8       |         | BASE TABLE |
+| [public.users_to_users_followers](public.users_to_users_followers.md)     | 6       |         | BASE TABLE |
+| [public.insight_members](public.insight_members.md)                       | 9       |         | BASE TABLE |
+| [public.emojis](public.emojis.md)                                         | 7       |         | BASE TABLE |
+| [public.user_highlight_reactions](public.user_highlight_reactions.md)     | 7       |         | BASE TABLE |
+| [public.user_top_repos](public.user_top_repos.md)                         | 6       |         | BASE TABLE |
+| [public.pg_stat_statements_info](public.pg_stat_statements_info.md)       | 2       |         | VIEW       |
+| [public.pg_stat_statements](public.pg_stat_statements.md)                 | 43      |         | VIEW       |
+| [public.user_collaborations](public.user_collaborations.md)               | 9       |         | BASE TABLE |
 
 ## Relations
 

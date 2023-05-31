@@ -9,6 +9,7 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { UserNotificationService } from "./user-notifcation.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -17,6 +18,7 @@ export class UserHighlightsService {
     private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
+    private userNotificationService: UserNotificationService,
   ) {}
 
   baseQueryBuilder (): SelectQueryBuilder<DbUserHighlight> {
@@ -47,7 +49,7 @@ export class UserHighlightsService {
     return item;
   }
 
-  async findAll (pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
+  async findAll (pageOptionsDto: HighlightOptionsDto, followerUserId?: number): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -56,12 +58,28 @@ export class UserHighlightsService {
       .addSelect("users.login", "user_highlights_login")
       .orderBy("user_highlights.updated_at", "DESC");
 
-    if (pageOptionsDto.repo) {
-      queryBuilder
+    const filters: [string, object][] = [];
 
-        // eslint-disable-next-line no-useless-escape
-        .where(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) });
+    if (followerUserId) {
+      filters.push([`user_highlights.user_id IN (
+        SELECT following_user_id FROM users_to_users_followers
+        WHERE user_id=:userId
+        AND deleted_at IS NULL
+      )`, { userId: followerUserId }]);
     }
+
+    if (pageOptionsDto.repo) {
+      // eslint-disable-next-line no-useless-escape
+      filters.push([`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) }]);
+    }
+
+    filters.forEach(([sql, data], index) => {
+      if (index === 0) {
+        queryBuilder.where(sql, data);
+      } else {
+        queryBuilder.andWhere(sql, data);
+      }
+    });
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -75,7 +93,7 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllHighlightRepos (pageOptionsDto: PageOptionsDto) {
+  async findAllHighlightRepos (pageOptionsDto: PageOptionsDto, follwerUserId?: number) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -84,6 +102,14 @@ export class UserHighlightsService {
       // eslint-disable-next-line no-useless-escape
       .select(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`, "full_name")
       .where(`user_highlights.url LIKE '%github.com%'`);
+
+    if (follwerUserId) {
+      queryBuilder.andWhere(`user_highlights.user_id IN (
+        SELECT following_user_id FROM users_to_users_followers
+        WHERE user_id=:userId
+        AND deleted_at IS NULL
+      )`, { userId: follwerUserId });
+    }
 
     queryBuilder
       .offset(pageOptionsDto.skip)
@@ -131,6 +157,7 @@ export class UserHighlightsService {
       url: highlight.url,
       highlight: highlight.highlight,
       title: highlight.title ?? "",
+      shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : (new Date),
     });
 
     return this.userHighlightRepository.save(newUserHighlight);
@@ -182,7 +209,7 @@ export class UserHighlightsService {
     return item;
   }
 
-  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string) {
+  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions")
       .withDeleted();
 
@@ -199,9 +226,12 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
+      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
 
       return reactionExists;
     }
+
+    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
 
     return this.userHighlightReactionRepository.save({
       user_id: userId,

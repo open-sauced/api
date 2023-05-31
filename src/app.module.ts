@@ -8,12 +8,8 @@ import { DataSource } from "typeorm";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { clc } from "@nestjs/common/utils/cli-colors.util";
 
+import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig } from "./config";
 import { RepoModule } from "./repo/repo.module";
-import apiConfig from "./config/api.config";
-import DbApiConfig from "./config/db-api.config";
-import DbLoggingConfig from "./config/db-logging.config";
-import endpointConfig from "./config/endpoint.config";
-import stripeConfig from "./config/stripe.config";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
@@ -30,7 +26,6 @@ import { SubmitModule } from "./submit/submit.module";
 import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
 import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
-import { version } from "../package.json";
 import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
 import { InsightsModule } from "./insight/insights.module";
 import { DbInsight } from "./insight/entities/insight.entity";
@@ -52,16 +47,21 @@ import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
 import { DbInsightMember } from "./insight/entities/insight-member.entity";
 import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
+import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
+import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
+import { DbUserNotification } from "./user/entities/user-notification.entity";
+import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       load: [
-        apiConfig,
+        ApiConfig,
         DbApiConfig,
         DbLoggingConfig,
-        endpointConfig,
-        stripeConfig,
+        EndpointConfig,
+        StripeConfig,
+        OpenAIConfig,
       ],
       isGlobal: true,
     }),
@@ -69,6 +69,7 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
       imports: [ConfigModule],
       name: "ApiConnection",
       useFactory: (configService: ConfigService) => ({
+        parseInt8: true,
         type: configService.get("db-api.connection"),
         host: configService.get("db-api.host"),
         port: configService.get("db-api.port"),
@@ -81,6 +82,8 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
           DbUserRepo,
           DbUserHighlight,
           DbUserHighlightReaction,
+          DbUserNotification,
+          DbUserCollaboration,
           DbRepo,
           DbContribution,
           DbRepoToUserVotes,
@@ -93,8 +96,10 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
           DbCustomer,
           DbSubscription,
           DbPullRequest,
+          DbPRInsight,
           DbUserToUserFollows,
           DbEmoji,
+          DbUserTopRepo,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),
@@ -110,6 +115,7 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
       imports: [ConfigModule],
       name: "LogConnection",
       useFactory: (configService: ConfigService) => ({
+        parseInt8: true,
         type: configService.get("db-logging.connection"),
         host: configService.get("db-logging.host"),
         port: configService.get("db-logging.port"),
@@ -187,6 +193,6 @@ export class AppModule {
   configure (consumer: MiddlewareConsumer) {
     consumer
       .apply(HttpLoggerMiddleware)
-      .forRoutes(`v${version.charAt(0)}`);
+      .forRoutes(`v1`);
   }
 }

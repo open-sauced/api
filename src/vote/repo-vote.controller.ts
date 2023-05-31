@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Put, Query, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Put, Query, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
   ApiConflictResponse,
@@ -56,7 +56,7 @@ export class RepoVoteController {
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already voted for this repo" })
   async voteOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
@@ -101,7 +101,7 @@ export class RepoVoteController {
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already removed your vote" })
   async downVoteOneById (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
   ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);

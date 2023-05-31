@@ -33,7 +33,7 @@ export class DbUserRepo extends BaseEntity {
 
   @ApiModelProperty({
     description: "Repo Full Name",
-    example: "open-sauced/open-sauced",
+    example: "open-sauced/insights",
   })
   @Column({ type: "text" })
   public full_name: string;

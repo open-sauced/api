@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import {
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -29,7 +29,7 @@ export class RepoContributionsController {
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: "Repo not found" })
   async findAllByRepoId (
-    @Param("id") id: number,
+    @Param("id", ParseIntPipe) id: number,
       @Query() pageOptionsDto: ContributionPageOptionsDto,
   ): Promise<PageDto<DbContribution>> {
     const item = await this.repoService.findOneById(id);

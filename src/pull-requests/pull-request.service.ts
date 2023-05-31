@@ -52,9 +52,10 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor })
+      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() })
       .andWhere(`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
+      .addSelect("repos.id", "pull_requests_repo_id")
       .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
@@ -75,18 +76,19 @@ export class PullRequestService {
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name");
+      .addSelect("repos.full_name", "pull_requests_full_name")
+      .addSelect("repos.id", "pull_requests_repo_id");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
 
     filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     if (pageOptionsDto.contributor) {
-      filters.push([`LOWER("pull_requests"."author_login")=LOWER(:contributor)`, { contributor: decodeURIComponent(pageOptionsDto.contributor ) }]);
+      filters.push([`LOWER("pull_requests"."author_login")=:contributor`, { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) }]);
     }
 
     if (pageOptionsDto.status) {
-      filters.push([`("pull_requests"."state"=:status)`, { status: pageOptionsDto.status }]);
+      filters.push([`(LOWER("pull_requests"."state")=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
