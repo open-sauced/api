@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.37.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.1...v1.37.0-beta.2) (2023-05-31)
+
+
+### 🐛 Bug Fixes
+
+* add regex pattern to validate twitter username ([#138](https://github.com/open-sauced/api.opensauced.pizza/issues/138)) ([71a164d](https://github.com/open-sauced/api.opensauced.pizza/commit/71a164d1f246d12740440b7ab9d9441a1ed53de9))
+
 ## [1.37.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.36.0...v1.37.0-beta.1) (2023-05-24)
 
 
