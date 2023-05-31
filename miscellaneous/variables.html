@@ -135,6 +135,7 @@
   memory_rss: Number(parseInt(process.env.MEMORY_RSS ?? &quot;3000&quot;, 10) * 1024 * 1024),
   disk_percentage: Number(parseFloat(process.env.DISK_PERCENGATE ?? &quot;0.7&quot;)),
   disk_size: Number(parseInt(process.env.DISK_SIZE ?? &quot;100&quot;, 10) * 1024 * 1024 * 1024),
+  endorsementServiceToken: String(process.env.ENDORSEMENT_SERVICE_TOKEN ?? &quot;&quot;),
 }))</code>
                     </td>
                 </tr>
