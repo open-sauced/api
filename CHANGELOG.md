@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.37.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.3...v1.37.0-beta.4) (2023-06-01)
+
+
+### 🍕 Features
+
+* add endpoint for fetching contributors based on filters ([#177](https://github.com/open-sauced/api.opensauced.pizza/issues/177)) ([9427269](https://github.com/open-sauced/api.opensauced.pizza/commit/9427269266474f091995e64ee3e8c509947bd885))
+
 ## [1.37.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.2...v1.37.0-beta.3) (2023-05-31)
 
 
