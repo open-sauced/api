@@ -129,6 +129,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/ContributorModule.html" data-type="entity-link" >ContributorModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-ContributorModule-74c4ed5e0487366945464b963ee864138a287edf465dc3365d355bd872988b1f575e0d6298d1c0c4f7c29a63255b98fa3749277118ce872011523e793c68d950"' : 'data-target="#xs-controllers-links-module-ContributorModule-74c4ed5e0487366945464b963ee864138a287edf465dc3365d355bd872988b1f575e0d6298d1c0c4f7c29a63255b98fa3749277118ce872011523e793c68d950"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ContributorModule-74c4ed5e0487366945464b963ee864138a287edf465dc3365d355bd872988b1f575e0d6298d1c0c4f7c29a63255b98fa3749277118ce872011523e793c68d950"' :
+                                            'id="xs-controllers-links-module-ContributorModule-74c4ed5e0487366945464b963ee864138a287edf465dc3365d355bd872988b1f575e0d6298d1c0c4f7c29a63255b98fa3749277118ce872011523e793c68d950"' }>
+                                            <li class="link">
+                                                <a href="controllers/ContributorController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContributorController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/CustomerModule.html" data-type="entity-link" >CustomerModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -774,6 +791,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DatabaseLoggerMiddleware.html" data-type="entity-link" >DatabaseLoggerMiddleware</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DbPullRequestContributor.html" data-type="entity-link" >DbPullRequestContributor</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DbUserHighlightRepo.html" data-type="entity-link" >DbUserHighlightRepo</a>
                             </li>
                             <li class="link">
@@ -802,6 +822,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/PageOptionsDto.html" data-type="entity-link" >PageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PullRequestContributorOptionsDto.html" data-type="entity-link" >PullRequestContributorOptionsDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PullRequestPageOptionsDto.html" data-type="entity-link" >PullRequestPageOptionsDto</a>

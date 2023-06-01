@@ -91,6 +91,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllContributorsWithFilters" >findAllContributorsWithFilters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllWithFilters" >findAllWithFilters</a>
                             </li>
                         </ul>
@@ -116,7 +120,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/pull-requests/pull-request.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/pull-requests/pull-request.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -191,8 +195,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -230,8 +234,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -301,8 +305,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -366,6 +370,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllContributorsWithFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllContributorsWithFilters</b></span>
+                        <a href="#findAllContributorsWithFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllContributorsWithFilters(pageOptionsDto: <a href="../classes/PullRequestContributorOptionsDto.html" target="_self">PullRequestContributorOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorOptionsDto.html" target="_self" >PullRequestContributorOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllWithFilters"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -384,8 +459,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -451,6 +526,8 @@ import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
 import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
 import { InsightFilterFieldsEnum } from &quot;../insight/dtos/insight-options.dto&quot;;
+import { DbPullRequestContributor } from &quot;./dtos/pull-request-contributor.dto&quot;;
+import { PullRequestContributorOptionsDto } from &quot;./dtos/pull-request-contributor-options.dto&quot;;
 
 @Injectable()
 export class PullRequestService {
@@ -546,6 +623,46 @@ export class PullRequestService {
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllContributorsWithFilters (
+    pageOptionsDto: PullRequestContributorOptionsDto,
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    const queryBuilder &#x3D; this.pullRequestRepository.manager.createQueryBuilder();
+    const range &#x3D; pageOptionsDto.range!;
+
+    queryBuilder
+      .from(DbPullRequest, &quot;pull_requests&quot;)
+      .distinct()
+      .select(&quot;pull_requests.author_login&quot;, &quot;author_login&quot;)
+      .addSelect(&quot;MAX(pull_requests.updated_at)&quot;, &quot;updated_at&quot;)
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
+      .addGroupBy(&quot;author_login&quot;);
+
+    const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, range);
+
+    filters.push([&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;, {}]);
+
+    this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
+
+    const subQuery &#x3D; this.pullRequestRepository.manager.createQueryBuilder()
+      .from(&#x60;(${queryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
+      .setParameters(queryBuilder.getParameters())
+      .select(&quot;count(author_login)&quot;);
+
+    const countQueryResult &#x3D; await subQuery.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${countQueryResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    queryBuilder
+      .addOrderBy(&#x60;&quot;updated_at&quot;&#x60;, OrderDirectionEnum.DESC)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
 
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
