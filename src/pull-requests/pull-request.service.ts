@@ -10,6 +10,8 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
+import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
 
 @Injectable()
 export class PullRequestService {
@@ -105,6 +107,46 @@ export class PullRequestService {
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllContributorsWithFilters (
+    pageOptionsDto: PullRequestContributorOptionsDto,
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
+    const range = pageOptionsDto.range!;
+
+    queryBuilder
+      .from(DbPullRequest, "pull_requests")
+      .distinct()
+      .select("pull_requests.author_login", "author_login")
+      .addSelect("MAX(pull_requests.updated_at)", "updated_at")
+      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+      .addGroupBy("author_login");
+
+    const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
+
+    filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+
+    this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
+
+    const subQuery = this.pullRequestRepository.manager.createQueryBuilder()
+      .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
+      .setParameters(queryBuilder.getParameters())
+      .select("count(author_login)");
+
+    const countQueryResult = await subQuery.getRawOne<{ count: number }>();
+    const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
+
+    queryBuilder
+      .addOrderBy(`"updated_at"`, OrderDirectionEnum.DESC)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
 
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
