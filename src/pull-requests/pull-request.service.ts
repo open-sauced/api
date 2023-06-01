@@ -139,7 +139,7 @@ export class PullRequestService {
       .select("count(author_login)");
 
     const countQueryResult = await subQuery.getRawOne<{ count: number }>();
-    const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);    
+    const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
 
     queryBuilder
       .addOrderBy(`"updated_at"`, OrderDirectionEnum.DESC)

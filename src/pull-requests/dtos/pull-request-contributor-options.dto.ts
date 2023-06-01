@@ -12,7 +12,7 @@ export class PullRequestContributorOptionsDto extends PageOptionsDto {
   @IsEnum(InsightFilterFieldsEnum)
   @IsOptional()
   readonly filter?: InsightFilterFieldsEnum;
-    
+
   @ApiPropertyOptional({
     type: "string",
     example: "javascript",
