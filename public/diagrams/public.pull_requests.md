@@ -47,11 +47,13 @@
 
 ## Indexes
 
-| Name                      | Definition                                                                                      |
-| ------------------------- | ----------------------------------------------------------------------------------------------- |
-| pull_requests_pkey        | CREATE UNIQUE INDEX pull_requests_pkey ON public.pull_requests USING btree (id)                 |
-| pull_requests_idx_author  | CREATE INDEX pull_requests_idx_author ON public.pull_requests USING btree (lower(author_login)) |
-| pull_requests_idx_repo_id | CREATE INDEX pull_requests_idx_repo_id ON public.pull_requests USING btree (repo_id)            |
+| Name                         | Definition                                                                                      |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| pull_requests_pkey           | CREATE UNIQUE INDEX pull_requests_pkey ON public.pull_requests USING btree (id)                 |
+| pull_requests_idx_author     | CREATE INDEX pull_requests_idx_author ON public.pull_requests USING btree (lower(author_login)) |
+| pull_requests_idx_repo_id    | CREATE INDEX pull_requests_idx_repo_id ON public.pull_requests USING btree (repo_id)            |
+| pull_requests_idx_updated_at | CREATE INDEX pull_requests_idx_updated_at ON public.pull_requests USING btree (updated_at)      |
+| pull_requests_idx_state      | CREATE INDEX pull_requests_idx_state ON public.pull_requests USING btree (state)                |
 
 ## Relations
 
