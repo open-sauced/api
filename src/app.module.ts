@@ -51,6 +51,9 @@ import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entit
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
 import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
+import { EndorsementModule } from "./endorsement/endorsement.module";
+import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
+import { ContributorModule } from "./contributor/contributor.module";
 
 @Module({
   imports: [
@@ -100,6 +103,7 @@ import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
           DbUserToUserFollows,
           DbEmoji,
           DbUserTopRepo,
+          DbEndorsement,
         ],
         synchronize: false,
         logger: new DatabaseLoggerMiddleware("OS"),
@@ -178,6 +182,8 @@ import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
     PullRequestModule,
     HighlightModule,
     EmojiModule,
+    EndorsementModule,
+    ContributorModule,
   ],
   providers: [],
 })

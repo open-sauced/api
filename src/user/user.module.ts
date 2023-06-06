@@ -24,6 +24,10 @@ import { UserNotificationService } from "./user-notifcation.service";
 import { UserNotificationController } from "./user-notification.controller";
 import { UserCollaborationService } from "./user-collaboration.service";
 import { UserCollaborationController } from "./user-collaboration.controller";
+import { UserEndorsementController } from "./user-endorsement.controller";
+
+import { EndorsementService } from "../endorsement/endorsement.service";
+import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
 
 @Module({
   imports: [
@@ -36,12 +40,31 @@ import { UserCollaborationController } from "./user-collaboration.controller";
       DbUserNotification,
       DbUserCollaboration,
       DbRepo,
+      DbEndorsement,
     ], "ApiConnection"),
     PullRequestModule,
     RepoModule,
   ],
-  controllers: [UserController, UserHighlightsController, UserFollowsController, UserNotificationController, UserCollaborationController],
-  providers: [UserService, UserController, UserHighlightsService, UserHighlightsController, UserFollowService, RepoService, RepoFilterService, UserNotificationService, UserCollaborationService],
-  exports: [UserService, UserHighlightsService, UserFollowService, RepoService],
+  controllers: [
+    UserController,
+    UserHighlightsController,
+    UserFollowsController,
+    UserNotificationController,
+    UserCollaborationController,
+    UserEndorsementController,
+  ],
+  providers: [
+    UserService,
+    UserController,
+    UserHighlightsService,
+    UserHighlightsController,
+    UserFollowService,
+    RepoService,
+    RepoFilterService,
+    UserNotificationService,
+    UserCollaborationService,
+    EndorsementService,
+  ],
+  exports: [UserService, UserHighlightsService, UserFollowService, RepoService, EndorsementService],
 })
 export class UserModule {}

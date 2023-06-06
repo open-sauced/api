@@ -11,6 +11,7 @@ export const ApiConfig = registerAs("api", () => ({
   memory_rss: Number(parseInt(process.env.MEMORY_RSS ?? "3000", 10) * 1024 * 1024),
   disk_percentage: Number(parseFloat(process.env.DISK_PERCENGATE ?? "0.7")),
   disk_size: Number(parseInt(process.env.DISK_SIZE ?? "100", 10) * 1024 * 1024 * 1024),
+  endorsementServiceToken: String(process.env.ENDORSEMENT_SERVICE_TOKEN ?? ""),
 }));
 
 export default ApiConfig;

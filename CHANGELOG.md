@@ -5,6 +5,34 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.37.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.3...v1.37.0-beta.4) (2023-06-01)
+
+
+### 🍕 Features
+
+* add endpoint for fetching contributors based on filters ([#177](https://github.com/open-sauced/api.opensauced.pizza/issues/177)) ([9427269](https://github.com/open-sauced/api.opensauced.pizza/commit/9427269266474f091995e64ee3e8c509947bd885))
+
+## [1.37.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.2...v1.37.0-beta.3) (2023-05-31)
+
+
+### 🍕 Features
+
+* add endpoints for managing endorsements ([#176](https://github.com/open-sauced/api.opensauced.pizza/issues/176)) ([487c1a2](https://github.com/open-sauced/api.opensauced.pizza/commit/487c1a2e228d5452713f1e3d58eca5a3b377876e))
+
+## [1.37.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0-beta.1...v1.37.0-beta.2) (2023-05-31)
+
+
+### 🐛 Bug Fixes
+
+* add regex pattern to validate twitter username ([#138](https://github.com/open-sauced/api.opensauced.pizza/issues/138)) ([71a164d](https://github.com/open-sauced/api.opensauced.pizza/commit/71a164d1f246d12740440b7ab9d9441a1ed53de9))
+
+## [1.37.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.36.0...v1.37.0-beta.1) (2023-05-24)
+
+
+### 🍕 Features
+
+* remove open-sauced/open-sauced from ci yml ([#173](https://github.com/open-sauced/api.opensauced.pizza/issues/173)) ([a398b89](https://github.com/open-sauced/api.opensauced.pizza/commit/a398b89c207cadecba9e4da6aba4773bda9606a7))
+
 ## [1.36.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.35.0...v1.36.0) (2023-05-23)
 
 
