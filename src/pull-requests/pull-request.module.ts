@@ -11,6 +11,10 @@ import { PullRequestDescriptionService } from "./pull-request-description.servic
 import { PullRequestDescriptionController } from "./pull-request-description.controller";
 import { CodeRefactorSuggestionController } from "./code-refactor-suggestion.controller";
 import { CodeRefactorSuggestionService } from "./code-refactor-suggestion.service";
+import { CodeTestSuggestionController } from "./code-test.suggestion.controller";
+import { CodeExplanationService } from "./code-explanation.service";
+import { CodeExplanationController } from "./code-explanation.controller";
+import { CodeTestSuggestionService } from "./code-test-suggestion.service";
 
 @Module({
   imports: [
@@ -20,8 +24,8 @@ import { CodeRefactorSuggestionService } from "./code-refactor-suggestion.servic
     ], "ApiConnection"),
     RepoFilterModule,
   ],
-  controllers: [PullRequestController, PullRequestDescriptionController, CodeRefactorSuggestionController],
-  providers: [PullRequestService, PullRequestInsightsService, PullRequestDescriptionService, CodeRefactorSuggestionService],
+  controllers: [PullRequestController, PullRequestDescriptionController, CodeRefactorSuggestionController, CodeTestSuggestionController, CodeExplanationController],
+  providers: [PullRequestService, PullRequestInsightsService, PullRequestDescriptionService, CodeRefactorSuggestionService, CodeTestSuggestionService, CodeExplanationService],
   exports: [PullRequestService],
 })
 export class PullRequestModule {}
