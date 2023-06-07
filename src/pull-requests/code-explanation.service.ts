@@ -12,10 +12,11 @@ export class CodeExplanationService {
 
 
   private generatePrompt (
+    language: string,
     maxLength: number,
   ) {
     return [
-      `Generate an explanation for the given code snippet with the specifications mentioned below`,
+      `Generate an explanation for the given code snippet written in ${language} with the specifications mentioned below`,
       `The explanation must be a maximum of ${maxLength} characters.`,
     ].join("\n");
   }
@@ -38,7 +39,7 @@ export class CodeExplanationService {
             messages: [
               {
                 role: "system",
-                content: this.generatePrompt(options.descriptionLength),
+                content: this.generatePrompt(options.language, options.descriptionLength),
               },
               {
                 role: "user",

@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString, Max, Min } from "class-validator";
+import { IsNumber, IsString, Max, Min, IsIn } from "class-validator";
 
 export class GenerateCodeExplanationDto {
   @ApiProperty({
-    description: "Explanation Length",
+    description: "Description Length",
     type: Number,
     example: 250,
   })
@@ -23,6 +23,15 @@ export class GenerateCodeExplanationDto {
   @Max(10)
     temperature: number;
 
+    @ApiProperty({
+      description: "Description Language",
+      type: String,
+      example: "english",
+      default: "english",
+    })
+    @IsString()
+    @IsIn(["english", "spanish", "french", "german", "italian", "portuguese", "dutch", "russian", "chinese", "korean"])
+      language: string;
 
   @ApiProperty({
     description: "Code",
