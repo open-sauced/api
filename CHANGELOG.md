@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.38.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0...v1.38.0-beta.1) (2023-06-12)
+
+
+### 🍕 Features
+
+* generate code test, explanation on PR ([#179](https://github.com/open-sauced/api.opensauced.pizza/issues/179)) ([c292277](https://github.com/open-sauced/api.opensauced.pizza/commit/c29227715a539814c791fe0b519999927708fd9f))
+
 ## [1.37.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.36.0...v1.37.0) (2023-06-06)
 
 
