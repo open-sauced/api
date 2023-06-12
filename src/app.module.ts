@@ -185,7 +185,7 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
     EmojiModule,
     EndorsementModule,
     ContributorModule,
-    OpenAiModule
+    OpenAiModule,
   ],
   providers: [],
 })
