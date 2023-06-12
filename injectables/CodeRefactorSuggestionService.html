@@ -104,12 +104,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(configService: ConfigService)</code>
+<code>constructor(openAiService: <a href="../injectables/OpenAiService.html" target="_self">OpenAiService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -127,10 +127,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>openAiService</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="../injectables/OpenAiService.html" target="_self" >OpenAiService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -174,8 +174,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:18</a></div>
                 </td>
             </tr>
 
@@ -245,8 +245,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="10"
+                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.service.ts:10</a></div>
                 </td>
             </tr>
 
@@ -313,22 +313,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
-import { ConfigService } from &quot;@nestjs/config&quot;;
-import { Fetch } from &quot;@supabase/supabase-js/dist/module/lib/types&quot;;
 
 import { GenerateCodeRefactorSuggestionDto } from &quot;./dtos/create-code-refactor-suggestion.dto&quot;;
-
-interface ChatResponse { choices: { message: { content: string } }[] }
+import { OpenAiService } from &quot;../open-ai/open-ai.service&quot;;
 
 @Injectable()
 export class CodeRefactorSuggestionService {
-  constructor (private configService: ConfigService) {}
+  constructor (private openAiService: OpenAiService) {}
 
-
-  private generatePrompt (
-    language: string,
-    maxLength: number,
-  ) {
+  private generatePrompt (language: string, maxLength: number) {
     return [
       &#x60;Generate a code refactor suggestion for a given code snippet written in ${language} with the specifications mentioned below&#x60;,
       &#x60;The code snippet must be a maximum of ${maxLength} characters.&#x60;,
@@ -340,40 +333,13 @@ export class CodeRefactorSuggestionService {
     const content &#x3D; &#x60;Code: ${options.code}\n&#x60;;
 
     try {
-      // eslint-disable-next-line
-      const fetcher: Fetch &#x3D; typeof fetch !&#x3D;&#x3D; &#x27;undefined&#x27; ? fetch : require(&quot;node-fetch&quot;) as Fetch;
-      const response &#x3D; await fetcher(this.configService.get&lt;string&gt;(&quot;openai.completionsURL&quot;)!, {
-        method: &quot;POST&quot;,
-        headers: {
-          Authorization: &#x60;Bearer ${this.configService.get&lt;string&gt;(&quot;openai.APIKey&quot;)!}&#x60;,
-          &quot;Content-type&quot;: &quot;application/json&quot;,
-        },
-        body: JSON.stringify(
-          {
-            model: this.configService.get&lt;string&gt;(&quot;openai.modelName&quot;),
-            messages: [
-              {
-                role: &quot;system&quot;,
-                content: this.generatePrompt(options.language, options.descriptionLength),
-              },
-              {
-                role: &quot;user&quot;,
-                content,
-              },
-            ],
-            temperature: options.temperature / 10,
-            n: 1,
-          },
-        ),
-      });
+      const completion &#x3D; await this.openAiService.generateCompletion(
+        this.generatePrompt(options.language, options.descriptionLength),
+        content,
+        options.temperature,
+      );
 
-      if (response.ok) {
-        const data &#x3D; await response.json() as ChatResponse;
-
-        return data.choices[0]?.message.content;
-      }
-
-      throw new Error(response.statusText);
+      return completion;
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error(&quot;OpenAI error: &quot;, error.message);

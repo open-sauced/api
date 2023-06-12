@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >PullRequestDescriptionService</li>
+  <li >OpenAiService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/pull-requests/pull-request-description.service.ts</code>
+            <code>src/open-ai/open-ai.service.ts</code>
         </p>
 
 
@@ -80,11 +80,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#generateDescription" >generateDescription</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#generatePrompt" >generatePrompt</a>
+                                <a href="#generateCompletion" >generateCompletion</a>
                             </li>
                         </ul>
                     </td>
@@ -104,12 +100,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(openAiService: <a href="../injectables/OpenAiService.html" target="_self">OpenAiService</a>)</code>
+<code>constructor(configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/pull-requests/pull-request-description.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/open-ai/open-ai.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -127,10 +123,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>openAiService</td>
+                                                        <td>configService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/OpenAiService.html" target="_self" >OpenAiService</a></code>
+                                                                    <code>ConfigService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -156,26 +152,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="generateDescription"></a>
+                    <a name="generateCompletion"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>generateDescription</b></span>
-                        <a href="#generateDescription"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>generateCompletion</b></span>
+                        <a href="#generateCompletion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>generateDescription(options: <a href="../classes/GeneratePullRequestDescriptionDto.html" target="_self">GeneratePullRequestDescriptionDto</a>)</code>
+                    <code>generateCompletion(systemMessage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userMessage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, temperature: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/pull-requests/pull-request-description.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/open-ai/open-ai.service.ts:13</a></div>
                 </td>
             </tr>
 
@@ -196,9 +192,33 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>options</td>
+                                    <td>systemMessage</td>
                                     <td>
-                                                <code><a href="../classes/GeneratePullRequestDescriptionDto.html" target="_self" >GeneratePullRequestDescriptionDto</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userMessage</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>temperature</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -223,101 +243,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="generatePrompt"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>generatePrompt</b></span>
-                        <a href="#generatePrompt"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>generatePrompt(language: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tone: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/pull-requests/pull-request-description.service.ts:10</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>language</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>maxLength</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>tone</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
     </div>
@@ -325,41 +250,50 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { Fetch } from &quot;@supabase/supabase-js/dist/module/lib/types&quot;;
+import { ConfigService } from &quot;@nestjs/config&quot;;
 
-import { GeneratePullRequestDescriptionDto } from &quot;./dtos/create-pull-request-description.dto&quot;;
-import { OpenAiService } from &quot;../open-ai/open-ai.service&quot;;
+interface ChatResponse {
+  choices: { message: { content: string } }[];
+}
 
 @Injectable()
-export class PullRequestDescriptionService {
-  constructor (private openAiService: OpenAiService) {}
+export class OpenAiService {
+  constructor (private configService: ConfigService) {}
 
-  private generatePrompt (language: string, maxLength: number, tone: string) {
-    return [
-      &#x60;Generate an apt github PR description written in present tense and ${tone} tone for the given code diff/commit-messages with the specifications mentioned below&#x60;,
-      &#x60;Description language: ${language}&#x60;,
-      &#x60;Description must be a maximum of ${maxLength} characters.&#x60;,
-      &quot;Exclude anything unnecessary such as translation. Your entire response will be passed directly into a pull request description&quot;,
-    ].join(&quot;\n&quot;);
-  }
+  async generateCompletion (systemMessage: string, userMessage: string, temperature: number) {
+    // eslint-disable-next-line
+    const fetcher: Fetch &#x3D; typeof fetch !&#x3D;&#x3D; &quot;undefined&quot; ? fetch : (require(&quot;node-fetch&quot;) as Fetch);
+    const response &#x3D; await fetcher(this.configService.get&lt;string&gt;(&quot;openai.completionsURL&quot;)!, {
+      method: &quot;POST&quot;,
+      headers: {
+        Authorization: &#x60;Bearer ${this.configService.get&lt;string&gt;(&quot;openai.APIKey&quot;)!}&#x60;,
+        &quot;Content-type&quot;: &quot;application/json&quot;,
+      },
+      body: JSON.stringify({
+        model: this.configService.get&lt;string&gt;(&quot;openai.modelName&quot;),
+        messages: [
+          {
+            role: &quot;system&quot;,
+            content: systemMessage,
+          },
+          {
+            role: &quot;user&quot;,
+            content: userMessage,
+          },
+        ],
+        temperature: temperature / 10,
+        n: 1,
+      }),
+    });
 
-  async generateDescription (options: GeneratePullRequestDescriptionDto) {
-    const content &#x3D; &#x60;${options.diff ? &#x60;Diff: ${options.diff}\n&#x60; : &quot;&quot;}${
-      options.commitMessages ? &#x60;\nCommit Messages: ${options.commitMessages.join(&quot;,&quot;)}&#x60; : &quot;&quot;
-    }&#x60;;
+    if (response.ok) {
+      const data &#x3D; (await response.json()) as ChatResponse;
 
-    try {
-      const completion &#x3D; this.openAiService.generateCompletion(
-        this.generatePrompt(options.language, options.descriptionLength, options.tone),
-        content,
-        options.temperature,
-      );
-
-      return completion;
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(&quot;OpenAI error: &quot;, error.message);
-      }
+      return data.choices[0]?.message.content;
     }
+
+    throw new Error(response.statusText);
   }
 }
 </code></pre>
@@ -405,7 +339,7 @@ export class PullRequestDescriptionService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'PullRequestDescriptionService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'OpenAiService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

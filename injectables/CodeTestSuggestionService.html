@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >PullRequestDescriptionService</li>
+  <li >CodeTestSuggestionService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/pull-requests/pull-request-description.service.ts</code>
+            <code>src/pull-requests/code-test-suggestion.service.ts</code>
         </p>
 
 
@@ -79,12 +79,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#generateDescription" >generateDescription</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#generatePrompt" >generatePrompt</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#generateTestSuggestion" >generateTestSuggestion</a>
                             </li>
                         </ul>
                     </td>
@@ -109,7 +109,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/pull-requests/pull-request-description.service.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/pull-requests/code-test-suggestion.service.ts:7</a></div>
                             </td>
                         </tr>
 
@@ -156,77 +156,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="generateDescription"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>generateDescription</b></span>
-                        <a href="#generateDescription"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>generateDescription(options: <a href="../classes/GeneratePullRequestDescriptionDto.html" target="_self">GeneratePullRequestDescriptionDto</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/pull-requests/pull-request-description.service.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                                <code><a href="../classes/GeneratePullRequestDescriptionDto.html" target="_self" >GeneratePullRequestDescriptionDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="generatePrompt"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -238,7 +167,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>generatePrompt(language: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, maxLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, tone: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>generatePrompt(maxLength: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -246,7 +175,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="10"
-                            class="link-to-prism">src/pull-requests/pull-request-description.service.ts:10</a></div>
+                            class="link-to-prism">src/pull-requests/code-test-suggestion.service.ts:10</a></div>
                 </td>
             </tr>
 
@@ -267,33 +196,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>language</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
                                     <td>maxLength</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>tone</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -318,6 +223,77 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateTestSuggestion"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>generateTestSuggestion</b></span>
+                        <a href="#generateTestSuggestion"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateTestSuggestion(options: <a href="../classes/GenerateCodeTestSuggestionDto.html" target="_self">GenerateCodeTestSuggestionDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/pull-requests/code-test-suggestion.service.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/GenerateCodeTestSuggestionDto.html" target="_self" >GenerateCodeTestSuggestionDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -326,30 +302,27 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 
-import { GeneratePullRequestDescriptionDto } from &quot;./dtos/create-pull-request-description.dto&quot;;
+import { GenerateCodeTestSuggestionDto } from &quot;./dtos/create-code-test-suggestion.dto&quot;;
 import { OpenAiService } from &quot;../open-ai/open-ai.service&quot;;
 
 @Injectable()
-export class PullRequestDescriptionService {
+export class CodeTestSuggestionService {
   constructor (private openAiService: OpenAiService) {}
 
-  private generatePrompt (language: string, maxLength: number, tone: string) {
+  private generatePrompt (maxLength: number) {
     return [
-      &#x60;Generate an apt github PR description written in present tense and ${tone} tone for the given code diff/commit-messages with the specifications mentioned below&#x60;,
-      &#x60;Description language: ${language}&#x60;,
-      &#x60;Description must be a maximum of ${maxLength} characters.&#x60;,
-      &quot;Exclude anything unnecessary such as translation. Your entire response will be passed directly into a pull request description&quot;,
+      &#x60;Generate a test for a given code snippet with the specifications mentioned below&#x60;,
+      &#x60;The code snippet must be a maximum of ${maxLength} characters.&#x60;,
+      &quot;Exclude anything unnecessary such as translation and instructions. The code snippet you suggest should start with \&quot;&#x60;&#x60;&#x60;suggestion\&quot; and end with &#x60;&#x60;&#x60; to create a valid GitHub suggestion codeblock. All non-code text or description should be outside of the codeblock.&quot;,
     ].join(&quot;\n&quot;);
   }
 
-  async generateDescription (options: GeneratePullRequestDescriptionDto) {
-    const content &#x3D; &#x60;${options.diff ? &#x60;Diff: ${options.diff}\n&#x60; : &quot;&quot;}${
-      options.commitMessages ? &#x60;\nCommit Messages: ${options.commitMessages.join(&quot;,&quot;)}&#x60; : &quot;&quot;
-    }&#x60;;
+  async generateTestSuggestion (options: GenerateCodeTestSuggestionDto) {
+    const content &#x3D; &#x60;Code: ${options.code}\n&#x60;;
 
     try {
       const completion &#x3D; this.openAiService.generateCompletion(
-        this.generatePrompt(options.language, options.descriptionLength, options.tone),
+        this.generatePrompt(options.descriptionLength),
         content,
         options.temperature,
       );
@@ -405,7 +378,7 @@ export class PullRequestDescriptionService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'PullRequestDescriptionService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CodeTestSuggestionService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
