@@ -54,7 +54,7 @@ import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
 import { EndorsementModule } from "./endorsement/endorsement.module";
 import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
 import { ContributorModule } from "./contributor/contributor.module";
-import { OpenAiService } from "./open-ai/open-ai.service";
+import { OpenAiModule } from "./open-ai/open-ai.module";
 
 @Module({
   imports: [
@@ -185,8 +185,9 @@ import { OpenAiService } from "./open-ai/open-ai.service";
     EmojiModule,
     EndorsementModule,
     ContributorModule,
+    OpenAiModule
   ],
-  providers: [OpenAiService],
+  providers: [],
 })
 export class AppModule {
   constructor (
