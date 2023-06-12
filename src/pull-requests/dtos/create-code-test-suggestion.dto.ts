@@ -12,7 +12,6 @@ export class GenerateCodeTestSuggestionDto {
   @Max(500)
     descriptionLength: number;
 
-
   @ApiProperty({
     description: "Description Temperature",
     type: Number,
@@ -22,7 +21,6 @@ export class GenerateCodeTestSuggestionDto {
   @Min(0)
   @Max(10)
     temperature: number;
-
 
   @ApiProperty({
     description: "Code",

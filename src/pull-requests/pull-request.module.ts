@@ -15,6 +15,7 @@ import { CodeTestSuggestionController } from "./code-test.suggestion.controller"
 import { CodeExplanationService } from "./code-explanation.service";
 import { CodeExplanationController } from "./code-explanation.controller";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
+import { OpenAiModule } from "../open-ai/open-ai.module";
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CodeTestSuggestionService } from "./code-test-suggestion.service";
       DbPRInsight,
     ], "ApiConnection"),
     RepoFilterModule,
+    OpenAiModule,
   ],
   controllers: [PullRequestController, PullRequestDescriptionController, CodeRefactorSuggestionController, CodeTestSuggestionController, CodeExplanationController],
   providers: [PullRequestService, PullRequestInsightsService, PullRequestDescriptionService, CodeRefactorSuggestionService, CodeTestSuggestionService, CodeExplanationService],
