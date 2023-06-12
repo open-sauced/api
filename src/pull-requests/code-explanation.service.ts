@@ -1,21 +1,20 @@
 import { Injectable } from "@nestjs/common";
 
-import { GenerateCodeRefactorSuggestionDto } from "./dtos/create-code-refactor-suggestion.dto";
+import { GenerateCodeExplanationDto } from "./dtos/create-code-explanation.dto";
 import { OpenAiService } from "../open-ai/open-ai.service";
 
 @Injectable()
-export class CodeRefactorSuggestionService {
+export class CodeExplanationService {
   constructor (private openAiService: OpenAiService) {}
 
   private generatePrompt (language: string, maxLength: number) {
     return [
-      `Generate a code refactor suggestion for a given code snippet written in ${language} with the specifications mentioned below`,
-      `The code snippet must be a maximum of ${maxLength} characters.`,
-      "Exclude anything unnecessary such as translation and instructions. The code snippet you suggest should start with \"```suggestion\" and end with ``` to create a valid GitHub suggestion codeblock. All non-code text or description should be outside of the codeblock.",
+      `Generate an explanation for the given code snippet written in ${language} with the specifications mentioned below`,
+      `The explanation must be a maximum of ${maxLength} characters.`,
     ].join("\n");
   }
 
-  async generateDescription (options: GenerateCodeRefactorSuggestionDto) {
+  async generateExplanation (options: GenerateCodeExplanationDto) {
     const content = `Code: ${options.code}\n`;
 
     try {
