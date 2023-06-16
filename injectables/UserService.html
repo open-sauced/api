@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/user/user.service.ts:177</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/user/user.service.ts:186</a></div>
                 </td>
             </tr>
 
@@ -547,8 +547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/user/user.service.ts:170</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/user/user.service.ts:179</a></div>
                 </td>
             </tr>
 
@@ -630,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/user/user.service.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/user/user.service.ts:175</a></div>
                 </td>
             </tr>
 
@@ -713,8 +713,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/user/user.service.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/user/user.service.ts:140</a></div>
                 </td>
             </tr>
 
@@ -796,8 +796,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/user/user.service.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/user/user.service.ts:165</a></div>
                 </td>
             </tr>
 
@@ -879,8 +879,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/user/user.service.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user/user.service.ts:116</a></div>
                 </td>
             </tr>
 
@@ -962,8 +962,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/user/user.service.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/user/user.service.ts:155</a></div>
                 </td>
             </tr>
 
@@ -1103,7 +1103,16 @@ export class UserService {
     const id &#x3D; parseInt(github.id, 10);
 
     try {
-      return await this.findOneById(id, true);
+      const user &#x3D; await this.findOneById(id, true);
+
+      if (user &amp;&amp; !user.is_open_sauced_member) {
+        await this.userRepository.update(user.id, {
+          is_open_sauced_member: true,
+          connected_at: (new Date),
+        });
+      }
+
+      return user;
     } catch (e) {
       // create new user
       const newUser &#x3D; this.userRepository.create({
