@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.38.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.0...v1.38.1-beta.1) (2023-06-16)
+
+
+### 🐛 Bug Fixes
+
+* update existing user after they connect their account ([#182](https://github.com/open-sauced/api.opensauced.pizza/issues/182)) ([b8e8c88](https://github.com/open-sauced/api.opensauced.pizza/commit/b8e8c8890bdb241dcfc87c1cdb6c0f934fddb3fb))
+
 ## [1.38.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.37.0...v1.38.0) (2023-06-13)
 
 
