@@ -829,8 +829,8 @@ export class RepoService {
           SELECT COALESCE(COUNT(&quot;merged_pull_requests&quot;.&quot;id&quot;), 0)
           FROM &quot;pull_requests&quot; &quot;merged_pull_requests&quot;
           WHERE
-            LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
-            AND &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true
+            (LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;merged&#x27;
+            OR &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true)
             AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
