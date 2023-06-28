@@ -1,5 +1,6 @@
 import {
   Body,
+  ConflictException,
   Controller,
   Delete,
   Get,
@@ -10,10 +11,11 @@ import {
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from "@nestjs/swagger";
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from "@nestjs/swagger";
+import { SupabaseAuthUser } from "nestjs-supabase-auth";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
-import { UserId } from "../auth/supabase.user.decorator";
+import { User, UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
 
@@ -58,16 +60,26 @@ export class UserCollaborationController {
   @ApiOkResponse({ type: DbUserCollaboration })
   @ApiNotFoundResponse({ description: "Unable to add user collaboration" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiConflictResponse({ description: "The requested user is not accepting collaboration requests" })
   @ApiBody({ type: CreateUserCollaborationDto })
   async addUserCollaboration (
     @Body() createUserCollaborationDto: CreateUserCollaborationDto,
-      @UserId() userId: number,
+      @User() user: SupabaseAuthUser,
   ): Promise<DbUserCollaboration> {
-    const user = await this.userService.findOneByUsername(createUserCollaborationDto.username);
+    const recipient = await this.userService.findOneByUsername(createUserCollaborationDto.username);
+    const requester = await this.userService.findOneById(user.user_metadata.sub as number);
+
+    if (requester.role <= 50) {
+      throw (new UnauthorizedException);
+    }
+
+    if (!recipient.receive_collaboration) {
+      throw (new ConflictException);
+    }
 
     const newUserCollaboration = await this.userCollaborationService.addUserCollaboration({
-      user_id: user.id,
-      request_user_id: userId,
+      user_id: recipient.id,
+      request_user_id: requester.id,
       message: createUserCollaborationDto.message,
       status: "pending",
     });
