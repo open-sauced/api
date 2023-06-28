@@ -1,3 +1,17 @@
+# 📦 open-sauced/api changelog
+
+[![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
+
+> All notable changes to this project will be documented in this file
+
+### [1.38.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.2...v1.38.3-beta.1) (2023-06-28)
+
+
+### 🐛 Bug Fixes
+
+* add checks for requester and recipient for collaboration requests ([#189](https://github.com/open-sauced/api.opensauced.pizza/issues/189)) ([f212fb2](https://github.com/open-sauced/api.opensauced.pizza/commit/f212fb2331ef83e24f7e6bab31f6ab145c3976a9))
+
 # 📦 open-sauced/api.opensauced.pizza changelog
 
 [![conventional commits](https://img.shields.io/badge/conventional%20commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
