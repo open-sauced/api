@@ -131,7 +131,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserCollaboration(createUserCollaborationDto: <a href="../classes/CreateUserCollaborationDto.html" target="_self">CreateUserCollaborationDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserCollaboration(createUserCollaborationDto: <a href="../classes/CreateUserCollaborationDto.html" target="_self">CreateUserCollaborationDto</a>, user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
                 </td>
             </tr>
 
@@ -139,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addUserCollaboration&#x27;, summary: &#x27;Adds a new collaboration request for the user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserCollaboration})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user collaboration&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserCollaborationDto})<br /></code>
+                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addUserCollaboration&#x27;, summary: &#x27;Adds a new collaboration request for the user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserCollaboration})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user collaboration&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiConflictResponse({description: &#x27;The requested user is not accepting collaboration requests&#x27;})<br />@ApiBody({type: CreateUserCollaborationDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:65</a></div>
                 </td>
             </tr>
 
@@ -179,9 +179,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>user</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
                                     </td>
 
                                     <td>
@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:128</a></div>
                 </td>
             </tr>
 
@@ -415,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:101</a></div>
                 </td>
             </tr>
 
@@ -494,6 +494,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Body,
+  ConflictException,
   Controller,
   Delete,
   Get,
@@ -504,10 +505,11 @@
   UnauthorizedException,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody } from &quot;@nestjs/swagger&quot;;
+import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from &quot;@nestjs/swagger&quot;;
+import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
-import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { User, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
@@ -552,16 +554,26 @@ export class UserCollaborationController {
   @ApiOkResponse({ type: DbUserCollaboration })
   @ApiNotFoundResponse({ description: &quot;Unable to add user collaboration&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiConflictResponse({ description: &quot;The requested user is not accepting collaboration requests&quot; })
   @ApiBody({ type: CreateUserCollaborationDto })
   async addUserCollaboration (
     @Body() createUserCollaborationDto: CreateUserCollaborationDto,
-      @UserId() userId: number,
+      @User() user: SupabaseAuthUser,
   ): Promise&lt;DbUserCollaboration&gt; {
-    const user &#x3D; await this.userService.findOneByUsername(createUserCollaborationDto.username);
+    const recipient &#x3D; await this.userService.findOneByUsername(createUserCollaborationDto.username);
+    const requester &#x3D; await this.userService.findOneById(user.user_metadata.sub as number);
+
+    if (requester.role &lt;&#x3D; 50) {
+      throw (new UnauthorizedException);
+    }
+
+    if (!recipient.receive_collaboration) {
+      throw (new ConflictException);
+    }
 
     const newUserCollaboration &#x3D; await this.userCollaborationService.addUserCollaboration({
-      user_id: user.id,
-      request_user_id: userId,
+      user_id: recipient.id,
+      request_user_id: requester.id,
       message: createUserCollaborationDto.message,
       status: &quot;pending&quot;,
     });
