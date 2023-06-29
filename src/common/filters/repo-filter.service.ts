@@ -20,7 +20,7 @@ export class RepoFilterService {
     }
 
     if (options.repo) {
-      filters.push([`LOWER(repos.full_name)=LOWER(:repo)`, { repo: decodeURIComponent(options.repo) }]);
+      filters.push([`LOWER(repos.full_name)=:repo`, { repo: decodeURIComponent(options.repo.toLowerCase()) }]);
     }
 
     if (options.topic) {
