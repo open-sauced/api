@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.39.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.3-beta.1...v1.39.0-beta.1) (2023-06-29)
+
+
+### 🍕 Features
+
+* enable promo codes with Stripe checkout ([#190](https://github.com/open-sauced/api.opensauced.pizza/issues/190)) ([ad2c624](https://github.com/open-sauced/api.opensauced.pizza/commit/ad2c62446d1556e4eac944d2b1da01a576fa511b))
+
 ### [1.38.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.2...v1.38.3-beta.1) (2023-06-28)
 
 
