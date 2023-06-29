@@ -28,6 +28,7 @@ export class StripeService {
     const session = await this.stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       billing_address_collection: "required",
+      allow_promotion_codes: true,
       customer,
       line_items: [
         {
