@@ -28,6 +28,7 @@ import { UserEndorsementController } from "./user-endorsement.controller";
 
 import { EndorsementService } from "../endorsement/endorsement.service";
 import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
+import { UserRecommendationController } from "./user-recommendation.controller";
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
     UserNotificationController,
     UserCollaborationController,
     UserEndorsementController,
+    UserRecommendationController,
   ],
   providers: [
     UserService,

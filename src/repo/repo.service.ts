@@ -243,4 +243,33 @@ export class RepoService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
+  async findRecommendations (interests: string[]): Promise<Record<string, DbRepo[]>> {
+    const queryBuilder = this.repoRepository.createQueryBuilder("repo");
+    const userInterests: Record<string, DbRepo[]> = {};
+
+    const promises = interests.map(async interest => {
+      queryBuilder
+        .where(`(:topic = ANY("repo"."topics"))`, { topic: interest })
+        .andWhere(`
+          repo.id IN (
+            SELECT repo_id FROM pull_requests
+            WHERE now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
+            LIMIT 10
+          )
+        `)
+        .orderBy(`"repo"."updated_at"`, "DESC")
+        .limit(3);
+
+      return queryBuilder.getMany();
+    });
+
+    const results = await Promise.all(promises);
+
+    interests.forEach((interest, index) => {
+      userInterests[interest] = results[index];
+    });
+
+    return userInterests;
+  }
 }
