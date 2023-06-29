@@ -592,13 +592,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/UserModule.html" data-type="entity-link" >UserModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' : 'data-target="#xs-controllers-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' }>
+                                            'data-target="#controllers-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' : 'data-target="#xs-controllers-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' :
-                                            'id="xs-controllers-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' :
+                                            'id="xs-controllers-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' }>
                                             <li class="link">
                                                 <a href="controllers/UserCollaborationController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserCollaborationController</a>
                                             </li>
@@ -617,17 +617,20 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="controllers/UserNotificationController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserNotificationController</a>
                                             </li>
+                                            <li class="link">
+                                                <a href="controllers/UserRecommendationController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserRecommendationController</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' : 'data-target="#xs-injectables-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' }>
+                                        'data-target="#injectables-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' : 'data-target="#xs-injectables-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' :
-                                        'id="xs-injectables-links-module-UserModule-3f543778f979305d877110cb3b18355476bc7927305ac19bdfceb7069aaa6cc0f134e3515ffa92646383dbf5b911b7c7663c4abdbe2d92bfcc9127c9cc91c1c9"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' :
+                                        'id="xs-injectables-links-module-UserModule-7b4427725c74af16a39813be3c5a41276bc8eaa72d6aebf56c254be2bb7dbc65b132a19b73b2daa54eb30ad7f80ebe6eb5b1af71ece75bfdd1208ffa6b662b3b"' }>
                                         <li class="link">
                                             <a href="injectables/EndorsementService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EndorsementService</a>
                                         </li>

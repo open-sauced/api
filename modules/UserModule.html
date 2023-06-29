@@ -345,6 +345,9 @@
                         <li class="list-group-item">
                             <a href="../controllers/UserEndorsementController.html">UserEndorsementController</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="../controllers/UserRecommendationController.html">UserRecommendationController</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
@@ -418,6 +421,7 @@ import { UserEndorsementController } from &quot;./user-endorsement.controller&qu
 
 import { EndorsementService } from &quot;../endorsement/endorsement.service&quot;;
 import { DbEndorsement } from &quot;../endorsement/entities/endorsement.entity&quot;;
+import { UserRecommendationController } from &quot;./user-recommendation.controller&quot;;
 
 @Module({
   imports: [
@@ -442,6 +446,7 @@ import { DbEndorsement } from &quot;../endorsement/entities/endorsement.entity&q
     UserNotificationController,
     UserCollaborationController,
     UserEndorsementController,
+    UserRecommendationController,
   ],
   providers: [
     UserService,

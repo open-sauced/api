@@ -102,6 +102,10 @@
                                 <a href="#findOneByOwnerAndRepo" >findOneByOwnerAndRepo</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findRecommendations" >findRecommendations</a>
+                            </li>
+                            <li>
                                 <a href="#subQueryCount" >subQueryCount</a>
                             </li>
                         </ul>
@@ -618,6 +622,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findRecommendations"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findRecommendations</b></span>
+                        <a href="#findRecommendations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findRecommendations(interests: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="247"
+                            class="link-to-prism">src/repo/repo.service.ts:247</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>interests</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;Record&lt;string, DbRepo[]&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="subQueryCount"></a>
                     <span class="name">
                         <span ><b>subQueryCount</b></span>
@@ -987,6 +1062,35 @@ export class RepoService {
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async findRecommendations (interests: string[]): Promise&lt;Record&lt;string, DbRepo[]&gt;&gt; {
+    const queryBuilder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;);
+    const userInterests: Record&lt;string, DbRepo[]&gt; &#x3D; {};
+
+    const promises &#x3D; interests.map(async interest &#x3D;&gt; {
+      queryBuilder
+        .where(&#x60;(:topic &#x3D; ANY(&quot;repo&quot;.&quot;topics&quot;))&#x60;, { topic: interest })
+        .andWhere(&#x60;
+          repo.id IN (
+            SELECT repo_id FROM pull_requests
+            WHERE now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+            LIMIT 10
+          )
+        &#x60;)
+        .orderBy(&#x60;&quot;repo&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;)
+        .limit(3);
+
+      return queryBuilder.getMany();
+    });
+
+    const results &#x3D; await Promise.all(promises);
+
+    interests.forEach((interest, index) &#x3D;&gt; {
+      userInterests[interest] &#x3D; results[index];
+    });
+
+    return userInterests;
   }
 }
 </code></pre>

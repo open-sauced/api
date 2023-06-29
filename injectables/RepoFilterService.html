@@ -316,7 +316,7 @@ export class RepoFilterService {
     }
 
     if (options.repo) {
-      filters.push([&#x60;LOWER(repos.full_name)&#x3D;LOWER(:repo)&#x60;, { repo: decodeURIComponent(options.repo) }]);
+      filters.push([&#x60;LOWER(repos.full_name)&#x3D;:repo&#x60;, { repo: decodeURIComponent(options.repo.toLowerCase()) }]);
     }
 
     if (options.topic) {
