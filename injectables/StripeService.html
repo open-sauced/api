@@ -433,6 +433,7 @@ export class StripeService {
     const session &#x3D; await this.stripe.checkout.sessions.create({
       payment_method_types: [&quot;card&quot;],
       billing_address_collection: &quot;required&quot;,
+      allow_promotion_codes: true,
       customer,
       line_items: [
         {

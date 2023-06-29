@@ -4,17 +4,18 @@
 
 ## Columns
 
-| Name               | Type                        | Default                      | Nullable | Children | Parents                         | Comment |
-| ------------------ | --------------------------- | ---------------------------- | -------- | -------- | ------------------------------- | ------- |
-| id                 | uuid                        | uuid_generate_v4()           | false    |          |                                 |         |
-| user_id            | bigint                      |                              | false    |          | [public.users](public.users.md) |         |
-| request_user_id    | bigint                      |                              | true     |          | [public.users](public.users.md) |         |
-| message            | varchar(500)                | ''::character varying        | false    |          |                                 |         |
-| created_at         | timestamp without time zone | now()                        | false    |          |                                 |         |
-| updated_at         | timestamp without time zone | now()                        | false    |          |                                 |         |
-| deleted_at         | timestamp without time zone |                              | true     |          |                                 |         |
-| request_emailed_at | timestamp without time zone |                              | true     |          |                                 |         |
-| status             | varchar(20)                 | 'pending'::character varying | false    |          |                                 |         |
+| Name                     | Type                        | Default                      | Nullable | Children | Parents                         | Comment |
+| ------------------------ | --------------------------- | ---------------------------- | -------- | -------- | ------------------------------- | ------- |
+| id                       | uuid                        | uuid_generate_v4()           | false    |          |                                 |         |
+| user_id                  | bigint                      |                              | false    |          | [public.users](public.users.md) |         |
+| request_user_id          | bigint                      |                              | true     |          | [public.users](public.users.md) |         |
+| message                  | varchar(500)                | ''::character varying        | false    |          |                                 |         |
+| created_at               | timestamp without time zone | now()                        | false    |          |                                 |         |
+| updated_at               | timestamp without time zone | now()                        | false    |          |                                 |         |
+| deleted_at               | timestamp without time zone |                              | true     |          |                                 |         |
+| request_emailed_at       | timestamp without time zone |                              | true     |          |                                 |         |
+| status                   | varchar(20)                 | 'pending'::character varying | false    |          |                                 |         |
+| collaboration_emailed_at | timestamp without time zone |                              | true     |          |                                 |         |
 
 ## Constraints
 
