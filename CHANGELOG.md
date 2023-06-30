@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.39.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.2...v1.39.0-beta.3) (2023-06-30)
+
+
+### 🐛 Bug Fixes
+
+* remove limit from repo recommendation query ([638f9ec](https://github.com/open-sauced/api.opensauced.pizza/commit/638f9eccd227da25b0208dc463b68d22dda5b5d2))
+
 ## [1.39.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.1...v1.39.0-beta.2) (2023-06-29)
 
 
