@@ -255,7 +255,6 @@ export class RepoService {
           repo.id IN (
             SELECT repo_id FROM pull_requests
             WHERE now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-            LIMIT 10
           )
         `)
         .orderBy(`"repo"."updated_at"`, "DESC")
