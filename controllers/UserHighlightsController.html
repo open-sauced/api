@@ -1011,7 +1011,7 @@ import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-r
 @Controller(&quot;user/highlights&quot;)
 @ApiTags(&quot;User Highlights service&quot;)
 export class UserHighlightsController {
-  constructor (private readonly userHighlightsService: UserHighlightsService) {}
+  constructor(private readonly userHighlightsService: UserHighlightsService) {}
 
   @Post(&quot;/&quot;)
   @ApiOperation({
@@ -1024,9 +1024,9 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: &quot;Unable to add user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateUserHighlightDto })
-  async addInsightForUser (
+  async addInsightForUser(
     @Body() createHighlightDto: CreateUserHighlightDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbUserHighlight&gt; {
     return this.userHighlightsService.addUserHighlight(userId, createHighlightDto);
   }
@@ -1039,7 +1039,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getUserHighlight (@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlight&gt; {
+  async getUserHighlight(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlight&gt; {
     return this.userHighlightsService.findOneById(id);
   }
 
@@ -1054,10 +1054,10 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: &quot;Unable to update user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateUserHighlightDto })
-  async updateHighlightForUser (
+  async updateHighlightForUser(
     @Body() updateHighlightDto: CreateUserHighlightDto,
-      @UserId() userId: number,
-      @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
+    @UserId() userId: number,
+    @Param(&quot;id&quot;, ParseIntPipe) highlightId: number
   ): Promise&lt;DbUserHighlight&gt; {
     const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId, userId);
 
@@ -1078,9 +1078,9 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: &quot;Unable to delete user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async deleteHighlightForUser (
+  async deleteHighlightForUser(
     @UserId() userId: number,
-      @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
+    @Param(&quot;id&quot;, ParseIntPipe) highlightId: number
   ): Promise&lt;void&gt; {
     const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId, userId);
 
@@ -1097,9 +1097,9 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getAllHighlightUserReactions (
+  async getAllHighlightUserReactions(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbUserHighlightReactionResponse[]&gt; {
     return this.userHighlightsService.findAllHighlightReactions(id, userId);
   }
@@ -1115,10 +1115,10 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: &quot;Highlight does not exist&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiConflictResponse({ description: &quot;Unable to add user highlight reaction&quot; })
-  async addHighlightReactionForUser (
+  async addHighlightReactionForUser(
     @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
-      @Param(&quot;emojiId&quot;) emojiId: string,
-      @UserId() userId: number,
+    @Param(&quot;emojiId&quot;) emojiId: string,
+    @UserId() userId: number
   ): Promise&lt;void&gt; {
     const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId);
 
@@ -1138,15 +1138,15 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: &quot;Unable to delete user highlight reaction&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async deleteHighlightReactionForUser (
+  async deleteHighlightReactionForUser(
     @UserId() userId: number,
-      @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
-      @Param(&quot;emojiId&quot;) emojiId: string,
+    @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
+    @Param(&quot;emojiId&quot;) emojiId: string
   ): Promise&lt;void&gt; {
     const userHighlightReaction &#x3D; await this.userHighlightsService.findOneUserHighlightReaction(
       highlightId,
       userId,
-      emojiId,
+      emojiId
     );
 
     await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
@@ -1160,9 +1160,9 @@ export class UserHighlightsController {
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserHighlight })
-  async getFollowingHighlights (
+  async getFollowingHighlights(
     @Query() pageOptionsDto: HighlightOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     return this.userHighlightsService.findAll(pageOptionsDto, userId);
   }
@@ -1176,9 +1176,9 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserHighlightRepo })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getFollowingHighlightRepos (
+  async getFollowingHighlightRepos(
     @Query() pageOptionsDto: HighlightOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto, userId);
   }

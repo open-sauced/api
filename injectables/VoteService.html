@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/vote/vote.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/vote/vote.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/vote/vote.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/vote/vote.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -371,19 +371,18 @@ import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.enti
 
 @Injectable()
 export class VoteService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserVotes, &quot;ApiConnection&quot;)
-    private repoVoteRepository: Repository&lt;DbRepoToUserVotes&gt;,
+    private repoVoteRepository: Repository&lt;DbRepoToUserVotes&gt;
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.repoVoteRepository.createQueryBuilder(&quot;r2votes&quot;)
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoVoteRepository.createQueryBuilder(&quot;r2votes&quot;).withDeleted();
 
     return builder;
   }
 
-  async voteByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
+  async voteByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -409,7 +408,7 @@ export class VoteService {
     });
   }
 
-  async downVoteByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
+  async downVoteByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserVotes&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder

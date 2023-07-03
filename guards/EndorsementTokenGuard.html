@@ -229,9 +229,9 @@ import { ConfigService } from &quot;@nestjs/config&quot;;
 
 @Injectable()
 export class EndorsementTokenGuard implements CanActivate {
-  constructor (private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {}
 
-  canActivate (host: ExecutionContext) {
+  canActivate(host: ExecutionContext) {
     const apiToken &#x3D; this.configService.get&lt;string&gt;(&quot;api.endorsementServiceToken&quot;);
     const ctx &#x3D; host.switchToHttp();
     const request: { headers: Record&lt;string, string&gt; } &#x3D; ctx.getRequest();

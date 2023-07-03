@@ -248,21 +248,17 @@ import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from &quot;./
 
 @Injectable()
 export class ContributionService {
-  constructor (
+  constructor(
     @InjectRepository(DbContribution, &quot;ApiConnection&quot;)
-    private contributionRepository: Repository&lt;DbContribution&gt;,
+    private contributionRepository: Repository&lt;DbContribution&gt;
   ) {}
 
-  async findAll (
-    pageOptionsDto: ContributionPageOptionsDto,
-    repoId?: number,
-  ): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
+  async findAll(pageOptionsDto: ContributionPageOptionsDto, repoId?: number): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
     const queryBuilder &#x3D; this.contributionRepository.createQueryBuilder(&quot;contribution&quot;);
     const orderField &#x3D; pageOptionsDto.orderBy ?? ContributionOrderFieldsEnum.count;
 
     if (repoId) {
-      queryBuilder
-        .where(&quot;contribution.repo_id &#x3D; :repoId&quot;, { repoId });
+      queryBuilder.where(&quot;contribution.repo_id &#x3D; :repoId&quot;, { repoId });
     }
 
     queryBuilder

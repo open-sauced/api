@@ -601,18 +601,18 @@ import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot
 
 @Injectable()
 export class InsightsService {
-  constructor (
+  constructor(
     @InjectRepository(DbInsight, &quot;ApiConnection&quot;)
-    private insightRepository: Repository&lt;DbInsight&gt;,
+    private insightRepository: Repository&lt;DbInsight&gt;
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder&lt;DbInsight&gt; {
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbInsight&gt; {
     const builder &#x3D; this.insightRepository.createQueryBuilder(&quot;insights&quot;);
 
     return builder;
   }
 
-  async findOneById (id: number): Promise&lt;DbInsight&gt; {
+  async findOneById(id: number): Promise&lt;DbInsight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -623,33 +623,31 @@ export class InsightsService {
     const item: DbInsight | null &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async addInsight (insight: Partial&lt;DbInsight&gt;) {
+  async addInsight(insight: Partial&lt;DbInsight&gt;) {
     return this.insightRepository.save(insight);
   }
 
-  async updateInsight (id: number, insight: Partial&lt;DbInsight&gt;) {
+  async updateInsight(id: number, insight: Partial&lt;DbInsight&gt;) {
     return this.insightRepository.update(id, insight);
   }
 
-  async removeInsight (id: number) {
+  async removeInsight(id: number) {
     return this.insightRepository.softDelete(id);
   }
 
-  async findAllByUserId (
-    pageOptionsDto: InsightPageOptionsDto,
-    userId: string,
-  ): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
+  async findAllByUserId(pageOptionsDto: InsightPageOptionsDto, userId: string): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
     const queryBuilder &#x3D; this.insightRepository.createQueryBuilder(&quot;insights&quot;);
 
     queryBuilder
       .where(&quot;insights.user_id &#x3D; :userId&quot;, { userId })
-      .orWhere(&#x60;:userId IN (
+      .orWhere(
+        &#x60;:userId IN (
           SELECT user_id
           FROM insight_members
           WHERE insight_id &#x3D; insights.id
@@ -657,13 +655,13 @@ export class InsightsService {
           AND access !&#x3D; &#x27;pending&#x27;
           AND deleted_at IS NULL
         )
-      &#x60;, { userId })
+      &#x60;,
+        { userId }
+      )
       .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
       .orderBy(&quot;insights.updated_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder
-      .skip(pageOptionsDto.skip)
-      .take(pageOptionsDto.limit);
+    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();

@@ -159,7 +159,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/user/entities/user-notification.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/user/entities/user-notification.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -195,7 +195,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/user/entities/user-notification.entity.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user/entities/user-notification.entity.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +232,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/user/entities/user-notification.entity.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/user/entities/user-notification.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -269,7 +269,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/user/entities/user-notification.entity.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/user/entities/user-notification.entity.ts:80</a></div>
                         </td>
                     </tr>
 
@@ -306,7 +306,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/user/entities/user-notification.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/user/entities/user-notification.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -343,7 +343,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/user/entities/user-notification.entity.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/user/entities/user-notification.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -379,7 +379,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/user/entities/user-notification.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user/entities/user-notification.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -415,7 +415,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/user/entities/user-notification.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/user/entities/user-notification.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -427,14 +427,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Entity,
-  Column,
-  BaseEntity,
-  PrimaryColumn,
-  CreateDateColumn,
-} from &quot;typeorm&quot;;
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn } from &quot;typeorm&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { UserNotificationTypes } from &quot;./user-notification.constants&quot;;
 
 @Entity({ name: &quot;user_notifications&quot; })

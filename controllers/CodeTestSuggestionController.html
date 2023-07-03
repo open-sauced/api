@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/pull-requests/code-test.suggestion.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/code-test.suggestion.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -193,13 +193,10 @@ import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { GenerateCodeTestSuggestionDto } from &quot;./dtos/create-code-test-suggestion.dto&quot;;
 import { CodeTestSuggestionService } from &quot;./code-test-suggestion.service&quot;;
 
-
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class CodeTestSuggestionController {
-  constructor (private codeTestSuggestionService: CodeTestSuggestionService) {
-
-  }
+  constructor(private codeTestSuggestionService: CodeTestSuggestionService) {}
 
   @Post(&quot;/test/generate&quot;)
   @ApiOperation({
@@ -210,13 +207,11 @@ export class CodeTestSuggestionController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: GenerateCodeTestSuggestionDto })
-  async generatePRDescription (
-  @Body() generateCodeTestSuggestionDto: GenerateCodeTestSuggestionDto,
-  ) {
+  async generatePRDescription(@Body() generateCodeTestSuggestionDto: GenerateCodeTestSuggestionDto) {
     const suggestion &#x3D; await this.codeTestSuggestionService.generateTestSuggestion(generateCodeTestSuggestionDto);
 
     if (!suggestion) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { suggestion };

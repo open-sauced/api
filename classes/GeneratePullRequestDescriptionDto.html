@@ -150,7 +150,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/pull-requests/dtos/create-pull-request-description.dto.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/pull-requests/dtos/create-pull-request-description.dto.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -357,7 +357,7 @@ export class GeneratePullRequestDescriptionDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    descriptionLength: number;
+  descriptionLength: number;
 
   @ApiProperty({
     description: &quot;Description Temperature&quot;,
@@ -367,7 +367,7 @@ export class GeneratePullRequestDescriptionDto {
   @IsNumber()
   @Min(0)
   @Max(10)
-    temperature: number;
+  temperature: number;
 
   @ApiProperty({
     description: &quot;Description Tone&quot;,
@@ -376,7 +376,7 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsIn([&quot;exciting&quot;, &quot;persuasive&quot;, &quot;informative&quot;, &quot;humorous&quot;, &quot;formal&quot;])
-    tone: string;
+  tone: string;
 
   @ApiProperty({
     description: &quot;Description Language&quot;,
@@ -386,7 +386,7 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsIn([&quot;english&quot;, &quot;spanish&quot;, &quot;french&quot;, &quot;german&quot;, &quot;italian&quot;, &quot;portuguese&quot;, &quot;dutch&quot;, &quot;russian&quot;, &quot;chinese&quot;, &quot;korean&quot;])
-    language: string;
+  language: string;
 
   @ApiPropertyOptional({
     description: &quot;PR Diff&quot;,
@@ -394,19 +394,16 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsOptional()
-    diff?: string;
+  diff?: string;
 
   @ApiPropertyOptional({
     description: &quot;PR Commit Messages&quot;,
     type: String,
     isArray: true,
-    example: [
-      &quot;chore: fixed a bug with the UI&quot;,
-      &quot;style: added some rounded corners to some boxes&quot;,
-    ],
+    example: [&quot;chore: fixed a bug with the UI&quot;, &quot;style: added some rounded corners to some boxes&quot;],
   })
   @IsOptional()
-    commitMessages?: string[];
+  commitMessages?: string[];
 }
 </code></pre>
     </div>

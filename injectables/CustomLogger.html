@@ -244,8 +244,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/log/custom-logger.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/log/custom-logger.ts:49</a></div>
                 </td>
             </tr>
 
@@ -327,8 +327,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/log/custom-logger.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/log/custom-logger.ts:29</a></div>
                 </td>
             </tr>
 
@@ -422,8 +422,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/log/custom-logger.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/log/custom-logger.ts:19</a></div>
                 </td>
             </tr>
 
@@ -505,8 +505,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/log/custom-logger.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/log/custom-logger.ts:59</a></div>
                 </td>
             </tr>
 
@@ -588,8 +588,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/log/custom-logger.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/log/custom-logger.ts:39</a></div>
                 </td>
             </tr>
 
@@ -698,24 +698,16 @@ import { LogService } from &quot;./log.service&quot;;
 class CustomLogger extends ConsoleLogger {
   private readonly logsService: LogService;
 
-  constructor (
-    context: string,
-    options: ConsoleLoggerOptions,
-    configService: ConfigService,
-    logsService: LogService,
-  ) {
-    super(
-      context,
-      {
-        ...options,
-        logLevels: [&quot;error&quot;, &quot;warn&quot;, &quot;log&quot;, &quot;verbose&quot;, &quot;debug&quot;],
-      },
-    );
+  constructor(context: string, options: ConsoleLoggerOptions, configService: ConfigService, logsService: LogService) {
+    super(context, {
+      ...options,
+      logLevels: [&quot;error&quot;, &quot;warn&quot;, &quot;log&quot;, &quot;verbose&quot;, &quot;debug&quot;],
+    });
 
     this.logsService &#x3D; logsService;
   }
 
-  async log (message: string, context?: string) {
+  async log(message: string, context?: string) {
     super.log.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -725,7 +717,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async error (message: string, stack?: string, context?: string) {
+  async error(message: string, stack?: string, context?: string) {
     super.error.apply(this, [message, stack, context]);
 
     return this.logsService.createLog({
@@ -735,7 +727,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async warn (message: string, context?: string) {
+  async warn(message: string, context?: string) {
     super.warn.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -745,7 +737,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async debug (message: string, context?: string) {
+  async debug(message: string, context?: string) {
     super.debug.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -755,7 +747,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async verbose (message: string, context?: string) {
+  async verbose(message: string, context?: string) {
     super.debug.apply(this, [message, context]);
 
     return this.logsService.createLog({

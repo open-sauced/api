@@ -181,8 +181,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/customer/customer.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/customer/customer.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -301,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/customer/customer.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/customer/customer.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -435,34 +435,32 @@ import { DbCustomer } from &quot;./customer.entity&quot;;
 
 @Injectable()
 export class CustomerService {
-  constructor (
+  constructor(
     @InjectRepository(DbCustomer, &quot;ApiConnection&quot;)
-    private customerRepository: Repository&lt;DbCustomer&gt;,
+    private customerRepository: Repository&lt;DbCustomer&gt;
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.customerRepository.createQueryBuilder(&quot;customer&quot;);
   }
 
-  async findById (id: number) {
+  async findById(id: number) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;customer.id&#x3D;:id&quot;, { id });
+    queryBuilder.where(&quot;customer.id&#x3D;:id&quot;, { id });
 
     return queryBuilder.getOne();
   }
 
-  async findByCustomerId (id: string) {
+  async findByCustomerId(id: string) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;customer.stripe_customer_id&#x3D;:id&quot;, { id });
+    queryBuilder.where(&quot;customer.stripe_customer_id&#x3D;:id&quot;, { id });
 
     return queryBuilder.getOne();
   }
 
-  async addCustomer (userId: number, stripe_customer_id: string) {
+  async addCustomer(userId: number, stripe_customer_id: string) {
     return this.customerRepository.save({ id: userId, stripe_customer_id });
   }
 }

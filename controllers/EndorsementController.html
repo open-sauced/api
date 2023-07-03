@@ -161,8 +161,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -251,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:132</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -497,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:65</a></div>
                 </td>
             </tr>
 
@@ -599,8 +599,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:107</a></div>
                 </td>
             </tr>
 
@@ -689,8 +689,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="120"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:120</a></div>
                 </td>
             </tr>
 
@@ -779,8 +779,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:96</a></div>
                 </td>
             </tr>
 
@@ -847,10 +847,7 @@ import { EndorsementTokenGuard } from &quot;./endorsement-token.guard&quot;;
 @Controller(&quot;endorsements&quot;)
 @ApiTags(&quot;Endorsements service&quot;)
 export class EndorsementController {
-  constructor (
-    private readonly endorsementService: EndorsementService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly endorsementService: EndorsementService, private readonly userService: UserService) {}
 
   @Post(&quot;/&quot;)
   @UseGuards(EndorsementTokenGuard)
@@ -860,9 +857,9 @@ export class EndorsementController {
   })
   @ApiOkResponse({ type: DbEndorsement })
   @ApiBody({ type: CreateEndorsementDto })
-  async createEndorsement (
-  @Headers(&quot;X-OpenSauced-token&quot;)_token: string,
-    @Body() createEndorsementDto: CreateEndorsementDto,
+  async createEndorsement(
+    @Headers(&quot;X-OpenSauced-token&quot;) _token: string,
+    @Body() createEndorsementDto: CreateEndorsementDto
   ) {
     return this.endorsementService.create(createEndorsementDto);
   }
@@ -874,9 +871,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllEndorsements (
-  @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllEndorsements(@Query() pageOptionsDto: PageOptionsDto) {
     return this.endorsementService.findAll(pageOptionsDto);
   }
 
@@ -887,9 +882,9 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllByRepoOwnerOrUsername (
-  @Param(&quot;repoOwnerOrUser&quot;) repoOwnerOrUser: string,
-    @Query() pageOptionsDto: PageOptionsDto,
+  async findAllByRepoOwnerOrUsername(
+    @Param(&quot;repoOwnerOrUser&quot;) repoOwnerOrUser: string,
+    @Query() pageOptionsDto: PageOptionsDto
   ) {
     return this.endorsementService.findAllByRepoOwnerOrUser(repoOwnerOrUser, pageOptionsDto);
   }
@@ -901,10 +896,10 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllEndorsementsByRepo (
-  @Param(&quot;owner&quot;) owner: string,
+  async findAllEndorsementsByRepo(
+    @Param(&quot;owner&quot;) owner: string,
     @Param(&quot;repo&quot;) repo: string,
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ) {
     return this.endorsementService.findAllEndorsementsByRepo(owner, repo, pageOptionsDto);
   }
@@ -932,7 +927,7 @@ export class EndorsementController {
   })
   @ApiOkResponse({ type: DbEndorsement })
   @ApiNotFoundResponse({ description: &quot;Endorsement not found&quot; })
-  async findEndorsementById (@Param(&quot;id&quot;) id: string) {
+  async findEndorsementById(@Param(&quot;id&quot;) id: string) {
     return this.endorsementService.findOneById(id);
   }
 
@@ -943,10 +938,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserCreatedEndorsements (
-  @Param(&quot;username&quot;) username: string,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserCreatedEndorsements(@Param(&quot;username&quot;) username: string, @Query() pageOptionsDto: PageOptionsDto) {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByCreatorUserId(user.id, pageOptionsDto);
@@ -959,10 +951,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserReceivedEndorsements (
-  @Param(&quot;username&quot;) username: string,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserReceivedEndorsements(@Param(&quot;username&quot;) username: string, @Query() pageOptionsDto: PageOptionsDto) {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByRecipientUserId(user.id, pageOptionsDto);
@@ -974,7 +963,7 @@ export class EndorsementController {
     summary: &quot;Finds ands deletes the endorsement by ID&quot;,
   })
   @ApiNotFoundResponse({ description: &quot;Endorsement not found&quot; })
-  async deleteEndoresementById (@Param(&quot;id&quot;) id: string) {
+  async deleteEndoresementById(@Param(&quot;id&quot;) id: string) {
     return this.endorsementService.remove(id);
   }
 }

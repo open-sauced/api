@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/insight/insight.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/insight/insight.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -215,8 +215,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/insight/insight.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/insight/insight.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -281,7 +281,16 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, ParseIntPipe, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse, ApiBadRequestResponse, ApiBearerAuth, ApiBody } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+} from &quot;@nestjs/swagger&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { UpdateInsightDto } from &quot;./dtos/update-insight.dto&quot;;
@@ -292,9 +301,7 @@ import { InsightsService } from &quot;./insights.service&quot;;
 @Controller(&quot;insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
 export class InsightController {
-  constructor (
-    private readonly insightsService: InsightsService,
-  ) {}
+  constructor(private readonly insightsService: InsightsService) {}
 
   @Get(&quot;/:id&quot;)
   @ApiOperation({
@@ -304,9 +311,7 @@ export class InsightController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Insight page not found&quot; })
   @ApiUnauthorizedResponse({ description: &quot;Not Authorized to view this Insight&quot; })
-  async findInsightPageById (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-  ): Promise&lt;DbInsight&gt; {
+  async findInsightPageById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbInsight&gt; {
     return this.insightsService.findOneById(id);
   }
 
@@ -321,14 +326,11 @@ export class InsightController {
   @ApiNotFoundResponse({ description: &quot;Unable to remove user insight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: UpdateInsightDto })
-  async removeInsightForUser (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise&lt;void&gt; {
+  async removeInsightForUser(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;void&gt; {
     const insight &#x3D; await this.insightsService.findOneById(id);
 
     if (Number(insight.user.id) !&#x3D;&#x3D; userId) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     await this.insightsService.removeInsight(id);

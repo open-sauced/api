@@ -255,7 +255,7 @@ import { cliDuration } from &quot;../util/cli-duration&quot;;
 export class HttpLoggerMiddleware implements NestMiddleware {
   private logger &#x3D; new Logger(&#x60;HTTP&#x60;);
 
-  use (request: Request, response: Response, next: NextFunction) {
+  use(request: Request, response: Response, next: NextFunction) {
     const startTime &#x3D; Date.now();
 
     response.on(&quot;finish&quot;, () &#x3D;&gt; {

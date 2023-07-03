@@ -425,17 +425,20 @@ import { UserRecommendationController } from &quot;./user-recommendation.control
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      DbUser,
-      DbUserHighlight,
-      DbUserHighlightReaction,
-      DbUserToUserFollows,
-      DbUserTopRepo,
-      DbUserNotification,
-      DbUserCollaboration,
-      DbRepo,
-      DbEndorsement,
-    ], &quot;ApiConnection&quot;),
+    TypeOrmModule.forFeature(
+      [
+        DbUser,
+        DbUserHighlight,
+        DbUserHighlightReaction,
+        DbUserToUserFollows,
+        DbUserTopRepo,
+        DbUserNotification,
+        DbUserCollaboration,
+        DbRepo,
+        DbEndorsement,
+      ],
+      &quot;ApiConnection&quot;
+    ),
     PullRequestModule,
     RepoModule,
   ],

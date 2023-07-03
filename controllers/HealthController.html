@@ -183,8 +183,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/health/health.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/health/health.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -219,13 +219,13 @@ import { ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;
 @Controller(&quot;health&quot;)
 @ApiTags(&quot;Health check service&quot;)
 export class HealthController {
-  constructor (
+  constructor(
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
     private database: TypeOrmHealthIndicator,
     private memory: MemoryHealthIndicator,
     private disk: DiskHealthIndicator,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService
   ) {}
 
   @Get(&quot;/service&quot;)
@@ -235,19 +235,21 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async service () {
+  async service() {
     return this.health.check([
       async () &#x3D;&gt; this.database.pingCheck(&quot;db&quot;),
       async () &#x3D;&gt; this.memory.checkHeap(&quot;memory.heap&quot;, this.configService.get(&quot;memory_heap&quot;)!),
       async () &#x3D;&gt; this.memory.checkRSS(&quot;memory.rss&quot;, this.configService.get(&quot;memory_rss&quot;)!),
-      async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.usage&quot;, {
-        thresholdPercent: this.configService.get(&quot;disk_percentage&quot;)!,
-        path: &quot;/&quot;,
-      }),
-      async () &#x3D;&gt; this.disk.checkStorage(&quot;disk.storage&quot;, {
-        thresholdPercent: this.configService.get(&quot;disk_size&quot;)!,
-        path: &quot;/&quot;,
-      }),
+      async () &#x3D;&gt;
+        this.disk.checkStorage(&quot;disk.usage&quot;, {
+          thresholdPercent: this.configService.get(&quot;disk_percentage&quot;)!,
+          path: &quot;/&quot;,
+        }),
+      async () &#x3D;&gt;
+        this.disk.checkStorage(&quot;disk.storage&quot;, {
+          thresholdPercent: this.configService.get(&quot;disk_size&quot;)!,
+          path: &quot;/&quot;,
+        }),
     ]);
   }
 
@@ -258,7 +260,7 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async web () {
+  async web() {
     return this.health.check([
       async () &#x3D;&gt; this.http.pingCheck(&quot;opensauced.pizza&quot;, this.configService.get(&quot;endpoint.landing&quot;)!),
       async () &#x3D;&gt; this.http.pingCheck(&quot;app.opensauced&quot;, this.configService.get(&quot;endpoint.app&quot;)!),

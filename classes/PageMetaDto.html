@@ -440,7 +440,7 @@ export class PageMetaDto {
   })
   readonly hasNextPage: boolean;
 
-  constructor ({ pageOptionsDto, itemCount }: PageMetaParameters) {
+  constructor({ pageOptionsDto, itemCount }: PageMetaParameters) {
     this.page &#x3D; pageOptionsDto.page ?? 1;
     this.limit &#x3D; pageOptionsDto.limit ?? 10;
     this.itemCount &#x3D; itemCount;

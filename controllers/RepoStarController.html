@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/star/repo-star.controller.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/star/repo-star.controller.ts:97</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/star/repo-star.controller.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/star/repo-star.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -341,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/star/repo-star.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/star/repo-star.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/star/repo-star.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/star/repo-star.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -521,8 +521,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/star/repo-star.controller.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/star/repo-star.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -621,10 +621,7 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service guarded&quot;, &quot;Star service&quot;)
 export class RepoStarController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly starService: StarService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly starService: StarService) {}
 
   @Get(&quot;/listUserStarred&quot;)
   @ApiBearerAuth()
@@ -635,9 +632,9 @@ export class RepoStarController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserStarred (
+  async findAllUserStarred(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto, userId, [&quot;Stars&quot;]);
   }
@@ -655,10 +652,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already starred this repo&quot; })
-  async starOneById (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  async starOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
     return this.starService.starByRepoId(item.id, userId);
@@ -677,10 +671,10 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already starred this repo&quot; })
-  async starOneByOwnerAndRepo (
+  async starOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
-      @Param(&quot;repo&quot;) repo: string,
-      @UserId() userId: number,
+    @Param(&quot;repo&quot;) repo: string,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -700,10 +694,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your star&quot; })
-  async downStarOneById (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise&lt;DbRepoToUserStars&gt; {
+  async downStarOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
     return this.starService.downStarByRepoId(item.id, userId);
@@ -722,10 +713,10 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your star&quot; })
-  async downStarOneByOwnerAndRepo (
+  async downStarOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
-      @Param(&quot;repo&quot;) repo: string,
-      @UserId() userId: number,
+    @Param(&quot;repo&quot;) repo: string,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

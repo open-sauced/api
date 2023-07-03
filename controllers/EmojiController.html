@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/emoji/emoji.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/emoji/emoji.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -198,9 +198,7 @@ import { DbEmoji } from &quot;./entities/emoji.entity&quot;;
 @Controller(&quot;emojis&quot;)
 @ApiTags(&quot;Emojis service&quot;)
 export class EmojiController {
-  constructor (
-    private emojiService: EmojiService,
-  ) {}
+  constructor(private emojiService: EmojiService) {}
 
   @Get(&quot;/&quot;)
   @ApiOperation({
@@ -210,9 +208,7 @@ export class EmojiController {
   @ApiPaginatedResponse(DbEmoji)
   @ApiOkResponse({ type: DbEmoji })
   @ApiNotFoundResponse({ description: &quot;Emojis not found&quot; })
-  async findAllEmojis (
-  @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllEmojis(@Query() pageOptionsDto: PageOptionsDto) {
     return this.emojiService.findAll(pageOptionsDto);
   }
 }

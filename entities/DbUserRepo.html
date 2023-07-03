@@ -143,7 +143,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/user-repo/user-repo.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/user-repo/user-repo.entity.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -179,7 +179,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/user-repo/user-repo.entity.ts:39</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/user-repo/user-repo.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -215,7 +215,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/user-repo/user-repo.entity.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user-repo/user-repo.entity.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -251,7 +251,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/user-repo/user-repo.entity.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/user-repo/user-repo.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -287,7 +287,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/user-repo/user-repo.entity.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/user-repo/user-repo.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -299,15 +299,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Entity,
-  BaseEntity,
-  Column,
-  PrimaryColumn,
-  CreateDateColumn,
-} from &quot;typeorm&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Entity, BaseEntity, Column, PrimaryColumn, CreateDateColumn } from &quot;typeorm&quot;;
 
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 @Entity({ name: &quot;user_repos&quot; })
 export class DbUserRepo extends BaseEntity {

@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/auth/auth.controller.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/auth/auth.controller.ts:140</a></div>
                 </td>
             </tr>
 
@@ -313,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/auth/auth.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/auth/auth.controller.ts:109</a></div>
                 </td>
             </tr>
 
@@ -403,8 +403,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/auth/auth.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/auth/auth.controller.ts:127</a></div>
                 </td>
             </tr>
 
@@ -481,8 +481,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/auth/auth.controller.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/auth/auth.controller.ts:204</a></div>
                 </td>
             </tr>
 
@@ -571,8 +571,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/auth/auth.controller.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/auth/auth.controller.ts:185</a></div>
                 </td>
             </tr>
 
@@ -661,8 +661,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/auth/auth.controller.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/auth/auth.controller.ts:171</a></div>
                 </td>
             </tr>
 
@@ -744,10 +744,10 @@ import { UserOnboardingDto } from &quot;./dtos/user-onboarding.dto&quot;;
 @Controller(&quot;auth&quot;)
 @ApiTags(&quot;Authentication service&quot;)
 export class AuthController {
-  constructor (
+  constructor(
     private userService: UserService,
     private stripeService: StripeService,
-    private customerService: CustomerService,
+    private customerService: CustomerService
   ) {}
 
   @Get(&quot;/session&quot;)
@@ -759,19 +759,55 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @HttpCode(HttpStatus.OK)
-  async getSession (
-    @User() user: SupabaseAuthUser,
-  ): Promise&lt;SupabaseAuthDto&gt; {
-    const { role, email: session_email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } &#x3D; user;
+  async getSession(@User() user: SupabaseAuthUser): Promise&lt;SupabaseAuthDto&gt; {
+    const {
+      role,
+      email: session_email,
+      confirmed_at,
+      last_sign_in_at,
+      created_at,
+      updated_at,
+      user_metadata: { sub: id, user_name },
+    } &#x3D; user;
 
     let userProfile: Partial&lt;SupabaseAuthDto&gt; &#x3D; {};
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count } &#x3D; await this.userService.checkAddUser(user);
+      const {
+        is_onboarded,
+        is_waitlisted,
+        role: insights_role,
+        name,
+        bio,
+        location,
+        twitter_username,
+        company,
+        display_local_time,
+        url,
+        email,
+        github_sponsors_url,
+        linkedin_url,
+        notification_count,
+      } &#x3D; await this.userService.checkAddUser(user);
 
-      userProfile &#x3D; { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count };
+      userProfile &#x3D; {
+        is_onboarded,
+        insights_role,
+        is_waitlisted,
+        name,
+        location,
+        bio,
+        twitter_username,
+        company,
+        display_local_time,
+        url,
+        email,
+        github_sponsors_url,
+        linkedin_url,
+        notification_count,
+      };
     } catch (e) {
       // leave user profile as-is
     }
@@ -798,10 +834,7 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: &quot;Unable to update onboarding information for the user&quot; })
-  async postOnboarding (
-    @UserId() userId: number,
-      @Body() body: UserOnboardingDto,
-  ): Promise&lt;void&gt; {
+  async postOnboarding(@UserId() userId: number, @Body() body: UserOnboardingDto): Promise&lt;void&gt; {
     const userData &#x3D; {
       timezone: body.timezone,
       interests: body.interests,
@@ -819,9 +852,7 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: &quot;Unable to update waitlist information for the user&quot; })
-  async postWaitlist (
-    @UserId() userId: number,
-  ): Promise&lt;void&gt; {
+  async postWaitlist(@UserId() userId: number): Promise&lt;void&gt; {
     return this.userService.updateWaitlistStatus(userId);
   }
 
@@ -834,10 +865,11 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: &quot;Unable to create checkout session&quot; })
-  async postCreateCheckoutSession (
-    @User() user: SupabaseAuthUser,
-  ): Promise&lt;{ sessionId: string }&gt; {
-    const { email, user_metadata: { sub } } &#x3D; user;
+  async postCreateCheckoutSession(@User() user: SupabaseAuthUser): Promise&lt;{ sessionId: string }&gt; {
+    const {
+      email,
+      user_metadata: { sub },
+    } &#x3D; user;
     const id &#x3D; sub as number;
     const customer &#x3D; await this.customerService.findById(id);
     let customerId: string;
@@ -864,10 +896,7 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: &quot;Unable to update user profile&quot; })
   @ApiBody({ type: UpdateUserDto })
-  async updateProfileForUser (
-    @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserDto,
-  ): Promise&lt;DbUser&gt; {
+  async updateProfileForUser(@UserId() userId: number, @Body() updateUserDto: UpdateUserDto): Promise&lt;DbUser&gt; {
     return this.userService.updateUser(userId, updateUserDto);
   }
 
@@ -881,9 +910,9 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: &quot;Unable to update interests for the user profile&quot; })
   @ApiBody({ type: UpdateUserProfileInterestsDto })
-  async updateInterestsForUserProfile (
+  async updateInterestsForUserProfile(
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserProfileInterestsDto,
+    @Body() updateUserDto: UpdateUserProfileInterestsDto
   ): Promise&lt;DbUser&gt; {
     await this.userService.updateInterests(userId, updateUserDto);
 
@@ -900,9 +929,9 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: &quot;Unable to update email preferences for the user profile&quot; })
   @ApiBody({ type: UpdateUserEmailPreferencesDto })
-  async updateEmailPreferencesForUserProfile (
+  async updateEmailPreferencesForUserProfile(
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserEmailPreferencesDto,
+    @Body() updateUserDto: UpdateUserEmailPreferencesDto
   ): Promise&lt;DbUser&gt; {
     await this.userService.updateEmailPreferences(userId, updateUserDto);
 

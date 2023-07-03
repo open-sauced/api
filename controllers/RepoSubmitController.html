@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:100</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:122</a></div>
                 </td>
             </tr>
 
@@ -341,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -521,8 +521,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/submit/repo-submit.controller.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/submit/repo-submit.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -621,10 +621,7 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service guarded&quot;, &quot;Submit service&quot;)
 export class RepoSubmitController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly submitService: SubmitService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly submitService: SubmitService) {}
 
   @Get(&quot;/listUserSubmitted&quot;)
   @ApiBearerAuth()
@@ -635,9 +632,9 @@ export class RepoSubmitController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserSubmitted (
+  async findAllUserSubmitted(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto, userId, [&quot;Submissions&quot;]);
   }
@@ -655,9 +652,9 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already submitted this repo&quot; })
-  async submitOneById (
+  async submitOneById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
@@ -677,10 +674,10 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already submitted this repo&quot; })
-  async submitOneByOwnerAndRepo (
+  async submitOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
-      @Param(&quot;repo&quot;) repo: string,
-      @UserId() userId: number,
+    @Param(&quot;repo&quot;) repo: string,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -700,9 +697,9 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your submission&quot; })
-  async downSubmitOneById (
+  async downSubmitOneById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
@@ -722,10 +719,10 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or submission not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your submission&quot; })
-  async downSubmitOneByOwnerAndRepo (
+  async downSubmitOneByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
-      @Param(&quot;repo&quot;) repo: string,
-      @UserId() userId: number,
+    @Param(&quot;repo&quot;) repo: string,
+    @UserId() userId: number
   ): Promise&lt;DbRepoToUserSubmissions&gt; {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

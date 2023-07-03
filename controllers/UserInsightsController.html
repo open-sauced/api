@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -231,8 +231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -321,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:106</a></div>
                 </td>
             </tr>
 
@@ -412,7 +412,16 @@
   UnprocessableEntityException,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiUnprocessableEntityResponse,
+} from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
@@ -430,10 +439,10 @@ import { InsightsService } from &quot;./insights.service&quot;;
 @Controller(&quot;user/insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
 export class UserInsightsController {
-  constructor (
+  constructor(
     private readonly insightsService: InsightsService,
     private readonly insightsRepoService: InsightRepoService,
-    private insightMemberService: InsightMemberService,
+    private insightMemberService: InsightMemberService
   ) {}
 
   @Get(&quot;/&quot;)
@@ -446,9 +455,9 @@ export class UserInsightsController {
   @ApiPaginatedResponse(DbInsight)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Insights not found&quot; })
-  async findAllInsightsByUserId (
+  async findAllInsightsByUserId(
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @UserId() userId: string,
+    @UserId() userId: string
   ): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
     return this.insightsService.findAllByUserId(pageOptionsDto, userId);
   }
@@ -464,12 +473,9 @@ export class UserInsightsController {
   @ApiNotFoundResponse({ description: &quot;Unable to add user insight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateInsightDto })
-  async addInsightForUser (
-    @Body() createInsightDto: CreateInsightDto,
-      @UserId() userId: number,
-  ): Promise&lt;DbInsight&gt; {
+  async addInsightForUser(@Body() createInsightDto: CreateInsightDto, @UserId() userId: number): Promise&lt;DbInsight&gt; {
     if (!createInsightDto.name || !Array.isArray(createInsightDto.repos)) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     const newInsight &#x3D; await this.insightsService.addInsight({
@@ -478,7 +484,7 @@ export class UserInsightsController {
       user_id: userId,
     });
 
-    createInsightDto.repos.forEach(async repo &#x3D;&gt; {
+    createInsightDto.repos.forEach(async (repo) &#x3D;&gt; {
       await this.insightsRepoService.addInsightRepo(newInsight.id, repo);
     });
 
@@ -497,17 +503,17 @@ export class UserInsightsController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight repos&quot; })
   @ApiBody({ type: UpdateInsightDto })
-  async updateInsightForUser (
+  async updateInsightForUser(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @Body() updateInsightDto: UpdateInsightDto,
-      @UserId() userId: number,
+    @Body() updateInsightDto: UpdateInsightDto,
+    @UserId() userId: number
   ): Promise&lt;DbInsight&gt; {
     const insight &#x3D; await this.insightsService.findOneById(id);
 
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
 
     if (!canUpdate) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     // update insight
@@ -518,24 +524,32 @@ export class UserInsightsController {
 
     try {
       // current set of insight repos
-      const currentRepos &#x3D; insight.repos.filter(insightRepo &#x3D;&gt; !insightRepo.deleted_at);
+      const currentRepos &#x3D; insight.repos.filter((insightRepo) &#x3D;&gt; !insightRepo.deleted_at);
 
       // remove deleted repos
-      const reposToRemove &#x3D; currentRepos.filter(repo &#x3D;&gt; !updateInsightDto.repos.find(repoInfo &#x3D;&gt; &#x60;${repoInfo.id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;));
+      const reposToRemove &#x3D; currentRepos.filter(
+        (repo) &#x3D;&gt; !updateInsightDto.repos.find((repoInfo) &#x3D;&gt; &#x60;${repoInfo.id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;)
+      );
 
-      const reposToRemoveRequests &#x3D; reposToRemove.map(async insightRepo &#x3D;&gt; this.insightsRepoService.removeInsightRepo(insightRepo.id));
+      const reposToRemoveRequests &#x3D; reposToRemove.map(async (insightRepo) &#x3D;&gt;
+        this.insightsRepoService.removeInsightRepo(insightRepo.id)
+      );
 
       await Promise.all(reposToRemoveRequests);
 
       // add new repos
-      const currentRepoIds &#x3D; currentRepos.map(cr &#x3D;&gt; cr.repo_id);
-      const reposToAdd &#x3D; updateInsightDto.repos.filter(repoInfo &#x3D;&gt; !currentRepoIds.find(id &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id}&#x60;));
+      const currentRepoIds &#x3D; currentRepos.map((cr) &#x3D;&gt; cr.repo_id);
+      const reposToAdd &#x3D; updateInsightDto.repos.filter(
+        (repoInfo) &#x3D;&gt; !currentRepoIds.find((id) &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id}&#x60;)
+      );
 
-      const repoToAddRequests &#x3D; reposToAdd.map(async repo &#x3D;&gt; this.insightsRepoService.addInsightRepo(insight.id, repo));
+      const repoToAddRequests &#x3D; reposToAdd.map(async (repo) &#x3D;&gt;
+        this.insightsRepoService.addInsightRepo(insight.id, repo)
+      );
 
       await Promise.all(repoToAddRequests);
     } catch (e) {
-      throw new (UnprocessableEntityException);
+      throw new UnprocessableEntityException();
     }
 
     return this.insightsService.findOneById(id);

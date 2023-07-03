@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:137</a></div>
                 </td>
             </tr>
 
@@ -415,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:110</a></div>
                 </td>
             </tr>
 
@@ -505,7 +505,16 @@
   UnauthorizedException,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiConflictResponse,
+} from &quot;@nestjs/swagger&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -523,9 +532,9 @@ import { UpdateUserCollaborationDto } from &quot;./dtos/update-user-collaboratio
 @Controller(&quot;user/collaborations&quot;)
 @ApiTags(&quot;User Collaborations service&quot;)
 export class UserCollaborationController {
-  constructor (
+  constructor(
     private readonly userCollaborationService: UserCollaborationService,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
   @Get(&quot;/&quot;)
@@ -537,9 +546,9 @@ export class UserCollaborationController {
   @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserCollaboration)
   @ApiOkResponse({ type: DbUserCollaboration })
-  async findAllUserCollaborations (
+  async findAllUserCollaborations(
     @Query() pageOptionsDto: PageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbUserCollaboration&gt;&gt; {
     return this.userCollaborationService.findAllUserCollaborations(pageOptionsDto, userId);
   }
@@ -556,19 +565,19 @@ export class UserCollaborationController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiConflictResponse({ description: &quot;The requested user is not accepting collaboration requests&quot; })
   @ApiBody({ type: CreateUserCollaborationDto })
-  async addUserCollaboration (
+  async addUserCollaboration(
     @Body() createUserCollaborationDto: CreateUserCollaborationDto,
-      @User() user: SupabaseAuthUser,
+    @User() user: SupabaseAuthUser
   ): Promise&lt;DbUserCollaboration&gt; {
     const recipient &#x3D; await this.userService.findOneByUsername(createUserCollaborationDto.username);
     const requester &#x3D; await this.userService.findOneById(user.user_metadata.sub as number);
 
     if (requester.role &lt;&#x3D; 50) {
-      throw (new UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     if (!recipient.receive_collaboration) {
-      throw (new ConflictException);
+      throw new ConflictException();
     }
 
     const newUserCollaboration &#x3D; await this.userCollaborationService.addUserCollaboration({
@@ -592,15 +601,15 @@ export class UserCollaborationController {
   @ApiNotFoundResponse({ description: &quot;Unable to find user collaboration&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: UpdateUserCollaborationDto })
-  async updateUserCollaboration (
+  async updateUserCollaboration(
     @Param(&quot;id&quot;) id: string,
-      @UserId() userId: number,
-      @Body() updateUserCollaborationDto: UpdateUserCollaborationDto,
+    @UserId() userId: number,
+    @Body() updateUserCollaborationDto: UpdateUserCollaborationDto
   ): Promise&lt;DbUserCollaboration&gt; {
     const collaboration &#x3D; await this.userCollaborationService.findOneById(id);
 
     if (collaboration.user_id !&#x3D;&#x3D; userId) {
-      throw (new UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     const updatedUserCollaboration: Partial&lt;DbUserCollaboration&gt; &#x3D; { status: updateUserCollaborationDto.status };
@@ -619,14 +628,11 @@ export class UserCollaborationController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: &quot;Unable to remove user collaboration&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async removeUserCollaborationById (
-    @Param(&quot;id&quot;) id: string,
-      @UserId() userId: number,
-  ): Promise&lt;void&gt; {
+  async removeUserCollaborationById(@Param(&quot;id&quot;) id: string, @UserId() userId: number): Promise&lt;void&gt; {
     const userCollaboration &#x3D; await this.userCollaborationService.findOneById(id);
 
     if (userCollaboration.user_id !&#x3D;&#x3D; userId) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     await this.userCollaborationService.removeUserCollaboration(id);

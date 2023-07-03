@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/contributor/contributor.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/contributor/contributor.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -198,9 +198,7 @@ import { PullRequestContributorOptionsDto } from &quot;../pull-requests/dtos/pul
 @Controller(&quot;contributors&quot;)
 @ApiTags(&quot;Contributors service&quot;)
 export class ContributorController {
-  constructor (
-    private readonly pullRequestService: PullRequestService,
-  ) {}
+  constructor(private readonly pullRequestService: PullRequestService) {}
 
   @Get(&quot;/search&quot;)
   @ApiOperation({
@@ -209,8 +207,8 @@ export class ContributorController {
   })
   @ApiPaginatedResponse(DbPullRequestContributor)
   @ApiOkResponse({ type: DbPullRequestContributor })
-  async searchAllPullRequestContributors (
-    @Query() pageOptionsDto: PullRequestContributorOptionsDto,
+  async searchAllPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
     return this.pullRequestService.findAllContributorsWithFilters(pageOptionsDto);
   }

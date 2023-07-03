@@ -152,7 +152,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:57</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -189,7 +189,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -225,7 +225,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -261,7 +261,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:29</a></div>
                         </td>
                     </tr>
 
@@ -297,7 +297,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -333,7 +333,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -369,7 +369,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -394,7 +394,10 @@
 } from &quot;typeorm&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 import { DbInsight } from &quot;./insight.entity&quot;;
 
@@ -450,7 +453,7 @@ export class DbInsightRepo extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbInsight, insight &#x3D;&gt; insight.repos)
+  @ManyToOne(() &#x3D;&gt; DbInsight, (insight) &#x3D;&gt; insight.repos)
   @JoinColumn({
     name: &quot;insight_id&quot;,
     referencedColumnName: &quot;id&quot;,

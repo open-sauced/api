@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/submit/submit.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/submit/submit.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/submit/submit.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/submit/submit.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -371,24 +371,21 @@ import { DbRepoToUserSubmissions } from &quot;../repo/entities/repo.to.user.subm
 
 @Injectable()
 export class SubmitService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserSubmissions, &quot;ApiConnection&quot;)
-    private repoSubmitRepository: Repository&lt;DbRepoToUserSubmissions&gt;,
+    private repoSubmitRepository: Repository&lt;DbRepoToUserSubmissions&gt;
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.repoSubmitRepository.createQueryBuilder(&quot;r2submits&quot;)
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoSubmitRepository.createQueryBuilder(&quot;r2submits&quot;).withDeleted();
 
     return builder;
   }
 
-  async submitByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserSubmissions&gt; {
+  async submitByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserSubmissions&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;r2submits.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2submits.user_id &#x3D; :userId&quot;, { userId });
+    queryBuilder.where(&quot;r2submits.repo_id &#x3D; :repoId&quot;, { repoId }).andWhere(&quot;r2submits.user_id &#x3D; :userId&quot;, { userId });
 
     const submitExists &#x3D; await queryBuilder.getOne();
 
@@ -408,12 +405,10 @@ export class SubmitService {
     });
   }
 
-  async downSubmitByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserSubmissions&gt; {
+  async downSubmitByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserSubmissions&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;r2submits.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2submits.user_id &#x3D; :userId&quot;, { userId });
+    queryBuilder.where(&quot;r2submits.repo_id &#x3D; :repoId&quot;, { repoId }).andWhere(&quot;r2submits.user_id &#x3D; :userId&quot;, { userId });
 
     const submitExists &#x3D; await queryBuilder.getOne();
 

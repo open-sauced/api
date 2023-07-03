@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/pull-requests/code-explanation.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/code-explanation.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -193,13 +193,10 @@ import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { GenerateCodeExplanationDto } from &quot;./dtos/create-code-explanation.dto&quot;;
 import { CodeExplanationService } from &quot;./code-explanation.service&quot;;
 
-
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class CodeExplanationController {
-  constructor (private codeExplanationService: CodeExplanationService) {
-
-  }
+  constructor(private codeExplanationService: CodeExplanationService) {}
 
   @Post(&quot;/explanation/generate&quot;)
   @ApiOperation({
@@ -210,13 +207,11 @@ export class CodeExplanationController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: GenerateCodeExplanationDto })
-  async generatePRDescription (
-  @Body() generateCodeExplanationDto: GenerateCodeExplanationDto,
-  ) {
+  async generatePRDescription(@Body() generateCodeExplanationDto: GenerateCodeExplanationDto) {
     const suggestion &#x3D; await this.codeExplanationService.generateExplanation(generateCodeExplanationDto);
 
     if (!suggestion) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { suggestion };

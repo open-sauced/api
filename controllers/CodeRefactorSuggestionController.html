@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/code-refactor-suggestion.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -193,13 +193,10 @@ import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { GenerateCodeRefactorSuggestionDto } from &quot;./dtos/create-code-refactor-suggestion.dto&quot;;
 import { CodeRefactorSuggestionService } from &quot;./code-refactor-suggestion.service&quot;;
 
-
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class CodeRefactorSuggestionController {
-  constructor (private codeRefactorSuggestionService: CodeRefactorSuggestionService) {
-
-  }
+  constructor(private codeRefactorSuggestionService: CodeRefactorSuggestionService) {}
 
   @Post(&quot;/suggestion/generate&quot;)
   @ApiOperation({
@@ -210,13 +207,11 @@ export class CodeRefactorSuggestionController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: GenerateCodeRefactorSuggestionDto })
-  async generatePRDescription (
-  @Body() generateCodeRefactorSuggestionDto: GenerateCodeRefactorSuggestionDto,
-  ) {
+  async generatePRDescription(@Body() generateCodeRefactorSuggestionDto: GenerateCodeRefactorSuggestionDto) {
     const suggestion &#x3D; await this.codeRefactorSuggestionService.generateDescription(generateCodeRefactorSuggestionDto);
 
     if (!suggestion) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { suggestion };

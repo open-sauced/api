@@ -157,7 +157,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -194,7 +194,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:63</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -230,7 +230,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -266,7 +266,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:79</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:83</a></div>
                         </td>
                     </tr>
 
@@ -302,7 +302,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -339,7 +339,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -411,7 +411,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/repo/entities/repo.to.user.stargazers.entity.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -425,7 +425,8 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -435,7 +436,10 @@
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 import { DbUser } from &quot;../../user/user.entity&quot;;
 import { DbRepo } from &quot;./repo.entity&quot;;
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 @Entity({ name: &quot;users_to_repos_stargazers&quot; })
 export class DbRepoToUserStargazers {
@@ -488,7 +492,7 @@ export class DbRepoToUserStargazers {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbUser, user &#x3D;&gt; user.repoToUserStargazers)
+  @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.repoToUserStargazers)
   @JoinColumn({
     name: &quot;user_id&quot;,
     referencedColumnName: &quot;id&quot;,
@@ -496,7 +500,7 @@ export class DbRepoToUserStargazers {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbRepo, repo &#x3D;&gt; repo.repoToUserStargazers)
+  @ManyToOne(() &#x3D;&gt; DbRepo, (repo) &#x3D;&gt; repo.repoToUserStargazers)
   @JoinColumn({
     name: &quot;repo_id&quot;,
     referencedColumnName: &quot;id&quot;,

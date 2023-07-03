@@ -208,8 +208,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/repo/repo.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/repo/repo.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -281,8 +281,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/repo/repo.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/repo/repo.service.ts:37</a></div>
                 </td>
             </tr>
 
@@ -320,8 +320,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/repo/repo.service.ts:170</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/repo/repo.service.ts:174</a></div>
                 </td>
             </tr>
 
@@ -415,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/repo/repo.service.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/repo/repo.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -486,8 +486,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/repo/repo.service.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/repo/repo.service.ts:146</a></div>
                 </td>
             </tr>
 
@@ -557,8 +557,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/repo/repo.service.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/repo/repo.service.ts:160</a></div>
                 </td>
             </tr>
 
@@ -640,8 +640,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="247"
-                            class="link-to-prism">src/repo/repo.service.ts:247</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="257"
+                            class="link-to-prism">src/repo/repo.service.ts:257</a></div>
                 </td>
             </tr>
 
@@ -833,13 +833,18 @@ import { RepoSearchOptionsDto } from &quot;./dtos/repo-search-options.dto&quot;;
 
 @Injectable()
 export class RepoService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepo, &quot;ApiConnection&quot;)
     private repoRepository: Repository&lt;DbRepo&gt;,
-    private filterService: RepoFilterService,
+    private filterService: RepoFilterService
   ) {}
 
-  subQueryCount&lt;T extends ObjectLiteral&gt; (subQuery: SelectQueryBuilder&lt;T&gt;, entity: string, alias: string, target &#x3D; &quot;repo&quot;) {
+  subQueryCount&lt;T extends ObjectLiteral&gt;(
+    subQuery: SelectQueryBuilder&lt;T&gt;,
+    entity: string,
+    alias: string,
+    target &#x3D; &quot;repo&quot;
+  ) {
     const aliasName &#x3D; &#x60;${alias}Count&#x60;;
     const aliasTable &#x3D; &#x60;${alias}CountSelect&#x60;;
 
@@ -849,21 +854,22 @@ export class RepoService {
       .where(&#x60;${aliasTable}.${target}_id &#x3D; ${target}.id&#x60;);
   }
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;)
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoRepository
+      .createQueryBuilder(&quot;repo&quot;)
 
-    /*
-     * .select([&#x27;repo.id&#x27;])
-     * .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
-     * .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
-     * .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
-     */
+      /*
+       * .select([&#x27;repo.id&#x27;])
+       * .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
+       * .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
+       * .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
+       */
 
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbContribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
-      .addSelect(qb &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbContribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
+      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
       .loadRelationCountAndMap(&quot;repo.contributionsCount&quot;, &quot;repo.contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
       .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
@@ -873,7 +879,7 @@ export class RepoService {
     return builder;
   }
 
-  private baseFilterQueryBuilder (range &#x3D; 30) {
+  private baseFilterQueryBuilder(range &#x3D; 30) {
     return this.repoRepository
       .createQueryBuilder(&quot;repos&quot;)
       .addSelect(
@@ -885,7 +891,7 @@ export class RepoService {
             AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &quot;repos_open_prs_count&quot;,
+        &quot;repos_open_prs_count&quot;
       )
       .addSelect(
         &#x60;(
@@ -897,7 +903,7 @@ export class RepoService {
             AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &#x60;repos_closed_prs_count&#x60;,
+        &#x60;repos_closed_prs_count&#x60;
       )
       .addSelect(
         &#x60;(
@@ -909,7 +915,7 @@ export class RepoService {
             AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &#x60;repos_merged_prs_count&#x60;,
+        &#x60;repos_merged_prs_count&#x60;
       )
       .addSelect(
         &#x60;(
@@ -920,7 +926,7 @@ export class RepoService {
             AND &quot;draft_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &#x60;repos_draft_prs_count&#x60;,
+        &#x60;repos_draft_prs_count&#x60;
       )
       .addSelect(
         &#x60;(
@@ -931,7 +937,7 @@ export class RepoService {
             AND &quot;spam_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &#x60;repos_spam_prs_count&#x60;,
+        &#x60;repos_spam_prs_count&#x60;
       )
       .addSelect(
         &#x60;(
@@ -942,7 +948,7 @@ export class RepoService {
             AND &quot;pull_requests_velocity&quot;.&quot;closed_at&quot; &gt; &quot;pull_requests_velocity&quot;.&quot;created_at&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
-        &#x60;repos_pr_velocity_count&#x60;,
+        &#x60;repos_pr_velocity_count&#x60;
       )
       .addSelect(
         &#x60;(
@@ -953,52 +959,55 @@ export class RepoService {
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
             AND &quot;active_pull_requests&quot;.state !&#x3D; &#x27;closed&#x27;
         )::INTEGER&#x60;,
-        &#x60;repo_active_prs_count&#x60;,
+        &#x60;repo_active_prs_count&#x60;
       );
   }
 
-  async findOneById (id: number): Promise&lt;DbRepo&gt; {
+  async findOneById(id: number): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;repo.id &#x3D; :id&quot;, { id });
+    queryBuilder.where(&quot;repo.id &#x3D; :id&quot;, { id });
 
     const item &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async findOneByOwnerAndRepo (owner: string, repo: string): Promise&lt;DbRepo&gt; {
+  async findOneByOwnerAndRepo(owner: string, repo: string): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;repo.full_name &#x3D; :name&quot;, { name: &#x60;${owner}/${repo}&#x60; });
+    queryBuilder.where(&quot;repo.full_name &#x3D; :name&quot;, { name: &#x60;${owner}/${repo}&#x60; });
 
     const item &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async findAll (
+  async findAll(
     pageOptionsDto: RepoPageOptionsDto,
     userId?: number,
-    userRelations?: string[],
+    userRelations?: string[]
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
     const orderField &#x3D; pageOptionsDto.orderBy ?? RepoOrderFieldsEnum.stars;
 
     if (userId) {
-      userRelations?.map(relation &#x3D;&gt;
-        queryBuilder
-          .innerJoin(&#x60;repo.repoToUser${relation}&#x60;, &#x60;authUser${relation}&#x60;, &#x60;authUser${relation}.user_id &#x3D; :userId&#x60;, { userId }));
+      userRelations?.map((relation) &#x3D;&gt;
+        queryBuilder.innerJoin(
+          &#x60;repo.repoToUser${relation}&#x60;,
+          &#x60;authUser${relation}&#x60;,
+          &#x60;authUser${relation}.user_id &#x3D; :userId&#x60;,
+          { userId }
+        )
+      );
     }
 
     queryBuilder
@@ -1016,7 +1025,7 @@ export class RepoService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllWithFilters (pageOptionsDto: RepoSearchOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
+  async findAllWithFilters(pageOptionsDto: RepoSearchOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;stars&quot;;
     const range &#x3D; pageOptionsDto.range!;
     const queryBuilder &#x3D; this.baseFilterQueryBuilder(range);
@@ -1045,7 +1054,8 @@ export class RepoService {
 
     this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
 
-    const subQuery &#x3D; this.repoRepository.manager.createQueryBuilder()
+    const subQuery &#x3D; this.repoRepository.manager
+      .createQueryBuilder()
       .from(&#x60;(${countQueryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
       .setParameters(countQueryBuilder.getParameters())
       .select(&quot;count(repos_id)&quot;);
@@ -1064,19 +1074,21 @@ export class RepoService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findRecommendations (interests: string[]): Promise&lt;Record&lt;string, DbRepo[]&gt;&gt; {
+  async findRecommendations(interests: string[]): Promise&lt;Record&lt;string, DbRepo[]&gt;&gt; {
     const queryBuilder &#x3D; this.repoRepository.createQueryBuilder(&quot;repo&quot;);
     const userInterests: Record&lt;string, DbRepo[]&gt; &#x3D; {};
 
-    const promises &#x3D; interests.map(async interest &#x3D;&gt; {
+    const promises &#x3D; interests.map(async (interest) &#x3D;&gt; {
       queryBuilder
         .where(&#x60;(:topic &#x3D; ANY(&quot;repo&quot;.&quot;topics&quot;))&#x60;, { topic: interest })
-        .andWhere(&#x60;
+        .andWhere(
+          &#x60;
           repo.id IN (
             SELECT repo_id FROM pull_requests
             WHERE now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
           )
-        &#x60;)
+        &#x60;
+        )
         .orderBy(&#x60;&quot;repo&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;)
         .limit(3);
 

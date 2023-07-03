@@ -319,24 +319,24 @@ import { OpenAiService } from &quot;../open-ai/open-ai.service&quot;;
 
 @Injectable()
 export class CodeRefactorSuggestionService {
-  constructor (private openAiService: OpenAiService) {}
+  constructor(private openAiService: OpenAiService) {}
 
-  private generatePrompt (language: string, maxLength: number) {
+  private generatePrompt(language: string, maxLength: number) {
     return [
       &#x60;Generate a code refactor suggestion for a given code snippet written in ${language} with the specifications mentioned below&#x60;,
       &#x60;The code snippet must be a maximum of ${maxLength} characters.&#x60;,
-      &quot;Exclude anything unnecessary such as translation and instructions. The code snippet you suggest should start with \&quot;&#x60;&#x60;&#x60;suggestion\&quot; and end with &#x60;&#x60;&#x60; to create a valid GitHub suggestion codeblock. All non-code text or description should be outside of the codeblock.&quot;,
+      &#x27;Exclude anything unnecessary such as translation and instructions. The code snippet you suggest should start with &quot;&#x60;&#x60;&#x60;suggestion&quot; and end with &#x60;&#x60;&#x60; to create a valid GitHub suggestion codeblock. All non-code text or description should be outside of the codeblock.&#x27;,
     ].join(&quot;\n&quot;);
   }
 
-  async generateDescription (options: GenerateCodeRefactorSuggestionDto) {
+  async generateDescription(options: GenerateCodeRefactorSuggestionDto) {
     const content &#x3D; &#x60;Code: ${options.code}\n&#x60;;
 
     try {
       const completion &#x3D; await this.openAiService.generateCompletion(
         this.generatePrompt(options.language, options.descriptionLength),
         content,
-        options.temperature,
+        options.temperature
       );
 
       return completion;

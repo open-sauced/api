@@ -219,13 +219,7 @@ import { AuthModule } from &quot;../auth/auth.module&quot;;
 import { EndorsementTokenGuard } from &quot;./endorsement-token.guard&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbEndorsement,
-    ], &quot;ApiConnection&quot;),
-    UserModule,
-    AuthModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbEndorsement], &quot;ApiConnection&quot;), UserModule, AuthModule],
   controllers: [EndorsementController],
   providers: [EndorsementService, EndorsementTokenGuard],
   exports: [EndorsementService],

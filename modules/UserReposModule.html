@@ -166,11 +166,7 @@ import { DbUserRepo } from &quot;./user-repo.entity&quot;;
 import { UserReposService } from &quot;./user-repos.service&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbUserRepo,
-    ], &quot;ApiConnection&quot;),
-  ],
+  imports: [TypeOrmModule.forFeature([DbUserRepo], &quot;ApiConnection&quot;)],
   providers: [UserReposService],
   exports: [UserReposService],
 })

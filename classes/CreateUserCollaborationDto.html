@@ -199,7 +199,7 @@ export class CreateUserCollaborationDto {
     example: &quot;bdougie&quot;,
   })
   @IsString()
-    username: string;
+  username: string;
 
   @ApiProperty({
     description: &quot;Collaboration Request Message&quot;,
@@ -209,7 +209,7 @@ export class CreateUserCollaborationDto {
   @IsString()
   @MinLength(20)
   @MaxLength(500)
-    message: string;
+  message: string;
 }
 </code></pre>
     </div>

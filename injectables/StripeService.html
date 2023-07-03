@@ -412,9 +412,9 @@ import Stripe from &quot;stripe&quot;;
 export class StripeService {
   private _stripe?: Stripe;
 
-  constructor (private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {}
 
-  get stripe () {
+  get stripe() {
     if (!this._stripe) {
       this._stripe &#x3D; new Stripe(this.configService.get(&quot;stripe.secretKey&quot;)!, { apiVersion: &quot;2022-11-15&quot; });
     }
@@ -422,14 +422,14 @@ export class StripeService {
     return this._stripe;
   }
 
-  async addCustomer (id: number, email?: string) {
+  async addCustomer(id: number, email?: string) {
     return this.stripe.customers.create({
       metadata: { userId: id },
       email,
     });
   }
 
-  async createCheckoutSession (customer: string) {
+  async createCheckoutSession(customer: string) {
     const session &#x3D; await this.stripe.checkout.sessions.create({
       payment_method_types: [&quot;card&quot;],
       billing_address_collection: &quot;required&quot;,

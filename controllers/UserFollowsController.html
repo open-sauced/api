@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/user/user-follow.controller.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/user/user-follow.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -231,8 +231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/user/user-follow.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/user/user-follow.controller.ts:30</a></div>
                 </td>
             </tr>
 
@@ -321,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user/user-follow.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/user/user-follow.controller.ts:70</a></div>
                 </td>
             </tr>
 
@@ -405,10 +405,7 @@ import { UserService } from &quot;./user.service&quot;;
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
 export class UserFollowsController {
-  constructor (
-    private readonly userService: UserService,
-    private readonly userFollowService: UserFollowService,
-  ) {}
+  constructor(private readonly userService: UserService, private readonly userFollowService: UserFollowService) {}
 
   @Get(&quot;/:username/follow&quot;)
   @ApiBearerAuth()
@@ -418,9 +415,9 @@ export class UserFollowsController {
     summary: &quot;Checks if the authenticated user follows the provided username&quot;,
   })
   @ApiNotFoundResponse({ description: &quot;User follow not found&quot; })
-  async getFollowStatusByUsername (
+  async getFollowStatusByUsername(
     @Param(&quot;username&quot;) username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbUserToUserFollows&gt; {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
@@ -436,9 +433,9 @@ export class UserFollowsController {
   })
   @ApiNotFoundResponse({ description: &quot;User not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already followed this user&quot; })
-  async followUserByUsername (
+  async followUserByUsername(
     @Param(&quot;username&quot;) username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbUserToUserFollows&gt; {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
@@ -458,9 +455,9 @@ export class UserFollowsController {
   })
   @ApiNotFoundResponse({ description: &quot;User not found&quot; })
   @ApiConflictResponse({ description: &quot;You are now following this user&quot; })
-  async unfollowUserByUserId (
+  async unfollowUserByUserId(
     @Param(&quot;username&quot;) username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise&lt;DbUserToUserFollows&gt; {
     const user &#x3D; await this.userService.findOneByUsername(username);
 

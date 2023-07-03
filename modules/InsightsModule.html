@@ -260,14 +260,7 @@ import { UserModule } from &quot;../user/user.module&quot;;
 
 @Module({
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
-  imports: [
-    TypeOrmModule.forFeature([
-      DbInsight,
-      DbInsightRepo,
-      DbInsightMember,
-    ], &quot;ApiConnection&quot;),
-    UserModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], &quot;ApiConnection&quot;), UserModule],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
 })

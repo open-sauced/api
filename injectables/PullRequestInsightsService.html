@@ -225,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -432,17 +432,22 @@ import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
 
 @Injectable()
 export class PullRequestInsightsService {
-  constructor (
+  constructor(
     @InjectRepository(DbPRInsight, &quot;ApiConnection&quot;)
     private prInsightRepository: Repository&lt;DbPRInsight&gt;,
-    private repoFilterService: RepoFilterService,
+    private repoFilterService: RepoFilterService
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.prInsightRepository.createQueryBuilder(&quot;pr&quot;);
   }
 
-  subQueryCountPrs&lt;T extends ObjectLiteral&gt; (qb: SelectQueryBuilder&lt;T&gt;, type &#x3D; &quot;all&quot;, interval &#x3D; 0, options: FilterOptionsDto) {
+  subQueryCountPrs&lt;T extends ObjectLiteral&gt;(
+    qb: SelectQueryBuilder&lt;T&gt;,
+    type &#x3D; &quot;all&quot;,
+    interval &#x3D; 0,
+    options: FilterOptionsDto
+  ) {
     const prQuery &#x3D; this.baseQueryBuilder()
       .select(&#x60;COALESCE(COUNT(&quot;pr&quot;.&quot;id&quot;), 0)&#x60;)
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pr&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;);
@@ -460,13 +465,13 @@ export class PullRequestInsightsService {
     return qb.addSelect(&#x60;(${prQuery.getQuery()})::INTEGER&#x60;, &#x60;${type}_prs&#x60;);
   }
 
-  async getInsight (interval &#x3D; 0, options: FilterOptionsDto): Promise&lt;DbPRInsight&gt; {
+  async getInsight(interval &#x3D; 0, options: FilterOptionsDto): Promise&lt;DbPRInsight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder()
       .select(&#x60;TO_CHAR(now() - INTERVAL &#x27;${interval} days&#x27;, &#x27;YYYY-MM-DD&#x27;)&#x60;, &quot;day&quot;)
       .addSelect(&#x60;${interval}::INTEGER&#x60;, &quot;interval&quot;)
       .limit(1);
 
-    [&quot;all&quot;, &quot;accepted&quot;, &quot;spam&quot;].forEach(type &#x3D;&gt; {
+    [&quot;all&quot;, &quot;accepted&quot;, &quot;spam&quot;].forEach((type) &#x3D;&gt; {
       this.subQueryCountPrs(queryBuilder, type, interval, options);
     });
 
@@ -475,7 +480,7 @@ export class PullRequestInsightsService {
     const item: DbPRInsight | undefined &#x3D; await queryBuilder.getRawOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;

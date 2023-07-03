@@ -242,8 +242,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:46</a></div>
                 </td>
             </tr>
 
@@ -335,8 +335,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:38</a></div>
                 </td>
             </tr>
 
@@ -707,8 +707,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:42</a></div>
                 </td>
             </tr>
 
@@ -778,8 +778,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/common/middleware/database-logger.middleware.ts:61</a></div>
                 </td>
             </tr>
 
@@ -844,11 +844,11 @@ import { clc } from &quot;@nestjs/common/utils/cli-colors.util&quot;;
 export class DatabaseLoggerMiddleware implements TypeOrmLogger {
   private readonly logger;
 
-  constructor (name &#x3D; &quot;SQL&quot;) {
+  constructor(name &#x3D; &quot;SQL&quot;) {
     this.logger &#x3D; new NestLogger(name);
   }
 
-  logQuery (query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+  logQuery(query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
     if (queryRunner?.data.isCreatingLogs) {
       return;
     }
@@ -856,7 +856,7 @@ export class DatabaseLoggerMiddleware implements TypeOrmLogger {
     this.logger.log(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)}&#x60;);
   }
 
-  logQueryError (error: string, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+  logQueryError(error: string, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
     if (queryRunner?.data.isCreatingLogs) {
       return;
     }
@@ -864,23 +864,25 @@ export class DatabaseLoggerMiddleware implements TypeOrmLogger {
     this.logger.error(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)} -- ${error}&#x60;);
   }
 
-  logQuerySlow (time: number, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
+  logQuerySlow(time: number, query: string, parameters?: unknown[], queryRunner?: QueryRunner) {
     if (queryRunner?.data.isCreatingLogs) {
       return;
     }
 
-    this.logger.error(&#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)} ${clc.red(&#x60;+${String(time)}ms&#x60;)}&#x60;);
+    this.logger.error(
+      &#x60;${query} -- Parameters: ${this.stringifyParameters(parameters)} ${clc.red(&#x60;+${String(time)}ms&#x60;)}&#x60;
+    );
   }
 
-  logMigration (message: string) {
+  logMigration(message: string) {
     this.logger.warn(message);
   }
 
-  logSchemaBuild (message: string) {
+  logSchemaBuild(message: string) {
     this.logger.warn(message);
   }
 
-  log (level: &quot;log&quot; | &quot;info&quot; | &quot;warn&quot;, message: string, queryRunner?: QueryRunner) {
+  log(level: &quot;log&quot; | &quot;info&quot; | &quot;warn&quot;, message: string, queryRunner?: QueryRunner) {
     if (queryRunner?.data.isCreatingLogs) {
       return;
     }
@@ -895,7 +897,7 @@ export class DatabaseLoggerMiddleware implements TypeOrmLogger {
     return this.logger.warn(message);
   }
 
-  private stringifyParameters (parameters?: unknown[]) {
+  private stringifyParameters(parameters?: unknown[]) {
     try {
       return JSON.stringify(parameters);
     } catch {

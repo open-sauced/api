@@ -203,13 +203,7 @@ import { RepoStarController } from &quot;./repo-star.controller&quot;;
 import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbRepo,
-      DbRepoToUserStars,
-    ], &quot;ApiConnection&quot;),
-    RepoModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserStars], &quot;ApiConnection&quot;), RepoModule],
   controllers: [RepoStarController],
   providers: [StarService],
   exports: [StarService],

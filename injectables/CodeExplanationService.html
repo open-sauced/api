@@ -319,23 +319,23 @@ import { OpenAiService } from &quot;../open-ai/open-ai.service&quot;;
 
 @Injectable()
 export class CodeExplanationService {
-  constructor (private openAiService: OpenAiService) {}
+  constructor(private openAiService: OpenAiService) {}
 
-  private generatePrompt (language: string, maxLength: number) {
+  private generatePrompt(language: string, maxLength: number) {
     return [
       &#x60;Generate an explanation for the given code snippet written in ${language} with the specifications mentioned below&#x60;,
       &#x60;The explanation must be a maximum of ${maxLength} characters.&#x60;,
     ].join(&quot;\n&quot;);
   }
 
-  async generateExplanation (options: GenerateCodeExplanationDto) {
+  async generateExplanation(options: GenerateCodeExplanationDto) {
     const content &#x3D; &#x60;Code: ${options.code}\n&#x60;;
 
     try {
       const completion &#x3D; await this.openAiService.generateCompletion(
         this.generatePrompt(options.language, options.descriptionLength),
         content,
-        options.temperature,
+        options.temperature
       );
 
       return completion;

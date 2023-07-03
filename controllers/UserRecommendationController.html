@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/user/user-recommendation.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/user/user-recommendation.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -186,11 +186,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Controller,
-  Get,
-  UseGuards,
-} from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiBearerAuth, ApiTags, ApiOkResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -202,10 +198,7 @@ import { UserService } from &quot;./user.service&quot;;
 @Controller(&quot;user/recommendations&quot;)
 @ApiTags(&quot;User Recommendations service&quot;)
 export class UserRecommendationController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly userService: UserService) {}
 
   @Get(&quot;/repos&quot;)
   @ApiOperation({
@@ -215,9 +208,7 @@ export class UserRecommendationController {
   @ApiBearerAuth()
   @ApiOkResponse()
   @UseGuards(SupabaseGuard)
-  async findUserRepoRecommendations (
-  @UserId() userId: number,
-  ) {
+  async findUserRepoRecommendations(@UserId() userId: number) {
     const user &#x3D; await this.userService.findOneById(userId);
     const interests &#x3D; user.interests?.split(&quot;,&quot;).filter(Boolean) ?? [];
 

@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/stargaze/stargaze.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/stargaze/stargaze.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/stargaze/stargaze.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/stargaze/stargaze.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -371,19 +371,18 @@ import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.starg
 
 @Injectable()
 export class StargazeService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserStargazers, &quot;ApiConnection&quot;)
-    private repoStargazeRepository: Repository&lt;DbRepoToUserStargazers&gt;,
+    private repoStargazeRepository: Repository&lt;DbRepoToUserStargazers&gt;
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.repoStargazeRepository.createQueryBuilder(&quot;r2stargazes&quot;)
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoStargazeRepository.createQueryBuilder(&quot;r2stargazes&quot;).withDeleted();
 
     return builder;
   }
 
-  async stargazeByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
+  async stargazeByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -408,7 +407,7 @@ export class StargazeService {
     });
   }
 
-  async downStargazeByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
+  async downStargazeByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStargazers&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder

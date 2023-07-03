@@ -277,7 +277,7 @@ export class GenerateCodeExplanationDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    descriptionLength: number;
+  descriptionLength: number;
 
   @ApiProperty({
     description: &quot;Description Temperature&quot;,
@@ -287,7 +287,7 @@ export class GenerateCodeExplanationDto {
   @IsNumber()
   @Min(0)
   @Max(10)
-    temperature: number;
+  temperature: number;
 
   @ApiProperty({
     description: &quot;Description Language&quot;,
@@ -297,14 +297,14 @@ export class GenerateCodeExplanationDto {
   })
   @IsString()
   @IsIn([&quot;english&quot;, &quot;spanish&quot;, &quot;french&quot;, &quot;german&quot;, &quot;italian&quot;, &quot;portuguese&quot;, &quot;dutch&quot;, &quot;russian&quot;, &quot;chinese&quot;, &quot;korean&quot;])
-    language: string;
+  language: string;
 
   @ApiProperty({
     description: &quot;Code&quot;,
     type: String,
   })
   @IsString()
-    code: string;
+  code: string;
 }
 </code></pre>
     </div>

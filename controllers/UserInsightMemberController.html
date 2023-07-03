@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -247,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:173</a></div>
                 </td>
             </tr>
 
@@ -451,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:136</a></div>
                 </td>
             </tr>
 
@@ -554,7 +554,16 @@
   UnauthorizedException,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiUnprocessableEntityResponse,
+} from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
@@ -573,10 +582,10 @@ import { UserService } from &quot;../user/user.service&quot;;
 @Controller(&quot;user/insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
 export class UserInsightMemberController {
-  constructor (
+  constructor(
     private readonly insightsService: InsightsService,
     private readonly insightMemberService: InsightMemberService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   @Get(&quot;:id/members&quot;)
@@ -589,16 +598,20 @@ export class UserInsightMemberController {
   @ApiPaginatedResponse(DbInsightMember)
   @ApiOkResponse({ type: DbInsightMember })
   @ApiNotFoundResponse({ description: &quot;Insight not found&quot; })
-  async findAllInsightsByUserId (
+  async findAllInsightsByUserId(
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
-      @UserId() userId: number,
+    @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
+    @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
     const insight &#x3D; await this.insightsService.findOneById(insightId);
-    const canAccess &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;, &quot;view&quot;]);
+    const canAccess &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [
+      &quot;admin&quot;,
+      &quot;edit&quot;,
+      &quot;view&quot;,
+    ]);
 
     if (!canAccess) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     return this.insightMemberService.findAllInsightMembers(pageOptionsDto, insightId);
@@ -615,19 +628,24 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: &quot;Unable to add insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateInsightMemberDto })
-  async addInsightMember (
+  async addInsightMember(
     @Body() createInsightMemberDto: CreateInsightMemberDto,
-      @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
-      @UserId() userId: number,
+    @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
+    @UserId() userId: number
   ): Promise&lt;DbInsightMember&gt; {
     const insight &#x3D; await this.insightsService.findOneById(insightId);
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
 
     if (!canUpdate) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
-    const isMember &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;, &quot;view&quot;], false);
+    const isMember &#x3D; await this.insightMemberService.canUserManageInsight(
+      userId,
+      insight.id,
+      [&quot;admin&quot;, &quot;edit&quot;, &quot;view&quot;],
+      false
+    );
 
     if (isMember) {
       throw new ConflictException(&quot;The user is already a team member of this insight&quot;);
@@ -657,18 +675,18 @@ export class UserInsightMemberController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight member&quot; })
   @ApiBody({ type: UpdateInsightMemberDto })
-  async updateInsightMember (
+  async updateInsightMember(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @Param(&quot;memberId&quot;) memberId: string,
-      @UserId() userId: number,
-      @Body() updateInsightMemberDto: UpdateInsightMemberDto,
+    @Param(&quot;memberId&quot;) memberId: string,
+    @UserId() userId: number,
+    @Body() updateInsightMemberDto: UpdateInsightMemberDto
   ): Promise&lt;DbInsightMember&gt; {
     const insight &#x3D; await this.insightsService.findOneById(id);
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
     const insightMember &#x3D; await this.insightMemberService.findOneById(memberId);
 
     if (!canUpdate &amp;&amp; insightMember.access !&#x3D;&#x3D; &quot;pending&quot;) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     const updatedInsightMember: Partial&lt;DbInsightMember&gt; &#x3D; { access: updateInsightMemberDto.access };
@@ -694,16 +712,16 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to remove insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async removeInsightMemberById (
+  async removeInsightMemberById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
-      @Param(&quot;memberId&quot;) memberId: string,
-      @UserId() userId: number,
+    @Param(&quot;memberId&quot;) memberId: string,
+    @UserId() userId: number
   ): Promise&lt;void&gt; {
     const insight &#x3D; await this.insightsService.findOneById(id);
     const canUpdate &#x3D; await this.insightMemberService.canUserManageInsight(userId, insight.id, [&quot;admin&quot;, &quot;edit&quot;]);
 
     if (!canUpdate) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     await this.insightMemberService.removeInsightMember(memberId);

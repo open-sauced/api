@@ -221,7 +221,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/user/dtos/update-user.dto.ts:56</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/user/dtos/update-user.dto.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -258,7 +258,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/user/dtos/update-user.dto.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/user/dtos/update-user.dto.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -331,7 +331,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/user/dtos/update-user.dto.ts:99</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/user/dtos/update-user.dto.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -368,7 +368,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/user/dtos/update-user.dto.ts:91</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/user/dtos/update-user.dto.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -405,7 +405,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/user/dtos/update-user.dto.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/user/dtos/update-user.dto.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -478,7 +478,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/user/dtos/update-user.dto.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/user/dtos/update-user.dto.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -515,7 +515,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/user/dtos/update-user.dto.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/user/dtos/update-user.dto.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -615,7 +615,10 @@ export class UpdateUserDto {
     example: &quot;saucedopen&quot;,
   })
   @IsString()
-  @Matches(/^(?!.*?admin)(?!.*?twitter)\w{0,15}$/i, { message: &quot;Twitter username can only contain letters, numbers, and underscores. It also cannot contain reserved Twitter usernames (twitter or admin).&quot; })
+  @Matches(/^(?!.*?admin)(?!.*?twitter)\w{0,15}$/i, {
+    message:
+      &quot;Twitter username can only contain letters, numbers, and underscores. It also cannot contain reserved Twitter usernames (twitter or admin).&quot;,
+  })
   @IsOptional()
   public twitter_username?: string;
 

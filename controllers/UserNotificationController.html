@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/user/user-notification.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/user/user-notification.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -211,9 +211,7 @@ import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 @Controller(&quot;user/notifications&quot;)
 @ApiTags(&quot;User service&quot;)
 export class UserNotificationController {
-  constructor (
-    private userNotificationService: UserNotificationService,
-  ) {}
+  constructor(private userNotificationService: UserNotificationService) {}
 
   @Get(&quot;/&quot;)
   @ApiOperation({
@@ -224,9 +222,9 @@ export class UserNotificationController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserNotification })
   @ApiNotFoundResponse({ description: &quot;Unable to get user notifications&quot; })
-  async getUserNotifications (
+  async getUserNotifications(
     @UserId() userId: number,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbUserNotification&gt;&gt; {
     return this.userNotificationService.findAllByUserId(userId, pageOptionsDto);
   }

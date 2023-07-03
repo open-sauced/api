@@ -321,16 +321,16 @@ import { RepoInfo } from &quot;../repo/dtos/repo-info.dto&quot;;
 
 @Injectable()
 export class InsightRepoService {
-  constructor (
+  constructor(
     @InjectRepository(DbInsightRepo, &quot;ApiConnection&quot;)
-    private insightRepoRepository: Repository&lt;DbInsightRepo&gt;,
+    private insightRepoRepository: Repository&lt;DbInsightRepo&gt;
   ) {}
 
-  async addInsightRepo (insightId: number, repo: RepoInfo) {
+  async addInsightRepo(insightId: number, repo: RepoInfo) {
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
   }
 
-  async removeInsightRepo (id: number) {
+  async removeInsightRepo(id: number) {
     return this.insightRepoRepository.softDelete(id);
   }
 }

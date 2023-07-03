@@ -133,8 +133,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/pull-requests/pull-request-description.controller.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/pull-request-description.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -196,9 +196,7 @@ import { PullRequestDescriptionService } from &quot;./pull-request-description.s
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class PullRequestDescriptionController {
-  constructor (private pullRequestDescriptionService: PullRequestDescriptionService) {
-
-  }
+  constructor(private pullRequestDescriptionService: PullRequestDescriptionService) {}
 
   @Post(&quot;/description/generate&quot;)
   @ApiOperation({
@@ -209,13 +207,11 @@ export class PullRequestDescriptionController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: GeneratePullRequestDescriptionDto })
-  async generatePRDescription (
-  @Body() generatePullRequestDescriptionDto: GeneratePullRequestDescriptionDto,
-  ) {
+  async generatePRDescription(@Body() generatePullRequestDescriptionDto: GeneratePullRequestDescriptionDto) {
     const description &#x3D; await this.pullRequestDescriptionService.generateDescription(generatePullRequestDescriptionDto);
 
     if (!description) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { description };

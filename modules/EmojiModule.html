@@ -151,11 +151,7 @@ import { DbEmoji } from &quot;./entities/emoji.entity&quot;;
 import { EmojiService } from &quot;./emoji.service&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbEmoji,
-    ], &quot;ApiConnection&quot;),
-  ],
+  imports: [TypeOrmModule.forFeature([DbEmoji], &quot;ApiConnection&quot;)],
   controllers: [EmojiController],
   providers: [EmojiService],
 })

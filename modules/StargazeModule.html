@@ -203,13 +203,7 @@ import { RepoStargazeController } from &quot;./repo-stargaze.controller&quot;;
 import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbRepo,
-      DbRepoToUserStargazers,
-    ], &quot;ApiConnection&quot;),
-    RepoModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserStargazers], &quot;ApiConnection&quot;), RepoModule],
   controllers: [RepoStargazeController],
   providers: [StargazeService],
   exports: [StargazeService],

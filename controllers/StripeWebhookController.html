@@ -138,8 +138,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -298,24 +298,26 @@ const relevantEvents &#x3D; new Set([
 export class StripeWebhookController {
   private logger &#x3D; new Logger(&#x60;StripeWebhook&#x60;);
 
-  constructor (
+  constructor(
     private customerService: CustomerService,
     private stripeSubscriptionService: StripeSubscriptionService,
     private stripeService: StripeService,
     private configService: ConfigService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
-  private async manageSubscriptionStatusChange (subscriptionId: string, customerId: string) {
+  private async manageSubscriptionStatusChange(subscriptionId: string, customerId: string) {
     const customerData &#x3D; await this.customerService.findByCustomerId(customerId);
 
     if (!customerData) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     const { id: uuid } &#x3D; customerData;
     const userId &#x3D; parseInt(&#x60;${uuid}&#x60;, 10);
-    const subscription &#x3D; await this.stripeService.stripe.subscriptions.retrieve(subscriptionId, { expand: [&quot;default_payment_method&quot;] });
+    const subscription &#x3D; await this.stripeService.stripe.subscriptions.retrieve(subscriptionId, {
+      expand: [&quot;default_payment_method&quot;],
+    });
 
     // upsert the latest status of the subscription object.
     const subscriptionData &#x3D; {
@@ -343,8 +345,10 @@ export class StripeWebhookController {
 
       await this.userService.updateRole(userId, userRole);
     } catch (e: unknown) {
-      this.logger.error(&#x60;Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}&#x60;);
-      throw (new BadRequestException);
+      this.logger.error(
+        &#x60;Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}&#x60;
+      );
+      throw new BadRequestException();
     }
 
     this.logger.log(&#x60;Inserted/updated subscription [${subscription.id}] for user [${userId}]&#x60;);
@@ -352,7 +356,7 @@ export class StripeWebhookController {
 
   @Post(&quot;/webhooks&quot;)
   @ApiOkResponse()
-  async handleStripeWebhook (@Req() req: RawBodyRequest&lt;Request&gt;) {
+  async handleStripeWebhook(@Req() req: RawBodyRequest&lt;Request&gt;) {
     const sig &#x3D; (req.headers as unknown as Record&lt;string, string&gt;)[&quot;stripe-signature&quot;];
     const webhookSecret: string | undefined &#x3D; this.configService.get(&quot;stripe.webhookSecret&quot;);
 
@@ -382,7 +386,7 @@ export class StripeWebhookController {
           await this.manageSubscriptionStatusChange(subscriptionId as string, checkoutSession.customer as string);
         }
       } else {
-        throw (new BadRequestException);
+        throw new BadRequestException();
       }
     }
   }

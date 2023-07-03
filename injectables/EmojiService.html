@@ -276,16 +276,16 @@ import { DbEmoji } from &quot;./entities/emoji.entity&quot;;
 
 @Injectable()
 export class EmojiService {
-  constructor (
+  constructor(
     @InjectRepository(DbEmoji, &quot;ApiConnection&quot;)
-    private emojiRepository: Repository&lt;DbEmoji&gt;,
+    private emojiRepository: Repository&lt;DbEmoji&gt;
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.emojiRepository.createQueryBuilder(&quot;emoji&quot;);
   }
 
-  async findAll (pageOptionsDto: PageOptionsDto) {
+  async findAll(pageOptionsDto: PageOptionsDto) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder.orderBy(&quot;emoji.display_order&quot;, &quot;ASC&quot;);

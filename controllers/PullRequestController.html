@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -366,9 +366,9 @@ import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class PullRequestController {
-  constructor (
+  constructor(
     private readonly pullRequestService: PullRequestService,
-    private readonly pullRequestsInsightService: PullRequestInsightsService,
+    private readonly pullRequestsInsightService: PullRequestInsightsService
   ) {}
 
   @Get(&quot;/list&quot;)
@@ -378,9 +378,7 @@ export class PullRequestController {
   })
   @ApiPaginatedResponse(DbPullRequest)
   @ApiOkResponse({ type: DbPullRequest })
-  async listAllPullRequests (
-    @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
+  async listAllPullRequests(@Query() pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     return this.pullRequestService.findAll(pageOptionsDto);
   }
 
@@ -391,9 +389,7 @@ export class PullRequestController {
   })
   @ApiPaginatedResponse(DbPullRequest)
   @ApiOkResponse({ type: DbPullRequest })
-  async searchAllPullRequests (
-    @Query() pageOptionsDto: PullRequestPageOptionsDto,
-  ): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
+  async searchAllPullRequests(@Query() pageOptionsDto: PullRequestPageOptionsDto): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     return this.pullRequestService.findAllWithFilters(pageOptionsDto);
   }
 
@@ -403,10 +399,10 @@ export class PullRequestController {
     summary: &quot;Find pull request insights over the last 2 months&quot;,
   })
   @ApiOkResponse({ type: [DbPRInsight] })
-  async getPullRequestInsights (
-    @Query() pageOptionsDto: FilterOptionsDto,
-  ): Promise&lt;DbPRInsight[]&gt; {
-    return Promise.all([30, 60].map(async interval &#x3D;&gt; this.pullRequestsInsightService.getInsight(interval, pageOptionsDto)));
+  async getPullRequestInsights(@Query() pageOptionsDto: FilterOptionsDto): Promise&lt;DbPRInsight[]&gt; {
+    return Promise.all(
+      [30, 60].map(async (interval) &#x3D;&gt; this.pullRequestsInsightService.getInsight(interval, pageOptionsDto))
+    );
   }
 }
 </code></pre>

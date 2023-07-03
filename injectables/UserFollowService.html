@@ -205,8 +205,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/user/user-follow.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user/user-follow.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/user/user-follow.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/user/user-follow.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -408,8 +408,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/user/user-follow.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/user-follow.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -485,21 +485,20 @@ import { UserService } from &quot;./user.service&quot;;
 
 @Injectable()
 export class UserFollowService {
-  constructor (
+  constructor(
     @InjectRepository(DbUserToUserFollows, &quot;ApiConnection&quot;)
     private userFollowRepository: Repository&lt;DbUserToUserFollows&gt;,
     private userService: UserService,
-    private userNotificationService: UserNotificationService,
+    private userNotificationService: UserNotificationService
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.userFollowRepository.createQueryBuilder(&quot;user_follows&quot;)
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder &#x3D; this.userFollowRepository.createQueryBuilder(&quot;user_follows&quot;).withDeleted();
 
     return builder;
   }
 
-  async findUserFollowerById (userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
+  async findUserFollowerById(userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -515,7 +514,7 @@ export class UserFollowService {
     return followExists;
   }
 
-  async addUserFollowerByUserId (userId: number, followedUserId: number): Promise&lt;DbUserToUserFollows&gt; {
+  async addUserFollowerByUserId(userId: number, followedUserId: number): Promise&lt;DbUserToUserFollows&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -544,7 +543,7 @@ export class UserFollowService {
     });
   }
 
-  async removeUserFollowerById (userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
+  async removeUserFollowerById(userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder

@@ -429,8 +429,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/insight/insight-member.service.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/insight/insight-member.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -734,19 +734,19 @@ import { InsightsService } from &quot;./insights.service&quot;;
 
 @Injectable()
 export class InsightMemberService {
-  constructor (
+  constructor(
     @InjectRepository(DbInsightMember, &quot;ApiConnection&quot;)
     private insightMemberRepository: Repository&lt;DbInsightMember&gt;,
-    private insightService: InsightsService,
+    private insightService: InsightsService
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder&lt;DbInsightMember&gt; {
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbInsightMember&gt; {
     const builder &#x3D; this.insightMemberRepository.createQueryBuilder(&quot;insight_members&quot;);
 
     return builder;
   }
 
-  async findOneById (id: string): Promise&lt;DbInsightMember&gt; {
+  async findOneById(id: string): Promise&lt;DbInsightMember&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder.where(&quot;insight_members.id &#x3D; :id&quot;, { id });
@@ -754,25 +754,30 @@ export class InsightMemberService {
     const item: DbInsightMember | null &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async addInsightMember (insightMember: Partial&lt;DbInsightMember&gt;) {
+  async addInsightMember(insightMember: Partial&lt;DbInsightMember&gt;) {
     return this.insightMemberRepository.save(insightMember);
   }
 
-  async updateInsightMember (id: string, insightMember: Partial&lt;DbInsightMember&gt;) {
+  async updateInsightMember(id: string, insightMember: Partial&lt;DbInsightMember&gt;) {
     return this.insightMemberRepository.update(id, insightMember);
   }
 
-  async removeInsightMember (id: string) {
+  async removeInsightMember(id: string) {
     return this.insightMemberRepository.softDelete(id);
   }
 
-  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[], checkOwner &#x3D; true): Promise&lt;boolean&gt; {
+  async canUserManageInsight(
+    userId: number,
+    insightId: number,
+    accessRoles: string[],
+    checkOwner &#x3D; true
+  ): Promise&lt;boolean&gt; {
     const insight &#x3D; await this.insightService.findOneById(insightId);
 
     if (checkOwner &amp;&amp; Number(insight.user.id) &#x3D;&#x3D;&#x3D; userId) {
@@ -795,10 +800,7 @@ export class InsightMemberService {
     return true;
   }
 
-  async findAllInsightMembers (
-    pageOptionsDto: PageOptionsDto,
-    insightId: number,
-  ): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
+  async findAllInsightMembers(pageOptionsDto: PageOptionsDto, insightId: number): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -809,9 +811,7 @@ export class InsightMemberService {
       .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
       .orderBy(&quot;users.name&quot;, &quot;ASC&quot;);
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();

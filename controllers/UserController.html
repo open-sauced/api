@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user/user.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/user/user.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -235,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/user/user.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/user/user.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/user/user.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/user/user.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -486,11 +486,11 @@ import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
 export class UserController {
-  constructor (
+  constructor(
     private userService: UserService,
     private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
-    private repoService: RepoService,
+    private repoService: RepoService
   ) {}
 
   @Get(&quot;/:username&quot;)
@@ -500,9 +500,7 @@ export class UserController {
   })
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: &quot;User not found&quot; })
-  async findOneUserById (
-    @Param(&quot;username&quot;) username: string,
-  ): Promise&lt;DbUser&gt; {
+  async findOneUserById(@Param(&quot;username&quot;) username: string): Promise&lt;DbUser&gt; {
     return this.userService.findOneByUsername(username);
   }
 
@@ -514,9 +512,9 @@ export class UserController {
   @ApiPaginatedResponse(DbPullRequest)
   @ApiOkResponse({ type: DbPullRequest })
   @ApiNotFoundResponse({ description: &quot;User not found&quot; })
-  async findContributorPullRequests (
+  async findContributorPullRequests(
     @Param(&quot;username&quot;) username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }
@@ -529,9 +527,9 @@ export class UserController {
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Highlights not found&quot; })
-  async findAllHighlightsByUsername (
+  async findAllHighlightsByUsername(
     @Param(&quot;username&quot;) username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
@@ -546,9 +544,9 @@ export class UserController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Top repos not found&quot; })
-  async findAllTopReposByUsername (
+  async findAllTopReposByUsername(
     @Param(&quot;username&quot;) username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const user &#x3D; await this.userService.findOneByUsername(username);
 

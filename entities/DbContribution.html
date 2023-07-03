@@ -164,7 +164,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/contribution/contribution.entity.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/contribution/contribution.entity.ts:91</a></div>
                         </td>
                     </tr>
 
@@ -200,7 +200,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/contribution/contribution.entity.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/contribution/contribution.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -237,7 +237,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/contribution/contribution.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/contribution/contribution.entity.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -274,7 +274,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/contribution/contribution.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/contribution/contribution.entity.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -310,7 +310,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/contribution/contribution.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/contribution/contribution.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -346,7 +346,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/contribution/contribution.entity.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/contribution/contribution.entity.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -382,7 +382,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/contribution/contribution.entity.ts:106</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/contribution/contribution.entity.ts:109</a></div>
                         </td>
                     </tr>
 
@@ -418,7 +418,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/contribution/contribution.entity.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/contribution/contribution.entity.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -455,7 +455,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/contribution/contribution.entity.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/contribution/contribution.entity.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -491,7 +491,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/contribution/contribution.entity.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/contribution/contribution.entity.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -517,7 +517,10 @@
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 
 @Entity({ name: &quot;contributions&quot; })
 export class DbContribution extends BaseEntity {
@@ -603,7 +606,7 @@ export class DbContribution extends BaseEntity {
   public url: string;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbRepo, repo &#x3D;&gt; repo.contributions)
+  @ManyToOne(() &#x3D;&gt; DbRepo, (repo) &#x3D;&gt; repo.contributions)
   @JoinColumn({
     name: &quot;repo_id&quot;,
     referencedColumnName: &quot;id&quot;,

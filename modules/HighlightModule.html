@@ -152,12 +152,7 @@ import { UserModule } from &quot;../user/user.module&quot;;
 
 @Module({
   controllers: [HighlightController],
-  imports: [
-    TypeOrmModule.forFeature([
-      DbUserHighlight,
-    ], &quot;ApiConnection&quot;),
-    UserModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbUserHighlight], &quot;ApiConnection&quot;), UserModule],
 })
 export class HighlightModule {}
 </code></pre>

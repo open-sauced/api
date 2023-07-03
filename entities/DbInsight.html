@@ -169,7 +169,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/insight/entities/insight.entity.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/insight/entities/insight.entity.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -206,7 +206,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/insight/entities/insight.entity.ts:101</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/insight/entities/insight.entity.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -242,7 +242,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/insight/entities/insight.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/insight/entities/insight.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/insight/entities/insight.entity.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/insight/entities/insight.entity.ts:66</a></div>
                         </td>
                     </tr>
 
@@ -314,7 +314,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/insight/entities/insight.entity.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/insight/entities/insight.entity.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -350,7 +350,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/insight/entities/insight.entity.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/insight/entities/insight.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -386,7 +386,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/insight/entities/insight.entity.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/insight/entities/insight.entity.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -422,7 +422,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/insight/entities/insight.entity.ts:71</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/insight/entities/insight.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -459,7 +459,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/insight/entities/insight.entity.ts:91</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/insight/entities/insight.entity.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -495,7 +495,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/insight/entities/insight.entity.ts:109</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/insight/entities/insight.entity.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -531,7 +531,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/insight/entities/insight.entity.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/insight/entities/insight.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -552,10 +552,15 @@
   UpdateDateColumn,
   OneToMany,
   PrimaryGeneratedColumn,
-  DeleteDateColumn, ManyToOne, JoinColumn,
+  DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from &quot;typeorm&quot;;
 
-import { ApiModelProperty, ApiModelPropertyOptional } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
 import { DbInsightRepo } from &quot;./insight-repo.entity&quot;;
@@ -646,7 +651,7 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbUser, user &#x3D;&gt; user.insights)
+  @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.insights)
   @JoinColumn({
     name: &quot;user_id&quot;,
     referencedColumnName: &quot;id&quot;,
@@ -654,7 +659,7 @@ export class DbInsight extends BaseEntity {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @OneToMany(() &#x3D;&gt; DbInsightRepo, insightRepo &#x3D;&gt; insightRepo.insight)
+  @OneToMany(() &#x3D;&gt; DbInsightRepo, (insightRepo) &#x3D;&gt; insightRepo.insight)
   public repos: DbInsightRepo[];
 }
 </code></pre>

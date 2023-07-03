@@ -166,11 +166,7 @@ import { DbCustomer } from &quot;./customer.entity&quot;;
 import { CustomerService } from &quot;./customer.service&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbCustomer,
-    ], &quot;ApiConnection&quot;),
-  ],
+  imports: [TypeOrmModule.forFeature([DbCustomer], &quot;ApiConnection&quot;)],
   providers: [CustomerService],
   exports: [CustomerService],
 })

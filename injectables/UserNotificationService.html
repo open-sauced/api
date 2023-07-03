@@ -638,19 +638,19 @@ import { UserService } from &quot;./user.service&quot;;
 
 @Injectable()
 export class UserNotificationService {
-  constructor (
+  constructor(
     @InjectRepository(DbUserNotification, &quot;ApiConnection&quot;)
     private userNotificationRepository: Repository&lt;DbUserNotification&gt;,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder&lt;DbUserNotification&gt; {
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbUserNotification&gt; {
     const builder &#x3D; this.userNotificationRepository.createQueryBuilder(&quot;user_notifications&quot;);
 
     return builder;
   }
 
-  async findAllByUserId (userId: number, pageOptionsDto: PageOptionsDto) {
+  async findAllByUserId(userId: number, pageOptionsDto: PageOptionsDto) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -661,7 +661,7 @@ export class UserNotificationService {
 
     const entities &#x3D; await queryBuilder.getMany();
     const itemCount &#x3D; await queryBuilder.getCount();
-    const notificationIds &#x3D; entities.map(notification &#x3D;&gt; notification.id);
+    const notificationIds &#x3D; entities.map((notification) &#x3D;&gt; notification.id);
 
     await this.markNotificationsAsRead(notificationIds);
 
@@ -670,10 +670,10 @@ export class UserNotificationService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async addUserNotification (userNotification: Partial&lt;DbUserNotification&gt;) {
+  async addUserNotification(userNotification: Partial&lt;DbUserNotification&gt;) {
     return this.userNotificationRepository.save({
       type: userNotification.type,
-      notified_at: (new Date),
+      notified_at: new Date(),
       user_id: userNotification.user_id,
       message: userNotification.message,
       from_user_id: userNotification.from_user_id,
@@ -681,7 +681,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserFollowerNotification (userId: number, followedUserId: number ) {
+  async addUserFollowerNotification(userId: number, followedUserId: number) {
     const followUser &#x3D; await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -693,7 +693,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification (userId: number, highlightUserId: number, highlightId: number) {
+  async addUserHighlightNotification(userId: number, highlightUserId: number, highlightId: number) {
     const followUser &#x3D; await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -705,8 +705,10 @@ export class UserNotificationService {
     });
   }
 
-  async markNotificationsAsRead (notificationIds: number[]) {
-    const updates &#x3D; notificationIds.map(async id &#x3D;&gt; this.userNotificationRepository.update(id, { read_at: (new Date) }));
+  async markNotificationsAsRead(notificationIds: number[]) {
+    const updates &#x3D; notificationIds.map(async (id) &#x3D;&gt;
+      this.userNotificationRepository.update(id, { read_at: new Date() })
+    );
 
     await Promise.all(updates);
   }

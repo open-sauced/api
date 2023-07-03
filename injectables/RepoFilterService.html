@@ -122,8 +122,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/common/filters/repo-filter.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/common/filters/repo-filter.service.ts:85</a></div>
                 </td>
             </tr>
 
@@ -308,7 +308,7 @@ export class RepoFilterService {
    * @param range
    */
 
-  getRepoFilters (options: FilterOptionsDto, range &#x3D; 0): [string, object][] {
+  getRepoFilters(options: FilterOptionsDto, range &#x3D; 0): [string, object][] {
     const filters: [string, object][] &#x3D; [];
 
     if (options.repoIds) {
@@ -326,7 +326,8 @@ export class RepoFilterService {
     if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Recent) {
       filters.push([&quot;repos.stars &gt;&#x3D; 1000&quot;, {}]);
     } else if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Top100) {
-      filters.push([&#x60;
+      filters.push([
+        &#x60;
         repos.id IN (
           SELECT &quot;top_repos&quot;.id
           FROM &quot;repos&quot; &quot;top_repos&quot;
@@ -335,9 +336,12 @@ export class RepoFilterService {
           ORDER BY top_repos.stars DESC
           LIMIT 1000
         )
-      &#x60;, {}]);
+      &#x60;,
+        {},
+      ]);
     } else if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.MostSpammed) {
-      filters.push([&#x60;
+      filters.push([
+        &#x60;
         repos.id IN (
           SELECT spam_pull_requests.repo_id
           FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
@@ -345,7 +349,9 @@ export class RepoFilterService {
             &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )
-      &#x60;, {}]);
+      &#x60;,
+        {},
+      ]);
     }
 
     /*
@@ -372,7 +378,7 @@ export class RepoFilterService {
    * @param filters
    */
 
-  applyQueryBuilderFilters&lt;T extends ObjectLiteral&gt; (qb: SelectQueryBuilder&lt;T&gt;, filters: [string, object][] &#x3D; []) {
+  applyQueryBuilderFilters&lt;T extends ObjectLiteral&gt;(qb: SelectQueryBuilder&lt;T&gt;, filters: [string, object][] &#x3D; []) {
     filters.forEach(([sql, data], index) &#x3D;&gt; {
       if (index &#x3D;&#x3D;&#x3D; 0) {
         qb.where(sql, data);

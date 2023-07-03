@@ -859,7 +859,7 @@ export class DbUserHighlight extends BaseEntity {
   public login?: string;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbUser, user &#x3D;&gt; user.highlights)
+  @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.highlights)
   @JoinColumn({
     name: &quot;user_id&quot;,
     referencedColumnName: &quot;id&quot;,
@@ -867,7 +867,7 @@ export class DbUserHighlight extends BaseEntity {
   public user: DbUser;
 
   @ApiHideProperty()
-  @OneToMany(() &#x3D;&gt; DbUserHighlightReaction, highlightReaction &#x3D;&gt; highlightReaction.highlight)
+  @OneToMany(() &#x3D;&gt; DbUserHighlightReaction, (highlightReaction) &#x3D;&gt; highlightReaction.highlight)
   @JoinColumn({
     name: &quot;highlight_id&quot;,
     referencedColumnName: &quot;id&quot;,

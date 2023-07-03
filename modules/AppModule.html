@@ -439,8 +439,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="201"
-                            class="link-to-prism">src/app.module.ts:201</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/app.module.ts:194</a></div>
                 </td>
             </tr>
 
@@ -554,86 +554,79 @@ import { OpenAiModule } from &quot;./open-ai/open-ai.module&quot;;
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [
-        ApiConfig,
-        DbApiConfig,
-        DbLoggingConfig,
-        EndpointConfig,
-        StripeConfig,
-        OpenAIConfig,
-      ],
+      load: [ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       name: &quot;ApiConnection&quot;,
-      useFactory: (configService: ConfigService) &#x3D;&gt; ({
-        parseInt8: true,
-        type: configService.get(&quot;db-api.connection&quot;),
-        host: configService.get(&quot;db-api.host&quot;),
-        port: configService.get(&quot;db-api.port&quot;),
-        username: configService.get(&quot;db-api.username&quot;),
-        password: configService.get(&quot;db-api.password&quot;),
-        database: configService.get(&quot;db-api.database&quot;),
-        autoLoadEntities: false,
-        entities: [
-          DbUser,
-          DbUserRepo,
-          DbUserHighlight,
-          DbUserHighlightReaction,
-          DbUserNotification,
-          DbUserCollaboration,
-          DbRepo,
-          DbContribution,
-          DbRepoToUserVotes,
-          DbRepoToUserStars,
-          DbRepoToUserSubmissions,
-          DbRepoToUserStargazers,
-          DbInsight,
-          DbInsightMember,
-          DbInsightRepo,
-          DbCustomer,
-          DbSubscription,
-          DbPullRequest,
-          DbPRInsight,
-          DbUserToUserFollows,
-          DbEmoji,
-          DbUserTopRepo,
-          DbEndorsement,
-        ],
-        synchronize: false,
-        logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
-        ssl: {
-          ca: configService.get(&quot;db-api.certificate&quot;),
-          rejectUnauthorized: false,
-        },
-        maxQueryExecutionTime: configService.get(&quot;db-api.maxQueryExecutionTime&quot;),
-      }) as TypeOrmModuleOptions,
+      useFactory: (configService: ConfigService) &#x3D;&gt;
+        ({
+          parseInt8: true,
+          type: configService.get(&quot;db-api.connection&quot;),
+          host: configService.get(&quot;db-api.host&quot;),
+          port: configService.get(&quot;db-api.port&quot;),
+          username: configService.get(&quot;db-api.username&quot;),
+          password: configService.get(&quot;db-api.password&quot;),
+          database: configService.get(&quot;db-api.database&quot;),
+          autoLoadEntities: false,
+          entities: [
+            DbUser,
+            DbUserRepo,
+            DbUserHighlight,
+            DbUserHighlightReaction,
+            DbUserNotification,
+            DbUserCollaboration,
+            DbRepo,
+            DbContribution,
+            DbRepoToUserVotes,
+            DbRepoToUserStars,
+            DbRepoToUserSubmissions,
+            DbRepoToUserStargazers,
+            DbInsight,
+            DbInsightMember,
+            DbInsightRepo,
+            DbCustomer,
+            DbSubscription,
+            DbPullRequest,
+            DbPRInsight,
+            DbUserToUserFollows,
+            DbEmoji,
+            DbUserTopRepo,
+            DbEndorsement,
+          ],
+          synchronize: false,
+          logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
+          ssl: {
+            ca: configService.get(&quot;db-api.certificate&quot;),
+            rejectUnauthorized: false,
+          },
+          maxQueryExecutionTime: configService.get(&quot;db-api.maxQueryExecutionTime&quot;),
+        } as TypeOrmModuleOptions),
       inject: [ConfigService],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       name: &quot;LogConnection&quot;,
-      useFactory: (configService: ConfigService) &#x3D;&gt; ({
-        parseInt8: true,
-        type: configService.get(&quot;db-logging.connection&quot;),
-        host: configService.get(&quot;db-logging.host&quot;),
-        port: configService.get(&quot;db-logging.port&quot;),
-        username: configService.get(&quot;db-logging.username&quot;),
-        password: configService.get(&quot;db-logging.password&quot;),
-        database: configService.get(&quot;db-logging.database&quot;),
-        autoLoadEntities: false,
-        entities: [
-          DbLog,
-        ],
-        synchronize: false,
-        logger: new DatabaseLoggerMiddleware(&quot;LG&quot;),
-        ssl: {
-          ca: configService.get(&quot;db-logging.certificate&quot;),
-          rejectUnauthorized: false,
-        },
-        maxQueryExecutionTime: configService.get(&quot;db-logging.maxQueryExecutionTime&quot;),
-      }) as TypeOrmModuleOptions,
+      useFactory: (configService: ConfigService) &#x3D;&gt;
+        ({
+          parseInt8: true,
+          type: configService.get(&quot;db-logging.connection&quot;),
+          host: configService.get(&quot;db-logging.host&quot;),
+          port: configService.get(&quot;db-logging.port&quot;),
+          username: configService.get(&quot;db-logging.username&quot;),
+          password: configService.get(&quot;db-logging.password&quot;),
+          database: configService.get(&quot;db-logging.database&quot;),
+          autoLoadEntities: false,
+          entities: [DbLog],
+          synchronize: false,
+          logger: new DatabaseLoggerMiddleware(&quot;LG&quot;),
+          ssl: {
+            ca: configService.get(&quot;db-logging.certificate&quot;),
+            rejectUnauthorized: false,
+          },
+          maxQueryExecutionTime: configService.get(&quot;db-logging.maxQueryExecutionTime&quot;),
+        } as TypeOrmModuleOptions),
       inject: [ConfigService],
     }),
     LoggerModule.forRootAsync({
@@ -685,18 +678,16 @@ import { OpenAiModule } from &quot;./open-ai/open-ai.module&quot;;
   providers: [],
 })
 export class AppModule {
-  constructor (
+  constructor(
     @InjectDataSource(&quot;ApiConnection&quot;)
     private readonly apiConnection: DataSource,
 
     @InjectDataSource(&quot;LogConnection&quot;)
-    private readonly logConnection: DataSource,
+    private readonly logConnection: DataSource
   ) {}
 
-  configure (consumer: MiddlewareConsumer) {
-    consumer
-      .apply(HttpLoggerMiddleware)
-      .forRoutes(&#x60;v1&#x60;);
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(HttpLoggerMiddleware).forRoutes(&#x60;v1&#x60;);
   }
 }
 </code></pre>

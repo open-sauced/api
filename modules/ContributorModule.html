@@ -151,12 +151,7 @@ import { PullRequestModule } from &quot;../pull-requests/pull-request.module&quo
 import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbPullRequest,
-    ], &quot;ApiConnection&quot;),
-    PullRequestModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbPullRequest], &quot;ApiConnection&quot;), PullRequestModule],
   controllers: [ContributorController],
 })
 export class ContributorModule {}

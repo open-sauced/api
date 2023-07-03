@@ -141,7 +141,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -211,7 +211,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/pull-requests/dtos/create-code-refactor-suggestion.dto.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -277,8 +277,7 @@ export class GenerateCodeRefactorSuggestionDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    descriptionLength: number;
-
+  descriptionLength: number;
 
   @ApiProperty({
     description: &quot;Description Temperature&quot;,
@@ -288,7 +287,7 @@ export class GenerateCodeRefactorSuggestionDto {
   @IsNumber()
   @Min(0)
   @Max(10)
-    temperature: number;
+  temperature: number;
 
   @ApiProperty({
     description: &quot;Suggestion Language&quot;,
@@ -298,14 +297,14 @@ export class GenerateCodeRefactorSuggestionDto {
   })
   @IsString()
   @IsIn([&quot;english&quot;, &quot;spanish&quot;, &quot;french&quot;, &quot;german&quot;, &quot;italian&quot;, &quot;portuguese&quot;, &quot;dutch&quot;, &quot;russian&quot;, &quot;chinese&quot;, &quot;korean&quot;])
-    language: string;
+  language: string;
 
   @ApiProperty({
     description: &quot;Code&quot;,
     type: String,
   })
   @IsString()
-    code: string;
+  code: string;
 }
 </code></pre>
     </div>

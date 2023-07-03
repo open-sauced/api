@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/star/star.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/star/star.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -297,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/star/star.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/star/star.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -371,24 +371,21 @@ import { DbRepoToUserStars } from &quot;../repo/entities/repo.to.user.stars.enti
 
 @Injectable()
 export class StarService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserStars, &quot;ApiConnection&quot;)
-    private repoStarRepository: Repository&lt;DbRepoToUserStars&gt;,
+    private repoStarRepository: Repository&lt;DbRepoToUserStars&gt;
   ) {}
 
-  baseQueryBuilder () {
-    const builder &#x3D; this.repoStarRepository.createQueryBuilder(&quot;r2stars&quot;)
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder &#x3D; this.repoStarRepository.createQueryBuilder(&quot;r2stars&quot;).withDeleted();
 
     return builder;
   }
 
-  async starByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
+  async starByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
+    queryBuilder.where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId }).andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
 
     const starExists &#x3D; await queryBuilder.getOne();
 
@@ -408,12 +405,10 @@ export class StarService {
     });
   }
 
-  async downStarByRepoId (repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
+  async downStarByRepoId(repoId: number, userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId })
-      .andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
+    queryBuilder.where(&quot;r2stars.repo_id &#x3D; :repoId&quot;, { repoId }).andWhere(&quot;r2stars.user_id &#x3D; :userId&quot;, { userId });
 
     const starExists &#x3D; await queryBuilder.getOne();
 
