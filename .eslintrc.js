@@ -128,11 +128,9 @@ module.exports = {
       },
     ],
     "array-element-newline": ["error", "consistent"],
-    // "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
     "block-spacing": ["error", "always"],
     "brace-style": ["error", "1tbs"],
-    // "comma-dangle": ["error", "always-multiline"],
     "comma-spacing": [
       "error",
       {
@@ -146,8 +144,6 @@ module.exports = {
     "eol-last": ["error", "always"],
     "func-call-spacing": ["error", "never"],
     "function-call-argument-newline": ["error", "consistent"],
-    // "function-paren-newline": ["error", "multiline-arguments"],
-    // indent: ["error", 2],
     "jsx-quotes": ["error", "prefer-double"],
     "key-spacing": [
       "error",
@@ -172,22 +168,6 @@ module.exports = {
       },
     ],
     "linebreak-style": ["error", "unix"],
-    // "lines-around-comment": [
-    //   "error",
-    //   {
-    //     beforeBlockComment: true,
-    //     afterBlockComment: true,
-    //     beforeLineComment: true,
-    //     allowBlockStart: true,
-    //     allowBlockEnd: false,
-    //     allowClassStart: true,
-    //     allowObjectStart: true,
-    //     allowObjectEnd: false,
-    //     allowArrayStart: false,
-    //     allowArrayEnd: false,
-    //     applyDefaultIgnorePatterns: false,
-    //   },
-    // ],
     "lines-between-class-members": [
       "error",
       "always",
@@ -196,7 +176,6 @@ module.exports = {
       },
     ],
     "multiline-ternary": ["error", "always-multiline"],
-    // "new-parens": ["error", "never"],
     "newline-per-chained-call": [
       "error",
       {
@@ -207,12 +186,6 @@ module.exports = {
     "no-multiple-empty-lines": "error",
     "no-trailing-spaces": "error",
     "no-whitespace-before-property": "error",
-    // "object-curly-newline": [
-    //   "error",
-    //   {
-    //     multiline: true,
-    //   },
-    // ],
     "object-curly-spacing": [
       "error",
       "always",
@@ -251,13 +224,6 @@ module.exports = {
         next: ["const", "let", "var"],
       },
     ],
-    // quotes: [
-    //   "error",
-    //   "double",
-    //   {
-    //     allowTemplateLiterals: true,
-    //   },
-    // ],
     "rest-spread-spacing": ["error", "never"],
     semi: [
       "error",
@@ -275,7 +241,6 @@ module.exports = {
     ],
     "semi-style": ["error", "last"],
     "space-before-blocks": ["error", "always"],
-    // "space-before-function-paren": ["error", "always"],
     "space-infix-ops": [
       "error",
       {
@@ -318,14 +283,6 @@ module.exports = {
     "node/no-sync": "error",
     "node/no-missing-import": "off",
 
-    // @typescript-eslint/strict
-    // "@typescript-eslint/indent": [
-    //   "error",
-    //   2,
-    //   {
-    //     ignoredNodes: ["PropertyDefinition[decorators]", "TSUnionType"],
-    //   },
-    // ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
