@@ -237,8 +237,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/user/user-highlights.service.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/user/user-highlights.service.ts:156</a></div>
                 </td>
             </tr>
 
@@ -464,8 +464,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/user/user-highlights.service.ts:170</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/user/user-highlights.service.ts:172</a></div>
                 </td>
             </tr>
 
@@ -535,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="243"
-                            class="link-to-prism">src/user/user-highlights.service.ts:243</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="244"
+                            class="link-to-prism">src/user/user-highlights.service.ts:244</a></div>
                 </td>
             </tr>
 
@@ -606,8 +606,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/user/user-highlights.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/user/user-highlights.service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -689,8 +689,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/user/user-highlights.service.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/user/user-highlights.service.ts:141</a></div>
                 </td>
             </tr>
 
@@ -772,8 +772,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/user/user-highlights.service.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">src/user/user-highlights.service.ts:176</a></div>
                 </td>
             </tr>
 
@@ -855,8 +855,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/user/user-highlights.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/user/user-highlights.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -1116,8 +1116,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/user/user-highlights.service.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/user/user-highlights.service.ts:168</a></div>
                 </td>
             </tr>
 
@@ -1192,7 +1192,7 @@ import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&qu
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
-import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
 
@@ -1221,8 +1221,7 @@ export class UserHighlightsService {
       .where(&quot;user_highlights.id &#x3D; :id&quot;, { id });
 
     if (userId) {
-      queryBuilder
-        .andWhere(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId });
+      queryBuilder.andWhere(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId });
     }
 
     const item: DbUserHighlight | null &#x3D; await queryBuilder.getOne();
@@ -1246,16 +1245,23 @@ export class UserHighlightsService {
     const filters: [string, object][] &#x3D; [];
 
     if (followerUserId) {
-      filters.push([&#x60;user_highlights.user_id IN (
+      filters.push([
+        &#x60;user_highlights.user_id IN (
         SELECT following_user_id FROM users_to_users_followers
         WHERE user_id&#x3D;:userId
         AND deleted_at IS NULL
-      )&#x60;, { userId: followerUserId }]);
+      )&#x60;,
+        { userId: followerUserId },
+      ]);
     }
 
     if (pageOptionsDto.repo) {
-      // eslint-disable-next-line no-useless-escape
-      filters.push([&#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x3D;:repo&#x60;, { repo: decodeURIComponent(pageOptionsDto.repo) }]);
+      filters.push([
+
+        // eslint-disable-next-line no-useless-escape
+        &#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x3D;:repo&#x60;,
+        { repo: decodeURIComponent(pageOptionsDto.repo) },
+      ]);
     }
 
     filters.forEach(([sql, data], index) &#x3D;&gt; {
@@ -1266,9 +1272,7 @@ export class UserHighlightsService {
       }
     });
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
@@ -1283,24 +1287,29 @@ export class UserHighlightsService {
 
     queryBuilder
       .distinct(true)
+      .select(
 
-      // eslint-disable-next-line no-useless-escape
-      .select(&#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x60;, &quot;full_name&quot;)
+        // eslint-disable-next-line no-useless-escape
+        &#x60;REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, &#x27;(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)&#x27;, &#x27;&#x27;), &#x27;/pull/.*&#x27;, &#x27;&#x27;)&#x60;,
+        &quot;full_name&quot;,
+      )
       .where(&#x60;user_highlights.url LIKE &#x27;%github.com%&#x27;&#x60;);
 
     if (follwerUserId) {
-      queryBuilder.andWhere(&#x60;user_highlights.user_id IN (
+      queryBuilder.andWhere(
+        &#x60;user_highlights.user_id IN (
         SELECT following_user_id FROM users_to_users_followers
         WHERE user_id&#x3D;:userId
         AND deleted_at IS NULL
-      )&#x60;, { userId: follwerUserId });
+      )&#x60;,
+        { userId: follwerUserId },
+      );
     }
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const subQuery &#x3D; this.userHighlightRepository.manager.createQueryBuilder()
+    const subQuery &#x3D; this.userHighlightRepository.manager
+      .createQueryBuilder()
       .from(&#x60;(${queryBuilder.getQuery()})&#x60;, &quot;subquery_for_count&quot;)
       .setParameters(queryBuilder.getParameters())
       .select(&quot;count(full_name)&quot;);
@@ -1314,19 +1323,12 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllByUserId (
-    pageOptionsDto: PageOptionsDto,
-    userId: number,
-  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+  async findAllByUserId (pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .where(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId })
-      .orderBy(&quot;user_highlights.updated_at&quot;, &quot;DESC&quot;);
+    queryBuilder.where(&quot;user_highlights.user_id &#x3D; :userId&quot;, { userId }).orderBy(&quot;user_highlights.updated_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
@@ -1365,14 +1367,12 @@ export class UserHighlightsService {
       .where(&quot;user_highlight_reactions.highlight_id &#x3D; :highlightId&quot;, { highlightId });
 
     if (userId) {
-      queryBuilder
-        .andWhere(&quot;user_highlight_reactions.user_id &#x3D; :userId&quot;, { userId });
+      queryBuilder.andWhere(&quot;user_highlight_reactions.user_id &#x3D; :userId&quot;, { userId });
     }
 
-    queryBuilder
-      .addGroupBy(&quot;emoji_id&quot;);
+    queryBuilder.addGroupBy(&quot;emoji_id&quot;);
 
-    const entities: DbUserHighlightReaction[] &#x3D; await queryBuilder.getRawMany();
+    const entities: DbUserHighlightReactionResponse[] &#x3D; await queryBuilder.getRawMany();
 
     return entities;
   }
@@ -1395,7 +1395,8 @@ export class UserHighlightsService {
   }
 
   async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
-    const queryBuilder &#x3D; this.userHighlightReactionRepository.createQueryBuilder(&quot;user_highlight_reactions&quot;)
+    const queryBuilder &#x3D; this.userHighlightReactionRepository
+      .createQueryBuilder(&quot;user_highlight_reactions&quot;)
       .withDeleted();
 
     queryBuilder

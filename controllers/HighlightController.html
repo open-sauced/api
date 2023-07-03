@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -219,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:25</a></div>
                 </td>
             </tr>
 
@@ -291,14 +291,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightReactions&#x27;, summary: &#x27;Retrieves total reactions for a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightReactions&#x27;, summary: &#x27;Retrieves total reactions for a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -336,7 +336,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlightReaction[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/DbUserHighlightReactionResponse.html" target="_self" >Promise&lt;DbUserHighlightReactionResponse[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -355,20 +355,17 @@ import { ApiOperation, ApiOkResponse, ApiTags, ApiBadRequestResponse, ApiNotFoun
 
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
-import { HighlightOptionsDto } from &quot;./dtos/highlight-options.dto&quot;;
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;./dtos/highlight-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { DbUserHighlightRepo } from &quot;./entities/user-highlight-repo.entity&quot;;
 import { UserHighlightsService } from &quot;../user/user-highlights.service&quot;;
-import { DbUserHighlightReaction } from &quot;../user/entities/user-highlight-reaction.entity&quot;;
 
 @Controller(&quot;highlights&quot;)
 @ApiTags(&quot;Highlights service&quot;)
 export class HighlightController {
-  constructor (
-    private readonly userHighlightsService: UserHighlightsService,
-  ) {}
+  constructor (private readonly userHighlightsService: UserHighlightsService) {}
 
   @Get(&quot;/list&quot;)
   @ApiOperation({
@@ -377,9 +374,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
-  async findAllHighlights (
-    @Query() pageOptionsDto: HighlightOptionsDto,
-  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+  async findAllHighlights (@Query() pageOptionsDto: HighlightOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     return this.userHighlightsService.findAll(pageOptionsDto);
   }
 
@@ -390,9 +385,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlightRepo)
   @ApiOkResponse({ type: DbUserHighlightRepo })
-  async findAllHighlightRepos (
-    @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
+  async findAllHighlightRepos (@Query() pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 
@@ -401,12 +394,10 @@ export class HighlightController {
     operationId: &quot;getAllHighlightReactions&quot;,
     summary: &quot;Retrieves total reactions for a highlight&quot;,
   })
-  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getAllHighlightReactions (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-  ): Promise&lt;DbUserHighlightReaction[]&gt; {
+  async getAllHighlightReactions (@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlightReactionResponse[]&gt; {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }
 }

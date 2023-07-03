@@ -165,8 +165,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:142</a></div>
                 </td>
             </tr>
 
@@ -267,8 +267,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:51</a></div>
                 </td>
             </tr>
 
@@ -357,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -447,8 +447,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:157</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="165"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:165</a></div>
                 </td>
             </tr>
 
@@ -543,14 +543,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightUserReactions&#x27;, summary: &#x27;Retrieves a highlight reactions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightUserReactions&#x27;, summary: &#x27;Retrieves a highlight reactions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:124</a></div>
                 </td>
             </tr>
 
@@ -600,7 +600,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlightReaction[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/DbUserHighlightReactionResponse.html" target="_self" >Promise&lt;DbUserHighlightReactionResponse[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:203</a></div>
                 </td>
             </tr>
 
@@ -729,8 +729,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:187</a></div>
                 </td>
             </tr>
 
@@ -819,8 +819,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:66</a></div>
                 </td>
             </tr>
 
@@ -897,8 +897,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:81</a></div>
                 </td>
             </tr>
 
@@ -987,7 +987,16 @@
   Query,
   UseGuards,
 } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiConflictResponse,
+} from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -996,15 +1005,13 @@ import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&qu
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
 import { UserHighlightsService } from &quot;./user-highlights.service&quot;;
-import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
 import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 
 @Controller(&quot;user/highlights&quot;)
 @ApiTags(&quot;User Highlights service&quot;)
 export class UserHighlightsController {
-  constructor (
-    private readonly userHighlightsService: UserHighlightsService,
-  ) {}
+  constructor (private readonly userHighlightsService: UserHighlightsService) {}
 
   @Post(&quot;/&quot;)
   @ApiOperation({
@@ -1032,9 +1039,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getUserHighlight (
-    @Param(&quot;id&quot;, ParseIntPipe) id: number,
-  ): Promise&lt;DbUserHighlight&gt; {
+  async getUserHighlight (@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlight&gt; {
     return this.userHighlightsService.findOneById(id);
   }
 
@@ -1056,7 +1061,10 @@ export class UserHighlightsController {
   ): Promise&lt;DbUserHighlight&gt; {
     const highlight &#x3D; await this.userHighlightsService.findOneById(highlightId, userId);
 
-    await this.userHighlightsService.updateUserHighlight(highlight.id, { ...updateHighlightDto, shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at });
+    await this.userHighlightsService.updateUserHighlight(highlight.id, {
+      ...updateHighlightDto,
+      shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at,
+    });
 
     return this.userHighlightsService.findOneById(highlight.id, userId);
   }
@@ -1086,13 +1094,13 @@ export class UserHighlightsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async getAllHighlightUserReactions (
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
       @UserId() userId: number,
-  ): Promise&lt;DbUserHighlightReaction[]&gt; {
+  ): Promise&lt;DbUserHighlightReactionResponse[]&gt; {
     return this.userHighlightsService.findAllHighlightReactions(id, userId);
   }
 
@@ -1135,7 +1143,11 @@ export class UserHighlightsController {
       @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
       @Param(&quot;emojiId&quot;) emojiId: string,
   ): Promise&lt;void&gt; {
-    const userHighlightReaction &#x3D; await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
+    const userHighlightReaction &#x3D; await this.userHighlightsService.findOneUserHighlightReaction(
+      highlightId,
+      userId,
+      emojiId,
+    );
 
     await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
   }

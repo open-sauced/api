@@ -162,7 +162,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -377,9 +377,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional, PickType } from &quot;@nestjs/swagger&quot;;
 import { IsOptional, IsString } from &quot;class-validator&quot;;
 import { PageOptionsDto } from &quot;../../common/dtos/page-options.dto&quot;;
+import { DbUserHighlightReaction } from &quot;../../user/entities/user-highlight-reaction.entity&quot;;
 
 export class HighlightOptionsDto extends PageOptionsDto {
   @ApiPropertyOptional({
@@ -390,6 +391,11 @@ export class HighlightOptionsDto extends PageOptionsDto {
   @IsOptional()
   readonly repo?: string;
 }
+
+export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, [
+  &quot;emoji_id&quot;,
+  &quot;reaction_count&quot;,
+]) {}
 </code></pre>
     </div>
 </div>
