@@ -5,24 +5,21 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 
 @Injectable()
 export class StarService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserStars, "ApiConnection")
-    private repoStarRepository: Repository<DbRepoToUserStars>,
+    private repoStarRepository: Repository<DbRepoToUserStars>
   ) {}
 
-  baseQueryBuilder () {
-    const builder = this.repoStarRepository.createQueryBuilder("r2stars")
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder = this.repoStarRepository.createQueryBuilder("r2stars").withDeleted();
 
     return builder;
   }
 
-  async starByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStars> {
+  async starByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("r2stars.repo_id = :repoId", { repoId })
-      .andWhere("r2stars.user_id = :userId", { userId });
+    queryBuilder.where("r2stars.repo_id = :repoId", { repoId }).andWhere("r2stars.user_id = :userId", { userId });
 
     const starExists = await queryBuilder.getOne();
 
@@ -42,12 +39,10 @@ export class StarService {
     });
   }
 
-  async downStarByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStars> {
+  async downStarByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStars> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("r2stars.repo_id = :repoId", { repoId })
-      .andWhere("r2stars.user_id = :userId", { userId });
+    queryBuilder.where("r2stars.repo_id = :repoId", { repoId }).andWhere("r2stars.user_id = :userId", { userId });
 
     const starExists = await queryBuilder.getOne();
 

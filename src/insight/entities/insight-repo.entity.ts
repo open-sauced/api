@@ -11,7 +11,10 @@ import {
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 import { DbInsight } from "./insight.entity";
 
@@ -67,7 +70,7 @@ export class DbInsightRepo extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbInsight, insight => insight.repos)
+  @ManyToOne(() => DbInsight, (insight) => insight.repos)
   @JoinColumn({
     name: "insight_id",
     referencedColumnName: "id",

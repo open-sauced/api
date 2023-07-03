@@ -11,19 +11,19 @@ import { InsightsService } from "./insights.service";
 
 @Injectable()
 export class InsightMemberService {
-  constructor (
+  constructor(
     @InjectRepository(DbInsightMember, "ApiConnection")
     private insightMemberRepository: Repository<DbInsightMember>,
-    private insightService: InsightsService,
+    private insightService: InsightsService
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder<DbInsightMember> {
+  baseQueryBuilder(): SelectQueryBuilder<DbInsightMember> {
     const builder = this.insightMemberRepository.createQueryBuilder("insight_members");
 
     return builder;
   }
 
-  async findOneById (id: string): Promise<DbInsightMember> {
+  async findOneById(id: string): Promise<DbInsightMember> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("insight_members.id = :id", { id });
@@ -31,25 +31,30 @@ export class InsightMemberService {
     const item: DbInsightMember | null = await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async addInsightMember (insightMember: Partial<DbInsightMember>) {
+  async addInsightMember(insightMember: Partial<DbInsightMember>) {
     return this.insightMemberRepository.save(insightMember);
   }
 
-  async updateInsightMember (id: string, insightMember: Partial<DbInsightMember>) {
+  async updateInsightMember(id: string, insightMember: Partial<DbInsightMember>) {
     return this.insightMemberRepository.update(id, insightMember);
   }
 
-  async removeInsightMember (id: string) {
+  async removeInsightMember(id: string) {
     return this.insightMemberRepository.softDelete(id);
   }
 
-  async canUserManageInsight (userId: number, insightId: number, accessRoles: string[], checkOwner = true): Promise<boolean> {
+  async canUserManageInsight(
+    userId: number,
+    insightId: number,
+    accessRoles: string[],
+    checkOwner = true
+  ): Promise<boolean> {
     const insight = await this.insightService.findOneById(insightId);
 
     if (checkOwner && Number(insight.user.id) === userId) {
@@ -72,10 +77,7 @@ export class InsightMemberService {
     return true;
   }
 
-  async findAllInsightMembers (
-    pageOptionsDto: PageOptionsDto,
-    insightId: number,
-  ): Promise<PageDto<DbInsightMember>> {
+  async findAllInsightMembers(pageOptionsDto: PageOptionsDto, insightId: number): Promise<PageDto<DbInsightMember>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -86,9 +88,7 @@ export class InsightMemberService {
       .where("insight_members.insight_id = :insightId", { insightId })
       .orderBy("users.name", "ASC");
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();

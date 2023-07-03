@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import {
   ApiModelProperty,
@@ -82,26 +91,26 @@ export class DbUserHighlightReaction {
   public reaction_count?: number;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUserHighlightReaction, reaction => reaction.highlight)
+  @ManyToOne(() => DbUserHighlightReaction, (reaction) => reaction.highlight)
   @JoinColumn({
     name: "highlight_id",
     referencedColumnName: "id",
   })
-    highlight?: DbUserHighlight;
+  highlight?: DbUserHighlight;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUserHighlightReaction, reaction => reaction.user)
+  @ManyToOne(() => DbUserHighlightReaction, (reaction) => reaction.user)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
-    user?: DbUser;
+  user?: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUserHighlightReaction, reaction => reaction.emoji)
+  @ManyToOne(() => DbUserHighlightReaction, (reaction) => reaction.emoji)
   @JoinColumn({
     name: "emoji_id",
     referencedColumnName: "id",
   })
-    emoji?: DbEmoji;
+  emoji?: DbEmoji;
 }

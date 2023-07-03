@@ -13,7 +13,7 @@ import { UserHighlightsService } from "../user/user-highlights.service";
 @Controller("highlights")
 @ApiTags("Highlights service")
 export class HighlightController {
-  constructor (private readonly userHighlightsService: UserHighlightsService) {}
+  constructor(private readonly userHighlightsService: UserHighlightsService) {}
 
   @Get("/list")
   @ApiOperation({
@@ -22,7 +22,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
-  async findAllHighlights (@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
+  async findAllHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAll(pageOptionsDto);
   }
 
@@ -33,7 +33,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlightRepo)
   @ApiOkResponse({ type: DbUserHighlightRepo })
-  async findAllHighlightRepos (@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlightRepo>> {
+  async findAllHighlightRepos(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlightRepo>> {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 
@@ -45,7 +45,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async getAllHighlightReactions (@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
+  async getAllHighlightReactions(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }
 }

@@ -18,7 +18,10 @@ import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 
 @Entity({
@@ -417,7 +420,7 @@ export class DbRepo extends BaseEntity {
   public last_fetched_contributors_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.repos)
+  @ManyToOne(() => DbUser, (user) => user.repos)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -425,27 +428,27 @@ export class DbRepo extends BaseEntity {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @OneToMany(() => DbContribution, contribution => contribution.repo)
+  @OneToMany(() => DbContribution, (contribution) => contribution.repo)
   public contributions: DbContribution[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.repo)
+  @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.repo)
   public repoToUserVotes: DbRepoToUserVotes[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserStars, repoToUserStars => repoToUserStars.repo)
+  @OneToMany(() => DbRepoToUserStars, (repoToUserStars) => repoToUserStars.repo)
   public repoToUserStars: DbRepoToUserStars[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.repo)
+  @OneToMany(() => DbRepoToUserSubmissions, (repoToUserSubmissions) => repoToUserSubmissions.repo)
   public repoToUserSubmissions: DbRepoToUserSubmissions[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.repo)
+  @OneToMany(() => DbRepoToUserStargazers, (repoToUserStargazers) => repoToUserStargazers.repo)
   public repoToUserStargazers: DbRepoToUserStargazers[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.repo)
+  @OneToMany(() => DbUserTopRepo, (repoToUserTopRepos) => repoToUserTopRepos.repo)
   public repoToUserTopRepos: DbUserTopRepo[];
 
   // virtual columns

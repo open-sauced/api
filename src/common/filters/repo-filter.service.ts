@@ -12,7 +12,7 @@ export class RepoFilterService {
    * @param range
    */
 
-  getRepoFilters (options: FilterOptionsDto, range = 0): [string, object][] {
+  getRepoFilters(options: FilterOptionsDto, range = 0): [string, object][] {
     const filters: [string, object][] = [];
 
     if (options.repoIds) {
@@ -30,7 +30,8 @@ export class RepoFilterService {
     if (options.filter === InsightFilterFieldsEnum.Recent) {
       filters.push(["repos.stars >= 1000", {}]);
     } else if (options.filter === InsightFilterFieldsEnum.Top100) {
-      filters.push([`
+      filters.push([
+        `
         repos.id IN (
           SELECT "top_repos".id
           FROM "repos" "top_repos"
@@ -39,9 +40,12 @@ export class RepoFilterService {
           ORDER BY top_repos.stars DESC
           LIMIT 1000
         )
-      `, {}]);
+      `,
+        {},
+      ]);
     } else if (options.filter === InsightFilterFieldsEnum.MostSpammed) {
-      filters.push([`
+      filters.push([
+        `
         repos.id IN (
           SELECT spam_pull_requests.repo_id
           FROM "pull_requests" "spam_pull_requests"
@@ -49,7 +53,9 @@ export class RepoFilterService {
             'spam' = ANY("spam_pull_requests"."label_names")
             AND now() - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
         )
-      `, {}]);
+      `,
+        {},
+      ]);
     }
 
     /*
@@ -76,7 +82,7 @@ export class RepoFilterService {
    * @param filters
    */
 
-  applyQueryBuilderFilters<T extends ObjectLiteral> (qb: SelectQueryBuilder<T>, filters: [string, object][] = []) {
+  applyQueryBuilderFilters<T extends ObjectLiteral>(qb: SelectQueryBuilder<T>, filters: [string, object][] = []) {
     filters.forEach(([sql, data], index) => {
       if (index === 0) {
         qb.where(sql, data);

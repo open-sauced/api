@@ -21,10 +21,7 @@ import { PageDto } from "../common/dtos/page.dto";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Star service")
 export class RepoStarController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly starService: StarService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly starService: StarService) {}
 
   @Get("/listUserStarred")
   @ApiBearerAuth()
@@ -35,9 +32,9 @@ export class RepoStarController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserStarred (
+  async findAllUserStarred(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto, userId, ["Stars"]);
   }
@@ -55,10 +52,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already starred this repo" })
-  async starOneById (
-    @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise<DbRepoToUserStars> {
+  async starOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 
     return this.starService.starByRepoId(item.id, userId);
@@ -77,10 +71,10 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already starred this repo" })
-  async starOneByOwnerAndRepo (
+  async starOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -100,10 +94,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already removed your star" })
-  async downStarOneById (
-    @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise<DbRepoToUserStars> {
+  async downStarOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 
     return this.starService.downStarByRepoId(item.id, userId);
@@ -122,10 +113,10 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already removed your star" })
-  async downStarOneByOwnerAndRepo (
+  async downStarOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

@@ -42,7 +42,10 @@ export class UpdateUserDto {
     example: "saucedopen",
   })
   @IsString()
-  @Matches(/^(?!.*?admin)(?!.*?twitter)\w{0,15}$/i, { message: "Twitter username can only contain letters, numbers, and underscores. It also cannot contain reserved Twitter usernames (twitter or admin)." })
+  @Matches(/^(?!.*?admin)(?!.*?twitter)\w{0,15}$/i, {
+    message:
+      "Twitter username can only contain letters, numbers, and underscores. It also cannot contain reserved Twitter usernames (twitter or admin).",
+  })
   @IsOptional()
   public twitter_username?: string;
 

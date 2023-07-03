@@ -5,13 +5,10 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { GenerateCodeTestSuggestionDto } from "./dtos/create-code-test-suggestion.dto";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
 
-
 @Controller("prs")
 @ApiTags("Pull Requests service")
 export class CodeTestSuggestionController {
-  constructor (private codeTestSuggestionService: CodeTestSuggestionService) {
-
-  }
+  constructor(private codeTestSuggestionService: CodeTestSuggestionService) {}
 
   @Post("/test/generate")
   @ApiOperation({
@@ -22,13 +19,11 @@ export class CodeTestSuggestionController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: GenerateCodeTestSuggestionDto })
-  async generatePRDescription (
-  @Body() generateCodeTestSuggestionDto: GenerateCodeTestSuggestionDto,
-  ) {
+  async generatePRDescription(@Body() generateCodeTestSuggestionDto: GenerateCodeTestSuggestionDto) {
     const suggestion = await this.codeTestSuggestionService.generateTestSuggestion(generateCodeTestSuggestionDto);
 
     if (!suggestion) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { suggestion };

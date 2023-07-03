@@ -18,16 +18,22 @@ import { CodeTestSuggestionService } from "./code-test-suggestion.service";
 import { OpenAiModule } from "../open-ai/open-ai.module";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbPullRequest,
-      DbPRInsight,
-    ], "ApiConnection"),
-    RepoFilterModule,
-    OpenAiModule,
+  imports: [TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"), RepoFilterModule, OpenAiModule],
+  controllers: [
+    PullRequestController,
+    PullRequestDescriptionController,
+    CodeRefactorSuggestionController,
+    CodeTestSuggestionController,
+    CodeExplanationController,
   ],
-  controllers: [PullRequestController, PullRequestDescriptionController, CodeRefactorSuggestionController, CodeTestSuggestionController, CodeExplanationController],
-  providers: [PullRequestService, PullRequestInsightsService, PullRequestDescriptionService, CodeRefactorSuggestionService, CodeTestSuggestionService, CodeExplanationService],
+  providers: [
+    PullRequestService,
+    PullRequestInsightsService,
+    PullRequestDescriptionService,
+    CodeRefactorSuggestionService,
+    CodeTestSuggestionService,
+    CodeExplanationService,
+  ],
   exports: [PullRequestService],
 })
 export class PullRequestModule {}

@@ -10,7 +10,7 @@ export class GenerateCodeTestSuggestionDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    descriptionLength: number;
+  descriptionLength: number;
 
   @ApiProperty({
     description: "Description Temperature",
@@ -20,12 +20,12 @@ export class GenerateCodeTestSuggestionDto {
   @IsNumber()
   @Min(0)
   @Max(10)
-    temperature: number;
+  temperature: number;
 
   @ApiProperty({
     description: "Code",
     type: String,
   })
   @IsString()
-    code: string;
+  code: string;
 }

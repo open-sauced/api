@@ -3,9 +3,7 @@ module.exports = {
   parserOptions: {
     sourceType: "module",
     tsconfigRootDir: __dirname,
-    project: [
-      "./tsconfig.json"
-    ],
+    project: ["./tsconfig.json"],
   },
   plugins: [
     "@typescript-eslint/eslint-plugin",
@@ -25,20 +23,15 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:@typescript-eslint/strict",
     "plugin:@darraghor/nestjs-typed/recommended",
+    "plugin:prettier/recommended",
   ],
   root: true,
   env: {
-    "node": true,
-    "jest": true,
-    "es2021": true
+    node: true,
+    jest: true,
+    es2021: true,
   },
-  ignorePatterns: [
-    "test",
-    "dist",
-    "public",
-    "/**/node_modules/*",
-    ".eslintrc.js",
-  ],
+  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js"],
   rules: {
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],
@@ -135,11 +128,11 @@ module.exports = {
       },
     ],
     "array-element-newline": ["error", "consistent"],
-    "arrow-parens": ["error", "as-needed"],
+    // "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
     "block-spacing": ["error", "always"],
     "brace-style": ["error", "1tbs"],
-    "comma-dangle": ["error", "always-multiline"],
+    // "comma-dangle": ["error", "always-multiline"],
     "comma-spacing": [
       "error",
       {
@@ -153,8 +146,8 @@ module.exports = {
     "eol-last": ["error", "always"],
     "func-call-spacing": ["error", "never"],
     "function-call-argument-newline": ["error", "consistent"],
-    "function-paren-newline": ["error", "multiline-arguments"],
-    indent: ["error", 2],
+    // "function-paren-newline": ["error", "multiline-arguments"],
+    // indent: ["error", 2],
     "jsx-quotes": ["error", "prefer-double"],
     "key-spacing": [
       "error",
@@ -179,22 +172,22 @@ module.exports = {
       },
     ],
     "linebreak-style": ["error", "unix"],
-    "lines-around-comment": [
-      "error",
-      {
-        beforeBlockComment: true,
-        afterBlockComment: true,
-        beforeLineComment: true,
-        allowBlockStart: true,
-        allowBlockEnd: false,
-        allowClassStart: true,
-        allowObjectStart: true,
-        allowObjectEnd: false,
-        allowArrayStart: false,
-        allowArrayEnd: false,
-        applyDefaultIgnorePatterns: false,
-      },
-    ],
+    // "lines-around-comment": [
+    //   "error",
+    //   {
+    //     beforeBlockComment: true,
+    //     afterBlockComment: true,
+    //     beforeLineComment: true,
+    //     allowBlockStart: true,
+    //     allowBlockEnd: false,
+    //     allowClassStart: true,
+    //     allowObjectStart: true,
+    //     allowObjectEnd: false,
+    //     allowArrayStart: false,
+    //     allowArrayEnd: false,
+    //     applyDefaultIgnorePatterns: false,
+    //   },
+    // ],
     "lines-between-class-members": [
       "error",
       "always",
@@ -203,7 +196,7 @@ module.exports = {
       },
     ],
     "multiline-ternary": ["error", "always-multiline"],
-    "new-parens": ["error", "never"],
+    // "new-parens": ["error", "never"],
     "newline-per-chained-call": [
       "error",
       {
@@ -214,12 +207,12 @@ module.exports = {
     "no-multiple-empty-lines": "error",
     "no-trailing-spaces": "error",
     "no-whitespace-before-property": "error",
-    "object-curly-newline": [
-      "error",
-      {
-        multiline: true,
-      },
-    ],
+    // "object-curly-newline": [
+    //   "error",
+    //   {
+    //     multiline: true,
+    //   },
+    // ],
     "object-curly-spacing": [
       "error",
       "always",
@@ -258,13 +251,13 @@ module.exports = {
         next: ["const", "let", "var"],
       },
     ],
-    quotes: [
-      "error",
-      "double",
-      {
-        allowTemplateLiterals: true,
-      },
-    ],
+    // quotes: [
+    //   "error",
+    //   "double",
+    //   {
+    //     allowTemplateLiterals: true,
+    //   },
+    // ],
     "rest-spread-spacing": ["error", "never"],
     semi: [
       "error",
@@ -282,7 +275,7 @@ module.exports = {
     ],
     "semi-style": ["error", "last"],
     "space-before-blocks": ["error", "always"],
-    "space-before-function-paren": ["error", "always"],
+    // "space-before-function-paren": ["error", "always"],
     "space-infix-ops": [
       "error",
       {
@@ -326,13 +319,13 @@ module.exports = {
     "node/no-missing-import": "off",
 
     // @typescript-eslint/strict
-    "@typescript-eslint/indent": [
-      "error",
-      2,
-      {
-        ignoredNodes: ["PropertyDefinition[decorators]", "TSUnionType"],
-      },
-    ],
+    // "@typescript-eslint/indent": [
+    //   "error",
+    //   2,
+    //   {
+    //     ignoredNodes: ["PropertyDefinition[decorators]", "TSUnionType"],
+    //   },
+    // ],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -372,29 +365,18 @@ module.exports = {
     "@typescript-eslint/no-extraneous-class": "off",
   },
   settings: {
-    "node": {
-      "allowModules": ["express"],
+    node: {
+      allowModules: ["express"],
     },
     "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".ts",
-        ],
-        "paths": [
-          "src"
-        ]
-      }
+      node: {
+        extensions: [".js", ".ts"],
+        paths: ["src"],
+      },
     },
-    "import/extensions": [
-      ".js",
-      ".ts",
-    ],
+    "import/extensions": [".js", ".ts"],
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".js",
-        ".ts",
-      ]
-    }
+      "@typescript-eslint/parser": [".js", ".ts"],
+    },
   },
 };

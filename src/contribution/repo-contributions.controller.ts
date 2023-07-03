@@ -1,10 +1,5 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import {
-  ApiNotFoundResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-} from "@nestjs/swagger";
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { ContributionService } from "./contribution.service";
 import { RepoService } from "../repo/repo.service";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -15,10 +10,7 @@ import { ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto
 @Controller("repos")
 @ApiTags("Repository service", "Contribution service")
 export class RepoContributionsController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly contributionService: ContributionService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly contributionService: ContributionService) {}
 
   @Get("/:id/contributions")
   @ApiOperation({
@@ -28,9 +20,9 @@ export class RepoContributionsController {
   @ApiPaginatedResponse(DbContribution)
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: "Repo not found" })
-  async findAllByRepoId (
+  async findAllByRepoId(
     @Param("id", ParseIntPipe) id: number,
-      @Query() pageOptionsDto: ContributionPageOptionsDto,
+    @Query() pageOptionsDto: ContributionPageOptionsDto
   ): Promise<PageDto<DbContribution>> {
     const item = await this.repoService.findOneById(id);
 
@@ -45,10 +37,10 @@ export class RepoContributionsController {
   @ApiPaginatedResponse(DbContribution)
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: "Repo not found" })
-  async findAllByOwnerAndRepo (
+  async findAllByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @Query() pageOptionsDto: ContributionPageOptionsDto,
+    @Param("repo") repo: string,
+    @Query() pageOptionsDto: ContributionPageOptionsDto
   ): Promise<PageDto<DbContribution>> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

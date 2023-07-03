@@ -8,17 +8,22 @@ import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
 
 @Injectable()
 export class PullRequestInsightsService {
-  constructor (
+  constructor(
     @InjectRepository(DbPRInsight, "ApiConnection")
     private prInsightRepository: Repository<DbPRInsight>,
-    private repoFilterService: RepoFilterService,
+    private repoFilterService: RepoFilterService
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.prInsightRepository.createQueryBuilder("pr");
   }
 
-  subQueryCountPrs<T extends ObjectLiteral> (qb: SelectQueryBuilder<T>, type = "all", interval = 0, options: FilterOptionsDto) {
+  subQueryCountPrs<T extends ObjectLiteral>(
+    qb: SelectQueryBuilder<T>,
+    type = "all",
+    interval = 0,
+    options: FilterOptionsDto
+  ) {
     const prQuery = this.baseQueryBuilder()
       .select(`COALESCE(COUNT("pr"."id"), 0)`)
       .innerJoin("repos", "repos", `"pr"."repo_id"="repos"."id"`);
@@ -36,13 +41,13 @@ export class PullRequestInsightsService {
     return qb.addSelect(`(${prQuery.getQuery()})::INTEGER`, `${type}_prs`);
   }
 
-  async getInsight (interval = 0, options: FilterOptionsDto): Promise<DbPRInsight> {
+  async getInsight(interval = 0, options: FilterOptionsDto): Promise<DbPRInsight> {
     const queryBuilder = this.baseQueryBuilder()
       .select(`TO_CHAR(now() - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
       .addSelect(`${interval}::INTEGER`, "interval")
       .limit(1);
 
-    ["all", "accepted", "spam"].forEach(type => {
+    ["all", "accepted", "spam"].forEach((type) => {
       this.subQueryCountPrs(queryBuilder, type, interval, options);
     });
 
@@ -51,7 +56,7 @@ export class PullRequestInsightsService {
     const item: DbPRInsight | undefined = await queryBuilder.getRawOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;

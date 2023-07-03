@@ -12,18 +12,18 @@ import { userNotificationTypes } from "./entities/user-notification.constants";
 
 @Injectable()
 export class UserService {
-  constructor (
+  constructor(
     @InjectRepository(DbUser, "ApiConnection")
-    private userRepository: Repository<DbUser>,
+    private userRepository: Repository<DbUser>
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder<DbUser> {
+  baseQueryBuilder(): SelectQueryBuilder<DbUser> {
     const builder = this.userRepository.createQueryBuilder("users");
 
     return builder;
   }
 
-  async findOneById (id: number, includeEmail = false): Promise<DbUser> {
+  async findOneById(id: number, includeEmail = false): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -35,7 +35,7 @@ export class UserService {
           AND user_notifications.type IN (:...userNotificationTypes)
           AND user_notifications.read_at IS NULL
         )::INTEGER`,
-        "users_notification_count",
+        "users_notification_count"
       )
       .where("id = :id", { id });
 
@@ -54,13 +54,13 @@ export class UserService {
     }
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async findOneByUsername (username: string): Promise<DbUser> {
+  async findOneByUsername(username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("LOWER(login) = :username", { username: username.toLowerCase() });
@@ -68,19 +68,19 @@ export class UserService {
     const item: DbUser | null = await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async checkAddUser (user: User): Promise<DbUser> {
+  async checkAddUser(user: User): Promise<DbUser> {
     const {
       user_metadata: { user_name, email, name },
       identities,
       confirmed_at,
     } = user;
-    const github = identities!.filter(identity => identity.provider === "github")[0];
+    const github = identities!.filter((identity) => identity.provider === "github")[0];
     const id = parseInt(github.id, 10);
 
     try {
@@ -89,7 +89,7 @@ export class UserService {
       if (user && !user.is_open_sauced_member) {
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
-          connected_at: (new Date),
+          connected_at: new Date(),
         });
       }
 
@@ -104,7 +104,7 @@ export class UserService {
         email: email as string,
         created_at: new Date(github.created_at),
         updated_at: new Date(github.updated_at ?? github.created_at),
-        connected_at: confirmed_at ? new Date(confirmed_at) : (new Date),
+        connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
 
       await newUser.save();
@@ -113,7 +113,7 @@ export class UserService {
     }
   }
 
-  async updateUser (id: number, user: UpdateUserDto) {
+  async updateUser(id: number, user: UpdateUserDto) {
     try {
       await this.findOneById(id);
 
@@ -137,7 +137,7 @@ export class UserService {
     }
   }
 
-  async updateOnboarding (id: number, user: UserOnboardingDto) {
+  async updateOnboarding(id: number, user: UserOnboardingDto) {
     try {
       await this.findOneById(id);
 
@@ -152,7 +152,7 @@ export class UserService {
     }
   }
 
-  async updateWaitlistStatus (id: number) {
+  async updateWaitlistStatus(id: number) {
     try {
       await this.findOneById(id);
 
@@ -162,7 +162,7 @@ export class UserService {
     }
   }
 
-  async updateRole (id: number, role: number) {
+  async updateRole(id: number, role: number) {
     try {
       await this.findOneById(id);
 
@@ -172,18 +172,18 @@ export class UserService {
     }
   }
 
-  async updateInterests (id: number, user: UpdateUserProfileInterestsDto) {
+  async updateInterests(id: number, user: UpdateUserProfileInterestsDto) {
     return this.userRepository.update(id, { interests: user.interests.join(",") });
   }
 
-  async updateEmailPreferences (id: number, user: UpdateUserEmailPreferencesDto) {
+  async updateEmailPreferences(id: number, user: UpdateUserEmailPreferencesDto) {
     return this.userRepository.update(id, {
       display_email: user.display_email,
       receive_collaboration: user.receive_collaboration,
     });
   }
 
-  async findOneByEmail (email: string): Promise<DbUser | null> {
+  async findOneByEmail(email: string): Promise<DbUser | null> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where(`users.email = :email`, { email: email.toLowerCase() });

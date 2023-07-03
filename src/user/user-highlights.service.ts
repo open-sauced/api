@@ -13,21 +13,21 @@ import { UserNotificationService } from "./user-notifcation.service";
 
 @Injectable()
 export class UserHighlightsService {
-  constructor (
+  constructor(
     @InjectRepository(DbUserHighlight, "ApiConnection")
     private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
-    private userNotificationService: UserNotificationService,
+    private userNotificationService: UserNotificationService
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder<DbUserHighlight> {
+  baseQueryBuilder(): SelectQueryBuilder<DbUserHighlight> {
     const builder = this.userHighlightRepository.createQueryBuilder("user_highlights");
 
     return builder;
   }
 
-  async findOneById (id: number, userId?: number): Promise<DbUserHighlight> {
+  async findOneById(id: number, userId?: number): Promise<DbUserHighlight> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -42,13 +42,13 @@ export class UserHighlightsService {
     const item: DbUserHighlight | null = await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async findAll (pageOptionsDto: HighlightOptionsDto, followerUserId?: number): Promise<PageDto<DbUserHighlight>> {
+  async findAll(pageOptionsDto: HighlightOptionsDto, followerUserId?: number): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -72,7 +72,6 @@ export class UserHighlightsService {
 
     if (pageOptionsDto.repo) {
       filters.push([
-
         // eslint-disable-next-line no-useless-escape
         `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`,
         { repo: decodeURIComponent(pageOptionsDto.repo) },
@@ -97,16 +96,15 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllHighlightRepos (pageOptionsDto: PageOptionsDto, follwerUserId?: number) {
+  async findAllHighlightRepos(pageOptionsDto: PageOptionsDto, follwerUserId?: number) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .distinct(true)
       .select(
-
         // eslint-disable-next-line no-useless-escape
         `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`,
-        "full_name",
+        "full_name"
       )
       .where(`user_highlights.url LIKE '%github.com%'`);
 
@@ -117,7 +115,7 @@ export class UserHighlightsService {
         WHERE user_id=:userId
         AND deleted_at IS NULL
       )`,
-        { userId: follwerUserId },
+        { userId: follwerUserId }
       );
     }
 
@@ -138,7 +136,7 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllByUserId (pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbUserHighlight>> {
+  async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("user_highlights.user_id = :userId", { userId }).orderBy("user_highlights.updated_at", "DESC");
@@ -153,27 +151,27 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async addUserHighlight (userId: number, highlight: CreateUserHighlightDto) {
+  async addUserHighlight(userId: number, highlight: CreateUserHighlightDto) {
     const newUserHighlight = this.userHighlightRepository.create({
       user_id: userId,
       url: highlight.url,
       highlight: highlight.highlight,
       title: highlight.title ?? "",
-      shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : (new Date),
+      shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : new Date(),
     });
 
     return this.userHighlightRepository.save(newUserHighlight);
   }
 
-  async updateUserHighlight (highlightId: number, highlight: Partial<DbUserHighlight>) {
+  async updateUserHighlight(highlightId: number, highlight: Partial<DbUserHighlight>) {
     return this.userHighlightRepository.update(highlightId, highlight);
   }
 
-  async deleteUserHighlight (highlightId: number) {
+  async deleteUserHighlight(highlightId: number) {
     return this.userHighlightRepository.softDelete(highlightId);
   }
 
-  async findAllHighlightReactions (highlightId: number, userId?: number) {
+  async findAllHighlightReactions(highlightId: number, userId?: number) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
 
     queryBuilder
@@ -192,7 +190,7 @@ export class UserHighlightsService {
     return entities;
   }
 
-  async findOneUserHighlightReaction (highlightId: number, userId: number, emojiId: string) {
+  async findOneUserHighlightReaction(highlightId: number, userId: number, emojiId: string) {
     const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
 
     queryBuilder
@@ -203,13 +201,13 @@ export class UserHighlightsService {
     const item: DbUserHighlightReaction | null = await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
+  async addUserHighlightReaction(userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
     const queryBuilder = this.userHighlightReactionRepository
       .createQueryBuilder("user_highlight_reactions")
       .withDeleted();
@@ -241,7 +239,7 @@ export class UserHighlightsService {
     });
   }
 
-  async deleteUserHighlightReaction (id: string) {
+  async deleteUserHighlightReaction(id: string) {
     return this.userHighlightReactionRepository.softDelete(id);
   }
 }

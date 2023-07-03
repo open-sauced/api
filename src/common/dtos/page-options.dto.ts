@@ -42,7 +42,7 @@ export class PageOptionsDto {
   @IsOptional()
   readonly range?: number = 30;
 
-  get skip (): number {
+  get skip(): number {
     return ((this.page ?? 1) - 1) * (this.limit ?? 50);
   }
 }

@@ -16,11 +16,11 @@ import { DbRepo } from "../repo/entities/repo.entity";
 @Controller("users")
 @ApiTags("User service")
 export class UserController {
-  constructor (
+  constructor(
     private userService: UserService,
     private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
-    private repoService: RepoService,
+    private repoService: RepoService
   ) {}
 
   @Get("/:username")
@@ -30,9 +30,7 @@ export class UserController {
   })
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "User not found" })
-  async findOneUserById (
-    @Param("username") username: string,
-  ): Promise<DbUser> {
+  async findOneUserById(@Param("username") username: string): Promise<DbUser> {
     return this.userService.findOneByUsername(username);
   }
 
@@ -44,9 +42,9 @@ export class UserController {
   @ApiPaginatedResponse(DbPullRequest)
   @ApiOkResponse({ type: DbPullRequest })
   @ApiNotFoundResponse({ description: "User not found" })
-  async findContributorPullRequests (
+  async findContributorPullRequests(
     @Param("username") username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }
@@ -59,9 +57,9 @@ export class UserController {
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Highlights not found" })
-  async findAllHighlightsByUsername (
+  async findAllHighlightsByUsername(
     @Param("username") username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbUserHighlight>> {
     const user = await this.userService.findOneByUsername(username);
 
@@ -76,9 +74,9 @@ export class UserController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Top repos not found" })
-  async findAllTopReposByUsername (
+  async findAllTopReposByUsername(
     @Param("username") username: string,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbRepo>> {
     const user = await this.userService.findOneByUsername(username);
 

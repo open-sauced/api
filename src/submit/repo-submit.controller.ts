@@ -21,10 +21,7 @@ import { PageDto } from "../common/dtos/page.dto";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Submit service")
 export class RepoSubmitController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly submitService: SubmitService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly submitService: SubmitService) {}
 
   @Get("/listUserSubmitted")
   @ApiBearerAuth()
@@ -35,9 +32,9 @@ export class RepoSubmitController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserSubmitted (
+  async findAllUserSubmitted(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto, userId, ["Submissions"]);
   }
@@ -55,9 +52,9 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already submitted this repo" })
-  async submitOneById (
+  async submitOneById(
     @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneById(id);
 
@@ -77,10 +74,10 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already submitted this repo" })
-  async submitOneByOwnerAndRepo (
+  async submitOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -100,9 +97,9 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already removed your submission" })
-  async downSubmitOneById (
+  async downSubmitOneById(
     @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneById(id);
 
@@ -122,10 +119,10 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already removed your submission" })
-  async downSubmitOneByOwnerAndRepo (
+  async downSubmitOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserSubmissions> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

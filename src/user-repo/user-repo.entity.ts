@@ -1,12 +1,9 @@
-import {
-  Entity,
-  BaseEntity,
-  Column,
-  PrimaryColumn,
-  CreateDateColumn,
-} from "typeorm";
+import { Entity, BaseEntity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
 
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "user_repos" })
 export class DbUserRepo extends BaseEntity {

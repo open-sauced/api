@@ -9,21 +9,17 @@ import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from "./dtos/
 
 @Injectable()
 export class ContributionService {
-  constructor (
+  constructor(
     @InjectRepository(DbContribution, "ApiConnection")
-    private contributionRepository: Repository<DbContribution>,
+    private contributionRepository: Repository<DbContribution>
   ) {}
 
-  async findAll (
-    pageOptionsDto: ContributionPageOptionsDto,
-    repoId?: number,
-  ): Promise<PageDto<DbContribution>> {
+  async findAll(pageOptionsDto: ContributionPageOptionsDto, repoId?: number): Promise<PageDto<DbContribution>> {
     const queryBuilder = this.contributionRepository.createQueryBuilder("contribution");
     const orderField = pageOptionsDto.orderBy ?? ContributionOrderFieldsEnum.count;
 
     if (repoId) {
-      queryBuilder
-        .where("contribution.repo_id = :repoId", { repoId });
+      queryBuilder.where("contribution.repo_id = :repoId", { repoId });
     }
 
     queryBuilder

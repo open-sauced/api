@@ -11,7 +11,10 @@ import {
   ManyToOne,
 } from "typeorm";
 
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbUser } from "../user.entity";
 import { ApiHideProperty } from "@nestjs/swagger";
 
@@ -40,7 +43,7 @@ export class DbUserCollaboration extends BaseEntity {
   public request_user_id?: number;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.collaborations)
+  @ManyToOne(() => DbUser, (user) => user.collaborations)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -48,7 +51,7 @@ export class DbUserCollaboration extends BaseEntity {
   public user: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.request_collaborations)
+  @ManyToOne(() => DbUser, (user) => user.request_collaborations)
   @JoinColumn({
     name: "request_user_id",
     referencedColumnName: "id",

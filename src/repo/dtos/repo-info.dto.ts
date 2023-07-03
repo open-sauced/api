@@ -8,7 +8,7 @@ export class RepoInfo {
     example: 234343,
   })
   @IsNumber()
-    id: number;
+  id: number;
 
   @ApiProperty({
     description: "Repo Full Name",
@@ -16,5 +16,5 @@ export class RepoInfo {
     example: "open-sauced/insights",
   })
   @IsString()
-    fullName: string;
+  fullName: string;
 }

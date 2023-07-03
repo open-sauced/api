@@ -5,11 +5,7 @@ import { DbUserRepo } from "./user-repo.entity";
 import { UserReposService } from "./user-repos.service";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbUserRepo,
-    ], "ApiConnection"),
-  ],
+  imports: [TypeOrmModule.forFeature([DbUserRepo], "ApiConnection")],
   providers: [UserReposService],
   exports: [UserReposService],
 })

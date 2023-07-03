@@ -8,13 +8,7 @@ import { RepoStarController } from "./repo-star.controller";
 import { RepoModule } from "../repo/repo.module";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbRepo,
-      DbRepoToUserStars,
-    ], "ApiConnection"),
-    RepoModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserStars], "ApiConnection"), RepoModule],
   controllers: [RepoStarController],
   providers: [StarService],
   exports: [StarService],

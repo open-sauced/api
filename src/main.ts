@@ -1,8 +1,5 @@
 import { NestFactory } from "@nestjs/core";
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from "@nestjs/platform-fastify";
+import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
 import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from "@nestjs/swagger";
 import { ValidationPipe, VersioningType } from "@nestjs/common";
 import fastifyHelmet from "@fastify/helmet";
@@ -15,12 +12,11 @@ import { major } from "semver";
 
 import { AppModule } from "./app.module";
 
-async function bootstrap () {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    new FastifyAdapter({ logger: false }),
-    { bufferLogs: true, rawBody: true },
-  );
+async function bootstrap() {
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: false }), {
+    bufferLogs: true,
+    rawBody: true,
+  });
   const configService = app.get(ConfigService);
   const apiDomain = String(configService.get("api.domain"));
   const markdownDescription = `
@@ -74,7 +70,7 @@ code | condition
     defaultVersion: String(major("1.8.0", { loose: false })),
   });
 
-  const options = (new DocumentBuilder);
+  const options = new DocumentBuilder();
 
   if (configService.get("api.development")) {
     options.addServer(`http://localhost:${String(configService.get("api.port"))}`, "Development");
@@ -93,10 +89,7 @@ code | condition
     .addBearerAuth();
 
   const document = SwaggerModule.createDocument(app, options.build(), {
-    operationIdFactory: (
-      controllerKey: string,
-      methodKey: string,
-    ) => methodKey,
+    operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
   });
 
   const customOptions: SwaggerCustomOptions = { swaggerOptions: { persistAuthorization: true } };
@@ -129,10 +122,12 @@ code | condition
       "retry-after": true,
     },
   });
-  app.useGlobalPipes(new ValidationPipe({
-    transform: true,
-    forbidUnknownValues: true,
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      forbidUnknownValues: true,
+    })
+  );
 
   await app.listen(configService.get("api.port")!, configService.get("api.host"));
 }

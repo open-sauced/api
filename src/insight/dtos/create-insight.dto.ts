@@ -11,7 +11,7 @@ export class CreateInsightDto {
     example: "My Team",
   })
   @IsString()
-    name: string;
+  name: string;
 
   @ApiProperty({
     description: "Insight Page Visibility",
@@ -19,7 +19,7 @@ export class CreateInsightDto {
     example: false,
   })
   @IsBoolean()
-    is_public: boolean;
+  is_public: boolean;
 
   @ApiProperty({
     description: "An array of repository information objects",
@@ -29,5 +29,5 @@ export class CreateInsightDto {
   })
   @Type(() => RepoInfo)
   @IsArray()
-    repos: RepoInfo[];
+  repos: RepoInfo[];
 }

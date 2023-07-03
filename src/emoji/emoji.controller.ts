@@ -10,9 +10,7 @@ import { DbEmoji } from "./entities/emoji.entity";
 @Controller("emojis")
 @ApiTags("Emojis service")
 export class EmojiController {
-  constructor (
-    private emojiService: EmojiService,
-  ) {}
+  constructor(private emojiService: EmojiService) {}
 
   @Get("/")
   @ApiOperation({
@@ -22,9 +20,7 @@ export class EmojiController {
   @ApiPaginatedResponse(DbEmoji)
   @ApiOkResponse({ type: DbEmoji })
   @ApiNotFoundResponse({ description: "Emojis not found" })
-  async findAllEmojis (
-  @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllEmojis(@Query() pageOptionsDto: PageOptionsDto) {
     return this.emojiService.findAll(pageOptionsDto);
   }
 }

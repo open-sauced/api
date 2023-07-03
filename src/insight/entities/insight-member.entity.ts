@@ -9,7 +9,10 @@ import {
   DeleteDateColumn,
 } from "typeorm";
 
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "insight_members" })
 export class DbInsightMember extends BaseEntity {
