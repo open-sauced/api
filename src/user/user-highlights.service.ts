@@ -7,7 +7,7 @@ import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
-import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
 
@@ -36,8 +36,7 @@ export class UserHighlightsService {
       .where("user_highlights.id = :id", { id });
 
     if (userId) {
-      queryBuilder
-        .andWhere("user_highlights.user_id = :userId", { userId });
+      queryBuilder.andWhere("user_highlights.user_id = :userId", { userId });
     }
 
     const item: DbUserHighlight | null = await queryBuilder.getOne();
@@ -61,16 +60,23 @@ export class UserHighlightsService {
     const filters: [string, object][] = [];
 
     if (followerUserId) {
-      filters.push([`user_highlights.user_id IN (
+      filters.push([
+        `user_highlights.user_id IN (
         SELECT following_user_id FROM users_to_users_followers
         WHERE user_id=:userId
         AND deleted_at IS NULL
-      )`, { userId: followerUserId }]);
+      )`,
+        { userId: followerUserId },
+      ]);
     }
 
     if (pageOptionsDto.repo) {
-      // eslint-disable-next-line no-useless-escape
-      filters.push([`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`, { repo: decodeURIComponent(pageOptionsDto.repo) }]);
+      filters.push([
+
+        // eslint-disable-next-line no-useless-escape
+        `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')=:repo`,
+        { repo: decodeURIComponent(pageOptionsDto.repo) },
+      ]);
     }
 
     filters.forEach(([sql, data], index) => {
@@ -81,9 +87,7 @@ export class UserHighlightsService {
       }
     });
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
@@ -98,24 +102,29 @@ export class UserHighlightsService {
 
     queryBuilder
       .distinct(true)
+      .select(
 
-      // eslint-disable-next-line no-useless-escape
-      .select(`REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`, "full_name")
+        // eslint-disable-next-line no-useless-escape
+        `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`,
+        "full_name",
+      )
       .where(`user_highlights.url LIKE '%github.com%'`);
 
     if (follwerUserId) {
-      queryBuilder.andWhere(`user_highlights.user_id IN (
+      queryBuilder.andWhere(
+        `user_highlights.user_id IN (
         SELECT following_user_id FROM users_to_users_followers
         WHERE user_id=:userId
         AND deleted_at IS NULL
-      )`, { userId: follwerUserId });
+      )`,
+        { userId: follwerUserId },
+      );
     }
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const subQuery = this.userHighlightRepository.manager.createQueryBuilder()
+    const subQuery = this.userHighlightRepository.manager
+      .createQueryBuilder()
       .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
       .setParameters(queryBuilder.getParameters())
       .select("count(full_name)");
@@ -129,19 +138,12 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllByUserId (
-    pageOptionsDto: PageOptionsDto,
-    userId: number,
-  ): Promise<PageDto<DbUserHighlight>> {
+  async findAllByUserId (pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("user_highlights.user_id = :userId", { userId })
-      .orderBy("user_highlights.updated_at", "DESC");
+    queryBuilder.where("user_highlights.user_id = :userId", { userId }).orderBy("user_highlights.updated_at", "DESC");
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
@@ -180,14 +182,12 @@ export class UserHighlightsService {
       .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId });
 
     if (userId) {
-      queryBuilder
-        .andWhere("user_highlight_reactions.user_id = :userId", { userId });
+      queryBuilder.andWhere("user_highlight_reactions.user_id = :userId", { userId });
     }
 
-    queryBuilder
-      .addGroupBy("emoji_id");
+    queryBuilder.addGroupBy("emoji_id");
 
-    const entities: DbUserHighlightReaction[] = await queryBuilder.getRawMany();
+    const entities: DbUserHighlightReactionResponse[] = await queryBuilder.getRawMany();
 
     return entities;
   }
@@ -210,7 +210,8 @@ export class UserHighlightsService {
   }
 
   async addUserHighlightReaction (userId: number, highlightId: number, emojiId: string, highlightUserId: number) {
-    const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions")
+    const queryBuilder = this.userHighlightReactionRepository
+      .createQueryBuilder("user_highlight_reactions")
       .withDeleted();
 
     queryBuilder
