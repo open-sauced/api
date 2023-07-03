@@ -11,7 +11,16 @@ import {
   Query,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiConflictResponse } from "@nestjs/swagger";
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiConflictResponse,
+} from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -20,15 +29,13 @@ import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
-import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 
 @Controller("user/highlights")
 @ApiTags("User Highlights service")
 export class UserHighlightsController {
-  constructor (
-    private readonly userHighlightsService: UserHighlightsService,
-  ) {}
+  constructor (private readonly userHighlightsService: UserHighlightsService) {}
 
   @Post("/")
   @ApiOperation({
@@ -56,9 +63,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to get user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async getUserHighlight (
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<DbUserHighlight> {
+  async getUserHighlight (@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight> {
     return this.userHighlightsService.findOneById(id);
   }
 
@@ -80,7 +85,10 @@ export class UserHighlightsController {
   ): Promise<DbUserHighlight> {
     const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
-    await this.userHighlightsService.updateUserHighlight(highlight.id, { ...updateHighlightDto, shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at });
+    await this.userHighlightsService.updateUserHighlight(highlight.id, {
+      ...updateHighlightDto,
+      shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at,
+    });
 
     return this.userHighlightsService.findOneById(highlight.id, userId);
   }
@@ -110,13 +118,13 @@ export class UserHighlightsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getAllHighlightUserReactions (
     @Param("id", ParseIntPipe) id: number,
       @UserId() userId: number,
-  ): Promise<DbUserHighlightReaction[]> {
+  ): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id, userId);
   }
 
@@ -159,7 +167,11 @@ export class UserHighlightsController {
       @Param("id", ParseIntPipe) highlightId: number,
       @Param("emojiId") emojiId: string,
   ): Promise<void> {
-    const userHighlightReaction = await this.userHighlightsService.findOneUserHighlightReaction(highlightId, userId, emojiId);
+    const userHighlightReaction = await this.userHighlightsService.findOneUserHighlightReaction(
+      highlightId,
+      userId,
+      emojiId,
+    );
 
     await this.userHighlightsService.deleteUserHighlightReaction(userHighlightReaction.id);
   }
