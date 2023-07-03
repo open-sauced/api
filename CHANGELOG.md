@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.39.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.3...v1.39.0-beta.4) (2023-07-03)
+
+
+### 🐛 Bug Fixes
+
+* change swagger docs response for highlight reactions ([#192](https://github.com/open-sauced/api.opensauced.pizza/issues/192)) ([56eb3bd](https://github.com/open-sauced/api.opensauced.pizza/commit/56eb3bdc5da31716c982af836807fa192a637e3c))
+
 ## [1.39.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.2...v1.39.0-beta.3) (2023-06-30)
 
 
