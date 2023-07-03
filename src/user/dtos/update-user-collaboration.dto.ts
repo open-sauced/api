@@ -9,5 +9,5 @@ export class UpdateUserCollaborationDto {
   })
   @IsString()
   @IsIn(["accept", "ignore"])
-    status: string;
+  status: string;
 }

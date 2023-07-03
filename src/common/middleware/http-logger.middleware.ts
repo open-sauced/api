@@ -8,7 +8,7 @@ import { cliDuration } from "../util/cli-duration";
 export class HttpLoggerMiddleware implements NestMiddleware {
   private logger = new Logger(`HTTP`);
 
-  use (request: Request, response: Response, next: NextFunction) {
+  use(request: Request, response: Response, next: NextFunction) {
     const startTime = Date.now();
 
     response.on("finish", () => {

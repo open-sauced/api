@@ -8,9 +8,7 @@ import { PullRequestDescriptionService } from "./pull-request-description.servic
 @Controller("prs")
 @ApiTags("Pull Requests service")
 export class PullRequestDescriptionController {
-  constructor (private pullRequestDescriptionService: PullRequestDescriptionService) {
-
-  }
+  constructor(private pullRequestDescriptionService: PullRequestDescriptionService) {}
 
   @Post("/description/generate")
   @ApiOperation({
@@ -21,13 +19,11 @@ export class PullRequestDescriptionController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: GeneratePullRequestDescriptionDto })
-  async generatePRDescription (
-  @Body() generatePullRequestDescriptionDto: GeneratePullRequestDescriptionDto,
-  ) {
+  async generatePRDescription(@Body() generatePullRequestDescriptionDto: GeneratePullRequestDescriptionDto) {
     const description = await this.pullRequestDescriptionService.generateDescription(generatePullRequestDescriptionDto);
 
     if (!description) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { description };

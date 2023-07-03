@@ -10,7 +10,7 @@ export class GeneratePullRequestDescriptionDto {
   @IsNumber()
   @Min(100)
   @Max(500)
-    descriptionLength: number;
+  descriptionLength: number;
 
   @ApiProperty({
     description: "Description Temperature",
@@ -20,7 +20,7 @@ export class GeneratePullRequestDescriptionDto {
   @IsNumber()
   @Min(0)
   @Max(10)
-    temperature: number;
+  temperature: number;
 
   @ApiProperty({
     description: "Description Tone",
@@ -29,7 +29,7 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsIn(["exciting", "persuasive", "informative", "humorous", "formal"])
-    tone: string;
+  tone: string;
 
   @ApiProperty({
     description: "Description Language",
@@ -39,7 +39,7 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsIn(["english", "spanish", "french", "german", "italian", "portuguese", "dutch", "russian", "chinese", "korean"])
-    language: string;
+  language: string;
 
   @ApiPropertyOptional({
     description: "PR Diff",
@@ -47,17 +47,14 @@ export class GeneratePullRequestDescriptionDto {
   })
   @IsString()
   @IsOptional()
-    diff?: string;
+  diff?: string;
 
   @ApiPropertyOptional({
     description: "PR Commit Messages",
     type: String,
     isArray: true,
-    example: [
-      "chore: fixed a bug with the UI",
-      "style: added some rounded corners to some boxes",
-    ],
+    example: ["chore: fixed a bug with the UI", "style: added some rounded corners to some boxes"],
   })
   @IsOptional()
-    commitMessages?: string[];
+  commitMessages?: string[];
 }

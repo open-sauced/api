@@ -6,16 +6,16 @@ import { DbSubscription } from "./stripe-subscription.dto";
 
 @Injectable()
 export class StripeSubscriptionService {
-  constructor (
+  constructor(
     @InjectRepository(DbSubscription, "ApiConnection")
-    private subscriptionRepository: Repository<DbSubscription>,
+    private subscriptionRepository: Repository<DbSubscription>
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.subscriptionRepository.createQueryBuilder("subscription");
   }
 
-  async upsertSubscription (subscription: Partial<DbSubscription>) {
+  async upsertSubscription(subscription: Partial<DbSubscription>) {
     return this.subscriptionRepository.save(subscription);
   }
 }

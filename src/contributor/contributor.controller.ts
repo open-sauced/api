@@ -10,9 +10,7 @@ import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-req
 @Controller("contributors")
 @ApiTags("Contributors service")
 export class ContributorController {
-  constructor (
-    private readonly pullRequestService: PullRequestService,
-  ) {}
+  constructor(private readonly pullRequestService: PullRequestService) {}
 
   @Get("/search")
   @ApiOperation({
@@ -21,8 +19,8 @@ export class ContributorController {
   })
   @ApiPaginatedResponse(DbPullRequestContributor)
   @ApiOkResponse({ type: DbPullRequestContributor })
-  async searchAllPullRequestContributors (
-    @Query() pageOptionsDto: PullRequestContributorOptionsDto,
+  async searchAllPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     return this.pullRequestService.findAllContributorsWithFilters(pageOptionsDto);
   }

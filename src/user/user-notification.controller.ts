@@ -11,9 +11,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 @Controller("user/notifications")
 @ApiTags("User service")
 export class UserNotificationController {
-  constructor (
-    private userNotificationService: UserNotificationService,
-  ) {}
+  constructor(private userNotificationService: UserNotificationService) {}
 
   @Get("/")
   @ApiOperation({
@@ -24,9 +22,9 @@ export class UserNotificationController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserNotification })
   @ApiNotFoundResponse({ description: "Unable to get user notifications" })
-  async getUserNotifications (
+  async getUserNotifications(
     @UserId() userId: number,
-      @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbUserNotification>> {
     return this.userNotificationService.findAllByUserId(userId, pageOptionsDto);
   }

@@ -1,8 +1,4 @@
-import {
-  Controller,
-  Get,
-  UseGuards,
-} from "@nestjs/common";
+import { Controller, Get, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiBearerAuth, ApiTags, ApiOkResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -14,10 +10,7 @@ import { UserService } from "./user.service";
 @Controller("user/recommendations")
 @ApiTags("User Recommendations service")
 export class UserRecommendationController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly userService: UserService) {}
 
   @Get("/repos")
   @ApiOperation({
@@ -27,9 +20,7 @@ export class UserRecommendationController {
   @ApiBearerAuth()
   @ApiOkResponse()
   @UseGuards(SupabaseGuard)
-  async findUserRepoRecommendations (
-  @UserId() userId: number,
-  ) {
+  async findUserRepoRecommendations(@UserId() userId: number) {
     const user = await this.userService.findOneById(userId);
     const interests = user.interests?.split(",").filter(Boolean) ?? [];
 

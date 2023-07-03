@@ -5,19 +5,18 @@ import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers
 
 @Injectable()
 export class StargazeService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserStargazers, "ApiConnection")
-    private repoStargazeRepository: Repository<DbRepoToUserStargazers>,
+    private repoStargazeRepository: Repository<DbRepoToUserStargazers>
   ) {}
 
-  baseQueryBuilder () {
-    const builder = this.repoStargazeRepository.createQueryBuilder("r2stargazes")
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder = this.repoStargazeRepository.createQueryBuilder("r2stargazes").withDeleted();
 
     return builder;
   }
 
-  async stargazeByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
+  async stargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -42,7 +41,7 @@ export class StargazeService {
     });
   }
 
-  async downStargazeByRepoId (repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
+  async downStargazeByRepoId(repoId: number, userId: number): Promise<DbRepoToUserStargazers> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder

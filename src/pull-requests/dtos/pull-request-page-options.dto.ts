@@ -13,7 +13,7 @@ export enum PullRequestOrderFieldsEnum {
 
 export enum PullRequestStatusEnum {
   open = "open",
-  closed = "closed"
+  closed = "closed",
 }
 
 export class PullRequestPageOptionsDto extends PageOptionsDto {

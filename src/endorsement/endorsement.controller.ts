@@ -13,10 +13,7 @@ import { EndorsementTokenGuard } from "./endorsement-token.guard";
 @Controller("endorsements")
 @ApiTags("Endorsements service")
 export class EndorsementController {
-  constructor (
-    private readonly endorsementService: EndorsementService,
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly endorsementService: EndorsementService, private readonly userService: UserService) {}
 
   @Post("/")
   @UseGuards(EndorsementTokenGuard)
@@ -26,9 +23,9 @@ export class EndorsementController {
   })
   @ApiOkResponse({ type: DbEndorsement })
   @ApiBody({ type: CreateEndorsementDto })
-  async createEndorsement (
-  @Headers("X-OpenSauced-token")_token: string,
-    @Body() createEndorsementDto: CreateEndorsementDto,
+  async createEndorsement(
+    @Headers("X-OpenSauced-token") _token: string,
+    @Body() createEndorsementDto: CreateEndorsementDto
   ) {
     return this.endorsementService.create(createEndorsementDto);
   }
@@ -40,9 +37,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllEndorsements (
-  @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllEndorsements(@Query() pageOptionsDto: PageOptionsDto) {
     return this.endorsementService.findAll(pageOptionsDto);
   }
 
@@ -53,9 +48,9 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllByRepoOwnerOrUsername (
-  @Param("repoOwnerOrUser") repoOwnerOrUser: string,
-    @Query() pageOptionsDto: PageOptionsDto,
+  async findAllByRepoOwnerOrUsername(
+    @Param("repoOwnerOrUser") repoOwnerOrUser: string,
+    @Query() pageOptionsDto: PageOptionsDto
   ) {
     return this.endorsementService.findAllByRepoOwnerOrUser(repoOwnerOrUser, pageOptionsDto);
   }
@@ -67,10 +62,10 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllEndorsementsByRepo (
-  @Param("owner") owner: string,
+  async findAllEndorsementsByRepo(
+    @Param("owner") owner: string,
     @Param("repo") repo: string,
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOptionsDto
   ) {
     return this.endorsementService.findAllEndorsementsByRepo(owner, repo, pageOptionsDto);
   }
@@ -98,7 +93,7 @@ export class EndorsementController {
   })
   @ApiOkResponse({ type: DbEndorsement })
   @ApiNotFoundResponse({ description: "Endorsement not found" })
-  async findEndorsementById (@Param("id") id: string) {
+  async findEndorsementById(@Param("id") id: string) {
     return this.endorsementService.findOneById(id);
   }
 
@@ -109,10 +104,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserCreatedEndorsements (
-  @Param("username") username: string,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserCreatedEndorsements(@Param("username") username: string, @Query() pageOptionsDto: PageOptionsDto) {
     const user = await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByCreatorUserId(user.id, pageOptionsDto);
@@ -125,10 +117,7 @@ export class EndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserReceivedEndorsements (
-  @Param("username") username: string,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserReceivedEndorsements(@Param("username") username: string, @Query() pageOptionsDto: PageOptionsDto) {
     const user = await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByRecipientUserId(user.id, pageOptionsDto);
@@ -140,7 +129,7 @@ export class EndorsementController {
     summary: "Finds ands deletes the endorsement by ID",
   })
   @ApiNotFoundResponse({ description: "Endorsement not found" })
-  async deleteEndoresementById (@Param("id") id: string) {
+  async deleteEndoresementById(@Param("id") id: string) {
     return this.endorsementService.remove(id);
   }
 }

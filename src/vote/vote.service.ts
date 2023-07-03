@@ -5,19 +5,18 @@ import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 
 @Injectable()
 export class VoteService {
-  constructor (
+  constructor(
     @InjectRepository(DbRepoToUserVotes, "ApiConnection")
-    private repoVoteRepository: Repository<DbRepoToUserVotes>,
+    private repoVoteRepository: Repository<DbRepoToUserVotes>
   ) {}
 
-  baseQueryBuilder () {
-    const builder = this.repoVoteRepository.createQueryBuilder("r2votes")
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder = this.repoVoteRepository.createQueryBuilder("r2votes").withDeleted();
 
     return builder;
   }
 
-  async voteByRepoId (repoId: number, userId: number): Promise<DbRepoToUserVotes> {
+  async voteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -43,7 +42,7 @@ export class VoteService {
     });
   }
 
-  async downVoteByRepoId (repoId: number, userId: number): Promise<DbRepoToUserVotes> {
+  async downVoteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder

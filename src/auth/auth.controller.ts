@@ -16,10 +16,10 @@ import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
 @Controller("auth")
 @ApiTags("Authentication service")
 export class AuthController {
-  constructor (
+  constructor(
     private userService: UserService,
     private stripeService: StripeService,
-    private customerService: CustomerService,
+    private customerService: CustomerService
   ) {}
 
   @Get("/session")
@@ -31,19 +31,55 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @HttpCode(HttpStatus.OK)
-  async getSession (
-    @User() user: SupabaseAuthUser,
-  ): Promise<SupabaseAuthDto> {
-    const { role, email: session_email, confirmed_at, last_sign_in_at, created_at, updated_at, user_metadata: { sub: id, user_name } } = user;
+  async getSession(@User() user: SupabaseAuthUser): Promise<SupabaseAuthDto> {
+    const {
+      role,
+      email: session_email,
+      confirmed_at,
+      last_sign_in_at,
+      created_at,
+      updated_at,
+      user_metadata: { sub: id, user_name },
+    } = user;
 
     let userProfile: Partial<SupabaseAuthDto> = {};
 
     // check/insert user
     try {
       // get user from public users table
-      const { is_onboarded, is_waitlisted, role: insights_role, name, bio, location, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count } = await this.userService.checkAddUser(user);
+      const {
+        is_onboarded,
+        is_waitlisted,
+        role: insights_role,
+        name,
+        bio,
+        location,
+        twitter_username,
+        company,
+        display_local_time,
+        url,
+        email,
+        github_sponsors_url,
+        linkedin_url,
+        notification_count,
+      } = await this.userService.checkAddUser(user);
 
-      userProfile = { is_onboarded, insights_role, is_waitlisted, name, location, bio, twitter_username, company, display_local_time, url, email, github_sponsors_url, linkedin_url, notification_count };
+      userProfile = {
+        is_onboarded,
+        insights_role,
+        is_waitlisted,
+        name,
+        location,
+        bio,
+        twitter_username,
+        company,
+        display_local_time,
+        url,
+        email,
+        github_sponsors_url,
+        linkedin_url,
+        notification_count,
+      };
     } catch (e) {
       // leave user profile as-is
     }
@@ -70,10 +106,7 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: "Unable to update onboarding information for the user" })
-  async postOnboarding (
-    @UserId() userId: number,
-      @Body() body: UserOnboardingDto,
-  ): Promise<void> {
+  async postOnboarding(@UserId() userId: number, @Body() body: UserOnboardingDto): Promise<void> {
     const userData = {
       timezone: body.timezone,
       interests: body.interests,
@@ -91,9 +124,7 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: "Unable to update waitlist information for the user" })
-  async postWaitlist (
-    @UserId() userId: number,
-  ): Promise<void> {
+  async postWaitlist(@UserId() userId: number): Promise<void> {
     return this.userService.updateWaitlistStatus(userId);
   }
 
@@ -106,10 +137,11 @@ export class AuthController {
   })
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: "Unable to create checkout session" })
-  async postCreateCheckoutSession (
-    @User() user: SupabaseAuthUser,
-  ): Promise<{ sessionId: string }> {
-    const { email, user_metadata: { sub } } = user;
+  async postCreateCheckoutSession(@User() user: SupabaseAuthUser): Promise<{ sessionId: string }> {
+    const {
+      email,
+      user_metadata: { sub },
+    } = user;
     const id = sub as number;
     const customer = await this.customerService.findById(id);
     let customerId: string;
@@ -136,10 +168,7 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update user profile" })
   @ApiBody({ type: UpdateUserDto })
-  async updateProfileForUser (
-    @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserDto,
-  ): Promise<DbUser> {
+  async updateProfileForUser(@UserId() userId: number, @Body() updateUserDto: UpdateUserDto): Promise<DbUser> {
     return this.userService.updateUser(userId, updateUserDto);
   }
 
@@ -153,9 +182,9 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update interests for the user profile" })
   @ApiBody({ type: UpdateUserProfileInterestsDto })
-  async updateInterestsForUserProfile (
+  async updateInterestsForUserProfile(
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserProfileInterestsDto,
+    @Body() updateUserDto: UpdateUserProfileInterestsDto
   ): Promise<DbUser> {
     await this.userService.updateInterests(userId, updateUserDto);
 
@@ -172,9 +201,9 @@ export class AuthController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to update email preferences for the user profile" })
   @ApiBody({ type: UpdateUserEmailPreferencesDto })
-  async updateEmailPreferencesForUserProfile (
+  async updateEmailPreferencesForUserProfile(
     @UserId() userId: number,
-      @Body() updateUserDto: UpdateUserEmailPreferencesDto,
+    @Body() updateUserDto: UpdateUserEmailPreferencesDto
   ): Promise<DbUser> {
     await this.userService.updateEmailPreferences(userId, updateUserDto);
 

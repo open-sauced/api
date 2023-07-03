@@ -21,10 +21,7 @@ import { PageDto } from "../common/dtos/page.dto";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")
 export class RepoStargazeController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly stargazeService: StargazeService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly stargazeService: StargazeService) {}
 
   @Get("/listUserStargazed")
   @ApiBearerAuth()
@@ -35,9 +32,9 @@ export class RepoStargazeController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserStargazed (
+  async findAllUserStargazed(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto, userId, ["Stargazers"]);
   }
@@ -55,9 +52,9 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already followed this repo" })
-  async stargazeOneById (
+  async stargazeOneById(
     @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);
 
@@ -77,10 +74,10 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already followed this repo" })
-  async stargazeOneByOwnerAndRepo (
+  async stargazeOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -100,9 +97,9 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already unfollowed this repo" })
-  async downStargazeOneById (
+  async downStargazeOneById(
     @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneById(id);
 
@@ -122,10 +119,10 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or stargaze not found" })
   @ApiConflictResponse({ description: "You have already unfollowed this repo" })
-  async downStargazeOneByOwnerAndRepo (
+  async downStargazeOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserStargazers> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

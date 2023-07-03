@@ -11,7 +11,7 @@ import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
 @Controller("user/endorsements")
 @ApiTags("Endorsements service")
 export class UserEndorsementController {
-  constructor (private readonly endorsementService: EndorsementService) {}
+  constructor(private readonly endorsementService: EndorsementService) {}
 
   @Get("/created")
   @ApiBearerAuth()
@@ -22,10 +22,7 @@ export class UserEndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserCreatedEndorsements (
-  @UserId() userId: number,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserCreatedEndorsements(@UserId() userId: number, @Query() pageOptionsDto: PageOptionsDto) {
     return this.endorsementService.findAllByCreatorUserId(userId, pageOptionsDto);
   }
 
@@ -38,10 +35,7 @@ export class UserEndorsementController {
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserReceivedEndorsements (
-  @UserId() userId: number,
-    @Query() pageOptionsDto: PageOptionsDto,
-  ) {
+  async findAllUserReceivedEndorsements(@UserId() userId: number, @Query() pageOptionsDto: PageOptionsDto) {
     return this.endorsementService.findAllByRecipientUserId(userId, pageOptionsDto);
   }
 }

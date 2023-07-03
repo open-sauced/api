@@ -17,10 +17,7 @@ import { UserService } from "./user.service";
 @Controller("users")
 @ApiTags("User service")
 export class UserFollowsController {
-  constructor (
-    private readonly userService: UserService,
-    private readonly userFollowService: UserFollowService,
-  ) {}
+  constructor(private readonly userService: UserService, private readonly userFollowService: UserFollowService) {}
 
   @Get("/:username/follow")
   @ApiBearerAuth()
@@ -30,9 +27,9 @@ export class UserFollowsController {
     summary: "Checks if the authenticated user follows the provided username",
   })
   @ApiNotFoundResponse({ description: "User follow not found" })
-  async getFollowStatusByUsername (
+  async getFollowStatusByUsername(
     @Param("username") username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbUserToUserFollows> {
     const user = await this.userService.findOneByUsername(username);
 
@@ -48,9 +45,9 @@ export class UserFollowsController {
   })
   @ApiNotFoundResponse({ description: "User not found" })
   @ApiConflictResponse({ description: "You have already followed this user" })
-  async followUserByUsername (
+  async followUserByUsername(
     @Param("username") username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbUserToUserFollows> {
     const user = await this.userService.findOneByUsername(username);
 
@@ -70,9 +67,9 @@ export class UserFollowsController {
   })
   @ApiNotFoundResponse({ description: "User not found" })
   @ApiConflictResponse({ description: "You are now following this user" })
-  async unfollowUserByUserId (
+  async unfollowUserByUserId(
     @Param("username") username: string,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<DbUserToUserFollows> {
     const user = await this.userService.findOneByUsername(username);
 

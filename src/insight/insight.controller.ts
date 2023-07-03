@@ -1,5 +1,14 @@
 import { Controller, Delete, Get, Param, ParseIntPipe, UnauthorizedException, UseGuards } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse, ApiBadRequestResponse, ApiBearerAuth, ApiBody } from "@nestjs/swagger";
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+} from "@nestjs/swagger";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { UpdateInsightDto } from "./dtos/update-insight.dto";
@@ -10,9 +19,7 @@ import { InsightsService } from "./insights.service";
 @Controller("insights")
 @ApiTags("Insights service")
 export class InsightController {
-  constructor (
-    private readonly insightsService: InsightsService,
-  ) {}
+  constructor(private readonly insightsService: InsightsService) {}
 
   @Get("/:id")
   @ApiOperation({
@@ -22,9 +29,7 @@ export class InsightController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Insight page not found" })
   @ApiUnauthorizedResponse({ description: "Not Authorized to view this Insight" })
-  async findInsightPageById (
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<DbInsight> {
+  async findInsightPageById(@Param("id", ParseIntPipe) id: number): Promise<DbInsight> {
     return this.insightsService.findOneById(id);
   }
 
@@ -39,14 +44,11 @@ export class InsightController {
   @ApiNotFoundResponse({ description: "Unable to remove user insight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: UpdateInsightDto })
-  async removeInsightForUser (
-    @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise<void> {
+  async removeInsightForUser(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<void> {
     const insight = await this.insightsService.findOneById(id);
 
     if (Number(insight.user.id) !== userId) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     await this.insightsService.removeInsight(id);

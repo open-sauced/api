@@ -8,5 +8,5 @@ export class CreateInsightMemberDto {
     example: "hello@opensauced.pizza",
   })
   @IsEmail()
-    email: string;
+  email: string;
 }

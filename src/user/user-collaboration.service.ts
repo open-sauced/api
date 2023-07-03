@@ -10,18 +10,18 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 
 @Injectable()
 export class UserCollaborationService {
-  constructor (
+  constructor(
     @InjectRepository(DbUserCollaboration, "ApiConnection")
-    private userCollaborationRepository: Repository<DbUserCollaboration>,
+    private userCollaborationRepository: Repository<DbUserCollaboration>
   ) {}
 
-  baseQueryBuilder (): SelectQueryBuilder<DbUserCollaboration> {
+  baseQueryBuilder(): SelectQueryBuilder<DbUserCollaboration> {
     const builder = this.userCollaborationRepository.createQueryBuilder("user_collaborations");
 
     return builder;
   }
 
-  async findOneById (id: string): Promise<DbUserCollaboration> {
+  async findOneById(id: string): Promise<DbUserCollaboration> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("user_collaborations.id = :id", { id });
@@ -29,27 +29,27 @@ export class UserCollaborationService {
     const item: DbUserCollaboration | null = await queryBuilder.getOne();
 
     if (!item) {
-      throw (new NotFoundException);
+      throw new NotFoundException();
     }
 
     return item;
   }
 
-  async addUserCollaboration (userCollaboration: Partial<DbUserCollaboration>) {
+  async addUserCollaboration(userCollaboration: Partial<DbUserCollaboration>) {
     return this.userCollaborationRepository.save(userCollaboration);
   }
 
-  async updateUserCollaboration (id: string, userCollaboration: Partial<DbUserCollaboration>) {
+  async updateUserCollaboration(id: string, userCollaboration: Partial<DbUserCollaboration>) {
     return this.userCollaborationRepository.update(id, userCollaboration);
   }
 
-  async removeUserCollaboration (id: string) {
+  async removeUserCollaboration(id: string) {
     return this.userCollaborationRepository.softDelete(id);
   }
 
-  async findAllUserCollaborations (
+  async findAllUserCollaborations(
     pageOptionsDto: PageOptionsDto,
-    userId: number,
+    userId: number
   ): Promise<PageDto<DbUserCollaboration>> {
     const queryBuilder = this.baseQueryBuilder();
 
@@ -59,9 +59,7 @@ export class UserCollaborationService {
       .where("user_collaborations.user_id = :userId", { userId })
       .orderBy("user_collaborations.updated_at", "DESC");
 
-    queryBuilder
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();

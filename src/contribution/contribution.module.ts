@@ -8,13 +8,7 @@ import { RepoContributionsController } from "./repo-contributions.controller";
 import { RepoModule } from "../repo/repo.module";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbRepo,
-      DbContribution,
-    ], "ApiConnection"),
-    RepoModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbContribution], "ApiConnection"), RepoModule],
   controllers: [RepoContributionsController],
   providers: [ContributionService],
   exports: [ContributionService],

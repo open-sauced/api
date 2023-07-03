@@ -8,13 +8,7 @@ import { RepoVoteController } from "./repo-vote.controller";
 import { RepoModule } from "../repo/repo.module";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbRepo,
-      DbRepoToUserVotes,
-    ], "ApiConnection"),
-    RepoModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserVotes], "ApiConnection"), RepoModule],
   controllers: [RepoVoteController],
   providers: [VoteService],
   exports: [VoteService],

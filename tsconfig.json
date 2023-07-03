@@ -4,26 +4,21 @@
     "declaration": true,
     "noImplicitAny": true,
     "removeComments": true,
-//    "noLib": false,
+    //    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-//    "allowJs": true,
+    //    "allowJs": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "target": "ES2019",
     "sourceMap": true,
     "outDir": "./dist",
-//    "rootDir": "./src",
+    //    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
     "strictNullChecks": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

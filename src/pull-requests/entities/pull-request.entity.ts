@@ -1,11 +1,8 @@
+import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn } from "typeorm";
 import {
-  Entity,
-  Column,
-  BaseEntity,
-  PrimaryColumn,
-  CreateDateColumn,
-} from "typeorm";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
 
 @Entity({ name: "pull_requests" })

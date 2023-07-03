@@ -15,21 +15,19 @@ import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributo
 
 @Injectable()
 export class PullRequestService {
-  constructor (
+  constructor(
     @InjectRepository(DbPullRequest, "ApiConnection")
     private pullRequestRepository: Repository<DbPullRequest>,
-    private filterService: RepoFilterService,
+    private filterService: RepoFilterService
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
   }
 
-  async findAll (
-    pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<DbPullRequest>> {
+  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -45,10 +43,7 @@ export class PullRequestService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllByContributor (
-    contributor: string,
-    pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<DbPullRequest>> {
+  async findAllByContributor(contributor: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
     const range = pageOptionsDto.range!;
 
@@ -70,9 +65,7 @@ export class PullRequestService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllWithFilters (
-    pageOptionsDto: PullRequestPageOptionsDto,
-  ): Promise<PageDto<DbPullRequest>> {
+  async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
     const range = pageOptionsDto.range!;
 
@@ -86,7 +79,10 @@ export class PullRequestService {
     filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     if (pageOptionsDto.contributor) {
-      filters.push([`LOWER("pull_requests"."author_login")=:contributor`, { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) }]);
+      filters.push([
+        `LOWER("pull_requests"."author_login")=:contributor`,
+        { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) },
+      ]);
     }
 
     if (pageOptionsDto.status) {
@@ -96,8 +92,7 @@ export class PullRequestService {
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
     if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
-      queryBuilder
-        .orderBy(`"repos"."updated_at"`, "DESC");
+      queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
     queryBuilder
@@ -113,8 +108,8 @@ export class PullRequestService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllContributorsWithFilters (
-    pageOptionsDto: PullRequestContributorOptionsDto,
+  async findAllContributorsWithFilters(
+    pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
     const range = pageOptionsDto.range!;
@@ -133,7 +128,8 @@ export class PullRequestService {
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
-    const subQuery = this.pullRequestRepository.manager.createQueryBuilder()
+    const subQuery = this.pullRequestRepository.manager
+      .createQueryBuilder()
       .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
       .setParameters(queryBuilder.getParameters())
       .select("count(author_login)");

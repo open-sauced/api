@@ -9,13 +9,7 @@ import { AuthModule } from "../auth/auth.module";
 import { EndorsementTokenGuard } from "./endorsement-token.guard";
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      DbEndorsement,
-    ], "ApiConnection"),
-    UserModule,
-    AuthModule,
-  ],
+  imports: [TypeOrmModule.forFeature([DbEndorsement], "ApiConnection"), UserModule, AuthModule],
   controllers: [EndorsementController],
   providers: [EndorsementService, EndorsementTokenGuard],
   exports: [EndorsementService],

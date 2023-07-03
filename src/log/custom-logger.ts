@@ -7,24 +7,16 @@ import { LogService } from "./log.service";
 class CustomLogger extends ConsoleLogger {
   private readonly logsService: LogService;
 
-  constructor (
-    context: string,
-    options: ConsoleLoggerOptions,
-    configService: ConfigService,
-    logsService: LogService,
-  ) {
-    super(
-      context,
-      {
-        ...options,
-        logLevels: ["error", "warn", "log", "verbose", "debug"],
-      },
-    );
+  constructor(context: string, options: ConsoleLoggerOptions, configService: ConfigService, logsService: LogService) {
+    super(context, {
+      ...options,
+      logLevels: ["error", "warn", "log", "verbose", "debug"],
+    });
 
     this.logsService = logsService;
   }
 
-  async log (message: string, context?: string) {
+  async log(message: string, context?: string) {
     super.log.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -34,7 +26,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async error (message: string, stack?: string, context?: string) {
+  async error(message: string, stack?: string, context?: string) {
     super.error.apply(this, [message, stack, context]);
 
     return this.logsService.createLog({
@@ -44,7 +36,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async warn (message: string, context?: string) {
+  async warn(message: string, context?: string) {
     super.warn.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -54,7 +46,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async debug (message: string, context?: string) {
+  async debug(message: string, context?: string) {
     super.debug.apply(this, [message, context]);
 
     return this.logsService.createLog({
@@ -64,7 +56,7 @@ class CustomLogger extends ConsoleLogger {
     });
   }
 
-  async verbose (message: string, context?: string) {
+  async verbose(message: string, context?: string) {
     super.debug.apply(this, [message, context]);
 
     return this.logsService.createLog({

@@ -5,13 +5,10 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { GenerateCodeExplanationDto } from "./dtos/create-code-explanation.dto";
 import { CodeExplanationService } from "./code-explanation.service";
 
-
 @Controller("prs")
 @ApiTags("Pull Requests service")
 export class CodeExplanationController {
-  constructor (private codeExplanationService: CodeExplanationService) {
-
-  }
+  constructor(private codeExplanationService: CodeExplanationService) {}
 
   @Post("/explanation/generate")
   @ApiOperation({
@@ -22,13 +19,11 @@ export class CodeExplanationController {
   @UseGuards(SupabaseGuard)
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: GenerateCodeExplanationDto })
-  async generatePRDescription (
-  @Body() generateCodeExplanationDto: GenerateCodeExplanationDto,
-  ) {
+  async generatePRDescription(@Body() generateCodeExplanationDto: GenerateCodeExplanationDto) {
     const suggestion = await this.codeExplanationService.generateExplanation(generateCodeExplanationDto);
 
     if (!suggestion) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     return { suggestion };
