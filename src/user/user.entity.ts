@@ -353,6 +353,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "bigint",
+    select: false,
     default: 0,
   })
   public followers: number;
@@ -363,6 +364,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "bigint",
+    select: false,
     default: 0,
   })
   public following: number;
@@ -431,6 +433,61 @@ export class DbUser extends BaseEntity {
     insert: false,
   })
   public notification_count: number;
+
+  @ApiModelProperty({
+    description: "User highlights count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public highlights_count: number;
+
+  @ApiModelProperty({
+    description: "User following count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public following_count: number;
+
+  @ApiModelProperty({
+    description: "User followers count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public followers_count: number;
+
+  @ApiModelProperty({
+    description: "Count of user pull requests within the last 30 days",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public recent_pull_requests_count: number;
+
+  @ApiModelProperty({
+    description: "User average pull request velocity in days over the last 30 days",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public recent_pull_request_velocity_count: number;
 
   @ApiHideProperty()
   @OneToMany(() => DbInsight, (insight) => insight.user)
