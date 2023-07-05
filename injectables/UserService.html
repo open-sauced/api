@@ -246,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user/user.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/user/user.service.ts:124</a></div>
                 </td>
             </tr>
 
@@ -317,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/user/user.service.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/user/user.service.ts:233</a></div>
                 </td>
             </tr>
 
@@ -547,8 +547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="179"
-                            class="link-to-prism">src/user/user.service.ts:179</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="226"
+                            class="link-to-prism">src/user/user.service.ts:226</a></div>
                 </td>
             </tr>
 
@@ -630,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/user/user.service.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/user/user.service.ts:222</a></div>
                 </td>
             </tr>
 
@@ -713,8 +713,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/user/user.service.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/user/user.service.ts:187</a></div>
                 </td>
             </tr>
 
@@ -796,8 +796,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">src/user/user.service.ts:165</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/user/user.service.ts:212</a></div>
                 </td>
             </tr>
 
@@ -879,8 +879,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user/user.service.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="163"
+                            class="link-to-prism">src/user/user.service.ts:163</a></div>
                 </td>
             </tr>
 
@@ -962,8 +962,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/user/user.service.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/user/user.service.ts:202</a></div>
                 </td>
             </tr>
 
@@ -1082,7 +1082,54 @@ export class UserService {
   async findOneByUsername(username: string): Promise&lt;DbUser&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;LOWER(login) &#x3D; :username&quot;, { username: username.toLowerCase() });
+    queryBuilder
+      .addSelect(
+        &#x60;(
+        SELECT COALESCE(COUNT(&quot;user_highlights&quot;.&quot;id&quot;), 0)
+        FROM user_highlights
+        WHERE user_id &#x3D; users.id
+        AND user_highlights.deleted_at IS NULL
+      )::INTEGER&#x60;,
+        &quot;users_highlights_count&quot;
+      )
+      .addSelect(
+        &#x60;(
+        SELECT COALESCE(COUNT(&quot;user_follows&quot;.&quot;id&quot;), 0)
+        FROM users_to_users_followers user_follows
+        WHERE user_id &#x3D; users.id
+        AND user_follows.deleted_at IS NULL
+      )::INTEGER&#x60;,
+        &quot;users_following_count&quot;
+      )
+      .addSelect(
+        &#x60;(
+        SELECT COALESCE(COUNT(&quot;user_follows&quot;.&quot;id&quot;), 0)
+        FROM users_to_users_followers user_follows
+        WHERE following_user_id &#x3D; users.id
+        AND user_follows.deleted_at IS NULL
+      )::INTEGER&#x60;,
+        &quot;users_followers_count&quot;
+      )
+      .addSelect(
+        &#x60;(
+        SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+        FROM pull_requests
+        WHERE LOWER(author_login) &#x3D; :username
+        AND now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+      )::INTEGER&#x60;,
+        &quot;users_recent_pull_requests_count&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(AVG((&quot;pull_requests&quot;.&quot;merged_at&quot;::DATE - &quot;pull_requests&quot;.&quot;created_at&quot;::DATE)), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;) &#x3D; :username
+          AND now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &#x60;users_recent_pull_request_velocity_count&#x60;
+      )
+      .where(&quot;LOWER(login) &#x3D; :username&quot;, { username: username.toLowerCase() })
+      .setParameters({ username: username.toLowerCase() });
 
     const item: DbUser | null &#x3D; await queryBuilder.getOne();
 
