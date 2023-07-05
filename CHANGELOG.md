@@ -5,6 +5,22 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.39.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.2...v1.39.0) (2023-07-05)
+
+
+### 🐛 Bug Fixes
+
+* add checks for requester and recipient for collaboration requests ([#189](https://github.com/open-sauced/api.opensauced.pizza/issues/189)) ([f212fb2](https://github.com/open-sauced/api.opensauced.pizza/commit/f212fb2331ef83e24f7e6bab31f6ab145c3976a9))
+* change swagger docs response for highlight reactions ([#192](https://github.com/open-sauced/api.opensauced.pizza/issues/192)) ([56eb3bd](https://github.com/open-sauced/api.opensauced.pizza/commit/56eb3bdc5da31716c982af836807fa192a637e3c))
+* remove limit from repo recommendation query ([638f9ec](https://github.com/open-sauced/api.opensauced.pizza/commit/638f9eccd227da25b0208dc463b68d22dda5b5d2))
+
+
+### 🍕 Features
+
+* add endpoint for repo recommendations ([#191](https://github.com/open-sauced/api.opensauced.pizza/issues/191)) ([0b6d16a](https://github.com/open-sauced/api.opensauced.pizza/commit/0b6d16a094d399ca60e76697fed57d7c515a998d))
+* add followers, following, recent pull requests and velocity counts to user info ([#195](https://github.com/open-sauced/api.opensauced.pizza/issues/195)) ([109d081](https://github.com/open-sauced/api.opensauced.pizza/commit/109d08136c2c2547999f74356fe219e4cc3d4c48))
+* enable promo codes with Stripe checkout ([#190](https://github.com/open-sauced/api.opensauced.pizza/issues/190)) ([ad2c624](https://github.com/open-sauced/api.opensauced.pizza/commit/ad2c62446d1556e4eac944d2b1da01a576fa511b))
+
 ## [1.39.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.4...v1.39.0-beta.5) (2023-07-05)
 
 
