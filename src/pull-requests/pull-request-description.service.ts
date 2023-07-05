@@ -5,9 +5,9 @@ import { OpenAiService } from "../open-ai/open-ai.service";
 
 @Injectable()
 export class PullRequestDescriptionService {
-  constructor (private openAiService: OpenAiService) {}
+  constructor(private openAiService: OpenAiService) {}
 
-  private generatePrompt (language: string, maxLength: number, tone: string) {
+  private generatePrompt(language: string, maxLength: number, tone: string) {
     return [
       `Generate an apt github PR description written in present tense and ${tone} tone for the given code diff/commit-messages with the specifications mentioned below`,
       `Description language: ${language}`,
@@ -16,7 +16,7 @@ export class PullRequestDescriptionService {
     ].join("\n");
   }
 
-  async generateDescription (options: GeneratePullRequestDescriptionDto) {
+  async generateDescription(options: GeneratePullRequestDescriptionDto) {
     const content = `${options.diff ? `Diff: ${options.diff}\n` : ""}${
       options.commitMessages ? `\nCommit Messages: ${options.commitMessages.join(",")}` : ""
     }`;
@@ -25,7 +25,7 @@ export class PullRequestDescriptionService {
       const completion = this.openAiService.generateCompletion(
         this.generatePrompt(options.language, options.descriptionLength, options.tone),
         content,
-        options.temperature,
+        options.temperature
       );
 
       return completion;

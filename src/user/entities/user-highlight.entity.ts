@@ -137,7 +137,7 @@ export class DbUserHighlight extends BaseEntity {
   public login?: string;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.highlights)
+  @ManyToOne(() => DbUser, (user) => user.highlights)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -145,7 +145,7 @@ export class DbUserHighlight extends BaseEntity {
   public user: DbUser;
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserHighlightReaction, highlightReaction => highlightReaction.highlight)
+  @OneToMany(() => DbUserHighlightReaction, (highlightReaction) => highlightReaction.highlight)
   @JoinColumn({
     name: "highlight_id",
     referencedColumnName: "id",

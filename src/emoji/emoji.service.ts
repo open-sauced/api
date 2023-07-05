@@ -9,16 +9,16 @@ import { DbEmoji } from "./entities/emoji.entity";
 
 @Injectable()
 export class EmojiService {
-  constructor (
+  constructor(
     @InjectRepository(DbEmoji, "ApiConnection")
-    private emojiRepository: Repository<DbEmoji>,
+    private emojiRepository: Repository<DbEmoji>
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.emojiRepository.createQueryBuilder("emoji");
   }
 
-  async findAll (pageOptionsDto: PageOptionsDto) {
+  async findAll(pageOptionsDto: PageOptionsDto) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.orderBy("emoji.display_order", "ASC");

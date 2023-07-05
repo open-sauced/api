@@ -13,13 +13,13 @@ import { ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 @Controller("health")
 @ApiTags("Health check service")
 export class HealthController {
-  constructor (
+  constructor(
     private health: HealthCheckService,
     private http: HttpHealthIndicator,
     private database: TypeOrmHealthIndicator,
     private memory: MemoryHealthIndicator,
     private disk: DiskHealthIndicator,
-    private readonly configService: ConfigService,
+    private readonly configService: ConfigService
   ) {}
 
   @Get("/service")
@@ -29,19 +29,21 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async service () {
+  async service() {
     return this.health.check([
       async () => this.database.pingCheck("db"),
       async () => this.memory.checkHeap("memory.heap", this.configService.get("memory_heap")!),
       async () => this.memory.checkRSS("memory.rss", this.configService.get("memory_rss")!),
-      async () => this.disk.checkStorage("disk.usage", {
-        thresholdPercent: this.configService.get("disk_percentage")!,
-        path: "/",
-      }),
-      async () => this.disk.checkStorage("disk.storage", {
-        thresholdPercent: this.configService.get("disk_size")!,
-        path: "/",
-      }),
+      async () =>
+        this.disk.checkStorage("disk.usage", {
+          thresholdPercent: this.configService.get("disk_percentage")!,
+          path: "/",
+        }),
+      async () =>
+        this.disk.checkStorage("disk.storage", {
+          thresholdPercent: this.configService.get("disk_size")!,
+          path: "/",
+        }),
     ]);
   }
 
@@ -52,7 +54,7 @@ export class HealthController {
   })
   @HealthCheck()
   @ApiOkResponse()
-  async web () {
+  async web() {
     return this.health.check([
       async () => this.http.pingCheck("opensauced.pizza", this.configService.get("endpoint.landing")!),
       async () => this.http.pingCheck("app.opensauced", this.configService.get("endpoint.app")!),

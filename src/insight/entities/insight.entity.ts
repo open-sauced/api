@@ -7,10 +7,15 @@ import {
   UpdateDateColumn,
   OneToMany,
   PrimaryGeneratedColumn,
-  DeleteDateColumn, ManyToOne, JoinColumn,
+  DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
 
 import { DbInsightRepo } from "./insight-repo.entity";
@@ -101,7 +106,7 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.insights)
+  @ManyToOne(() => DbUser, (user) => user.insights)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -109,6 +114,6 @@ export class DbInsight extends BaseEntity {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsightRepo, insightRepo => insightRepo.insight)
+  @OneToMany(() => DbInsightRepo, (insightRepo) => insightRepo.insight)
   public repos: DbInsightRepo[];
 }

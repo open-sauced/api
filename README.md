@@ -39,6 +39,7 @@ In order to run the project we need the following software binaries installed on
 - `docker>=20.10.12`
 
 You also need the `.env` environment file added to your repo for the project to run. To get it, kindly contact @open-sauced/triage team.
+
 > Note: For Windows users, the `API_HOST` key's value in the `.env` file should be `127.0.0.1`, instead of `0.0.0.0`, so that the project can run correctly on localhost.
 
 ## 🖥️ Local development
@@ -111,7 +112,7 @@ We have a couple of scripts to check and adjust missing types.
 In order to dry run what types would be added to `package.json`:
 
 ```shell
-npm run types:auto-check 
+npm run types:auto-check
 ```
 
 In order to add any missing types to `package.json`:

@@ -1,6 +1,7 @@
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -10,7 +11,10 @@ import {
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "users_to_repos_submissions" })
 export class DbRepoToUserSubmissions {
@@ -70,7 +74,7 @@ export class DbRepoToUserSubmissions {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.repoToUserSubmissions)
+  @ManyToOne(() => DbUser, (user) => user.repoToUserSubmissions)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -78,7 +82,7 @@ export class DbRepoToUserSubmissions {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbRepo, repo => repo.repoToUserSubmissions)
+  @ManyToOne(() => DbRepo, (repo) => repo.repoToUserSubmissions)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

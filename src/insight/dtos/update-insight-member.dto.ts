@@ -9,5 +9,5 @@ export class UpdateInsightMemberDto {
   })
   @IsString()
   @IsIn(["view", "edit", "admin", "pending"])
-    access: string;
+  access: string;
 }

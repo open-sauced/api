@@ -6,12 +6,12 @@ import { CreateLogDto } from "./dtos/create-log.dto";
 
 @Injectable()
 export class LogService {
-  constructor (
+  constructor(
     @InjectRepository(DbLog, "LogConnection")
-    private logsRepository: Repository<DbLog>,
+    private logsRepository: Repository<DbLog>
   ) {}
 
-  async createLog (log: CreateLogDto) {
+  async createLog(log: CreateLogDto) {
     const newLog = this.logsRepository.create(log);
 
     await this.logsRepository.save(newLog, { data: { isCreatingLogs: true } });

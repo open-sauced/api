@@ -10,7 +10,7 @@ import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
 @Controller("repos")
 @ApiTags("Repository service")
 export class RepoController {
-  constructor (private readonly repoService: RepoService) {}
+  constructor(private readonly repoService: RepoService) {}
 
   @Get("/:id")
   @ApiOperation({
@@ -19,9 +19,7 @@ export class RepoController {
   })
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
-  async findOneById (
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<DbRepo> {
+  async findOneById(@Param("id", ParseIntPipe) id: number): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }
 
@@ -32,10 +30,7 @@ export class RepoController {
   })
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
-  async findOneByOwnerAndRepo (
-    @Param("owner") owner: string,
-      @Param("repo") repo: string,
-  ): Promise<DbRepo> {
+  async findOneByOwnerAndRepo(@Param("owner") owner: string, @Param("repo") repo: string): Promise<DbRepo> {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
 
@@ -46,9 +41,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAll (
-    @Query() pageOptionsDto: RepoPageOptionsDto,
-  ): Promise<PageDto<DbRepo>> {
+  async findAll(@Query() pageOptionsDto: RepoPageOptionsDto): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);
   }
 
@@ -59,9 +52,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllReposWithFilters (
-    @Query() pageOptionsDto: RepoSearchOptionsDto,
-  ): Promise<PageDto<DbRepo>> {
+  async findAllReposWithFilters(@Query() pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
     return this.repoService.findAllWithFilters(pageOptionsDto);
   }
 }

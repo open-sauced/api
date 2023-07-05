@@ -8,9 +8,9 @@ interface ChatResponse {
 
 @Injectable()
 export class OpenAiService {
-  constructor (private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {}
 
-  async generateCompletion (systemMessage: string, userMessage: string, temperature: number) {
+  async generateCompletion(systemMessage: string, userMessage: string, temperature: number) {
     // eslint-disable-next-line
     const fetcher: Fetch = typeof fetch !== "undefined" ? fetch : (require("node-fetch") as Fetch);
     const response = await fetcher(this.configService.get<string>("openai.completionsURL")!, {

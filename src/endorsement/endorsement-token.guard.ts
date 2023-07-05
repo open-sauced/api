@@ -3,9 +3,9 @@ import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class EndorsementTokenGuard implements CanActivate {
-  constructor (private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {}
 
-  canActivate (host: ExecutionContext) {
+  canActivate(host: ExecutionContext) {
     const apiToken = this.configService.get<string>("api.endorsementServiceToken");
     const ctx = host.switchToHttp();
     const request: { headers: Record<string, string> } = ctx.getRequest();

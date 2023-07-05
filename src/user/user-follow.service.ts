@@ -8,21 +8,20 @@ import { UserService } from "./user.service";
 
 @Injectable()
 export class UserFollowService {
-  constructor (
+  constructor(
     @InjectRepository(DbUserToUserFollows, "ApiConnection")
     private userFollowRepository: Repository<DbUserToUserFollows>,
     private userService: UserService,
-    private userNotificationService: UserNotificationService,
+    private userNotificationService: UserNotificationService
   ) {}
 
-  baseQueryBuilder () {
-    const builder = this.userFollowRepository.createQueryBuilder("user_follows")
-      .withDeleted();
+  baseQueryBuilder() {
+    const builder = this.userFollowRepository.createQueryBuilder("user_follows").withDeleted();
 
     return builder;
   }
 
-  async findUserFollowerById (userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
+  async findUserFollowerById(userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -38,7 +37,7 @@ export class UserFollowService {
     return followExists;
   }
 
-  async addUserFollowerByUserId (userId: number, followedUserId: number): Promise<DbUserToUserFollows> {
+  async addUserFollowerByUserId(userId: number, followedUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -67,7 +66,7 @@ export class UserFollowService {
     });
   }
 
-  async removeUserFollowerById (userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
+  async removeUserFollowerById(userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder

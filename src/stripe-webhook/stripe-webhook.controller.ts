@@ -21,24 +21,26 @@ const relevantEvents = new Set([
 export class StripeWebhookController {
   private logger = new Logger(`StripeWebhook`);
 
-  constructor (
+  constructor(
     private customerService: CustomerService,
     private stripeSubscriptionService: StripeSubscriptionService,
     private stripeService: StripeService,
     private configService: ConfigService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
-  private async manageSubscriptionStatusChange (subscriptionId: string, customerId: string) {
+  private async manageSubscriptionStatusChange(subscriptionId: string, customerId: string) {
     const customerData = await this.customerService.findByCustomerId(customerId);
 
     if (!customerData) {
-      throw (new BadRequestException);
+      throw new BadRequestException();
     }
 
     const { id: uuid } = customerData;
     const userId = parseInt(`${uuid}`, 10);
-    const subscription = await this.stripeService.stripe.subscriptions.retrieve(subscriptionId, { expand: ["default_payment_method"] });
+    const subscription = await this.stripeService.stripe.subscriptions.retrieve(subscriptionId, {
+      expand: ["default_payment_method"],
+    });
 
     // upsert the latest status of the subscription object.
     const subscriptionData = {
@@ -66,8 +68,10 @@ export class StripeWebhookController {
 
       await this.userService.updateRole(userId, userRole);
     } catch (e: unknown) {
-      this.logger.error(`Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}`);
-      throw (new BadRequestException);
+      this.logger.error(
+        `Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}`
+      );
+      throw new BadRequestException();
     }
 
     this.logger.log(`Inserted/updated subscription [${subscription.id}] for user [${userId}]`);
@@ -75,7 +79,7 @@ export class StripeWebhookController {
 
   @Post("/webhooks")
   @ApiOkResponse()
-  async handleStripeWebhook (@Req() req: RawBodyRequest<Request>) {
+  async handleStripeWebhook(@Req() req: RawBodyRequest<Request>) {
     const sig = (req.headers as unknown as Record<string, string>)["stripe-signature"];
     const webhookSecret: string | undefined = this.configService.get("stripe.webhookSecret");
 
@@ -105,7 +109,7 @@ export class StripeWebhookController {
           await this.manageSubscriptionStatusChange(subscriptionId as string, checkoutSession.customer as string);
         }
       } else {
-        throw (new BadRequestException);
+        throw new BadRequestException();
       }
     }
   }

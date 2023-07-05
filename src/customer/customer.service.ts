@@ -6,34 +6,32 @@ import { DbCustomer } from "./customer.entity";
 
 @Injectable()
 export class CustomerService {
-  constructor (
+  constructor(
     @InjectRepository(DbCustomer, "ApiConnection")
-    private customerRepository: Repository<DbCustomer>,
+    private customerRepository: Repository<DbCustomer>
   ) {}
 
-  baseQueryBuilder () {
+  baseQueryBuilder() {
     return this.customerRepository.createQueryBuilder("customer");
   }
 
-  async findById (id: number) {
+  async findById(id: number) {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("customer.id=:id", { id });
+    queryBuilder.where("customer.id=:id", { id });
 
     return queryBuilder.getOne();
   }
 
-  async findByCustomerId (id: string) {
+  async findByCustomerId(id: string) {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .where("customer.stripe_customer_id=:id", { id });
+    queryBuilder.where("customer.stripe_customer_id=:id", { id });
 
     return queryBuilder.getOne();
   }
 
-  async addCustomer (userId: number, stripe_customer_id: string) {
+  async addCustomer(userId: number, stripe_customer_id: string) {
     return this.customerRepository.save({ id: userId, stripe_customer_id });
   }
 }

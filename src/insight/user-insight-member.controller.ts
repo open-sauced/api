@@ -12,7 +12,16 @@ import {
   UnauthorizedException,
   UseGuards,
 } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiNotFoundResponse, ApiBearerAuth, ApiTags, ApiBadRequestResponse, ApiBody, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiUnprocessableEntityResponse,
+} from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
@@ -31,10 +40,10 @@ import { UserService } from "../user/user.service";
 @Controller("user/insights")
 @ApiTags("Insights service")
 export class UserInsightMemberController {
-  constructor (
+  constructor(
     private readonly insightsService: InsightsService,
     private readonly insightMemberService: InsightMemberService,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   @Get(":id/members")
@@ -47,16 +56,20 @@ export class UserInsightMemberController {
   @ApiPaginatedResponse(DbInsightMember)
   @ApiOkResponse({ type: DbInsightMember })
   @ApiNotFoundResponse({ description: "Insight not found" })
-  async findAllInsightsByUserId (
+  async findAllInsightsByUserId(
     @Query() pageOptionsDto: InsightPageOptionsDto,
-      @Param("id", ParseIntPipe) insightId: number,
-      @UserId() userId: number,
+    @Param("id", ParseIntPipe) insightId: number,
+    @UserId() userId: number
   ): Promise<PageDto<DbInsightMember>> {
     const insight = await this.insightsService.findOneById(insightId);
-    const canAccess = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit", "view"]);
+    const canAccess = await this.insightMemberService.canUserManageInsight(userId, insight.id, [
+      "admin",
+      "edit",
+      "view",
+    ]);
 
     if (!canAccess) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     return this.insightMemberService.findAllInsightMembers(pageOptionsDto, insightId);
@@ -73,19 +86,24 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: "Unable to add insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateInsightMemberDto })
-  async addInsightMember (
+  async addInsightMember(
     @Body() createInsightMemberDto: CreateInsightMemberDto,
-      @Param("id", ParseIntPipe) insightId: number,
-      @UserId() userId: number,
+    @Param("id", ParseIntPipe) insightId: number,
+    @UserId() userId: number
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(insightId);
     const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
 
     if (!canUpdate) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
-    const isMember = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit", "view"], false);
+    const isMember = await this.insightMemberService.canUserManageInsight(
+      userId,
+      insight.id,
+      ["admin", "edit", "view"],
+      false
+    );
 
     if (isMember) {
       throw new ConflictException("The user is already a team member of this insight");
@@ -115,18 +133,18 @@ export class UserInsightMemberController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight member" })
   @ApiBody({ type: UpdateInsightMemberDto })
-  async updateInsightMember (
+  async updateInsightMember(
     @Param("id", ParseIntPipe) id: number,
-      @Param("memberId") memberId: string,
-      @UserId() userId: number,
-      @Body() updateInsightMemberDto: UpdateInsightMemberDto,
+    @Param("memberId") memberId: string,
+    @UserId() userId: number,
+    @Body() updateInsightMemberDto: UpdateInsightMemberDto
   ): Promise<DbInsightMember> {
     const insight = await this.insightsService.findOneById(id);
     const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
     const insightMember = await this.insightMemberService.findOneById(memberId);
 
     if (!canUpdate && insightMember.access !== "pending") {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     const updatedInsightMember: Partial<DbInsightMember> = { access: updateInsightMemberDto.access };
@@ -152,16 +170,16 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to remove insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async removeInsightMemberById (
+  async removeInsightMemberById(
     @Param("id", ParseIntPipe) id: number,
-      @Param("memberId") memberId: string,
-      @UserId() userId: number,
+    @Param("memberId") memberId: string,
+    @UserId() userId: number
   ): Promise<void> {
     const insight = await this.insightsService.findOneById(id);
     const canUpdate = await this.insightMemberService.canUserManageInsight(userId, insight.id, ["admin", "edit"]);
 
     if (!canUpdate) {
-      throw new (UnauthorizedException);
+      throw new UnauthorizedException();
     }
 
     await this.insightMemberService.removeInsightMember(memberId);

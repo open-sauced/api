@@ -1,8 +1,4 @@
-import {
-  Entity,
-  BaseEntity,
-  PrimaryColumn, Column,
-} from "typeorm";
+import { Entity, BaseEntity, PrimaryColumn, Column } from "typeorm";
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "pull_requests" })

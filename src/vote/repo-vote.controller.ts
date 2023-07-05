@@ -21,10 +21,7 @@ import { PageDto } from "../common/dtos/page.dto";
 @Controller("repos")
 @ApiTags("Repository service guarded", "Vote service")
 export class RepoVoteController {
-  constructor (
-    private readonly repoService: RepoService,
-    private readonly voteService: VoteService,
-  ) {}
+  constructor(private readonly repoService: RepoService, private readonly voteService: VoteService) {}
 
   @Get("/listUserVoted")
   @ApiBearerAuth()
@@ -35,9 +32,9 @@ export class RepoVoteController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
-  async findAllUserVoted (
+  async findAllUserVoted(
     @Query() pageOptionsDto: RepoPageOptionsDto,
-      @UserId() userId: number,
+    @UserId() userId: number
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto, userId, ["Votes"]);
   }
@@ -55,10 +52,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already voted for this repo" })
-  async voteOneById (
-    @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise<DbRepoToUserVotes> {
+  async voteOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 
     return this.voteService.voteByRepoId(item.id, userId);
@@ -77,10 +71,10 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already voted for this repo" })
-  async voteOneByOwnerAndRepo (
+  async voteOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
@@ -100,10 +94,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already removed your vote" })
-  async downVoteOneById (
-    @Param("id", ParseIntPipe) id: number,
-      @UserId() userId: number,
-  ): Promise<DbRepoToUserVotes> {
+  async downVoteOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 
     return this.voteService.downVoteByRepoId(item.id, userId);
@@ -122,10 +113,10 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already removed your vote" })
-  async downVoteOneByOwnerAndRepo (
+  async downVoteOneByOwnerAndRepo(
     @Param("owner") owner: string,
-      @Param("repo") repo: string,
-      @UserId() userId: number,
+    @Param("repo") repo: string,
+    @UserId() userId: number
   ): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
 

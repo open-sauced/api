@@ -8,7 +8,7 @@ export enum RepoFilterFieldsEnum {
   Top100 = "top-100-repos",
   MinimumContributors = "minimum-5-contributors",
   MostActive = "most-active",
-  MostSpammed = "most-spammed"
+  MostSpammed = "most-spammed",
 }
 
 export enum RepoOrderFieldsEnum {

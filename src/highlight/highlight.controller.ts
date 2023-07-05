@@ -3,20 +3,17 @@ import { ApiOperation, ApiOkResponse, ApiTags, ApiBadRequestResponse, ApiNotFoun
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { HighlightOptionsDto } from "./dtos/highlight-options.dto";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
-import { DbUserHighlightReaction } from "../user/entities/user-highlight-reaction.entity";
 
 @Controller("highlights")
 @ApiTags("Highlights service")
 export class HighlightController {
-  constructor (
-    private readonly userHighlightsService: UserHighlightsService,
-  ) {}
+  constructor(private readonly userHighlightsService: UserHighlightsService) {}
 
   @Get("/list")
   @ApiOperation({
@@ -25,9 +22,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
-  async findAllHighlights (
-    @Query() pageOptionsDto: HighlightOptionsDto,
-  ): Promise<PageDto<DbUserHighlight>> {
+  async findAllHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAll(pageOptionsDto);
   }
 
@@ -38,9 +33,7 @@ export class HighlightController {
   })
   @ApiPaginatedResponse(DbUserHighlightRepo)
   @ApiOkResponse({ type: DbUserHighlightRepo })
-  async findAllHighlightRepos (
-    @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<DbUserHighlightRepo>> {
+  async findAllHighlightRepos(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlightRepo>> {
     return this.userHighlightsService.findAllHighlightRepos(pageOptionsDto);
   }
 
@@ -49,12 +42,10 @@ export class HighlightController {
     operationId: "getAllHighlightReactions",
     summary: "Retrieves total reactions for a highlight",
   })
-  @ApiOkResponse({ type: DbUserHighlightReaction })
+  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async getAllHighlightReactions (
-    @Param("id", ParseIntPipe) id: number,
-  ): Promise<DbUserHighlightReaction[]> {
+  async getAllHighlightReactions(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }
 }

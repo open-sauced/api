@@ -8,7 +8,7 @@ export enum InsightFilterFieldsEnum {
   Top100 = "top-100-repos",
   MinimumContributors = "minimum-5-contributors",
   MostActive = "most-active",
-  MostSpammed = "most-spammed"
+  MostSpammed = "most-spammed",
 }
 
 export class InsightOptionsDto extends PageOptionsDto {

@@ -12,7 +12,10 @@ import {
 import { ApiHideProperty } from "@nestjs/swagger";
 
 import { DbRepo } from "../repo/entities/repo.entity";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "contributions" })
 export class DbContribution extends BaseEntity {
@@ -98,7 +101,7 @@ export class DbContribution extends BaseEntity {
   public url: string;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbRepo, repo => repo.contributions)
+  @ManyToOne(() => DbRepo, (repo) => repo.contributions)
   @JoinColumn({
     name: "repo_id",
     referencedColumnName: "id",

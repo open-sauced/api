@@ -15,7 +15,10 @@ import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
@@ -350,6 +353,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "bigint",
+    select: false,
     default: 0,
   })
   public followers: number;
@@ -360,6 +364,7 @@ export class DbUser extends BaseEntity {
   })
   @Column({
     type: "bigint",
+    select: false,
     default: 0,
   })
   public following: number;
@@ -429,47 +434,102 @@ export class DbUser extends BaseEntity {
   })
   public notification_count: number;
 
+  @ApiModelProperty({
+    description: "User highlights count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public highlights_count: number;
+
+  @ApiModelProperty({
+    description: "User following count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public following_count: number;
+
+  @ApiModelProperty({
+    description: "User followers count",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public followers_count: number;
+
+  @ApiModelProperty({
+    description: "Count of user pull requests within the last 30 days",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public recent_pull_requests_count: number;
+
+  @ApiModelProperty({
+    description: "User average pull request velocity in days over the last 30 days",
+    example: 0,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public recent_pull_request_velocity_count: number;
+
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, insight => insight.user)
+  @OneToMany(() => DbInsight, (insight) => insight.user)
   public insights: DbInsight[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepo, repo => repo.user)
+  @OneToMany(() => DbRepo, (repo) => repo.user)
   public repos: DbRepo[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, highlights => highlights.user)
+  @OneToMany(() => DbInsight, (highlights) => highlights.user)
   public highlights: DbUserHighlight[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserHighlightReaction, highlightReactions => highlightReactions.user)
+  @OneToMany(() => DbUserHighlightReaction, (highlightReactions) => highlightReactions.user)
   public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user)
   public collaborations: DbUserCollaboration[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, collaboration => collaboration.request_user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user)
   public request_collaborations: DbUserCollaboration[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserVotes, repoToUserVotes => repoToUserVotes.user)
+  @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.user)
   public repoToUserVotes: DbRepoToUserVotes[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserStars, repoToUserStars => repoToUserStars.user)
+  @OneToMany(() => DbRepoToUserStars, (repoToUserStars) => repoToUserStars.user)
   public repoToUserStars: DbRepoToUserStars[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserSubmissions, repoToUserSubmissions => repoToUserSubmissions.user)
+  @OneToMany(() => DbRepoToUserSubmissions, (repoToUserSubmissions) => repoToUserSubmissions.user)
   public repoToUserSubmissions: DbRepoToUserSubmissions[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbRepoToUserStargazers, repoToUserStargazers => repoToUserStargazers.user)
+  @OneToMany(() => DbRepoToUserStargazers, (repoToUserStargazers) => repoToUserStargazers.user)
   public repoToUserStargazers: DbRepoToUserStargazers[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserTopRepo, repoToUserTopRepos => repoToUserTopRepos.user)
+  @OneToMany(() => DbUserTopRepo, (repoToUserTopRepos) => repoToUserTopRepos.user)
   public topRepos: DbUserTopRepo[];
 }

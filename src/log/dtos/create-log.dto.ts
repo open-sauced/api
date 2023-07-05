@@ -1,6 +1,5 @@
 import { IsOptional, IsString } from "class-validator";
 
-
 export class CreateLogDto {
   @IsOptional()
   @IsString()
