@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.39.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.4...v1.39.0-beta.5) (2023-07-05)
+
+
+### 🍕 Features
+
+* add followers, following, recent pull requests and velocity counts to user info ([#195](https://github.com/open-sauced/api.opensauced.pizza/issues/195)) ([109d081](https://github.com/open-sauced/api.opensauced.pizza/commit/109d08136c2c2547999f74356fe219e4cc3d4c48))
+
 ## [1.39.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0-beta.3...v1.39.0-beta.4) (2023-07-03)
 
 ### 🐛 Bug Fixes
