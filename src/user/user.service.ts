@@ -63,7 +63,54 @@ export class UserService {
   async findOneByUsername(username: string): Promise<DbUser> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("LOWER(login) = :username", { username: username.toLowerCase() });
+    queryBuilder
+      .addSelect(
+        `(
+        SELECT COALESCE(COUNT("user_highlights"."id"), 0)
+        FROM user_highlights
+        WHERE user_id = users.id
+        AND user_highlights.deleted_at IS NULL
+      )::INTEGER`,
+        "users_highlights_count"
+      )
+      .addSelect(
+        `(
+        SELECT COALESCE(COUNT("user_follows"."id"), 0)
+        FROM users_to_users_followers user_follows
+        WHERE user_id = users.id
+        AND user_follows.deleted_at IS NULL
+      )::INTEGER`,
+        "users_following_count"
+      )
+      .addSelect(
+        `(
+        SELECT COALESCE(COUNT("user_follows"."id"), 0)
+        FROM users_to_users_followers user_follows
+        WHERE following_user_id = users.id
+        AND user_follows.deleted_at IS NULL
+      )::INTEGER`,
+        "users_followers_count"
+      )
+      .addSelect(
+        `(
+        SELECT COALESCE(COUNT("pull_requests"."id"), 0)
+        FROM pull_requests
+        WHERE LOWER(author_login) = :username
+        AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
+      )::INTEGER`,
+        "users_recent_pull_requests_count"
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(AVG(("pull_requests"."merged_at"::DATE - "pull_requests"."created_at"::DATE)), 0)
+          FROM "pull_requests"
+          WHERE LOWER("pull_requests"."author_login") = :username
+          AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
+        )::INTEGER`,
+        `users_recent_pull_request_velocity_count`
+      )
+      .where("LOWER(login) = :username", { username: username.toLowerCase() })
+      .setParameters({ username: username.toLowerCase() });
 
     const item: DbUser | null = await queryBuilder.getOne();
 
