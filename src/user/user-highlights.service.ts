@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -115,7 +115,7 @@ export class UserHighlightsService {
     const user = await this.userService.findOneById(userId);
 
     if (user.role < 100) {
-      throw new ConflictException("You are not authorized to perform this action");
+      throw new UnauthorizedException("You are not authorized to perform this action");
     }
     const highlight = await this.findOneById(highlightId, userId);
 
@@ -124,7 +124,6 @@ export class UserHighlightsService {
     }
 
     const updatedHighlight = await this.userHighlightRepository.save({
-      ...highlight,
       featured: true,
     });
 
@@ -135,7 +134,7 @@ export class UserHighlightsService {
     const user = await this.userService.findOneById(userId);
 
     if (user.role < 100) {
-      throw new ConflictException("You are not authorized to perform this action");
+      throw new UnauthorizedException("You are not authorized to perform this action");
     }
 
     const highlight = await this.findOneById(highlightId, userId);
@@ -145,7 +144,6 @@ export class UserHighlightsService {
     }
 
     const updatedHighlight = await this.userHighlightRepository.save({
-      ...highlight,
       featured: false,
     });
 
@@ -157,7 +155,6 @@ export class UserHighlightsService {
 
     queryBuilder
       .distinct(true)
-
       .select(
         // eslint-disable-next-line no-useless-escape
         `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`,
