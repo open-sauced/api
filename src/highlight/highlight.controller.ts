@@ -1,6 +1,14 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiTags, ApiBadRequestResponse, ApiNotFoundResponse } from "@nestjs/swagger";
+import { Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from "@nestjs/common";
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+} from "@nestjs/swagger";
 
+import { SupabaseGuard } from "../auth/supabase.guard";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
@@ -24,6 +32,45 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   async findAllHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAll(pageOptionsDto);
+  }
+
+  @Get("/featured")
+  @ApiOperation({
+    operationId: "findAllFeaturedHighlights",
+    summary: "Finds all featured highlights and paginates them",
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async findAllFeaturedHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    return this.userHighlightsService.findAllFeatured(pageOptionsDto);
+  }
+
+  @Post("/:id/feature")
+  @ApiOperation({
+    operationId: "addAFeaturedHighlight",
+    summary: "Add a highlight to the featured list",
+  })
+  @UseGuards(SupabaseGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: "Unable to find highlight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async featureHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight | null> {
+    return this.userHighlightsService.addFeaturedHighlight(id);
+  }
+
+  @Post("/:id/unfeature")
+  @ApiOperation({
+    operationId: "removeAFeaturedHighlight",
+    summary: "Remove a highlight from the featured list",
+  })
+  @UseGuards(SupabaseGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: "Unable to find highlight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async unfeatureHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight | null> {
+    return this.userHighlightsService.removeFeaturedHighlight(id);
   }
 
   @Get("/repos/list")
