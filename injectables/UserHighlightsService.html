@@ -80,6 +80,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#addFeatured" >addFeatured</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addUserHighlight" >addUserHighlight</a>
                             </li>
                             <li>
@@ -107,6 +111,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllFeatured" >findAllFeatured</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllHighlightReactions" >findAllHighlightReactions</a>
                             </li>
                             <li>
@@ -120,6 +128,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOneUserHighlightReaction" >findOneUserHighlightReaction</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeFeatured" >removeFeatured</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -143,12 +155,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>, userNotificationService: <a href="../injectables/UserNotificationService.html" target="_self">UserNotificationService</a>)</code>
+<code>constructor(userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>, userNotificationService: <a href="../injectables/UserNotificationService.html" target="_self">UserNotificationService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/user/user-highlights.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user/user-highlights.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -201,6 +213,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -215,6 +239,89 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFeatured"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addFeatured</b></span>
+                        <a href="#addFeatured"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addFeatured(highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/user/user-highlights.service.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>highlightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlight&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -237,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/user/user-highlights.service.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/user/user-highlights.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -320,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/user/user-highlights.service.ts:210</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/user/user-highlights.service.ts:264</a></div>
                 </td>
             </tr>
 
@@ -425,8 +532,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/user/user-highlights.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/user/user-highlights.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -464,8 +571,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/user/user-highlights.service.ts:170</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="224"
+                            class="link-to-prism">src/user/user-highlights.service.ts:224</a></div>
                 </td>
             </tr>
 
@@ -535,8 +642,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="242"
-                            class="link-to-prism">src/user/user-highlights.service.ts:242</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="296"
+                            class="link-to-prism">src/user/user-highlights.service.ts:296</a></div>
                 </td>
             </tr>
 
@@ -606,8 +713,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/user/user-highlights.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/user-highlights.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -689,8 +796,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/user/user-highlights.service.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/user/user-highlights.service.ts:193</a></div>
                 </td>
             </tr>
 
@@ -754,6 +861,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllFeatured"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllFeatured</b></span>
+                        <a href="#findAllFeatured"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllFeatured(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/user/user-highlights.service.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllHighlightReactions"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -772,8 +950,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/user/user-highlights.service.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="228"
+                            class="link-to-prism">src/user/user-highlights.service.ts:228</a></div>
                 </td>
             </tr>
 
@@ -855,8 +1033,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/user/user-highlights.service.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/user/user-highlights.service.ts:153</a></div>
                 </td>
             </tr>
 
@@ -938,8 +1116,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/user/user-highlights.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/user/user-highlights.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -1021,8 +1199,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/user/user-highlights.service.ts:193</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="247"
+                            class="link-to-prism">src/user/user-highlights.service.ts:247</a></div>
                 </td>
             </tr>
 
@@ -1098,6 +1276,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="removeFeatured"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>removeFeatured</b></span>
+                        <a href="#removeFeatured"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeFeatured(highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/user/user-highlights.service.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>highlightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlight | null&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateUserHighlight"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -1116,8 +1377,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/user/user-highlights.service.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/user/user-highlights.service.ts:220</a></div>
                 </td>
             </tr>
 
@@ -1183,7 +1444,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -1195,6 +1456,7 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
+import { UserService } from &quot;./user.service&quot;;
 
 @Injectable()
 export class UserHighlightsService {
@@ -1203,7 +1465,8 @@ export class UserHighlightsService {
     private userHighlightRepository: Repository&lt;DbUserHighlight&gt;,
     @InjectRepository(DbUserHighlightReaction, &quot;ApiConnection&quot;)
     private userHighlightReactionRepository: Repository&lt;DbUserHighlightReaction&gt;,
-    private userNotificationService: UserNotificationService
+    private userNotificationService: UserNotificationService,
+    private userService: UserService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUserHighlight&gt; {
@@ -1279,6 +1542,58 @@ export class UserHighlightsService {
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.where(&#x60;user_highlights.featured &#x3D; true&#x60;).orderBy(&quot;user_highlights.updated_at&quot;, &quot;DESC&quot;);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async addFeatured(highlightId: number, userId: number): Promise&lt;DbUserHighlight&gt; {
+    const user &#x3D; await this.userService.findOneById(userId);
+
+    if (user.role &lt; 100) {
+      throw new UnauthorizedException(&quot;You are not authorized to perform this action&quot;);
+    }
+    const highlight &#x3D; await this.findOneById(highlightId, userId);
+
+    if (highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight &#x3D; await this.userHighlightRepository.save({
+      featured: true,
+    });
+
+    return updatedHighlight;
+  }
+
+  async removeFeatured(highlightId: number, userId: number): Promise&lt;DbUserHighlight | null&gt; {
+    const user &#x3D; await this.userService.findOneById(userId);
+
+    if (user.role &lt; 100) {
+      throw new UnauthorizedException(&quot;You are not authorized to perform this action&quot;);
+    }
+
+    const highlight &#x3D; await this.findOneById(highlightId, userId);
+
+    if (highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight &#x3D; await this.userHighlightRepository.save({
+      featured: false,
+    });
+
+    return updatedHighlight;
   }
 
   async findAllHighlightRepos(pageOptionsDto: PageOptionsDto, follwerUserId?: number) {

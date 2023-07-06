@@ -85,6 +85,14 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#featureHighlight" >featureHighlight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllFeaturedHighlights" >findAllFeaturedHighlights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllHighlightRepos" >findAllHighlightRepos</a>
                             </li>
                             <li>
@@ -94,6 +102,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#getAllHighlightReactions" >getAllHighlightReactions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#unfeatureHighlight" >unfeatureHighlight</a>
                             </li>
                         </ul>
                     </td>
@@ -112,6 +124,174 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="featureHighlight"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>featureHighlight</b></span>
+                        <a href="#featureHighlight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>featureHighlight(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;addAFeaturedHighlight&#x27;, summary: &#x27;Add a highlight to the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlight | null&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllFeaturedHighlights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllFeaturedHighlights</b></span>
+                        <a href="#findAllFeaturedHighlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllFeaturedHighlights(pageOptionsDto: <a href="../classes/HighlightOptionsDto.html" target="_self">HighlightOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/featured&#x27;)<br />@ApiOperation({operationId: &#x27;findAllFeaturedHighlights&#x27;, summary: &#x27;Finds all featured highlights and paginates them&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/HighlightOptionsDto.html" target="_self" >HighlightOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -141,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -219,8 +399,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -297,8 +477,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:102</a></div>
                 </td>
             </tr>
 
@@ -346,13 +526,112 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unfeatureHighlight"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>unfeatureHighlight</b></span>
+                        <a href="#unfeatureHighlight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unfeatureHighlight(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;removeAFeaturedHighlight&#x27;, summary: &#x27;Remove a highlight from the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserHighlight | null&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiTags, ApiBadRequestResponse, ApiNotFoundResponse } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+} from &quot;@nestjs/swagger&quot;;
 
+import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;./dtos/highlight-options.dto&quot;;
@@ -376,6 +655,51 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   async findAllHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     return this.userHighlightsService.findAll(pageOptionsDto);
+  }
+
+  @Get(&quot;/featured&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllFeaturedHighlights&quot;,
+    summary: &quot;Finds all featured highlights and paginates them&quot;,
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async findAllFeaturedHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    return this.userHighlightsService.findAllFeatured(pageOptionsDto);
+  }
+
+  @Post(&quot;/:id/featured&quot;)
+  @ApiOperation({
+    operationId: &quot;addAFeaturedHighlight&quot;,
+    summary: &quot;Add a highlight to the featured list&quot;,
+  })
+  @UseGuards(SupabaseGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: &quot;Unable to find highlight&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async featureHighlight(
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
+    @UserId() userId: number
+  ): Promise&lt;DbUserHighlight | null&gt; {
+    return this.userHighlightsService.addFeatured(id, userId);
+  }
+
+  @Delete(&quot;/:id/featured&quot;)
+  @ApiOperation({
+    operationId: &quot;removeAFeaturedHighlight&quot;,
+    summary: &quot;Remove a highlight from the featured list&quot;,
+  })
+  @UseGuards(SupabaseGuard)
+  @ApiBearerAuth()
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: &quot;Unable to find highlight&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async unfeatureHighlight(
+    @Param(&quot;id&quot;, ParseIntPipe) id: number,
+    @UserId() userId: number
+  ): Promise&lt;DbUserHighlight | null&gt; {
+    return this.userHighlightsService.removeFeatured(id, userId);
   }
 
   @Get(&quot;/repos/list&quot;)
