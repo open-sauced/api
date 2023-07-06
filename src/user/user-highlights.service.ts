@@ -10,6 +10,7 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
+import { UserService } from "./user.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -18,7 +19,8 @@ export class UserHighlightsService {
     private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
-    private userNotificationService: UserNotificationService
+    private userNotificationService: UserNotificationService,
+    private userService: UserService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserHighlight> {
@@ -109,13 +111,15 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async addFeaturedHighlight(highlightId: number): Promise<DbUserHighlight | null> {
-    const queryBuilder = this.baseQueryBuilder();
+  async addFeatured(highlightId: number, userId: number): Promise<DbUserHighlight> {
+    const user = await this.userService.findOneById(userId);
 
-    queryBuilder.where("user_highlights.id = :highlightId", { highlightId });
-    const highlight = await queryBuilder.getOne();
+    if (user.role < 100) {
+      throw new ConflictException("You are not authorized to perform this action");
+    }
+    const highlight = await this.findOneById(highlightId, userId);
 
-    if (!highlight || highlight.deleted_at) {
+    if (highlight.deleted_at) {
       throw new NotFoundException();
     }
 
@@ -127,13 +131,16 @@ export class UserHighlightsService {
     return updatedHighlight;
   }
 
-  async removeFeaturedHighlight(highlightId: number): Promise<DbUserHighlight | null> {
-    const queryBuilder = this.baseQueryBuilder();
+  async removeFeatured(highlightId: number, userId: number): Promise<DbUserHighlight | null> {
+    const user = await this.userService.findOneById(userId);
 
-    queryBuilder.where("user_highlights.id = :highlightId", { highlightId });
-    const highlight = await queryBuilder.getOne();
+    if (user.role < 100) {
+      throw new ConflictException("You are not authorized to perform this action");
+    }
 
-    if (!highlight || highlight.deleted_at) {
+    const highlight = await this.findOneById(highlightId, userId);
+
+    if (highlight.deleted_at) {
       throw new NotFoundException();
     }
 

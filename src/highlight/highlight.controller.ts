@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Post, Query, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Post, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -8,6 +8,7 @@ import {
   ApiBearerAuth,
 } from "@nestjs/swagger";
 
+import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
@@ -45,7 +46,7 @@ export class HighlightController {
     return this.userHighlightsService.findAllFeatured(pageOptionsDto);
   }
 
-  @Post("/:id/feature")
+  @Post("/:id/featured")
   @ApiOperation({
     operationId: "addAFeaturedHighlight",
     summary: "Add a highlight to the featured list",
@@ -55,11 +56,14 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async featureHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight | null> {
-    return this.userHighlightsService.addFeaturedHighlight(id);
+  async featureHighlight(
+    @Param("id", ParseIntPipe) id: number,
+    @UserId() userId: number
+  ): Promise<DbUserHighlight | null> {
+    return this.userHighlightsService.addFeatured(id, userId);
   }
 
-  @Post("/:id/unfeature")
+  @Delete("/:id/featured")
   @ApiOperation({
     operationId: "removeAFeaturedHighlight",
     summary: "Remove a highlight from the featured list",
@@ -69,8 +73,11 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async unfeatureHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight | null> {
-    return this.userHighlightsService.removeFeaturedHighlight(id);
+  async unfeatureHighlight(
+    @Param("id", ParseIntPipe) id: number,
+    @UserId() userId: number
+  ): Promise<DbUserHighlight | null> {
+    return this.userHighlightsService.removeFeatured(id, userId);
   }
 
   @Get("/repos/list")
