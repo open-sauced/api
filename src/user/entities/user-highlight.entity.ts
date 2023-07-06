@@ -53,7 +53,7 @@ export class DbUserHighlight extends BaseEntity {
     description: "Highlight Text",
     example: `
     I made my first open source pull request!
-    
+
     github.com/open-sauced/insights/pull/1`,
   })
   @Column("text")
@@ -68,6 +68,16 @@ export class DbUserHighlight extends BaseEntity {
     default: false,
   })
   public pinned?: boolean;
+
+  @ApiModelProperty({
+    description: "Whether the highlight is featured or not",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  public featured?: boolean;
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing highlight creation date",
