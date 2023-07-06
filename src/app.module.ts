@@ -34,7 +34,7 @@ import { UserReposModule } from "./user-repo/user-repos.module";
 import { DbUserRepo } from "./user-repo/user-repo.entity";
 import { DbCustomer } from "./customer/customer.entity";
 import { CustomerModule } from "./customer/customer.module";
-import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
+import { StripeWebHookModule } from "./stargaze/stripe-webhook/webhook.module";
 import { EmojiModule } from "./emoji/emoji.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
