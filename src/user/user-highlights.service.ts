@@ -96,11 +96,61 @@ export class UserHighlightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where(`user_highlights.featured = true`).orderBy("user_highlights.updated_at", "DESC");
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+    const itemCount = await queryBuilder.getCount();
+    const entities = await queryBuilder.getMany();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async addFeaturedHighlight(highlightId: number): Promise<DbUserHighlight | null> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("user_highlights.id = :highlightId", { highlightId });
+    const highlight = await queryBuilder.getOne();
+
+    if (!highlight || highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight = await this.userHighlightRepository.save({
+      ...highlight,
+      featured: true,
+    });
+
+    return updatedHighlight;
+  }
+
+  async removeFeaturedHighlight(highlightId: number): Promise<DbUserHighlight | null> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("user_highlights.id = :highlightId", { highlightId });
+    const highlight = await queryBuilder.getOne();
+
+    if (!highlight || highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight = await this.userHighlightRepository.save({
+      ...highlight,
+      featured: false,
+    });
+
+    return updatedHighlight;
+  }
+
   async findAllHighlightRepos(pageOptionsDto: PageOptionsDto, follwerUserId?: number) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .distinct(true)
+
       .select(
         // eslint-disable-next-line no-useless-escape
         `REGEXP_REPLACE(REGEXP_REPLACE(user_highlights.url, '(^(http(s)?:\/\/)?([\w]+\.)?github\.com\/)', ''), '/pull/.*', '')`,
