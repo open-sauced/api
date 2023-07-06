@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0...v1.40.0-beta.1) (2023-07-06)
+
+
+### 🍕 Features
+
+* add featured highlights endpoints ([#198](https://github.com/open-sauced/api.opensauced.pizza/issues/198)) ([7f618bf](https://github.com/open-sauced/api.opensauced.pizza/commit/7f618bfdced8d2ea9a3b60737a7aa1fc7dd44643))
+
 ## [1.39.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.38.2...v1.39.0) (2023-07-05)
 
 
