@@ -11,6 +11,7 @@ import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlig
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
 import { UserService } from "./user.service";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -20,7 +21,8 @@ export class UserHighlightsService {
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
     private userNotificationService: UserNotificationService,
-    private userService: UserService
+    private userService: UserService,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserHighlight> {
@@ -88,27 +90,21 @@ export class UserHighlightsService {
       }
     });
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where(`user_highlights.featured = true`).orderBy("user_highlights.updated_at", "DESC");
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
 
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async addFeatured(highlightId: number, userId: number): Promise<DbUserHighlight> {
@@ -195,14 +191,10 @@ export class UserHighlightsService {
 
     queryBuilder.where("user_highlights.user_id = :userId", { userId }).orderBy("user_highlights.updated_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async addUserHighlight(userId: number, highlight: CreateUserHighlightDto) {
