@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { SelectQueryBuilder } from "typeorm/query-builder/SelectQueryBuilder";
-import { ObjectLiteral } from 'typeorm';
+import { ObjectLiteral } from "typeorm";
 
 import { PageMetaDto } from "../dtos/page-meta.dto";
 import { PageDto } from "../dtos/page.dto";
