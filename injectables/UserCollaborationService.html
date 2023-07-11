@@ -119,7 +119,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userCollaborationRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserCollaboration&gt;</a>)</code>
+<code>constructor(userCollaborationRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserCollaboration&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -146,6 +146,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserCollaboration&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -189,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -258,8 +270,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:19</a></div>
                 </td>
             </tr>
 
@@ -297,8 +309,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:51</a></div>
                 </td>
             </tr>
 
@@ -380,8 +392,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -451,8 +463,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -522,8 +534,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/user/user-collaboration.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/user/user-collaboration.service.ts:43</a></div>
                 </td>
             </tr>
 
@@ -594,16 +606,17 @@ import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 
 import { DbUserCollaboration } from &quot;./entities/user-collaboration.entity&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { PagerService } from &quot;../common/services/pager.service&quot;;
 
 @Injectable()
 export class UserCollaborationService {
   constructor(
     @InjectRepository(DbUserCollaboration, &quot;ApiConnection&quot;)
-    private userCollaborationRepository: Repository&lt;DbUserCollaboration&gt;
+    private userCollaborationRepository: Repository&lt;DbUserCollaboration&gt;,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUserCollaboration&gt; {
@@ -650,14 +663,10 @@ export class UserCollaborationService {
       .where(&quot;user_collaborations.user_id &#x3D; :userId&quot;, { userId })
       .orderBy(&quot;user_collaborations.updated_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbUserCollaboration&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 }
 </code></pre>

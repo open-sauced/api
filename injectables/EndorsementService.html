@@ -135,12 +135,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(endorsementRepository: <a href="../entitys/DbEndorsement.html" target="_self">Repository&lt;DbEndorsement&gt;</a>)</code>
+<code>constructor(endorsementRepository: <a href="../entitys/DbEndorsement.html" target="_self">Repository&lt;DbEndorsement&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/endorsement/endorsement.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/endorsement/endorsement.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -162,6 +162,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/DbEndorsement.html" target="_self" >Repository&lt;DbEndorsement&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -384,8 +396,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:38</a></div>
                 </td>
             </tr>
 
@@ -467,8 +479,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:49</a></div>
                 </td>
             </tr>
 
@@ -550,8 +562,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -633,8 +645,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:78</a></div>
                 </td>
             </tr>
 
@@ -728,8 +740,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:112</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -823,8 +835,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -894,8 +906,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/endorsement/endorsement.service.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/endorsement/endorsement.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -957,14 +969,14 @@ import { CreateEndorsementDto } from &quot;./dto/create-endorsement.dto&quot;;
 import { DbEndorsement } from &quot;./entities/endorsement.entity&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
-import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
-import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PagerService } from &quot;../common/services/pager.service&quot;;
 
 @Injectable()
 export class EndorsementService {
   constructor(
     @InjectRepository(DbEndorsement, &quot;ApiConnection&quot;)
-    private endorsementRepository: Repository&lt;DbEndorsement&gt;
+    private endorsementRepository: Repository&lt;DbEndorsement&gt;,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder() {
@@ -980,14 +992,10 @@ export class EndorsementService {
 
     queryBuilder.orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByCreatorUserId(userId: number, pageOptionsDto: PageOptionsDto) {
@@ -995,14 +1003,10 @@ export class EndorsementService {
 
     queryBuilder.where(&quot;endorsements.creator_user_id &#x3D; :userId&quot;, { userId }).orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByRecipientUserId(userId: number, pageOptionsDto: PageOptionsDto) {
@@ -1012,14 +1016,10 @@ export class EndorsementService {
       .where(&quot;endorsements.recipient_user_id &#x3D; :userId&quot;, { userId })
       .orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByRepoOwnerOrUser(repoOwnerOrUser: string, pageOptionsDto: PageOptionsDto) {
@@ -1032,14 +1032,10 @@ export class EndorsementService {
       .orWhere(&quot;LOWER(users.login) &#x3D; :user&quot;, { user: repoOwnerOrUser.toLowerCase() })
       .orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllEndorsementsByRepo(owner: string, repo: string, pageOptionsDto: PageOptionsDto) {
@@ -1050,14 +1046,10 @@ export class EndorsementService {
       .where(&quot;LOWER(repos.full_name) &#x3D; :repo&quot;, { repo: &#x60;${owner}/${repo}&#x60;.toLowerCase() })
       .orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllEndorsementsByRepoByUser(owner: string, repo: string, pageOptionsDto: PageOptionsDto) {
@@ -1073,14 +1065,10 @@ export class EndorsementService {
       .groupBy(&quot;users.login&quot;)
       .orderBy(&quot;endorsements.created_at&quot;, &quot;DESC&quot;);
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbEndorsement&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findOneById(id: string) {

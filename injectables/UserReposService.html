@@ -111,7 +111,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepoRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserRepo&gt;</a>)</code>
+<code>constructor(userRepoRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserRepo&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -138,6 +138,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserRepo&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -181,8 +193,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/user-repo/user-repos.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -262,8 +274,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/user-repo/user-repos.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -301,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/user-repo/user-repos.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -384,8 +396,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/user-repo/user-repos.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/user-repo/user-repos.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -444,17 +456,18 @@ import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 
 import { DbUserRepo } from &quot;./user-repo.entity&quot;;
 import { UserRepoOptionsDto } from &quot;./dtos/user-repo-options.dto&quot;;
 import { RepoInfo } from &quot;../repo/dtos/repo-info.dto&quot;;
+import { PagerService } from &quot;../common/services/pager.service&quot;;
 
 @Injectable()
 export class UserReposService {
   constructor(
     @InjectRepository(DbUserRepo, &quot;ApiConnection&quot;)
-    private userRepoRepository: Repository&lt;DbUserRepo&gt;
+    private userRepoRepository: Repository&lt;DbUserRepo&gt;,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUserRepo&gt; {
@@ -492,14 +505,10 @@ export class UserReposService {
 
     queryBuilder.where(&quot;user_repos.user_id &#x3D; :userId&quot;, { userId });
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination&lt;DbUserRepo&gt;({
+      queryBuilder,
+      pageOptionsDto,
+    });
   }
 }
 </code></pre>
