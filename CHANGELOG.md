@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.1...v1.40.0-beta.2) (2023-07-11)
+
+
+### 🧑‍💻 Code Refactoring
+
+* add pager service and drop duplicated code ([#199](https://github.com/open-sauced/api.opensauced.pizza/issues/199)) ([4828464](https://github.com/open-sauced/api.opensauced.pizza/commit/482846414292a33d7f52491f2bc7bf63e0636331))
+
 ## [1.40.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0...v1.40.0-beta.1) (2023-07-06)
 
 

@@ -91,6 +91,8 @@
 | repos_idx_language                     | CREATE INDEX repos_idx_language ON public.repos USING btree (language)                                         |
 | repos_idx_license                      | CREATE INDEX repos_idx_license ON public.repos USING btree (license)                                           |
 | repos_idx_topics                       | CREATE INDEX repos_idx_topics ON public.repos USING btree (topics)                                             |
+| repos_idx_updated_at                   | CREATE INDEX repos_idx_updated_at ON public.repos USING btree (updated_at DESC)                                |
+| repos_idx_full_name_lower              | CREATE INDEX repos_idx_full_name_lower ON public.repos USING btree (lower((full_name)::text))                  |
 
 ## Relations
 
