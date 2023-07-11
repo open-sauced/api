@@ -3,16 +3,17 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class UserCollaborationService {
   constructor(
     @InjectRepository(DbUserCollaboration, "ApiConnection")
-    private userCollaborationRepository: Repository<DbUserCollaboration>
+    private userCollaborationRepository: Repository<DbUserCollaboration>,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserCollaboration> {
@@ -59,13 +60,9 @@ export class UserCollaborationService {
       .where("user_collaborations.user_id = :userId", { userId })
       .orderBy("user_collaborations.updated_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserCollaboration>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 }

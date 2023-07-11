@@ -7,9 +7,10 @@ import { DbEndorsement } from "./entities/endorsement.entity";
 import { UserModule } from "../user/user.module";
 import { AuthModule } from "../auth/auth.module";
 import { EndorsementTokenGuard } from "./endorsement-token.guard";
+import { ApiServicesModule } from "../common/services/api-services.module";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbEndorsement], "ApiConnection"), UserModule, AuthModule],
+  imports: [TypeOrmModule.forFeature([DbEndorsement], "ApiConnection"), UserModule, AuthModule, ApiServicesModule],
   controllers: [EndorsementController],
   providers: [EndorsementService, EndorsementTokenGuard],
   exports: [EndorsementService],

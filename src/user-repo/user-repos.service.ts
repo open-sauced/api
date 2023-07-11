@@ -3,17 +3,18 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { DbUserRepo } from "./user-repo.entity";
 import { UserRepoOptionsDto } from "./dtos/user-repo-options.dto";
 import { RepoInfo } from "../repo/dtos/repo-info.dto";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class UserReposService {
   constructor(
     @InjectRepository(DbUserRepo, "ApiConnection")
-    private userRepoRepository: Repository<DbUserRepo>
+    private userRepoRepository: Repository<DbUserRepo>,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserRepo> {
@@ -51,13 +52,9 @@ export class UserReposService {
 
     queryBuilder.where("user_repos.user_id = :userId", { userId });
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserRepo>({
+      queryBuilder,
+      pageOptionsDto,
+    });
   }
 }

@@ -29,6 +29,7 @@ import { UserEndorsementController } from "./user-endorsement.controller";
 import { EndorsementService } from "../endorsement/endorsement.service";
 import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
 import { UserRecommendationController } from "./user-recommendation.controller";
+import { ApiServicesModule } from "../common/services/api-services.module";
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { UserRecommendationController } from "./user-recommendation.controller";
     ),
     PullRequestModule,
     RepoModule,
+    ApiServicesModule,
   ],
   controllers: [
     UserController,

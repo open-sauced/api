@@ -6,14 +6,14 @@ import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
 import { DbEndorsement } from "./entities/endorsement.entity";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
-import { PageDto } from "../common/dtos/page.dto";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class EndorsementService {
   constructor(
     @InjectRepository(DbEndorsement, "ApiConnection")
-    private endorsementRepository: Repository<DbEndorsement>
+    private endorsementRepository: Repository<DbEndorsement>,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder() {
@@ -29,14 +29,10 @@ export class EndorsementService {
 
     queryBuilder.orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByCreatorUserId(userId: number, pageOptionsDto: PageOptionsDto) {
@@ -44,14 +40,10 @@ export class EndorsementService {
 
     queryBuilder.where("endorsements.creator_user_id = :userId", { userId }).orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByRecipientUserId(userId: number, pageOptionsDto: PageOptionsDto) {
@@ -61,14 +53,10 @@ export class EndorsementService {
       .where("endorsements.recipient_user_id = :userId", { userId })
       .orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllByRepoOwnerOrUser(repoOwnerOrUser: string, pageOptionsDto: PageOptionsDto) {
@@ -81,14 +69,10 @@ export class EndorsementService {
       .orWhere("LOWER(users.login) = :user", { user: repoOwnerOrUser.toLowerCase() })
       .orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllEndorsementsByRepo(owner: string, repo: string, pageOptionsDto: PageOptionsDto) {
@@ -99,14 +83,10 @@ export class EndorsementService {
       .where("LOWER(repos.full_name) = :repo", { repo: `${owner}/${repo}`.toLowerCase() })
       .orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findAllEndorsementsByRepoByUser(owner: string, repo: string, pageOptionsDto: PageOptionsDto) {
@@ -122,14 +102,10 @@ export class EndorsementService {
       .groupBy("users.login")
       .orderBy("endorsements.created_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbEndorsement>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async findOneById(id: string) {
