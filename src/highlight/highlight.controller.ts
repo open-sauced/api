@@ -19,8 +19,6 @@ import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
 import { UserService } from "../user/user.service";
-// import { DbUser } from "../user/user.entity";
-
 import { DbTopUser } from "../user/entities/top-users.entity";
 
 @Controller("highlights")
