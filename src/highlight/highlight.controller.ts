@@ -18,16 +18,11 @@ import { PageDto } from "../common/dtos/page.dto";
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
-import { UserService } from "../user/user.service";
-import { DbTopUser } from "../user/entities/top-users.entity";
 
 @Controller("highlights")
 @ApiTags("Highlights service")
 export class HighlightController {
-  constructor(
-    private readonly userHighlightsService: UserHighlightsService,
-    private readonly userService: UserService
-  ) {}
+  constructor(private readonly userHighlightsService: UserHighlightsService) {}
 
   @Get("/list")
   @ApiOperation({
@@ -49,16 +44,6 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   async findAllFeaturedHighlights(@Query() pageOptionsDto: HighlightOptionsDto): Promise<PageDto<DbUserHighlight>> {
     return this.userHighlightsService.findAllFeatured(pageOptionsDto);
-  }
-
-  @Get("/top-10-users")
-  @ApiOperation({
-    operationId: "getTop10Highlights",
-    summary: "Finds the top 10 users",
-  })
-  @ApiOkResponse({ type: DbTopUser })
-  async getTop10Highlights(): Promise<DbTopUser[]> {
-    return this.userService.findTopTenUsers();
   }
 
   @Post("/:id/featured")

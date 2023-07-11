@@ -33,7 +33,7 @@ export class UserService {
     return builder;
   }
 
-  async findTopTenUsers(): Promise<DbTopUser[]> {
+  async findTopTenUsers(limit = 10): Promise<DbTopUser[]> {
     const queryBuilder = this.reactionsQueryBuilder();
 
     queryBuilder
@@ -42,7 +42,7 @@ export class UserService {
       .where("user_highlight_reactions.deleted_at IS NULL")
       .groupBy("login")
       .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC")
-      .limit(10);
+      .limit(limit);
 
     const items: DbTopUser[] = await queryBuilder.getRawMany();
 

@@ -12,6 +12,7 @@ import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
+import { DbTopUser } from "./entities/top-users.entity";
 
 @Controller("users")
 @ApiTags("User service")
@@ -81,5 +82,15 @@ export class UserController {
     const user = await this.userService.findOneByUsername(username);
 
     return this.repoService.findAll(pageOptionsDto, user.id, ["TopRepos"]);
+  }
+
+  @Get("/top")
+  @ApiOperation({
+    operationId: "getTop10Highlights",
+    summary: "List top users",
+  })
+  @ApiOkResponse({ type: DbTopUser })
+  async getTop10Highlights(@Query() limit: number): Promise<DbTopUser[]> {
+    return this.userService.findTopTenUsers(limit);
   }
 }
