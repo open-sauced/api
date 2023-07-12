@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.4...v1.40.0-beta.5) (2023-07-12)
+
+
+### 🔁 Continuous Integration
+
+* add build workflow to CI ([#201](https://github.com/open-sauced/api.opensauced.pizza/issues/201)) ([9134f41](https://github.com/open-sauced/api.opensauced.pizza/commit/9134f41157abc61e5f17da240f832b24ba677001))
+
 ## [1.40.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.3...v1.40.0-beta.4) (2023-07-12)
 
 
