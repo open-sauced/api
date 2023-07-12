@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.3...v1.40.0-beta.4) (2023-07-12)
+
+
+### 🐛 Bug Fixes
+
+* add missing api service module imports ([06dcc23](https://github.com/open-sauced/api.opensauced.pizza/commit/06dcc2340fdbc5786dcf090d5b168ba3cbc89891))
+
 ## [1.40.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.2...v1.40.0-beta.3) (2023-07-12)
 
 
