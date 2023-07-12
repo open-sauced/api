@@ -99,6 +99,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#findOneUserById" >findOneUserById</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getTopUsers" >getTopUsers</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/user/user.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/user/user.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -235,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user/user.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/user/user.controller.ts:78</a></div>
                 </td>
             </tr>
 
@@ -325,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/user/user.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user/user.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -415,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/user/user.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/user/user.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -464,6 +468,52 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTopUsers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getTopUsers</b></span>
+                        <a href="#getTopUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTopUsers()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/top&#x27;)<br />@ApiOperation({operationId: &#x27;getTop10Highlights&#x27;, summary: &#x27;List top users&#x27;})<br />@ApiOkResponse({type: DbTopUser})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/user/user.controller.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/DbTopUser.html" target="_self" >Promise&lt;DbTopUser[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
@@ -482,6 +532,7 @@ import { PullRequestService } from &quot;../pull-requests/pull-request.service&q
 import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
 import { RepoService } from &quot;../repo/repo.service&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
+import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
@@ -551,6 +602,16 @@ export class UserController {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.repoService.findAll(pageOptionsDto, user.id, [&quot;TopRepos&quot;]);
+  }
+
+  @Get(&quot;/top&quot;)
+  @ApiOperation({
+    operationId: &quot;getTop10Highlights&quot;,
+    summary: &quot;List top users&quot;,
+  })
+  @ApiOkResponse({ type: DbTopUser })
+  async getTopUsers(): Promise&lt;DbTopUser[]&gt; {
+    return this.userService.findTopUsers(10);
   }
 }
 </code></pre>

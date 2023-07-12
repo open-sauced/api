@@ -99,6 +99,13 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findTopUsers" >findTopUsers</a>
+                            </li>
+                            <li>
+                                <a href="#reactionsQueryBuilder" >reactionsQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateEmailPreferences" >updateEmailPreferences</a>
                             </li>
                             <li>
@@ -139,12 +146,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/user/user.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user/user.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -166,6 +173,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/DbUser.html" target="_self" >Repository&lt;DbUser&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userHighlightReactionRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserHighlightReaction&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -207,8 +226,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/user/user.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/user/user.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -246,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/user/user.service.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/user/user.service.ts:150</a></div>
                 </td>
             </tr>
 
@@ -317,8 +336,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="233"
-                            class="link-to-prism">src/user/user.service.ts:233</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/user/user.service.ts:259</a></div>
                 </td>
             </tr>
 
@@ -388,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/user/user.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/user/user.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -476,8 +495,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/user/user.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/user/user.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -529,6 +548,118 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findTopUsers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findTopUsers</b></span>
+                        <a href="#findTopUsers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findTopUsers(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/user/user.service.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>10</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/DbTopUser.html" target="_self" >Promise&lt;DbTopUser[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reactionsQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>reactionsQueryBuilder</b></span>
+                        <a href="#reactionsQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>reactionsQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/user/user.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserHighlightReaction&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateEmailPreferences"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -547,8 +678,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="226"
-                            class="link-to-prism">src/user/user.service.ts:226</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="252"
+                            class="link-to-prism">src/user/user.service.ts:252</a></div>
                 </td>
             </tr>
 
@@ -630,8 +761,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="222"
-                            class="link-to-prism">src/user/user.service.ts:222</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/user/user.service.ts:248</a></div>
                 </td>
             </tr>
 
@@ -713,8 +844,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/user/user.service.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="213"
+                            class="link-to-prism">src/user/user.service.ts:213</a></div>
                 </td>
             </tr>
 
@@ -796,8 +927,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="212"
-                            class="link-to-prism">src/user/user.service.ts:212</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/user/user.service.ts:238</a></div>
                 </td>
             </tr>
 
@@ -879,8 +1010,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/user/user.service.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/user/user.service.ts:189</a></div>
                 </td>
             </tr>
 
@@ -962,8 +1093,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/user/user.service.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="228"
+                            class="link-to-prism">src/user/user.service.ts:228</a></div>
                 </td>
             </tr>
 
@@ -1028,18 +1159,44 @@ import { UpdateUserProfileInterestsDto } from &quot;./dtos/update-user-interests
 import { UpdateUserEmailPreferencesDto } from &quot;./dtos/update-user-email-prefs.dto&quot;;
 import { UserOnboardingDto } from &quot;../auth/dtos/user-onboarding.dto&quot;;
 import { userNotificationTypes } from &quot;./entities/user-notification.constants&quot;;
+import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
+import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(DbUser, &quot;ApiConnection&quot;)
-    private userRepository: Repository&lt;DbUser&gt;
+    private userRepository: Repository&lt;DbUser&gt;,
+    @InjectRepository(DbUserHighlightReaction, &quot;ApiConnection&quot;)
+    private userHighlightReactionRepository: Repository&lt;DbUserHighlightReaction&gt;
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUser&gt; {
     const builder &#x3D; this.userRepository.createQueryBuilder(&quot;users&quot;);
 
     return builder;
+  }
+
+  reactionsQueryBuilder(): SelectQueryBuilder&lt;DbUserHighlightReaction&gt; {
+    const builder &#x3D; this.userHighlightReactionRepository.createQueryBuilder(&quot;user_highlight_reactions&quot;);
+
+    return builder;
+  }
+
+  async findTopUsers(limit &#x3D; 10): Promise&lt;DbTopUser[]&gt; {
+    const queryBuilder &#x3D; this.reactionsQueryBuilder();
+
+    queryBuilder
+      .select(&quot;users.login as login&quot;)
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;users.id &#x3D; user_highlight_reactions.user_id&quot;)
+      .where(&quot;user_highlight_reactions.deleted_at IS NULL&quot;)
+      .groupBy(&quot;login&quot;)
+      .orderBy(&quot;COUNT(user_highlight_reactions.emoji_id)&quot;, &quot;DESC&quot;)
+      .limit(limit);
+
+    const items: DbTopUser[] &#x3D; await queryBuilder.getRawMany();
+
+    return items;
   }
 
   async findOneById(id: number, includeEmail &#x3D; false): Promise&lt;DbUser&gt; {
