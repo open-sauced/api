@@ -90,7 +90,7 @@ export class UserController {
     summary: "List top users",
   })
   @ApiOkResponse({ type: DbTopUser })
-  async getTop10Highlights(@Query() limit: number): Promise<DbTopUser[]> {
-    return this.userService.findTopTenUsers(limit);
+  async getTopUsers(): Promise<DbTopUser[]> {
+    return this.userService.findTopUsers(10);
   }
 }

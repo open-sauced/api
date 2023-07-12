@@ -33,7 +33,7 @@ export class UserService {
     return builder;
   }
 
-  async findTopTenUsers(limit = 10): Promise<DbTopUser[]> {
+  async findTopUsers(limit = 10): Promise<DbTopUser[]> {
     const queryBuilder = this.reactionsQueryBuilder();
 
     queryBuilder
