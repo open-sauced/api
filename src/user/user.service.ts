@@ -9,18 +9,44 @@ import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto"
 import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
 import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
 import { userNotificationTypes } from "./entities/user-notification.constants";
+import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
+import { DbTopUser } from "./entities/top-users.entity";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(DbUser, "ApiConnection")
-    private userRepository: Repository<DbUser>
+    private userRepository: Repository<DbUser>,
+    @InjectRepository(DbUserHighlightReaction, "ApiConnection")
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
     const builder = this.userRepository.createQueryBuilder("users");
 
     return builder;
+  }
+
+  reactionsQueryBuilder(): SelectQueryBuilder<DbUserHighlightReaction> {
+    const builder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
+
+    return builder;
+  }
+
+  async findTopUsers(limit = 10): Promise<DbTopUser[]> {
+    const queryBuilder = this.reactionsQueryBuilder();
+
+    queryBuilder
+      .select("users.login as login")
+      .innerJoin("users", "users", "users.id = user_highlight_reactions.user_id")
+      .where("user_highlight_reactions.deleted_at IS NULL")
+      .groupBy("login")
+      .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC")
+      .limit(limit);
+
+    const items: DbTopUser[] = await queryBuilder.getRawMany();
+
+    return items;
   }
 
   async findOneById(id: number, includeEmail = false): Promise<DbUser> {
