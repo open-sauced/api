@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.2...v1.40.0-beta.3) (2023-07-12)
+
+
+### 🍕 Features
+
+* implement to 10 users feature ([#200](https://github.com/open-sauced/api.opensauced.pizza/issues/200)) ([452a769](https://github.com/open-sauced/api.opensauced.pizza/commit/452a769776745aef15a317b1ac8a3cd4e64bd2bd))
+
 ## [1.40.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.1...v1.40.0-beta.2) (2023-07-11)
 
 
