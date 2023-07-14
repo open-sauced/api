@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.6...v1.40.0-beta.7) (2023-07-14)
+
+
+### 🧑‍💻 Code Refactoring
+
+* setup unit tests ([#207](https://github.com/open-sauced/api.opensauced.pizza/issues/207)) ([39e7ff4](https://github.com/open-sauced/api.opensauced.pizza/commit/39e7ff45adbb47b312d7270cc3398c2b0ac1b5ec))
+
 ## [1.40.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.5...v1.40.0-beta.6) (2023-07-14)
 
 
