@@ -20,6 +20,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiConflictResponse,
+  OmitType,
 } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 
@@ -44,7 +45,7 @@ export class UserHighlightsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiOkResponse({ type: OmitType(DbUserHighlight, ["id"]) })
   @ApiNotFoundResponse({ description: "Unable to add user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateUserHighlightDto })
