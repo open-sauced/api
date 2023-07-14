@@ -165,8 +165,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:143</a></div>
                 </td>
             </tr>
 
@@ -261,14 +261,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addHighlightForUser&#x27;, summary: &#x27;Adds a new highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserHighlightDto})<br /></code>
+                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addHighlightForUser&#x27;, summary: &#x27;Adds a new highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: undefined})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserHighlightDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -357,8 +357,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:106</a></div>
                 </td>
             </tr>
 
@@ -447,8 +447,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:165</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="166"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:166</a></div>
                 </td>
             </tr>
 
@@ -549,8 +549,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:125</a></div>
                 </td>
             </tr>
 
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:203</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:204</a></div>
                 </td>
             </tr>
 
@@ -729,8 +729,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:188</a></div>
                 </td>
             </tr>
 
@@ -819,8 +819,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -897,8 +897,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -996,6 +996,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiConflictResponse,
+  OmitType,
 } from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
@@ -1020,7 +1021,7 @@ export class UserHighlightsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiOkResponse({ type: OmitType(DbUserHighlight, [&quot;id&quot;]) })
   @ApiNotFoundResponse({ description: &quot;Unable to add user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateUserHighlightDto })
