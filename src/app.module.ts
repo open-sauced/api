@@ -38,7 +38,7 @@ import { StripeWebHookModule } from "./stripe-webhook/webhook.module";
 import { EmojiModule } from "./emoji/emoji.module";
 import { StripeSubscriptionModule } from "./subscription/stripe-subscription.module";
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
-import { DbLog } from "./log/log.entity";
+// import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
@@ -110,30 +110,32 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
         } as TypeOrmModuleOptions),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      name: "LogConnection",
-      useFactory: (configService: ConfigService) =>
-        ({
-          parseInt8: true,
-          type: configService.get("db-logging.connection"),
-          host: configService.get("db-logging.host"),
-          port: configService.get("db-logging.port"),
-          username: configService.get("db-logging.username"),
-          password: configService.get("db-logging.password"),
-          database: configService.get("db-logging.database"),
-          autoLoadEntities: false,
-          entities: [DbLog],
-          synchronize: false,
-          logger: new DatabaseLoggerMiddleware("LG"),
-          ssl: {
-            ca: configService.get("db-logging.certificate"),
-            rejectUnauthorized: false,
-          },
-          maxQueryExecutionTime: configService.get("db-logging.maxQueryExecutionTime"),
-        } as TypeOrmModuleOptions),
-      inject: [ConfigService],
-    }),
+    /*
+     * typeOrmModule.forRootAsync({
+     *   imports: [ConfigModule],
+     *   name: "LogConnection",
+     *   useFactory: (configService: ConfigService) =>
+     *     ({
+     *       parseInt8: true,
+     *       type: configService.get("db-logging.connection"),
+     *       host: configService.get("db-logging.host"),
+     *       port: configService.get("db-logging.port"),
+     *       username: configService.get("db-logging.username"),
+     *       password: configService.get("db-logging.password"),
+     *       database: configService.get("db-logging.database"),
+     *       autoLoadEntities: false,
+     *       entities: [DbLog],
+     *       synchronize: false,
+     *       logger: new DatabaseLoggerMiddleware("LG"),
+     *       ssl: {
+     *         ca: configService.get("db-logging.certificate"),
+     *         rejectUnauthorized: false,
+     *       },
+     *       maxQueryExecutionTime: configService.get("db-logging.maxQueryExecutionTime"),
+     *     } as TypeOrmModuleOptions),
+     *   inject: [ConfigService],
+     * }),
+     */
     LoggerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -185,10 +187,11 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
 export class AppModule {
   constructor(
     @InjectDataSource("ApiConnection")
-    private readonly apiConnection: DataSource,
-
-    @InjectDataSource("LogConnection")
-    private readonly logConnection: DataSource
+    private readonly apiConnection: DataSource
+    /*
+     * @InjectDataSource("LogConnection")
+     * private readonly logConnection: DataSource
+     */
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
