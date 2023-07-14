@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.5...v1.40.0-beta.6) (2023-07-14)
+
+
+### 🐛 Bug Fixes
+
+* remove id in swagger docs for highlights endpoint ([#208](https://github.com/open-sauced/api.opensauced.pizza/issues/208)) ([802fd4b](https://github.com/open-sauced/api.opensauced.pizza/commit/802fd4bcb5a0462e9fe2a466efc14ebbb20bcbde))
+
 ## [1.40.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.4...v1.40.0-beta.5) (2023-07-12)
 
 
