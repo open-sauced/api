@@ -31,7 +31,7 @@ module.exports = {
     jest: true,
     es2021: true,
   },
-  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js"],
+  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js", "*.spec.ts", "coverage"],
   rules: {
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],
