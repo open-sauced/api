@@ -25,9 +25,9 @@ RUN chmod 600 /var/lib/postgresql/ssl/server.key && \
     chown postgres:postgres /var/lib/postgresql/ssl/server.*
 
 # Copy the init script
-COPY ./init.sh /docker-entrypoint-initdb.d/
+COPY ./init-docker-ssl.sh /docker-entrypoint-initdb.d/
 # Give execution permissions
-RUN chmod +x /docker-entrypoint-initdb.d/init.sh
+RUN chmod +x /docker-entrypoint-initdb.d/init-docker-ssl.sh
 
 # Switch back to postgres user
 USER postgres
