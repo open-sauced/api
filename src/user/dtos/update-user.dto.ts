@@ -100,4 +100,12 @@ export class UpdateUserDto {
   @IsUrl()
   @IsOptional()
   readonly github_sponsors_url?: string;
+
+  @ApiPropertyOptional({
+    description: "Discord URL",
+    example: "https://discord.gg/opensauced",
+  })
+  @IsUrl()
+  @IsOptional()
+  readonly discord_url?: string;
 }
