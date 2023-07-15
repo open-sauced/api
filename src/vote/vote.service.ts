@@ -16,15 +16,31 @@ export class VoteService {
     return builder;
   }
 
+  async findOneByRepoId(repoId: number, userId: number) {
+    const voteExists = await this.getVoteQuery(repoId, userId);
+
+    if (!voteExists) {
+      return {
+        voted: false,
+        data: null,
+      };
+    }
+
+    if (voteExists.deleted_at) {
+      return {
+        voted: false,
+        data: null,
+      };
+    }
+
+    return {
+      voted: true,
+      data: voteExists,
+    };
+  }
+
   async voteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .addSelect("r2votes.deleted_at")
-      .where("r2votes.repo_id = :repoId", { repoId })
-      .andWhere("r2votes.user_id = :userId", { userId });
-
-    const voteExists = await queryBuilder.getOne();
+    const voteExists = await this.getVoteQuery(repoId, userId);
 
     if (voteExists) {
       if (!voteExists.deleted_at) {
@@ -43,14 +59,7 @@ export class VoteService {
   }
 
   async downVoteByRepoId(repoId: number, userId: number): Promise<DbRepoToUserVotes> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .addSelect("r2votes.deleted_at")
-      .where("r2votes.repo_id = :repoId", { repoId })
-      .andWhere("r2votes.user_id = :userId", { userId });
-
-    const voteExists = await queryBuilder.getOne();
+    const voteExists = await this.getVoteQuery(repoId, userId);
 
     if (!voteExists) {
       throw new NotFoundException("You have not voted for this repo");
@@ -63,5 +72,16 @@ export class VoteService {
     await this.repoVoteRepository.softDelete(voteExists.id);
 
     return voteExists;
+  }
+
+  private async getVoteQuery(repoId: number, userId: number) {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .addSelect("r2votes.deleted_at")
+      .where("r2votes.repo_id = :repoId", { repoId })
+      .andWhere("r2votes.user_id = :userId", { userId });
+
+    return queryBuilder.getOne();
   }
 }
