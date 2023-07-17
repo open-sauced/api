@@ -278,6 +278,16 @@ export class DbUser extends BaseEntity {
   readonly github_sponsors_url?: string;
 
   @ApiModelProperty({
+    description: "Discord URL",
+    example: "https://discord.gg/opensauced",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly discord_url?: string;
+
+  @ApiModelProperty({
     description: "User company information",
     example: "OpenSauced",
   })

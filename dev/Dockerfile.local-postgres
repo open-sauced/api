@@ -1,0 +1,33 @@
+# Use an official PostgreSQL runtime as a parent image
+FROM postgres:13
+
+# Set environment variables
+ENV POSTGRES_USER doadmin
+ENV POSTGRES_PASSWORD UCN2zrH2WGxKck7tT2JG4MY6wbHkeX9s
+ENV POSTGRES_DB defaultdb
+
+# SSL config
+ENV SSL_CERT_FILE=/var/lib/postgresql/server.crt
+ENV SSL_KEY_FILE=/var/lib/postgresql/server.key
+
+# Change the user to root to set permissions and ownership
+USER root
+
+# Create a directory for SSL files
+RUN mkdir /var/lib/postgresql/ssl
+
+# Copy SSL files to the PostgreSQL directory
+COPY ./server.crt /var/lib/postgresql/ssl/
+COPY ./server.key /var/lib/postgresql/ssl/
+
+# Set permissions and ownership on the SSL files
+RUN chmod 600 /var/lib/postgresql/ssl/server.key && \
+    chown postgres:postgres /var/lib/postgresql/ssl/server.*
+
+# Copy the init script
+COPY ./init-docker-ssl.sh /docker-entrypoint-initdb.d/
+# Give execution permissions
+RUN chmod +x /docker-entrypoint-initdb.d/init-docker-ssl.sh
+
+# Switch back to postgres user
+USER postgres

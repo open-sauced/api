@@ -61,6 +61,7 @@ export class AuthController {
         email,
         github_sponsors_url,
         linkedin_url,
+        discord_url,
         notification_count,
       } = await this.userService.checkAddUser(user);
 
@@ -78,6 +79,7 @@ export class AuthController {
         email,
         github_sponsors_url,
         linkedin_url,
+        discord_url,
         notification_count,
       };
     } catch (e) {

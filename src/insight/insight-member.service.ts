@@ -3,18 +3,19 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { DbInsightMember } from "./entities/insight-member.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { InsightsService } from "./insights.service";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class InsightMemberService {
   constructor(
     @InjectRepository(DbInsightMember, "ApiConnection")
     private insightMemberRepository: Repository<DbInsightMember>,
-    private insightService: InsightsService
+    private insightService: InsightsService,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbInsightMember> {
@@ -88,13 +89,9 @@ export class InsightMemberService {
       .where("insight_members.insight_id = :insightId", { insightId })
       .orderBy("users.name", "ASC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbInsightMember>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 }

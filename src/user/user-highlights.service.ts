@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -10,6 +10,8 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
+import { UserService } from "./user.service";
+import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -18,7 +20,9 @@ export class UserHighlightsService {
     private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
-    private userNotificationService: UserNotificationService
+    private userNotificationService: UserNotificationService,
+    private userService: UserService,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserHighlight> {
@@ -86,14 +90,60 @@ export class UserHighlightsService {
       }
     });
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
 
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
+  async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    const queryBuilder = this.baseQueryBuilder();
 
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+    queryBuilder.where(`user_highlights.featured = true`).orderBy("user_highlights.updated_at", "DESC");
 
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
+
+  async addFeatured(highlightId: number, userId: number): Promise<DbUserHighlight> {
+    const user = await this.userService.findOneById(userId);
+
+    if (user.role < 100) {
+      throw new UnauthorizedException("You are not authorized to perform this action");
+    }
+    const highlight = await this.findOneById(highlightId, userId);
+
+    if (highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight = await this.userHighlightRepository.save({
+      featured: true,
+    });
+
+    return updatedHighlight;
+  }
+
+  async removeFeatured(highlightId: number, userId: number): Promise<DbUserHighlight | null> {
+    const user = await this.userService.findOneById(userId);
+
+    if (user.role < 100) {
+      throw new UnauthorizedException("You are not authorized to perform this action");
+    }
+
+    const highlight = await this.findOneById(highlightId, userId);
+
+    if (highlight.deleted_at) {
+      throw new NotFoundException();
+    }
+
+    const updatedHighlight = await this.userHighlightRepository.save({
+      featured: false,
+    });
+
+    return updatedHighlight;
   }
 
   async findAllHighlightRepos(pageOptionsDto: PageOptionsDto, follwerUserId?: number) {
@@ -141,14 +191,10 @@ export class UserHighlightsService {
 
     queryBuilder.where("user_highlights.user_id = :userId", { userId }).orderBy("user_highlights.updated_at", "DESC");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
   async addUserHighlight(userId: number, highlight: CreateUserHighlightDto) {

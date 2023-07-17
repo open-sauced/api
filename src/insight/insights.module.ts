@@ -11,10 +11,15 @@ import { InsightRepoService } from "./insight-repo.service";
 import { UserInsightMemberController } from "./user-insight-member.controller";
 import { InsightMemberService } from "./insight-member.service";
 import { UserModule } from "../user/user.module";
+import { ApiServicesModule } from "../common/services/api-services.module";
 
 @Module({
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
-  imports: [TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], "ApiConnection"), UserModule],
+  imports: [
+    TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], "ApiConnection"),
+    UserModule,
+    ApiServicesModule,
+  ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
 })

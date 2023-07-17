@@ -16,6 +16,7 @@ import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
+import { VotedRepoDto } from "./../user-repo/dtos/user-repos.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 @Controller("repos")
@@ -37,6 +38,21 @@ export class RepoVoteController {
     @UserId() userId: number
   ): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto, userId, ["Votes"]);
+  }
+
+  @Get("/:repoId/vote")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "findOneByRepoId",
+    summary: "Finds a repo by :repoId and returns if authenticated user has voted for it",
+  })
+  @ApiOkResponse({
+    type: VotedRepoDto,
+    description: "Returns if authenticated user has voted for it",
+  })
+  async findOneByRepoId(@Param("repoId", ParseIntPipe) repoId: number, @UserId() userId: number) {
+    return this.voteService.findOneByRepoId(repoId, userId);
   }
 
   @Put("/:id/vote")

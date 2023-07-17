@@ -122,6 +122,12 @@ export class SupabaseAuthDto {
   readonly github_sponsors_url?: string;
 
   @ApiPropertyOptional({
+    description: "Discord URL",
+    example: "https://discord.gg/opensauced",
+  })
+  readonly discord_url?: string;
+
+  @ApiPropertyOptional({
     description: "Unread User Notification Count",
     example: 5,
   })

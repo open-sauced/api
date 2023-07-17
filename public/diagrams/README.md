@@ -8,7 +8,7 @@
 
 | Name                                                                      | Columns | Comment | Type       |
 | ------------------------------------------------------------------------- | ------- | ------- | ---------- |
-| [public.users](public.users.md)                                           | 41      |         | BASE TABLE |
+| [public.users](public.users.md)                                           | 42      |         | BASE TABLE |
 | [public.repos](public.repos.md)                                           | 43      |         | BASE TABLE |
 | [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
 | [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
