@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray } from "class-validator";
+import { IsArray, IsBoolean, IsOptional } from "class-validator";
+import { DbRepoToUserVotes } from "../../repo/entities/repo.to.user.votes.entity";
 
 export class UserRepoOptionsDto {
   @ApiProperty({
@@ -10,4 +11,17 @@ export class UserRepoOptionsDto {
   })
   @IsArray()
   readonly ids: number[];
+}
+
+export class VotedRepoDto {
+  @ApiProperty({
+    description: "If the user has voted for the repo",
+    type: Boolean,
+    example: true,
+  })
+  @IsBoolean()
+  voted: boolean;
+
+  @IsOptional()
+  data: DbRepoToUserVotes | null;
 }
