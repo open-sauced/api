@@ -105,6 +105,11 @@
                             <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#discord_url" >discord_url</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#display_local_time" >display_local_time</a>
                             </li>
                             <li>
@@ -347,6 +352,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="discord_url"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>discord_url</b></span>
+                        <a href="#discord_url"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Discord URL&#x27;, example: &#x27;https://discord.gg/opensauced&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:128</a></div>
                         </td>
                     </tr>
 
@@ -789,7 +831,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:128</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:134</a></div>
                         </td>
                     </tr>
 
@@ -1115,6 +1157,12 @@ export class SupabaseAuthDto {
     example: &quot;https://github.com/sponsors/open-sauced&quot;,
   })
   readonly github_sponsors_url?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;Discord URL&quot;,
+    example: &quot;https://discord.gg/opensauced&quot;,
+  })
+  readonly discord_url?: string;
 
   @ApiPropertyOptional({
     description: &quot;Unread User Notification Count&quot;,

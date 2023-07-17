@@ -97,6 +97,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findOneByRepoId" >findOneByRepoId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#voteOneById" >voteOneById</a>
                             </li>
                             <li>
@@ -149,8 +153,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:113</a></div>
                 </td>
             </tr>
 
@@ -239,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:132</a></div>
                 </td>
             </tr>
 
@@ -341,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -406,6 +410,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByRepoId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByRepoId</b></span>
+                        <a href="#findOneByRepoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:repoId/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findOneByRepoId&#x27;, summary: &#x27;Finds a repo by :repoId and returns if authenticated user has voted for it&#x27;})<br />@ApiOkResponse({type: VotedRepoDto, description: &#x27;Returns if authenticated user has voted for it&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="voteOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -431,8 +525,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:71</a></div>
                 </td>
             </tr>
 
@@ -521,8 +615,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -616,6 +710,7 @@ import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.enti
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { RepoPageOptionsDto } from &quot;../repo/dtos/repo-page-options.dto&quot;;
+import { VotedRepoDto } from &quot;./../user-repo/dtos/user-repos.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 @Controller(&quot;repos&quot;)
@@ -637,6 +732,21 @@ export class RepoVoteController {
     @UserId() userId: number
   ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto, userId, [&quot;Votes&quot;]);
+  }
+
+  @Get(&quot;/:repoId/vote&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;findOneByRepoId&quot;,
+    summary: &quot;Finds a repo by :repoId and returns if authenticated user has voted for it&quot;,
+  })
+  @ApiOkResponse({
+    type: VotedRepoDto,
+    description: &quot;Returns if authenticated user has voted for it&quot;,
+  })
+  async findOneByRepoId(@Param(&quot;repoId&quot;, ParseIntPipe) repoId: number, @UserId() userId: number) {
+    return this.voteService.findOneByRepoId(repoId, userId);
   }
 
   @Put(&quot;/:id/vote&quot;)

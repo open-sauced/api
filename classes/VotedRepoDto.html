@@ -44,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li >UserRepoOptionsDto</li>
+  <li >VotedRepoDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -83,8 +83,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#ids" >ids</a>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#voted" >voted</a>
                             </li>
                         </ul>
                     </td>
@@ -109,17 +111,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ids"></a>
+                    <a name="data"></a>
                     <span class="name">
-                            <span class="modifier">Readonly</span>
-                        <span ><b>ids</b></span>
-                        <a href="#ids"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>number[]</code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#User" target="_self" >DbRepoToUserVotes | null</a></code>
 
                     </td>
                 </tr>
@@ -128,13 +129,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;The repos to add to onboarding&#x27;, type: Number, isArray: true, example: undefined})<br />@IsArray()<br />
+                            @IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user-repo/dtos/user-repos.dto.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/user-repo/dtos/user-repos.dto.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="voted"></a>
+                    <span class="name">
+                        <span ><b>voted</b></span>
+                        <a href="#voted"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;If the user has voted for the repo&#x27;, type: Boolean, example: true})<br />@IsBoolean()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/user-repo/dtos/user-repos.dto.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -218,7 +254,7 @@ export class VotedRepoDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserRepoOptionsDto-1.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'VotedRepoDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
