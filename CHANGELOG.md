@@ -5,6 +5,38 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0...v1.40.0) (2023-07-17)
+
+
+### 🔁 Continuous Integration
+
+* add build workflow to CI ([#201](https://github.com/open-sauced/api.opensauced.pizza/issues/201)) ([9134f41](https://github.com/open-sauced/api.opensauced.pizza/commit/9134f41157abc61e5f17da240f832b24ba677001))
+
+
+### 🐛 Bug Fixes
+
+* add missing api service module imports ([06dcc23](https://github.com/open-sauced/api.opensauced.pizza/commit/06dcc2340fdbc5786dcf090d5b168ba3cbc89891))
+* remove id in swagger docs for highlights endpoint ([#208](https://github.com/open-sauced/api.opensauced.pizza/issues/208)) ([802fd4b](https://github.com/open-sauced/api.opensauced.pizza/commit/802fd4bcb5a0462e9fe2a466efc14ebbb20bcbde))
+
+
+### 🧑‍💻 Code Refactoring
+
+* add pager service and drop duplicated code ([#199](https://github.com/open-sauced/api.opensauced.pizza/issues/199)) ([4828464](https://github.com/open-sauced/api.opensauced.pizza/commit/482846414292a33d7f52491f2bc7bf63e0636331))
+* setup unit tests ([#207](https://github.com/open-sauced/api.opensauced.pizza/issues/207)) ([39e7ff4](https://github.com/open-sauced/api.opensauced.pizza/commit/39e7ff45adbb47b312d7270cc3398c2b0ac1b5ec))
+
+
+### 🍕 Features
+
+* add discord url to user profile ([#211](https://github.com/open-sauced/api.opensauced.pizza/issues/211)) ([9b75deb](https://github.com/open-sauced/api.opensauced.pizza/commit/9b75deb4ad5861b6574c80678ada84c24670f849))
+* add endpoint to check if authed user has voted the repo ([#210](https://github.com/open-sauced/api.opensauced.pizza/issues/210)) ([9f75a41](https://github.com/open-sauced/api.opensauced.pizza/commit/9f75a4129206e6b9a197bc84024c72b02931c0e3))
+* add featured highlights endpoints ([#198](https://github.com/open-sauced/api.opensauced.pizza/issues/198)) ([7f618bf](https://github.com/open-sauced/api.opensauced.pizza/commit/7f618bfdced8d2ea9a3b60737a7aa1fc7dd44643))
+* implement to 10 users feature ([#200](https://github.com/open-sauced/api.opensauced.pizza/issues/200)) ([452a769](https://github.com/open-sauced/api.opensauced.pizza/commit/452a769776745aef15a317b1ac8a3cd4e64bd2bd))
+
+
+### 🤖 Build System
+
+* enable local development setup with Docker and PostgreSQL ([#205](https://github.com/open-sauced/api.opensauced.pizza/issues/205)) ([84af9ff](https://github.com/open-sauced/api.opensauced.pizza/commit/84af9ff21ce21695408cfcc33777bb20e3e25606))
+
 ## [1.40.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.8...v1.40.0-beta.9) (2023-07-17)
 
 

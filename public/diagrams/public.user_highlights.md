@@ -16,6 +16,7 @@
 | deleted_at | timestamp with time zone    |                       | true     |                                                                       |         |         |
 | title      | varchar(100)                | ''::character varying | true     |                                                                       |         |         |
 | shipped_at | timestamp without time zone |                       | true     |                                                                       |         |         |
+| featured   | boolean                     | false                 | false    |                                                                       |         |         |
 
 ## Constraints
 
