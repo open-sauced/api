@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.7...v1.40.0-beta.8) (2023-07-17)
+
+
+### 🍕 Features
+
+* add discord url to user profile ([#211](https://github.com/open-sauced/api.opensauced.pizza/issues/211)) ([9b75deb](https://github.com/open-sauced/api.opensauced.pizza/commit/9b75deb4ad5861b6574c80678ada84c24670f849))
+* add endpoint to check if authed user has voted the repo ([#210](https://github.com/open-sauced/api.opensauced.pizza/issues/210)) ([9f75a41](https://github.com/open-sauced/api.opensauced.pizza/commit/9f75a4129206e6b9a197bc84024c72b02931c0e3))
+
 ## [1.40.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.6...v1.40.0-beta.7) (2023-07-14)
 
 
