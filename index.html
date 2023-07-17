@@ -70,11 +70,24 @@
 <li><code>npm&gt;=8.0.0</code></li>
 <li><code>docker&gt;=20.10.12</code></li>
 </ul>
-<p>You also need the <code>.env</code> environment file added to your repo for the project to run. To get it, kindly contact @open-sauced/triage team.</p>
-<blockquote>
-<p>Note: For Windows users, the <code>API_HOST</code> key&#39;s value in the <code>.env</code> file should be <code>127.0.0.1</code>, instead of <code>0.0.0.0</code>, so that the project can run correctly on localhost.</p>
-</blockquote>
 <h2 id="🖥️-local-development">🖥️ Local development</h2>
+<h2 id="📡-setting-up-your-supabase-instance">📡 Setting Up Your Supabase Instance</h2>
+<p>Before setting up your local PostgreSQL database, a Supabase instance should be created. To do this, follow these steps:</p>
+<p><strong>1. Create a new Supabase project:</strong> Visit <a href="https://supabase.com/">Supabase</a> and create a new project.</p>
+<p><strong>2. Set Environment Variables in .env file:</strong> Once your project is created, Supabase will provide a URL and an API key. Set these in your project&#39;s <code>.env</code> file:</p>
+<div><pre class="line-numbers"><code class="language-none">SUPABASE_URL=your_supabase_url
+SUPABASE_API_KEY=your_supabase_api_key
+SUPABASE_JWT_SECRET=your_supabase_jwt_secret
+API_DOMAIN=your_api_domain</code></pre></div><p>Replace <code>your_supabase_url</code>, <code>your_supabase_api_key</code>, <code>your_supabase_jwt_secret</code>, and <code>your_api_domain</code> with the actual values provided by Supabase and your project&#39;s settings.</p>
+<h3 id="🗄️-setting-up-a-postgresql-database-locally">🗄️ Setting Up A PostgreSQL Database Locally</h3>
+<p>A PostgreSQL Docker container has been set up to facilitate local development. After navigating to the <code>dev/</code> directory, this container can be set up as follows:</p>
+<p><strong>1. Obtain SSL Certificates:</strong><br>For secure SSL communication, you need a pair of SSL certificates: <code>server.crt</code> and <code>server.key</code>. You can generate self-signed certificates by using OpenSSL:</p>
+<div><pre class="line-numbers"><code class="language-shell">openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes -subj &quot;/CN=localhost&quot;</code></pre></div><p>Please note that this generates self-signed certificates which should only be used for local development.</p>
+<p><strong>2.Build the Docker image:</strong>  </p>
+<div><pre class="line-numbers"><code class="language-shell">docker build -t my_postgres_image -f Dockerfile.local-postgres .</code></pre></div><p>This command will build the Docker image using the Dockerfile in the current directory. The previously generated SSL certificates will need to be in the same directory as the Dockerfile.</p>
+<p><strong>3.Run the Docker container:</strong>  </p>
+<div><pre class="line-numbers"><code class="language-shell">docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:latest</code></pre></div><p>This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.</p>
+<h3 id="🛠️-installation">🛠️ Installation</h3>
 <p>To install the application:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm ci</code></pre></div><p>To start a local copy of the app on port <code>3001</code>:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run start:dev</code></pre></div><h3 id="🧪-test">🧪 Test</h3>
