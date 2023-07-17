@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.40.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.8...v1.40.0-beta.9) (2023-07-17)
+
+
+### 🤖 Build System
+
+* enable local development setup with Docker and PostgreSQL ([#205](https://github.com/open-sauced/api.opensauced.pizza/issues/205)) ([84af9ff](https://github.com/open-sauced/api.opensauced.pizza/commit/84af9ff21ce21695408cfcc33777bb20e3e25606))
+
 ## [1.40.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0-beta.7...v1.40.0-beta.8) (2023-07-17)
 
 
