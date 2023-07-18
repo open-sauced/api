@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.40.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0...v1.40.1-beta.1) (2023-07-18)
+
+
+### 🧑‍💻 Code Refactoring
+
+* setup eslint for unit tests ([#214](https://github.com/open-sauced/api.opensauced.pizza/issues/214)) ([758b2d2](https://github.com/open-sauced/api.opensauced.pizza/commit/758b2d2c9b667263e6fb84dac8f70a5a6d306936))
+
 ## [1.40.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.39.0...v1.40.0) (2023-07-17)
 
 
