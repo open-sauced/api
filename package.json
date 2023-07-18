@@ -37,7 +37,7 @@
     "prebuild": "npx rimraf dist",
     "build": "npm run nest -- build",
     "build:package": "npx tsc -p tsconfig.package.json",
-    "lint": "npx eslint . --ext .ts,.js",
+    "lint": "eslint . --ext .ts,.js",
     "lint:fix": "npm run lint -- --fix",
     "format": "npx prettier --write .",
     "test": "jest",
@@ -104,6 +104,7 @@
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.3",
     "eslint-plugin-no-loops": "^0.3.0",
     "eslint-plugin-no-use-extend-native": "^0.5.0",
     "eslint-plugin-node": "^11.1.0",
@@ -134,6 +135,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "plugins": [
+      "jest"
+    ]
   }
 }

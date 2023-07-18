@@ -43,32 +43,28 @@ describe("ContributionService", () => {
       const expectedPageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
       const expectedPageDto = new PageDto(entities, expectedPageMetaDto);
 
-      contributionRepositoryMock.createQueryBuilder.mockReturnValue({
+      const createQueryBuildMock = {
         where: jest.fn().mockReturnThis(),
         addOrderBy: jest.fn().mockReturnThis(),
         offset: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
         getCount: jest.fn().mockResolvedValue(itemCount),
         getMany: jest.fn().mockResolvedValue(entities),
-      });
+      };
+
+      contributionRepositoryMock.createQueryBuilder.mockReturnValue(createQueryBuildMock);
 
       const result = await service.findAll(pageOptionsDto, repoId);
 
       expect(contributionRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      expect(contributionRepositoryMock.createQueryBuilder().where).toHaveBeenCalledWith(
-        "contribution.repo_id = :repoId",
-        {
-          repoId,
-        }
-      );
-      expect(contributionRepositoryMock.createQueryBuilder().addOrderBy).toHaveBeenCalledWith(
-        '"count"',
-        OrderDirectionEnum.ASC
-      );
-      expect(contributionRepositoryMock.createQueryBuilder().offset).toHaveBeenCalledWith(pageOptionsDto.skip);
-      expect(contributionRepositoryMock.createQueryBuilder().limit).toHaveBeenCalledWith(pageOptionsDto.limit);
-      expect(contributionRepositoryMock.createQueryBuilder().getCount).toHaveBeenCalled();
-      expect(contributionRepositoryMock.createQueryBuilder().getMany).toHaveBeenCalled();
+      expect(createQueryBuildMock.where).toHaveBeenCalledWith("contribution.repo_id = :repoId", {
+        repoId,
+      });
+      expect(createQueryBuildMock.addOrderBy).toHaveBeenCalledWith('"count"', OrderDirectionEnum.ASC);
+      expect(createQueryBuildMock.offset).toHaveBeenCalledWith(pageOptionsDto.skip);
+      expect(createQueryBuildMock.limit).toHaveBeenCalledWith(pageOptionsDto.limit);
+      expect(createQueryBuildMock.getCount).toHaveBeenCalled();
+      expect(createQueryBuildMock.getMany).toHaveBeenCalled();
       expect(result).toEqual(expectedPageDto);
     });
   });
