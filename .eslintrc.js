@@ -31,7 +31,16 @@ module.exports = {
     jest: true,
     es2021: true,
   },
-  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js", "*.spec.ts", "coverage"],
+  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js", "coverage"],
+  overrides: [
+    {
+      env: {
+        jest: true,
+      },
+      files: ['**/__tests__/**/*.[jt]s', '**/?(*.)+(spec|test).[jt]s'],
+      extends: ['plugin:jest/recommended'],
+    },
+  ],
   rules: {
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],

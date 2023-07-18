@@ -52,6 +52,7 @@ describe("RepoContributionsController", () => {
       const mockPageOptionsDto = { page: 1, limit: 10 };
       const mockItem = { id: mockId };
       const mockContributions = [{ id: 1 }, { id: 2 }];
+
       repoServiceMock.findOneById.mockResolvedValue(mockItem);
       contributionServiceMock.findAll.mockResolvedValue(mockContributions);
 
@@ -70,6 +71,7 @@ describe("RepoContributionsController", () => {
       const mockPageOptionsDto = { page: 1, limit: 10 };
       const mockItem = { id: faker.number.int() };
       const mockContributions = [{ id: 1 }, { id: 2 }];
+
       repoServiceMock.findOneByOwnerAndRepo.mockResolvedValue(mockItem);
       contributionServiceMock.findAll.mockResolvedValue(mockContributions);
 
