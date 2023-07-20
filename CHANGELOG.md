@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.41.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.1-beta.1...v1.41.0-beta.1) (2023-07-20)
+
+
+### 🍕 Features
+
+* add limit query params and pagination to top users endpoint ([#216](https://github.com/open-sauced/api.opensauced.pizza/issues/216)) ([58e4723](https://github.com/open-sauced/api.opensauced.pizza/commit/58e472369eb914095ccc37733f8ac2f4e6935d8e))
+
 ### [1.40.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.40.0...v1.40.1-beta.1) (2023-07-18)
 
 
