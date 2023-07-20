@@ -11,6 +11,10 @@ import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
 import { userNotificationTypes } from "./entities/user-notification.constants";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbTopUser } from "./entities/top-users.entity";
+import { TopUsersDto } from "./dtos/top-users.dto";
+import { PagerService } from "../common/services/pager.service";
+import { PageDto } from "../common/dtos/page.dto";
+import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 @Injectable()
 export class UserService {
@@ -18,7 +22,8 @@ export class UserService {
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
-    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -33,7 +38,7 @@ export class UserService {
     return builder;
   }
 
-  async findTopUsers(limit = 10): Promise<DbTopUser[]> {
+  async findTopUsers(pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
     const queryBuilder = this.reactionsQueryBuilder();
 
     queryBuilder
@@ -41,12 +46,14 @@ export class UserService {
       .innerJoin("users", "users", "users.id = user_highlight_reactions.user_id")
       .where("user_highlight_reactions.deleted_at IS NULL")
       .groupBy("login")
-      .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC")
-      .limit(limit);
+      .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC");
 
-    const items: DbTopUser[] = await queryBuilder.getRawMany();
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    return items;
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async findOneById(id: number, includeEmail = false): Promise<DbUser> {
