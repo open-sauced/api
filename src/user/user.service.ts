@@ -12,9 +12,9 @@ import { userNotificationTypes } from "./entities/user-notification.constants";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbTopUser } from "./entities/top-users.entity";
 import { TopUsersDto } from "./dtos/top-users.dto";
-import { PagerService } from "src/common/services/pager.service";
-import { PageDto } from "src/common/dtos/page.dto";
-import { PageMetaDto } from "src/common/dtos/page-meta.dto";
+import { PagerService } from "../common/services/pager.service";
+import { PageDto } from "../common/dtos/page.dto";
+import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 @Injectable()
 export class UserService {
