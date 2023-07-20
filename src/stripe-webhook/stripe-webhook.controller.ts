@@ -7,7 +7,7 @@ import { toDateTime } from "./utils";
 import { CustomerService } from "../customer/customer.service";
 import { StripeSubscriptionService } from "../subscription/stripe-subscription.service";
 import { StripeService } from "../stripe/stripe.service";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user/user.service";
 
 const relevantEvents = new Set([
   "checkout.session.completed",

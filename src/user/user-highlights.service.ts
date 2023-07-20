@@ -10,7 +10,7 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user/user.service";
 import { PagerService } from "../common/services/pager.service";
 
 @Injectable()

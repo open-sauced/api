@@ -4,7 +4,7 @@ import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user/user.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
 import { DbUser } from "../user/user.entity";

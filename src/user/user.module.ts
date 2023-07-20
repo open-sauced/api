@@ -5,7 +5,7 @@ import { PullRequestModule } from "../pull-requests/pull-request.module";
 import { RepoModule } from "../repo/repo.module";
 
 import { DbUser } from "./user.entity";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user/user.service";
 import { UserController } from "./user.controller";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsController } from "./user-highlight.controller";

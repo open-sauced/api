@@ -28,7 +28,7 @@ import { User, UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
 
-import { UserService } from "../user/user.service";
+import { UserService } from "./services/user/user.service";
 import { UserCollaborationService } from "./user-collaboration.service";
 import { CreateUserCollaborationDto } from "./dtos/create-user-collaboration.dto";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
