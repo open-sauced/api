@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/user/user.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/user/user.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/user/user.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/user/user.controller.ts:79</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/user/user.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/user/user.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/user/user.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/user/user.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -483,7 +483,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getTopUsers()</code>
+                    <code>getTopUsers(pageOptionsDto: <a href="../classes/TopUsersDto.html" target="_self">TopUsersDto</a>)</code>
                 </td>
             </tr>
 
@@ -497,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/user/user.controller.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/user/user.controller.ts:94</a></div>
                 </td>
             </tr>
 
@@ -507,8 +507,40 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/DbTopUser.html" target="_self" >Promise&lt;DbTopUser[]&gt;</a></code>
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/TopUsersDto.html" target="_self" >TopUsersDto</a></code>
+                                    </td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbTopUser&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -533,6 +565,7 @@ import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entit
 import { RepoService } from &quot;../repo/repo.service&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
+import { TopUsersDto } from &quot;./dtos/top-users.dto&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
@@ -610,8 +643,8 @@ export class UserController {
     summary: &quot;List top users&quot;,
   })
   @ApiOkResponse({ type: DbTopUser })
-  async getTopUsers(): Promise&lt;DbTopUser[]&gt; {
-    return this.userService.findTopUsers(10);
+  async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise&lt;PageDto&lt;DbTopUser&gt;&gt; {
+    return this.userService.findTopUsers(pageOptionsDto);
   }
 }
 </code></pre>

@@ -146,12 +146,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user/user.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user/user.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -185,6 +185,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserHighlightReaction&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -226,8 +238,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/user/user.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/user/user.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -265,8 +277,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="150"
-                            class="link-to-prism">src/user/user.service.ts:150</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/user/user.service.ts:157</a></div>
                 </td>
             </tr>
 
@@ -336,8 +348,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="260"
-                            class="link-to-prism">src/user/user.service.ts:260</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/user/user.service.ts:267</a></div>
                 </td>
             </tr>
 
@@ -407,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/user/user.service.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user/user.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -495,8 +507,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/user/user.service.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/user/user.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -559,15 +571,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findTopUsers(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findTopUsers(pageOptionsDto: <a href="../classes/TopUsersDto.html" target="_self">TopUsersDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/user/user.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/user/user.service.ts:41</a></div>
                 </td>
             </tr>
 
@@ -584,23 +596,19 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>limit</td>
+                                    <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="../classes/TopUsersDto.html" target="_self" >TopUsersDto</a></code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                        <code>10</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -609,7 +617,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/DbTopUser.html" target="_self" >Promise&lt;DbTopUser[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbTopUser&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -639,8 +647,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/user/user.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/user/user.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -678,8 +686,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="253"
-                            class="link-to-prism">src/user/user.service.ts:253</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="260"
+                            class="link-to-prism">src/user/user.service.ts:260</a></div>
                 </td>
             </tr>
 
@@ -761,8 +769,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="249"
-                            class="link-to-prism">src/user/user.service.ts:249</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/user/user.service.ts:256</a></div>
                 </td>
             </tr>
 
@@ -844,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="214"
-                            class="link-to-prism">src/user/user.service.ts:214</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/user/user.service.ts:221</a></div>
                 </td>
             </tr>
 
@@ -927,8 +935,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/user/user.service.ts:239</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="246"
+                            class="link-to-prism">src/user/user.service.ts:246</a></div>
                 </td>
             </tr>
 
@@ -1010,8 +1018,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/user/user.service.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/user/user.service.ts:196</a></div>
                 </td>
             </tr>
 
@@ -1093,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="229"
-                            class="link-to-prism">src/user/user.service.ts:229</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/user/user.service.ts:236</a></div>
                 </td>
             </tr>
 
@@ -1161,6 +1169,10 @@ import { UserOnboardingDto } from &quot;../auth/dtos/user-onboarding.dto&quot;;
 import { userNotificationTypes } from &quot;./entities/user-notification.constants&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
+import { TopUsersDto } from &quot;./dtos/top-users.dto&quot;;
+import { PagerService } from &quot;../common/services/pager.service&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 
 @Injectable()
 export class UserService {
@@ -1168,7 +1180,8 @@ export class UserService {
     @InjectRepository(DbUser, &quot;ApiConnection&quot;)
     private userRepository: Repository&lt;DbUser&gt;,
     @InjectRepository(DbUserHighlightReaction, &quot;ApiConnection&quot;)
-    private userHighlightReactionRepository: Repository&lt;DbUserHighlightReaction&gt;
+    private userHighlightReactionRepository: Repository&lt;DbUserHighlightReaction&gt;,
+    private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUser&gt; {
@@ -1183,7 +1196,7 @@ export class UserService {
     return builder;
   }
 
-  async findTopUsers(limit &#x3D; 10): Promise&lt;DbTopUser[]&gt; {
+  async findTopUsers(pageOptionsDto: TopUsersDto): Promise&lt;PageDto&lt;DbTopUser&gt;&gt; {
     const queryBuilder &#x3D; this.reactionsQueryBuilder();
 
     queryBuilder
@@ -1191,12 +1204,14 @@ export class UserService {
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;users.id &#x3D; user_highlight_reactions.user_id&quot;)
       .where(&quot;user_highlight_reactions.deleted_at IS NULL&quot;)
       .groupBy(&quot;login&quot;)
-      .orderBy(&quot;COUNT(user_highlight_reactions.emoji_id)&quot;, &quot;DESC&quot;)
-      .limit(limit);
+      .orderBy(&quot;COUNT(user_highlight_reactions.emoji_id)&quot;, &quot;DESC&quot;);
 
-    const items: DbTopUser[] &#x3D; await queryBuilder.getRawMany();
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    return items;
+    const [itemCount, entities] &#x3D; await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async findOneById(id: number, includeEmail &#x3D; false): Promise&lt;DbUser&gt; {
