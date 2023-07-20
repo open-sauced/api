@@ -134,10 +134,15 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coveragePathIgnorePatterns": [
+      ".module.ts",
+      ".dto.ts",
+      ".config.ts",
+      ".entity.ts",
+      ".constants.ts",
+      "index.ts"
+    ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "plugins": [
-      "jest"
-    ]
+    "testEnvironment": "node"
   }
 }
