@@ -130,12 +130,7 @@ describe("UserService", () => {
       createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
 
-      try {
-        await userService.findOneById(faker.number.int());
-      } catch (err) {
-        expect(err).toBeInstanceOf(NotFoundException);
-        expect((err as NotFoundException).message).toEqual("Not Found");
-      }
+      await expect(userService.findOneById(faker.number.int())).rejects.toThrow(NotFoundException);
     });
   });
 
