@@ -9,10 +9,14 @@ import { UserService } from "../../services/user/user.service";
 import { userNotificationTypes } from "./../../entities/user-notification.constants";
 import { DbUser } from "../../user.entity";
 import { DbUserHighlightReaction } from "../../entities/user-highlight-reaction.entity";
+import { User } from "@supabase/supabase-js";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T> => ({
   createQueryBuilder: jest.fn(),
+  update: jest.fn(),
+  create: jest.fn(),
+  save: jest.fn(),
 });
 
 describe("UserService", () => {
@@ -65,12 +69,6 @@ describe("UserService", () => {
       const result = await userService.findTopUsers(defaultLimit);
 
       expect(dbUserHighlightReactionRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      /*
-       * @todo remove this comment before merging
-       * we can also use `toHaveBeenCalledWith` and pass the sql query as an argument
-       * but it's just a repetition of the query we have in the service
-       * unless the query is taking some parameters. let me know what you think
-       */
       expect(createQueryBuilderMock.select).toHaveBeenCalled();
       expect(createQueryBuilderMock.innerJoin).toHaveBeenCalled();
       expect(createQueryBuilderMock.where).toHaveBeenCalled();
@@ -105,8 +103,7 @@ describe("UserService", () => {
         userNotificationTypes,
       });
       expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
-      // eslint-disable-next-line capitalized-comments
-      // TODO: bug `findOneById` should return the email even if `includeEmail` is false
+      // todo: bug `findOneById` returns the email even if `includeEmail` is false
       expect(result).toEqual(expectedResult);
     });
 
@@ -129,13 +126,121 @@ describe("UserService", () => {
     it("should throw an error if the user is not found", async () => {
       createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-
       await expect(userService.findOneById(faker.number.int())).rejects.toThrow(NotFoundException);
     });
   });
 
-  it.todo("Add describe block for [findOneByUsername]");
-  it.todo("Add describe block for [checkAddUser]");
+  describe("findOneByUsername", () => {
+    const username = faker.internet.userName();
+    const user = { id: faker.number.int(), username };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should return a user with the given username", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.findOneByUsername(username);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(5);
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("LOWER(login) = :username", {
+        username: username.toLowerCase(),
+      });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ username: username.toLowerCase() });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(result).toEqual(user);
+    });
+
+    it("should throw an error if the user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await expect(userService.findOneByUsername(username)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe("checkAddUser", () => {
+    const userId = faker.number.int();
+    const supabaseUser = {
+      id: faker.string.uuid(),
+      app_metadata: {
+        provider: "github",
+      },
+      user_metadata: {
+        user_name: faker.internet.userName(),
+        email: faker.internet.email(),
+        name: faker.person.firstName(),
+      },
+      aud: faker.string.uuid(),
+      created_at: new Date(faker.date.past()).toISOString(),
+      identities: [
+        {
+          created_at: new Date(faker.date.past()).toISOString(),
+          id: userId.toString(),
+          identity_data: {},
+          last_sign_in_at: new Date(faker.date.past()).toISOString(),
+          provider: "github",
+          updated_at: new Date(faker.date.past()).toISOString(),
+          user_id: faker.number.int().toString(),
+        },
+      ],
+      confirmed_at: new Date(faker.date.past()).toISOString(),
+    } satisfies User;
+
+    const user = {
+      id: userId,
+      is_open_sauced_member: false,
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should return the user if found and mark him as open sauced user if he was not", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.checkAddUser(supabaseUser);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+      expect(result).toEqual(user);
+    });
+
+    it("should create a new user if not found and mark him as open sauced user", async () => {
+      (createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null)),
+        dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.checkAddUser(supabaseUser);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+
+      const newUser = {
+        id: userId,
+        name: supabaseUser.user_metadata.name,
+        is_open_sauced_member: true,
+        login: supabaseUser.user_metadata.user_name,
+        email: supabaseUser.user_metadata.email,
+        created_at: new Date(supabaseUser.identities[0].created_at),
+        updated_at: new Date(supabaseUser.identities[0].updated_at),
+        connected_at: new Date(supabaseUser.confirmed_at),
+      };
+
+      expect(dbUserRepositoryMock.create).toHaveBeenCalledWith(newUser);
+      // ! need help here, I don't know how to test the `save` method in the `checkAddUser` method (newUser.save()) 🙃
+      expect(result).toEqual(newUser);
+    });
+  });
+
   it.todo("Add describe block for [updateUser]");
   it.todo("Add describe block for [updateOnboarding]");
   it.todo("Add describe block for [updateWaitlistStatus]");
