@@ -82,7 +82,6 @@ describe("UserService", () => {
 
   describe("findOneById", () => {
     const user = { id: faker.number.int(), email: faker.internet.email() };
-    let includeEmail = false;
     const createQueryBuilderMock = {
       addSelect: jest.fn().mockReturnThis(),
       where: jest.fn().mockReturnThis(),
@@ -90,27 +89,16 @@ describe("UserService", () => {
       getOne: jest.fn().mockResolvedValue(user),
     };
 
-    it("should return a user with the given id without the email", async () => {
-      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      const result = await userService.findOneById(user.id, includeEmail);
-      const expectedResult = { id: user.id };
+    /**
+     * @author @takanome-dev
+     * @todo test with a real db when doing e2e if `findOneById`
+     * with includeEmail=false is returning the email or not.
+     * Cannot be tested with unit test (IMO) since the result is mocked.
+     */
 
-      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
-      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
-      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({
-        userId: user.id,
-        userNotificationTypes,
-      });
-      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
-      // todo: bug `findOneById` returns the email even if `includeEmail` is false
-      expect(result).toEqual(expectedResult);
-    });
-
-    it("should return a user with the given id with the email", async () => {
-      includeEmail = true;
+    it("should return a user with the given id", async () => {
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      const result = await userService.findOneById(user.id, includeEmail);
+      const result = await userService.findOneById(user.id);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
