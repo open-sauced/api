@@ -55,7 +55,6 @@ SUPABASE_JWT_SECRET=your_supabase_jwt_secret
 API_DOMAIN=your_api_domain
 ```
 
-
 Replace `your_supabase_url`, `your_supabase_api_key`, `your_supabase_jwt_secret`, and `your_api_domain` with the actual values provided by Supabase and your project's settings.
 
 ### 🗄️ Setting Up A PostgreSQL Database Locally
@@ -67,24 +66,28 @@ For secure SSL communication, you need a pair of SSL certificates: `server.crt` 
 
 ```shell
 openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes -subj "/CN=localhost"
-  ```
+```
+
 Please note that this generates self-signed certificates which should only be used for local development.
 
-**2.Build the Docker image:**  
+**2.Build the Docker image:**
 
 ```shell
 docker build -t my_postgres_image -f Dockerfile.local-postgres .
 ```
+
 This command will build the Docker image using the Dockerfile in the current directory. The previously generated SSL certificates will need to be in the same directory as the Dockerfile.
 
-**3.Run the Docker container:**  
+**3.Run the Docker container:**
 
 ```shell
 docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:latest
 ```
+
 This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.
 
 ### 🛠️ Installation
+
 To install the application:
 
 ```shell
