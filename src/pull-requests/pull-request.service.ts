@@ -148,4 +148,50 @@ export class PullRequestService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
+  async findNewContributorsInTimeRange(
+    pageOptionsDto: PullRequestContributorOptionsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const range = pageOptionsDto.range!;
+    const repoIds = pageOptionsDto.repoIds!.split(",");
+
+    const prevMonthQuery = this.baseQueryBuilder();
+    const queryBuilder = this.baseQueryBuilder();
+
+    prevMonthQuery
+      .select("author_login")
+      .distinct()
+      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+      .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range + range} days'`)
+      .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${range} days'`)
+      .andWhere("pull_requests.author_login != ''")
+      .andWhere("repos.id IN (:...repoIds)", { repoIds });
+
+    queryBuilder
+      .select("previous_month.author_login")
+      .distinct()
+      .from(`(${prevMonthQuery.getQuery()})`, "previous_month")
+      .leftJoin(
+        (qb) =>
+          qb
+            .select("author_login")
+            .distinct()
+            .from(DbPullRequest, "pull_requests")
+            .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+            .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range} days'`)
+            .andWhere("pull_requests.updated_at < NOW() - INTERVAL '0 days'")
+            .andWhere("pull_requests.author_login != ''")
+            .andWhere("repos.id IN (:...repoIds)", { repoIds }),
+        "current_month",
+        "previous_month.author_login = current_month.author_login"
+      )
+      .where("current_month.author_login IS NULL");
+
+    const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
+    const itemCount = entities.length;
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
 }
