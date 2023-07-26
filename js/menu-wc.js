@@ -149,15 +149,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ContributorModule.html" data-type="entity-link" >ContributorModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-ContributorModule-16bceff99744b360ad304f242dce95213652190189ad46334090f2d5d24278026098acca6674ede894b5a21a04be2ec739eaad44d6e147da565a2ad988581c12"' : 'data-target="#xs-controllers-links-module-ContributorModule-16bceff99744b360ad304f242dce95213652190189ad46334090f2d5d24278026098acca6674ede894b5a21a04be2ec739eaad44d6e147da565a2ad988581c12"' }>
+                                            'data-target="#controllers-links-module-ContributorModule-d4675e22d52b0f955173b670c94a41113af24f8cad89226d09ef547ff8e28e1cc9145498e1161f602fbcb9a0980d72573cf09761abb51d88ba17dbd4b06df0f8"' : 'data-target="#xs-controllers-links-module-ContributorModule-d4675e22d52b0f955173b670c94a41113af24f8cad89226d09ef547ff8e28e1cc9145498e1161f602fbcb9a0980d72573cf09761abb51d88ba17dbd4b06df0f8"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ContributorModule-16bceff99744b360ad304f242dce95213652190189ad46334090f2d5d24278026098acca6674ede894b5a21a04be2ec739eaad44d6e147da565a2ad988581c12"' :
-                                            'id="xs-controllers-links-module-ContributorModule-16bceff99744b360ad304f242dce95213652190189ad46334090f2d5d24278026098acca6674ede894b5a21a04be2ec739eaad44d6e147da565a2ad988581c12"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-ContributorModule-d4675e22d52b0f955173b670c94a41113af24f8cad89226d09ef547ff8e28e1cc9145498e1161f602fbcb9a0980d72573cf09761abb51d88ba17dbd4b06df0f8"' :
+                                            'id="xs-controllers-links-module-ContributorModule-d4675e22d52b0f955173b670c94a41113af24f8cad89226d09ef547ff8e28e1cc9145498e1161f602fbcb9a0980d72573cf09761abb51d88ba17dbd4b06df0f8"' }>
                                             <li class="link">
                                                 <a href="controllers/ContributorController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContributorController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/ContributorInsightsController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContributorInsightsController</a>
                                             </li>
                                         </ul>
                                     </li>

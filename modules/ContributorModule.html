@@ -124,6 +124,9 @@
                         <li class="list-group-item">
                             <a href="../controllers/ContributorController.html">ContributorController</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="../controllers/ContributorInsightsController.html">ContributorInsightsController</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
@@ -149,10 +152,11 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 import { ContributorController } from &quot;./contributor.controller&quot;;
 import { PullRequestModule } from &quot;../pull-requests/pull-request.module&quot;;
 import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
+import { ContributorInsightsController } from &quot;./contributor-insights.controller&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbPullRequest], &quot;ApiConnection&quot;), PullRequestModule],
-  controllers: [ContributorController],
+  controllers: [ContributorController, ContributorInsightsController],
 })
 export class ContributorModule {}
 </code></pre>
