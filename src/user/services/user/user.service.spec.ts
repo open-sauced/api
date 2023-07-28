@@ -50,7 +50,7 @@ describe("UserService", () => {
     expect(userService).toBeDefined();
   });
 
-  describe("findTopUsers", () => {
+  describe("[findTopUsers]", () => {
     it("should return a list of top users", async () => {
       const expectedUsers = [{ id: faker.number.int() }, { id: faker.number.int() }];
       const defaultLimit = 10;
@@ -80,7 +80,7 @@ describe("UserService", () => {
     });
   });
 
-  describe("findOneById", () => {
+  describe("[findOneById]", () => {
     const user = { id: faker.number.int(), email: faker.internet.email() };
     const createQueryBuilderMock = {
       addSelect: jest.fn().mockReturnThis(),
@@ -118,7 +118,7 @@ describe("UserService", () => {
     });
   });
 
-  describe("findOneByUsername", () => {
+  describe("[findOneByUsername]", () => {
     const username = faker.internet.userName();
     const user = { id: faker.number.int(), username };
     const createQueryBuilderMock = {
@@ -149,7 +149,7 @@ describe("UserService", () => {
     });
   });
 
-  describe("checkAddUser", () => {
+  describe("[checkAddUser]", () => {
     const userId = faker.number.int();
     const supabaseUser = {
       id: faker.string.uuid(),
@@ -223,13 +223,61 @@ describe("UserService", () => {
         connected_at: new Date(supabaseUser.confirmed_at),
       };
 
-      expect(dbUserRepositoryMock.create).toHaveBeenCalledWith(newUser);
-      // ! need help here, I don't know how to test the `save` method in the `checkAddUser` method (newUser.save()) 🙃
+      expect(dbUserRepositoryMock.save).toHaveBeenCalledWith(newUser);
       expect(result).toEqual(newUser);
     });
   });
 
-  it.todo("Add describe block for [updateUser]");
+  describe("[updateUser]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      name: faker.person.firstName(),
+      email: "",
+      bio: "",
+      url: "",
+      twitter_username: "",
+      company: "",
+      location: "",
+      display_local_time: false,
+      timezone: "",
+      github_sponsors_url: "",
+      linkedin_url: "",
+      discord_url: "",
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should update the user if found", async () => {
+      const updatedUser = { ...user, name: "new name" };
+
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.updateUser(userId, updatedUser);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+      /*
+       * skip mocking the updated user as it's just a duplicate of the expectations above
+       * can be tested when doing e2e tests
+       */
+      expect(result).toEqual(user);
+    });
+
+    it("should throw an error if the user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await expect(userService.updateUser(userId, user)).rejects.toThrow(NotFoundException);
+    });
+  });
+
   it.todo("Add describe block for [updateOnboarding]");
   it.todo("Add describe block for [updateWaitlistStatus]");
   it.todo("Add describe block for [updateRole]");
