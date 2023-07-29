@@ -209,7 +209,7 @@ describe("UserService", () => {
     it("should create a new user if not found and mark him as open sauced user", async () => {
       (createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null)),
         dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      const result = await userService.checkAddUser(supabaseUser);
+      await userService.checkAddUser(supabaseUser);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
@@ -227,6 +227,9 @@ describe("UserService", () => {
         updated_at: new Date(supabaseUser.identities[0].updated_at),
         connected_at: new Date(supabaseUser.confirmed_at),
       };
+
+      dbUserRepositoryMock.save?.mockReturnValue(newUser);
+      const result = await userService.checkAddUser(supabaseUser);
 
       expect(dbUserRepositoryMock.save).toHaveBeenCalledWith(newUser);
       expect(result).toEqual(newUser);

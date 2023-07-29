@@ -152,7 +152,7 @@ export class UserService {
     return item;
   }
 
-  async checkAddUser(user: User) {
+  async checkAddUser(user: User): Promise<DbUser> {
     const {
       user_metadata: { user_name, email, name },
       identities,
@@ -174,7 +174,7 @@ export class UserService {
       return user;
     } catch (e) {
       // create new user
-      const newUser = {
+      const newUser = await this.userRepository.save({
         id,
         name: name as string,
         is_open_sauced_member: true,
@@ -183,9 +183,8 @@ export class UserService {
         created_at: new Date(github.created_at),
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
-      };
+      });
 
-      await this.userRepository.save(newUser);
       return newUser;
     }
   }
