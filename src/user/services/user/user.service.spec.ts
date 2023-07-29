@@ -5,7 +5,7 @@ import { Test } from "@nestjs/testing";
 import { faker } from "@faker-js/faker";
 import { ObjectLiteral, Repository } from "typeorm";
 
-import { UserService } from "../../services/user/user.service";
+import { UserService } from "./user.service";
 import { userNotificationTypes } from "./../../entities/user-notification.constants";
 import { DbUser } from "../../user.entity";
 import { DbUserHighlightReaction } from "../../entities/user-highlight-reaction.entity";
@@ -66,7 +66,7 @@ describe("UserService", () => {
       };
 
       dbUserHighlightReactionRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      const result = await userService.findTopUsers(defaultLimit);
+      const result = await userService.findTopUsers({ limit: defaultLimit, skip: 0 });
 
       expect(dbUserHighlightReactionRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.select).toHaveBeenCalled();

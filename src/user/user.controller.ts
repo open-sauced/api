@@ -13,6 +13,7 @@ import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { DbTopUser } from "./entities/top-users.entity";
+import { TopUsersDto } from "./dtos/top-users.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -90,7 +91,7 @@ export class UserController {
     summary: "List top users",
   })
   @ApiOkResponse({ type: DbTopUser })
-  async getTopUsers(): Promise<DbTopUser[]> {
-    return this.userService.findTopUsers(10);
+  async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
+    return this.userService.findTopUsers(pageOptionsDto);
   }
 }
