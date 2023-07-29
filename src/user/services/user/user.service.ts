@@ -12,7 +12,6 @@ import { userNotificationTypes } from "../../entities/user-notification.constant
 import { DbUserHighlightReaction } from "../../entities/user-highlight-reaction.entity";
 import { DbTopUser } from "../../entities/top-users.entity";
 import { TopUsersDto } from "../../dtos/top-users.dto";
-import { PagerService } from "../../../common/services/pager.service";
 import { PageDto } from "../../../common/dtos/page.dto";
 import { PageMetaDto } from "../../../common/dtos/page-meta.dto";
 
@@ -22,8 +21,7 @@ export class UserService {
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
-    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
-    private pagerService: PagerService
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {

@@ -54,6 +54,7 @@ describe("UserService", () => {
     it("should return a list of top users", async () => {
       const expectedUsers = [{ id: faker.number.int() }, { id: faker.number.int() }];
       const defaultLimit = 10;
+      const skip = 0;
 
       const createQueryBuilderMock = {
         select: jest.fn().mockReturnThis(),
@@ -62,11 +63,13 @@ describe("UserService", () => {
         groupBy: jest.fn().mockReturnThis(),
         orderBy: jest.fn().mockReturnThis(),
         limit: jest.fn().mockReturnThis(),
+        offset: jest.fn().mockReturnThis(),
+        getCount: jest.fn().mockReturnThis(),
         getRawMany: jest.fn().mockResolvedValue(expectedUsers),
       };
 
       dbUserHighlightReactionRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      const result = await userService.findTopUsers({ limit: defaultLimit, skip: 0 });
+      const result = await userService.findTopUsers({ limit: defaultLimit, skip });
 
       expect(dbUserHighlightReactionRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.select).toHaveBeenCalled();
@@ -74,9 +77,11 @@ describe("UserService", () => {
       expect(createQueryBuilderMock.where).toHaveBeenCalled();
       expect(createQueryBuilderMock.groupBy).toHaveBeenCalled();
       expect(createQueryBuilderMock.orderBy).toHaveBeenCalled();
+      expect(createQueryBuilderMock.offset).toHaveBeenCalledWith(skip);
       expect(createQueryBuilderMock.limit).toHaveBeenCalledWith(defaultLimit);
+      expect(createQueryBuilderMock.getCount).toHaveBeenCalled();
       expect(createQueryBuilderMock.getRawMany).toHaveBeenCalled();
-      expect(result).toEqual(expectedUsers);
+      expect(result).toMatchObject({ data: expectedUsers });
     });
   });
 
