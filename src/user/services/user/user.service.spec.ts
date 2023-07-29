@@ -278,10 +278,149 @@ describe("UserService", () => {
     });
   });
 
-  it.todo("Add describe block for [updateOnboarding]");
-  it.todo("Add describe block for [updateWaitlistStatus]");
-  it.todo("Add describe block for [updateRole]");
-  it.todo("Add describe block for [updateInterests]");
-  it.todo("Add describe block for [updateEmailPreferences]");
-  it.todo("Add describe block for [findOneByEmail]");
+  describe("[updateOnboarding]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      interests: ["javascript", "react"],
+      timezone: "",
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should update onboarding infos for user if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await userService.updateOnboarding(userId, user);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+    });
+
+    it("should throw an error if the user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await expect(userService.updateOnboarding(userId, user)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe("[updateWaitlistStatus]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      is_waitlisted: false,
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should update waitlist status for user if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await userService.updateWaitlistStatus(userId);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+    });
+
+    it("should throw an error if the user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await expect(userService.updateWaitlistStatus(userId)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe("[updateRole]", () => {
+    const userId = faker.number.int();
+    const role = 0;
+    const user = {
+      id: userId,
+      role,
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should update user's role if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await userService.updateRole(userId, role);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(createQueryBuilderMock.setParameters).toHaveBeenCalledWith({ userId: user.id, userNotificationTypes });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+    });
+
+    it("should throw an error if the user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await expect(userService.updateWaitlistStatus(userId)).rejects.toThrow(NotFoundException);
+    });
+  });
+
+  describe("[updateInterests]", () => {
+    const userId = faker.number.int();
+    const interests = ["javascript", "react"];
+
+    it("should update user's interests", async () => {
+      await userService.updateInterests(userId, { interests });
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+    });
+  });
+
+  describe("[updateEmailPreferences]", () => {
+    it("should update user's email preferences", async () => {
+      const userId = faker.number.int();
+
+      await userService.updateEmailPreferences(userId, { display_email: false, receive_collaboration: true });
+      expect(dbUserRepositoryMock.update).toHaveBeenCalled();
+    });
+  });
+
+  describe("[findOneByEmail]", () => {
+    const email = faker.internet.email();
+    const user = { email };
+
+    const createQueryBuilderMock = {
+      where: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should find the user by email", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.findOneByEmail(email.toLowerCase());
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("users.email = :email", { email: email.toLowerCase() });
+      expect(createQueryBuilderMock.getOne).toHaveBeenCalled();
+      expect(result).toEqual(user);
+    });
+
+    it("should return null if user is not found", async () => {
+      createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null);
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const result = await userService.findOneByEmail(email.toLowerCase());
+
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("users.email = :email", { email: email.toLowerCase() });
+      expect(result).toEqual(null);
+    });
+  });
 });
