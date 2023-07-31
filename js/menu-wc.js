@@ -888,6 +888,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/PageOptionsDto.html" data-type="entity-link" >PageOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/PullRequestContributorInsightsDto.html" data-type="entity-link" >PullRequestContributorInsightsDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/PullRequestContributorOptionsDto.html" data-type="entity-link" >PullRequestContributorOptionsDto</a>
                             </li>
                             <li class="link">

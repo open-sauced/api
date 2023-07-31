@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllRecentPullRequestContributors" >findAllRecentPullRequestContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#newPullRequestContributors" >newPullRequestContributors</a>
                             </li>
                         </ul>
@@ -104,6 +108,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllRecentPullRequestContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllRecentPullRequestContributors</b></span>
+                        <a href="#findAllRecentPullRequestContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllRecentPullRequestContributors(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/recent&#x27;)<br />@ApiOperation({operationId: &#x27;findAllRecentPullRequestContributors&#x27;, summary: &#x27;Gets all recent contributors for the last 30 days based on repo IDs&#x27;})<br />@ApiPaginatedResponse(DbPullRequestContributor)<br />@ApiOkResponse({type: DbPullRequestContributor})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/contributor/contributor-insights.controller.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -133,8 +215,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/contributor/contributor-insights.controller.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/contributor/contributor-insights.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -194,6 +276,7 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PullRequestService } from &quot;../pull-requests/pull-request.service&quot;;
 import { DbPullRequestContributor } from &quot;../pull-requests/dtos/pull-request-contributor.dto&quot;;
 import { PullRequestContributorOptionsDto } from &quot;../pull-requests/dtos/pull-request-contributor-options.dto&quot;;
+import { PullRequestContributorInsightsDto } from &quot;../pull-requests/dtos/pull-request-contributor-insights.dto&quot;;
 
 @Controller(&quot;contributors/insights&quot;)
 @ApiTags(&quot;Contributors service&quot;)
@@ -211,6 +294,19 @@ export class ContributorInsightsController {
     @Query() pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
     return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
+  }
+
+  @Get(&quot;/recent&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllRecentPullRequestContributors&quot;,
+    summary: &quot;Gets all recent contributors for the last 30 days based on repo IDs&quot;,
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllRecentPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
   }
 }
 </code></pre>

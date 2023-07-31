@@ -95,11 +95,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllRecentContributors" >findAllRecentContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllWithFilters" >findAllWithFilters</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findNewContributorsInTimeRange" >findNewContributorsInTimeRange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getContributorRangeQueryBuilder" >getContributorRangeQueryBuilder</a>
                             </li>
                         </ul>
                     </td>
@@ -124,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/pull-requests/pull-request.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/pull-requests/pull-request.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -199,8 +207,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -238,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -309,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -392,8 +400,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -445,6 +453,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllRecentContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllRecentContributors</b></span>
+                        <a href="#findAllRecentContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllRecentContributors(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllWithFilters"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -463,8 +542,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -534,8 +613,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:153</a></div>
                 </td>
             </tr>
 
@@ -583,6 +662,101 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContributorRangeQueryBuilder"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>getContributorRangeQueryBuilder</b></span>
+                        <a href="#getContributorRangeQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getContributorRangeQueryBuilder(start: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repoIds: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:208</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>start</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repoIds</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -603,6 +777,7 @@ import { RepoFilterService } from &quot;../common/filters/repo-filter.service&qu
 import { InsightFilterFieldsEnum } from &quot;../insight/dtos/insight-options.dto&quot;;
 import { DbPullRequestContributor } from &quot;./dtos/pull-request-contributor.dto&quot;;
 import { PullRequestContributorOptionsDto } from &quot;./dtos/pull-request-contributor-options.dto&quot;;
+import { PullRequestContributorInsightsDto } from &quot;./dtos/pull-request-contributor-insights.dto&quot;;
 
 @Injectable()
 export class PullRequestService {
@@ -744,19 +919,10 @@ export class PullRequestService {
     pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
     const range &#x3D; pageOptionsDto.range!;
-    const repoIds &#x3D; pageOptionsDto.repoIds!.split(&quot;,&quot;);
+    const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
 
-    const prevMonthQuery &#x3D; this.baseQueryBuilder();
     const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    prevMonthQuery
-      .select(&quot;author_login&quot;)
-      .distinct()
-      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
-      .where(&#x60;pull_requests.updated_at &gt;&#x3D; NOW() - INTERVAL &#x27;${range + range} days&#x27;&#x60;)
-      .andWhere(&#x60;pull_requests.updated_at &lt; NOW() - INTERVAL &#x27;${range} days&#x27;&#x60;)
-      .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;)
-      .andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds });
+    const prevMonthQuery &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
 
     queryBuilder
       .select(&quot;previous_month.author_login&quot;)
@@ -784,6 +950,42 @@ export class PullRequestService {
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllRecentContributors(
+    pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
+
+    const queryBuilder &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
+    const itemCount &#x3D; entities.length;
+
+    const pageMetaDto &#x3D; new PageMetaDto({
+      itemCount,
+      pageOptionsDto: { ...pageOptionsDto, limit: itemCount, skip: 0 },
+    });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  private getContributorRangeQueryBuilder(start: number, range: number, repoIds: string[]) {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .select(&quot;author_login&quot;)
+      .distinct()
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
+      .where(&#x60;pull_requests.updated_at &gt;&#x3D; NOW() - INTERVAL &#x27;${range} days&#x27;&#x60;)
+      .andWhere(&#x60;pull_requests.updated_at &lt; NOW() - INTERVAL &#x27;${start} days&#x27;&#x60;)
+      .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;);
+
+    if (repoIds.length &gt; 0) {
+      queryBuilder.andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds });
+    }
+
+    return queryBuilder;
   }
 }
 </code></pre>
