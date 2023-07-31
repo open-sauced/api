@@ -6,6 +6,7 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-request-contributor-options.dto";
+import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
 
 @Controller("contributors/insights")
 @ApiTags("Contributors service")
@@ -23,5 +24,18 @@ export class ContributorInsightsController {
     @Query() pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
+  }
+
+  @Get("/recent")
+  @ApiOperation({
+    operationId: "findAllRecentPullRequestContributors",
+    summary: "Gets all recent contributors for the last 30 days based on repo IDs",
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllRecentPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
   }
 }

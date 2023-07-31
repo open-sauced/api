@@ -12,6 +12,7 @@ import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
+import { PullRequestContributorInsightsDto } from "./dtos/pull-request-contributor-insights.dto";
 
 @Injectable()
 export class PullRequestService {
@@ -153,19 +154,10 @@ export class PullRequestService {
     pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     const range = pageOptionsDto.range!;
-    const repoIds = pageOptionsDto.repoIds!.split(",");
+    const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
-    const prevMonthQuery = this.baseQueryBuilder();
     const queryBuilder = this.baseQueryBuilder();
-
-    prevMonthQuery
-      .select("author_login")
-      .distinct()
-      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range + range} days'`)
-      .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${range} days'`)
-      .andWhere("pull_requests.author_login != ''")
-      .andWhere("repos.id IN (:...repoIds)", { repoIds });
+    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
 
     queryBuilder
       .select("previous_month.author_login")
@@ -193,5 +185,41 @@ export class PullRequestService {
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllRecentContributors(
+    pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const range = pageOptionsDto.range!;
+    const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
+
+    const queryBuilder = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
+    const itemCount = entities.length;
+
+    const pageMetaDto = new PageMetaDto({
+      itemCount,
+      pageOptionsDto: { ...pageOptionsDto, limit: itemCount, skip: 0 },
+    });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  private getContributorRangeQueryBuilder(start: number, range: number, repoIds: string[]) {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select("author_login")
+      .distinct()
+      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+      .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range} days'`)
+      .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${start} days'`)
+      .andWhere("pull_requests.author_login != ''");
+
+    if (repoIds.length > 0) {
+      queryBuilder.andWhere("repos.id IN (:...repoIds)", { repoIds });
+    }
+
+    return queryBuilder;
   }
 }
