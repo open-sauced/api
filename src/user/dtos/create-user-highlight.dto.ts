@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsDateString, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { IsDateString, IsIn, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserHighlightDto {
   @ApiProperty({
@@ -37,4 +37,13 @@ export class CreateUserHighlightDto {
   @IsDateString()
   @IsOptional()
   public shipped_at?: string;
+
+  @ApiProperty({
+    description: "Highlight type",
+    type: String,
+    example: "pull_request",
+  })
+  @IsString()
+  @IsIn(["pull_request", "blog_post", "issue", "milestone"])
+  public type = "pull_request";
 }
