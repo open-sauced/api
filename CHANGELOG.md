@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.42.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.3...v1.42.0-beta.4) (2023-08-02)
+
+
+### 🍕 Features
+
+* return all notifications even if they have been read ([#230](https://github.com/open-sauced/api.opensauced.pizza/issues/230)) ([cc526bc](https://github.com/open-sauced/api.opensauced.pizza/commit/cc526bcbe56c41885c61dcec4ebe78fff8594aca))
+
 ## [1.42.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.2...v1.42.0-beta.3) (2023-08-01)
 
 
