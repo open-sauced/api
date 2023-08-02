@@ -29,12 +29,14 @@ export class UserNotificationService {
     queryBuilder
       .innerJoin("users", "users", "user_notifications.user_id=users.id")
       .where("user_id = :userId", { userId })
-      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes })
-      .andWhere("user_notifications.read_at IS NULL");
+      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes });
 
     const entities = await queryBuilder.getMany();
     const itemCount = await queryBuilder.getCount();
-    const notificationIds = entities.map((notification) => notification.id);
+
+    const notificationIds = entities
+      .filter((notification) => !notification.read_at)
+      .map((notification) => notification.id);
 
     await this.markNotificationsAsRead(notificationIds);
 
