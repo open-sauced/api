@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.42.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.2...v1.42.0-beta.3) (2023-08-01)
+
+
+### 🍕 Features
+
+* add type field to user highlights table ([#232](https://github.com/open-sauced/api.opensauced.pizza/issues/232)) ([13db3c6](https://github.com/open-sauced/api.opensauced.pizza/commit/13db3c60f277351a756718967d641b6ee311e6e4))
+
 ## [1.42.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.1...v1.42.0-beta.2) (2023-07-31)
 
 

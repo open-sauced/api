@@ -60,6 +60,13 @@ export class DbUserHighlight extends BaseEntity {
   public highlight: string;
 
   @ApiModelProperty({
+    description: "Highlight type",
+    example: "pull_request",
+  })
+  @Column("text")
+  public type: string;
+
+  @ApiModelProperty({
     description: "Whether the highlight is pinned to the top",
     example: false,
   })
