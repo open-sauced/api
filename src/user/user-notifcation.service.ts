@@ -33,7 +33,10 @@ export class UserNotificationService {
 
     const entities = await queryBuilder.getMany();
     const itemCount = await queryBuilder.getCount();
-    const notificationIds = entities.map((notification) => notification.id);
+
+    const notificationIds = entities
+      .filter((notification) => !notification.read_at)
+      .map((notification) => notification.id);
 
     await this.markNotificationsAsRead(notificationIds);
 

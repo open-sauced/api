@@ -65,7 +65,6 @@ export class DbUserNotification extends BaseEntity {
   })
   @Column({
     type: "timestamp without time zone",
-    select: false,
   })
   public read_at?: Date;
 
