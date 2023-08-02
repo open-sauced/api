@@ -43,10 +43,12 @@ export class UserService {
 
     queryBuilder
       .select("users.login as login")
-      .innerJoin("users", "users", "users.id = user_highlight_reactions.user_id")
-      .where("user_highlight_reactions.deleted_at IS NULL")
-      .groupBy("login")
-      .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC");
+      .from(DbUser, "users")
+      .innerJoin("user_highlights", "user_highlights", "user_highlights.user_id = users.id")
+      .innerJoin("user_highlight_reactions", "reactions", "reactions.highlight_id = user_highlights.id")
+      .where("reactions.deleted_at IS NULL")
+      .groupBy("users.login")
+      .orderBy("COUNT(DISTINCT reactions.user_id)", "DESC");
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
