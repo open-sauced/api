@@ -201,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -284,8 +284,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:71</a></div>
                 </td>
             </tr>
 
@@ -379,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -570,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -656,12 +656,14 @@ export class UserNotificationService {
     queryBuilder
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_notifications.user_id&#x3D;users.id&quot;)
       .where(&quot;user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes })
-      .andWhere(&quot;user_notifications.read_at IS NULL&quot;);
+      .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes });
 
     const entities &#x3D; await queryBuilder.getMany();
     const itemCount &#x3D; await queryBuilder.getCount();
-    const notificationIds &#x3D; entities.map((notification) &#x3D;&gt; notification.id);
+
+    const notificationIds &#x3D; entities
+      .filter((notification) &#x3D;&gt; !notification.read_at)
+      .map((notification) &#x3D;&gt; notification.id);
 
     await this.markNotificationsAsRead(notificationIds);
 

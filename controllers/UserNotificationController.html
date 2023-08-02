@@ -127,7 +127,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;getUserNotifications&#x27;, summary: &#x27;Retrieves notifications for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserNotification})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user notifications&#x27;})<br /></code>
+                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;getUserNotifications&#x27;, summary: &#x27;Retrieves notifications for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: undefined})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user notifications&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -199,7 +199,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, OmitType } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -220,7 +220,7 @@ export class UserNotificationController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserNotification })
+  @ApiOkResponse({ type: OmitType(DbUserNotification, [&quot;read_at&quot;]) })
   @ApiNotFoundResponse({ description: &quot;Unable to get user notifications&quot; })
   async getUserNotifications(
     @UserId() userId: number,
