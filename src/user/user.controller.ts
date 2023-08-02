@@ -7,7 +7,7 @@ import { ApiPaginatedResponse } from "../common/decorators/api-paginated-respons
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
 import { DbUser } from "./user.entity";
-import { UserService } from "./services/user/user.service";
+import { UserService } from "./services/user.service";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";

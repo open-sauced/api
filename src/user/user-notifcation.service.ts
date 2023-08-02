@@ -7,7 +7,7 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { UserNotificationTypes, userNotificationTypes } from "./entities/user-notification.constants";
-import { UserService } from "./services/user/user.service";
+import { UserService } from "./services/user.service";
 
 @Injectable()
 export class UserNotificationService {

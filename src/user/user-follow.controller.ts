@@ -12,7 +12,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { UserFollowService } from "./user-follow.service";
-import { UserService } from "./services/user/user.service";
+import { UserService } from "./services/user.service";
 
 @Controller("users")
 @ApiTags("User service")
