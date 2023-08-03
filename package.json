@@ -1,6 +1,6 @@
 {
   "name": "@open-sauced/api.opensauced.pizza",
-  "version": "1.41.0",
+  "version": "1.42.0-beta.5",
   "keywords": [],
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
   "author": "TED Vortex <ted.vortex@gmail.com>",
@@ -39,7 +39,7 @@
     "build:package": "npx tsc -p tsconfig.package.json",
     "lint": "eslint . --ext .ts,.js",
     "lint:fix": "npm run lint -- --fix",
-    "format": "npx prettier --write .",
+    "format": "npm run lint -- --fix",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "test:cov": "npm run test -- --coverage",
@@ -134,10 +134,15 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
+    "coveragePathIgnorePatterns": [
+      ".module.ts",
+      ".dto.ts",
+      ".config.ts",
+      ".entity.ts",
+      ".constants.ts",
+      "index.ts"
+    ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "plugins": [
-      "jest"
-    ]
+    "testEnvironment": "node"
   }
 }

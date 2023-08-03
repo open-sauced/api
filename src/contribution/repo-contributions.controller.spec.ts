@@ -29,12 +29,7 @@ describe("RepoContributionsController", () => {
           useValue: contributionServiceMock,
         },
       ],
-    })
-      .overrideProvider(RepoService)
-      .useValue(repoServiceMock)
-      .overrideProvider(ContributionService)
-      .useValue(contributionServiceMock)
-      .compile();
+    }).compile();
 
     controller = module.get<RepoContributionsController>(RepoContributionsController);
   });
