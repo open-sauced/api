@@ -37,8 +37,8 @@ module.exports = {
       env: {
         jest: true,
       },
-      files: ['**/__tests__/**/*.[jt]s', '**/?(*.)+(spec|test).[jt]s'],
-      extends: ['plugin:jest/recommended'],
+      files: ["**/__tests__/**/*.[jt]s", "**/?(*.)+(spec|test).[jt]s"],
+      extends: ["plugin:jest/recommended"],
     },
   ],
   rules: {

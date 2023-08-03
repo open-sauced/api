@@ -3,18 +3,17 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
-import { DbUser } from "./user.entity";
-import { UpdateUserDto } from "./dtos/update-user.dto";
-import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
-import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
-import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
-import { userNotificationTypes } from "./entities/user-notification.constants";
-import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
-import { DbTopUser } from "./entities/top-users.entity";
-import { TopUsersDto } from "./dtos/top-users.dto";
-import { PagerService } from "../common/services/pager.service";
-import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { DbUser } from "../user.entity";
+import { UpdateUserDto } from "../dtos/update-user.dto";
+import { UpdateUserProfileInterestsDto } from "../dtos/update-user-interests.dto";
+import { UpdateUserEmailPreferencesDto } from "../dtos/update-user-email-prefs.dto";
+import { UserOnboardingDto } from "../../auth/dtos/user-onboarding.dto";
+import { userNotificationTypes } from "../entities/user-notification.constants";
+import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
+import { DbTopUser } from "../entities/top-users.entity";
+import { TopUsersDto } from "../dtos/top-users.dto";
+import { PageDto } from "../../common/dtos/page.dto";
+import { PageMetaDto } from "../../common/dtos/page-meta.dto";
 
 @Injectable()
 export class UserService {
@@ -22,8 +21,7 @@ export class UserService {
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
-    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
-    private pagerService: PagerService
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -176,7 +174,7 @@ export class UserService {
       return user;
     } catch (e) {
       // create new user
-      const newUser = this.userRepository.create({
+      const newUser = await this.userRepository.save({
         id,
         name: name as string,
         is_open_sauced_member: true,
@@ -186,8 +184,6 @@ export class UserService {
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
-
-      await newUser.save();
 
       return newUser;
     }

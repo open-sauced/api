@@ -5,7 +5,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 
 import { RepoService } from "../repo/repo.service";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user.service";
 
 @Controller("user/recommendations")
 @ApiTags("User Recommendations service")

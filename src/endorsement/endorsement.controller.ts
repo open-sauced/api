@@ -3,7 +3,7 @@ import { ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } fr
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user.service";
 
 import { EndorsementService } from "./endorsement.service";
 import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
