@@ -35,7 +35,7 @@ import { DbInsightMember } from "./entities/insight-member.entity";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightMemberService } from "./insight-member.service";
 import { InsightsService } from "./insights.service";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user.service";
 
 @Controller("user/insights")
 @ApiTags("Insights service")
