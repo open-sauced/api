@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.42.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.4...v1.42.0-beta.5) (2023-08-03)
+
+
+### ✅ Tests
+
+* add unit tests for user service ([#219](https://github.com/open-sauced/api.opensauced.pizza/issues/219)) ([9ca3e9b](https://github.com/open-sauced/api.opensauced.pizza/commit/9ca3e9bf7b45524f9d8645519ae04a4cea069e14))
+
+
+### 🐛 Bug Fixes
+
+* return top users based on no, of reactions recieved ([#233](https://github.com/open-sauced/api.opensauced.pizza/issues/233)) ([26f0f76](https://github.com/open-sauced/api.opensauced.pizza/commit/26f0f76eed13523862042f7491c00c153202d75d))
+
 ## [1.42.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.3...v1.42.0-beta.4) (2023-08-02)
 
 
