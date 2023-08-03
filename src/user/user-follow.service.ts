@@ -4,7 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { UserNotificationService } from "./user-notifcation.service";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user.service";
 
 @Injectable()
 export class UserFollowService {
