@@ -19,7 +19,7 @@
 | [public.insight_repos](public.insight_repos.md)                           | 6       |         | BASE TABLE |
 | [public.user_repos](public.user_repos.md)                                 | 4       |         | BASE TABLE |
 | [public.customers](public.customers.md)                                   | 2       |         | BASE TABLE |
-| [public.user_highlights](public.user_highlights.md)                       | 11      |         | BASE TABLE |
+| [public.user_highlights](public.user_highlights.md)                       | 12      |         | BASE TABLE |
 | [public.pull_requests](public.pull_requests.md)                           | 31      |         | BASE TABLE |
 | [public.user_notifications](public.user_notifications.md)                 | 8       |         | BASE TABLE |
 | [public.users_to_users_followers](public.users_to_users_followers.md)     | 6       |         | BASE TABLE |

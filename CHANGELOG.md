@@ -5,6 +5,26 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.42.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.41.0...v1.42.0) (2023-08-03)
+
+
+### 🍕 Features
+
+* add endpoint for all recent contributors ([#227](https://github.com/open-sauced/api.opensauced.pizza/issues/227)) ([88bc55a](https://github.com/open-sauced/api.opensauced.pizza/commit/88bc55a463e8096ca7e95593886cc26ee53ae1b2))
+* add type field to user highlights table ([#232](https://github.com/open-sauced/api.opensauced.pizza/issues/232)) ([13db3c6](https://github.com/open-sauced/api.opensauced.pizza/commit/13db3c60f277351a756718967d641b6ee311e6e4))
+* return all notifications even if they have been read ([#230](https://github.com/open-sauced/api.opensauced.pizza/issues/230)) ([cc526bc](https://github.com/open-sauced/api.opensauced.pizza/commit/cc526bcbe56c41885c61dcec4ebe78fff8594aca))
+
+
+### ✅ Tests
+
+* add unit tests for user service ([#219](https://github.com/open-sauced/api.opensauced.pizza/issues/219)) ([9ca3e9b](https://github.com/open-sauced/api.opensauced.pizza/commit/9ca3e9bf7b45524f9d8645519ae04a4cea069e14))
+* add unit tests for vote service ([#217](https://github.com/open-sauced/api.opensauced.pizza/issues/217)) ([411c595](https://github.com/open-sauced/api.opensauced.pizza/commit/411c595d0d9aaff7a6eeb8063546e42caaee954d))
+
+
+### 🐛 Bug Fixes
+
+* return top users based on no, of reactions recieved ([#233](https://github.com/open-sauced/api.opensauced.pizza/issues/233)) ([26f0f76](https://github.com/open-sauced/api.opensauced.pizza/commit/26f0f76eed13523862042f7491c00c153202d75d))
+
 ## [1.42.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0-beta.4...v1.42.0-beta.5) (2023-08-03)
 
 
