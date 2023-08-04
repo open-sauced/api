@@ -201,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -284,8 +284,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -379,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -570,8 +570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:85</a></div>
                 </td>
             </tr>
 
@@ -657,6 +657,8 @@ export class UserNotificationService {
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_notifications.user_id&#x3D;users.id&quot;)
       .where(&quot;user_id &#x3D; :userId&quot;, { userId })
       .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes });
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const entities &#x3D; await queryBuilder.getMany();
     const itemCount &#x3D; await queryBuilder.getCount();

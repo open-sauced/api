@@ -101,6 +101,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findTopHighlights" >findTopHighlights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getAllHighlightReactions" >getAllHighlightReactions</a>
                             </li>
                             <li>
@@ -452,6 +456,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findTopHighlights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findTopHighlights</b></span>
+                        <a href="#findTopHighlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findTopHighlights(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/top&#x27;)<br />@ApiOperation({operationId: &#x27;findTopHighlights&#x27;, summary: &#x27;Finds top highlights for the day range and paginates them&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:113</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getAllHighlightReactions"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -723,6 +805,17 @@ export class HighlightController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async getAllHighlightReactions(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlightReactionResponse[]&gt; {
     return this.userHighlightsService.findAllHighlightReactions(id);
+  }
+
+  @Get(&quot;/top&quot;)
+  @ApiOperation({
+    operationId: &quot;findTopHighlights&quot;,
+    summary: &quot;Finds top highlights for the day range and paginates them&quot;,
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async findTopHighlights(@Query() pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    return this.userHighlightsService.findTop(pageOptionsDto);
   }
 }
 </code></pre>
