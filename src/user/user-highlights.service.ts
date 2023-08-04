@@ -107,6 +107,29 @@ export class UserHighlightsService {
     });
   }
 
+  async findTop(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    const queryBuilder = this.baseQueryBuilder();
+    const range = pageOptionsDto.range!;
+
+    queryBuilder
+      .addSelect(
+        `
+        (SELECT COUNT(id) FROM user_highlight_reactions
+        WHERE highlight_id=user_highlights.id
+        AND deleted_at IS NULL)
+      `,
+        "reactions"
+      )
+      .where(`now() - INTERVAL '${range} days' <= user_highlights.created_at`)
+      .limit(10)
+      .orderBy("reactions", "DESC");
+
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
+
   async addFeatured(highlightId: number, userId: number): Promise<DbUserHighlight> {
     const user = await this.userService.findOneById(userId);
 
