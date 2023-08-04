@@ -102,4 +102,15 @@ export class HighlightController {
   async getAllHighlightReactions(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }
+
+  @Get("/top")
+  @ApiOperation({
+    operationId: "findTopHighlights",
+    summary: "Finds top highlights for the day range and paginates them",
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async findTopHighlights(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    return this.userHighlightsService.findTop(pageOptionsDto);
+  }
 }
