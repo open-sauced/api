@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.43.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0...v1.43.0-beta.1) (2023-08-04)
+
+
+### 🍕 Features
+
+* add endpoint to list top highlights for the date range ([#236](https://github.com/open-sauced/api.opensauced.pizza/issues/236)) ([0eb60f2](https://github.com/open-sauced/api.opensauced.pizza/commit/0eb60f224446c5f2b004a9905b1f1c70131841e2))
+* add pagination to notifications endpoint ([#238](https://github.com/open-sauced/api.opensauced.pizza/issues/238)) ([27f5115](https://github.com/open-sauced/api.opensauced.pizza/commit/27f51154c141d8e6901b40e0390854b11f0e94ff))
+
 ## [1.42.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.41.0...v1.42.0) (2023-08-03)
 
 
