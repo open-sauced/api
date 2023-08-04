@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.43.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.1...v1.43.0-beta.2) (2023-08-04)
+
+
+### 🐛 Bug Fixes
+
+* update workflows to use GitHub app for semantic release versioning ([#239](https://github.com/open-sauced/api.opensauced.pizza/issues/239)) ([ee86c56](https://github.com/open-sauced/api.opensauced.pizza/commit/ee86c561baac0077020a2f3c154add84f903fe90))
+
 ## [1.43.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0...v1.43.0-beta.1) (2023-08-04)
 
 
