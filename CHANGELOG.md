@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.43.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0...v1.43.1) (2023-08-04)
+
+
+### 🐛 Bug Fixes
+
+* update package name ([8a2cba4](https://github.com/open-sauced/api.opensauced.pizza/commit/8a2cba4753dbf11ddd3475318ce186b672aec4e1))
+
 ## [1.43.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0...v1.43.0) (2023-08-04)
 
 
