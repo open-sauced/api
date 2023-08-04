@@ -1,5 +1,5 @@
 {
-  "name": "@open-sauced/api.opensauced.pizza",
+  "name": "@open-sauced/api",
   "version": "1.43.0",
   "keywords": [],
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
