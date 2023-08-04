@@ -31,6 +31,8 @@ export class UserNotificationService {
       .where("user_id = :userId", { userId })
       .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes });
 
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
     const entities = await queryBuilder.getMany();
     const itemCount = await queryBuilder.getCount();
 
