@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.43.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.2...v1.43.0-beta.3) (2023-08-05)
+
+
+### 🍕 Features
+
+* accept highlight type during highlight creation ([#242](https://github.com/open-sauced/api.opensauced.pizza/issues/242)) ([35d4f6b](https://github.com/open-sauced/api.opensauced.pizza/commit/35d4f6b2c70e64aa2de1ada4ceb8204630292aef))
+
 ## [1.43.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.1...v1.43.0-beta.2) (2023-08-04)
 
 
