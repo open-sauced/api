@@ -5,17 +5,12 @@
 
 > All notable changes to this project will be documented in this file
 
-## [1.44.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.1...v1.44.0-beta.1) (2023-08-07)
-
-
-### 🍕 Features
-
-* accept highlight type during highlight creation ([#242](https://github.com/open-sauced/api.opensauced.pizza/issues/242)) ([35d4f6b](https://github.com/open-sauced/api.opensauced.pizza/commit/35d4f6b2c70e64aa2de1ada4ceb8204630292aef))
+### [1.43.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.1...v1.43.2) (2023-08-07)
 
 
 ### 🐛 Bug Fixes
 
-* rename Dockerfile to do.Dockerfile for deployment ([27e2e8f](https://github.com/open-sauced/api.opensauced.pizza/commit/27e2e8fde8a35471d6e4e7d290ecf595c7793293))
+* rename Dockerfile to do.Dockerfile for deployment ([bda124c](https://github.com/open-sauced/api.opensauced.pizza/commit/bda124c80ae0be9fdb5463e17568ea35ae0c597f))
 
 ### [1.43.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0...v1.43.1) (2023-08-04)
 
