@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.43.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.3...v1.43.0-beta.4) (2023-08-07)
+
+
+### 🐛 Bug Fixes
+
+* rename Dockerfile to do.Dockerfile for deployment ([27e2e8f](https://github.com/open-sauced/api.opensauced.pizza/commit/27e2e8fde8a35471d6e4e7d290ecf595c7793293))
+
 ## [1.43.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.2...v1.43.0-beta.3) (2023-08-05)
 
 
