@@ -12,6 +12,7 @@ import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.enti
 import { UserNotificationService } from "./user-notifcation.service";
 import { UserService } from "./services/user.service";
 import { PagerService } from "../common/services/pager.service";
+import { UserFollowService } from "./user-follow.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -22,6 +23,7 @@ export class UserHighlightsService {
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
     private userNotificationService: UserNotificationService,
     private userService: UserService,
+    private userFollowService: UserFollowService,
     private pagerService: PagerService
   ) {}
 
@@ -230,7 +232,17 @@ export class UserHighlightsService {
       type: highlight.type,
     });
 
-    return this.userHighlightRepository.save(newUserHighlight);
+    const newHighlight = await this.userHighlightRepository.save(newUserHighlight);
+
+    const followers = await this.userFollowService.findAll(userId);
+
+    const notifications = followers.map(async (follower) =>
+      this.userNotificationService.addUserHighlightNotification(userId, follower.id, newHighlight.id)
+    );
+
+    await Promise.all(notifications);
+
+    return newHighlight;
   }
 
   async updateUserHighlight(highlightId: number, highlight: Partial<DbUserHighlight>) {
@@ -295,12 +307,12 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
-      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+      await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
       return reactionExists;
     }
 
-    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+    await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
     return this.userHighlightReactionRepository.save({
       user_id: userId,
