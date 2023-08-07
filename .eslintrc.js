@@ -42,6 +42,21 @@ module.exports = {
     },
   ],
   rules: {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "object",
+          "type",
+          "index",
+          "parent",
+          "sibling"
+        ]
+      }
+    ],
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],
     "capitalized-comments": [

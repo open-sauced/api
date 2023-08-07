@@ -1,3 +1,5 @@
+import path from "node:path";
+import { writeFile } from "node:fs/promises";
 import { NestFactory } from "@nestjs/core";
 import { FastifyAdapter, NestFastifyApplication } from "@nestjs/platform-fastify";
 import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from "@nestjs/swagger";
@@ -6,8 +8,6 @@ import fastifyHelmet from "@fastify/helmet";
 import { ConfigService } from "@nestjs/config";
 import { Logger } from "nestjs-pino";
 import fastifyRateLimit from "@fastify/rate-limit";
-import path from "node:path";
-import { writeFile } from "node:fs/promises";
 import { major } from "semver";
 
 import { AppModule } from "./app.module";

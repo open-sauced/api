@@ -1,9 +1,9 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { ContributionService } from "./contribution.service";
 import { RepoService } from "../repo/repo.service";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
+import { ContributionService } from "./contribution.service";
 import { DbContribution } from "./contribution.entity";
 import { ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto";
 

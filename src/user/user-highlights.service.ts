@@ -2,16 +2,16 @@ import { ConflictException, Injectable, NotFoundException, UnauthorizedException
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { PagerService } from "../common/services/pager.service";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
 import { UserService } from "./services/user.service";
-import { PagerService } from "../common/services/pager.service";
 
 @Injectable()
 export class UserHighlightsService {

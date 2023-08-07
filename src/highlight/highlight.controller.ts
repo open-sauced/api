@@ -12,12 +12,12 @@ import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
-import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
+import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
 
 @Controller("highlights")
 @ApiTags("Highlights service")

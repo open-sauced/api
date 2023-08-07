@@ -15,9 +15,9 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUserHighlightReaction } from "./user-highlight-reaction.entity";
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../user.entity";
+import { DbUserHighlightReaction } from "./user-highlight-reaction.entity";
 
 @Entity({ name: "user_highlights" })
 export class DbUserHighlight extends BaseEntity {

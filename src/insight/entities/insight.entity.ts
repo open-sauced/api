@@ -18,8 +18,8 @@ import {
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { DbInsightRepo } from "./insight-repo.entity";
 import { DbUser } from "../../user/user.entity";
+import { DbInsightRepo } from "./insight-repo.entity";
 
 @Entity({ name: "insights" })
 export class DbInsight extends BaseEntity {

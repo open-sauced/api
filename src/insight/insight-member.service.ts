@@ -4,10 +4,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
 
-import { DbInsightMember } from "./entities/insight-member.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { InsightsService } from "./insights.service";
 import { PagerService } from "../common/services/pager.service";
+import { DbInsightMember } from "./entities/insight-member.entity";
+import { InsightsService } from "./insights.service";
 
 @Injectable()
 export class InsightMemberService {

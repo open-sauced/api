@@ -1,9 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { RepoContributionsController } from "./repo-contributions.controller";
+import { faker } from "@faker-js/faker";
 import { RepoService } from "../repo/repo.service";
+import { RepoContributionsController } from "./repo-contributions.controller";
 import { ContributionService } from "./contribution.service";
 import { ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto";
-import { faker } from "@faker-js/faker";
 
 describe("RepoContributionsController", () => {
   let controller: RepoContributionsController;

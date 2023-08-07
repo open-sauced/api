@@ -1,9 +1,6 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
-import { User, UserId } from "./supabase.user.decorator";
-import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { UserService } from "../user/services/user.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
@@ -11,6 +8,9 @@ import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
+import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
+import { User, UserId } from "./supabase.user.decorator";
+import { SupabaseGuard } from "./supabase.guard";
 import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
 
 @Controller("auth")

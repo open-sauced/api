@@ -26,12 +26,12 @@ import { PageDto } from "../common/dtos/page.dto";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
-import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 
 @Controller("user/highlights")
 @ApiTags("User Highlights service")

@@ -3,13 +3,13 @@ import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { DbPullRequest } from "./entities/pull-request.entity";
 import { PageDto } from "../common/dtos/page.dto";
+import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestService } from "./pull-request.service";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { DbPRInsight } from "./entities/pull-request-insight.entity";
-import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
 
 @Controller("prs")
 @ApiTags("Pull Requests service")

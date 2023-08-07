@@ -3,10 +3,10 @@ import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTag
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { DbUserNotification } from "./entities/user-notification.entity";
-import { UserNotificationService } from "./user-notifcation.service";
 import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
+import { DbUserNotification } from "./entities/user-notification.entity";
+import { UserNotificationService } from "./user-notifcation.service";
 
 @Controller("user/notifications")
 @ApiTags("User service")

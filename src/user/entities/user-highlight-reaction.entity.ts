@@ -13,9 +13,9 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUserHighlight } from "./user-highlight.entity";
 import { DbEmoji } from "../../emoji/entities/emoji.entity";
 import { DbUser } from "../user.entity";
+import { DbUserHighlight } from "./user-highlight.entity";
 
 @Entity({ name: "user_highlight_reactions" })
 export class DbUserHighlightReaction {

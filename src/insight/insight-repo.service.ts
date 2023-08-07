@@ -2,8 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbInsightRepo } from "./entities/insight-repo.entity";
 import { RepoInfo } from "../repo/dtos/repo-info.dto";
+import { DbInsightRepo } from "./entities/insight-repo.entity";
 
 @Injectable()
 export class InsightRepoService {

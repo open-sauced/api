@@ -15,8 +15,8 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUser } from "../user.entity";
 import { ApiHideProperty } from "@nestjs/swagger";
+import { DbUser } from "../user.entity";
 
 @Entity({ name: "user_collaborations" })
 export class DbUserCollaboration extends BaseEntity {

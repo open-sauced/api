@@ -27,6 +27,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
+import { UserService } from "../user/services/user.service";
 import { CreateInsightMemberDto } from "./dtos/create-insight-member.dto";
 
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
@@ -35,7 +36,6 @@ import { DbInsightMember } from "./entities/insight-member.entity";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightMemberService } from "./insight-member.service";
 import { InsightsService } from "./insights.service";
-import { UserService } from "../user/services/user.service";
 
 @Controller("user/insights")
 @ApiTags("Insights service")

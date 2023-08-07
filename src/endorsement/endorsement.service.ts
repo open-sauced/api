@@ -2,11 +2,10 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
-import { DbEndorsement } from "./entities/endorsement.entity";
-
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PagerService } from "../common/services/pager.service";
+import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
+import { DbEndorsement } from "./entities/endorsement.entity";
 
 @Injectable()
 export class EndorsementService {
