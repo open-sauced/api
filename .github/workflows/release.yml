@@ -44,6 +44,7 @@ jobs:
         with:
           context: .
           tags: ${{ github.repository }}:latest
+          file: do.Dockerfile
           outputs: type=docker,dest=/tmp/docker.tar
           push: false
 
