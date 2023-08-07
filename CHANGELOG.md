@@ -5,19 +5,25 @@
 
 > All notable changes to this project will be documented in this file
 
-## [1.43.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.3...v1.43.0-beta.4) (2023-08-07)
+### [1.43.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0...v1.43.1) (2023-08-04)
 
 
 ### 🐛 Bug Fixes
 
-* rename Dockerfile to do.Dockerfile for deployment ([27e2e8f](https://github.com/open-sauced/api.opensauced.pizza/commit/27e2e8fde8a35471d6e4e7d290ecf595c7793293))
+* update package name ([8a2cba4](https://github.com/open-sauced/api.opensauced.pizza/commit/8a2cba4753dbf11ddd3475318ce186b672aec4e1))
 
-## [1.43.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.2...v1.43.0-beta.3) (2023-08-05)
+## [1.43.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.42.0...v1.43.0) (2023-08-04)
 
 
 ### 🍕 Features
 
-* accept highlight type during highlight creation ([#242](https://github.com/open-sauced/api.opensauced.pizza/issues/242)) ([35d4f6b](https://github.com/open-sauced/api.opensauced.pizza/commit/35d4f6b2c70e64aa2de1ada4ceb8204630292aef))
+* add endpoint to list top highlights for the date range ([#236](https://github.com/open-sauced/api.opensauced.pizza/issues/236)) ([0eb60f2](https://github.com/open-sauced/api.opensauced.pizza/commit/0eb60f224446c5f2b004a9905b1f1c70131841e2))
+* add pagination to notifications endpoint ([#238](https://github.com/open-sauced/api.opensauced.pizza/issues/238)) ([27f5115](https://github.com/open-sauced/api.opensauced.pizza/commit/27f51154c141d8e6901b40e0390854b11f0e94ff))
+
+
+### 🐛 Bug Fixes
+
+* update workflows to use GitHub app for semantic release versioning ([#239](https://github.com/open-sauced/api.opensauced.pizza/issues/239)) ([ee86c56](https://github.com/open-sauced/api.opensauced.pizza/commit/ee86c561baac0077020a2f3c154add84f903fe90))
 
 ## [1.43.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0-beta.1...v1.43.0-beta.2) (2023-08-04)
 
