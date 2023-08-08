@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { CreateIssueSummaryDto } from "./dtos/create-issue-summary.dto";
 import { OpenAiService } from "../open-ai/open-ai.service";
+import { CreateIssueSummaryDto } from "./dtos/create-issue-summary.dto";
 
 @Injectable()
 export class IssueSummaryService {
