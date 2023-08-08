@@ -412,6 +412,12 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 import { PullRequestModule } from &quot;../pull-requests/pull-request.module&quot;;
 import { RepoModule } from &quot;../repo/repo.module&quot;;
 
+import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
+import { RepoService } from &quot;../repo/repo.service&quot;;
+import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
+import { EndorsementService } from &quot;../endorsement/endorsement.service&quot;;
+import { DbEndorsement } from &quot;../endorsement/entities/endorsement.entity&quot;;
+import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
 import { DbUser } from &quot;./user.entity&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
 import { UserController } from &quot;./user.controller&quot;;
@@ -423,9 +429,6 @@ import { UserFollowService } from &quot;./user-follow.service&quot;;
 import { DbUserToUserFollows } from &quot;./entities/user-follows.entity&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbUserTopRepo } from &quot;./entities/user-top-repo.entity&quot;;
-import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
-import { RepoService } from &quot;../repo/repo.service&quot;;
-import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
 import { DbUserNotification } from &quot;./entities/user-notification.entity&quot;;
 import { DbUserCollaboration } from &quot;./entities/user-collaboration.entity&quot;;
 import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
@@ -434,10 +437,7 @@ import { UserCollaborationService } from &quot;./user-collaboration.service&quot
 import { UserCollaborationController } from &quot;./user-collaboration.controller&quot;;
 import { UserEndorsementController } from &quot;./user-endorsement.controller&quot;;
 
-import { EndorsementService } from &quot;../endorsement/endorsement.service&quot;;
-import { DbEndorsement } from &quot;../endorsement/entities/endorsement.entity&quot;;
 import { UserRecommendationController } from &quot;./user-recommendation.controller&quot;;
-import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
 
 @Module({
   imports: [

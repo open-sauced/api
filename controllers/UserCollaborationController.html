@@ -522,11 +522,11 @@ import { User, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
 import { UserCollaborationService } from &quot;./user-collaboration.service&quot;;
 import { CreateUserCollaborationDto } from &quot;./dtos/create-user-collaboration.dto&quot;;
 import { DbUserCollaboration } from &quot;./entities/user-collaboration.entity&quot;;
-import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { UpdateUserCollaborationDto } from &quot;./dtos/update-user-collaboration.dto&quot;;
 
 @Controller(&quot;user/collaborations&quot;)

@@ -203,10 +203,10 @@ import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTag
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { DbUserNotification } from &quot;./entities/user-notification.entity&quot;;
-import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
+import { DbUserNotification } from &quot;./entities/user-notification.entity&quot;;
+import { UserNotificationService } from &quot;./user-notifcation.service&quot;;
 
 @Controller(&quot;user/notifications&quot;)
 @ApiTags(&quot;User service&quot;)

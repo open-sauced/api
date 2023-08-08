@@ -728,10 +728,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
-import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
-import { User, UserId } from &quot;./supabase.user.decorator&quot;;
-import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { UserService } from &quot;../user/services/user.service&quot;;
 import { StripeService } from &quot;../stripe/stripe.service&quot;;
 import { CustomerService } from &quot;../customer/customer.service&quot;;
@@ -739,6 +736,9 @@ import { DbUser } from &quot;../user/user.entity&quot;;
 import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 import { UpdateUserEmailPreferencesDto } from &quot;../user/dtos/update-user-email-prefs.dto&quot;;
 import { UpdateUserProfileInterestsDto } from &quot;../user/dtos/update-user-interests.dto&quot;;
+import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
+import { User, UserId } from &quot;./supabase.user.decorator&quot;;
+import { SupabaseGuard } from &quot;./supabase.guard&quot;;
 import { UserOnboardingDto } from &quot;./dtos/user-onboarding.dto&quot;;
 
 @Controller(&quot;auth&quot;)

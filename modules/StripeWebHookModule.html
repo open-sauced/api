@@ -218,9 +218,9 @@
 import { StripeSubscriptionModule } from &quot;../subscription/stripe-subscription.module&quot;;
 import { CustomerModule } from &quot;../customer/customer.module&quot;;
 
-import { StripeWebhookController } from &quot;./stripe-webhook.controller&quot;;
 import { StripeModule } from &quot;../stripe/stripe.module&quot;;
 import { UserModule } from &quot;../user/user.module&quot;;
+import { StripeWebhookController } from &quot;./stripe-webhook.controller&quot;;
 
 @Module({
   imports: [StripeSubscriptionModule, CustomerModule, StripeModule, UserModule],

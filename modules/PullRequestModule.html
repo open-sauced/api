@@ -299,6 +299,7 @@
 import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { RepoFilterModule } from &quot;../common/filters/repo-filter.module&quot;;
+import { OpenAiModule } from &quot;../open-ai/open-ai.module&quot;;
 import { DbPRInsight } from &quot;./entities/pull-request-insight.entity&quot;;
 import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
 import { PullRequestInsightsService } from &quot;./pull-request-insights.service&quot;;
@@ -312,7 +313,6 @@ import { CodeTestSuggestionController } from &quot;./code-test.suggestion.contro
 import { CodeExplanationService } from &quot;./code-explanation.service&quot;;
 import { CodeExplanationController } from &quot;./code-explanation.controller&quot;;
 import { CodeTestSuggestionService } from &quot;./code-test-suggestion.service&quot;;
-import { OpenAiModule } from &quot;../open-ai/open-ai.module&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], &quot;ApiConnection&quot;), RepoFilterModule, OpenAiModule],

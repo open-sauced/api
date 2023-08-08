@@ -1002,12 +1002,12 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 import { CreateUserHighlightDto } from &quot;./dtos/create-user-highlight.dto&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;
 import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
 import { UserHighlightsService } from &quot;./user-highlights.service&quot;;
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
-import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 
 @Controller(&quot;user/highlights&quot;)
 @ApiTags(&quot;User Highlights service&quot;)

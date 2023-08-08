@@ -198,9 +198,9 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.stargazers.entity&quot;;
+import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { StargazeService } from &quot;./stargaze.service&quot;;
 import { RepoStargazeController } from &quot;./repo-stargaze.controller&quot;;
-import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserStargazers], &quot;ApiConnection&quot;), RepoModule],

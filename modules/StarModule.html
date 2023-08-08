@@ -198,9 +198,9 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbRepoToUserStars } from &quot;../repo/entities/repo.to.user.stars.entity&quot;;
+import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { StarService } from &quot;./star.service&quot;;
 import { RepoStarController } from &quot;./repo-star.controller&quot;;
-import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserStars], &quot;ApiConnection&quot;), RepoModule],

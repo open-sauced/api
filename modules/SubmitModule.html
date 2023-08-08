@@ -198,9 +198,9 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbRepoToUserSubmissions } from &quot;../repo/entities/repo.to.user.submissions.entity&quot;;
+import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { SubmitService } from &quot;./submit.service&quot;;
 import { RepoSubmitController } from &quot;./repo-submit.controller&quot;;
-import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserSubmissions], &quot;ApiConnection&quot;), RepoModule],

@@ -767,14 +767,14 @@
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
-import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
 import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
 import { InsightFilterFieldsEnum } from &quot;../insight/dtos/insight-options.dto&quot;;
+import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
+import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
 import { DbPullRequestContributor } from &quot;./dtos/pull-request-contributor.dto&quot;;
 import { PullRequestContributorOptionsDto } from &quot;./dtos/pull-request-contributor-options.dto&quot;;
 import { PullRequestContributorInsightsDto } from &quot;./dtos/pull-request-contributor-insights.dto&quot;;

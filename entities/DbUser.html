@@ -2517,15 +2517,15 @@
 } from &quot;typeorm&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.entity&quot;;
 import { DbRepoToUserStars } from &quot;../repo/entities/repo.to.user.stars.entity&quot;;
 import { DbRepoToUserSubmissions } from &quot;../repo/entities/repo.to.user.submissions.entity&quot;;
 import { DbRepoToUserStargazers } from &quot;../repo/entities/repo.to.user.stargazers.entity&quot;;
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { DbInsight } from &quot;../insight/entities/insight.entity&quot;;
 import { DbUserHighlight } from &quot;./entities/user-highlight.entity&quot;;
 import { DbUserHighlightReaction } from &quot;./entities/user-highlight-reaction.entity&quot;;

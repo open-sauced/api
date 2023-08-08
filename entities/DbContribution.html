@@ -516,11 +516,11 @@
 } from &quot;typeorm&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
 
-import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 
 @Entity({ name: &quot;contributions&quot; })
 export class DbContribution extends BaseEntity {

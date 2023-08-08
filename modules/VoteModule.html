@@ -198,9 +198,9 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { DbRepoToUserVotes } from &quot;../repo/entities/repo.to.user.votes.entity&quot;;
+import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { VoteService } from &quot;./vote.service&quot;;
 import { RepoVoteController } from &quot;./repo-vote.controller&quot;;
-import { RepoModule } from &quot;../repo/repo.module&quot;;
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbRepo, DbRepoToUserVotes], &quot;ApiConnection&quot;), RepoModule],
