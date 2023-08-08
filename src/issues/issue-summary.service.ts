@@ -13,12 +13,13 @@ export class IssueSummaryService {
       `The summary should be written in past tense and ${tone} tone`,
       `Summary language: ${language}`,
       `Summary must be a maximum of ${maxLength} characters.`,
-      "Exclude anything unnecessary such as translation. Your entire response will be used to summarize and analyze the issue",
+      "If the issue or its comments include a solution, include it in the summary.",
+      "Exclude anything unnecessary such as translation. Your entire response will be used to summarize and analyze the issue.",
     ].join("\n");
   }
 
   async generateIssueSummary(options: CreateIssueSummaryDto) {
-    const content = `Issue Title: ${options.issueTitle}\nIssue Description: ${options.issueDescription}\n`;
+    const content = `Issue Title: ${options.issueTitle}\nIssue Description: ${options.issueDescription}\nIssue Comments: ${options.issueComments}`;
 
     try {
       const completion = this.openAiService.generateCompletion(

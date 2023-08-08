@@ -54,4 +54,11 @@ export class CreateIssueSummaryDto {
   })
   @IsString()
   issueDescription: string;
+
+  @ApiProperty({
+    description: "Issue Comments",
+    type: String,
+  })
+  @IsString()
+  issueComments: string;
 }
