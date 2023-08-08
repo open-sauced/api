@@ -164,7 +164,7 @@ export class UserService {
     try {
       const user = await this.findOneById(id, true);
 
-      if (user && !user.is_open_sauced_member) {
+      if (!user.is_open_sauced_member) {
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
           connected_at: new Date(),
