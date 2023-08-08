@@ -3,8 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 
 import { RepoFilterService } from "../common/filters/repo-filter.service";
-import { DbPRInsight } from "./entities/pull-request-insight.entity";
 import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { DbPRInsight } from "./entities/pull-request-insight.entity";
 
 @Injectable()
 export class PullRequestInsightsService {

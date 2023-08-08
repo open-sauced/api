@@ -12,17 +12,17 @@ import {
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { DbUser } from "../../user/user.entity";
-import { DbContribution } from "../../contribution/contribution.entity";
-import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
-import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
-import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
-import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUser } from "../../user/user.entity";
+import { DbContribution } from "../../contribution/contribution.entity";
 import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
+import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
+import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
+import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
+import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
 
 @Entity({
   name: "repos",

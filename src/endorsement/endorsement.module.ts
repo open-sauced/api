@@ -1,13 +1,13 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { UserModule } from "../user/user.module";
+import { AuthModule } from "../auth/auth.module";
+import { ApiServicesModule } from "../common/services/api-services.module";
 import { EndorsementService } from "./endorsement.service";
 import { EndorsementController } from "./endorsement.controller";
 import { DbEndorsement } from "./entities/endorsement.entity";
-import { UserModule } from "../user/user.module";
-import { AuthModule } from "../auth/auth.module";
 import { EndorsementTokenGuard } from "./endorsement-token.guard";
-import { ApiServicesModule } from "../common/services/api-services.module";
 
 @Module({
   imports: [TypeOrmModule.forFeature([DbEndorsement], "ApiConnection"), UserModule, AuthModule, ApiServicesModule],

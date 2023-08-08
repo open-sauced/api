@@ -1,9 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { RepoVoteController } from "./repo-vote.controller";
-import { RepoService } from "../repo/repo.service";
-import { VoteService } from "./vote.service";
-import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
 import { faker } from "@faker-js/faker";
+import { RepoService } from "../repo/repo.service";
+import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
+import { RepoVoteController } from "./repo-vote.controller";
+import { VoteService } from "./vote.service";
 
 describe("RepoVoteController", () => {
   let controller: RepoVoteController;

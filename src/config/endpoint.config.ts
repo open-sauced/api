@@ -1,5 +1,5 @@
-import { registerAs } from "@nestjs/config";
 import { URL } from "node:url";
+import { registerAs } from "@nestjs/config";
 
 const getDomain = (subdomain?: string) =>
   new URL(`https://${subdomain ? `${subdomain}.` : ""}${process.env.DOMAIN ?? "opensauced.pizza"}`).toString();

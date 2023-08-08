@@ -5,11 +5,11 @@ import { Test } from "@nestjs/testing";
 import { faker } from "@faker-js/faker";
 import { ObjectLiteral, Repository } from "typeorm";
 
-import { UserService } from "./user.service";
+import { User } from "@supabase/supabase-js";
 import { userNotificationTypes } from "../entities/user-notification.constants";
 import { DbUser } from "../user.entity";
 import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
-import { User } from "@supabase/supabase-js";
+import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T> => ({
