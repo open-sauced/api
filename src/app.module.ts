@@ -55,6 +55,7 @@ import { EndorsementModule } from "./endorsement/endorsement.module";
 import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
 import { ContributorModule } from "./contributor/contributor.module";
 import { OpenAiModule } from "./open-ai/open-ai.module";
+import { IssueSummaryModule } from "./issues/issue-summary.module";
 
 @Module({
   imports: [
@@ -169,6 +170,7 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
     ContributionModule,
     UserModule,
     InsightsModule,
+    IssueSummaryModule,
     UserReposModule,
     CustomerModule,
     StripeWebHookModule,
