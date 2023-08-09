@@ -48,6 +48,7 @@ export class UserNotificationService {
   }
 
   async addUserNotification(userNotification: Partial<DbUserNotification>) {
+    console.log({ userNotification });
     return this.userNotificationRepository.save({
       type: userNotification.type,
       notified_at: new Date(),
@@ -82,7 +83,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number, highlightId: number) {
+  async addUserHighlightNotification(userId: number, highlightUserId: number) {
     const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -90,7 +91,7 @@ export class UserNotificationService {
       user_id: highlightUserId,
       from_user_id: userId,
       message: `${followUser.login} created a new highlight`,
-      meta_id: `${highlightId}`,
+      meta_id: `${followUser.login}`,
     });
   }
 

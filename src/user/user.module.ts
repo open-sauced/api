@@ -72,13 +72,6 @@ import { ApiServicesModule } from "../common/services/api-services.module";
     UserCollaborationService,
     EndorsementService,
   ],
-  exports: [
-    UserService,
-    UserHighlightsService,
-    UserFollowService,
-    RepoService,
-    EndorsementService,
-    UserFollowsController,
-  ],
+  exports: [UserService, UserHighlightsService, UserFollowService, RepoService, EndorsementService],
 })
 export class UserModule {}

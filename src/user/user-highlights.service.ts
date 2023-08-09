@@ -237,7 +237,7 @@ export class UserHighlightsService {
     const followers = await this.userFollowService.findAll(userId);
 
     const notifications = followers.map(async (follower) =>
-      this.userNotificationService.addUserHighlightNotification(userId, follower.id, newHighlight.id)
+      this.userNotificationService.addUserHighlightNotification(userId, follower.following_user_id)
     );
 
     await Promise.all(notifications);
