@@ -48,7 +48,6 @@ export class UserNotificationService {
   }
 
   async addUserNotification(userNotification: Partial<DbUserNotification>) {
-    console.log({ userNotification });
     return this.userNotificationRepository.save({
       type: userNotification.type,
       notified_at: new Date(),
