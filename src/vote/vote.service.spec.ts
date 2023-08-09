@@ -1,9 +1,9 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { VoteService } from "./vote.service";
 import { getRepositoryToken } from "@nestjs/typeorm";
-import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { NotFoundException, ConflictException } from "@nestjs/common";
 import { faker } from "@faker-js/faker";
+import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
+import { VoteService } from "./vote.service";
 
 describe("VoteService", () => {
   let service: VoteService;

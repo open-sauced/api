@@ -9,7 +9,6 @@ import {
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
-import { StargazeService } from "./stargaze.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
@@ -17,6 +16,7 @@ import { ApiPaginatedResponse } from "../common/decorators/api-paginated-respons
 import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
+import { StargazeService } from "./stargaze.service";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")

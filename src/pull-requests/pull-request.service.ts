@@ -2,14 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbPullRequest } from "./entities/pull-request.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
+import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
 import { PullRequestContributorInsightsDto } from "./dtos/pull-request-contributor-insights.dto";

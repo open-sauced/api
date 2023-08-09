@@ -5,17 +5,26 @@
 
 > All notable changes to this project will be documented in this file
 
-## [1.44.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.1...v1.44.0-beta.1) (2023-08-07)
+## [1.44.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.2...v1.44.0-beta.3) (2023-08-08)
 
 
 ### 🍕 Features
 
-* accept highlight type during highlight creation ([#242](https://github.com/open-sauced/api.opensauced.pizza/issues/242)) ([35d4f6b](https://github.com/open-sauced/api.opensauced.pizza/commit/35d4f6b2c70e64aa2de1ada4ceb8204630292aef))
+* add endpoint to generate a summary for an issue ([#245](https://github.com/open-sauced/api.opensauced.pizza/issues/245)) ([a46bd58](https://github.com/open-sauced/api.opensauced.pizza/commit/a46bd5800c620061ca362dc2bffa2c9f377552cf))
+
+## [1.44.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.1...v1.44.0-beta.2) (2023-08-07)
 
 
 ### 🐛 Bug Fixes
 
-* rename Dockerfile to do.Dockerfile for deployment ([27e2e8f](https://github.com/open-sauced/api.opensauced.pizza/commit/27e2e8fde8a35471d6e4e7d290ecf595c7793293))
+* rename Dockerfile to do.Dockerfile for deployment ([bda124c](https://github.com/open-sauced/api.opensauced.pizza/commit/bda124c80ae0be9fdb5463e17568ea35ae0c597f))
+
+### [1.43.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.1...v1.43.2) (2023-08-07)
+
+
+### 🐛 Bug Fixes
+
+* rename Dockerfile to do.Dockerfile for deployment ([bda124c](https://github.com/open-sauced/api.opensauced.pizza/commit/bda124c80ae0be9fdb5463e17568ea35ae0c597f))
 
 ### [1.43.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.0...v1.43.1) (2023-08-04)
 

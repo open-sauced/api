@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbUserNotification } from "./entities/user-notification.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { DbUserNotification } from "./entities/user-notification.entity";
 import { UserNotificationTypes, userNotificationTypes } from "./entities/user-notification.constants";
 import { UserService } from "./services/user.service";
 

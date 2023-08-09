@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { GenerateCodeExplanationDto } from "./dtos/create-code-explanation.dto";
 import { OpenAiService } from "../open-ai/open-ai.service";
+import { GenerateCodeExplanationDto } from "./dtos/create-code-explanation.dto";
 
 @Injectable()
 export class CodeExplanationService {

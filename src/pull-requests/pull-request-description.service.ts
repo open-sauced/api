@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { GeneratePullRequestDescriptionDto } from "./dtos/create-pull-request-description.dto";
 import { OpenAiService } from "../open-ai/open-ai.service";
+import { GeneratePullRequestDescriptionDto } from "./dtos/create-pull-request-description.dto";
 
 @Injectable()
 export class PullRequestDescriptionService {
