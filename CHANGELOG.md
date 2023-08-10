@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.4...v1.44.0-beta.5) (2023-08-10)
+
+
+### 🍕 Features
+
+* notify followers when a highlight is created ([#244](https://github.com/open-sauced/api.opensauced.pizza/issues/244)) ([892ef0f](https://github.com/open-sauced/api.opensauced.pizza/commit/892ef0f855f56fe0ade82e3c0113781a410513ed))
+
 ## [1.44.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.3...v1.44.0-beta.4) (2023-08-10)
 
 
