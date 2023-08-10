@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.3...v1.44.0-beta.4) (2023-08-10)
+
+
+### 🍕 Features
+
+* add endpoints for churned and repeat contributors ([#249](https://github.com/open-sauced/api.opensauced.pizza/issues/249)) ([cc0b4de](https://github.com/open-sauced/api.opensauced.pizza/commit/cc0b4de1fd30104f76e4e2b7d633ec2af247fd07))
+
 ## [1.44.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.2...v1.44.0-beta.3) (2023-08-08)
 
 
