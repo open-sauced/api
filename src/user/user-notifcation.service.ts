@@ -70,7 +70,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number, highlightId: number) {
+  async addUserHighlightReactionNotification(userId: number, highlightUserId: number, highlightId: number) {
     const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -79,6 +79,18 @@ export class UserNotificationService {
       from_user_id: userId,
       message: `${followUser.login} reacted to your highlight`,
       meta_id: `${highlightId}`,
+    });
+  }
+
+  async addUserHighlightNotification(userId: number, highlightUserId: number) {
+    const followUser = await this.userService.findOneById(userId);
+
+    return this.addUserNotification({
+      type: UserNotificationTypes.HighlightCreated,
+      user_id: highlightUserId,
+      from_user_id: userId,
+      message: `${followUser.login} created a new highlight`,
+      meta_id: `${followUser.login}`,
     });
   }
 
