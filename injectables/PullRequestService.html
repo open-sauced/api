@@ -91,11 +91,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllChurnContributors" >findAllChurnContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllContributorsWithFilters" >findAllContributorsWithFilters</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findAllRecentContributors" >findAllRecentContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllRepeatContributors" >findAllRepeatContributors</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -382,6 +390,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllChurnContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllChurnContributors</b></span>
+                        <a href="#findAllChurnContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllChurnContributors(pageOptionsDto: <a href="../classes/PullRequestContributorOptionsDto.html" target="_self">PullRequestContributorOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:208</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorOptionsDto.html" target="_self" >PullRequestContributorOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllContributorsWithFilters"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -496,6 +575,77 @@
                                     <td>pageOptionsDto</td>
                                     <td>
                                                 <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllRepeatContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllRepeatContributors</b></span>
+                        <a href="#findAllRepeatContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllRepeatContributors(pageOptionsDto: <a href="../classes/PullRequestContributorOptionsDto.html" target="_self">PullRequestContributorOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="245"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:245</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorOptionsDto.html" target="_self" >PullRequestContributorOptionsDto</a></code>
                                     </td>
 
                                     <td>
@@ -684,8 +834,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="208"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:208</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:282</a></div>
                 </td>
             </tr>
 
@@ -921,13 +1071,13 @@ export class PullRequestService {
     const range &#x3D; pageOptionsDto.range!;
     const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
 
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-    const prevMonthQuery &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const queryBuilder &#x3D; this.pullRequestRepository.manager.createQueryBuilder();
+    const currentMonthQuery &#x3D; this.getContributorRangeQueryBuilder(0, range, repoIds);
 
     queryBuilder
-      .select(&quot;previous_month.author_login&quot;)
+      .select(&quot;current_month.author_login&quot;)
       .distinct()
-      .from(&#x60;(${prevMonthQuery.getQuery()})&#x60;, &quot;previous_month&quot;)
+      .from(&#x60;(${currentMonthQuery.getQuery()})&#x60;, &quot;current_month&quot;)
       .leftJoin(
         (qb) &#x3D;&gt;
           qb
@@ -935,14 +1085,14 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, &quot;pull_requests&quot;)
             .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
-            .where(&#x60;pull_requests.updated_at &gt;&#x3D; NOW() - INTERVAL &#x27;${range} days&#x27;&#x60;)
-            .andWhere(&quot;pull_requests.updated_at &lt; NOW() - INTERVAL &#x27;0 days&#x27;&quot;)
+            .where(&#x60;pull_requests.updated_at &gt;&#x3D; NOW() - INTERVAL &#x27;${range + range} days&#x27;&#x60;)
+            .andWhere(&#x60;pull_requests.updated_at &lt; NOW() - INTERVAL &#x27;${range} days&#x27;&#x60;)
             .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;)
             .andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds }),
-        &quot;current_month&quot;,
+        &quot;previous_month&quot;,
         &quot;previous_month.author_login &#x3D; current_month.author_login&quot;
       )
-      .where(&quot;current_month.author_login IS NULL&quot;);
+      .where(&quot;previous_month.author_login IS NULL&quot;);
 
     const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
     const itemCount &#x3D; entities.length;
@@ -958,7 +1108,7 @@ export class PullRequestService {
     const range &#x3D; pageOptionsDto.range!;
     const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
 
-    const queryBuilder &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const queryBuilder &#x3D; this.getContributorRangeQueryBuilder(0, range, repoIds);
     const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
     const itemCount &#x3D; entities.length;
 
@@ -966,6 +1116,80 @@ export class PullRequestService {
       itemCount,
       pageOptionsDto: { ...pageOptionsDto, limit: itemCount, skip: 0 },
     });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllChurnContributors(
+    pageOptionsDto: PullRequestContributorOptionsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
+
+    const queryBuilder &#x3D; this.pullRequestRepository.manager.createQueryBuilder();
+    const prevMonthQuery &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+
+    queryBuilder
+      .select(&quot;previous_month.author_login&quot;)
+      .distinct()
+      .from(&#x60;(${prevMonthQuery.getQuery()})&#x60;, &quot;previous_month&quot;)
+      .leftJoin(
+        (qb) &#x3D;&gt;
+          qb
+            .select(&quot;author_login&quot;)
+            .distinct()
+            .from(DbPullRequest, &quot;pull_requests&quot;)
+            .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
+            .where(&#x60;pull_requests.updated_at &gt;&#x3D; now() - INTERVAL &#x27;${range} days&#x27;&#x60;)
+            .andWhere(&quot;pull_requests.updated_at &lt; now() - INTERVAL &#x27;0 days&#x27;&quot;)
+            .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;)
+            .andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds }),
+        &quot;current_month&quot;,
+        &quot;previous_month.author_login &#x3D; current_month.author_login&quot;
+      )
+      .where(&quot;current_month.author_login IS NULL&quot;);
+
+    const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
+    const itemCount &#x3D; entities.length;
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllRepeatContributors(
+    pageOptionsDto: PullRequestContributorOptionsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
+
+    const queryBuilder &#x3D; this.pullRequestRepository.manager.createQueryBuilder();
+    const prevMonthQuery &#x3D; this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+
+    queryBuilder
+      .select(&quot;previous_month.author_login&quot;)
+      .distinct()
+      .from(&#x60;(${prevMonthQuery.getQuery()})&#x60;, &quot;previous_month&quot;)
+      .leftJoin(
+        (qb) &#x3D;&gt;
+          qb
+            .select(&quot;author_login&quot;)
+            .distinct()
+            .from(DbPullRequest, &quot;pull_requests&quot;)
+            .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
+            .where(&#x60;pull_requests.updated_at &gt;&#x3D; now() - INTERVAL &#x27;${range} days&#x27;&#x60;)
+            .andWhere(&quot;pull_requests.updated_at &lt; now() - INTERVAL &#x27;0 days&#x27;&quot;)
+            .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;)
+            .andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds }),
+        &quot;current_month&quot;,
+        &quot;previous_month.author_login &#x3D; current_month.author_login&quot;
+      )
+      .where(&quot;current_month.author_login IS NOT NULL&quot;);
+
+    const entities: DbPullRequestContributor[] &#x3D; await queryBuilder.getRawMany();
+    const itemCount &#x3D; entities.length;
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
   }

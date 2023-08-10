@@ -85,7 +85,15 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllChurnPullRequestContributors" >findAllChurnPullRequestContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllRecentPullRequestContributors" >findAllRecentPullRequestContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllRepeatPullRequestContributors" >findAllRepeatPullRequestContributors</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -108,6 +116,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllChurnPullRequestContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllChurnPullRequestContributors</b></span>
+                        <a href="#findAllChurnPullRequestContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllChurnPullRequestContributors(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/churn&#x27;)<br />@ApiOperation({operationId: &#x27;findAllChurnPullRequestContributors&#x27;, summary: &#x27;Gets all recent churned contributors for the last 30 days based on repo IDs&#x27;})<br />@ApiPaginatedResponse(DbPullRequestContributor)<br />@ApiOkResponse({type: DbPullRequestContributor})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/contributor/contributor-insights.controller.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -139,6 +225,84 @@
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="36"
                             class="link-to-prism">src/contributor/contributor-insights.controller.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllRepeatPullRequestContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllRepeatPullRequestContributors</b></span>
+                        <a href="#findAllRepeatPullRequestContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllRepeatPullRequestContributors(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/repeat&#x27;)<br />@ApiOperation({operationId: &#x27;findAllRepeatPullRequestContributors&#x27;, summary: &#x27;Gets all recent repeat contributors for the last 30 days based on repo IDs&#x27;})<br />@ApiPaginatedResponse(DbPullRequestContributor)<br />@ApiOkResponse({type: DbPullRequestContributor})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/contributor/contributor-insights.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -307,6 +471,32 @@ export class ContributorInsightsController {
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
     return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
+  }
+
+  @Get(&quot;/churn&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllChurnPullRequestContributors&quot;,
+    summary: &quot;Gets all recent churned contributors for the last 30 days based on repo IDs&quot;,
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllChurnPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    return this.pullRequestService.findAllChurnContributors(pageOptionsDto);
+  }
+
+  @Get(&quot;/repeat&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllRepeatPullRequestContributors&quot;,
+    summary: &quot;Gets all recent repeat contributors for the last 30 days based on repo IDs&quot;,
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllRepeatPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    return this.pullRequestService.findAllRepeatContributors(pageOptionsDto);
   }
 }
 </code></pre>
