@@ -88,6 +88,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#addUserHighlightReactionNotification" >addUserHighlightReactionNotification</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addUserNotification" >addUserNotification</a>
                             </li>
                             <li>
@@ -277,7 +281,90 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>highlightUserId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserHighlightReactionNotification"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addUserHighlightReactionNotification</b></span>
+                        <a href="#addUserHighlightReactionNotification"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addUserHighlightReactionNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -570,8 +657,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -697,7 +784,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number, highlightId: number) {
+  async addUserHighlightReactionNotification(userId: number, highlightUserId: number, highlightId: number) {
     const followUser &#x3D; await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -706,6 +793,18 @@ export class UserNotificationService {
       from_user_id: userId,
       message: &#x60;${followUser.login} reacted to your highlight&#x60;,
       meta_id: &#x60;${highlightId}&#x60;,
+    });
+  }
+
+  async addUserHighlightNotification(userId: number, highlightUserId: number) {
+    const followUser &#x3D; await this.userService.findOneById(userId);
+
+    return this.addUserNotification({
+      type: UserNotificationTypes.HighlightCreated,
+      user_id: highlightUserId,
+      from_user_id: userId,
+      message: &#x60;${followUser.login} created a new highlight&#x60;,
+      meta_id: &#x60;${followUser.login}&#x60;,
     });
   }
 

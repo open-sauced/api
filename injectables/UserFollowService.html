@@ -87,6 +87,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findUserFollowerById" >findUserFollowerById</a>
                             </li>
                             <li>
@@ -205,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/user/user-follow.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/user-follow.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -307,6 +311,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/user/user-follow.service.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findUserFollowerById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -325,8 +400,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/user/user-follow.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/user/user-follow.service.ts:37</a></div>
                 </td>
             </tr>
 
@@ -408,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/user/user-follow.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/user/user-follow.service.ts:82</a></div>
                 </td>
             </tr>
 
@@ -496,6 +571,19 @@ export class UserFollowService {
     const builder &#x3D; this.userFollowRepository.createQueryBuilder(&quot;user_follows&quot;).withDeleted();
 
     return builder;
+  }
+
+  async findAll(userId: number) {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_follows.user_id&#x3D;users.id&quot;)
+      .where(&quot;user_follows.user_id &#x3D; :userId&quot;, { userId })
+      .andWhere(&quot;user_follows.deleted_at IS NULL&quot;);
+
+    const entities &#x3D; await queryBuilder.getMany();
+
+    return entities;
   }
 
   async findUserFollowerById(userId: number, followerUserId: number): Promise&lt;DbUserToUserFollows&gt; {
