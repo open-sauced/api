@@ -30,7 +30,8 @@ export class UserNotificationService {
       .innerJoin("users", "users", "user_notifications.user_id=users.id")
       .innerJoinAndSelect("user_notifications.from_user", "from_user")
       .where("user_id = :userId", { userId })
-      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes });
+      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes })
+      .orderBy("user_notifications.notified_at", "DESC");
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
