@@ -28,6 +28,7 @@ export class UserNotificationService {
 
     queryBuilder
       .innerJoin("users", "users", "user_notifications.user_id=users.id")
+      .innerJoinAndSelect("user_notifications.from_user", "from_user")
       .where("user_id = :userId", { userId })
       .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes });
 
