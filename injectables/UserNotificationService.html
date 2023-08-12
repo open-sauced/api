@@ -205,8 +205,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -288,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:87</a></div>
                 </td>
             </tr>
 
@@ -371,8 +371,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -466,8 +466,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -657,8 +657,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/user/user-notifcation.service.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/user/user-notifcation.service.ts:99</a></div>
                 </td>
             </tr>
 
@@ -742,8 +742,10 @@ export class UserNotificationService {
 
     queryBuilder
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_notifications.user_id&#x3D;users.id&quot;)
+      .innerJoinAndSelect(&quot;user_notifications.from_user&quot;, &quot;from_user&quot;)
       .where(&quot;user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes });
+      .andWhere(&quot;user_notifications.type IN (:...userNotificationTypes)&quot;, { userNotificationTypes })
+      .orderBy(&quot;user_notifications.notified_at&quot;, &quot;DESC&quot;);
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
