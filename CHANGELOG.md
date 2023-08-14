@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.6...v1.44.0-beta.7) (2023-08-14)
+
+
+### 🍕 Features
+
+* add endpoint to generate blog summaries ([#251](https://github.com/open-sauced/api.opensauced.pizza/issues/251)) ([de24c6b](https://github.com/open-sauced/api.opensauced.pizza/commit/de24c6b55668507150412e4c76163253325448c8))
+
 ## [1.44.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.5...v1.44.0-beta.6) (2023-08-12)
 
 
