@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.7...v1.44.0-beta.8) (2023-08-14)
+
+
+### 🐛 Bug Fixes
+
+* Add documentation for pizza oven service ([81d7777](https://github.com/open-sauced/api.opensauced.pizza/commit/81d777768704271f91fc879bdf094fd553b4030f))
+
 ## [1.44.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.6...v1.44.0-beta.7) (2023-08-14)
 
 
