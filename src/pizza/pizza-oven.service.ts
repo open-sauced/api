@@ -29,8 +29,8 @@ export class PizzaOvenService {
 
   async postToPizzaOvenService(bakeRepoInfo: BakeRepoDto): Promise<number> {
     const data = {
-      url: bakeRepoInfo.cloneURL,
-      wait: true,
+      url: bakeRepoInfo.url,
+      wait: bakeRepoInfo.wait,
     };
 
     const host: string = this.configService.get("pizza.host")!;
