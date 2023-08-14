@@ -5,6 +5,24 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.2...v1.44.0) (2023-08-14)
+
+
+### 🍕 Features
+
+* accept highlight type during highlight creation ([#242](https://github.com/open-sauced/api.opensauced.pizza/issues/242)) ([35d4f6b](https://github.com/open-sauced/api.opensauced.pizza/commit/35d4f6b2c70e64aa2de1ada4ceb8204630292aef))
+* add endpoint to generate a summary for an issue ([#245](https://github.com/open-sauced/api.opensauced.pizza/issues/245)) ([a46bd58](https://github.com/open-sauced/api.opensauced.pizza/commit/a46bd5800c620061ca362dc2bffa2c9f377552cf))
+* add endpoint to generate blog summaries ([#251](https://github.com/open-sauced/api.opensauced.pizza/issues/251)) ([de24c6b](https://github.com/open-sauced/api.opensauced.pizza/commit/de24c6b55668507150412e4c76163253325448c8))
+* add endpoints for churned and repeat contributors ([#249](https://github.com/open-sauced/api.opensauced.pizza/issues/249)) ([cc0b4de](https://github.com/open-sauced/api.opensauced.pizza/commit/cc0b4de1fd30104f76e4e2b7d633ec2af247fd07))
+* add source user info to the user notifications ([#248](https://github.com/open-sauced/api.opensauced.pizza/issues/248)) ([69319cc](https://github.com/open-sauced/api.opensauced.pizza/commit/69319cc21004eee0dd683bee126a4d4001c4c1f3))
+* notify followers when a highlight is created ([#244](https://github.com/open-sauced/api.opensauced.pizza/issues/244)) ([892ef0f](https://github.com/open-sauced/api.opensauced.pizza/commit/892ef0f855f56fe0ade82e3c0113781a410513ed))
+
+
+### 🐛 Bug Fixes
+
+* Add documentation for pizza oven service ([81d7777](https://github.com/open-sauced/api.opensauced.pizza/commit/81d777768704271f91fc879bdf094fd553b4030f))
+* rename Dockerfile to do.Dockerfile for deployment ([27e2e8f](https://github.com/open-sauced/api.opensauced.pizza/commit/27e2e8fde8a35471d6e4e7d290ecf595c7793293))
+
 ## [1.44.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.7...v1.44.0-beta.8) (2023-08-14)
 
 
