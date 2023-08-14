@@ -109,7 +109,12 @@ docker run -p 8080:3001 api.opensauced.pizza</code></pre></div><p>Alternatively 
 <div><pre class="line-numbers"><code class="language-shell">npm run types:auto-check</code></pre></div><p>In order to add any missing types to <code>package.json</code>:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run types:auto-add</code></pre></div><h3 id="🚀-production-deployment">🚀 Production deployment</h3>
 <p>A production deployment is a complete build of the project, including the build of the static assets.</p>
-<div><pre class="line-numbers"><code class="language-shell">npm run build</code></pre></div><h2 id="🔑-database-structure">🔑 Database structure</h2>
+<div><pre class="line-numbers"><code class="language-shell">npm run build</code></pre></div><h3 id="🍕-pizza-service-integration">🍕 Pizza service integration</h3>
+<p>This API integrates with the <a href="https://github.com/open-sauced/pizza">pizza service</a>
+to accept requests for ingesting commits to the database.
+The environment variables for this are:</p>
+<div><pre class="line-numbers"><code class="language-none">PIZZA_OVEN_HOST=&quot;http://example.com&quot;
+PIZZA_OVEN_API=80</code></pre></div><h2 id="🔑-database-structure">🔑 Database structure</h2>
 <p>Click the image to see the schema diagram full documentation.</p>
 <p><a href="public/diagrams/README.md"><img src="public/diagrams/schema.svg" alt="er" class="img-responsive"></a></p>
 <h2 id="🤝-contributing">🤝 Contributing</h2>
