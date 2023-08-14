@@ -199,6 +199,13 @@ export class DbPullRequest extends BaseEntity {
   public merged_at?: Date;
 
   @ApiModelProperty({
+    description: "Pull request merged by username",
+    example: "bdougie",
+  })
+  @Column("text")
+  public merged_by_login?: string;
+
+  @ApiModelProperty({
     description: "Timestamp representing repository last update",
     example: "2022-08-28 22:04:29.000000",
   })
