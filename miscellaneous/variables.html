@@ -85,6 +85,9 @@
                             <a href="#OpenAIConfig" title="src/config/openai.config.ts" ><b>OpenAIConfig</b>&nbsp;&nbsp;&nbsp;(src/.../openai.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#PizzaConfig" title="src/config/pizza.config.ts" ><b>PizzaConfig</b>&nbsp;&nbsp;&nbsp;(src/.../pizza.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#relevantEvents" title="src/stripe-webhook/stripe-webhook.controller.ts" ><b>relevantEvents</b>&nbsp;&nbsp;&nbsp;(src/.../stripe-webhook.controller.ts)</a>
                         </li>
                         <li>
@@ -344,6 +347,32 @@
   APIKey: String(process.env.OPENAI_API_KEY ?? &quot;apikey&quot;),
   modelName: String(process.env.OPENAI_MODEL_NAME ?? &quot;gpt-3.5-turbo&quot;),
   completionsURL: String(process.env.OPENAI_COMPLETIONS_API_URL ?? &quot;&quot;),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/pizza.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PizzaConfig"></a>
+                    <span class="name">
+                        <span ><b>PizzaConfig</b></span>
+                        <a href="#PizzaConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;pizza&quot;, () &#x3D;&gt; ({
+  host: String(process.env.PIZZA_OVEN_HOST ?? &quot;0.0.0.0&quot;),
+  port: String(process.env.PIZZA_OVEN_PORT ?? &quot;80&quot;),
 }))</code>
                     </td>
                 </tr>

@@ -18,13 +18,13 @@
 <title>cluster_StarModule_providers</title>
 <polygon fill="none" stroke="black" points="130,-40.8 130,-92.8 258,-92.8 258,-40.8 130,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_StarModule_exports</title>
-<polygon fill="none" stroke="black" points="81,-170.8 81,-222.8 181,-222.8 181,-170.8 81,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_StarModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 122,-92.8 122,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_StarModule_exports</title>
+<polygon fill="none" stroke="black" points="81,-170.8 81,-222.8 181,-222.8 181,-170.8 81,-170.8"/>
 </g>
 <!-- RepoModule -->
 <g id="node1" class="node">

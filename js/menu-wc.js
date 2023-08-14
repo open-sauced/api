@@ -421,6 +421,43 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/PizzaOvenModule.html" data-type="entity-link" >PizzaOvenModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' : 'data-target="#xs-controllers-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' :
+                                            'id="xs-controllers-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' }>
+                                            <li class="link">
+                                                <a href="controllers/PizzaOvenController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PizzaOvenController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' : 'data-target="#xs-injectables-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' :
+                                        'id="xs-injectables-links-module-PizzaOvenModule-bc86828e6dd2c004eebf8b74bb5ea778c125f07ca67027e3d576ecc10be5544cf8458e55d43eefde3526c72e85edebec107b86c9edddc33a2285abb17bb2780c"' }>
+                                        <li class="link">
+                                            <a href="injectables/CommitAuthorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CommitAuthorsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/CommitsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CommitsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/PizzaOvenService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PizzaOvenService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/PullRequestModule.html" data-type="entity-link" >PullRequestModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -799,6 +836,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="entities-links"' : 'id="xs-entities-links"' }>
                                 <li class="link">
+                                    <a href="entities/DbBakedRepo.html" data-type="entity-link" >DbBakedRepo</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbCommitAuthors.html" data-type="entity-link" >DbCommitAuthors</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbCommits.html" data-type="entity-link" >DbCommits</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbContribution.html" data-type="entity-link" >DbContribution</a>
                                 </li>
                                 <li class="link">
@@ -880,6 +926,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
+                            <li class="link">
+                                <a href="classes/BakeRepoDto.html" data-type="entity-link" >BakeRepoDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CommitAuthorDto.html" data-type="entity-link" >CommitAuthorDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CommitsDto.html" data-type="entity-link" >CommitsDto</a>
+                            </li>
                             <li class="link">
                                 <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
                             </li>

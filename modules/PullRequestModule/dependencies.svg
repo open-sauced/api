@@ -14,10 +14,6 @@
 <title>cluster_PullRequestModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 1795,-230.8 1795,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_PullRequestModule_exports</title>
-<polygon fill="none" stroke="black" points="934,-170.8 934,-222.8 1080,-222.8 1080,-170.8 934,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_PullRequestModule_imports</title>
 <polygon fill="none" stroke="black" points="1529,-40.8 1529,-92.8 1787,-92.8 1787,-40.8 1529,-40.8"/>
@@ -25,6 +21,10 @@
 <g id="clust6" class="cluster">
 <title>cluster_PullRequestModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 1521,-92.8 1521,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_PullRequestModule_exports</title>
+<polygon fill="none" stroke="black" points="934,-170.8 934,-222.8 1080,-222.8 1080,-170.8 934,-170.8"/>
 </g>
 <!-- OpenAiModule -->
 <g id="node1" class="node">
