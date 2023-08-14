@@ -115,6 +115,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/BlogSummaryModule.html" data-type="entity-link" >BlogSummaryModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' : 'data-target="#xs-controllers-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' :
+                                            'id="xs-controllers-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' }>
+                                            <li class="link">
+                                                <a href="controllers/BlogSummaryController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BlogSummaryController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' : 'data-target="#xs-injectables-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' :
+                                        'id="xs-injectables-links-module-BlogSummaryModule-8ea259b4144fdf742dc277832c2e439026e17956bd081540cd869034c2b697f6e75b48e212365edb861a80770409645fcc9d76b4b74044d2d6876d0c0325a334"' }>
+                                        <li class="link">
+                                            <a href="injectables/BlogSummaryService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BlogSummaryService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/ContributionModule.html" data-type="entity-link" >ContributionModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -851,6 +882,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
                                 <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateBlogSummaryDto.html" data-type="entity-link" >CreateBlogSummaryDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CreateEndorsementDto.html" data-type="entity-link" >CreateEndorsementDto</a>
