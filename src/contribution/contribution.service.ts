@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DbContribution } from "./contribution.entity";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { DbContribution } from "./contribution.entity";
 import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto";
 
 @Injectable()

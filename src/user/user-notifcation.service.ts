@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbUserNotification } from "./entities/user-notification.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { DbUserNotification } from "./entities/user-notification.entity";
 import { UserNotificationTypes, userNotificationTypes } from "./entities/user-notification.constants";
 import { UserService } from "./services/user.service";
 
@@ -28,8 +28,10 @@ export class UserNotificationService {
 
     queryBuilder
       .innerJoin("users", "users", "user_notifications.user_id=users.id")
+      .innerJoinAndSelect("user_notifications.from_user", "from_user")
       .where("user_id = :userId", { userId })
-      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes });
+      .andWhere("user_notifications.type IN (:...userNotificationTypes)", { userNotificationTypes })
+      .orderBy("user_notifications.notified_at", "DESC");
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
@@ -70,7 +72,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number, highlightId: number) {
+  async addUserHighlightReactionNotification(userId: number, highlightUserId: number, highlightId: number) {
     const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -79,6 +81,18 @@ export class UserNotificationService {
       from_user_id: userId,
       message: `${followUser.login} reacted to your highlight`,
       meta_id: `${highlightId}`,
+    });
+  }
+
+  async addUserHighlightNotification(userId: number, highlightUserId: number) {
+    const followUser = await this.userService.findOneById(userId);
+
+    return this.addUserNotification({
+      type: UserNotificationTypes.HighlightCreated,
+      user_id: highlightUserId,
+      from_user_id: userId,
+      message: `${followUser.login} created a new highlight`,
+      meta_id: `${followUser.login}`,
     });
   }
 

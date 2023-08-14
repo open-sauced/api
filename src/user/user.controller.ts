@@ -4,14 +4,14 @@ import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nest
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { UserHighlightsService } from "./user-highlights.service";
-import { DbUser } from "./user.entity";
-import { UserService } from "./services/user.service";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { UserHighlightsService } from "./user-highlights.service";
+import { DbUser } from "./user.entity";
+import { UserService } from "./services/user.service";
 import { DbTopUser } from "./entities/top-users.entity";
 import { TopUsersDto } from "./dtos/top-users.dto";
 

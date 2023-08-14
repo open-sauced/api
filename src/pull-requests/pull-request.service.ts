@@ -2,14 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbPullRequest } from "./entities/pull-request.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
+import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
 import { PullRequestContributorInsightsDto } from "./dtos/pull-request-contributor-insights.dto";
@@ -156,13 +156,13 @@ export class PullRequestService {
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
-    const queryBuilder = this.baseQueryBuilder();
-    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
+    const currentMonthQuery = this.getContributorRangeQueryBuilder(0, range, repoIds);
 
     queryBuilder
-      .select("previous_month.author_login")
+      .select("current_month.author_login")
       .distinct()
-      .from(`(${prevMonthQuery.getQuery()})`, "previous_month")
+      .from(`(${currentMonthQuery.getQuery()})`, "current_month")
       .leftJoin(
         (qb) =>
           qb
@@ -170,14 +170,14 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range} days'`)
-            .andWhere("pull_requests.updated_at < NOW() - INTERVAL '0 days'")
+            .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range + range} days'`)
+            .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${range} days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
-        "current_month",
+        "previous_month",
         "previous_month.author_login = current_month.author_login"
       )
-      .where("current_month.author_login IS NULL");
+      .where("previous_month.author_login IS NULL");
 
     const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
     const itemCount = entities.length;
@@ -193,7 +193,7 @@ export class PullRequestService {
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
-    const queryBuilder = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const queryBuilder = this.getContributorRangeQueryBuilder(0, range, repoIds);
     const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
     const itemCount = entities.length;
 
@@ -201,6 +201,80 @@ export class PullRequestService {
       itemCount,
       pageOptionsDto: { ...pageOptionsDto, limit: itemCount, skip: 0 },
     });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllChurnContributors(
+    pageOptionsDto: PullRequestContributorOptionsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const range = pageOptionsDto.range!;
+    const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
+
+    const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
+    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+
+    queryBuilder
+      .select("previous_month.author_login")
+      .distinct()
+      .from(`(${prevMonthQuery.getQuery()})`, "previous_month")
+      .leftJoin(
+        (qb) =>
+          qb
+            .select("author_login")
+            .distinct()
+            .from(DbPullRequest, "pull_requests")
+            .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+            .where(`pull_requests.updated_at >= now() - INTERVAL '${range} days'`)
+            .andWhere("pull_requests.updated_at < now() - INTERVAL '0 days'")
+            .andWhere("pull_requests.author_login != ''")
+            .andWhere("repos.id IN (:...repoIds)", { repoIds }),
+        "current_month",
+        "previous_month.author_login = current_month.author_login"
+      )
+      .where("current_month.author_login IS NULL");
+
+    const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
+    const itemCount = entities.length;
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllRepeatContributors(
+    pageOptionsDto: PullRequestContributorOptionsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const range = pageOptionsDto.range!;
+    const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
+
+    const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
+    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+
+    queryBuilder
+      .select("previous_month.author_login")
+      .distinct()
+      .from(`(${prevMonthQuery.getQuery()})`, "previous_month")
+      .leftJoin(
+        (qb) =>
+          qb
+            .select("author_login")
+            .distinct()
+            .from(DbPullRequest, "pull_requests")
+            .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
+            .where(`pull_requests.updated_at >= now() - INTERVAL '${range} days'`)
+            .andWhere("pull_requests.updated_at < now() - INTERVAL '0 days'")
+            .andWhere("pull_requests.author_login != ''")
+            .andWhere("repos.id IN (:...repoIds)", { repoIds }),
+        "current_month",
+        "previous_month.author_login = current_month.author_login"
+      )
+      .where("current_month.author_login IS NOT NULL");
+
+    const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
+    const itemCount = entities.length;
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
   }

@@ -173,6 +173,17 @@ A production deployment is a complete build of the project, including the build 
 npm run build
 ```
 
+### 🍕 Pizza service integration
+
+This API integrates with the [pizza service](https://github.com/open-sauced/pizza)
+to accept requests for ingesting commits to the database.
+The environment variables for this are:
+
+```
+PIZZA_OVEN_HOST="http://example.com"
+PIZZA_OVEN_API=80
+```
+
 ## 🔑 Database structure
 
 Click the image to see the schema diagram full documentation.

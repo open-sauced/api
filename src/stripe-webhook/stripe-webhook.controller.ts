@@ -3,11 +3,11 @@ import { BadRequestException, Controller, Logger, Post, RawBodyRequest, Req } fr
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import Stripe from "stripe";
 
-import { toDateTime } from "./utils";
 import { CustomerService } from "../customer/customer.service";
 import { StripeSubscriptionService } from "../subscription/stripe-subscription.service";
 import { StripeService } from "../stripe/stripe.service";
 import { UserService } from "../user/services/user.service";
+import { toDateTime } from "./utils";
 
 const relevantEvents = new Set([
   "checkout.session.completed",

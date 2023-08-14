@@ -8,7 +8,15 @@ import { DataSource } from "typeorm";
 import { TypeOrmModuleOptions } from "@nestjs/typeorm/dist/interfaces/typeorm-options.interface";
 import { clc } from "@nestjs/common/utils/cli-colors.util";
 
-import { ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig } from "./config";
+import {
+  ApiConfig,
+  DbApiConfig,
+  DbLoggingConfig,
+  EndpointConfig,
+  StripeConfig,
+  OpenAIConfig,
+  PizzaConfig,
+} from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
@@ -18,6 +26,9 @@ import { DbRepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo/entities/repo.to.user.stargazers.entity";
+import { DbBakedRepo } from "./pizza/entities/baked-repo.entity";
+import { DbCommitAuthors } from "./pizza/entities/commit_authors.entity";
+import { DbCommits } from "./pizza/entities/commits.entity";
 import { AuthModule } from "./auth/auth.module";
 import { VoteModule } from "./vote/vote.module";
 import { StarModule } from "./star/star.module";
@@ -55,11 +66,14 @@ import { EndorsementModule } from "./endorsement/endorsement.module";
 import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
 import { ContributorModule } from "./contributor/contributor.module";
 import { OpenAiModule } from "./open-ai/open-ai.module";
+import { IssueSummaryModule } from "./issues/issue-summary.module";
+import { BlogSummaryModule } from "./blogs/issue-summary.module";
+import { PizzaOvenModule } from "./pizza/pizza-oven.module";
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig],
+      load: [ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig, PizzaConfig],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
@@ -99,6 +113,9 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
             DbEmoji,
             DbUserTopRepo,
             DbEndorsement,
+            DbBakedRepo,
+            DbCommitAuthors,
+            DbCommits,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
@@ -169,6 +186,8 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
     ContributionModule,
     UserModule,
     InsightsModule,
+    IssueSummaryModule,
+    BlogSummaryModule,
     UserReposModule,
     CustomerModule,
     StripeWebHookModule,
@@ -179,6 +198,7 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
     EndorsementModule,
     ContributorModule,
     OpenAiModule,
+    PizzaOvenModule,
   ],
   providers: [],
 })

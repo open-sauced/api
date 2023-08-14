@@ -2,16 +2,17 @@ import { ConflictException, Injectable, NotFoundException, UnauthorizedException
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { PagerService } from "../common/services/pager.service";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
 import { UserService } from "./services/user.service";
-import { PagerService } from "../common/services/pager.service";
+import { UserFollowService } from "./user-follow.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -22,6 +23,7 @@ export class UserHighlightsService {
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
     private userNotificationService: UserNotificationService,
     private userService: UserService,
+    private userFollowService: UserFollowService,
     private pagerService: PagerService
   ) {}
 
@@ -227,9 +229,20 @@ export class UserHighlightsService {
       highlight: highlight.highlight,
       title: highlight.title ?? "",
       shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : new Date(),
+      type: highlight.type,
     });
 
-    return this.userHighlightRepository.save(newUserHighlight);
+    const newHighlight = await this.userHighlightRepository.save(newUserHighlight);
+
+    const followers = await this.userFollowService.findAll(userId);
+
+    const notifications = followers.map(async (follower) =>
+      this.userNotificationService.addUserHighlightNotification(userId, follower.following_user_id)
+    );
+
+    await Promise.all(notifications);
+
+    return newHighlight;
   }
 
   async updateUserHighlight(highlightId: number, highlight: Partial<DbUserHighlight>) {
@@ -294,12 +307,12 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
-      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+      await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
       return reactionExists;
     }
 
-    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+    await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
     return this.userHighlightReactionRepository.save({
       user_id: userId,

@@ -21,6 +21,19 @@ export class UserFollowService {
     return builder;
   }
 
+  async findAll(userId: number) {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .innerJoin("users", "users", "user_follows.user_id=users.id")
+      .where("user_follows.user_id = :userId", { userId })
+      .andWhere("user_follows.deleted_at IS NULL");
+
+    const entities = await queryBuilder.getMany();
+
+    return entities;
+  }
+
   async findUserFollowerById(userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 

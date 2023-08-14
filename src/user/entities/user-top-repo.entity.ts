@@ -9,12 +9,12 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
-import { DbUser } from "../user.entity";
-import { DbRepo } from "../../repo/entities/repo.entity";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUser } from "../user.entity";
+import { DbRepo } from "../../repo/entities/repo.entity";
 
 @Entity({ name: "user_top_repos" })
 export class DbUserTopRepo {

@@ -28,11 +28,11 @@ import { User, UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
 
+import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { UserService } from "./services/user.service";
 import { UserCollaborationService } from "./user-collaboration.service";
 import { CreateUserCollaborationDto } from "./dtos/create-user-collaboration.dto";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { UpdateUserCollaborationDto } from "./dtos/update-user-collaboration.dto";
 
 @Controller("user/collaborations")

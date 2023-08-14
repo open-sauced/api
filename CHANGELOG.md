@@ -5,6 +5,55 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.44.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.7...v1.44.0-beta.8) (2023-08-14)
+
+
+### 🐛 Bug Fixes
+
+* Add documentation for pizza oven service ([81d7777](https://github.com/open-sauced/api.opensauced.pizza/commit/81d777768704271f91fc879bdf094fd553b4030f))
+
+## [1.44.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.6...v1.44.0-beta.7) (2023-08-14)
+
+
+### 🍕 Features
+
+* add endpoint to generate blog summaries ([#251](https://github.com/open-sauced/api.opensauced.pizza/issues/251)) ([de24c6b](https://github.com/open-sauced/api.opensauced.pizza/commit/de24c6b55668507150412e4c76163253325448c8))
+
+## [1.44.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.5...v1.44.0-beta.6) (2023-08-12)
+
+
+### 🍕 Features
+
+* add source user info to the user notifications ([#248](https://github.com/open-sauced/api.opensauced.pizza/issues/248)) ([69319cc](https://github.com/open-sauced/api.opensauced.pizza/commit/69319cc21004eee0dd683bee126a4d4001c4c1f3))
+
+## [1.44.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.4...v1.44.0-beta.5) (2023-08-10)
+
+
+### 🍕 Features
+
+* notify followers when a highlight is created ([#244](https://github.com/open-sauced/api.opensauced.pizza/issues/244)) ([892ef0f](https://github.com/open-sauced/api.opensauced.pizza/commit/892ef0f855f56fe0ade82e3c0113781a410513ed))
+
+## [1.44.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.3...v1.44.0-beta.4) (2023-08-10)
+
+
+### 🍕 Features
+
+* add endpoints for churned and repeat contributors ([#249](https://github.com/open-sauced/api.opensauced.pizza/issues/249)) ([cc0b4de](https://github.com/open-sauced/api.opensauced.pizza/commit/cc0b4de1fd30104f76e4e2b7d633ec2af247fd07))
+
+## [1.44.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.2...v1.44.0-beta.3) (2023-08-08)
+
+
+### 🍕 Features
+
+* add endpoint to generate a summary for an issue ([#245](https://github.com/open-sauced/api.opensauced.pizza/issues/245)) ([a46bd58](https://github.com/open-sauced/api.opensauced.pizza/commit/a46bd5800c620061ca362dc2bffa2c9f377552cf))
+
+## [1.44.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0-beta.1...v1.44.0-beta.2) (2023-08-07)
+
+
+### 🐛 Bug Fixes
+
+* rename Dockerfile to do.Dockerfile for deployment ([bda124c](https://github.com/open-sauced/api.opensauced.pizza/commit/bda124c80ae0be9fdb5463e17568ea35ae0c597f))
+
 ### [1.43.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.1...v1.43.2) (2023-08-07)
 
 

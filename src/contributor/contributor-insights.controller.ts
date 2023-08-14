@@ -38,4 +38,30 @@ export class ContributorInsightsController {
   ): Promise<PageDto<DbPullRequestContributor>> {
     return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
   }
+
+  @Get("/churn")
+  @ApiOperation({
+    operationId: "findAllChurnPullRequestContributors",
+    summary: "Gets all recent churned contributors for the last 30 days based on repo IDs",
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllChurnPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    return this.pullRequestService.findAllChurnContributors(pageOptionsDto);
+  }
+
+  @Get("/repeat")
+  @ApiOperation({
+    operationId: "findAllRepeatPullRequestContributors",
+    summary: "Gets all recent repeat contributors for the last 30 days based on repo IDs",
+  })
+  @ApiPaginatedResponse(DbPullRequestContributor)
+  @ApiOkResponse({ type: DbPullRequestContributor })
+  async findAllRepeatPullRequestContributors(
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    return this.pullRequestService.findAllRepeatContributors(pageOptionsDto);
+  }
 }

@@ -1,8 +1,10 @@
-import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn } from "typeorm";
+import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne } from "typeorm";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiHideProperty } from "@nestjs/swagger";
+import { DbUser } from "../user.entity";
 import { UserNotificationTypes } from "./user-notification.constants";
 
 @Entity({ name: "user_notifications" })
@@ -77,4 +79,12 @@ export class DbUserNotification extends BaseEntity {
     length: 32,
   })
   public meta_id?: string;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.from_user_notifications)
+  @JoinColumn({
+    name: "from_user_id",
+    referencedColumnName: "id",
+  })
+  public from_user: DbUser;
 }
