@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.45.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.1...v1.45.0-beta.2) (2023-08-15)
+
+
+### 🐛 Bug Fixes
+
+* Aligns pizza post request with post JSON body ([#256](https://github.com/open-sauced/api.opensauced.pizza/issues/256)) ([480aab6](https://github.com/open-sauced/api.opensauced.pizza/commit/480aab6cfc5fd19a1615cefc972ebe2fc73a7ab5))
+
 ## [1.45.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0...v1.45.0-beta.1) (2023-08-15)
 
 
