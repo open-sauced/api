@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { IsBoolean, IsString } from "class-validator";
 
 export class BakeRepoDto {
   @ApiProperty({
@@ -8,5 +8,13 @@ export class BakeRepoDto {
     example: "https://github.com/open-sauced/insights",
   })
   @IsString()
-  cloneURL: string;
+  url: string;
+
+  @ApiProperty({
+    description: "Option to wait for Pizza service to finish baking repo",
+    type: String,
+    example: false,
+  })
+  @IsBoolean()
+  wait: boolean;
 }

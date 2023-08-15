@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Param, ParseIntPipe, Post, Query } from "@nestjs/common";
+import { BadRequestException, Body, Controller, Get, Param, ParseIntPipe, Post, Query } from "@nestjs/common";
 import {
   ApiAcceptedResponse,
   ApiBadRequestResponse,
@@ -37,7 +37,7 @@ export class PizzaOvenController {
   @ApiAcceptedResponse()
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: BakeRepoDto })
-  async postToPizzaOvenService(@Query() bakeOptionsInfo: BakeRepoDto) {
+  async postToPizzaOvenService(@Body() bakeOptionsInfo: BakeRepoDto) {
     const statusCode = await this.pizzaOvenService.postToPizzaOvenService(bakeOptionsInfo);
 
     if (statusCode !== 202) {
