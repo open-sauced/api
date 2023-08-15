@@ -21,12 +21,12 @@ export class UserFollowService {
     return builder;
   }
 
-  async findAll(userId: number) {
+  async findAllFollowers(userId: number) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .innerJoin("users", "users", "user_follows.user_id=users.id")
-      .where("user_follows.user_id = :userId", { userId })
+      .where("user_follows.following_user_id = :userId", { userId })
       .andWhere("user_follows.deleted_at IS NULL");
 
     const entities = await queryBuilder.getMany();
