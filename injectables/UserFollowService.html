@@ -87,7 +87,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
+                                <a href="#findAllFollowers" >findAllFollowers</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -311,18 +311,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="findAllFollowers"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllFollowers</b></span>
+                        <a href="#findAllFollowers"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllFollowers(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -573,12 +573,12 @@ export class UserFollowService {
     return builder;
   }
 
-  async findAll(userId: number) {
+  async findAllFollowers(userId: number) {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_follows.user_id&#x3D;users.id&quot;)
-      .where(&quot;user_follows.user_id &#x3D; :userId&quot;, { userId })
+      .where(&quot;user_follows.following_user_id &#x3D; :userId&quot;, { userId })
       .andWhere(&quot;user_follows.deleted_at IS NULL&quot;);
 
     const entities &#x3D; await queryBuilder.getMany();
