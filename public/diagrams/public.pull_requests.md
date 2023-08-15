@@ -37,6 +37,7 @@
 | deletions                 | integer                     | 0        | true     |          |                                 |         |
 | changed_files             | integer                     | 0        | true     |          |                                 |         |
 | comments                  | integer                     | 0        | true     |          |                                 |         |
+| merged_by_login           | text                        | ''::text | true     |          |                                 |         |
 
 ## Constraints
 
@@ -47,14 +48,15 @@
 
 ## Indexes
 
-| Name                           | Definition                                                                                     |
-| ------------------------------ | ---------------------------------------------------------------------------------------------- |
-| pull_requests_pkey             | CREATE UNIQUE INDEX pull_requests_pkey ON public.pull_requests USING btree (id)                |
-| pull_requests_idx_repo_id      | CREATE INDEX pull_requests_idx_repo_id ON public.pull_requests USING btree (repo_id)           |
-| pull_requests_idx_updated_at   | CREATE INDEX pull_requests_idx_updated_at ON public.pull_requests USING btree (updated_at)     |
-| pull_requests_idx_state        | CREATE INDEX pull_requests_idx_state ON public.pull_requests USING btree (state)               |
-| pull_requests_idx_label_names  | CREATE INDEX pull_requests_idx_label_names ON public.pull_requests USING btree (label_names)   |
-| pull_requests_idx_author_login | CREATE INDEX pull_requests_idx_author_login ON public.pull_requests USING btree (author_login) |
+| Name                              | Definition                                                                                           |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| pull_requests_pkey                | CREATE UNIQUE INDEX pull_requests_pkey ON public.pull_requests USING btree (id)                      |
+| pull_requests_idx_repo_id         | CREATE INDEX pull_requests_idx_repo_id ON public.pull_requests USING btree (repo_id)                 |
+| pull_requests_idx_updated_at      | CREATE INDEX pull_requests_idx_updated_at ON public.pull_requests USING btree (updated_at)           |
+| pull_requests_idx_state           | CREATE INDEX pull_requests_idx_state ON public.pull_requests USING btree (state)                     |
+| pull_requests_idx_label_names     | CREATE INDEX pull_requests_idx_label_names ON public.pull_requests USING btree (label_names)         |
+| pull_requests_idx_author_login    | CREATE INDEX pull_requests_idx_author_login ON public.pull_requests USING btree (author_login)       |
+| pull_requests_idx_merged_by_login | CREATE INDEX pull_requests_idx_merged_by_login ON public.pull_requests USING btree (merged_by_login) |
 
 ## Relations
 

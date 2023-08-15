@@ -784,7 +784,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Controller, Get, Param, ParseIntPipe, Post, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Body, Controller, Get, Param, ParseIntPipe, Post, Query } from &quot;@nestjs/common&quot;;
 import {
   ApiAcceptedResponse,
   ApiBadRequestResponse,
@@ -823,7 +823,7 @@ export class PizzaOvenController {
   @ApiAcceptedResponse()
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: BakeRepoDto })
-  async postToPizzaOvenService(@Query() bakeOptionsInfo: BakeRepoDto) {
+  async postToPizzaOvenService(@Body() bakeOptionsInfo: BakeRepoDto) {
     const statusCode &#x3D; await this.pizzaOvenService.postToPizzaOvenService(bakeOptionsInfo);
 
     if (statusCode !&#x3D;&#x3D; 202) {
