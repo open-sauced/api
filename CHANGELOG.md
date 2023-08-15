@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.45.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0...v1.45.0-beta.1) (2023-08-15)
+
+
+### 🍕 Features
+
+* add merge author to pull requests table ([#255](https://github.com/open-sauced/api.opensauced.pizza/issues/255)) ([6cf8091](https://github.com/open-sauced/api.opensauced.pizza/commit/6cf8091be3ea914485c693198759dcd2e8671c4b))
+
 ## [1.44.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.2...v1.44.0) (2023-08-14)
 
 
