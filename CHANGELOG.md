@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.45.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.4...v1.45.0-beta.5) (2023-08-15)
+
+
+### 🍕 Features
+
+* add flag whether the user is a maintainer of repos ([#259](https://github.com/open-sauced/api.opensauced.pizza/issues/259)) ([20d1957](https://github.com/open-sauced/api.opensauced.pizza/commit/20d19574286adbdc547ca7e5d4a0362fea54ac82))
+
 ## [1.45.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.3...v1.45.0-beta.4) (2023-08-15)
 
 
