@@ -265,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/user/services/user.service.ts:157</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/user/services/user.service.ts:170</a></div>
                 </td>
             </tr>
 
@@ -336,8 +336,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="265"
-                            class="link-to-prism">src/user/services/user.service.ts:265</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/user/services/user.service.ts:278</a></div>
                 </td>
             </tr>
 
@@ -674,8 +674,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="258"
-                            class="link-to-prism">src/user/services/user.service.ts:258</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/user/services/user.service.ts:271</a></div>
                 </td>
             </tr>
 
@@ -757,8 +757,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="254"
-                            class="link-to-prism">src/user/services/user.service.ts:254</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/user/services/user.service.ts:267</a></div>
                 </td>
             </tr>
 
@@ -840,8 +840,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="219"
-                            class="link-to-prism">src/user/services/user.service.ts:219</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/user/services/user.service.ts:232</a></div>
                 </td>
             </tr>
 
@@ -923,8 +923,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="244"
-                            class="link-to-prism">src/user/services/user.service.ts:244</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="257"
+                            class="link-to-prism">src/user/services/user.service.ts:257</a></div>
                 </td>
             </tr>
 
@@ -1006,8 +1006,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="194"
-                            class="link-to-prism">src/user/services/user.service.ts:194</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/user/services/user.service.ts:207</a></div>
                 </td>
             </tr>
 
@@ -1089,8 +1089,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="234"
-                            class="link-to-prism">src/user/services/user.service.ts:234</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="247"
+                            class="link-to-prism">src/user/services/user.service.ts:247</a></div>
                 </td>
             </tr>
 
@@ -1287,6 +1287,19 @@ export class UserService {
           AND now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;users_recent_pull_request_velocity_count&#x60;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT 
+            CASE 
+              WHEN COUNT(DISTINCT full_name) &gt; 0 THEN true
+              ELSE false
+            END
+          FROM pull_requests prs
+          JOIN repos on prs.repo_id&#x3D;repos.id
+          WHERE prs.merged_by_login &#x3D; :username
+        )::BOOLEAN&#x60;,
+        &quot;users_is_maintainer&quot;
       )
       .where(&quot;LOWER(login) &#x3D; :username&quot;, { username: username.toLowerCase() })
       .setParameters({ username: username.toLowerCase() });
