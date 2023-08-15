@@ -281,7 +281,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserHighlightNotification(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserHighlightNotification(highlightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, highlightUserId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -309,6 +309,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>highlightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>userId</td>
                                     <td>
@@ -798,7 +810,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number) {
+  async addUserHighlightNotification(highlightId: number, userId: number, highlightUserId: number) {
     const followUser &#x3D; await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -806,7 +818,7 @@ export class UserNotificationService {
       user_id: highlightUserId,
       from_user_id: userId,
       message: &#x60;${followUser.login} created a new highlight&#x60;,
-      meta_id: &#x60;${followUser.login}&#x60;,
+      meta_id: &#x60;${highlightId}&#x60;,
     });
   }
 

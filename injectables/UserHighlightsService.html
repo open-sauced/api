@@ -1782,7 +1782,7 @@ export class UserHighlightsService {
     const followers &#x3D; await this.userFollowService.findAllFollowers(userId);
 
     const notifications &#x3D; followers.map(async (follower) &#x3D;&gt;
-      this.userNotificationService.addUserHighlightNotification(userId, follower.user_id)
+      this.userNotificationService.addUserHighlightNotification(newHighlight.id, userId, follower.user_id)
     );
 
     await Promise.all(notifications);
