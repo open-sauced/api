@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.45.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.3...v1.45.0-beta.4) (2023-08-15)
+
+
+### 🐛 Bug Fixes
+
+* add highlight id to user notification metadata ([#260](https://github.com/open-sauced/api.opensauced.pizza/issues/260)) ([94dbf47](https://github.com/open-sauced/api.opensauced.pizza/commit/94dbf47678e3ee7e0247917646ba282ce48a931a))
+
 ## [1.45.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.2...v1.45.0-beta.3) (2023-08-15)
 
 
