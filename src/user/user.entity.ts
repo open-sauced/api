@@ -500,6 +500,17 @@ export class DbUser extends BaseEntity {
   })
   public recent_pull_request_velocity_count: number;
 
+  @ApiModelProperty({
+    description: "Flag to indicate if user is a maintainer of any repos",
+    example: true,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public is_maintainer: boolean;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsight, (insight) => insight.user)
   public insights: DbInsight[];
