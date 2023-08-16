@@ -153,6 +153,19 @@ export class DbUserHighlight extends BaseEntity {
   })
   public login?: string;
 
+  @ApiModelProperty({
+    description: "An array of full-names of tagged repositories",
+    example: ["open-sauced/insights", "open-sauced/ai"],
+    type: [String],
+    isArray: true,
+  })
+  @Column({
+    type: "varchar",
+    array: true,
+    default: "{}",
+  })
+  public taggedRepos: string[];
+
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.highlights)
   @JoinColumn({
