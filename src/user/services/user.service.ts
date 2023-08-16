@@ -142,6 +142,19 @@ export class UserService {
         )::INTEGER`,
         `users_recent_pull_request_velocity_count`
       )
+      .addSelect(
+        `(
+          SELECT 
+            CASE 
+              WHEN COUNT(DISTINCT full_name) > 0 THEN true
+              ELSE false
+            END
+          FROM pull_requests prs
+          JOIN repos on prs.repo_id=repos.id
+          WHERE prs.merged_by_login = :username
+        )::BOOLEAN`,
+        "users_is_maintainer"
+      )
       .where("LOWER(login) = :username", { username: username.toLowerCase() })
       .setParameters({ username: username.toLowerCase() });
 

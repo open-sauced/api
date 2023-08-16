@@ -139,7 +139,7 @@ describe("UserService", () => {
       const result = await userService.findOneByUsername(username);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(5);
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(6);
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("LOWER(login) = :username", {
         username: username.toLowerCase(),
       });

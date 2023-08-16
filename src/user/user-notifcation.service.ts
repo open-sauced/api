@@ -84,7 +84,7 @@ export class UserNotificationService {
     });
   }
 
-  async addUserHighlightNotification(userId: number, highlightUserId: number) {
+  async addUserHighlightNotification(highlightId: number, userId: number, highlightUserId: number) {
     const followUser = await this.userService.findOneById(userId);
 
     return this.addUserNotification({
@@ -92,7 +92,7 @@ export class UserNotificationService {
       user_id: highlightUserId,
       from_user_id: userId,
       message: `${followUser.login} created a new highlight`,
-      meta_id: `${followUser.login}`,
+      meta_id: `${highlightId}`,
     });
   }
 

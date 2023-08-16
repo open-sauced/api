@@ -5,6 +5,41 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.45.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.4...v1.45.0-beta.5) (2023-08-15)
+
+
+### 🍕 Features
+
+* add flag whether the user is a maintainer of repos ([#259](https://github.com/open-sauced/api.opensauced.pizza/issues/259)) ([20d1957](https://github.com/open-sauced/api.opensauced.pizza/commit/20d19574286adbdc547ca7e5d4a0362fea54ac82))
+
+## [1.45.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.3...v1.45.0-beta.4) (2023-08-15)
+
+
+### 🐛 Bug Fixes
+
+* add highlight id to user notification metadata ([#260](https://github.com/open-sauced/api.opensauced.pizza/issues/260)) ([94dbf47](https://github.com/open-sauced/api.opensauced.pizza/commit/94dbf47678e3ee7e0247917646ba282ce48a931a))
+
+## [1.45.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.2...v1.45.0-beta.3) (2023-08-15)
+
+
+### 🐛 Bug Fixes
+
+* update query for sending notifications for created highlights ([#257](https://github.com/open-sauced/api.opensauced.pizza/issues/257)) ([de83f90](https://github.com/open-sauced/api.opensauced.pizza/commit/de83f9057e101500f3dc855a06f8cc55005ca3ca))
+
+## [1.45.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0-beta.1...v1.45.0-beta.2) (2023-08-15)
+
+
+### 🐛 Bug Fixes
+
+* Aligns pizza post request with post JSON body ([#256](https://github.com/open-sauced/api.opensauced.pizza/issues/256)) ([480aab6](https://github.com/open-sauced/api.opensauced.pizza/commit/480aab6cfc5fd19a1615cefc972ebe2fc73a7ab5))
+
+## [1.45.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0...v1.45.0-beta.1) (2023-08-15)
+
+
+### 🍕 Features
+
+* add merge author to pull requests table ([#255](https://github.com/open-sauced/api.opensauced.pizza/issues/255)) ([6cf8091](https://github.com/open-sauced/api.opensauced.pizza/commit/6cf8091be3ea914485c693198759dcd2e8671c4b))
+
 ## [1.44.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.43.2...v1.44.0) (2023-08-14)
 
 
