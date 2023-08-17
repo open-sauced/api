@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0...v1.46.0-beta.1) (2023-08-17)
+
+
+### 🍕 Features
+
+* add tagged repos to user highlights ([#263](https://github.com/open-sauced/api.opensauced.pizza/issues/263)) ([ae5415b](https://github.com/open-sauced/api.opensauced.pizza/commit/ae5415b8b9e5b4d2e58f214caf1121746c5507fe))
+
 ## [1.45.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0...v1.45.0) (2023-08-16)
 
 
