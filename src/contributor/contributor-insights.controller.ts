@@ -21,7 +21,7 @@ export class ContributorInsightsController {
   @ApiPaginatedResponse(DbPullRequestContributor)
   @ApiOkResponse({ type: DbPullRequestContributor })
   async newPullRequestContributors(
-    @Query() pageOptionsDto: PullRequestContributorOptionsDto
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
   }

@@ -151,7 +151,7 @@ export class PullRequestService {
   }
 
   async findNewContributorsInTimeRange(
-    pageOptionsDto: PullRequestContributorOptionsDto
+    pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
