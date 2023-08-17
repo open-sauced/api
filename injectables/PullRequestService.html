@@ -756,7 +756,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findNewContributorsInTimeRange(pageOptionsDto: <a href="../classes/PullRequestContributorOptionsDto.html" target="_self">PullRequestContributorOptionsDto</a>)</code>
+                    <code>findNewContributorsInTimeRange(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>)</code>
                 </td>
             </tr>
 
@@ -787,7 +787,7 @@
                                 <tr>
                                     <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="../classes/PullRequestContributorOptionsDto.html" target="_self" >PullRequestContributorOptionsDto</a></code>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
                                     </td>
 
                                     <td>
@@ -1066,7 +1066,7 @@ export class PullRequestService {
   }
 
   async findNewContributorsInTimeRange(
-    pageOptionsDto: PullRequestContributorOptionsDto
+    pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
     const range &#x3D; pageOptionsDto.range!;
     const repoIds &#x3D; pageOptionsDto.repoIds?.split(&quot;,&quot;) ?? [];
