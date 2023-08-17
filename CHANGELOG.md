@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.1...v1.46.0-beta.2) (2023-08-17)
+
+
+### 🐛 Bug Fixes
+
+* remove extra query parameters from new contributors endpoint ([#265](https://github.com/open-sauced/api.opensauced.pizza/issues/265)) ([bffc229](https://github.com/open-sauced/api.opensauced.pizza/commit/bffc2294f4bb1d223d0e9f2ffbdf1e828fd450aa))
+
 ## [1.46.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0...v1.46.0-beta.1) (2023-08-17)
 
 
