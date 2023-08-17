@@ -164,7 +164,7 @@ export class DbUserHighlight extends BaseEntity {
     array: true,
     default: "{}",
   })
-  public taggedRepos: string[];
+  public tagged_repos: string[];
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.highlights)

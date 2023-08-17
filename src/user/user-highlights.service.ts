@@ -230,6 +230,7 @@ export class UserHighlightsService {
       title: highlight.title ?? "",
       shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : new Date(),
       type: highlight.type,
+      tagged_repos: highlight.taggedRepos,
     });
 
     const newHighlight = await this.userHighlightRepository.save(newUserHighlight);
