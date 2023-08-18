@@ -103,6 +103,10 @@ docker run -p 8080:3001 api.opensauced.pizza</code></pre></div><p>Alternatively 
 <div><pre class="line-numbers"><code class="language-shell">npm run lint</code></pre></div><p>This will also display during development, but not break on errors.</p>
 <p>To fix the linting errors, use the following command:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run format</code></pre></div><p>It is advised to run this command before committing or opening a pull request.</p>
+<h3 id="🕺-openapi-swagger-doc">🕺 OpenAPI Swagger Doc</h3>
+<p>When the server is run, an OpenAPI swagger doc is generated into the project&#39;s
+root directory. When making API changes, make sure to run <code>npm run start:dev</code>
+to test your changes and generate any new Swagger document bits.</p>
 <h3 id="📕-types">📕 Types</h3>
 <p>We have a couple of scripts to check and adjust missing types.</p>
 <p>In order to dry run what types would be added to <code>package.json</code>:</p>
