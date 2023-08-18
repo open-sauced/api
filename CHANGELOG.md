@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.2...v1.46.0-beta.3) (2023-08-18)
+
+
+### 🍕 Features
+
+* Add Swagger YAML ([#266](https://github.com/open-sauced/api.opensauced.pizza/issues/266)) ([177882b](https://github.com/open-sauced/api.opensauced.pizza/commit/177882b711a4e5b9b231600d786aadc51ba37575))
+
 ## [1.46.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.1...v1.46.0-beta.2) (2023-08-17)
 
 
