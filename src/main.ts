@@ -9,6 +9,7 @@ import { ConfigService } from "@nestjs/config";
 import { Logger } from "nestjs-pino";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { major } from "semver";
+import * as yaml from "yaml";
 
 import { AppModule } from "./app.module";
 
@@ -91,6 +92,11 @@ code | condition
   const document = SwaggerModule.createDocument(app, options.build(), {
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
   });
+
+  const yamlSwaggerDoc = yaml.stringify(document);
+
+  // write the yaml swagger doc to the root project directory anytime the server starts
+  await writeFile("./swagger.yaml", yamlSwaggerDoc, "utf8");
 
   const customOptions: SwaggerCustomOptions = { swaggerOptions: { persistAuthorization: true } };
 
