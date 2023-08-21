@@ -74,13 +74,13 @@ code | condition
   const options = new DocumentBuilder();
 
   if (configService.get("api.development")) {
-    options.addServer(`http://localhost:${String(configService.get("api.port"))}`, "Development");
+    options.addServer(`http://localhost:${String(configService.get("api.port"))}`, "Development", {});
   }
 
   options
-    .addServer(`https://${apiDomain}`, "Production")
-    .addServer(`https://beta.${apiDomain}`, "Beta")
-    .addServer(`https://alpha.${apiDomain}`, "Alpha")
+    .addServer(`https://${apiDomain}`, "Production", {})
+    .addServer(`https://beta.${apiDomain}`, "Beta", {})
+    .addServer(`https://alpha.${apiDomain}`, "Alpha", {})
     .setTitle(`@open-sauced/api.opensauced.pizza`)
     .setDescription(markdownDescription)
     .setVersion(`1`)

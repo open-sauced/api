@@ -425,7 +425,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "GitHub top languages",
     example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }",
-    default: "{}",
+    default: {},
   })
   @Column({
     type: "jsonb",

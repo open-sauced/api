@@ -3374,7 +3374,7 @@ paths:
       tags: *a25
   "/v1/endorsements/user/{username}/created":
     get:
-      operationId: findAllUserReceivedEndorsements
+      operationId: findAllUserCreatedEndorsementsByUsername
       summary: Finds all endorsements received by the user and paginates them
       parameters:
         - name: username
@@ -3425,7 +3425,7 @@ paths:
       tags: *a25
   "/v1/endorsements/user/{username}/received":
     get:
-      operationId: findAllUserReceivedEndorsements
+      operationId: findAllUserReceivedEndorsementsByUsername
       summary: Finds all endorsements received by the user and paginates them
       parameters:
         - name: username
@@ -3575,23 +3575,6 @@ paths:
           schema:
             default: 30
             type: number
-        - name: filter
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/InsightFilterFieldsEnum"
-        - name: topic
-          required: false
-          in: query
-          example: javascript
-          schema:
-            type: string
-        - name: repo
-          required: false
-          in: query
-          example: open-sauced/insights
-          schema:
-            type: string
         - name: repoIds
           required: false
           in: query
@@ -4131,16 +4114,16 @@ tags: []
 servers:
   - url: http://localhost:3001
     description: Development
-    variables: null
+    variables: {}
   - url: https://http:/http:///localhost
     description: Production
-    variables: null
+    variables: {}
   - url: https://beta.http:/http:///localhost
     description: Beta
-    variables: null
+    variables: {}
   - url: https://alpha.http:/http:///localhost
     description: Alpha
-    variables: null
+    variables: {}
 components:
   securitySchemes:
     bearer:
@@ -4249,9 +4232,9 @@ components:
           example:
             - javascript
             - react
-          items:
-            type: array
           type: array
+          items:
+            type: string
         timezone:
           type: string
           description: User timezone in UTC
@@ -4485,7 +4468,7 @@ components:
           type: object
           description: GitHub top languages
           example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }"
-          default: "{}"
+          default: {}
         notification_count:
           type: number
           description: User notification count
@@ -4547,9 +4530,9 @@ components:
           example:
             - javascript
             - react
-          items:
-            type: array
           type: array
+          items:
+            type: string
       required:
         - interests
     UpdateUserEmailPreferencesDto:
@@ -4837,16 +4820,13 @@ components:
           description: Highlight User Login
           example: bdougie
         tagged_repos:
+          description: An array of full-names of tagged repositories
+          example:
+            - open-sauced/insights
+            - open-sauced/ai
           type: array
           items:
-            required: true
-            description: An array of full-names of tagged repositories
-            example:
-              - open-sauced/insights
-              - open-sauced/ai
-            type: array
-            items:
-              type: string
+            type: string
       required:
         - id
         - user_id
@@ -5115,9 +5095,9 @@ components:
           example:
             - open-sauced/insights
             - open-sauced/ai
-          items:
-            type: array
           type: array
+          items:
+            type: string
       required:
         - url
         - highlight
