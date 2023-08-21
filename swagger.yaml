@@ -461,6 +461,30 @@ paths:
       tags: *a3
       security:
         - bearer: []
+  "/v1/user/highlights/{id}/reactors":
+    get:
+      operationId: getAllHighlightReactionsAndReactors
+      summary: Retrieves all reactions and reactors for a highlight
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbUserHighlightReactorResponse"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user highlight reactors
+      tags: *a3
   "/v1/user/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightUserReactions
@@ -3575,23 +3599,6 @@ paths:
           schema:
             default: 30
             type: number
-        - name: filter
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/InsightFilterFieldsEnum"
-        - name: topic
-          required: false
-          in: query
-          example: javascript
-          schema:
-            type: string
-        - name: repo
-          required: false
-          in: query
-          example: open-sauced/insights
-          schema:
-            type: string
         - name: repoIds
           required: false
           in: query
@@ -4056,7 +4063,7 @@ info:
 
     Each API route is clickable and has their own detailed description on how to use it.
 
-    The base URL for the API is [http:/http:///localhost](https://http:/http:///localhost).
+    The base URL for the API is [api.opensauced.pizza](https://api.opensauced.pizza).
 
 
     [comment]: # (TODO: add bearer auth information)
@@ -4132,13 +4139,13 @@ servers:
   - url: http://localhost:3001
     description: Development
     variables: null
-  - url: https://http:/http:///localhost
+  - url: https://api.opensauced.pizza
     description: Production
     variables: null
-  - url: https://beta.http:/http:///localhost
+  - url: https://beta.api.opensauced.pizza
     description: Beta
     variables: null
-  - url: https://alpha.http:/http:///localhost
+  - url: https://alpha.api.opensauced.pizza
     description: Alpha
     variables: null
 components:
@@ -5159,6 +5166,29 @@ components:
         - id
         - user_id
         - type
+    DbUserHighlightReactorResponse:
+      type: object
+      properties:
+        emoji_id:
+          type: string
+          description: Emoji identifier
+          example: uuid-v4
+        reaction_users:
+          type: array
+          items:
+            required: false
+            description: Usernames of users who reacted with this emoji
+            example:
+              - RitaDee
+              - diivi
+            type: array
+            items:
+              type: string
+        reaction_count:
+          type: number
+      required:
+        - emoji_id
+        - reaction_users
     DbUserHighlightReactionResponse:
       type: object
       properties:

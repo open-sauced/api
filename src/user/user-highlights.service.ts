@@ -5,7 +5,11 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import {
+  DbUserHighlightReactionResponse,
+  DbUserHighlightReactorResponse,
+  HighlightOptionsDto,
+} from "../highlight/dtos/highlight-options.dto";
 import { PagerService } from "../common/services/pager.service";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
@@ -269,6 +273,22 @@ export class UserHighlightsService {
     queryBuilder.addGroupBy("emoji_id");
 
     const entities: DbUserHighlightReactionResponse[] = await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  async findAllHighlightReactionsAndReactors(highlightId: number) {
+    const queryBuilder = this.userHighlightReactionRepository.createQueryBuilder("user_highlight_reactions");
+
+    queryBuilder
+      .select("emoji_id", "emoji_id")
+      .addSelect("COUNT(emoji_id)", "reaction_count")
+      .addSelect("ARRAY_AGG(users.login)", "reaction_users")
+      .innerJoin("users", "users", "user_highlight_reactions.user_id=users.id")
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId })
+      .addGroupBy("emoji_id");
+
+    const entities: DbUserHighlightReactorResponse[] = await queryBuilder.getRawMany();
 
     return entities;
   }

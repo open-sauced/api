@@ -26,7 +26,11 @@ import { PageDto } from "../common/dtos/page.dto";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import {
+  DbUserHighlightReactionResponse,
+  DbUserHighlightReactorResponse,
+  HighlightOptionsDto,
+} from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
@@ -110,6 +114,19 @@ export class UserHighlightsController {
     const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
     await this.userHighlightsService.deleteUserHighlight(highlight.id);
+  }
+
+  @Get("/:id/reactors")
+  @ApiOperation({
+    operationId: "getAllHighlightReactionsAndReactors",
+    summary: "Retrieves all reactions and reactors for a highlight",
+  })
+  @ApiNotFoundResponse({ description: "Unable to get user highlight reactors" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async getAllHighlightReactionsAndReactors(
+    @Param("id", ParseIntPipe) id: number
+  ): Promise<DbUserHighlightReactorResponse[]> {
+    return this.userHighlightsService.findAllHighlightReactionsAndReactors(id);
   }
 
   @Get("/:id/reactions")
