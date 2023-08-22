@@ -25,6 +25,7 @@ import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { DbUserOrganization } from "./entities/user-organization.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -571,4 +572,8 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserNotification, (fromUserNotifications) => fromUserNotifications.from_user)
   public from_user_notifications: DbUserNotification[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserOrganization, (userOrgs) => userOrgs.organization_user)
+  public organizations: DbUserOrganization[];
 }
