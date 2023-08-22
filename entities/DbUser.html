@@ -1586,7 +1586,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;GitHub top languages&#x27;, example: &#x27;{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }&#x27;, default: &#x27;{}&#x27;})<br />@Column({type: &#x27;jsonb&#x27;, default: undefined, nullable: false})<br />
+                            @ApiModelProperty({description: &#x27;GitHub top languages&#x27;, example: &#x27;{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }&#x27;, default: undefined})<br />@Column({type: &#x27;jsonb&#x27;, default: undefined, nullable: false})<br />
                         </code>
                     </td>
                 </tr>
@@ -3012,7 +3012,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: &quot;GitHub top languages&quot;,
     example: &quot;{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }&quot;,
-    default: &quot;{}&quot;,
+    default: {},
   })
   @Column({
     type: &quot;jsonb&quot;,

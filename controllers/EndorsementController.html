@@ -105,11 +105,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAllUserCreatedEndorsements" >findAllUserCreatedEndorsements</a>
+                                <a href="#findAllUserCreatedEndorsementsByUsername" >findAllUserCreatedEndorsementsByUsername</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAllUserReceivedEndorsements" >findAllUserReceivedEndorsements</a>
+                                <a href="#findAllUserReceivedEndorsementsByUsername" >findAllUserReceivedEndorsementsByUsername</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -251,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:138</a></div>
                 </td>
             </tr>
 
@@ -574,18 +574,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAllUserCreatedEndorsements"></a>
+                    <a name="findAllUserCreatedEndorsementsByUsername"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAllUserCreatedEndorsements</b></span>
-                        <a href="#findAllUserCreatedEndorsements"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllUserCreatedEndorsementsByUsername</b></span>
+                        <a href="#findAllUserCreatedEndorsementsByUsername"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllUserCreatedEndorsements(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <code>findAllUserCreatedEndorsementsByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -593,7 +593,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/user/:username/created&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserReceivedEndorsements&#x27;, summary: &#x27;Finds all endorsements received by the user and paginates them&#x27;})<br />@ApiPaginatedResponse(DbEndorsement)<br />@ApiOkResponse({type: DbEndorsement})<br /></code>
+                    <code>@Get(&#x27;/user/:username/created&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserCreatedEndorsementsByUsername&#x27;, summary: &#x27;Finds all endorsements received by the user and paginates them&#x27;})<br />@ApiPaginatedResponse(DbEndorsement)<br />@ApiOkResponse({type: DbEndorsement})<br /></code>
                 </td>
             </tr>
 
@@ -664,18 +664,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAllUserReceivedEndorsements"></a>
+                    <a name="findAllUserReceivedEndorsementsByUsername"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAllUserReceivedEndorsements</b></span>
-                        <a href="#findAllUserReceivedEndorsements"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllUserReceivedEndorsementsByUsername</b></span>
+                        <a href="#findAllUserReceivedEndorsementsByUsername"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllUserReceivedEndorsements(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <code>findAllUserReceivedEndorsementsByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -683,14 +683,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/user/:username/received&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserReceivedEndorsements&#x27;, summary: &#x27;Finds all endorsements received by the user and paginates them&#x27;})<br />@ApiPaginatedResponse(DbEndorsement)<br />@ApiOkResponse({type: DbEndorsement})<br /></code>
+                    <code>@Get(&#x27;/user/:username/received&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserReceivedEndorsementsByUsername&#x27;, summary: &#x27;Finds all endorsements received by the user and paginates them&#x27;})<br />@ApiPaginatedResponse(DbEndorsement)<br />@ApiOkResponse({type: DbEndorsement})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/endorsement/endorsement.controller.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/endorsement/endorsement.controller.ts:123</a></div>
                 </td>
             </tr>
 
@@ -933,12 +933,15 @@ export class EndorsementController {
 
   @Get(&quot;/user/:username/created&quot;)
   @ApiOperation({
-    operationId: &quot;findAllUserReceivedEndorsements&quot;,
+    operationId: &quot;findAllUserCreatedEndorsementsByUsername&quot;,
     summary: &quot;Finds all endorsements received by the user and paginates them&quot;,
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserCreatedEndorsements(@Param(&quot;username&quot;) username: string, @Query() pageOptionsDto: PageOptionsDto) {
+  async findAllUserCreatedEndorsementsByUsername(
+    @Param(&quot;username&quot;) username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByCreatorUserId(user.id, pageOptionsDto);
@@ -946,12 +949,15 @@ export class EndorsementController {
 
   @Get(&quot;/user/:username/received&quot;)
   @ApiOperation({
-    operationId: &quot;findAllUserReceivedEndorsements&quot;,
+    operationId: &quot;findAllUserReceivedEndorsementsByUsername&quot;,
     summary: &quot;Finds all endorsements received by the user and paginates them&quot;,
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserReceivedEndorsements(@Param(&quot;username&quot;) username: string, @Query() pageOptionsDto: PageOptionsDto) {
+  async findAllUserReceivedEndorsementsByUsername(
+    @Param(&quot;username&quot;) username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByRecipientUserId(user.id, pageOptionsDto);

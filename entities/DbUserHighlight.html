@@ -605,7 +605,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;An array of full-names of tagged repositories&#x27;, example: undefined, type: undefined, isArray: true})<br />@Column({type: &#x27;varchar&#x27;, array: true, default: &#x27;{}&#x27;})<br />
+                            @ApiModelProperty({description: &#x27;An array of full-names of tagged repositories&#x27;, example: undefined, type: &#x27;string&#x27;, isArray: true})<br />@Column({type: &#x27;varchar&#x27;, array: true, default: &#x27;{}&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -1000,7 +1000,7 @@ export class DbUserHighlight extends BaseEntity {
   @ApiModelProperty({
     description: &quot;An array of full-names of tagged repositories&quot;,
     example: [&quot;open-sauced/insights&quot;, &quot;open-sauced/ai&quot;],
-    type: [String],
+    type: &quot;string&quot;,
     isArray: true,
   })
   @Column({

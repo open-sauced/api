@@ -223,7 +223,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;An array of full-names of tagged repositories&#x27;, example: undefined, type: undefined, isArray: true})<br />@IsArray()<br />@IsString({each: true})<br />
+                            @ApiProperty({description: &#x27;An array of full-names of tagged repositories&#x27;, example: undefined, type: &#x27;string&#x27;, isArray: true})<br />@IsArray()<br />@IsString({each: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -414,7 +414,7 @@ export class CreateUserHighlightDto {
   @ApiProperty({
     description: &quot;An array of full-names of tagged repositories&quot;,
     example: [&quot;open-sauced/insights&quot;, &quot;open-sauced/ai&quot;],
-    type: [String],
+    type: &quot;string&quot;,
     isArray: true,
   })
   @IsArray()

@@ -128,7 +128,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;An array of interests&#x27;, type: undefined, isArray: true, example: undefined})<br />@IsArray()<br />
+                            @ApiProperty({description: &#x27;An array of interests&#x27;, type: &#x27;string&#x27;, isArray: true, example: undefined})<br />@IsArray()<br />
                         </code>
                     </td>
                 </tr>
@@ -159,7 +159,7 @@ import { IsArray } from &quot;class-validator&quot;;
 export class UpdateUserProfileInterestsDto {
   @ApiProperty({
     description: &quot;An array of interests&quot;,
-    type: [String],
+    type: &quot;string&quot;,
     isArray: true,
     example: [&quot;javascript&quot;, &quot;react&quot;],
   })
