@@ -4063,7 +4063,7 @@ info:
 
     Each API route is clickable and has their own detailed description on how to use it.
 
-    The base URL for the API is [api.opensauced.pizza](https://api.opensauced.pizza).
+    The base URL for the API is [http:/http:///localhost](https://http:/http:///localhost).
 
 
     [comment]: # (TODO: add bearer auth information)
@@ -4139,13 +4139,13 @@ servers:
   - url: http://localhost:3001
     description: Development
     variables: null
-  - url: https://api.opensauced.pizza
+  - url: https://http:/http:///localhost
     description: Production
     variables: null
-  - url: https://beta.api.opensauced.pizza
+  - url: https://beta.http:/http:///localhost
     description: Beta
     variables: null
-  - url: https://alpha.api.opensauced.pizza
+  - url: https://alpha.http:/http:///localhost
     description: Alpha
     variables: null
 components:
