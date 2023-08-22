@@ -112,20 +112,6 @@ export class UserHighlightsController {
     await this.userHighlightsService.deleteUserHighlight(highlight.id);
   }
 
-  @Get("/:id/reactors")
-  @ApiOperation({
-    operationId: "getAllHighlightReactionsAndReactors",
-    summary: "Retrieves all reactions and reactors for a highlight",
-  })
-  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
-  @ApiNotFoundResponse({ description: "Unable to get user highlight reactors" })
-  @ApiBadRequestResponse({ description: "Invalid request" })
-  async getAllHighlightReactionsAndReactors(
-    @Param("id", ParseIntPipe) id: number
-  ): Promise<DbUserHighlightReactionResponse[]> {
-    return this.userHighlightsService.findAllHighlightReactions(id);
-  }
-
   @Get("/:id/reactions")
   @ApiOperation({
     operationId: "getAllHighlightUserReactions",

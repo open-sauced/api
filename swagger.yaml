@@ -461,30 +461,6 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  "/v1/user/highlights/{id}/reactors":
-    get:
-      operationId: getAllHighlightReactionsAndReactors
-      summary: Retrieves all reactions and reactors for a highlight
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: number
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/DbUserHighlightReactorResponse"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get user highlight reactors
-      tags: *a3
   "/v1/user/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightUserReactions
@@ -5166,7 +5142,7 @@ components:
         - id
         - user_id
         - type
-    DbUserHighlightReactorResponse:
+    DbUserHighlightReactionResponse:
       type: object
       properties:
         emoji_id:
@@ -5189,17 +5165,6 @@ components:
       required:
         - emoji_id
         - reaction_users
-    DbUserHighlightReactionResponse:
-      type: object
-      properties:
-        emoji_id:
-          type: string
-          description: Emoji identifier
-          example: uuid-v4
-        reaction_count:
-          type: number
-      required:
-        - emoji_id
     DbUserHighlightReaction:
       type: object
       properties:
