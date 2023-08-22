@@ -1,13 +1,17 @@
 import {
   Column,
-  CreateDateColumn, DeleteDateColumn,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
-import { ApiModelProperty, ApiModelPropertyOptional } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 import { DbUser } from "../user.entity";
 
@@ -52,7 +56,7 @@ export class DbUserOrganization {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.organizations)
+  @ManyToOne(() => DbUser, (user) => user.organizations)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -60,7 +64,7 @@ export class DbUserOrganization {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, user => user.organizations)
+  @ManyToOne(() => DbUser, (user) => user.organizations)
   @JoinColumn({
     name: "organization_id",
     referencedColumnName: "id",
