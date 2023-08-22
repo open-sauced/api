@@ -26,11 +26,7 @@ import { PageDto } from "../common/dtos/page.dto";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
-import {
-  DbUserHighlightReactionResponse,
-  DbUserHighlightReactorResponse,
-  HighlightOptionsDto,
-} from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
@@ -121,12 +117,13 @@ export class UserHighlightsController {
     operationId: "getAllHighlightReactionsAndReactors",
     summary: "Retrieves all reactions and reactors for a highlight",
   })
+  @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getAllHighlightReactionsAndReactors(
     @Param("id", ParseIntPipe) id: number
-  ): Promise<DbUserHighlightReactorResponse[]> {
-    return this.userHighlightsService.findAllHighlightReactionsAndReactors(id);
+  ): Promise<DbUserHighlightReactionResponse[]> {
+    return this.userHighlightsService.findAllHighlightReactions(id);
   }
 
   @Get("/:id/reactions")
