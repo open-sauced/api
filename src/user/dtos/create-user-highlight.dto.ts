@@ -50,7 +50,7 @@ export class CreateUserHighlightDto {
   @ApiProperty({
     description: "An array of full-names of tagged repositories",
     example: ["open-sauced/insights", "open-sauced/ai"],
-    type: [String],
+    type: "string",
     isArray: true,
   })
   @IsArray()

@@ -156,7 +156,7 @@ export class DbUserHighlight extends BaseEntity {
   @ApiModelProperty({
     description: "An array of full-names of tagged repositories",
     example: ["open-sauced/insights", "open-sauced/ai"],
-    type: [String],
+    type: "string",
     isArray: true,
   })
   @Column({
