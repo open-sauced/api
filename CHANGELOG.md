@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.4...v1.46.0-beta.5) (2023-08-23)
+
+
+### 🐛 Bug Fixes
+
+* add unit test for user-collaboration service and controller ([#267](https://github.com/open-sauced/api.opensauced.pizza/issues/267)) ([670e3f9](https://github.com/open-sauced/api.opensauced.pizza/commit/670e3f97a0372af6634db252bb6a0624ff949cc1))
+
+## [1.46.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.3...v1.46.0-beta.4) (2023-08-22)
+
+
+### 🐛 Bug Fixes
+
+* add Swagger API doc fixes for code generation ([#270](https://github.com/open-sauced/api.opensauced.pizza/issues/270)) ([1fca4b0](https://github.com/open-sauced/api.opensauced.pizza/commit/1fca4b02d1fbcfde38c51e6528a992aa8832b17a))
+
 ## [1.46.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.2...v1.46.0-beta.3) (2023-08-18)
 
 
