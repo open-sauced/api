@@ -392,10 +392,16 @@ export class HighlightOptionsDto extends PageOptionsDto {
   readonly repo?: string;
 }
 
-export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, [
-  &quot;emoji_id&quot;,
-  &quot;reaction_count&quot;,
-]) {}
+export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, [&quot;emoji_id&quot;, &quot;reaction_count&quot;]) {
+  @ApiPropertyOptional({
+    description: &quot;Usernames of users who reacted with this emoji&quot;,
+    example: [&quot;RitaDee&quot;, &quot;diivi&quot;],
+    isArray: true,
+  })
+  @IsString({ each: true })
+  @IsOptional()
+  readonly reaction_users?: string[];
+}
 </code></pre>
     </div>
 </div>

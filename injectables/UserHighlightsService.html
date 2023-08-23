@@ -455,8 +455,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="293"
-                            class="link-to-prism">src/user/user-highlights.service.ts:293</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="296"
+                            class="link-to-prism">src/user/user-highlights.service.ts:296</a></div>
                 </td>
             </tr>
 
@@ -670,8 +670,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="325"
-                            class="link-to-prism">src/user/user-highlights.service.ts:325</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="328"
+                            class="link-to-prism">src/user/user-highlights.service.ts:328</a></div>
                 </td>
             </tr>
 
@@ -1227,8 +1227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="276"
-                            class="link-to-prism">src/user/user-highlights.service.ts:276</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/user/user-highlights.service.ts:279</a></div>
                 </td>
             </tr>
 
@@ -1805,7 +1805,10 @@ export class UserHighlightsService {
     queryBuilder
       .select(&quot;emoji_id&quot;, &quot;emoji_id&quot;)
       .addSelect(&quot;COUNT(emoji_id)&quot;, &quot;reaction_count&quot;)
-      .where(&quot;user_highlight_reactions.highlight_id &#x3D; :highlightId&quot;, { highlightId });
+      .addSelect(&quot;ARRAY_AGG(users.login)&quot;, &quot;reaction_users&quot;)
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_highlight_reactions.user_id&#x3D;users.id&quot;)
+      .where(&quot;user_highlight_reactions.highlight_id &#x3D; :highlightId&quot;, { highlightId })
+      .addGroupBy(&quot;emoji_id&quot;);
 
     if (userId) {
       queryBuilder.andWhere(&quot;user_highlight_reactions.user_id &#x3D; :userId&quot;, { userId });
