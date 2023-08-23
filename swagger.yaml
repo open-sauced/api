@@ -4039,7 +4039,7 @@ info:
 
     Each API route is clickable and has their own detailed description on how to use it.
 
-    The base URL for the API is [http:/http:///localhost](https://http:/http:///localhost).
+    The base URL for the API is [api.opensauced.pizza](https://api.opensauced.pizza).
 
 
     [comment]: # (TODO: add bearer auth information)
@@ -5146,10 +5146,22 @@ components:
           type: string
           description: Emoji identifier
           example: uuid-v4
+        reaction_users:
+          type: array
+          items:
+            required: false
+            description: Usernames of users who reacted with this emoji
+            example:
+              - RitaDee
+              - diivi
+            type: array
+            items:
+              type: string
         reaction_count:
           type: number
       required:
         - emoji_id
+        - reaction_users
     DbUserHighlightReaction:
       type: object
       properties:
