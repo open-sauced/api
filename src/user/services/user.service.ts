@@ -46,14 +46,17 @@ export class UserService {
       .from(DbUser, "users")
       .innerJoin("user_highlights", "user_highlights", "user_highlights.user_id = users.id")
       .innerJoin("user_highlight_reactions", "reactions", "reactions.highlight_id = user_highlights.id")
-      .innerJoin("users_to_users_followers", "followers", "followers.following_user_id = users.id")
-      .where("reactions.deleted_at IS NULL")
-      .groupBy("users.login")
-      .orderBy("COUNT(reactions.user_id)", "DESC");
+      .where("reactions.deleted_at IS NULL");
 
     if (userId) {
-      queryBuilder.andWhere("followers.user_id != :userId", { userId }).andWhere("followers.deleted_at IS NULL");
+      queryBuilder
+        .andWhere(
+          "users.id NOT IN (SELECT following_user_id FROM users_to_users_followers WHERE user_id = :userId AND deleted_at IS NULL)"
+        )
+        .setParameters({ userId });
     }
+
+    queryBuilder.groupBy("users.login").orderBy("COUNT(reactions.user_id)", "DESC");
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
