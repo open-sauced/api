@@ -14,6 +14,13 @@ export class TopUsersDto {
   readonly page?: number = 1;
 
   @ApiPropertyOptional({
+    description: "User ID to filter followings from the list",
+  })
+  @IsOptional()
+  @Type(() => Number)
+  readonly userId?: number = 0;
+
+  @ApiPropertyOptional({
     minimum: 1,
     maximum: 1000,
     default: 10,

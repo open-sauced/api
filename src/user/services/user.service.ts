@@ -39,14 +39,21 @@ export class UserService {
   async findTopUsers(pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
     const queryBuilder = this.reactionsQueryBuilder();
 
+    const { userId } = pageOptionsDto;
+
     queryBuilder
       .select("users.login as login")
       .from(DbUser, "users")
       .innerJoin("user_highlights", "user_highlights", "user_highlights.user_id = users.id")
       .innerJoin("user_highlight_reactions", "reactions", "reactions.highlight_id = user_highlights.id")
+      .innerJoin("users_to_users_followers", "followers", "followers.following_user_id = users.id")
       .where("reactions.deleted_at IS NULL")
       .groupBy("users.login")
       .orderBy("COUNT(reactions.user_id)", "DESC");
+
+    if (userId) {
+      queryBuilder.andWhere("followers.user_id != :userId", { userId }).andWhere("followers.deleted_at IS NULL");
+    }
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
@@ -144,8 +151,8 @@ export class UserService {
       )
       .addSelect(
         `(
-          SELECT 
-            CASE 
+          SELECT
+            CASE
               WHEN COUNT(DISTINCT full_name) > 0 THEN true
               ELSE false
             END
