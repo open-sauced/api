@@ -4119,9 +4119,6 @@ info:
     url: https://opensource.org/licenses/mit
 tags: []
 servers:
-  - url: http://localhost:3001
-    description: Development
-    variables: {}
   - url: https://api.opensauced.pizza
     description: Production
     variables: {}
