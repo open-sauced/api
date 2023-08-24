@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.6...v1.46.0-beta.7) (2023-08-24)
+
+
+### 🍕 Features
+
+* remove following users from top users when a user id is provided ([#275](https://github.com/open-sauced/api.opensauced.pizza/issues/275)) ([4c7261b](https://github.com/open-sauced/api.opensauced.pizza/commit/4c7261b5b8129a223838d3aec7d739355ac08220))
+
 ## [1.46.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.5...v1.46.0-beta.6) (2023-08-23)
 
 
