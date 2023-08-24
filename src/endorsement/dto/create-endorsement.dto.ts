@@ -4,7 +4,7 @@ import { IsString, IsNumber, IsOptional } from "class-validator";
 export class CreateEndorsementDto {
   @ApiProperty({
     description: "Endorsement Creator User ID",
-    type: Number,
+    type: "integer",
     example: 42211,
   })
   @IsNumber()
@@ -12,7 +12,7 @@ export class CreateEndorsementDto {
 
   @ApiProperty({
     description: "Endorsement Recipient User ID",
-    type: Number,
+    type: "integer",
     example: 5736810,
   })
   @IsNumber()
@@ -20,6 +20,7 @@ export class CreateEndorsementDto {
 
   @ApiProperty({
     description: "Repository ID",
+    type: "integer",
     example: 78133,
   })
   @IsNumber()

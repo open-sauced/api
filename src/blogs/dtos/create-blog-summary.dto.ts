@@ -4,7 +4,7 @@ import { IsIn, IsNumber, IsString, Max, Min } from "class-validator";
 export class CreateBlogSummaryDto {
   @ApiProperty({
     description: "Summary Length",
-    type: Number,
+    type: "integer",
     example: 250,
   })
   @IsNumber()
@@ -14,7 +14,7 @@ export class CreateBlogSummaryDto {
 
   @ApiProperty({
     description: "Summary Temperature",
-    type: Number,
+    type: "integer",
     example: 7,
   })
   @IsNumber()

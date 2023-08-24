@@ -24,6 +24,7 @@ export class DbUserHighlight extends BaseEntity {
   @ApiModelProperty({
     description: "User Highlight identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -31,6 +32,7 @@ export class DbUserHighlight extends BaseEntity {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column("bigint")
   public user_id: number;

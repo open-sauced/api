@@ -8,6 +8,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     minimum: 1,
     default: 1,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()
@@ -19,6 +20,7 @@ export class PageOptionsDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()
@@ -35,6 +37,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     description: "Range in days",
     default: 30,
+    type: "integer",
   })
   @Type(() => Number)
   @IsIn([7, 30, 90])

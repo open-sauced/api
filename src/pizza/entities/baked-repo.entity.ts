@@ -14,6 +14,7 @@ export class DbBakedRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Baked repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -31,6 +32,7 @@ export class DbBakedRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository identifier",
     example: 12345678,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public repo_id!: number;

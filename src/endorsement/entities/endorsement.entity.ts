@@ -16,6 +16,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: "Endorsement Creator User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public creator_user_id?: number;
@@ -23,6 +24,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: "Endorsement Recipient User ID",
     example: 31333,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public recipient_user_id?: number;
@@ -30,6 +32,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: "Repository ID",
     example: 78133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public repo_id: number;

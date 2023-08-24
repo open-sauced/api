@@ -14,6 +14,7 @@ export class PullRequestContributorInsightsDto extends PageOptionsDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()

@@ -4,7 +4,7 @@ import { IsNumber, IsString } from "class-validator";
 export class RepoInfo {
   @ApiProperty({
     description: "Repo ID",
-    type: Number,
+    type: "integer",
     example: 234343,
   })
   @IsNumber()

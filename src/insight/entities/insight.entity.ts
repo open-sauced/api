@@ -26,6 +26,7 @@ export class DbInsight extends BaseEntity {
   @ApiModelProperty({
     description: "Insight identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn()
   @PrimaryGeneratedColumn()
@@ -34,6 +35,7 @@ export class DbInsight extends BaseEntity {
   @ApiModelProperty({
     description: "User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({
     type: "bigint",
