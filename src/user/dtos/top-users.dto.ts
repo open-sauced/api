@@ -6,6 +6,7 @@ export class TopUsersDto {
   @ApiPropertyOptional({
     minimum: 1,
     default: 1,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()
@@ -15,6 +16,7 @@ export class TopUsersDto {
 
   @ApiPropertyOptional({
     description: "User ID to filter followings from the list",
+    type: "integer",
   })
   @IsOptional()
   @Type(() => Number)
@@ -24,6 +26,7 @@ export class TopUsersDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()

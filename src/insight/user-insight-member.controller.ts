@@ -21,6 +21,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiUnprocessableEntityResponse,
+  ApiParam,
 } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -56,6 +57,7 @@ export class UserInsightMemberController {
   @ApiPaginatedResponse(DbInsightMember)
   @ApiOkResponse({ type: DbInsightMember })
   @ApiNotFoundResponse({ description: "Insight not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findAllInsightsByUserId(
     @Query() pageOptionsDto: InsightPageOptionsDto,
     @Param("id", ParseIntPipe) insightId: number,
@@ -86,6 +88,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: "Unable to add insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateInsightMemberDto })
+  @ApiParam({ name: "id", type: "integer" })
   async addInsightMember(
     @Body() createInsightMemberDto: CreateInsightMemberDto,
     @Param("id", ParseIntPipe) insightId: number,
@@ -133,6 +136,7 @@ export class UserInsightMemberController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight member" })
   @ApiBody({ type: UpdateInsightMemberDto })
+  @ApiParam({ name: "id", type: "integer" })
   async updateInsightMember(
     @Param("id", ParseIntPipe) id: number,
     @Param("memberId") memberId: string,
@@ -170,6 +174,7 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Unable to remove insight member" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async removeInsightMemberById(
     @Param("id", ParseIntPipe) id: number,
     @Param("memberId") memberId: string,

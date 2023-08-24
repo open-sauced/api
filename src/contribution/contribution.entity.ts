@@ -22,6 +22,7 @@ export class DbContribution extends BaseEntity {
   @ApiModelProperty({
     description: "Contribution identifier",
     example: 12237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -29,6 +30,7 @@ export class DbContribution extends BaseEntity {
   @ApiModelProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -39,6 +41,7 @@ export class DbContribution extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of contributed pull requests",
     example: 15,
+    type: "integer",
   })
   @Column({
     type: "bigint",

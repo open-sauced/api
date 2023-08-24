@@ -6,6 +6,7 @@ import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
   ApiBearerAuth,
+  ApiParam,
 } from "@nestjs/swagger";
 
 import { UserId } from "../auth/supabase.user.decorator";
@@ -56,6 +57,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async featureHighlight(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -73,6 +75,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async unfeatureHighlight(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -99,6 +102,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async getAllHighlightReactions(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }

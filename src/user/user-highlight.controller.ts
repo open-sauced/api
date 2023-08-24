@@ -21,6 +21,7 @@ import {
   ApiBody,
   ApiConflictResponse,
   OmitType,
+  ApiParam,
 } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 
@@ -64,6 +65,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to get user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async getUserHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight> {
     return this.userHighlightsService.findOneById(id);
   }
@@ -79,6 +81,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Unable to update user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateUserHighlightDto })
+  @ApiParam({ name: "id", type: "integer" })
   async updateHighlightForUser(
     @Body() updateHighlightDto: CreateUserHighlightDto,
     @UserId() userId: number,
@@ -103,6 +106,7 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: "Unable to delete user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async deleteHighlightForUser(
     @UserId() userId: number,
     @Param("id", ParseIntPipe) highlightId: number
@@ -122,6 +126,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async getAllHighlightUserReactions(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -140,6 +145,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Highlight does not exist" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiConflictResponse({ description: "Unable to add user highlight reaction" })
+  @ApiParam({ name: "id", type: "integer" })
   async addHighlightReactionForUser(
     @Param("id", ParseIntPipe) highlightId: number,
     @Param("emojiId") emojiId: string,
@@ -163,6 +169,7 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: "Unable to delete user highlight reaction" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async deleteHighlightReactionForUser(
     @UserId() userId: number,
     @Param("id", ParseIntPipe) highlightId: number,

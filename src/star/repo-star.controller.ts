@@ -5,6 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
@@ -52,6 +53,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already starred this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async starOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 
@@ -94,6 +96,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already removed your star" })
+  @ApiParam({ name: "id", type: "integer" })
   async downStarOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 

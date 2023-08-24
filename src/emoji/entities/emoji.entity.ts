@@ -41,6 +41,7 @@ export class DbEmoji {
   @ApiModelProperty({
     description: "Emoji display order",
     example: 1,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public display_order!: number;

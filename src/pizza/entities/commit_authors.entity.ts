@@ -14,6 +14,7 @@ export class DbCommitAuthors extends BaseEntity {
   @ApiModelProperty({
     description: "Commit author identifier",
     example: 71359796,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;

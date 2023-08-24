@@ -1,5 +1,5 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { DbRepo } from "./entities/repo.entity";
@@ -19,6 +19,7 @@ export class RepoController {
   })
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findOneById(@Param("id", ParseIntPipe) id: number): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }

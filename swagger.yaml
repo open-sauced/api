@@ -187,7 +187,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -195,7 +195,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -207,7 +207,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -240,7 +240,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -248,7 +248,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -260,7 +260,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -293,7 +293,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -301,7 +301,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -313,7 +313,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -341,14 +341,14 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: userId
           required: false
           in: query
           description: User ID to filter followings from the list
           schema:
             default: 0
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -356,7 +356,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -407,7 +407,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -428,7 +428,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       requestBody:
         required: true
         content:
@@ -457,7 +457,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -477,7 +477,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -501,7 +501,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
         - name: emojiId
           required: true
           in: path
@@ -533,7 +533,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
         - name: emojiId
           required: true
           in: path
@@ -560,7 +560,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -568,7 +568,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -580,7 +580,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repo
           required: false
           in: query
@@ -609,7 +609,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -617,7 +617,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -629,7 +629,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repo
           required: false
           in: query
@@ -730,7 +730,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -738,7 +738,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -750,7 +750,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -775,7 +775,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -783,7 +783,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -795,7 +795,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -907,7 +907,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -915,7 +915,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -927,7 +927,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -958,7 +958,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -966,7 +966,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -978,7 +978,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -1018,7 +1018,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1026,7 +1026,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1038,7 +1038,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -1066,7 +1066,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1074,7 +1074,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1086,7 +1086,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1150,7 +1150,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1158,7 +1158,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1170,7 +1170,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: filter
           required: false
           in: query
@@ -1292,7 +1292,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -1341,7 +1341,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1349,7 +1349,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1361,7 +1361,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1392,7 +1392,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1400,7 +1400,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1412,7 +1412,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1668,7 +1668,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1676,7 +1676,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1688,7 +1688,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1723,7 +1723,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns if authenticated user has voted for it
@@ -1743,7 +1743,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo vote
@@ -1766,7 +1766,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo vote
@@ -1849,7 +1849,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -1857,7 +1857,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -1869,7 +1869,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1903,7 +1903,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo star
@@ -1926,7 +1926,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo star
@@ -2009,7 +2009,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2017,7 +2017,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2029,7 +2029,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2063,7 +2063,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo follow
@@ -2086,7 +2086,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo follow
@@ -2169,7 +2169,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2177,7 +2177,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2189,7 +2189,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2223,7 +2223,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo submission
@@ -2246,7 +2246,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Returns the repo submission
@@ -2327,14 +2327,14 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
         - name: page
           required: false
           in: query
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2342,7 +2342,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2354,7 +2354,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2401,7 +2401,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2409,7 +2409,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2421,7 +2421,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2452,7 +2452,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -2475,7 +2475,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       requestBody:
         required: true
         content:
@@ -2507,7 +2507,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2515,7 +2515,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2527,7 +2527,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -2587,7 +2587,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       requestBody:
         required: true
         content:
@@ -2621,7 +2621,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2629,7 +2629,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2641,12 +2641,12 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: id
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -2675,7 +2675,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       requestBody:
         required: true
         content:
@@ -2711,7 +2711,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
         - name: memberId
           required: true
           in: path
@@ -2747,7 +2747,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
         - name: memberId
           required: true
           in: path
@@ -2829,7 +2829,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2837,7 +2837,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2849,7 +2849,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repo
           required: false
           in: query
@@ -2884,7 +2884,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2892,7 +2892,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -2904,7 +2904,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repo
           required: false
           in: query
@@ -2935,7 +2935,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -2964,7 +2964,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -2990,7 +2990,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -2998,7 +2998,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3010,7 +3010,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3034,7 +3034,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -3058,7 +3058,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3066,7 +3066,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3078,7 +3078,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3104,7 +3104,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3112,7 +3112,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3124,7 +3124,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3184,7 +3184,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3192,7 +3192,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3204,7 +3204,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3235,7 +3235,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3243,7 +3243,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3255,7 +3255,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3291,7 +3291,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3299,7 +3299,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3311,7 +3311,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3395,7 +3395,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3403,7 +3403,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3415,7 +3415,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3446,7 +3446,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3454,7 +3454,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3466,7 +3466,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3492,7 +3492,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3500,7 +3500,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3512,7 +3512,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: filter
           required: false
           in: query
@@ -3561,7 +3561,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3569,7 +3569,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3581,7 +3581,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -3614,7 +3614,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3622,7 +3622,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3634,7 +3634,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -3666,7 +3666,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3674,7 +3674,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3686,7 +3686,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -3718,7 +3718,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3726,7 +3726,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3738,7 +3738,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -3788,7 +3788,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -3810,7 +3810,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3818,7 +3818,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3830,7 +3830,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3854,7 +3854,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -3876,7 +3876,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3884,7 +3884,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3896,7 +3896,7 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3920,7 +3920,7 @@ paths:
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -3942,7 +3942,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -3950,7 +3950,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -3962,12 +3962,12 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: id
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3993,7 +3993,7 @@ paths:
           schema:
             minimum: 1
             default: 1
-            type: number
+            type: integer
         - name: limit
           required: false
           in: query
@@ -4001,7 +4001,7 @@ paths:
             minimum: 1
             maximum: 1000
             default: 10
-            type: number
+            type: integer
         - name: orderDirection
           required: false
           in: query
@@ -4013,12 +4013,12 @@ paths:
           description: Range in days
           schema:
             default: 30
-            type: number
+            type: integer
         - name: id
           required: true
           in: path
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -4182,7 +4182,7 @@ components:
           description: Flag indicated whether the user is waitlisted
           example: false
         insights_role:
-          type: number
+          type: integer
           description: Authenticated User's Insights Role
           example: 10
         bio:
@@ -4226,7 +4226,7 @@ components:
           description: Discord URL
           example: https://discord.gg/opensauced
         notification_count:
-          type: number
+          type: integer
           description: Unread User Notification Count
           example: 5
       required:
@@ -4307,11 +4307,11 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         open_issues:
-          type: number
+          type: integer
           description: Total number of open issues user has across public activity
           example: 498
         created_at:
@@ -4386,7 +4386,7 @@ components:
           example: false
           default: false
         role:
-          type: number
+          type: integer
           description: Insights Role
           example: 10
           default: 10
@@ -4439,19 +4439,19 @@ components:
           description: GitHub user hireable status
           example: false
         public_repos:
-          type: number
+          type: integer
           description: GitHub user public repos number
           example: 0
         public_gists:
-          type: number
+          type: integer
           description: GitHub user public gists number
           example: 0
         followers:
-          type: number
+          type: integer
           description: GitHub user public followers number
           example: 0
         following:
-          type: number
+          type: integer
           description: GitHub user public following number
           example: 0
         type:
@@ -4477,27 +4477,27 @@ components:
           example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }"
           default: {}
         notification_count:
-          type: number
+          type: integer
           description: User notification count
           example: 0
         highlights_count:
-          type: number
+          type: integer
           description: User highlights count
           example: 0
         following_count:
-          type: number
+          type: integer
           description: User following count
           example: 0
         followers_count:
-          type: number
+          type: integer
           description: User followers count
           example: 0
         recent_pull_requests_count:
-          type: number
+          type: integer
           description: Count of user pull requests within the last 30 days
           example: 0
         recent_pull_request_velocity_count:
-          type: number
+          type: integer
           description: User average pull request velocity in days over the last 30 days
           example: 0
         is_maintainer:
@@ -4560,19 +4560,19 @@ components:
       type: object
       properties:
         page:
-          type: number
+          type: integer
           description: The current page
           example: 1
         limit:
-          type: number
+          type: integer
           description: The number of items per page
           example: 10
         itemCount:
-          type: number
+          type: integer
           description: The number of items in the collection
           example: 100
         pageCount:
-          type: number
+          type: integer
           description: The number of pages in the collection
           example: 10
         hasPreviousPage:
@@ -4606,11 +4606,11 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Pull request identifier
           example: 1045024650
         number:
-          type: number
+          type: integer
           description: Pull request number
           example: 612
         state:
@@ -4720,19 +4720,19 @@ components:
           description: Timestamp representing internal last update
           example: 2022-08-28 22:04:29.000000
         comments:
-          type: number
+          type: integer
           description: PR comments
           example: 0
         additions:
-          type: number
+          type: integer
           description: PR lines added
           example: 10
         deletions:
-          type: number
+          type: integer
           description: PR lines deleted
           example: 5
         changed_files:
-          type: number
+          type: integer
           description: PR files changed
           example: 5
         full_name:
@@ -4759,11 +4759,11 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: User Highlight identifier
           example: 237133
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         url:
@@ -4844,39 +4844,39 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         user_id:
-          type: number
+          type: integer
           description: Owner user identifier
           example: 57568598
         size:
-          type: number
+          type: integer
           description: Total size in bytes
           example: 274322
         issues:
-          type: number
+          type: integer
           description: Total number of issues
           example: 274
         stars:
-          type: number
+          type: integer
           description: Total number of stars
           example: 5
         forks:
-          type: number
+          type: integer
           description: Total number of forks
           example: 1
         watchers:
-          type: number
+          type: integer
           description: Total number of watchers
           example: 5473
         subscribers:
-          type: number
+          type: integer
           description: Total number of subscribers
           example: 11756
         network:
-          type: number
+          type: integer
           description: Total number of network usages
           example: 4
         is_fork:
@@ -5004,31 +5004,31 @@ components:
           items:
             type: string
         open_prs_count:
-          type: number
+          type: integer
           description: Repository number of open PRs
           example: 5
         closed_prs_count:
-          type: number
+          type: integer
           description: Repository number of closed PRs
           example: 173
         merged_prs_count:
-          type: number
+          type: integer
           description: Repository number of merged PRs
           example: 276
         draft_prs_count:
-          type: number
+          type: integer
           description: Repository number of draft PRs
           example: 2
         spam_prs_count:
-          type: number
+          type: integer
           description: Repository number of spam PRs
           example: 2
         pr_velocity_count:
-          type: number
+          type: integer
           description: Repository average open/close time for PRs
           example: 0
         pr_active_count:
-          type: number
+          type: integer
           description: Number of non-closed PRs updated within the day range
           example: 0
       required:
@@ -5114,15 +5114,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Notification identifier
           example: 237133
         user_id:
-          type: number
+          type: integer
           description: User ID
           example: 498
         from_user_id:
-          type: number
+          type: integer
           description: From User ID
           example: 43311
         type:
@@ -5153,6 +5153,8 @@ components:
           type: string
           description: Emoji identifier
           example: uuid-v4
+        reaction_count:
+          type: integer
         reaction_users:
           type: array
           items:
@@ -5164,8 +5166,6 @@ components:
             type: array
             items:
               type: string
-        reaction_count:
-          type: number
       required:
         - emoji_id
         - reaction_users
@@ -5177,11 +5177,11 @@ components:
           description: Reaction identifier
           example: uuid-v4
         highlight_id:
-          type: number
+          type: integer
           description: Highlight identifier
           example: 71359796
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         emoji_id:
@@ -5199,7 +5199,7 @@ components:
           description: Timestamp representing highlight reaction last update
           example: 2022-08-28 22:04:29.000000
         reaction_count:
-          type: number
+          type: integer
       required:
         - id
         - highlight_id
@@ -5216,15 +5216,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: User Follow identifier
           example: 196
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         following_user_id:
-          type: number
+          type: integer
           description: User follower identifier
           example: 71359796
         created_at:
@@ -5249,11 +5249,11 @@ components:
           description: User Collaboration identifier
           example: uuid-v4
         user_id:
-          type: number
+          type: integer
           description: Collaboration Receipient User ID
           example: 237133
         request_user_id:
-          type: number
+          type: integer
           description: Collaboration Request User ID
           example: 31333
         message:
@@ -5324,15 +5324,15 @@ components:
           description: Endorsement identifier
           example: uuid-v4
         creator_user_id:
-          type: number
+          type: integer
           description: Endorsement Creator User ID
           example: 237133
         recipient_user_id:
-          type: number
+          type: integer
           description: Endorsement Recipient User ID
           example: 31333
         repo_id:
-          type: number
+          type: integer
           description: Repository ID
           example: 78133
         source_comment_url:
@@ -5379,29 +5379,29 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         interval:
-          type: number
+          type: integer
           description: Selected interval in numerical days, goes back with number, 0 means
             today
           example: 1
           default: 0
         day:
-          type: number
+          type: date-time
           description: Selected interval computed date in human readable format
           example: 2022-08-28 22:04:39.000000
         all_prs:
-          type: number
+          type: integer
           description: "PR Type: all requests count"
           example: 287
         accepted_prs:
-          type: number
+          type: integer
           description: "PR Type: accepted requests count"
           example: 287
         spam_prs:
-          type: number
+          type: integer
           description: "PR Type: spam requests count"
           example: 287
       required:
@@ -5415,11 +5415,11 @@ components:
       type: object
       properties:
         descriptionLength:
-          type: number
+          type: integer
           description: Description Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Description Temperature
           example: 7
         tone:
@@ -5451,11 +5451,11 @@ components:
       type: object
       properties:
         descriptionLength:
-          type: number
+          type: integer
           description: Suggestion Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Description Temperature
           example: 7
         language:
@@ -5475,11 +5475,11 @@ components:
       type: object
       properties:
         descriptionLength:
-          type: number
+          type: integer
           description: Suggestion Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Description Temperature
           example: 7
         code:
@@ -5493,11 +5493,11 @@ components:
       type: object
       properties:
         descriptionLength:
-          type: number
+          type: integer
           description: Description Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Description Temperature
           example: 7
         language:
@@ -5532,15 +5532,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Vote identifier
           example: 196
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         created_at:
@@ -5575,15 +5575,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Star identifier
           example: 196
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         created_at:
@@ -5604,15 +5604,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Stargaze identifier
           example: 196
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         created_at:
@@ -5633,15 +5633,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Submission identifier
           example: 196
         user_id:
-          type: number
+          type: integer
           description: User identifier
           example: 237133
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         is_accepted:
@@ -5666,15 +5666,15 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Contribution identifier
           example: 12237133
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 71359796
         count:
-          type: number
+          type: integer
           description: Total number of contributed pull requests
           example: 15
         last_merged_at:
@@ -5711,11 +5711,11 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Insight identifier
           example: 237133
         user_id:
-          type: number
+          type: integer
           description: User ID
           example: 237133
         name:
@@ -5760,7 +5760,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Repo ID
           example: 234343
         fullName:
@@ -5823,11 +5823,11 @@ components:
           description: Insight Member identifier
           example: uuid-v4
         insight_id:
-          type: number
+          type: integer
           description: Insight ID
           example: 237133
         user_id:
-          type: number
+          type: integer
           description: User ID
           example: 237133
         name:
@@ -5888,11 +5888,11 @@ components:
       type: object
       properties:
         summaryLength:
-          type: number
+          type: integer
           description: Summary Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Summary Temperature
           example: 7
         tone:
@@ -5925,11 +5925,11 @@ components:
       type: object
       properties:
         summaryLength:
-          type: number
+          type: integer
           description: Summary Length
           example: 250
         temperature:
-          type: number
+          type: integer
           description: Summary Temperature
           example: 7
         tone:
@@ -5970,7 +5970,7 @@ components:
           description: Emoji URL
           example: https://github.githubassets.com/images/icons/emoji/unicode/1f4af.png?v8
         display_order:
-          type: number
+          type: integer
           description: Emoji display order
           example: 1
         created_at:
@@ -5992,15 +5992,15 @@ components:
       type: object
       properties:
         creator_user_id:
-          type: number
+          type: integer
           description: Endorsement Creator User ID
           example: 42211
         recipient_user_id:
-          type: number
+          type: integer
           description: Endorsement Recipient User ID
           example: 5736810
         repo_id:
-          type: number
+          type: integer
           description: Repository ID
           example: 78133
         source_comment_url:
@@ -6053,7 +6053,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Baked repository identifier
           example: 71359796
         clone_url:
@@ -6061,7 +6061,7 @@ components:
           description: Repository clone url
           example: https://github.com/open-sauced/insights.git
         repo_id:
-          type: number
+          type: integer
           description: Repository identifier
           example: 12345678
       required:
@@ -6072,7 +6072,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Commit author identifier
           example: 71359796
       required:
@@ -6081,7 +6081,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
           description: Commit identifier
           example: 71359796
         commit_hash:
@@ -6093,11 +6093,11 @@ components:
           description: Date for the commit
           example: 5e7c6c7af42d38c57f363c564c58007da448c443
         baked_repo_id:
-          type: number
+          type: integer
           description: Baked repo identifier
           example: 57568598
         commit_author_id:
-          type: number
+          type: integer
           description: Commit author identifier
           example: 9876543
       required:

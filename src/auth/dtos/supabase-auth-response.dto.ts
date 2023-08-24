@@ -64,6 +64,7 @@ export class SupabaseAuthDto {
   @ApiPropertyOptional({
     description: "Authenticated User's Insights Role",
     example: 10,
+    type: "integer",
   })
   readonly insights_role?: number;
 
@@ -130,6 +131,7 @@ export class SupabaseAuthDto {
   @ApiPropertyOptional({
     description: "Unread User Notification Count",
     example: 5,
+    type: "integer",
   })
   readonly notification_count?: number;
 }

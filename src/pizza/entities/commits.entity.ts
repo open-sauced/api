@@ -15,6 +15,7 @@ export class DbCommits extends BaseEntity {
   @ApiModelProperty({
     description: "Commit identifier",
     example: 71359796,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -42,6 +43,7 @@ export class DbCommits extends BaseEntity {
   @ApiModelProperty({
     description: "Baked repo identifier",
     example: 57568598,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -59,6 +61,7 @@ export class DbCommits extends BaseEntity {
   @ApiModelProperty({
     description: "Commit author identifier",
     example: 9876543,
+    type: "integer",
   })
   @Column({
     type: "bigint",

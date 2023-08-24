@@ -10,6 +10,7 @@ export class DbUserToUserFollows {
   @ApiModelProperty({
     description: "User Follow identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -17,6 +18,7 @@ export class DbUserToUserFollows {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
@@ -24,6 +26,7 @@ export class DbUserToUserFollows {
   @ApiModelProperty({
     description: "User follower identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public following_user_id!: number;

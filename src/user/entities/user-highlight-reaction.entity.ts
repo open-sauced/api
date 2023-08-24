@@ -29,6 +29,7 @@ export class DbUserHighlightReaction {
   @ApiModelProperty({
     description: "Highlight identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column({
     type: "integer",
@@ -39,6 +40,7 @@ export class DbUserHighlightReaction {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column({
     type: "integer",
@@ -83,6 +85,7 @@ export class DbUserHighlightReaction {
   public deleted_at?: Date;
 
   // virtual columns
+  @ApiModelProperty({ type: "integer" })
   @Column({
     type: "integer",
     select: false,
