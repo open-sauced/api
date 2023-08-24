@@ -5,6 +5,69 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.8...v1.46.0-beta.9) (2023-08-24)
+
+
+### 🐛 Bug Fixes
+
+* wrap writing of swagger file ([2b8656d](https://github.com/open-sauced/api.opensauced.pizza/commit/2b8656dde65b4c51b7b39a4b79069c15b8ad24be))
+
+## [1.46.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.7...v1.46.0-beta.8) (2023-08-24)
+
+
+### 🐛 Bug Fixes
+
+* update full path to swagger file for writing ([#276](https://github.com/open-sauced/api.opensauced.pizza/issues/276)) ([1f3df74](https://github.com/open-sauced/api.opensauced.pizza/commit/1f3df7475451904f48f2f3566b4085eb223803bb))
+
+## [1.46.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.6...v1.46.0-beta.7) (2023-08-24)
+
+
+### 🍕 Features
+
+* remove following users from top users when a user id is provided ([#275](https://github.com/open-sauced/api.opensauced.pizza/issues/275)) ([4c7261b](https://github.com/open-sauced/api.opensauced.pizza/commit/4c7261b5b8129a223838d3aec7d739355ac08220))
+
+## [1.46.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.5...v1.46.0-beta.6) (2023-08-23)
+
+
+### 🍕 Features
+
+* show reactors who reacted to highlights ([#268](https://github.com/open-sauced/api.opensauced.pizza/issues/268)) ([cc2a57c](https://github.com/open-sauced/api.opensauced.pizza/commit/cc2a57c6349eb820b20c203a54bdc3faeb495d73))
+
+## [1.46.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.4...v1.46.0-beta.5) (2023-08-23)
+
+
+### 🐛 Bug Fixes
+
+* add unit test for user-collaboration service and controller ([#267](https://github.com/open-sauced/api.opensauced.pizza/issues/267)) ([670e3f9](https://github.com/open-sauced/api.opensauced.pizza/commit/670e3f97a0372af6634db252bb6a0624ff949cc1))
+
+## [1.46.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.3...v1.46.0-beta.4) (2023-08-22)
+
+
+### 🐛 Bug Fixes
+
+* add Swagger API doc fixes for code generation ([#270](https://github.com/open-sauced/api.opensauced.pizza/issues/270)) ([1fca4b0](https://github.com/open-sauced/api.opensauced.pizza/commit/1fca4b02d1fbcfde38c51e6528a992aa8832b17a))
+
+## [1.46.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.2...v1.46.0-beta.3) (2023-08-18)
+
+
+### 🍕 Features
+
+* Add Swagger YAML ([#266](https://github.com/open-sauced/api.opensauced.pizza/issues/266)) ([177882b](https://github.com/open-sauced/api.opensauced.pizza/commit/177882b711a4e5b9b231600d786aadc51ba37575))
+
+## [1.46.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.1...v1.46.0-beta.2) (2023-08-17)
+
+
+### 🐛 Bug Fixes
+
+* remove extra query parameters from new contributors endpoint ([#265](https://github.com/open-sauced/api.opensauced.pizza/issues/265)) ([bffc229](https://github.com/open-sauced/api.opensauced.pizza/commit/bffc2294f4bb1d223d0e9f2ffbdf1e828fd450aa))
+
+## [1.46.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0...v1.46.0-beta.1) (2023-08-17)
+
+
+### 🍕 Features
+
+* add tagged repos to user highlights ([#263](https://github.com/open-sauced/api.opensauced.pizza/issues/263)) ([ae5415b](https://github.com/open-sauced/api.opensauced.pizza/commit/ae5415b8b9e5b4d2e58f214caf1121746c5507fe))
+
 ## [1.45.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.44.0...v1.45.0) (2023-08-16)
 
 

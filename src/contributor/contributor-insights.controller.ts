@@ -5,7 +5,6 @@ import { ApiPaginatedResponse } from "../common/decorators/api-paginated-respons
 import { PageDto } from "../common/dtos/page.dto";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
-import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-request-contributor-options.dto";
 import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
 
 @Controller("contributors/insights")
@@ -21,7 +20,7 @@ export class ContributorInsightsController {
   @ApiPaginatedResponse(DbPullRequestContributor)
   @ApiOkResponse({ type: DbPullRequestContributor })
   async newPullRequestContributors(
-    @Query() pageOptionsDto: PullRequestContributorOptionsDto
+    @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
   }

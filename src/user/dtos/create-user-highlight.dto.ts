@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsDateString, IsIn, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { IsArray, IsDateString, IsIn, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreateUserHighlightDto {
   @ApiProperty({
@@ -46,4 +46,14 @@ export class CreateUserHighlightDto {
   @IsString()
   @IsIn(["pull_request", "blog_post", "issue", "milestone"])
   public type = "pull_request";
+
+  @ApiProperty({
+    description: "An array of full-names of tagged repositories",
+    example: ["open-sauced/insights", "open-sauced/ai"],
+    type: "string",
+    isArray: true,
+  })
+  @IsArray()
+  @IsString({ each: true })
+  public taggedRepos: string[];
 }

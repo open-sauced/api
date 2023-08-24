@@ -34,6 +34,7 @@
 | [public.baked_repos](public.baked_repos.md)                               | 3       |         | BASE TABLE |
 | [public.commit_authors](public.commit_authors.md)                         | 2       |         | BASE TABLE |
 | [public.commits](public.commits.md)                                       | 5       |         | BASE TABLE |
+| [public.maintainers](public.maintainers.md)                               | 1       |         | BASE TABLE |
 
 ## Relations
 

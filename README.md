@@ -149,6 +149,12 @@ npm run format
 
 It is advised to run this command before committing or opening a pull request.
 
+### 🕺 OpenAPI Swagger Doc
+
+When the server is run, an OpenAPI swagger doc is generated into the project's
+root directory. When making API changes, make sure to run `npm run start:dev`
+to test your changes and generate any new Swagger document bits.
+
 ### 📕 Types
 
 We have a couple of scripts to check and adjust missing types.

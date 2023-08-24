@@ -4,7 +4,7 @@ import { IsArray } from "class-validator";
 export class UpdateUserProfileInterestsDto {
   @ApiProperty({
     description: "An array of interests",
-    type: [String],
+    type: "string",
     isArray: true,
     example: ["javascript", "react"],
   })

@@ -230,6 +230,7 @@ export class UserHighlightsService {
       title: highlight.title ?? "",
       shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : new Date(),
       type: highlight.type,
+      tagged_repos: highlight.taggedRepos,
     });
 
     const newHighlight = await this.userHighlightRepository.save(newUserHighlight);
@@ -259,7 +260,10 @@ export class UserHighlightsService {
     queryBuilder
       .select("emoji_id", "emoji_id")
       .addSelect("COUNT(emoji_id)", "reaction_count")
-      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId });
+      .addSelect("ARRAY_AGG(users.login)", "reaction_users")
+      .innerJoin("users", "users", "user_highlight_reactions.user_id=users.id")
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId })
+      .addGroupBy("emoji_id");
 
     if (userId) {
       queryBuilder.andWhere("user_highlight_reactions.user_id = :userId", { userId });
