@@ -342,6 +342,13 @@ paths:
             minimum: 1
             default: 1
             type: number
+        - name: userId
+          required: false
+          in: query
+          description: User ID to filter followings from the list
+          schema:
+            default: 0
+            type: number
         - name: limit
           required: false
           in: query
@@ -4115,13 +4122,13 @@ servers:
   - url: http://localhost:3001
     description: Development
     variables: {}
-  - url: https://http:/http:///localhost
+  - url: https://api.opensauced.pizza
     description: Production
     variables: {}
-  - url: https://beta.http:/http:///localhost
+  - url: https://beta.api.opensauced.pizza
     description: Beta
     variables: {}
-  - url: https://alpha.http:/http:///localhost
+  - url: https://alpha.api.opensauced.pizza
     description: Alpha
     variables: {}
 components:
