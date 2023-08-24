@@ -265,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/user/services/user.service.ts:170</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/user/services/user.service.ts:180</a></div>
                 </td>
             </tr>
 
@@ -336,8 +336,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="278"
-                            class="link-to-prism">src/user/services/user.service.ts:278</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">src/user/services/user.service.ts:288</a></div>
                 </td>
             </tr>
 
@@ -407,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user/services/user.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/services/user.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -495,8 +495,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/user/services/user.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/user/services/user.service.ts:106</a></div>
                 </td>
             </tr>
 
@@ -674,8 +674,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="271"
-                            class="link-to-prism">src/user/services/user.service.ts:271</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="281"
+                            class="link-to-prism">src/user/services/user.service.ts:281</a></div>
                 </td>
             </tr>
 
@@ -757,8 +757,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="267"
-                            class="link-to-prism">src/user/services/user.service.ts:267</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="277"
+                            class="link-to-prism">src/user/services/user.service.ts:277</a></div>
                 </td>
             </tr>
 
@@ -840,8 +840,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/user/services/user.service.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/user/services/user.service.ts:242</a></div>
                 </td>
             </tr>
 
@@ -923,8 +923,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="257"
-                            class="link-to-prism">src/user/services/user.service.ts:257</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/user/services/user.service.ts:267</a></div>
                 </td>
             </tr>
 
@@ -1006,8 +1006,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="207"
-                            class="link-to-prism">src/user/services/user.service.ts:207</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/user/services/user.service.ts:217</a></div>
                 </td>
             </tr>
 
@@ -1089,8 +1089,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="247"
-                            class="link-to-prism">src/user/services/user.service.ts:247</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="257"
+                            class="link-to-prism">src/user/services/user.service.ts:257</a></div>
                 </td>
             </tr>
 
@@ -1185,14 +1185,24 @@ export class UserService {
   async findTopUsers(pageOptionsDto: TopUsersDto): Promise&lt;PageDto&lt;DbTopUser&gt;&gt; {
     const queryBuilder &#x3D; this.reactionsQueryBuilder();
 
+    const { userId } &#x3D; pageOptionsDto;
+
     queryBuilder
       .select(&quot;users.login as login&quot;)
       .from(DbUser, &quot;users&quot;)
       .innerJoin(&quot;user_highlights&quot;, &quot;user_highlights&quot;, &quot;user_highlights.user_id &#x3D; users.id&quot;)
       .innerJoin(&quot;user_highlight_reactions&quot;, &quot;reactions&quot;, &quot;reactions.highlight_id &#x3D; user_highlights.id&quot;)
-      .where(&quot;reactions.deleted_at IS NULL&quot;)
-      .groupBy(&quot;users.login&quot;)
-      .orderBy(&quot;COUNT(reactions.user_id)&quot;, &quot;DESC&quot;);
+      .where(&quot;reactions.deleted_at IS NULL&quot;);
+
+    if (userId) {
+      queryBuilder
+        .andWhere(
+          &quot;users.id NOT IN (SELECT following_user_id FROM users_to_users_followers WHERE user_id &#x3D; :userId AND deleted_at IS NULL)&quot;
+        )
+        .setParameters({ userId });
+    }
+
+    queryBuilder.groupBy(&quot;users.login&quot;).orderBy(&quot;COUNT(reactions.user_id)&quot;, &quot;DESC&quot;);
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
@@ -1290,8 +1300,8 @@ export class UserService {
       )
       .addSelect(
         &#x60;(
-          SELECT 
-            CASE 
+          SELECT
+            CASE
               WHEN COUNT(DISTINCT full_name) &gt; 0 THEN true
               ELSE false
             END
