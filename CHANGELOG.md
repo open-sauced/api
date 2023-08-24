@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.9...v1.46.0-beta.10) (2023-08-24)
+
+
+### 🐛 Bug Fixes
+
+* Declare "integer" for Swagger types that are not floating points ([#278](https://github.com/open-sauced/api.opensauced.pizza/issues/278)) ([9622d88](https://github.com/open-sauced/api.opensauced.pizza/commit/9622d882bcf30f1dde78e34a97c305fb2409afc9))
+
 ## [1.46.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.8...v1.46.0-beta.9) (2023-08-24)
 
 

@@ -4,20 +4,21 @@
 
 ## Columns
 
-| Name       | Type                        | Default                           | Nullable | Children                                                              | Parents | Comment |
-| ---------- | --------------------------- | --------------------------------- | -------- | --------------------------------------------------------------------- | ------- | ------- |
-| id         | bigint                      |                                   | false    | [public.user_highlight_reactions](public.user_highlight_reactions.md) |         |         |
-| user_id    | bigint                      |                                   | false    |                                                                       |         |         |
-| url        | varchar(255)                |                                   | true     |                                                                       |         |         |
-| highlight  | varchar(500)                |                                   | false    |                                                                       |         |         |
-| pinned     | boolean                     | false                             | false    |                                                                       |         |         |
-| created_at | timestamp with time zone    | now()                             | false    |                                                                       |         |         |
-| updated_at | timestamp with time zone    | now()                             | false    |                                                                       |         |         |
-| deleted_at | timestamp with time zone    |                                   | true     |                                                                       |         |         |
-| title      | varchar(100)                | ''::character varying             | true     |                                                                       |         |         |
-| shipped_at | timestamp without time zone |                                   | true     |                                                                       |         |         |
-| featured   | boolean                     | false                             | false    |                                                                       |         |         |
-| type       | varchar(25)                 | 'pull_request'::character varying | false    |                                                                       |         |         |
+| Name         | Type                        | Default                           | Nullable | Children                                                              | Parents | Comment |
+| ------------ | --------------------------- | --------------------------------- | -------- | --------------------------------------------------------------------- | ------- | ------- |
+| id           | bigint                      |                                   | false    | [public.user_highlight_reactions](public.user_highlight_reactions.md) |         |         |
+| user_id      | bigint                      |                                   | false    |                                                                       |         |         |
+| url          | varchar(255)                |                                   | true     |                                                                       |         |         |
+| highlight    | varchar(500)                |                                   | false    |                                                                       |         |         |
+| pinned       | boolean                     | false                             | false    |                                                                       |         |         |
+| created_at   | timestamp with time zone    | now()                             | false    |                                                                       |         |         |
+| updated_at   | timestamp with time zone    | now()                             | false    |                                                                       |         |         |
+| deleted_at   | timestamp with time zone    |                                   | true     |                                                                       |         |         |
+| title        | varchar(100)                | ''::character varying             | true     |                                                                       |         |         |
+| shipped_at   | timestamp without time zone |                                   | true     |                                                                       |         |         |
+| featured     | boolean                     | false                             | false    |                                                                       |         |         |
+| type         | varchar(25)                 | 'pull_request'::character varying | false    |                                                                       |         |         |
+| tagged_repos | text[]                      | '{}'::text[]                      | false    |                                                                       |         |         |
 
 ## Constraints
 
