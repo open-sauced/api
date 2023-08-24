@@ -137,7 +137,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -173,7 +173,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -203,13 +203,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Baked repository identifier&#x27;, example: 71359796})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
+                            @ApiModelProperty({description: &#x27;Baked repository identifier&#x27;, example: 71359796, type: &#x27;integer&#x27;})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -239,13 +239,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 12345678})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
+                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 12345678, type: &#x27;integer&#x27;})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/pizza/entities/baked-repo.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -273,6 +273,7 @@ export class DbBakedRepo extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Baked repository identifier&quot;,
     example: 71359796,
+    type: &quot;integer&quot;,
   })
   @PrimaryColumn(&quot;bigint&quot;)
   public id!: number;
@@ -290,6 +291,7 @@ export class DbBakedRepo extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Repository identifier&quot;,
     example: 12345678,
+    type: &quot;integer&quot;,
   })
   @PrimaryColumn(&quot;bigint&quot;)
   public repo_id!: number;

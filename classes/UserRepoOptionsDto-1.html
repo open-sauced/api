@@ -128,7 +128,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;The repos to add to onboarding&#x27;, type: Number, isArray: true, example: undefined})<br />@IsArray()<br />
+                            @ApiProperty({description: &#x27;The repos to add to onboarding&#x27;, type: &#x27;integer&#x27;, isArray: true, example: undefined})<br />@IsArray()<br />
                         </code>
                     </td>
                 </tr>
@@ -160,7 +160,7 @@ import { DbRepoToUserVotes } from &quot;../../repo/entities/repo.to.user.votes.e
 export class UserRepoOptionsDto {
   @ApiProperty({
     description: &quot;The repos to add to onboarding&quot;,
-    type: Number,
+    type: &quot;integer&quot;,
     isArray: true,
     example: [71359796, 426820139],
   })

@@ -158,7 +158,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -189,13 +189,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Endorsement Creator User ID&#x27;, example: 237133})<br />@Column({type: &#x27;integer&#x27;})<br />
+                            @ApiModelProperty({description: &#x27;Endorsement Creator User ID&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -262,13 +262,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Endorsement Recipient User ID&#x27;, example: 31333})<br />@Column({type: &#x27;integer&#x27;})<br />
+                            @ApiModelProperty({description: &#x27;Endorsement Recipient User ID&#x27;, example: 31333, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -298,13 +298,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Repository ID&#x27;, example: 78133})<br />@Column({type: &#x27;integer&#x27;})<br />
+                            @ApiModelProperty({description: &#x27;Repository ID&#x27;, example: 78133, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -341,7 +341,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -377,7 +377,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -413,7 +413,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/endorsement/entities/endorsement.entity.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -443,6 +443,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: &quot;Endorsement Creator User ID&quot;,
     example: 237133,
+    type: &quot;integer&quot;,
   })
   @Column({ type: &quot;integer&quot; })
   public creator_user_id?: number;
@@ -450,6 +451,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: &quot;Endorsement Recipient User ID&quot;,
     example: 31333,
+    type: &quot;integer&quot;,
   })
   @Column({ type: &quot;integer&quot; })
   public recipient_user_id?: number;
@@ -457,6 +459,7 @@ export class DbEndorsement {
   @ApiModelProperty({
     description: &quot;Repository ID&quot;,
     example: 78133,
+    type: &quot;integer&quot;,
   })
   @Column({ type: &quot;integer&quot; })
   public repo_id: number;

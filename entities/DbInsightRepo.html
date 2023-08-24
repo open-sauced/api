@@ -152,7 +152,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -189,7 +189,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:73</a></div>
                         </td>
                     </tr>
 
@@ -225,7 +225,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -255,13 +255,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133})<br />@PrimaryColumn()<br />@PrimaryGeneratedColumn()<br />
+                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@PrimaryColumn()<br />@PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -297,7 +297,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:81</a></div>
                         </td>
                     </tr>
 
@@ -327,13 +327,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Insight ID&#x27;, example: 237133})<br />@Column()<br />
+                            @ApiModelProperty({description: &#x27;Insight ID&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -363,13 +363,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Repo ID&#x27;, example: 237133})<br />@Column()<br />
+                            @ApiModelProperty({description: &#x27;Repo ID&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/insight/entities/insight-repo.entity.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -406,6 +406,7 @@ export class DbInsightRepo extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Insight identifier&quot;,
     example: 237133,
+    type: &quot;integer&quot;,
   })
   @PrimaryColumn()
   @PrimaryGeneratedColumn()
@@ -414,6 +415,7 @@ export class DbInsightRepo extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Insight ID&quot;,
     example: 237133,
+    type: &quot;integer&quot;,
   })
   @Column()
   public insight_id: number;
@@ -421,6 +423,7 @@ export class DbInsightRepo extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Repo ID&quot;,
     example: 237133,
+    type: &quot;integer&quot;,
   })
   @Column()
   public repo_id: number;

@@ -139,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;addMemberForInsight&#x27;, summary: &#x27;Adds a new member for the insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Unable to add insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateInsightMemberDto})<br /></code>
+                    <code>@Post(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;addMemberForInsight&#x27;, summary: &#x27;Adds a new member for the insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Unable to add insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateInsightMemberDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:92</a></div>
                 </td>
             </tr>
 
@@ -241,14 +241,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;findAllInsightMembers&#x27;, summary: &#x27;Listing all members for an insight and paginate them&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbInsightMember)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Insight not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/members&#x27;)<br />@ApiOperation({operationId: &#x27;findAllInsightMembers&#x27;, summary: &#x27;Listing all members for an insight and paginate them&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbInsightMember)<br />@ApiOkResponse({type: DbInsightMember})<br />@ApiNotFoundResponse({description: &#x27;Insight not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -343,14 +343,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;removeInsightMemberById&#x27;, summary: &#x27;Removes a member from an insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to remove insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Delete(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;removeInsightMemberById&#x27;, summary: &#x27;Removes a member from an insight&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to remove insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:178</a></div>
                 </td>
             </tr>
 
@@ -445,14 +445,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightMember&#x27;, summary: &#x27;Updates an insight member information&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight member&#x27;})<br />@ApiBody({type: UpdateInsightMemberDto})<br /></code>
+                    <code>@Patch(&#x27;:id/members/:memberId&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightMember&#x27;, summary: &#x27;Updates an insight member information&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find insight member&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight member&#x27;})<br />@ApiBody({type: UpdateInsightMemberDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/insight/user-insight-member.controller.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/insight/user-insight-member.controller.ts:140</a></div>
                 </td>
             </tr>
 
@@ -563,6 +563,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiUnprocessableEntityResponse,
+  ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -598,6 +599,7 @@ export class UserInsightMemberController {
   @ApiPaginatedResponse(DbInsightMember)
   @ApiOkResponse({ type: DbInsightMember })
   @ApiNotFoundResponse({ description: &quot;Insight not found&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findAllInsightsByUserId(
     @Query() pageOptionsDto: InsightPageOptionsDto,
     @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
@@ -628,6 +630,7 @@ export class UserInsightMemberController {
   @ApiNotFoundResponse({ description: &quot;Unable to add insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateInsightMemberDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async addInsightMember(
     @Body() createInsightMemberDto: CreateInsightMemberDto,
     @Param(&quot;id&quot;, ParseIntPipe) insightId: number,
@@ -675,6 +678,7 @@ export class UserInsightMemberController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight member&quot; })
   @ApiBody({ type: UpdateInsightMemberDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async updateInsightMember(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @Param(&quot;memberId&quot;) memberId: string,
@@ -712,6 +716,7 @@ export class UserInsightMemberController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to remove insight member&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async removeInsightMemberById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @Param(&quot;memberId&quot;) memberId: string,

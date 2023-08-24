@@ -133,7 +133,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -169,7 +169,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -199,13 +199,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Commit author identifier&#x27;, example: 71359796})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
+                            @ApiModelProperty({description: &#x27;Commit author identifier&#x27;, example: 71359796, type: &#x27;integer&#x27;})<br />@PrimaryColumn(&#x27;bigint&#x27;)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/pizza/entities/commit_authors.entity.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -233,6 +233,7 @@ export class DbCommitAuthors extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Commit author identifier&quot;,
     example: 71359796,
+    type: &quot;integer&quot;,
   })
   @PrimaryColumn(&quot;bigint&quot;)
   public id!: number;

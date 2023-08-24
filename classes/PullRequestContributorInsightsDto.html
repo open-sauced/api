@@ -159,7 +159,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({minimum: 1, maximum: 1000, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(10000)<br />@IsOptional()<br />
+                            @ApiPropertyOptional({minimum: 1, maximum: 1000, default: 10, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(10000)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -171,7 +171,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:23</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:24</a></code>
 </div>
                         </td>
                     </tr>
@@ -257,7 +257,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:33</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:35</a></code>
 </div>
                         </td>
                     </tr>
@@ -294,7 +294,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({minimum: 1, default: 1})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@IsOptional()<br />
+                            @ApiPropertyOptional({minimum: 1, default: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -306,7 +306,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:16</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:17</a></code>
 </div>
                         </td>
                     </tr>
@@ -343,7 +343,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;Range in days&#x27;, default: 30})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />@IsOptional()<br />
+                            @ApiPropertyOptional({description: &#x27;Range in days&#x27;, default: 30, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
@@ -355,7 +355,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:43</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/PageOptionsDto.html#source" target="_self" >PageOptionsDto:46</a></code>
 </div>
                         </td>
                     </tr>
@@ -391,6 +391,7 @@ export class PullRequestContributorInsightsDto extends PageOptionsDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: &quot;integer&quot;,
   })
   @Type(() &#x3D;&gt; Number)
   @IsInt()

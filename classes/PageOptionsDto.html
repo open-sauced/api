@@ -164,13 +164,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({minimum: 1, maximum: 1000, default: 10})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(10000)<br />@IsOptional()<br />
+                            @ApiPropertyOptional({minimum: 1, maximum: 1000, default: 10, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@Max(10000)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/common/dtos/page-options.dto.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/common/dtos/page-options.dto.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -212,7 +212,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/common/dtos/page-options.dto.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/common/dtos/page-options.dto.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -248,13 +248,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({minimum: 1, default: 1})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@IsOptional()<br />
+                            @ApiPropertyOptional({minimum: 1, default: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Min(1)<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/common/dtos/page-options.dto.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/common/dtos/page-options.dto.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -290,13 +290,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;Range in days&#x27;, default: 30})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />@IsOptional()<br />
+                            @ApiPropertyOptional({description: &#x27;Range in days&#x27;, default: 30, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/common/dtos/page-options.dto.ts:43</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/common/dtos/page-options.dto.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -331,7 +331,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/common/dtos/page-options.dto.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/common/dtos/page-options.dto.ts:48</a></div>
                                 </td>
                             </tr>
 
@@ -352,6 +352,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     minimum: 1,
     default: 1,
+    type: &quot;integer&quot;,
   })
   @Type(() &#x3D;&gt; Number)
   @IsInt()
@@ -363,6 +364,7 @@ export class PageOptionsDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: &quot;integer&quot;,
   })
   @Type(() &#x3D;&gt; Number)
   @IsInt()
@@ -379,6 +381,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     description: &quot;Range in days&quot;,
     default: 30,
+    type: &quot;integer&quot;,
   })
   @Type(() &#x3D;&gt; Number)
   @IsIn([7, 30, 90])

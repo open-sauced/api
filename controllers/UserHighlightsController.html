@@ -159,14 +159,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;addHighlightReactionForUser&#x27;, summary: &#x27;Adds a new highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Highlight does not exist&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiConflictResponse({description: &#x27;Unable to add user highlight reaction&#x27;})<br /></code>
+                    <code>@Post(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;addHighlightReactionForUser&#x27;, summary: &#x27;Adds a new highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReaction})<br />@ApiNotFoundResponse({description: &#x27;Highlight does not exist&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiConflictResponse({description: &#x27;Unable to add user highlight reaction&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:149</a></div>
                 </td>
             </tr>
 
@@ -267,8 +267,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -351,14 +351,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHighlightForUser&#x27;, summary: &#x27;Deletes the highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHighlightForUser&#x27;, summary: &#x27;Deletes the highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:110</a></div>
                 </td>
             </tr>
 
@@ -441,14 +441,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHighlightReactionForUser&#x27;, summary: &#x27;Deletes the highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user highlight reaction&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/reactions/:emojiId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHighlightReactionForUser&#x27;, summary: &#x27;Deletes the highlight reaction for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user highlight reaction&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:173</a></div>
                 </td>
             </tr>
 
@@ -543,14 +543,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightUserReactions&#x27;, summary: &#x27;Retrieves a highlight reactions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightUserReactions&#x27;, summary: &#x27;Retrieves a highlight reactions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:130</a></div>
                 </td>
             </tr>
 
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="204"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:204</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:211</a></div>
                 </td>
             </tr>
 
@@ -729,8 +729,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="188"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:188</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:195</a></div>
                 </td>
             </tr>
 
@@ -813,14 +813,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getUserHighlight&#x27;, summary: &#x27;Retrieves a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getUserHighlight&#x27;, summary: &#x27;Retrieves a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -891,14 +891,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateHighlightForUser&#x27;, summary: &#x27;Updates the highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserHighlightDto})<br /></code>
+                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateHighlightForUser&#x27;, summary: &#x27;Updates the highlight for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserHighlightDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/user/user-highlight.controller.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/user/user-highlight.controller.ts:85</a></div>
                 </td>
             </tr>
 
@@ -997,6 +997,7 @@ import {
   ApiBody,
   ApiConflictResponse,
   OmitType,
+  ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
@@ -1040,6 +1041,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async getUserHighlight(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlight&gt; {
     return this.userHighlightsService.findOneById(id);
   }
@@ -1055,6 +1057,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: &quot;Unable to update user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiBody({ type: CreateUserHighlightDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async updateHighlightForUser(
     @Body() updateHighlightDto: CreateUserHighlightDto,
     @UserId() userId: number,
@@ -1079,6 +1082,7 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: &quot;Unable to delete user highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async deleteHighlightForUser(
     @UserId() userId: number,
     @Param(&quot;id&quot;, ParseIntPipe) highlightId: number
@@ -1098,6 +1102,7 @@ export class UserHighlightsController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async getAllHighlightUserReactions(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @UserId() userId: number
@@ -1116,6 +1121,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: &quot;Highlight does not exist&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiConflictResponse({ description: &quot;Unable to add user highlight reaction&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async addHighlightReactionForUser(
     @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,
     @Param(&quot;emojiId&quot;) emojiId: string,
@@ -1139,6 +1145,7 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiNotFoundResponse({ description: &quot;Unable to delete user highlight reaction&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async deleteHighlightReactionForUser(
     @UserId() userId: number,
     @Param(&quot;id&quot;, ParseIntPipe) highlightId: number,

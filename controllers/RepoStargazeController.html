@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and unfollows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already unfollowed this repo&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and unfollows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already unfollowed this repo&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:103</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:125</a></div>
                 </td>
             </tr>
 
@@ -341,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -425,14 +425,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;stargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and follows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already followed this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:id/stargaze&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;stargazeOneById&#x27;, summary: &#x27;Finds a repo by :id and follows&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo follow&#x27;, type: DbRepoToUserStargazers})<br />@ApiNotFoundResponse({description: &#x27;Repo or follow not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already followed this repo&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -521,8 +521,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/stargaze/repo-stargaze.controller.ts:79</a></div>
                 </td>
             </tr>
 
@@ -605,6 +605,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from &quot;@nestjs/swagger&quot;;
 
@@ -652,6 +653,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or follow not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already followed this repo&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async stargazeOneById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @UserId() userId: number
@@ -697,6 +699,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or follow not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already unfollowed this repo&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async downStargazeOneById(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @UserId() userId: number

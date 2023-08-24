@@ -170,7 +170,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Description Length&#x27;, type: Number, example: 250})<br />@IsNumber()<br />@Min(100)<br />@Max(500)<br />
+                            @ApiProperty({description: &#x27;Description Length&#x27;, type: &#x27;integer&#x27;, example: 250})<br />@IsNumber()<br />@Min(100)<br />@Max(500)<br />
                         </code>
                     </td>
                 </tr>
@@ -240,7 +240,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Description Temperature&#x27;, type: Number, example: 7})<br />@IsNumber()<br />@Min(0)<br />@Max(10)<br />
+                            @ApiProperty({description: &#x27;Description Temperature&#x27;, type: &#x27;integer&#x27;, example: 7})<br />@IsNumber()<br />@Min(0)<br />@Max(10)<br />
                         </code>
                     </td>
                 </tr>
@@ -271,7 +271,7 @@ import { IsNumber, IsString, Max, Min, IsIn } from &quot;class-validator&quot;;
 export class GenerateCodeExplanationDto {
   @ApiProperty({
     description: &quot;Description Length&quot;,
-    type: Number,
+    type: &quot;integer&quot;,
     example: 250,
   })
   @IsNumber()
@@ -281,7 +281,7 @@ export class GenerateCodeExplanationDto {
 
   @ApiProperty({
     description: &quot;Description Temperature&quot;,
-    type: Number,
+    type: &quot;integer&quot;,
     example: 7,
   })
   @IsNumber()

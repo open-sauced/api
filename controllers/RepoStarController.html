@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStarOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your star&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downStarOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your star&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/star/repo-star.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/star/repo-star.controller.ts:100</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/star/repo-star.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/star/repo-star.controller.ts:119</a></div>
                 </td>
             </tr>
 
@@ -341,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/star/repo-star.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/star/repo-star.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -425,14 +425,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;starOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already starred this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:id/star&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;starOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a star&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo star&#x27;, type: DbRepoToUserStars})<br />@ApiNotFoundResponse({description: &#x27;Repo or star not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already starred this repo&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/star/repo-star.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/star/repo-star.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -521,8 +521,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/star/repo-star.controller.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/star/repo-star.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -605,6 +605,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from &quot;@nestjs/swagger&quot;;
 
@@ -652,6 +653,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already starred this repo&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async starOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
@@ -694,6 +696,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or star not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your star&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async downStarOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserStars&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 

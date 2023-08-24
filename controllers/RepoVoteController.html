@@ -147,14 +147,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downVoteOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your vote&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;downVoteOneById&#x27;, summary: &#x27;Finds a repo by :id and removes existing vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already removed your vote&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -243,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:132</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:136</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -429,14 +429,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:repoId/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findOneByRepoId&#x27;, summary: &#x27;Finds a repo by :repoId and returns if authenticated user has voted for it&#x27;})<br />@ApiOkResponse({type: VotedRepoDto, description: &#x27;Returns if authenticated user has voted for it&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:repoId/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findOneByRepoId&#x27;, summary: &#x27;Finds a repo by :repoId and returns if authenticated user has voted for it&#x27;})<br />@ApiOkResponse({type: VotedRepoDto, description: &#x27;Returns if authenticated user has voted for it&#x27;})<br />@ApiParam({name: &#x27;repoId&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -519,14 +519,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Put(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;voteOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already voted for this repo&#x27;})<br /></code>
+                    <code>@Put(&#x27;/:id/vote&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;voteOneById&#x27;, summary: &#x27;Finds a repo by :id and adds a vote&#x27;})<br />@ApiOkResponse({description: &#x27;Returns the repo vote&#x27;, type: DbRepoToUserVotes})<br />@ApiNotFoundResponse({description: &#x27;Repo or vote not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already voted for this repo&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -615,8 +615,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/vote/repo-vote.controller.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/vote/repo-vote.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -699,6 +699,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from &quot;@nestjs/swagger&quot;;
 
@@ -745,6 +746,7 @@ export class RepoVoteController {
     type: VotedRepoDto,
     description: &quot;Returns if authenticated user has voted for it&quot;,
   })
+  @ApiParam({ name: &quot;repoId&quot;, type: &quot;integer&quot; })
   async findOneByRepoId(@Param(&quot;repoId&quot;, ParseIntPipe) repoId: number, @UserId() userId: number) {
     return this.voteService.findOneByRepoId(repoId, userId);
   }
@@ -762,6 +764,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or vote not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already voted for this repo&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async voteOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserVotes&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 
@@ -804,6 +807,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: &quot;Repo or vote not found&quot; })
   @ApiConflictResponse({ description: &quot;You have already removed your vote&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async downVoteOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;DbRepoToUserVotes&gt; {
     const item &#x3D; await this.repoService.findOneById(id);
 

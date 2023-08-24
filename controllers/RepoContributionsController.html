@@ -137,8 +137,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/contributions&#x27;)<br />@ApiOperation({operationId: &#x27;findAllByRepoId&#x27;, summary: &#x27;Find a repo by :id listing all contributions and paginating them&#x27;})<br />@ApiPaginatedResponse(DbContribution)<br />@ApiOkResponse({type: DbContribution})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/contributions&#x27;)<br />@ApiOperation({operationId: &#x27;findAllByRepoId&#x27;, summary: &#x27;Find a repo by :id listing all contributions and paginating them&#x27;})<br />@ApiPaginatedResponse(DbContribution)<br />@ApiOkResponse({type: DbContribution})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -305,7 +305,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { RepoService } from &quot;../repo/repo.service&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -326,6 +326,7 @@ export class RepoContributionsController {
   @ApiPaginatedResponse(DbContribution)
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findAllByRepoId(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @Query() pageOptionsDto: ContributionPageOptionsDto

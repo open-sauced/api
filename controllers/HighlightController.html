@@ -151,14 +151,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;addAFeaturedHighlight&#x27;, summary: &#x27;Add a highlight to the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Post(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;addAFeaturedHighlight&#x27;, summary: &#x27;Add a highlight to the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -247,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -403,8 +403,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -481,8 +481,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -553,14 +553,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightReactions&#x27;, summary: &#x27;Retrieves total reactions for a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id/reactions&#x27;)<br />@ApiOperation({operationId: &#x27;getAllHighlightReactions&#x27;, summary: &#x27;Retrieves total reactions for a highlight&#x27;})<br />@ApiOkResponse({type: DbUserHighlightReactionResponse})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user highlight reactions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:106</a></div>
                 </td>
             </tr>
 
@@ -631,14 +631,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;removeAFeaturedHighlight&#x27;, summary: &#x27;Remove a highlight from the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/featured&#x27;)<br />@ApiOperation({operationId: &#x27;removeAFeaturedHighlight&#x27;, summary: &#x27;Remove a highlight from the featured list&#x27;})<br />@UseGuards(SupabaseGuard)<br />@ApiBearerAuth()<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to find highlight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/highlight/highlight.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/highlight/highlight.controller.ts:79</a></div>
                 </td>
             </tr>
 
@@ -710,6 +710,7 @@ import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
   ApiBearerAuth,
+  ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
@@ -760,6 +761,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Unable to find highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async featureHighlight(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @UserId() userId: number
@@ -777,6 +779,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Unable to find highlight&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async unfeatureHighlight(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @UserId() userId: number
@@ -803,6 +806,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: &quot;Unable to get user highlight reactions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async getAllHighlightReactions(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbUserHighlightReactionResponse[]&gt; {
     return this.userHighlightsService.findAllHighlightReactions(id);
   }

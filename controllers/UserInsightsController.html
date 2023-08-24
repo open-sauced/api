@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -231,8 +231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -315,14 +315,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightForUser&#x27;, summary: &#x27;Updates an insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user insight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight repos&#x27;})<br />@ApiBody({type: UpdateInsightDto})<br /></code>
+                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateInsightForUser&#x27;, summary: &#x27;Updates an insight page for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user insight&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to unable insight repos&#x27;})<br />@ApiBody({type: UpdateInsightDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -421,6 +421,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiUnprocessableEntityResponse,
+  ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -503,6 +504,7 @@ export class UserInsightsController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiUnprocessableEntityResponse({ description: &quot;Unable to unable insight repos&quot; })
   @ApiBody({ type: UpdateInsightDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async updateInsightForUser(
     @Param(&quot;id&quot;, ParseIntPipe) id: number,
     @Body() updateInsightDto: UpdateInsightDto,

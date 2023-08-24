@@ -149,7 +149,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Endorsement Creator User ID&#x27;, type: Number, example: 42211})<br />@IsNumber()<br />
+                            @ApiProperty({description: &#x27;Endorsement Creator User ID&#x27;, type: &#x27;integer&#x27;, example: 42211})<br />@IsNumber()<br />
                         </code>
                     </td>
                 </tr>
@@ -185,7 +185,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Endorsement Recipient User ID&#x27;, type: Number, example: 5736810})<br />@IsNumber()<br />
+                            @ApiProperty({description: &#x27;Endorsement Recipient User ID&#x27;, type: &#x27;integer&#x27;, example: 5736810})<br />@IsNumber()<br />
                         </code>
                     </td>
                 </tr>
@@ -221,13 +221,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Repository ID&#x27;, example: 78133})<br />@IsNumber()<br />
+                            @ApiProperty({description: &#x27;Repository ID&#x27;, type: &#x27;integer&#x27;, example: 78133})<br />@IsNumber()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -264,7 +264,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -300,7 +300,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -336,7 +336,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/endorsement/dto/create-endorsement.dto.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -361,7 +361,7 @@ import { IsString, IsNumber, IsOptional } from &quot;class-validator&quot;;
 export class CreateEndorsementDto {
   @ApiProperty({
     description: &quot;Endorsement Creator User ID&quot;,
-    type: Number,
+    type: &quot;integer&quot;,
     example: 42211,
   })
   @IsNumber()
@@ -369,7 +369,7 @@ export class CreateEndorsementDto {
 
   @ApiProperty({
     description: &quot;Endorsement Recipient User ID&quot;,
-    type: Number,
+    type: &quot;integer&quot;,
     example: 5736810,
   })
   @IsNumber()
@@ -377,6 +377,7 @@ export class CreateEndorsementDto {
 
   @ApiProperty({
     description: &quot;Repository ID&quot;,
+    type: &quot;integer&quot;,
     example: 78133,
   })
   @IsNumber()

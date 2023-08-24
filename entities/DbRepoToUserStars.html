@@ -157,7 +157,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -194,7 +194,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -224,13 +224,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Star identifier&#x27;, example: 196})<br />@PrimaryGeneratedColumn()<br />
+                            @ApiModelProperty({description: &#x27;Star identifier&#x27;, example: 196, type: &#x27;integer&#x27;})<br />@PrimaryGeneratedColumn()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -266,7 +266,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:86</a></div>
                         </td>
                     </tr>
 
@@ -296,13 +296,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 71359796})<br />@Column()<br />
+                            @ApiModelProperty({description: &#x27;Repository identifier&#x27;, example: 71359796, type: &#x27;integer&#x27;})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -339,7 +339,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +375,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -405,13 +405,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User identifier&#x27;, example: 237133})<br />@Column()<br />
+                            @ApiModelProperty({description: &#x27;User identifier&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/repo/entities/repo.to.user.stars.entity.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -446,6 +446,7 @@ export class DbRepoToUserStars {
   @ApiModelProperty({
     description: &quot;Star identifier&quot;,
     example: 196,
+    type: &quot;integer&quot;,
   })
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -453,6 +454,7 @@ export class DbRepoToUserStars {
   @ApiModelProperty({
     description: &quot;User identifier&quot;,
     example: 237133,
+    type: &quot;integer&quot;,
   })
   @Column()
   public user_id!: number;
@@ -460,6 +462,7 @@ export class DbRepoToUserStars {
   @ApiModelProperty({
     description: &quot;Repository identifier&quot;,
     example: 71359796,
+    type: &quot;integer&quot;,
   })
   @Column()
   public repo_id!: number;

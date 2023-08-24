@@ -155,14 +155,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;repos/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findBakedRepoById&#x27;, summary: &#x27;Finds a baked repo by :id&#x27;})<br />@ApiOkResponse({type: DbBakedRepo})<br />@ApiNotFoundResponse({description: &#x27;Baked repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;repos/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findBakedRepoById&#x27;, summary: &#x27;Finds a baked repo by :id&#x27;})<br />@ApiOkResponse({type: DbBakedRepo})<br />@ApiNotFoundResponse({description: &#x27;Baked repository not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;commit-authors/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findCommitAuthorById&#x27;, summary: &#x27;Finds a commit author by :id&#x27;})<br />@ApiOkResponse({type: DbCommitAuthors})<br />@ApiNotFoundResponse({description: &#x27;Commit author not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;commit-authors/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findCommitAuthorById&#x27;, summary: &#x27;Finds a commit author by :id&#x27;})<br />@ApiOkResponse({type: DbCommitAuthors})<br />@ApiNotFoundResponse({description: &#x27;Commit author not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -311,14 +311,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;commits/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findCommitById&#x27;, summary: &#x27;Finds a commit by :id&#x27;})<br />@ApiOkResponse({type: DbCommits})<br />@ApiNotFoundResponse({description: &#x27;Commit not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;commits/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findCommitById&#x27;, summary: &#x27;Finds a commit by :id&#x27;})<br />@ApiOkResponse({type: DbCommits})<br />@ApiNotFoundResponse({description: &#x27;Commit not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:103</a></div>
                 </td>
             </tr>
 
@@ -395,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -473,8 +473,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:91</a></div>
                 </td>
             </tr>
 
@@ -545,14 +545,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/commits/list/repo/:id&#x27;)<br />@ApiOperation({operationId: &#x27;listAllCommitsByBakedRepoId&#x27;, summary: &#x27;Finds all commits by baked repo :id and paginates them&#x27;})<br />@ApiPaginatedResponse(DbCommits)<br />@ApiOkResponse({type: DbCommits})<br /></code>
+                    <code>@Get(&#x27;/commits/list/repo/:id&#x27;)<br />@ApiOperation({operationId: &#x27;listAllCommitsByBakedRepoId&#x27;, summary: &#x27;Finds all commits by baked repo :id and paginates them&#x27;})<br />@ApiPaginatedResponse(DbCommits)<br />@ApiOkResponse({type: DbCommits})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -635,14 +635,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/commits/list/commit-author/:id&#x27;)<br />@ApiOperation({operationId: &#x27;listAllCommitsByCommitAuthorId&#x27;, summary: &#x27;Finds all commits by commit author :id and paginates them&#x27;})<br />@ApiPaginatedResponse(DbCommits)<br />@ApiOkResponse({type: DbCommits})<br /></code>
+                    <code>@Get(&#x27;/commits/list/commit-author/:id&#x27;)<br />@ApiOperation({operationId: &#x27;listAllCommitsByCommitAuthorId&#x27;, summary: &#x27;Finds all commits by commit author :id and paginates them&#x27;})<br />@ApiPaginatedResponse(DbCommits)<br />@ApiOkResponse({type: DbCommits})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="124"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:124</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:130</a></div>
                 </td>
             </tr>
 
@@ -731,8 +731,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/pizza/pizza-oven.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -792,6 +792,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from &quot;@nestjs/swagger&quot;;
 
@@ -838,6 +839,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbBakedRepo })
   @ApiNotFoundResponse({ description: &quot;Baked repository not found&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findBakedRepoById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbBakedRepo&gt; {
     return this.pizzaOvenService.findBakedRepoById(id);
   }
@@ -860,6 +862,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbCommitAuthors })
   @ApiNotFoundResponse({ description: &quot;Commit author not found&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findCommitAuthorById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbCommitAuthors&gt; {
     return this.commitAuthorService.findCommitAuthorById(id);
   }
@@ -882,6 +885,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbCommits })
   @ApiNotFoundResponse({ description: &quot;Commit not found&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findCommitById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbCommits&gt; {
     return this.commitsService.findCommitById(id);
   }
@@ -893,6 +897,7 @@ export class PizzaOvenController {
   })
   @ApiPaginatedResponse(DbCommits)
   @ApiOkResponse({ type: DbCommits })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async listAllCommitsByBakedRepoId(
     @Query() pageOptionsDto: PageOptionsDto,
     @Param(&quot;id&quot;, ParseIntPipe) id: number
@@ -907,6 +912,7 @@ export class PizzaOvenController {
   })
   @ApiPaginatedResponse(DbCommits)
   @ApiOkResponse({ type: DbCommits })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async listAllCommitsByCommitAuthorId(
     @Query() pageOptionsDto: PageOptionsDto,
     @Param(&quot;id&quot;, ParseIntPipe) id: number
