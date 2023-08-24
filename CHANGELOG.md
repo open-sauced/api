@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.46.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.7...v1.46.0-beta.8) (2023-08-24)
+
+
+### 🐛 Bug Fixes
+
+* update full path to swagger file for writing ([#276](https://github.com/open-sauced/api.opensauced.pizza/issues/276)) ([1f3df74](https://github.com/open-sauced/api.opensauced.pizza/commit/1f3df7475451904f48f2f3566b4085eb223803bb))
+
 ## [1.46.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.6...v1.46.0-beta.7) (2023-08-24)
 
 
