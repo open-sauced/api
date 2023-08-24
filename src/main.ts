@@ -96,7 +96,7 @@ code | condition
   const yamlSwaggerDoc = yaml.stringify(document);
 
   // write the yaml swagger doc to the root project directory anytime the server starts
-  await writeFile("./swagger.yaml", yamlSwaggerDoc, "utf8");
+  await writeFile(path.resolve(process.cwd(), "swagger.yaml"), yamlSwaggerDoc, "utf8");
 
   const customOptions: SwaggerCustomOptions = { swaggerOptions: { persistAuthorization: true } };
 
