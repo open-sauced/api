@@ -93,10 +93,14 @@ code | condition
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
   });
 
-  const yamlSwaggerDoc = yaml.stringify(document);
+  try {
+    const yamlSwaggerDoc = yaml.stringify(document);
 
-  // write the yaml swagger doc to the root project directory anytime the server starts
-  await writeFile(path.resolve(process.cwd(), "swagger.yaml"), yamlSwaggerDoc, "utf8");
+    // write the yaml swagger doc to the root project directory anytime the server starts
+    await writeFile(path.resolve(process.cwd(), "swagger.yaml"), yamlSwaggerDoc, "utf8");
+  } catch (e) {
+    console.log(e);
+  }
 
   const customOptions: SwaggerCustomOptions = { swaggerOptions: { persistAuthorization: true } };
 
