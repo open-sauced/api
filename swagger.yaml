@@ -5070,8 +5070,6 @@ components:
           type: string
           description: Top User Login
           example: bdougie
-      required:
-        - login
     CreateUserHighlightDto:
       type: object
       properties:
@@ -5155,19 +5153,15 @@ components:
         reaction_count:
           type: integer
         reaction_users:
+          description: Usernames of users who reacted with this emoji
+          example:
+            - RitaDee
+            - diivi
           type: array
           items:
-            required: false
-            description: Usernames of users who reacted with this emoji
-            example:
-              - RitaDee
-              - diivi
-            type: array
-            items:
-              type: string
+            type: string
       required:
         - emoji_id
-        - reaction_users
     DbUserHighlightReaction:
       type: object
       properties:
@@ -5211,8 +5205,6 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
-      required:
-        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -6036,7 +6028,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-        - updated_at
     BakeRepoDto:
       type: object
       properties:
