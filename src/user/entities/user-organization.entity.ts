@@ -20,6 +20,7 @@ export class DbUserOrganization {
   @ApiModelProperty({
     description: "User organization identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -27,6 +28,7 @@ export class DbUserOrganization {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
@@ -34,6 +36,7 @@ export class DbUserOrganization {
   @ApiModelProperty({
     description: "Organization identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public organization_id!: number;
