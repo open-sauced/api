@@ -164,7 +164,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Option to wait for Pizza service to finish baking repo&#x27;, type: String, example: false})<br />@IsBoolean()<br />
+                            @ApiProperty({description: &#x27;Option to wait for Pizza service to finish baking repo&#x27;, type: Boolean, example: false})<br />@IsBoolean()<br />
                         </code>
                     </td>
                 </tr>
@@ -203,7 +203,7 @@ export class BakeRepoDto {
 
   @ApiProperty({
     description: &quot;Option to wait for Pizza service to finish baking repo&quot;,
-    type: String,
+    type: Boolean,
     example: false,
   })
   @IsBoolean()

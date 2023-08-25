@@ -484,8 +484,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="214"
-                            class="link-to-prism">src/app.module.ts:214</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/app.module.ts:216</a></div>
                 </td>
             </tr>
 
@@ -602,6 +602,7 @@ import { DbPRInsight } from &quot;./pull-requests/entities/pull-request-insight.
 import { DbUserTopRepo } from &quot;./user/entities/user-top-repo.entity&quot;;
 import { DbUserNotification } from &quot;./user/entities/user-notification.entity&quot;;
 import { DbUserCollaboration } from &quot;./user/entities/user-collaboration.entity&quot;;
+import { DbUserOrganization } from &quot;./user/entities/user-organization.entity&quot;;
 import { EndorsementModule } from &quot;./endorsement/endorsement.module&quot;;
 import { DbEndorsement } from &quot;./endorsement/entities/endorsement.entity&quot;;
 import { ContributorModule } from &quot;./contributor/contributor.module&quot;;
@@ -656,6 +657,7 @@ import { PizzaOvenModule } from &quot;./pizza/pizza-oven.module&quot;;
             DbBakedRepo,
             DbCommitAuthors,
             DbCommits,
+            DbUserOrganization,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),

@@ -438,6 +438,7 @@ import { UserCollaborationController } from &quot;./user-collaboration.controlle
 import { UserEndorsementController } from &quot;./user-endorsement.controller&quot;;
 
 import { UserRecommendationController } from &quot;./user-recommendation.controller&quot;;
+import { DbUserOrganization } from &quot;./entities/user-organization.entity&quot;;
 
 @Module({
   imports: [
@@ -452,6 +453,7 @@ import { UserRecommendationController } from &quot;./user-recommendation.control
         DbUserCollaboration,
         DbRepo,
         DbEndorsement,
+        DbUserOrganization,
       ],
       &quot;ApiConnection&quot;
     ),
