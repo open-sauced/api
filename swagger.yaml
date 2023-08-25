@@ -6048,7 +6048,7 @@ components:
           description: Repo clone URL
           example: https://github.com/open-sauced/insights
         wait:
-          type: string
+          type: boolean
           description: Option to wait for Pizza service to finish baking repo
           example: false
       required:
