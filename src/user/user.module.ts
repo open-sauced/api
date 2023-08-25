@@ -30,6 +30,7 @@ import { UserCollaborationController } from "./user-collaboration.controller";
 import { UserEndorsementController } from "./user-endorsement.controller";
 
 import { UserRecommendationController } from "./user-recommendation.controller";
+import { DbUserOrganization } from "./entities/user-organization.entity";
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { UserRecommendationController } from "./user-recommendation.controller";
         DbUserCollaboration,
         DbRepo,
         DbEndorsement,
+        DbUserOrganization,
       ],
       "ApiConnection"
     ),
