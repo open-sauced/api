@@ -47,7 +47,8 @@
     "test:e2e": "npm run test --config test/jest-e2e.json",
     "start:prod": "node dist/main",
     "docs": "npx compodoc -p tsconfig.json --hideGenerator --disableDependencies -d ./dist/documentation ./src",
-    "docs:serve": "npm run docs -- --serve"
+    "docs:serve": "npm run docs -- --serve",
+    "generate:swagger": "npm run nest -- start --config nest-cli.generate-swagger.json"
   },
   "dependencies": {
     "@fastify/express": "^2.3.0",
