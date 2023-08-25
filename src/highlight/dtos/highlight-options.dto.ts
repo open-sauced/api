@@ -16,6 +16,7 @@ export class HighlightOptionsDto extends PageOptionsDto {
 export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, ["emoji_id", "reaction_count"]) {
   @ApiPropertyOptional({
     description: "Usernames of users who reacted with this emoji",
+    type: "string",
     example: ["RitaDee", "diivi"],
     isArray: true,
   })
