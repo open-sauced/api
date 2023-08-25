@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.1...v1.47.0-beta.2) (2023-08-25)
+
+
+### 🐛 Bug Fixes
+
+* Highlight users string type in array for swagger ([#280](https://github.com/open-sauced/api.opensauced.pizza/issues/280)) ([286e478](https://github.com/open-sauced/api.opensauced.pizza/commit/286e47809e36c89148457242a427f4a736f032b2))
+
 ## [1.47.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.1-beta.1...v1.47.0-beta.1) (2023-08-25)
 
 
