@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.1-beta.1...v1.47.0-beta.1) (2023-08-25)
+
+
+### 🍕 Features
+
+* add user organizations table migration and entity ([#272](https://github.com/open-sauced/api.opensauced.pizza/issues/272)) ([0429526](https://github.com/open-sauced/api.opensauced.pizza/commit/042952673b1e932ae8946cc3c915bc61a8ae2326))
+
+
+### 🐛 Bug Fixes
+
+* update BakeRepoDto.wait to boolean ([#274](https://github.com/open-sauced/api.opensauced.pizza/issues/274)) ([45d00e4](https://github.com/open-sauced/api.opensauced.pizza/commit/45d00e406196792400ec2d38db8a6923da9a47f5))
+
 ### [1.46.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0...v1.46.1-beta.1) (2023-08-25)
 
 
