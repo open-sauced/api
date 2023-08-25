@@ -130,13 +130,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;Usernames of users who reacted with this emoji&#x27;, example: undefined, isArray: true})<br />@IsString({each: true})<br />@IsOptional()<br />
+                            @ApiPropertyOptional({description: &#x27;Usernames of users who reacted with this emoji&#x27;, type: &#x27;string&#x27;, example: undefined, isArray: true})<br />@IsString({each: true})<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:25</a></div>
                         </td>
                     </tr>
 
@@ -173,6 +173,7 @@ export class HighlightOptionsDto extends PageOptionsDto {
 export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, [&quot;emoji_id&quot;, &quot;reaction_count&quot;]) {
   @ApiPropertyOptional({
     description: &quot;Usernames of users who reacted with this emoji&quot;,
+    type: &quot;string&quot;,
     example: [&quot;RitaDee&quot;, &quot;diivi&quot;],
     isArray: true,
   })
