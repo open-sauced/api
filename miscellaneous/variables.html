@@ -79,6 +79,9 @@
                             <a href="#EndpointConfig" title="src/config/endpoint.config.ts" ><b>EndpointConfig</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#generateSwaggerJson" title="src/generate-swagger.ts" ><b>generateSwaggerJson</b>&nbsp;&nbsp;&nbsp;(src/.../generate-swagger.ts)</a>
+                        </li>
+                        <li>
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
@@ -92,6 +95,9 @@
                         </li>
                         <li>
                             <a href="#StripeConfig" title="src/config/stripe.config.ts" ><b>StripeConfig</b>&nbsp;&nbsp;&nbsp;(src/.../stripe.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#swaggerMarkdownDescription" title="src/common/util/swagger.ts" ><b>swaggerMarkdownDescription</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.ts)</a>
                         </li>
                         <li>
                             <a href="#toDateTime" title="src/stripe-webhook/utils.ts" ><b>toDateTime</b>&nbsp;&nbsp;&nbsp;(src/.../utils.ts)</a>
@@ -328,6 +334,71 @@
         </tbody>
     </table>
 </section>
+    <h3>src/generate-swagger.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateSwaggerJson"></a>
+                    <span class="name">
+                        <span ><b>generateSwaggerJson</b></span>
+                        <a href="#generateSwaggerJson"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>async () &#x3D;&gt; {
+  const app &#x3D; await NestFactory.create&lt;NestFastifyApplication&gt;(AppModule, new FastifyAdapter({ logger: false }), {
+    bufferLogs: true,
+    rawBody: true,
+  });
+
+  const apiDomain &#x3D; &quot;api.opensauced.pizza&quot;;
+
+  const markdownDescription &#x3D; swaggerMarkdownDescription(apiDomain);
+
+  app.useLogger(app.get(Logger));
+  app.flushLogs();
+  app.enableCors();
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: String(major(&quot;1.8.0&quot;, { loose: false })),
+  });
+
+  const options &#x3D; new DocumentBuilder();
+
+  options
+    .addServer(&#x60;https://${apiDomain}&#x60;, &quot;Production&quot;, {})
+    .addServer(&#x60;https://beta.${apiDomain}&#x60;, &quot;Beta&quot;, {})
+    .addServer(&#x60;https://alpha.${apiDomain}&#x60;, &quot;Alpha&quot;, {})
+    .setTitle(&#x60;@open-sauced/api.opensauced.pizza&#x60;)
+    .setDescription(markdownDescription)
+    .setVersion(&#x60;1&#x60;)
+    .setContact(&quot;Open Sauced&quot;, &quot;https://opensauced.pizza&quot;, &quot;hello@opensauced.pizza&quot;)
+    .setTermsOfService(&quot;https://github.com/open-sauced/code-of-conduct&quot;)
+    .setLicense(&#x60;The MIT License&#x60;, &#x60;https://opensource.org/licenses/mit&#x60;)
+    .addBearerAuth();
+
+  const document &#x3D; SwaggerModule.createDocument(app, options.build(), {
+    operationIdFactory: (controllerKey: string, methodKey: string) &#x3D;&gt; methodKey,
+  });
+
+  const yamlSwaggerDoc &#x3D; yaml.stringify(document);
+
+  // write the yaml swagger doc to the root project directory anytime the server starts
+  await writeFile(path.resolve(process.cwd(), &quot;swagger.yaml&quot;), yamlSwaggerDoc, &quot;utf8&quot;);
+
+  await app.close();
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/config/openai.config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -431,6 +502,70 @@
   subscriptionSessionCheckoutSuccessURL: String(process.env.STRIPE_CHECKOUT_SESSION_SUCCESS_URL ?? &quot;&quot;),
   subscriptionSessionCancelURL: String(process.env.STRIPE_CHECKOUT_SESSION_CANCEL_URL ?? &quot;&quot;),
 }))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/common/util/swagger.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swaggerMarkdownDescription"></a>
+                    <span class="name">
+                        <span ><b>swaggerMarkdownDescription</b></span>
+                        <a href="#swaggerMarkdownDescription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(apiDomain: string) &#x3D;&gt; &#x60;
+## Swagger-UI API Documentation
+
+This REST API can be used to create, read, update or delete data from the Open Sauced community platform.
+The Swagger-UI provides useful information to get started and an overview of all available resources.
+Each API route is clickable and has their own detailed description on how to use it.
+The base URL for the API is [${apiDomain}](https://${apiDomain}).
+
+[comment]: # (TODO: add bearer auth information)
+
+## Rate limiting
+
+Every IP address is allowed to perform 5000 requests per hour.
+This is measured by saving the date of the initial request and counting all requests in the next hour.
+When an IP address goes over the limit, HTTP status code 429 is returned.
+The returned HTTP headers of any API request show the current rate limit status:
+
+header | description
+--- | ---
+\&#x60;X-RateLimit-Limit\&#x60; | The maximum number of requests allowed per hour
+\&#x60;X-RateLimit-Remaining\&#x60; | The number of requests remaining in the current rate limit window
+\&#x60;X-RateLimit-Reset\&#x60; | The date and time at which the current rate limit window resets in [UTC epoch seconds](https://en.wikipedia.org/wiki/Unix_time)
+
+[comment]: # (TODO: add pagination information)
+
+## Common response codes
+
+Each route shows for each method which data they expect and which they will respond when the call succeeds.
+The table below shows most common response codes you can receive from our endpoints.
+
+code | condition
+--- | ---
+[\&#x60;200\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200) | The [\&#x60;GET\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request was handled successfully. The response provides the requested data.
+[\&#x60;201\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201) | The [\&#x60;POST\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) request was handled successfully. The response provides the created data.
+[\&#x60;204\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) | The [\&#x60;PATCH\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH) or [\&#x60;DELETE\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE) request was handled successfully. The response provides no data, generally.
+[\&#x60;400\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400) | The server will not process the request due to something that is perceived to be a client error. Check the provided error for mote information.
+[\&#x60;401\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401) | The request requires user authentication. Check the provided error for more information.
+[\&#x60;403\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403) | The request was valid, but the server is refusing user access. Check the provided error for more information.
+[\&#x60;404\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404) | The requested resource could not be found. Check the provided error for more information.
+[\&#x60;429\&#x60;](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) | The current API Key made too many requests in the last hour. Check [Rate limiting](#ratelimiting) for more information.
+
+## Additional links&#x60;</code>
                     </td>
                 </tr>
 
