@@ -2,7 +2,7 @@ import {
   Entity,
   BaseEntity,
   Column,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
@@ -26,7 +26,7 @@ export class DbUserHighlight extends BaseEntity {
     example: 237133,
     type: "integer",
   })
-  @PrimaryColumn("bigint")
+  @PrimaryGeneratedColumn({ type: "bigint" })
   public id!: number;
 
   @ApiModelProperty({
