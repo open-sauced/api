@@ -437,6 +437,14 @@ export class DbRepo extends BaseEntity {
   public user!: DbUser;
 
   @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.repo_orgs)
+  @JoinColumn({
+    name: "organizaton_id",
+    referencedColumnName: "id",
+  })
+  public org_user!: DbUser;
+
+  @ApiHideProperty()
   @OneToMany(() => DbContribution, (contribution) => contribution.repo)
   public contributions: DbContribution[];
 

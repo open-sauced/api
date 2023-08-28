@@ -534,6 +534,10 @@ export class DbUser extends BaseEntity {
   public repos: DbRepo[];
 
   @ApiHideProperty()
+  @OneToMany(() => DbRepo, (repo) => repo.org_user)
+  public repo_orgs: DbRepo[];
+
+  @ApiHideProperty()
   @OneToMany(() => DbInsight, (highlights) => highlights.user)
   public highlights: DbUserHighlight[];
 
