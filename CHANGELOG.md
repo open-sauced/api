@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.3...v1.47.0-beta.4) (2023-08-28)
+
+
+### 🐛 Bug Fixes
+
+* update highlight dto value ([#282](https://github.com/open-sauced/api.opensauced.pizza/issues/282)) ([33eb2d4](https://github.com/open-sauced/api.opensauced.pizza/commit/33eb2d44bc1f42a2a5ee0d200420ed3f18e67ae4))
+
 ## [1.47.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.2...v1.47.0-beta.3) (2023-08-28)
 
 
