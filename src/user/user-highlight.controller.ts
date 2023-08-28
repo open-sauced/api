@@ -90,8 +90,12 @@ export class UserHighlightsController {
     const highlight = await this.userHighlightsService.findOneById(highlightId, userId);
 
     await this.userHighlightsService.updateUserHighlight(highlight.id, {
-      ...updateHighlightDto,
+      title: updateHighlightDto.title,
+      highlight: updateHighlightDto.highlight,
+      url: updateHighlightDto.url,
+      type: updateHighlightDto.type,
       shipped_at: updateHighlightDto.shipped_at ? new Date(updateHighlightDto.shipped_at) : highlight.created_at,
+      tagged_repos: updateHighlightDto.taggedRepos,
     });
 
     return this.userHighlightsService.findOneById(highlight.id, userId);
