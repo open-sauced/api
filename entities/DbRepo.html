@@ -1706,7 +1706,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@ManyToOne(undefined, user &#x3D;&gt; user.repo_orgs)<br />@JoinColumn({name: &#x27;organizaton_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, user &#x3D;&gt; user.repo_orgs)<br />@JoinColumn({name: &#x27;organization_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -2890,7 +2890,7 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.repo_orgs)
   @JoinColumn({
-    name: &quot;organizaton_id&quot;,
+    name: &quot;organization_id&quot;,
     referencedColumnName: &quot;id&quot;,
   })
   public org_user!: DbUser;
