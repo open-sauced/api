@@ -7,10 +7,10 @@ import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
+import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 
 @Injectable()
 export class RepoService {
