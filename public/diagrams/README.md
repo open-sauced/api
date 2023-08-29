@@ -9,7 +9,7 @@
 | Name                                                                      | Columns | Comment | Type       |
 | ------------------------------------------------------------------------- | ------- | ------- | ---------- |
 | [public.users](public.users.md)                                           | 42      |         | BASE TABLE |
-| [public.repos](public.repos.md)                                           | 43      |         | BASE TABLE |
+| [public.repos](public.repos.md)                                           | 44      |         | BASE TABLE |
 | [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
 | [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
 | [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
@@ -35,6 +35,7 @@
 | [public.commit_authors](public.commit_authors.md)                         | 2       |         | BASE TABLE |
 | [public.commits](public.commits.md)                                       | 5       |         | BASE TABLE |
 | [public.maintainers](public.maintainers.md)                               | 1       |         | BASE TABLE |
+| [public.user_organizations](public.user_organizations.md)                 | 5       |         | BASE TABLE |
 
 ## Relations
 

@@ -5,6 +5,24 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0...v1.47.0) (2023-08-29)
+
+
+### 🍕 Features
+
+* add field to associate repos to organizations ([#283](https://github.com/open-sauced/api.opensauced.pizza/issues/283)) ([3ad6e43](https://github.com/open-sauced/api.opensauced.pizza/commit/3ad6e43078ee20af6bafa2b2dd85d01c529c646d))
+* add user organizations table migration and entity ([#272](https://github.com/open-sauced/api.opensauced.pizza/issues/272)) ([0429526](https://github.com/open-sauced/api.opensauced.pizza/commit/042952673b1e932ae8946cc3c915bc61a8ae2326))
+
+
+### 🐛 Bug Fixes
+
+* Declare "integer" for Swagger types that are not floating points ([#278](https://github.com/open-sauced/api.opensauced.pizza/issues/278)) ([9622d88](https://github.com/open-sauced/api.opensauced.pizza/commit/9622d882bcf30f1dde78e34a97c305fb2409afc9))
+* Highlight users string type in array for swagger ([#280](https://github.com/open-sauced/api.opensauced.pizza/issues/280)) ([286e478](https://github.com/open-sauced/api.opensauced.pizza/commit/286e47809e36c89148457242a427f4a736f032b2))
+* return the id after creating a highlight ([#281](https://github.com/open-sauced/api.opensauced.pizza/issues/281)) ([4aff973](https://github.com/open-sauced/api.opensauced.pizza/commit/4aff97399d105d6e0b8de393900164ac2bcbfa32))
+* update BakeRepoDto.wait to boolean ([#274](https://github.com/open-sauced/api.opensauced.pizza/issues/274)) ([45d00e4](https://github.com/open-sauced/api.opensauced.pizza/commit/45d00e406196792400ec2d38db8a6923da9a47f5))
+* update highlight dto value ([#282](https://github.com/open-sauced/api.opensauced.pizza/issues/282)) ([33eb2d4](https://github.com/open-sauced/api.opensauced.pizza/commit/33eb2d44bc1f42a2a5ee0d200420ed3f18e67ae4))
+* update join column for user organization relationship ([#284](https://github.com/open-sauced/api.opensauced.pizza/issues/284)) ([94f1496](https://github.com/open-sauced/api.opensauced.pizza/commit/94f14965d96c74cd46aea96985081bb99df88d9c))
+
 ## [1.47.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.5...v1.47.0-beta.6) (2023-08-29)
 
 
