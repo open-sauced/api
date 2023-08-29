@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.4...v1.47.0-beta.5) (2023-08-29)
+
+
+### 🍕 Features
+
+* add field to associate repos to organizations ([#283](https://github.com/open-sauced/api.opensauced.pizza/issues/283)) ([3ad6e43](https://github.com/open-sauced/api.opensauced.pizza/commit/3ad6e43078ee20af6bafa2b2dd85d01c529c646d))
+
 ## [1.47.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.3...v1.47.0-beta.4) (2023-08-28)
 
 
