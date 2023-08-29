@@ -1002,9 +1002,68 @@ paths:
       parameters: []
       responses:
         "200":
-          description: ""
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbRepo"
       tags:
+        &a7
         - User Recommendations service
+      security:
+        - bearer: []
+  /v1/user/recommendations/orgs:
+    get:
+      operationId: findUserOrgsRepoRecommendations
+      summary: Listing recommended repos for the authenticated user based on their orgs
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbRepo"
+      tags: *a7
       security:
         - bearer: []
   /v1/prs/list:
@@ -1053,7 +1112,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequest"
       tags:
-        &a7
+        &a8
         - Pull Requests service
   /v1/prs/search:
     get:
@@ -1138,7 +1197,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequest"
-      tags: *a7
+      tags: *a8
   /v1/prs/insights:
     get:
       operationId: getPullRequestInsights
@@ -1202,7 +1261,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/DbPRInsight"
-      tags: *a7
+      tags: *a8
   /v1/prs/description/generate:
     post:
       operationId: generatePRDescription
@@ -1303,7 +1362,7 @@ paths:
         "404":
           description: Repository not found
       tags:
-        &a8
+        &a9
         - Repository service
   "/v1/repos/{owner}/{repo}":
     get:
@@ -1329,7 +1388,7 @@ paths:
                 $ref: "#/components/schemas/DbRepo"
         "404":
           description: Repository not found
-      tags: *a8
+      tags: *a9
   /v1/repos/list:
     get:
       operationId: findAll
@@ -1380,7 +1439,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags: *a8
+      tags: *a9
   /v1/repos/search:
     get:
       operationId: findAllReposWithFilters
@@ -1452,7 +1511,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags: *a8
+      tags: *a9
   /v1/health/service:
     get:
       operationId: healthStatusService
@@ -1472,9 +1531,9 @@ paths:
                   info:
                     type: object
                     example:
-                      &a9
+                      &a10
                       database:
-                        &a10
+                        &a11
                         status: up
                     additionalProperties:
                       type: object
@@ -1497,7 +1556,7 @@ paths:
                     nullable: true
                   details:
                     type: object
-                    example: *a9
+                    example: *a10
                     additionalProperties:
                       type: object
                       properties:
@@ -1517,7 +1576,7 @@ paths:
                     example: error
                   info:
                     type: object
-                    example: *a9
+                    example: *a10
                     additionalProperties:
                       type: object
                       properties:
@@ -1530,7 +1589,7 @@ paths:
                     type: object
                     example:
                       redis:
-                        &a11
+                        &a12
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -1544,8 +1603,8 @@ paths:
                   details:
                     type: object
                     example:
-                      database: *a10
-                      redis: *a11
+                      database: *a11
+                      redis: *a12
                     additionalProperties:
                       type: object
                       properties:
@@ -1554,7 +1613,7 @@ paths:
                       additionalProperties:
                         type: string
       tags:
-        &a15
+        &a16
         - Health check service
   /v1/health/web:
     get:
@@ -1575,9 +1634,9 @@ paths:
                   info:
                     type: object
                     example:
-                      &a12
+                      &a13
                       database:
-                        &a13
+                        &a14
                         status: up
                     additionalProperties:
                       type: object
@@ -1600,7 +1659,7 @@ paths:
                     nullable: true
                   details:
                     type: object
-                    example: *a12
+                    example: *a13
                     additionalProperties:
                       type: object
                       properties:
@@ -1620,7 +1679,7 @@ paths:
                     example: error
                   info:
                     type: object
-                    example: *a12
+                    example: *a13
                     additionalProperties:
                       type: object
                       properties:
@@ -1633,7 +1692,7 @@ paths:
                     type: object
                     example:
                       redis:
-                        &a14
+                        &a15
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -1647,8 +1706,8 @@ paths:
                   details:
                     type: object
                     example:
-                      database: *a13
-                      redis: *a14
+                      database: *a14
+                      redis: *a15
                     additionalProperties:
                       type: object
                       properties:
@@ -1656,7 +1715,7 @@ paths:
                           type: string
                       additionalProperties:
                         type: string
-      tags: *a15
+      tags: *a16
   /v1/repos/listUserVoted:
     get:
       operationId: findAllUserVoted
@@ -1708,7 +1767,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a16
+        &a17
         - Repository service guarded
         - Vote service
       security:
@@ -1731,7 +1790,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/VotedRepoDto"
-      tags: *a16
+      tags: *a17
       security:
         - bearer: []
   "/v1/repos/{id}/vote":
@@ -1755,7 +1814,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already voted for this repo
-      tags: *a16
+      tags: *a17
       security:
         - bearer: []
     delete:
@@ -1778,7 +1837,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already removed your vote
-      tags: *a16
+      tags: *a17
       security:
         - bearer: []
   "/v1/repos/{owner}/{repo}/vote":
@@ -1807,7 +1866,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already voted for this repo
-      tags: *a16
+      tags: *a17
       security:
         - bearer: []
     delete:
@@ -1835,7 +1894,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already removed your vote
-      tags: *a16
+      tags: *a17
       security:
         - bearer: []
   /v1/repos/listUserStarred:
@@ -1889,7 +1948,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a17
+        &a18
         - Repository service guarded
         - Star service
       security:
@@ -1915,7 +1974,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already starred this repo
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
     delete:
@@ -1938,7 +1997,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already removed your star
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
   "/v1/repos/{owner}/{repo}/star":
@@ -1967,7 +2026,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already starred this repo
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
     delete:
@@ -1995,7 +2054,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already removed your star
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
   /v1/repos/listUserStargazed:
@@ -2049,7 +2108,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a18
+        &a19
         - Repository service guarded
         - Stargaze service
       security:
@@ -2075,7 +2134,7 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already followed this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
     delete:
@@ -2098,7 +2157,7 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already unfollowed this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
   "/v1/repos/{owner}/{repo}/stargaze":
@@ -2127,7 +2186,7 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already followed this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
     delete:
@@ -2155,7 +2214,7 @@ paths:
           description: Repo or stargaze not found
         "409":
           description: You have already unfollowed this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
   /v1/repos/listUserSubmitted:
@@ -2209,7 +2268,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a19
+        &a20
         - Repository service guarded
         - Submit service
       security:
@@ -2235,7 +2294,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already submitted this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
     delete:
@@ -2258,7 +2317,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already removed your submission
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
   "/v1/repos/{owner}/{repo}/submit":
@@ -2287,7 +2346,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already submitted this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
     delete:
@@ -2315,7 +2374,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already removed your submission
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
   "/v1/repos/{id}/contributions":
@@ -2376,7 +2435,7 @@ paths:
         "404":
           description: Repo not found
       tags:
-        &a20
+        &a21
         - Repository service
         - Contribution service
   "/v1/repos/{owner}/{repo}/contributions":
@@ -2442,7 +2501,7 @@ paths:
                           $ref: "#/components/schemas/DbContribution"
         "404":
           description: Repo not found
-      tags: *a20
+      tags: *a21
   "/v1/insights/{id}":
     get:
       operationId: findInsightPageById
@@ -2465,7 +2524,7 @@ paths:
         "404":
           description: Insight page not found
       tags:
-        &a21
+        &a22
         - Insights service
     delete:
       operationId: removeInsightForUser
@@ -2493,7 +2552,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to remove user insight
-      tags: *a21
+      tags: *a22
       security:
         - bearer: []
   /v1/user/insights:
@@ -2544,7 +2603,7 @@ paths:
         "404":
           description: Insights not found
       tags:
-        &a22
+        &a23
         - Insights service
       security:
         - bearer: []
@@ -2575,7 +2634,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to add user insight
-      tags: *a22
+      tags: *a23
       security:
         - bearer: []
   "/v1/user/insights/{id}":
@@ -2607,7 +2666,7 @@ paths:
           description: Unable to update user insight
         "422":
           description: Unable to unable insight repos
-      tags: *a22
+      tags: *a23
       security:
         - bearer: []
   "/v1/user/insights/{id}/members":
@@ -2663,7 +2722,7 @@ paths:
         "404":
           description: Insight not found
       tags:
-        &a23
+        &a24
         - Insights service
       security:
         - bearer: []
@@ -2699,7 +2758,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to add insight member
-      tags: *a23
+      tags: *a24
       security:
         - bearer: []
   "/v1/user/insights/{id}/members/{memberId}":
@@ -2736,7 +2795,7 @@ paths:
           description: Unable to find insight member
         "422":
           description: Unable to unable insight member
-      tags: *a23
+      tags: *a24
       security:
         - bearer: []
     delete:
@@ -2764,7 +2823,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to remove insight member
-      tags: *a23
+      tags: *a24
       security:
         - bearer: []
   /v1/issues/summary/generate:
@@ -2871,7 +2930,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
       tags:
-        &a24
+        &a25
         - Highlights service
   /v1/highlights/featured:
     get:
@@ -2925,7 +2984,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
-      tags: *a24
+      tags: *a25
   "/v1/highlights/{id}/featured":
     post:
       operationId: addAFeaturedHighlight
@@ -2953,7 +3012,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to find highlight
-      tags: *a24
+      tags: *a25
       security:
         - bearer: []
     delete:
@@ -2976,7 +3035,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to find highlight
-      tags: *a24
+      tags: *a25
       security:
         - bearer: []
   /v1/highlights/repos/list:
@@ -3024,7 +3083,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlightRepo"
-      tags: *a24
+      tags: *a25
   "/v1/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightReactions
@@ -3046,7 +3105,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to get user highlight reactions
-      tags: *a24
+      tags: *a25
   /v1/highlights/top:
     get:
       operationId: findTopHighlights
@@ -3092,7 +3151,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
-      tags: *a24
+      tags: *a25
   /v1/emojis:
     get:
       operationId: findAllEmojis
@@ -3172,7 +3231,7 @@ paths:
               schema:
                 type: object
       tags:
-        &a25
+        &a26
         - Endorsements service
     get:
       operationId: findAllEndorsements
@@ -3218,7 +3277,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a25
+      tags: *a26
   "/v1/endorsements/repos/{repoOwnerOrUser}":
     get:
       operationId: findAllByRepoOwnerOrUsername
@@ -3269,7 +3328,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a25
+      tags: *a26
   "/v1/endorsements/repos/{owner}/{repo}":
     get:
       operationId: findAllEndorsementsByRepo
@@ -3325,7 +3384,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a25
+      tags: *a26
   "/v1/endorsements/{id}":
     get:
       operationId: findEndorsementById
@@ -3363,7 +3422,7 @@ paths:
                 $ref: "#/components/schemas/DbEndorsement"
         "404":
           description: Endorsement not found
-      tags: *a25
+      tags: *a26
     delete:
       operationId: deleteEndoresementById
       summary: Finds ands deletes the endorsement by ID
@@ -3378,7 +3437,7 @@ paths:
           description: ""
         "404":
           description: Endorsement not found
-      tags: *a25
+      tags: *a26
   "/v1/endorsements/user/{username}/created":
     get:
       operationId: findAllUserCreatedEndorsementsByUsername
@@ -3429,7 +3488,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a25
+      tags: *a26
   "/v1/endorsements/user/{username}/received":
     get:
       operationId: findAllUserReceivedEndorsementsByUsername
@@ -3480,7 +3539,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a25
+      tags: *a26
   /v1/contributors/search:
     get:
       operationId: searchAllPullRequestContributors
@@ -3601,7 +3660,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags:
-        &a26
+        &a27
         - Contributors service
   /v1/contributors/insights/recent:
     get:
@@ -3653,7 +3712,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a26
+      tags: *a27
   /v1/contributors/insights/churn:
     get:
       operationId: findAllChurnPullRequestContributors
@@ -3705,7 +3764,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a26
+      tags: *a27
   /v1/contributors/insights/repeat:
     get:
       operationId: findAllRepeatPullRequestContributors
@@ -3757,7 +3816,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a26
+      tags: *a27
   /v1/bake:
     post:
       operationId: Bake a repository with the pizza oven microservice
@@ -3777,7 +3836,7 @@ paths:
         "400":
           description: Invalid request
       tags:
-        &a27
+        &a28
         - Pizza oven service
   "/v1/bake/repos/{id}":
     get:
@@ -3798,7 +3857,7 @@ paths:
                 $ref: "#/components/schemas/DbBakedRepo"
         "404":
           description: Baked repository not found
-      tags: *a27
+      tags: *a28
   /v1/bake/repos/list:
     get:
       operationId: listAllBakedRepos
@@ -3844,7 +3903,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbBakedRepo"
-      tags: *a27
+      tags: *a28
   "/v1/bake/commit-authors/{id}":
     get:
       operationId: findCommitAuthorById
@@ -3864,7 +3923,7 @@ paths:
                 $ref: "#/components/schemas/DbCommitAuthors"
         "404":
           description: Commit author not found
-      tags: *a27
+      tags: *a28
   /v1/bake/commit-authors/list:
     get:
       operationId: listAllCommitAuthors
@@ -3910,7 +3969,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbCommitAuthors"
-      tags: *a27
+      tags: *a28
   "/v1/bake/commits/{id}":
     get:
       operationId: findCommitById
@@ -3930,7 +3989,7 @@ paths:
                 $ref: "#/components/schemas/DbCommits"
         "404":
           description: Commit not found
-      tags: *a27
+      tags: *a28
   "/v1/bake/commits/list/repo/{id}":
     get:
       operationId: listAllCommitsByBakedRepoId
@@ -3981,7 +4040,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbCommits"
-      tags: *a27
+      tags: *a28
   "/v1/bake/commits/list/commit-author/{id}":
     get:
       operationId: listAllCommitsByCommitAuthorId
@@ -4032,7 +4091,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbCommits"
-      tags: *a27
+      tags: *a28
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
@@ -5070,6 +5129,8 @@ components:
           type: string
           description: Top User Login
           example: bdougie
+      required:
+        - login
     CreateUserHighlightDto:
       type: object
       properties:
@@ -5205,6 +5266,8 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
+      required:
+        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -5777,7 +5840,7 @@ components:
         repos:
           description: An array of repository information objects
           example:
-            &a28
+            &a29
             - id: 797
               full_name: open-sauced/insights
           type: array
@@ -5800,7 +5863,7 @@ components:
           example: false
         repos:
           description: An array of repository information objects
-          example: *a28
+          example: *a29
           type: array
           items:
             $ref: "#/components/schemas/RepoInfo"
@@ -6028,6 +6091,7 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
+        - updated_at
     BakeRepoDto:
       type: object
       properties:
