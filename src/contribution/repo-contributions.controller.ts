@@ -1,5 +1,5 @@
 import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from "@nestjs/swagger";
 import { RepoService } from "../repo/repo.service";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
@@ -20,6 +20,7 @@ export class RepoContributionsController {
   @ApiPaginatedResponse(DbContribution)
   @ApiOkResponse({ type: DbContribution })
   @ApiNotFoundResponse({ description: "Repo not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findAllByRepoId(
     @Param("id", ParseIntPipe) id: number,
     @Query() pageOptionsDto: ContributionPageOptionsDto

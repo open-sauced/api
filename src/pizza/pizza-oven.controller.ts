@@ -6,6 +6,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
@@ -52,6 +53,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbBakedRepo })
   @ApiNotFoundResponse({ description: "Baked repository not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findBakedRepoById(@Param("id", ParseIntPipe) id: number): Promise<DbBakedRepo> {
     return this.pizzaOvenService.findBakedRepoById(id);
   }
@@ -74,6 +76,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbCommitAuthors })
   @ApiNotFoundResponse({ description: "Commit author not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findCommitAuthorById(@Param("id", ParseIntPipe) id: number): Promise<DbCommitAuthors> {
     return this.commitAuthorService.findCommitAuthorById(id);
   }
@@ -96,6 +99,7 @@ export class PizzaOvenController {
   })
   @ApiOkResponse({ type: DbCommits })
   @ApiNotFoundResponse({ description: "Commit not found" })
+  @ApiParam({ name: "id", type: "integer" })
   async findCommitById(@Param("id", ParseIntPipe) id: number): Promise<DbCommits> {
     return this.commitsService.findCommitById(id);
   }
@@ -107,6 +111,7 @@ export class PizzaOvenController {
   })
   @ApiPaginatedResponse(DbCommits)
   @ApiOkResponse({ type: DbCommits })
+  @ApiParam({ name: "id", type: "integer" })
   async listAllCommitsByBakedRepoId(
     @Query() pageOptionsDto: PageOptionsDto,
     @Param("id", ParseIntPipe) id: number
@@ -121,6 +126,7 @@ export class PizzaOvenController {
   })
   @ApiPaginatedResponse(DbCommits)
   @ApiOkResponse({ type: DbCommits })
+  @ApiParam({ name: "id", type: "integer" })
   async listAllCommitsByCommitAuthorId(
     @Query() pageOptionsDto: PageOptionsDto,
     @Param("id", ParseIntPipe) id: number

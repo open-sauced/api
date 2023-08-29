@@ -35,6 +35,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -42,6 +43,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Owner user identifier",
     example: 57568598,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -52,6 +54,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total size in bytes",
     example: 274322,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -62,6 +65,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of issues",
     example: 274,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -72,6 +76,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of stars",
     example: 5,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -82,6 +87,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of forks",
     example: 1,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -92,6 +98,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of watchers",
     example: 5473,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -102,6 +109,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of subscribers",
     example: 11756,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -112,6 +120,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of network usages",
     example: 4,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -428,6 +437,14 @@ export class DbRepo extends BaseEntity {
   public user!: DbUser;
 
   @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.repo_orgs)
+  @JoinColumn({
+    name: "organization_id",
+    referencedColumnName: "id",
+  })
+  public org_user!: DbUser;
+
+  @ApiHideProperty()
   @OneToMany(() => DbContribution, (contribution) => contribution.repo)
   public contributions: DbContribution[];
 
@@ -455,6 +472,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository number of open PRs",
     example: 5,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -466,6 +484,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository number of closed PRs",
     example: 173,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -477,6 +496,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository number of merged PRs",
     example: 276,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -488,6 +508,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository number of draft PRs",
     example: 2,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -499,6 +520,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository number of spam PRs",
     example: 2,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -510,6 +532,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Repository average open/close time for PRs",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -521,6 +544,7 @@ export class DbRepo extends BaseEntity {
   @ApiModelProperty({
     description: "Number of non-closed PRs updated within the day range",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",

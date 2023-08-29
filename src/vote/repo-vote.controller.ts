@@ -5,6 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
@@ -51,6 +52,7 @@ export class RepoVoteController {
     type: VotedRepoDto,
     description: "Returns if authenticated user has voted for it",
   })
+  @ApiParam({ name: "repoId", type: "integer" })
   async findOneByRepoId(@Param("repoId", ParseIntPipe) repoId: number, @UserId() userId: number) {
     return this.voteService.findOneByRepoId(repoId, userId);
   }
@@ -68,6 +70,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already voted for this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async voteOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 
@@ -110,6 +113,7 @@ export class RepoVoteController {
   })
   @ApiNotFoundResponse({ description: "Repo or vote not found" })
   @ApiConflictResponse({ description: "You have already removed your vote" })
+  @ApiParam({ name: "id", type: "integer" })
   async downVoteOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserVotes> {
     const item = await this.repoService.findOneById(id);
 

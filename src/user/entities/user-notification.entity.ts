@@ -12,6 +12,7 @@ export class DbUserNotification extends BaseEntity {
   @ApiModelProperty({
     description: "Notification identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -19,6 +20,7 @@ export class DbUserNotification extends BaseEntity {
   @ApiModelProperty({
     description: "User ID",
     example: 498,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public user_id: number;
@@ -26,6 +28,7 @@ export class DbUserNotification extends BaseEntity {
   @ApiModelProperty({
     description: "From User ID",
     example: 43311,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public from_user_id?: number;

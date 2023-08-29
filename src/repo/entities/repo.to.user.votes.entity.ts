@@ -21,6 +21,7 @@ export class DbRepoToUserVotes {
   @ApiModelProperty({
     description: "Vote identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
@@ -28,6 +29,7 @@ export class DbRepoToUserVotes {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
@@ -35,6 +37,7 @@ export class DbRepoToUserVotes {
   @ApiModelProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public repo_id!: number;

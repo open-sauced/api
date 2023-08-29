@@ -21,6 +21,7 @@ import {
   ApiBadRequestResponse,
   ApiBody,
   ApiUnprocessableEntityResponse,
+  ApiParam,
 } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -103,6 +104,7 @@ export class UserInsightsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiUnprocessableEntityResponse({ description: "Unable to unable insight repos" })
   @ApiBody({ type: UpdateInsightDto })
+  @ApiParam({ name: "id", type: "integer" })
   async updateInsightForUser(
     @Param("id", ParseIntPipe) id: number,
     @Body() updateInsightDto: UpdateInsightDto,

@@ -10,6 +10,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "Pull request identifier",
     example: 1045024650,
+    type: "integer",
   })
   @PrimaryColumn("integer")
   public id!: number;
@@ -24,6 +25,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "Pull request number",
     example: 612,
+    type: "integer",
   })
   @Column("integer")
   public number: number;
@@ -228,6 +230,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "PR comments",
     example: 0,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public comments?: number;
@@ -235,6 +238,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "PR lines added",
     example: 10,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public additions?: number;
@@ -242,6 +246,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "PR lines deleted",
     example: 5,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public deletions?: number;
@@ -249,6 +254,7 @@ export class DbPullRequest extends BaseEntity {
   @ApiModelProperty({
     description: "PR files changed",
     example: 5,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public changed_files?: number;

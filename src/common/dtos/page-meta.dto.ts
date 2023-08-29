@@ -5,24 +5,28 @@ export class PageMetaDto {
   @ApiProperty({
     description: "The current page",
     example: 1,
+    type: "integer",
   })
   readonly page: number;
 
   @ApiProperty({
     description: "The number of items per page",
     example: 10,
+    type: "integer",
   })
   readonly limit: number;
 
   @ApiProperty({
     description: "The number of items in the collection",
     example: 100,
+    type: "integer",
   })
   readonly itemCount: number;
 
   @ApiProperty({
     description: "The number of pages in the collection",
     example: 10,
+    type: "integer",
   })
   readonly pageCount: number;
 

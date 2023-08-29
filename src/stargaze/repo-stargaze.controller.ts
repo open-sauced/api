@@ -5,6 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
@@ -52,6 +53,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already followed this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async stargazeOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -97,6 +99,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already unfollowed this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async downStargazeOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number

@@ -5,6 +5,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
@@ -52,6 +53,7 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already submitted this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async submitOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -97,6 +99,7 @@ export class RepoSubmitController {
   })
   @ApiNotFoundResponse({ description: "Repo or submission not found" })
   @ApiConflictResponse({ description: "You have already removed your submission" })
+  @ApiParam({ name: "id", type: "integer" })
   async downSubmitOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number

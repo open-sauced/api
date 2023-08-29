@@ -25,12 +25,14 @@ import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { DbUserOrganization } from "./entities/user-organization.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
@@ -38,6 +40,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "Total number of open issues user has across public activity",
     example: 498,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -214,6 +217,7 @@ export class DbUser extends BaseEntity {
     description: "Insights Role",
     example: 10,
     default: 10,
+    type: "integer",
   })
   @Column({ default: 10 })
   public role: number;
@@ -341,6 +345,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "GitHub user public repos number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -351,6 +356,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "GitHub user public gists number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -361,6 +367,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "GitHub user public followers number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -372,6 +379,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "GitHub user public following number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -437,6 +445,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User notification count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -448,6 +457,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User highlights count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -459,6 +469,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User following count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -470,6 +481,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User followers count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -481,6 +493,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "Count of user pull requests within the last 30 days",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -492,6 +505,7 @@ export class DbUser extends BaseEntity {
   @ApiModelProperty({
     description: "User average pull request velocity in days over the last 30 days",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -518,6 +532,10 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbRepo, (repo) => repo.user)
   public repos: DbRepo[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbRepo, (repo) => repo.org_user)
+  public repo_orgs: DbRepo[];
 
   @ApiHideProperty()
   @OneToMany(() => DbInsight, (highlights) => highlights.user)
@@ -558,4 +576,8 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserNotification, (fromUserNotifications) => fromUserNotifications.from_user)
   public from_user_notifications: DbUserNotification[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserOrganization, (userOrgs) => userOrgs.organization_user)
+  public organizations: DbUserOrganization[];
 }

@@ -4,7 +4,7 @@ import { IsNumber, IsString, Max, Min } from "class-validator";
 export class GenerateCodeTestSuggestionDto {
   @ApiProperty({
     description: "Suggestion Length",
-    type: Number,
+    type: "integer",
     example: 250,
   })
   @IsNumber()
@@ -14,7 +14,7 @@ export class GenerateCodeTestSuggestionDto {
 
   @ApiProperty({
     description: "Description Temperature",
-    type: Number,
+    type: "integer",
     example: 7,
   })
   @IsNumber()

@@ -5,6 +5,63 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.5...v1.47.0-beta.6) (2023-08-29)
+
+
+### 🐛 Bug Fixes
+
+* update join column for user organization relationship ([#284](https://github.com/open-sauced/api.opensauced.pizza/issues/284)) ([94f1496](https://github.com/open-sauced/api.opensauced.pizza/commit/94f14965d96c74cd46aea96985081bb99df88d9c))
+
+## [1.47.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.4...v1.47.0-beta.5) (2023-08-29)
+
+
+### 🍕 Features
+
+* add field to associate repos to organizations ([#283](https://github.com/open-sauced/api.opensauced.pizza/issues/283)) ([3ad6e43](https://github.com/open-sauced/api.opensauced.pizza/commit/3ad6e43078ee20af6bafa2b2dd85d01c529c646d))
+
+## [1.47.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.3...v1.47.0-beta.4) (2023-08-28)
+
+
+### 🐛 Bug Fixes
+
+* update highlight dto value ([#282](https://github.com/open-sauced/api.opensauced.pizza/issues/282)) ([33eb2d4](https://github.com/open-sauced/api.opensauced.pizza/commit/33eb2d44bc1f42a2a5ee0d200420ed3f18e67ae4))
+
+## [1.47.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.2...v1.47.0-beta.3) (2023-08-28)
+
+
+### 🐛 Bug Fixes
+
+* return the id after creating a highlight ([#281](https://github.com/open-sauced/api.opensauced.pizza/issues/281)) ([4aff973](https://github.com/open-sauced/api.opensauced.pizza/commit/4aff97399d105d6e0b8de393900164ac2bcbfa32))
+
+## [1.47.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.1...v1.47.0-beta.2) (2023-08-25)
+
+
+### 🐛 Bug Fixes
+
+* Highlight users string type in array for swagger ([#280](https://github.com/open-sauced/api.opensauced.pizza/issues/280)) ([286e478](https://github.com/open-sauced/api.opensauced.pizza/commit/286e47809e36c89148457242a427f4a736f032b2))
+
+## [1.47.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.1-beta.1...v1.47.0-beta.1) (2023-08-25)
+
+
+### 🍕 Features
+
+* add user organizations table migration and entity ([#272](https://github.com/open-sauced/api.opensauced.pizza/issues/272)) ([0429526](https://github.com/open-sauced/api.opensauced.pizza/commit/042952673b1e932ae8946cc3c915bc61a8ae2326))
+
+
+### 🐛 Bug Fixes
+
+* update BakeRepoDto.wait to boolean ([#274](https://github.com/open-sauced/api.opensauced.pizza/issues/274)) ([45d00e4](https://github.com/open-sauced/api.opensauced.pizza/commit/45d00e406196792400ec2d38db8a6923da9a47f5))
+
+### [1.46.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0...v1.46.1-beta.1) (2023-08-25)
+
+
+### 🐛 Bug Fixes
+
+* Declare "integer" for Swagger types that are not floating points ([#278](https://github.com/open-sauced/api.opensauced.pizza/issues/278)) ([9622d88](https://github.com/open-sauced/api.opensauced.pizza/commit/9622d882bcf30f1dde78e34a97c305fb2409afc9))
+
+<<<<<<< HEAD
+## [1.46.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.9...v1.46.0-beta.10) (2023-08-24)
+=======
 ## [1.46.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.45.0...v1.46.0) (2023-08-24)
 
 
@@ -14,15 +71,20 @@
 * add tagged repos to user highlights ([#263](https://github.com/open-sauced/api.opensauced.pizza/issues/263)) ([ae5415b](https://github.com/open-sauced/api.opensauced.pizza/commit/ae5415b8b9e5b4d2e58f214caf1121746c5507fe))
 * remove following users from top users when a user id is provided ([#275](https://github.com/open-sauced/api.opensauced.pizza/issues/275)) ([4c7261b](https://github.com/open-sauced/api.opensauced.pizza/commit/4c7261b5b8129a223838d3aec7d739355ac08220))
 * show reactors who reacted to highlights ([#268](https://github.com/open-sauced/api.opensauced.pizza/issues/268)) ([cc2a57c](https://github.com/open-sauced/api.opensauced.pizza/commit/cc2a57c6349eb820b20c203a54bdc3faeb495d73))
+>>>>>>> main
 
 
 ### 🐛 Bug Fixes
 
+<<<<<<< HEAD
+* Declare "integer" for Swagger types that are not floating points ([#278](https://github.com/open-sauced/api.opensauced.pizza/issues/278)) ([9622d88](https://github.com/open-sauced/api.opensauced.pizza/commit/9622d882bcf30f1dde78e34a97c305fb2409afc9))
+=======
 * add Swagger API doc fixes for code generation ([#270](https://github.com/open-sauced/api.opensauced.pizza/issues/270)) ([1fca4b0](https://github.com/open-sauced/api.opensauced.pizza/commit/1fca4b02d1fbcfde38c51e6528a992aa8832b17a))
 * add unit test for user-collaboration service and controller ([#267](https://github.com/open-sauced/api.opensauced.pizza/issues/267)) ([670e3f9](https://github.com/open-sauced/api.opensauced.pizza/commit/670e3f97a0372af6634db252bb6a0624ff949cc1))
 * remove extra query parameters from new contributors endpoint ([#265](https://github.com/open-sauced/api.opensauced.pizza/issues/265)) ([bffc229](https://github.com/open-sauced/api.opensauced.pizza/commit/bffc2294f4bb1d223d0e9f2ffbdf1e828fd450aa))
 * update full path to swagger file for writing ([#276](https://github.com/open-sauced/api.opensauced.pizza/issues/276)) ([1f3df74](https://github.com/open-sauced/api.opensauced.pizza/commit/1f3df7475451904f48f2f3566b4085eb223803bb))
 * wrap writing of swagger file ([2b8656d](https://github.com/open-sauced/api.opensauced.pizza/commit/2b8656dde65b4c51b7b39a4b79069c15b8ad24be))
+>>>>>>> main
 
 ## [1.46.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.46.0-beta.8...v1.46.0-beta.9) (2023-08-24)
 

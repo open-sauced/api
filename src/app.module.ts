@@ -62,6 +62,7 @@ import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entit
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
 import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
+import { DbUserOrganization } from "./user/entities/user-organization.entity";
 import { EndorsementModule } from "./endorsement/endorsement.module";
 import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
 import { ContributorModule } from "./contributor/contributor.module";
@@ -116,6 +117,7 @@ import { PizzaOvenModule } from "./pizza/pizza-oven.module";
             DbBakedRepo,
             DbCommitAuthors,
             DbCommits,
+            DbUserOrganization,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),

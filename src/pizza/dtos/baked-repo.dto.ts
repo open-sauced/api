@@ -12,7 +12,7 @@ export class BakeRepoDto {
 
   @ApiProperty({
     description: "Option to wait for Pizza service to finish baking repo",
-    type: String,
+    type: Boolean,
     example: false,
   })
   @IsBoolean()

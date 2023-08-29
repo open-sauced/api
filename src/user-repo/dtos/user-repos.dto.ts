@@ -5,7 +5,7 @@ import { DbRepoToUserVotes } from "../../repo/entities/repo.to.user.votes.entity
 export class UserRepoOptionsDto {
   @ApiProperty({
     description: "The repos to add to onboarding",
-    type: Number,
+    type: "integer",
     isArray: true,
     example: [71359796, 426820139],
   })

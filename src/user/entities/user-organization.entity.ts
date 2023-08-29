@@ -6,20 +6,19 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUser } from "../../user/user.entity";
-import { DbRepo } from "./repo.entity";
 
-@Entity({ name: "users_to_repos_stars" })
-export class DbRepoToUserStars {
+import { DbUser } from "../user.entity";
+
+@Entity({ name: "user_organizations" })
+export class DbUserOrganization {
   @ApiModelProperty({
-    description: "Star identifier",
+    description: "User organization identifier",
     example: 196,
     type: "integer",
   })
@@ -35,15 +34,15 @@ export class DbRepoToUserStars {
   public user_id!: number;
 
   @ApiModelProperty({
-    description: "Repository identifier",
+    description: "Organization identifier",
     example: 71359796,
     type: "integer",
   })
   @Column()
-  public repo_id!: number;
+  public organization_id!: number;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing star creation",
+    description: "Timestamp representing top repo first index",
     example: "2016-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
@@ -51,16 +50,6 @@ export class DbRepoToUserStars {
     default: () => "now()",
   })
   public created_at?: Date;
-
-  @ApiModelPropertyOptional({
-    description: "Timestamp representing star last update",
-    example: "2022-08-28 22:04:29.000000",
-  })
-  @UpdateDateColumn({
-    type: "timestamp without time zone",
-    default: () => "now()",
-  })
-  public updated_at?: Date;
 
   @ApiHideProperty()
   @DeleteDateColumn({
@@ -70,7 +59,7 @@ export class DbRepoToUserStars {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.repoToUserStars)
+  @ManyToOne(() => DbUser, (user) => user.organizations)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -78,10 +67,10 @@ export class DbRepoToUserStars {
   public user!: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbRepo, (repo) => repo.repoToUserStars)
+  @ManyToOne(() => DbUser, (user) => user.organizations)
   @JoinColumn({
-    name: "repo_id",
+    name: "organization_id",
     referencedColumnName: "id",
   })
-  public repo!: DbRepo;
+  public organization_user: DbUser;
 }
