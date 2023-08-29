@@ -439,7 +439,7 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.repo_orgs)
   @JoinColumn({
-    name: "organizaton_id",
+    name: "organization_id",
     referencedColumnName: "id",
   })
   public org_user!: DbUser;
