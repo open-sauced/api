@@ -10,6 +10,7 @@ import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
+import { PageOptionsDto } from "../common/dtos/page-options.dto";
 
 @Injectable()
 export class RepoService {
@@ -282,5 +283,36 @@ export class RepoService {
     });
 
     return userInterests;
+  }
+
+  async findOrgsRecommendations(userId: number, pageOptionsDto: PageOptionsDto) {
+    const queryBuilder = this.baseFilterQueryBuilder();
+    const range = pageOptionsDto.range!;
+
+    queryBuilder
+      .leftJoin(
+        (qb: SelectQueryBuilder<DbRepo>) =>
+          qb
+            .select("users.id", "id")
+            .addSelect("users.login", "login")
+            .addSelect("user_orgs.user_id", "user_id")
+            .from("user_organizations", "user_orgs")
+            .innerJoin("users", "users", "user_orgs.organization_id = users.id"),
+        "user_orgs",
+        "repos.full_name LIKE user_orgs.login || '/%'"
+      )
+      .where("user_orgs.user_id = :userId", { userId })
+      .andWhere(`now() - INTERVAL '${range} days' <= "repos"."updated_at"`)
+      .orderBy("repos.stars", pageOptionsDto.orderDirection)
+      .addOrderBy("repos.updated_at", pageOptionsDto.orderDirection);
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getMany();
+    const itemCount = await queryBuilder.getCount();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }
