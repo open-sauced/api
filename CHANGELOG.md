@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.47.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.5...v1.47.0-beta.6) (2023-08-29)
+
+
+### 🐛 Bug Fixes
+
+* update join column for user organization relationship ([#284](https://github.com/open-sauced/api.opensauced.pizza/issues/284)) ([94f1496](https://github.com/open-sauced/api.opensauced.pizza/commit/94f14965d96c74cd46aea96985081bb99df88d9c))
+
 ## [1.47.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0-beta.4...v1.47.0-beta.5) (2023-08-29)
 
 
