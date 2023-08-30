@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findUserOrgsRepoRecommendations" >findUserOrgsRepoRecommendations</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findUserRepoRecommendations" >findUserRepoRecommendations</a>
                             </li>
                         </ul>
@@ -108,6 +112,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findUserOrgsRepoRecommendations"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findUserOrgsRepoRecommendations</b></span>
+                        <a href="#findUserOrgsRepoRecommendations"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findUserOrgsRepoRecommendations(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/orgs&#x27;)<br />@ApiOperation({operationId: &#x27;findUserOrgsRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user based on their orgs&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/user/user-recommendation.controller.ts:43</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findUserRepoRecommendations"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -127,14 +221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/repos&#x27;)<br />@ApiOperation({operationId: &#x27;findUserRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@ApiOkResponse()<br />@UseGuards(SupabaseGuard)<br /></code>
+                    <code>@Get(&#x27;/repos&#x27;)<br />@ApiOperation({operationId: &#x27;findUserRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/user/user-recommendation.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/user/user-recommendation.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -186,13 +280,16 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiBearerAuth, ApiTags, ApiOkResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 
 import { RepoService } from &quot;../repo/repo.service&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
 
 @Controller(&quot;user/recommendations&quot;)
@@ -206,13 +303,27 @@ export class UserRecommendationController {
     summary: &quot;Listing recommended repos for the authenticated user&quot;,
   })
   @ApiBearerAuth()
-  @ApiOkResponse()
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
   @UseGuards(SupabaseGuard)
   async findUserRepoRecommendations(@UserId() userId: number) {
     const user &#x3D; await this.userService.findOneById(userId);
     const interests &#x3D; user.interests?.split(&quot;,&quot;).filter(Boolean) ?? [];
 
     return this.repoService.findRecommendations(interests);
+  }
+
+  @Get(&quot;/orgs&quot;)
+  @ApiOperation({
+    operationId: &quot;findUserOrgsRepoRecommendations&quot;,
+    summary: &quot;Listing recommended repos for the authenticated user based on their orgs&quot;,
+  })
+  @ApiBearerAuth()
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  @UseGuards(SupabaseGuard)
+  async findUserOrgsRepoRecommendations(@UserId() userId: number, @Query() pageOptionsDto: PageOptionsDto) {
+    return this.repoService.findOrgsRecommendations(userId, pageOptionsDto);
   }
 }
 </code></pre>
