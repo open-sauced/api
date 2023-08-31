@@ -86,6 +86,10 @@ docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:lates
 
 This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.
 
+Once the database is stood up,
+can use the `dev/apply-migrations.sh` script to apply all the migrations in
+the `migrations/` directory.
+
 ### 🛠️ Installation
 
 To install the application:
