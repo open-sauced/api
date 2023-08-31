@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.1...v1.48.0-beta.2) (2023-08-31)
+
+
+### 🍕 Features
+
+* make baked repos clone_urls and commit_author_emails unique ([#289](https://github.com/open-sauced/api.opensauced.pizza/issues/289)) ([74d4d07](https://github.com/open-sauced/api.opensauced.pizza/commit/74d4d078e7b4d020bac60f3d77021515ea01ecb7))
+
 ## [1.48.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0...v1.48.0-beta.1) (2023-08-30)
 
 
