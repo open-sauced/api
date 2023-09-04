@@ -14,6 +14,8 @@ import { DbUser } from "./user.entity";
 import { UserService } from "./services/user.service";
 import { DbTopUser } from "./entities/top-users.entity";
 import { TopUsersDto } from "./dtos/top-users.dto";
+import { DbFilteredUser } from "./entities/filtered-users.entity";
+import { FilteredUsersDto } from "./dtos/filtered-users.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -93,5 +95,15 @@ export class UserController {
   @ApiOkResponse({ type: DbTopUser })
   async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
     return this.userService.findTopUsers(pageOptionsDto);
+  }
+
+  @Get("/search")
+  @ApiOperation({
+    operationId: "searchUsers",
+    summary: "Search users",
+  })
+  @ApiOkResponse({ type: DbFilteredUser })
+  async getUserByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+    return this.userService.findUsersByFilter(pageOptionsDto);
   }
 }
