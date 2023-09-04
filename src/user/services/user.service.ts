@@ -184,6 +184,10 @@ export class UserService {
 
     const { username, limit } = pageOptionsDto;
 
+    if (!username) {
+      throw new NotFoundException();
+    }
+
     if (username) {
       queryBuilder
         .select(["users.login as login", "users.name as full_name"])
