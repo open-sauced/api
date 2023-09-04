@@ -14,6 +14,8 @@ import { DbTopUser } from "../entities/top-users.entity";
 import { TopUsersDto } from "../dtos/top-users.dto";
 import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
+import { DbFilteredUser } from "../entities/filtered-users.entity";
+import { FilteredUsersDto } from "../dtos/filtered-users.dto";
 
 @Injectable()
 export class UserService {
@@ -175,6 +177,27 @@ export class UserService {
     }
 
     return item;
+  }
+
+  async findUsersByFilter(pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    const { username, limit } = pageOptionsDto;
+
+    if (username) {
+      queryBuilder
+        .select(["users.login as login", "users.name as full_name"])
+        .where(`LOWER(users.login) LIKE :username`)
+        .setParameters({ username: `%${username.toLowerCase()}%` })
+        .limit(limit);
+    }
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async checkAddUser(user: User): Promise<DbUser> {
