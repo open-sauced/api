@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
@@ -185,16 +185,14 @@ export class UserService {
     const { username, limit } = pageOptionsDto;
 
     if (!username) {
-      throw new NotFoundException();
+      throw new BadRequestException();
     }
 
-    if (username) {
-      queryBuilder
-        .select(["users.login as login", "users.name as full_name"])
-        .where(`LOWER(users.login) LIKE :username`)
-        .setParameters({ username: `%${username.toLowerCase()}%` })
-        .limit(limit);
-    }
+    queryBuilder
+      .select(["users.login as login", "users.name as full_name"])
+      .where(`LOWER(users.login) LIKE :username`)
+      .setParameters({ username: `%${username.toLowerCase()}%` })
+      .limit(limit);
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 

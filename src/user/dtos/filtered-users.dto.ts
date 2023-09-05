@@ -1,4 +1,4 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsInt, Min, IsOptional, Max } from "class-validator";
 
@@ -14,13 +14,13 @@ export class FilteredUsersDto {
   @IsOptional()
   readonly page?: number = 1;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "Username search query to filter from the list of users",
     type: "string",
   })
-  @IsOptional()
+  @Min(3)
   @Type(() => String)
-  readonly username?: string = "";
+  readonly username: string = "";
 
   @ApiPropertyOptional({
     minimum: 1,
@@ -33,9 +33,9 @@ export class FilteredUsersDto {
   @Min(1)
   @Max(100)
   @IsOptional()
-  readonly limit?: number = 50;
+  readonly limit?: number = 10;
 
   get skip(): number {
-    return ((this.page ?? 1) - 1) * (this.limit ?? 50);
+    return ((this.page ?? 1) - 1) * (this.limit ?? 10);
   }
 }

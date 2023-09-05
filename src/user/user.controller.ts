@@ -1,5 +1,5 @@
 import { Controller, Get, Param, Query } from "@nestjs/common";
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
@@ -99,11 +99,12 @@ export class UserController {
 
   @Get("/search")
   @ApiOperation({
-    operationId: "searchUsers",
+    operationId: "getUsersByFilter",
     summary: "Search users",
   })
   @ApiOkResponse({ type: DbFilteredUser })
-  async getUserByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+  @ApiBadRequestResponse({ description: "Username is required" })
+  async getUsersByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
     return this.userService.findUsersByFilter(pageOptionsDto);
   }
 }
