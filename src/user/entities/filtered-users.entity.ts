@@ -2,7 +2,7 @@ import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-prop
 
 export class DbFilteredUser {
   @ApiModelProperty({
-    description: " User Login",
+    description: "User Login",
     example: "bdougie",
   })
   public login?: string;
