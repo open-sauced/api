@@ -61,7 +61,7 @@ export class UserListService {
       is_public: list.is_public,
     });
 
-    return await this.userListRepository.save(newUserList);
+    return this.userListRepository.save(newUserList);
   }
 
   async updateUserList(listId: string, highlight: Partial<DbUserList>) {

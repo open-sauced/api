@@ -5,7 +5,6 @@ import {
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
   ManyToOne,

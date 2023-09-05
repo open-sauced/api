@@ -20,14 +20,14 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 import { DbInsight } from "../insight/entities/insight.entity";
+import { DbUserList } from "../user-lists/entities/user-list.entity";
+import { DbUserListContributor } from "../user-lists/entities/user-list-contributor.entity";
 import { DbUserNotification } from "./entities/user-notification.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 import { DbUserOrganization } from "./entities/user-organization.entity";
-import { DbUserList } from "../user-lists/entities/user-list.entity";
-import { DbUserListContributor } from "../user-lists/entities/user-list-contributor.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
