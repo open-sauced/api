@@ -34,7 +34,15 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateUserListDto })
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise<DbUserList> {
-    return this.userListService.addUserList(userId, createUserListDto);
+    const newList = await this.userListService.addUserList(userId, createUserListDto);
+
+    const listContributors = createUserListDto.contributors.map(async (contributorId) => {
+      return await this.userListService.addUserListContributor(newList.id, contributorId);
+    });
+
+    await Promise.allSettled(listContributors);
+
+    return newList;
   }
 
   @Get("/:id")

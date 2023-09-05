@@ -34,12 +34,12 @@ export class DbUserListContributor {
   public user_id!: number;
 
   @ApiModelProperty({
-    description: "Organization identifier",
-    example: 71359796,
+    description: "List identifier",
+    example: "uuid-v4",
     type: "integer",
   })
   @Column()
-  public organization_id!: number;
+  public list_id!: string;
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing top repo first index",

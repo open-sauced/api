@@ -7,17 +7,26 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
+import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 
 @Injectable()
 export class UserListService {
   constructor(
     @InjectRepository(DbUserList, "ApiConnection")
     private userListRepository: Repository<DbUserList>,
+    @InjectRepository(DbUserListContributor, "ApiConnection")
+    private userListContributorRepository: Repository<DbUserListContributor>,
     private pagerService: PagerService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserList> {
     const builder = this.userListRepository.createQueryBuilder("user_lists");
+
+    return builder;
+  }
+
+  baseListContributorQueryBuilder(): SelectQueryBuilder<DbUserListContributor> {
+    const builder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
 
     return builder;
   }
@@ -62,6 +71,15 @@ export class UserListService {
     });
 
     return this.userListRepository.save(newUserList);
+  }
+
+  async addUserListContributor(listId: string, userId: number) {
+    const newUserListContributor = this.userListContributorRepository.create({
+      list_id: listId,
+      user_id: userId,
+    });
+
+    return this.userListContributorRepository.save(newUserListContributor);
   }
 
   async updateUserList(listId: string, highlight: Partial<DbUserList>) {
