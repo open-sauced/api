@@ -365,6 +365,43 @@ paths:
               schema:
                 $ref: "#/components/schemas/DbTopUser"
       tags: *a2
+  /v1/users/search:
+    get:
+      operationId: getUsersByFilter
+      summary: Search users
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: username
+          required: true
+          in: query
+          description: Username search query to filter from the list of users
+          schema:
+            default: ""
+            type: string
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbFilteredUser"
+        "400":
+          description: Username is required
+      tags: *a2
   /v1/user/highlights:
     post:
       operationId: addHighlightForUser
@@ -5129,8 +5166,19 @@ components:
           type: string
           description: Top User Login
           example: bdougie
+    DbFilteredUser:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User Login
+          example: bdougie
+        full_name:
+          type: string
+          description: Users fullname
+          example: Brian Douglas
       required:
-        - login
+        - full_name
     CreateUserHighlightDto:
       type: object
       properties:
@@ -5266,8 +5314,6 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
-      required:
-        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -6091,7 +6137,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-        - updated_at
     BakeRepoDto:
       type: object
       properties:
