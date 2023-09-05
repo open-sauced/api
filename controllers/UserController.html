@@ -103,6 +103,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#getTopUsers" >getTopUsers</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUsersByFilter" >getUsersByFilter</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -149,8 +153,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user/user.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/user/user.controller.ts:64</a></div>
                 </td>
             </tr>
 
@@ -239,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/user/user.controller.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/user/user.controller.ts:81</a></div>
                 </td>
             </tr>
 
@@ -329,8 +333,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/user/user.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/user/user.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -419,8 +423,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/user/user.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/user/user.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -497,8 +501,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/user/user.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/user/user.controller.ts:96</a></div>
                 </td>
             </tr>
 
@@ -546,12 +550,90 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUsersByFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUsersByFilter</b></span>
+                        <a href="#getUsersByFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUsersByFilter(pageOptionsDto: <a href="../classes/FilteredUsersDto.html" target="_self">FilteredUsersDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;getUsersByFilter&#x27;, summary: &#x27;Search users&#x27;})<br />@ApiOkResponse({type: DbFilteredUser})<br />@ApiBadRequestResponse({description: &#x27;Username is required&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/user/user.controller.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/FilteredUsersDto.html" target="_self" >FilteredUsersDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbFilteredUser&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -566,6 +648,8 @@ import { DbUser } from &quot;./user.entity&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
 import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
 import { TopUsersDto } from &quot;./dtos/top-users.dto&quot;;
+import { DbFilteredUser } from &quot;./entities/filtered-users.entity&quot;;
+import { FilteredUsersDto } from &quot;./dtos/filtered-users.dto&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
@@ -645,6 +729,17 @@ export class UserController {
   @ApiOkResponse({ type: DbTopUser })
   async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise&lt;PageDto&lt;DbTopUser&gt;&gt; {
     return this.userService.findTopUsers(pageOptionsDto);
+  }
+
+  @Get(&quot;/search&quot;)
+  @ApiOperation({
+    operationId: &quot;getUsersByFilter&quot;,
+    summary: &quot;Search users&quot;,
+  })
+  @ApiOkResponse({ type: DbFilteredUser })
+  @ApiBadRequestResponse({ description: &quot;Username is required&quot; })
+  async getUsersByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise&lt;PageDto&lt;DbFilteredUser&gt;&gt; {
+    return this.userService.findUsersByFilter(pageOptionsDto);
   }
 }
 </code></pre>

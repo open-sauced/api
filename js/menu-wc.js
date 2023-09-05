@@ -969,6 +969,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DatabaseLoggerMiddleware.html" data-type="entity-link" >DatabaseLoggerMiddleware</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DbFilteredUser.html" data-type="entity-link" >DbFilteredUser</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DbPullRequestContributor.html" data-type="entity-link" >DbPullRequestContributor</a>
                             </li>
                             <li class="link">
@@ -979,6 +982,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/DbUserHighlightRepo.html" data-type="entity-link" >DbUserHighlightRepo</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FilteredUsersDto.html" data-type="entity-link" >FilteredUsersDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FilterOptionsDto.html" data-type="entity-link" >FilterOptionsDto</a>
