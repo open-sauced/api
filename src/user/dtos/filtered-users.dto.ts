@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsInt, Min, IsOptional, Max } from "class-validator";
+import { IsInt, Min, IsOptional, Max, MinLength } from "class-validator";
 
 export class FilteredUsersDto {
   @ApiPropertyOptional({
@@ -18,7 +18,7 @@ export class FilteredUsersDto {
     description: "Username search query to filter from the list of users",
     type: "string",
   })
-  @Min(3)
+  @MinLength(3)
   @Type(() => String)
   readonly username: string = "";
 
