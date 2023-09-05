@@ -31,7 +31,7 @@ export class FilteredUsersDto {
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  @Max(10000)
+  @Max(100)
   @IsOptional()
   readonly limit?: number = 50;
 
