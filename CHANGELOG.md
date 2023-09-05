@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.2...v1.48.0-beta.3) (2023-09-05)
+
+
+### 🍕 Features
+
+* add script to apply all migrations and .env example ([#290](https://github.com/open-sauced/api.opensauced.pizza/issues/290)) ([4bc53da](https://github.com/open-sauced/api.opensauced.pizza/commit/4bc53dac8997a013b15fc80584039226b42d364c))
+
 ## [1.48.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.1...v1.48.0-beta.2) (2023-08-31)
 
 

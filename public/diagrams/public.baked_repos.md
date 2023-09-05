@@ -12,9 +12,10 @@
 
 ## Constraints
 
-| Name             | Type        | Definition       |
-| ---------------- | ----------- | ---------------- |
-| baked_repos_pkey | PRIMARY KEY | PRIMARY KEY (id) |
+| Name              | Type        | Definition         |
+| ----------------- | ----------- | ------------------ |
+| baked_repos_pkey  | PRIMARY KEY | PRIMARY KEY (id)   |
+| unique_clone_urls | UNIQUE      | UNIQUE (clone_url) |
 
 ## Indexes
 
@@ -22,6 +23,7 @@
 | ------------------------- | ------------------------------------------------------------------------------------ |
 | baked_repos_pkey          | CREATE UNIQUE INDEX baked_repos_pkey ON public.baked_repos USING btree (id)          |
 | baked_repos_idx_clone_url | CREATE INDEX baked_repos_idx_clone_url ON public.baked_repos USING btree (clone_url) |
+| unique_clone_urls         | CREATE UNIQUE INDEX unique_clone_urls ON public.baked_repos USING btree (clone_url)  |
 
 ## Relations
 
