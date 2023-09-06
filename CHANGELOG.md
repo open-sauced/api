@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.5...v1.48.0-beta.6) (2023-09-06)
+
+
+### 🐛 Bug Fixes
+
+* import PizzaOvenModule to InsightsModule to fix runtime error ([#295](https://github.com/open-sauced/api.opensauced.pizza/issues/295)) ([3a5bc7b](https://github.com/open-sauced/api.opensauced.pizza/commit/3a5bc7bfd959230b86f11d976aeaef2d3d08cc57))
+
 ## [1.48.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.4...v1.48.0-beta.5) (2023-09-06)
 
 
