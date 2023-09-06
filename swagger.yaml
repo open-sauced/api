@@ -4092,6 +4092,111 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbCommits"
       tags: *a28
+  /v1/lists:
+    post:
+      operationId: addListForUser
+      summary: Adds a new list for the authenticated user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserListDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to add user list
+      tags:
+        &a29
+        - User Lists service
+      security:
+        - bearer: []
+  "/v1/lists/{id}":
+    get:
+      operationId: getUserList
+      summary: Retrieves an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list
+      tags: *a29
+      security:
+        - bearer: []
+    patch:
+      operationId: updateListForUser
+      summary: Updates the list for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserListDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to update user list
+      tags: *a29
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteListForUser
+      summary: Deletes the list for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete user list
+      tags: *a29
+      security:
+        - bearer: []
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
@@ -5129,8 +5234,6 @@ components:
           type: string
           description: Top User Login
           example: bdougie
-      required:
-        - login
     CreateUserHighlightDto:
       type: object
       properties:
@@ -5266,8 +5369,6 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
-      required:
-        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -5840,7 +5941,7 @@ components:
         repos:
           description: An array of repository information objects
           example:
-            &a29
+            &a30
             - id: 797
               full_name: open-sauced/insights
           type: array
@@ -5863,7 +5964,7 @@ components:
           example: false
         repos:
           description: An array of repository information objects
-          example: *a29
+          example: *a30
           type: array
           items:
             $ref: "#/components/schemas/RepoInfo"
@@ -6091,7 +6192,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-        - updated_at
     BakeRepoDto:
       type: object
       properties:
@@ -6163,3 +6263,68 @@ components:
         - commit_date
         - baked_repo_id
         - commit_author_id
+    CreateUserListDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: List Name
+          example: My List
+        is_public:
+          type: boolean
+          description: List Visibility
+          example: false
+        contributors:
+          type: array
+          items:
+            required: true
+            description: An array of contributor user IDs
+            example:
+              - 42211
+              - 81233
+            type: array
+            items:
+              type: number
+      required:
+        - name
+        - is_public
+        - contributors
+    DbUserList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User List identifier
+          example: uuid-v4
+        user_id:
+          type: integer
+          description: User ID
+          example: 237133
+        name:
+          type: string
+          description: List Name
+          example: JavaScript Developers
+        is_public:
+          type: boolean
+          description: Flag indicating insight visibility
+          example: false
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - user_id
+        - name
+        - is_public
