@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >InsightsService</li>
+  <li >UserListService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/insight/insights.service.ts</code>
+            <code>src/user-lists/user-list.service.ts</code>
         </p>
 
 
@@ -80,10 +80,21 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#addInsight" >addInsight</a>
+                                <a href="#addUserList" >addUserList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addUserListContributor" >addUserListContributor</a>
+                            </li>
+                            <li>
+                                <a href="#baseListContributorQueryBuilder" >baseListContributorQueryBuilder</a>
                             </li>
                             <li>
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteUserList" >deleteUserList</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -95,11 +106,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#removeInsight" >removeInsight</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#updateInsight" >updateInsight</a>
+                                <a href="#updateUserList" >updateUserList</a>
                             </li>
                         </ul>
                     </td>
@@ -119,12 +126,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(insightRepository: <a href="../entitys/DbInsight.html" target="_self">Repository&lt;DbInsight&gt;</a>, pizzaOvenService: <a href="../injectables/PizzaOvenService.html" target="_self">PizzaOvenService</a>)</code>
+<code>constructor(userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, userListContributorRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/insight/insights.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user-lists/user-list.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -142,10 +149,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>insightRepository</td>
+                                                        <td>userListRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../entitys/DbInsight.html" target="_self" >Repository&lt;DbInsight&gt;</a></code>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserList&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -154,10 +161,22 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>pizzaOvenService</td>
+                                                        <td>userListContributorRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/PizzaOvenService.html" target="_self" >PizzaOvenService</a></code>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserListContributor&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pagerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -183,26 +202,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addInsight"></a>
+                    <a name="addUserList"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>addInsight</b></span>
-                        <a href="#addInsight"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>addUserList</b></span>
+                        <a href="#addUserList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsight(insight: <a href="../entitys/DbInsight.html" target="_self">Partial&lt;DbInsight&gt;</a>)</code>
+                    <code>addUserList(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, list: <a href="../classes/CreateUserListDto.html" target="_self">CreateUserListDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/insight/insights.service.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -223,9 +242,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>insight</td>
+                                    <td>userId</td>
                                     <td>
-                                                <code><a href="../entitys/DbInsight.html" target="_self" >Partial&lt;DbInsight&gt;</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>list</td>
+                                    <td>
+                                                <code><a href="../classes/CreateUserListDto.html" target="_self" >CreateUserListDto</a></code>
                                     </td>
 
                                     <td>
@@ -245,6 +276,126 @@
                     </div>
                     <div class="io-description">
                         
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addUserListContributor"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addUserListContributor</b></span>
+                        <a href="#addUserListContributor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addUserListContributor(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseListContributorQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseListContributorQueryBuilder</b></span>
+                        <a href="#baseListContributorQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseListContributorQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:28</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+
                     </div>
                 </td>
             </tr>
@@ -270,8 +421,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/insight/insights.service.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:22</a></div>
                 </td>
             </tr>
 
@@ -280,7 +431,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >SelectQueryBuilder&lt;DbInsight&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserList&gt;</a></code>
 
                     </div>
                 </td>
@@ -291,26 +442,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAllByUserId"></a>
+                    <a name="deleteUserList"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAllByUserId</b></span>
-                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deleteUserList</b></span>
+                        <a href="#deleteUserList"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllByUserId(pageOptionsDto: <a href="../classes/InsightPageOptionsDto.html" target="_self">InsightPageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteUserList(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/insight/insights.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -331,163 +482,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/InsightPageOptionsDto.html" target="_self" >InsightPageOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>userId</td>
+                                    <td>listId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsight&gt;&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOneById"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findOneById</b></span>
-                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/insight/insights.service.ts:27</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeInsight"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>removeInsight</b></span>
-                        <a href="#removeInsight"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeInsight(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/insight/insights.service.ts:62</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -516,26 +513,109 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateInsight"></a>
+                    <a name="findAllByUserId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>updateInsight</b></span>
-                        <a href="#updateInsight"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllByUserId</b></span>
+                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateInsight(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, insight: <a href="../entitys/DbInsight.html" target="_self">Partial&lt;DbInsight&gt;</a>)</code>
+                    <code>findAllByUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/insight/insights.service.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserList&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneById</b></span>
+                        <a href="#findOneById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -558,7 +638,7 @@
                                 <tr>
                                     <td>id</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -568,9 +648,92 @@
 
                                 </tr>
                                 <tr>
-                                    <td>insight</td>
+                                    <td>userId</td>
                                     <td>
-                                                <code><a href="../entitys/DbInsight.html" target="_self" >Partial&lt;DbInsight&gt;</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserList&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateUserList"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateUserList</b></span>
+                        <a href="#updateUserList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateUserList(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, highlight: <a href="../s/User.html" target="_self">Partial&lt;DbUserList&gt;</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>highlight</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >Partial&lt;DbUserList&gt;</a></code>
                                     </td>
 
                                     <td>
@@ -605,95 +768,92 @@
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
-
-import { PizzaOvenService } from &quot;../pizza/pizza-oven.service&quot;;
-import { BakeRepoDto } from &quot;../pizza/dtos/baked-repo.dto&quot;;
-import { DbInsight } from &quot;./entities/insight.entity&quot;;
-import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
+import { PagerService } from &quot;../common/services/pager.service&quot;;
+import { CreateUserListDto } from &quot;./dtos/create-user-list.dto&quot;;
+import { DbUserList } from &quot;./entities/user-list.entity&quot;;
+import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
 
 @Injectable()
-export class InsightsService {
+export class UserListService {
   constructor(
-    @InjectRepository(DbInsight, &quot;ApiConnection&quot;)
-    private insightRepository: Repository&lt;DbInsight&gt;,
-    private pizzaOvenService: PizzaOvenService
+    @InjectRepository(DbUserList, &quot;ApiConnection&quot;)
+    private userListRepository: Repository&lt;DbUserList&gt;,
+    @InjectRepository(DbUserListContributor, &quot;ApiConnection&quot;)
+    private userListContributorRepository: Repository&lt;DbUserListContributor&gt;,
+    private pagerService: PagerService
   ) {}
 
-  baseQueryBuilder(): SelectQueryBuilder&lt;DbInsight&gt; {
-    const builder &#x3D; this.insightRepository.createQueryBuilder(&quot;insights&quot;);
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbUserList&gt; {
+    const builder &#x3D; this.userListRepository.createQueryBuilder(&quot;user_lists&quot;);
 
     return builder;
   }
 
-  async findOneById(id: number): Promise&lt;DbInsight&gt; {
+  baseListContributorQueryBuilder(): SelectQueryBuilder&lt;DbUserListContributor&gt; {
+    const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
+
+    return builder;
+  }
+
+  async findOneById(id: string, userId?: number): Promise&lt;DbUserList&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .where(&quot;insights.id &#x3D; :id&quot;, { id })
-      .innerJoinAndSelect(&#x60;insights.user&#x60;, &#x60;user&#x60;)
-      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_lists.user_id&#x3D;users.id&quot;)
+      .addSelect(&quot;users.login&quot;, &quot;user_lists_login&quot;)
+      .where(&quot;user_lists.id &#x3D; :id&quot;, { id });
 
-    const item: DbInsight | null &#x3D; await queryBuilder.getOne();
+    if (userId) {
+      queryBuilder.andWhere(&quot;user_lists.user_id &#x3D; :userId&quot;, { userId });
+    }
+
+    const item: DbUserList | null &#x3D; await queryBuilder.getOne();
 
     if (!item) {
       throw new NotFoundException();
     }
 
-    item.repos.forEach(async (url) &#x3D;&gt; {
-      // when individual insight pages are fetched, go bake their repos to get fresh commit data
-      const bakeRepoInfo: BakeRepoDto &#x3D; {
-        url: &#x60;https://github.com/${url.full_name}&#x60;,
-        wait: false,
-      };
-
-      await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
-    });
-
     return item;
   }
 
-  async addInsight(insight: Partial&lt;DbInsight&gt;) {
-    return this.insightRepository.save(insight);
+  async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbUserList&gt;&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.where(&quot;user_lists.user_id &#x3D; :userId&quot;, { userId }).orderBy(&quot;user_lists.updated_at&quot;, &quot;DESC&quot;);
+
+    return this.pagerService.applyPagination&lt;DbUserList&gt;({
+      pageOptionsDto,
+      queryBuilder,
+    });
   }
 
-  async updateInsight(id: number, insight: Partial&lt;DbInsight&gt;) {
-    return this.insightRepository.update(id, insight);
+  async addUserList(userId: number, list: CreateUserListDto) {
+    const newUserList &#x3D; this.userListRepository.create({
+      user_id: userId,
+      name: list.name,
+      is_public: list.is_public,
+    });
+
+    return this.userListRepository.save(newUserList);
   }
 
-  async removeInsight(id: number) {
-    return this.insightRepository.softDelete(id);
+  async addUserListContributor(listId: string, userId: number) {
+    const newUserListContributor &#x3D; this.userListContributorRepository.create({
+      list_id: listId,
+      user_id: userId,
+    });
+
+    return this.userListContributorRepository.save(newUserListContributor);
   }
 
-  async findAllByUserId(pageOptionsDto: InsightPageOptionsDto, userId: string): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
-    const queryBuilder &#x3D; this.insightRepository.createQueryBuilder(&quot;insights&quot;);
+  async updateUserList(listId: string, highlight: Partial&lt;DbUserList&gt;) {
+    return this.userListRepository.update(listId, highlight);
+  }
 
-    queryBuilder
-      .where(&quot;insights.user_id &#x3D; :userId&quot;, { userId })
-      .orWhere(
-        &#x60;:userId IN (
-          SELECT user_id
-          FROM insight_members
-          WHERE insight_id &#x3D; insights.id
-          AND user_id &#x3D; :userId
-          AND access !&#x3D; &#x27;pending&#x27;
-          AND deleted_at IS NULL
-        )
-      &#x60;,
-        { userId }
-      )
-      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
-      .orderBy(&quot;insights.updated_at&quot;, &quot;DESC&quot;);
-
-    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
-
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+  async deleteUserList(listId: string) {
+    return this.userListRepository.softDelete(listId);
   }
 }
 </code></pre>
@@ -739,7 +899,7 @@ export class InsightsService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'InsightsService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserListService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
