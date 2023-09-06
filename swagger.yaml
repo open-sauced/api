@@ -2863,6 +2863,281 @@ paths:
       tags: *a24
       security:
         - bearer: []
+  /v1/bake:
+    post:
+      operationId: Bake a repository with the pizza oven microservice
+      summary: postToPizzaOvenService
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BakeRepoDto"
+      responses:
+        "201":
+          description: ""
+        "202":
+          description: ""
+        "400":
+          description: Invalid request
+      tags:
+        &a25
+        - Pizza oven service
+  "/v1/bake/repos/{id}":
+    get:
+      operationId: findBakedRepoById
+      summary: Finds a baked repo by :id
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbBakedRepo"
+        "404":
+          description: Baked repository not found
+      tags: *a25
+  /v1/bake/repos/list:
+    get:
+      operationId: listAllBakedRepos
+      summary: Finds all baked repos and paginates them
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbBakedRepo"
+      tags: *a25
+  "/v1/bake/commit-authors/{id}":
+    get:
+      operationId: findCommitAuthorById
+      summary: Finds a commit author by :id
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbCommitAuthors"
+        "404":
+          description: Commit author not found
+      tags: *a25
+  /v1/bake/commit-authors/list:
+    get:
+      operationId: listAllCommitAuthors
+      summary: Finds all commit authors and paginates them
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbCommitAuthors"
+      tags: *a25
+  "/v1/bake/commits/{id}":
+    get:
+      operationId: findCommitById
+      summary: Finds a commit by :id
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbCommits"
+        "404":
+          description: Commit not found
+      tags: *a25
+  "/v1/bake/commits/list/repo/{id}":
+    get:
+      operationId: listAllCommitsByBakedRepoId
+      summary: Finds all commits by baked repo :id and paginates them
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbCommits"
+      tags: *a25
+  "/v1/bake/commits/list/commit-author/{id}":
+    get:
+      operationId: listAllCommitsByCommitAuthorId
+      summary: Finds all commits by commit author :id and paginates them
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbCommits"
+      tags: *a25
   /v1/issues/summary/generate:
     post:
       operationId: generateIssueSummary
@@ -2967,7 +3242,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
       tags:
-        &a25
+        &a26
         - Highlights service
   /v1/highlights/featured:
     get:
@@ -3021,7 +3296,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
-      tags: *a25
+      tags: *a26
   "/v1/highlights/{id}/featured":
     post:
       operationId: addAFeaturedHighlight
@@ -3049,7 +3324,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to find highlight
-      tags: *a25
+      tags: *a26
       security:
         - bearer: []
     delete:
@@ -3072,7 +3347,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to find highlight
-      tags: *a25
+      tags: *a26
       security:
         - bearer: []
   /v1/highlights/repos/list:
@@ -3120,7 +3395,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlightRepo"
-      tags: *a25
+      tags: *a26
   "/v1/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightReactions
@@ -3142,7 +3417,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to get user highlight reactions
-      tags: *a25
+      tags: *a26
   /v1/highlights/top:
     get:
       operationId: findTopHighlights
@@ -3188,7 +3463,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
-      tags: *a25
+      tags: *a26
   /v1/emojis:
     get:
       operationId: findAllEmojis
@@ -3268,7 +3543,7 @@ paths:
               schema:
                 type: object
       tags:
-        &a26
+        &a27
         - Endorsements service
     get:
       operationId: findAllEndorsements
@@ -3314,7 +3589,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a26
+      tags: *a27
   "/v1/endorsements/repos/{repoOwnerOrUser}":
     get:
       operationId: findAllByRepoOwnerOrUsername
@@ -3365,7 +3640,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a26
+      tags: *a27
   "/v1/endorsements/repos/{owner}/{repo}":
     get:
       operationId: findAllEndorsementsByRepo
@@ -3421,7 +3696,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a26
+      tags: *a27
   "/v1/endorsements/{id}":
     get:
       operationId: findEndorsementById
@@ -3459,7 +3734,7 @@ paths:
                 $ref: "#/components/schemas/DbEndorsement"
         "404":
           description: Endorsement not found
-      tags: *a26
+      tags: *a27
     delete:
       operationId: deleteEndoresementById
       summary: Finds ands deletes the endorsement by ID
@@ -3474,7 +3749,7 @@ paths:
           description: ""
         "404":
           description: Endorsement not found
-      tags: *a26
+      tags: *a27
   "/v1/endorsements/user/{username}/created":
     get:
       operationId: findAllUserCreatedEndorsementsByUsername
@@ -3525,7 +3800,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a26
+      tags: *a27
   "/v1/endorsements/user/{username}/received":
     get:
       operationId: findAllUserReceivedEndorsementsByUsername
@@ -3576,7 +3851,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags: *a26
+      tags: *a27
   /v1/contributors/search:
     get:
       operationId: searchAllPullRequestContributors
@@ -3697,7 +3972,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags:
-        &a27
+        &a28
         - Contributors service
   /v1/contributors/insights/recent:
     get:
@@ -3749,7 +4024,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a27
+      tags: *a28
   /v1/contributors/insights/churn:
     get:
       operationId: findAllChurnPullRequestContributors
@@ -3801,7 +4076,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a27
+      tags: *a28
   /v1/contributors/insights/repeat:
     get:
       operationId: findAllRepeatPullRequestContributors
@@ -3853,281 +4128,6 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags: *a27
-  /v1/bake:
-    post:
-      operationId: Bake a repository with the pizza oven microservice
-      summary: postToPizzaOvenService
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BakeRepoDto"
-      responses:
-        "201":
-          description: ""
-        "202":
-          description: ""
-        "400":
-          description: Invalid request
-      tags:
-        &a28
-        - Pizza oven service
-  "/v1/bake/repos/{id}":
-    get:
-      operationId: findBakedRepoById
-      summary: Finds a baked repo by :id
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbBakedRepo"
-        "404":
-          description: Baked repository not found
-      tags: *a28
-  /v1/bake/repos/list:
-    get:
-      operationId: listAllBakedRepos
-      summary: Finds all baked repos and paginates them
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbBakedRepo"
-      tags: *a28
-  "/v1/bake/commit-authors/{id}":
-    get:
-      operationId: findCommitAuthorById
-      summary: Finds a commit author by :id
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbCommitAuthors"
-        "404":
-          description: Commit author not found
-      tags: *a28
-  /v1/bake/commit-authors/list:
-    get:
-      operationId: listAllCommitAuthors
-      summary: Finds all commit authors and paginates them
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbCommitAuthors"
-      tags: *a28
-  "/v1/bake/commits/{id}":
-    get:
-      operationId: findCommitById
-      summary: Finds a commit by :id
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbCommits"
-        "404":
-          description: Commit not found
-      tags: *a28
-  "/v1/bake/commits/list/repo/{id}":
-    get:
-      operationId: listAllCommitsByBakedRepoId
-      summary: Finds all commits by baked repo :id and paginates them
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbCommits"
-      tags: *a28
-  "/v1/bake/commits/list/commit-author/{id}":
-    get:
-      operationId: listAllCommitsByCommitAuthorId
-      summary: Finds all commits by commit author :id and paginates them
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbCommits"
       tags: *a28
   /v1/lists:
     post:
@@ -4231,6 +4231,169 @@ paths:
           description: Invalid request
         "404":
           description: Unable to delete user list
+      tags: *a29
+      security:
+        - bearer: []
+  /v1/lists/contributors:
+    get:
+      operationId: getContributors
+      summary: Retrieves paginated contributors
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributors
+      tags: *a29
+      security:
+        - bearer: []
+  "/v1/lists/{id}/contributors":
+    get:
+      operationId: getUserListContributors
+      summary: Retrieves contributors for an individual user list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list contributors
+      tags: *a29
+      security:
+        - bearer: []
+    post:
+      operationId: postUserListContributors
+      summary: Add new contributors to an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollaboratorsDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to add to user list contributors
+      tags: *a29
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteUserListContributors
+      summary: Delete contributors from an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete from user list contributors
       tags: *a29
       security:
         - bearer: []
@@ -6091,6 +6254,77 @@ components:
           example: view
       required:
         - access
+    BakeRepoDto:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Repo clone URL
+          example: https://github.com/open-sauced/insights
+        wait:
+          type: boolean
+          description: Option to wait for Pizza service to finish baking repo
+          example: false
+      required:
+        - url
+        - wait
+    DbBakedRepo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Baked repository identifier
+          example: 71359796
+        clone_url:
+          type: string
+          description: Repository clone url
+          example: https://github.com/open-sauced/insights.git
+        repo_id:
+          type: integer
+          description: Repository identifier
+          example: 12345678
+      required:
+        - id
+        - clone_url
+        - repo_id
+    DbCommitAuthors:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Commit author identifier
+          example: 71359796
+      required:
+        - id
+    DbCommits:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Commit identifier
+          example: 71359796
+        commit_hash:
+          type: string
+          description: Hash for the commit
+          example: 5e7c6c7af42d38c57f363c564c58007da448c443
+        commit_date:
+          type: string
+          description: Date for the commit
+          example: 5e7c6c7af42d38c57f363c564c58007da448c443
+        baked_repo_id:
+          type: integer
+          description: Baked repo identifier
+          example: 57568598
+        commit_author_id:
+          type: integer
+          description: Commit author identifier
+          example: 9876543
+      required:
+        - id
+        - commit_hash
+        - commit_date
+        - baked_repo_id
+        - commit_author_id
     CreateIssueSummaryDto:
       type: object
       properties:
@@ -6242,77 +6476,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-    BakeRepoDto:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Repo clone URL
-          example: https://github.com/open-sauced/insights
-        wait:
-          type: boolean
-          description: Option to wait for Pizza service to finish baking repo
-          example: false
-      required:
-        - url
-        - wait
-    DbBakedRepo:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Baked repository identifier
-          example: 71359796
-        clone_url:
-          type: string
-          description: Repository clone url
-          example: https://github.com/open-sauced/insights.git
-        repo_id:
-          type: integer
-          description: Repository identifier
-          example: 12345678
-      required:
-        - id
-        - clone_url
-        - repo_id
-    DbCommitAuthors:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Commit author identifier
-          example: 71359796
-      required:
-        - id
-    DbCommits:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Commit identifier
-          example: 71359796
-        commit_hash:
-          type: string
-          description: Hash for the commit
-          example: 5e7c6c7af42d38c57f363c564c58007da448c443
-        commit_date:
-          type: string
-          description: Date for the commit
-          example: 5e7c6c7af42d38c57f363c564c58007da448c443
-        baked_repo_id:
-          type: integer
-          description: Baked repo identifier
-          example: 57568598
-        commit_author_id:
-          type: integer
-          description: Commit author identifier
-          example: 9876543
-      required:
-        - id
-        - commit_hash
-        - commit_date
-        - baked_repo_id
-        - commit_author_id
     CreateUserListDto:
       type: object
       properties:
@@ -6325,16 +6488,13 @@ components:
           description: List Visibility
           example: false
         contributors:
+          description: An array of contributor user IDs
+          example:
+            - 42211
+            - 81233
           type: array
           items:
-            required: true
-            description: An array of contributor user IDs
-            example:
-              - 42211
-              - 81233
-            type: array
-            items:
-              type: number
+            type: integer
       required:
         - name
         - is_public
@@ -6378,3 +6538,40 @@ components:
         - user_id
         - name
         - is_public
+    DbUserListContributor:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User organization identifier
+          example: 196
+        user_id:
+          type: integer
+          description: User identifier
+          example: 237133
+        list_id:
+          type: integer
+          description: List identifier
+          example: uuid-v4
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing top repo first index
+          example: 2016-10-19 13:24:51.000000
+      required:
+        - id
+        - user_id
+        - list_id
+    CollaboratorsDto:
+      type: object
+      properties:
+        contributors:
+          description: An array of contributor user IDs
+          example:
+            - 42211
+            - 81233
+          type: array
+          items:
+            type: integer
+      required:
+        - contributors

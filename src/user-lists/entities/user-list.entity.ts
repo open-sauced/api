@@ -19,7 +19,7 @@ import { ApiHideProperty } from "@nestjs/swagger";
 
 import { DbUser } from "../../user/user.entity";
 
-@Entity({ name: "insights" })
+@Entity({ name: "user_lists" })
 export class DbUserList extends BaseEntity {
   @ApiModelProperty({
     description: "User List identifier",
