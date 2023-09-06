@@ -3,6 +3,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
+import { PizzaOvenModule } from "../pizza/pizza-oven.module";
 import { DbInsight } from "./entities/insight.entity";
 import { DbInsightRepo } from "./entities/insight-repo.entity";
 import { DbInsightMember } from "./entities/insight-member.entity";
@@ -19,6 +20,7 @@ import { InsightMemberService } from "./insight-member.service";
     TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], "ApiConnection"),
     UserModule,
     ApiServicesModule,
+    PizzaOvenModule,
   ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
