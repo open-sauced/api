@@ -70,6 +70,9 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
 import { IssueSummaryModule } from "./issues/issue-summary.module";
 import { BlogSummaryModule } from "./blogs/issue-summary.module";
 import { PizzaOvenModule } from "./pizza/pizza-oven.module";
+import { UserListModule } from "./user-lists/user-list.module";
+import { DbUserList } from "./user-lists/entities/user-list.entity";
+import { DbUserListContributor } from "./user-lists/entities/user-list-contributor.entity";
 
 @Module({
   imports: [
@@ -118,6 +121,8 @@ import { PizzaOvenModule } from "./pizza/pizza-oven.module";
             DbCommitAuthors,
             DbCommits,
             DbUserOrganization,
+            DbUserList,
+            DbUserListContributor,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
@@ -201,6 +206,7 @@ import { PizzaOvenModule } from "./pizza/pizza-oven.module";
     ContributorModule,
     OpenAiModule,
     PizzaOvenModule,
+    UserListModule,
   ],
   providers: [],
 })
