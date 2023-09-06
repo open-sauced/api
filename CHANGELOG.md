@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.3...v1.48.0-beta.4) (2023-09-05)
+
+
+### 🍕 Features
+
+* add user search endpoint to API ([#291](https://github.com/open-sauced/api.opensauced.pizza/issues/291)) ([f224bf2](https://github.com/open-sauced/api.opensauced.pizza/commit/f224bf249981a403de5ddd95622879b6b7824d90))
+
 ## [1.48.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.2...v1.48.0-beta.3) (2023-09-05)
 
 
