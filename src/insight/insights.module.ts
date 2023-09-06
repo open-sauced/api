@@ -12,6 +12,7 @@ import { InsightsService } from "./insights.service";
 import { InsightRepoService } from "./insight-repo.service";
 import { UserInsightMemberController } from "./user-insight-member.controller";
 import { InsightMemberService } from "./insight-member.service";
+import { PizzaOvenModule } from "../pizza/pizza-oven.module";
 
 @Module({
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
@@ -19,6 +20,7 @@ import { InsightMemberService } from "./insight-member.service";
     TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], "ApiConnection"),
     UserModule,
     ApiServicesModule,
+    PizzaOvenModule,
   ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
