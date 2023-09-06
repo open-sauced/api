@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.4...v1.48.0-beta.5) (2023-09-06)
+
+
+### 🍕 Features
+
+* add migrations and initial endpoints for user lists ([#293](https://github.com/open-sauced/api.opensauced.pizza/issues/293)) ([14248a1](https://github.com/open-sauced/api.opensauced.pizza/commit/14248a14d5b3262e661d0a2cf490752db193652e))
+* Bake repos when new repos added to insights or fetched ([#294](https://github.com/open-sauced/api.opensauced.pizza/issues/294)) ([0eda397](https://github.com/open-sauced/api.opensauced.pizza/commit/0eda3978e75ac58f26a94220c8cf54e29f338e62))
+
 ## [1.48.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.3...v1.48.0-beta.4) (2023-09-05)
 
 
