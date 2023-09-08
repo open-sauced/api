@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.6...v1.48.0-beta.7) (2023-09-08)
+
+
+### 🐛 Bug Fixes
+
+* collaboration service return 401 when it should allow the action ([#298](https://github.com/open-sauced/api.opensauced.pizza/issues/298)) ([90bc5f7](https://github.com/open-sauced/api.opensauced.pizza/commit/90bc5f73c688edaafc5b8c0ce90a6a01838b64b6))
+
+
+### 🍕 Features
+
+* User-lists collaborators CRUD endpoints ([#297](https://github.com/open-sauced/api.opensauced.pizza/issues/297)) ([a3e0afa](https://github.com/open-sauced/api.opensauced.pizza/commit/a3e0afac0fb2dc8b1b0f477119a31392406094f5))
+
 ## [1.48.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.5...v1.48.0-beta.6) (2023-09-06)
 
 
