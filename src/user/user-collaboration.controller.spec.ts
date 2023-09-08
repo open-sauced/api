@@ -108,11 +108,11 @@ describe("UserCollaborationController", () => {
       expect(result).toEqual(newUserCollaboration);
     });
 
-    it("should throw an UnauthorizedException when the requester user has role <= 50", async () => {
+    it("should throw an UnauthorizedException when the requester user has role < 50", async () => {
       const id = faker.string.uuid();
       const username = faker.internet.userName();
       const recipient = { id, receive_collaboration: true };
-      const requester = { id, role: 50 };
+      const requester = { id, role: 40 };
       const user = { id, user_metadata: { sub: 2 } } as unknown as SupabaseAuthUser;
 
       userServiceMock.findOneByUsername.mockResolvedValue(recipient);
