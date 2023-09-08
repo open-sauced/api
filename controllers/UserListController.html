@@ -93,7 +93,27 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#deleteUserListContributors" >deleteUserListContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getContributors" >getContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getListsForUser" >getListsForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getUserList" >getUserList</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserListContributors" >getUserListContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#postUserListContributors" >postUserListContributors</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -145,8 +165,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -235,8 +255,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:124</a></div>
                 </td>
             </tr>
 
@@ -300,6 +320,264 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteUserListContributors</b></span>
+                        <a href="#deleteUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUserListContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListContributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:id/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteUserListContributor&#x27;, summary: &#x27;Delete contributor from an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;integer&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:196</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListContributorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getContributors</b></span>
+                        <a href="#getContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getContributors(pageOptionsDto: <a href="../classes/FilterListContributorsDto.html" target="_self">FilterListContributorsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getContributors&#x27;, summary: &#x27;Retrieves paginated contributors&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbUser)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:141</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/FilterListContributorsDto.html" target="_self" >FilterListContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUser&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getListsForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getListsForUser</b></span>
+                        <a href="#getListsForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getListsForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;getListsForUser&#x27;, summary: &#x27;Gets lists for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user lists&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserList&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getUserList"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -325,8 +603,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -390,6 +668,186 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserListContributors</b></span>
+                        <a href="#getUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserListContributors(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributors&#x27;, summary: &#x27;Retrieves contributors for an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbUserListContributor)<br />@ApiOkResponse({type: DbUserListContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:157</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postUserListContributors</b></span>
+                        <a href="#postUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postUserListContributors(updateCollaboratorsDto: <a href="../classes/CollaboratorsDto.html" target="_self">CollaboratorsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;postUserListContributors&#x27;, summary: &#x27;Add new contributors to an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to add to user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:174</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>updateCollaboratorsDto</td>
+                                    <td>
+                                                <code><a href="../classes/CollaboratorsDto.html" target="_self" >CollaboratorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserListContributor[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateListForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -415,8 +873,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:99</a></div>
                 </td>
             </tr>
 
@@ -492,7 +950,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -504,17 +962,41 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
+import { DbUser } from &quot;../user/user.entity&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
 import { CreateUserListDto } from &quot;./dtos/create-user-list.dto&quot;;
 import { DbUserList } from &quot;./entities/user-list.entity&quot;;
 import { UserListService } from &quot;./user-list.service&quot;;
+import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
+import { CollaboratorsDto } from &quot;./dtos/collaborators.dto&quot;;
+import { FilterListContributorsDto } from &quot;./dtos/filter-contributors.dto&quot;;
 
 @Controller(&quot;lists&quot;)
 @ApiTags(&quot;User Lists service&quot;)
 export class UserListController {
   constructor(private readonly userListService: UserListService) {}
+
+  @Get(&quot;/&quot;)
+  @ApiOperation({
+    operationId: &quot;getListsForUser&quot;,
+    summary: &quot;Gets lists for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserList })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user lists&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async getListsForUser(
+    @UserId() userId: number,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbUserList&gt;&gt; {
+    return this.userListService.findAllByUserId(pageOptionsDto, userId);
+  }
 
   @Post(&quot;/&quot;)
   @ApiOperation({
@@ -595,6 +1077,79 @@ export class UserListController {
     const list &#x3D; await this.userListService.findOneById(listId, userId);
 
     await this.userListService.deleteUserList(list.id);
+  }
+
+  @Get(&quot;/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;getContributors&quot;,
+    summary: &quot;Retrieves paginated contributors&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiPaginatedResponse(DbUser)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to get contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async getContributors(@Query() pageOptionsDto: FilterListContributorsDto): Promise&lt;PageDto&lt;DbUser&gt;&gt; {
+    return this.userListService.findContributorsByFilter(pageOptionsDto);
+  }
+
+  @Get(&quot;/:id/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;getUserListContributors&quot;,
+    summary: &quot;Retrieves contributors for an individual user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiPaginatedResponse(DbUserListContributor)
+  @ApiOkResponse({ type: DbUserListContributor })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async getUserListContributors(
+    @Query() pageOptionsDto: PageOptionsDto,
+    @Param(&quot;id&quot;) id: string
+  ): Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt; {
+    return this.userListService.findContributorsByListId(pageOptionsDto, id);
+  }
+
+  @Post(&quot;/:id/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;postUserListContributors&quot;,
+    summary: &quot;Add new contributors to an individual user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to add to user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async postUserListContributors(
+    @Body() updateCollaboratorsDto: CollaboratorsDto,
+    @Param(&quot;id&quot;) id: string
+  ): Promise&lt;DbUserListContributor[]&gt; {
+    const contributors &#x3D; updateCollaboratorsDto.contributors.map(async (contributorId) &#x3D;&gt;
+      this.userListService.addUserListContributor(id, contributorId)
+    );
+
+    return Promise.all(contributors);
+  }
+
+  @Delete(&quot;/:id/contributors/:userListContributorId&quot;)
+  @ApiOperation({
+    operationId: &quot;deleteUserListContributor&quot;,
+    summary: &quot;Delete contributor from an individual user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to delete user from user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListContributorId&quot;, type: &quot;integer&quot; })
+  async deleteUserListContributors(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListContributorId&quot;) userListContributorId: string
+  ): Promise&lt;void&gt; {
+    await this.userListService.deleteUserListContributor(id, userListContributorId);
   }
 }
 </code></pre>
