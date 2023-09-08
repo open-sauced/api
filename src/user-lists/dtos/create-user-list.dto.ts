@@ -22,6 +22,7 @@ export class CreateUserListDto {
   @ApiProperty({
     description: "An array of contributor user IDs",
     isArray: true,
+    type: "integer",
     example: [42211, 81233],
   })
   @Type(() => Number)

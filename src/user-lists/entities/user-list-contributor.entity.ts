@@ -5,6 +5,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
@@ -15,15 +16,15 @@ import {
 
 import { DbUser } from "../../user/user.entity";
 
-@Entity({ name: "user_organizations" })
+@Entity({ name: "user_list_contributors" })
 export class DbUserListContributor {
   @ApiModelProperty({
-    description: "User organization identifier",
-    example: 196,
-    type: "integer",
+    description: "User list contributor identifier",
+    example: "uuid-v4",
   })
+  @PrimaryColumn()
   @PrimaryGeneratedColumn()
-  public id!: number;
+  public id!: string;
 
   @ApiModelProperty({
     description: "User identifier",
@@ -36,7 +37,6 @@ export class DbUserListContributor {
   @ApiModelProperty({
     description: "List identifier",
     example: "uuid-v4",
-    type: "integer",
   })
   @Column()
   public list_id!: string;
@@ -65,4 +65,15 @@ export class DbUserListContributor {
     referencedColumnName: "id",
   })
   public user_list_contributor!: DbUser;
+
+  @ApiModelProperty({
+    description: "User list collaborator's login",
+    example: "bdougie",
+  })
+  @Column({
+    type: "text",
+    select: false,
+    insert: false,
+  })
+  public login?: string;
 }
