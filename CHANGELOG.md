@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.7...v1.48.0-beta.8) (2023-09-12)
+
+
+### 🍕 Features
+
+* Add "commits" column to pull_requests table ([#303](https://github.com/open-sauced/api.opensauced.pizza/issues/303)) ([e89ea95](https://github.com/open-sauced/api.opensauced.pizza/commit/e89ea95408db2852aa0f98270ab0daee29a1418a))
+
 ## [1.48.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.6...v1.48.0-beta.7) (2023-09-08)
 
 
