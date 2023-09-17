@@ -4130,6 +4130,53 @@ paths:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags: *a28
   /v1/lists:
+    get:
+      operationId: getListsForUser
+      summary: Gets lists for the authenticated user
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user lists
+      tags:
+        &a29
+        - User Lists service
+      security:
+        - bearer: []
     post:
       operationId: addListForUser
       summary: Adds a new list for the authenticated user
@@ -4157,9 +4204,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to add user list
-      tags:
-        &a29
-        - User Lists service
+      tags: *a29
       security:
         - bearer: []
   "/v1/lists/{id}":
@@ -4254,17 +4299,25 @@ paths:
             maximum: 1000
             default: 10
             type: integer
-        - name: orderDirection
+        - name: location
           required: false
           in: query
+          example: Denver, Colorado
           schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
+            type: string
+        - name: timezone
           required: false
           in: query
-          description: Range in days
+          example: Mountain Standard Time
           schema:
-            default: 30
+            type: string
+        - name: pr_velocity
+          required: false
+          in: query
+          example: 2
+          description: Less than or equal to the average number of days to merge a PR over
+            the last 30 days
+          schema:
             type: integer
       responses:
         "200":
@@ -4278,7 +4331,7 @@ paths:
                       data:
                         type: array
                         items:
-                          $ref: "#/components/schemas/DbUserListContributor"
+                          $ref: "#/components/schemas/DbUser"
         "400":
           description: Invalid request
         "404":
@@ -4374,26 +4427,28 @@ paths:
       tags: *a29
       security:
         - bearer: []
+  "/v1/lists/{id}/contributors/{userListContributorId}":
     delete:
-      operationId: deleteUserListContributors
-      summary: Delete contributors from an individual user list
+      operationId: deleteUserListContributor
+      summary: Delete contributor from an individual user list
       parameters:
         - name: id
           required: true
           in: path
           schema:
             type: string
+        - name: userListContributorId
+          required: true
+          in: path
+          schema:
+            type: integer
       responses:
         "200":
           description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbUserListContributor"
         "400":
           description: Invalid request
         "404":
-          description: Unable to delete from user list contributors
+          description: Unable to delete user from user list contributors
       tags: *a29
       security:
         - bearer: []
@@ -5100,6 +5155,10 @@ components:
           type: string
           description: Pull request repo full name
           example: open-sauced/insights
+        commits:
+          type: integer
+          description: Number of commits in the PR
+          example: 4
       required:
         - id
         - number
@@ -5759,9 +5818,10 @@ components:
           example: 1
           default: 0
         day:
-          type: date-time
+          type: string
           description: Selected interval computed date in human readable format
-          example: 2022-08-28 22:04:39.000000
+          example: 2022-08-28
+          format: date
         all_prs:
           type: integer
           description: "PR Type: all requests count"
@@ -6476,29 +6536,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-    CreateUserListDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: List Name
-          example: My List
-        is_public:
-          type: boolean
-          description: List Visibility
-          example: false
-        contributors:
-          description: An array of contributor user IDs
-          example:
-            - 42211
-            - 81233
-          type: array
-          items:
-            type: integer
-      required:
-        - name
-        - is_public
-        - contributors
     DbUserList:
       type: object
       properties:
@@ -6538,19 +6575,42 @@ components:
         - user_id
         - name
         - is_public
+    CreateUserListDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: List Name
+          example: My List
+        is_public:
+          type: boolean
+          description: List Visibility
+          example: false
+        contributors:
+          description: An array of contributor user IDs
+          example:
+            - 42211
+            - 81233
+          type: array
+          items:
+            type: integer
+      required:
+        - name
+        - is_public
+        - contributors
     DbUserListContributor:
       type: object
       properties:
         id:
-          type: integer
-          description: User organization identifier
-          example: 196
+          type: string
+          description: User list contributor identifier
+          example: uuid-v4
         user_id:
           type: integer
           description: User identifier
           example: 237133
         list_id:
-          type: integer
+          type: string
           description: List identifier
           example: uuid-v4
         created_at:
@@ -6558,6 +6618,10 @@ components:
           type: string
           description: Timestamp representing top repo first index
           example: 2016-10-19 13:24:51.000000
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
       required:
         - id
         - user_id
