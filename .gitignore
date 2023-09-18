@@ -274,3 +274,6 @@ Temporary Items
 ### Project specific
 dist
 .env
+
+dev/server.crt
+dev/server.key
