@@ -5,6 +5,7 @@ import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 import { ConfigService } from "@nestjs/config";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { DbPRInsight } from "./entities/pull-request-insight.entity";
 
 @Injectable()
@@ -65,11 +66,12 @@ export class PullRequestInsightsService {
     interval = 0,
     options: FilterOptionsDto
   ) {
+    const startDate = GetPrevDateISOString(options.prev_days_start_date);
     const prQuery = this.baseQueryBuilder()
       .select(`COALESCE(COUNT("pr"."id"), 0)`)
       .innerJoin("repos", "repos", `"pr"."repo_id"="repos"."id"`);
 
-    const filters = this.repoFilterService.getRepoFilters(options, interval);
+    const filters = this.repoFilterService.getRepoFilters(options, startDate, interval);
 
     switch (options.topic) {
       case "hacktoberfest":
@@ -78,7 +80,8 @@ export class PullRequestInsightsService {
         break;
 
       default:
-        filters.push([`now() - INTERVAL '${interval} days' <= "pr"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::DATE >= "pr"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::DATE - INTERVAL '${interval} days' <= "pr"."updated_at"`, {}]);
         break;
     }
 
@@ -92,6 +95,7 @@ export class PullRequestInsightsService {
   }
 
   async getInsight(interval = 0, options: FilterOptionsDto): Promise<DbPRInsight> {
+    const startDate = GetPrevDateISOString(options.prev_days_start_date);
     let queryBuilder: SelectQueryBuilder<DbPRInsight>;
 
     switch (options.topic) {
@@ -103,7 +107,7 @@ export class PullRequestInsightsService {
 
       default:
         queryBuilder = this.baseQueryBuilder()
-          .select(`TO_CHAR(now() - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
+          .select(`TO_CHAR('${startDate}'::DATE - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
           .addSelect(`${interval}::INTEGER`, "interval");
         break;
     }
