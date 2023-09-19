@@ -5493,6 +5493,8 @@ components:
           type: string
           description: Top User Login
           example: bdougie
+      required:
+        - login
     DbFilteredUser:
       type: object
       properties:
@@ -5641,6 +5643,8 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
+      required:
+        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -6536,6 +6540,7 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
+        - updated_at
     DbUserList:
       type: object
       properties:
