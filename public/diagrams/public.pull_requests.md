@@ -38,6 +38,7 @@
 | changed_files             | integer                     | 0        | true     |          |                                 |         |
 | comments                  | integer                     | 0        | true     |          |                                 |         |
 | merged_by_login           | text                        | ''::text | true     |          |                                 |         |
+| commits                   | bigint                      | 0        | false    |          |                                 |         |
 
 ## Constraints
 
