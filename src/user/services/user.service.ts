@@ -163,7 +163,7 @@ export class UserService {
             END
           FROM pull_requests prs
           JOIN repos on prs.repo_id=repos.id
-          WHERE prs.merged_by_login = :username
+          WHERE LOWER(prs.merged_by_login) = :username
         )::BOOLEAN`,
         "users_is_maintainer"
       )
