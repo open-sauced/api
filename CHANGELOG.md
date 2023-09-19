@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.9...v1.48.0-beta.10) (2023-09-19)
+
+
+### 🐛 Bug Fixes
+
+* lowercase login to check for maintainers ([#313](https://github.com/open-sauced/api.opensauced.pizza/issues/313)) ([7328de0](https://github.com/open-sauced/api.opensauced.pizza/commit/7328de0172698b92a25fdad611b45744f3ff39ef))
+
 ## [1.48.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.8...v1.48.0-beta.9) (2023-09-19)
 
 
