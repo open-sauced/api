@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.8...v1.48.0-beta.9) (2023-09-19)
+
+
+### 🐛 Bug Fixes
+
+* incorrect property type for pull-request-insight entity ([#305](https://github.com/open-sauced/api.opensauced.pizza/issues/305)) ([187b4dc](https://github.com/open-sauced/api.opensauced.pizza/commit/187b4dc3a02403c245fdd79816d7bb65ad39b521))
+
 ## [1.48.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.7...v1.48.0-beta.8) (2023-09-12)
 
 
