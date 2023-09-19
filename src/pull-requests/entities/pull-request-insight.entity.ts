@@ -29,8 +29,9 @@ export class DbPRInsight extends BaseEntity {
 
   @ApiModelProperty({
     description: "Selected interval computed date in human readable format",
-    example: "2022-08-28 22:04:39.000000",
-    type: "date-time",
+    example: "2022-08-28",
+    type: "string",
+    format: "date",
   })
   @Column({
     type: "timestamp without time zone",
