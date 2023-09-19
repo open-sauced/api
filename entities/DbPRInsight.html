@@ -145,7 +145,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -181,7 +181,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -211,13 +211,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Selected interval computed date in human readable format&#x27;, example: &#x27;2022-08-28 22:04:39.000000&#x27;, type: &#x27;date-time&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now(), select: false})<br />
+                            @ApiModelProperty({description: &#x27;Selected interval computed date in human readable format&#x27;, example: &#x27;2022-08-28&#x27;, type: &#x27;string&#x27;, format: &#x27;date&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now(), select: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -325,7 +325,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/pull-requests/entities/pull-request-insight.entity.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -368,8 +368,9 @@ export class DbPRInsight extends BaseEntity {
 
   @ApiModelProperty({
     description: &quot;Selected interval computed date in human readable format&quot;,
-    example: &quot;2022-08-28 22:04:39.000000&quot;,
-    type: &quot;date-time&quot;,
+    example: &quot;2022-08-28&quot;,
+    type: &quot;string&quot;,
+    format: &quot;date&quot;,
   })
   @Column({
     type: &quot;timestamp without time zone&quot;,
