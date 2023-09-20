@@ -269,4 +269,12 @@ export class DbPullRequest extends BaseEntity {
     insert: false,
   })
   public full_name?: string;
+
+  @ApiModelProperty({
+    description: "Number of commits in the PR",
+    example: 4,
+    type: "integer",
+  })
+  @Column({ type: "bigint" })
+  public commits?: number;
 }

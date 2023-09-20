@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
@@ -14,6 +14,8 @@ import { DbTopUser } from "../entities/top-users.entity";
 import { TopUsersDto } from "../dtos/top-users.dto";
 import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
+import { DbFilteredUser } from "../entities/filtered-users.entity";
+import { FilteredUsersDto } from "../dtos/filtered-users.dto";
 
 @Injectable()
 export class UserService {
@@ -161,7 +163,7 @@ export class UserService {
             END
           FROM pull_requests prs
           JOIN repos on prs.repo_id=repos.id
-          WHERE prs.merged_by_login = :username
+          WHERE LOWER(prs.merged_by_login) = :username
         )::BOOLEAN`,
         "users_is_maintainer"
       )
@@ -175,6 +177,29 @@ export class UserService {
     }
 
     return item;
+  }
+
+  async findUsersByFilter(pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    const { username, limit } = pageOptionsDto;
+
+    if (!username) {
+      throw new BadRequestException();
+    }
+
+    queryBuilder
+      .select(["users.login as login", "users.name as full_name"])
+      .where(`LOWER(users.login) LIKE :username`)
+      .setParameters({ username: `%${username.toLowerCase()}%` })
+      .limit(limit);
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async checkAddUser(user: User): Promise<DbUser> {

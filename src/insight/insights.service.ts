@@ -5,6 +5,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
+import { PizzaOvenService } from "../pizza/pizza-oven.service";
+import { BakeRepoDto } from "../pizza/dtos/baked-repo.dto";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 
@@ -12,7 +14,8 @@ import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 export class InsightsService {
   constructor(
     @InjectRepository(DbInsight, "ApiConnection")
-    private insightRepository: Repository<DbInsight>
+    private insightRepository: Repository<DbInsight>,
+    private pizzaOvenService: PizzaOvenService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbInsight> {
@@ -34,6 +37,16 @@ export class InsightsService {
     if (!item) {
       throw new NotFoundException();
     }
+
+    item.repos.forEach(async (url) => {
+      // when individual insight pages are fetched, go bake their repos to get fresh commit data
+      const bakeRepoInfo: BakeRepoDto = {
+        url: `https://github.com/${url.full_name}`,
+        wait: false,
+      };
+
+      await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+    });
 
     return item;
   }

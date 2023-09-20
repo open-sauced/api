@@ -78,8 +78,8 @@ export class UserCollaborationController {
     const recipient = await this.userService.findOneByUsername(createUserCollaborationDto.username);
     const requester = await this.userService.findOneById(user.user_metadata.sub as number);
 
-    if (requester.role <= 50) {
-      throw new UnauthorizedException();
+    if (requester.role < 50) {
+      throw new UnauthorizedException("You're not authorized to perform this action");
     }
 
     if (!recipient.receive_collaboration) {

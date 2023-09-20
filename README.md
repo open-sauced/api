@@ -86,6 +86,10 @@ docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:lates
 
 This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.
 
+Once the database is stood up,
+can use the `dev/apply-migrations.sh` script to apply all the migrations in
+the `migrations/` directory.
+
 ### 🛠️ Installation
 
 To install the application:
@@ -151,9 +155,7 @@ It is advised to run this command before committing or opening a pull request.
 
 ### 🕺 OpenAPI Swagger Doc
 
-When the server is run, an OpenAPI swagger doc is generated into the project's
-root directory. When making API changes, make sure to run `npm run start:dev`
-to test your changes and generate any new Swagger document bits.
+When making API changes, make sure to run `npm run generate:swagger` to generate any new Swagger document bits.
 
 ### 📕 Types
 

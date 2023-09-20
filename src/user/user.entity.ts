@@ -20,6 +20,8 @@ import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
 import { DbInsight } from "../insight/entities/insight.entity";
+import { DbUserList } from "../user-lists/entities/user-list.entity";
+import { DbUserListContributor } from "../user-lists/entities/user-list-contributor.entity";
 import { DbUserNotification } from "./entities/user-notification.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
@@ -580,4 +582,12 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserOrganization, (userOrgs) => userOrgs.organization_user)
   public organizations: DbUserOrganization[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserList, (userLists) => userLists.list_user)
+  public lists: DbUserList[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserListContributor, (userLists) => userLists.user_list_contributor)
+  public user_list_contributors: DbUserListContributor[];
 }
