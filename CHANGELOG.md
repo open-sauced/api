@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.10...v1.48.0-beta.11) (2023-09-20)
+
+
+### 🐛 Bug Fixes
+
+* add migrations for pull requests indexes ([#314](https://github.com/open-sauced/api.opensauced.pizza/issues/314)) ([fd19298](https://github.com/open-sauced/api.opensauced.pizza/commit/fd192981863ece5fef24bf7316c3e2a9394c263b))
+
 ## [1.48.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.9...v1.48.0-beta.10) (2023-09-19)
 
 
