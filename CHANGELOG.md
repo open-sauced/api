@@ -5,6 +5,29 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.48.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0...v1.48.0) (2023-09-20)
+
+
+### 🍕 Features
+
+* Add "commits" column to pull_requests table ([#303](https://github.com/open-sauced/api.opensauced.pizza/issues/303)) ([e89ea95](https://github.com/open-sauced/api.opensauced.pizza/commit/e89ea95408db2852aa0f98270ab0daee29a1418a))
+* add endpoint for recommended repos based on user organizations ([#286](https://github.com/open-sauced/api.opensauced.pizza/issues/286)) ([229551b](https://github.com/open-sauced/api.opensauced.pizza/commit/229551b4235faab8868ff04916771c92bb84f6c7))
+* add migrations and initial endpoints for user lists ([#293](https://github.com/open-sauced/api.opensauced.pizza/issues/293)) ([14248a1](https://github.com/open-sauced/api.opensauced.pizza/commit/14248a14d5b3262e661d0a2cf490752db193652e))
+* add script to apply all migrations and .env example ([#290](https://github.com/open-sauced/api.opensauced.pizza/issues/290)) ([4bc53da](https://github.com/open-sauced/api.opensauced.pizza/commit/4bc53dac8997a013b15fc80584039226b42d364c))
+* add user search endpoint to API ([#291](https://github.com/open-sauced/api.opensauced.pizza/issues/291)) ([f224bf2](https://github.com/open-sauced/api.opensauced.pizza/commit/f224bf249981a403de5ddd95622879b6b7824d90))
+* Bake repos when new repos added to insights or fetched ([#294](https://github.com/open-sauced/api.opensauced.pizza/issues/294)) ([0eda397](https://github.com/open-sauced/api.opensauced.pizza/commit/0eda3978e75ac58f26a94220c8cf54e29f338e62))
+* make baked repos clone_urls and commit_author_emails unique ([#289](https://github.com/open-sauced/api.opensauced.pizza/issues/289)) ([74d4d07](https://github.com/open-sauced/api.opensauced.pizza/commit/74d4d078e7b4d020bac60f3d77021515ea01ecb7))
+* User-lists collaborators CRUD endpoints ([#297](https://github.com/open-sauced/api.opensauced.pizza/issues/297)) ([a3e0afa](https://github.com/open-sauced/api.opensauced.pizza/commit/a3e0afac0fb2dc8b1b0f477119a31392406094f5))
+
+
+### 🐛 Bug Fixes
+
+* add migrations for pull requests indexes ([#314](https://github.com/open-sauced/api.opensauced.pizza/issues/314)) ([fd19298](https://github.com/open-sauced/api.opensauced.pizza/commit/fd192981863ece5fef24bf7316c3e2a9394c263b))
+* collaboration service return 401 when it should allow the action ([#298](https://github.com/open-sauced/api.opensauced.pizza/issues/298)) ([90bc5f7](https://github.com/open-sauced/api.opensauced.pizza/commit/90bc5f73c688edaafc5b8c0ce90a6a01838b64b6))
+* import PizzaOvenModule to InsightsModule to fix runtime error ([#295](https://github.com/open-sauced/api.opensauced.pizza/issues/295)) ([3a5bc7b](https://github.com/open-sauced/api.opensauced.pizza/commit/3a5bc7bfd959230b86f11d976aeaef2d3d08cc57))
+* incorrect property type for pull-request-insight entity ([#305](https://github.com/open-sauced/api.opensauced.pizza/issues/305)) ([187b4dc](https://github.com/open-sauced/api.opensauced.pizza/commit/187b4dc3a02403c245fdd79816d7bb65ad39b521))
+* lowercase login to check for maintainers ([#313](https://github.com/open-sauced/api.opensauced.pizza/issues/313)) ([7328de0](https://github.com/open-sauced/api.opensauced.pizza/commit/7328de0172698b92a25fdad611b45744f3ff39ef))
+
 ## [1.48.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0-beta.10...v1.48.0-beta.11) (2023-09-20)
 
 
