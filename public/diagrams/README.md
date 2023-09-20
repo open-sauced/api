@@ -36,6 +36,8 @@
 | [public.commits](public.commits.md)                                       | 5       |         | BASE TABLE |
 | [public.maintainers](public.maintainers.md)                               | 1       |         | BASE TABLE |
 | [public.user_organizations](public.user_organizations.md)                 | 5       |         | BASE TABLE |
+| [public.user_lists](public.user_lists.md)                                 | 7       |         | BASE TABLE |
+| [public.user_list_contributors](public.user_list_contributors.md)         | 5       |         | BASE TABLE |
 
 ## Relations
 
