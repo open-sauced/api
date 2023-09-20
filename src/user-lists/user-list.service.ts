@@ -144,7 +144,7 @@ export class UserListService {
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);

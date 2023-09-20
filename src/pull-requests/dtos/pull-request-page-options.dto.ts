@@ -70,4 +70,12 @@ export class PullRequestPageOptionsDto extends PageOptionsDto {
   @IsString()
   @IsOptional()
   readonly contributor?: string;
+
+  @ApiPropertyOptional({
+    type: "string",
+    example: "uuid-v4",
+  })
+  @IsString()
+  @IsOptional()
+  readonly listId?: string;
 }
