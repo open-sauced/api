@@ -426,8 +426,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="260"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:260</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="272"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:272</a></div>
                 </td>
             </tr>
 
@@ -497,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:164</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="241"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:241</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:253</a></div>
                 </td>
             </tr>
 
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="298"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:298</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="310"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:310</a></div>
                 </td>
             </tr>
 
@@ -781,8 +781,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:203</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:215</a></div>
                 </td>
             </tr>
 
@@ -852,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="336"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:336</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="348"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:348</a></div>
                 </td>
             </tr>
 
@@ -1178,6 +1178,18 @@ export class PullRequestService {
       filters.push([
         &#x60;LOWER(&quot;pull_requests&quot;.&quot;author_login&quot;)&#x3D;:contributor&#x60;,
         { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) },
+      ]);
+    }
+
+    if (pageOptionsDto.listId) {
+      filters.push([
+        &#x60;author_login IN (
+          SELECT login FROM 
+          user_list_contributors
+          JOIN users ON user_list_contributors.user_id&#x3D;users.id AND users.deleted_at IS NULL
+          WHERE list_id&#x3D;:listId
+        )&#x60;,
+        { listId: pageOptionsDto.listId },
       ]);
     }
 
