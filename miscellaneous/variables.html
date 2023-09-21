@@ -85,6 +85,9 @@
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#GetPrevDateISOString" title="src/common/util/datetimes.ts" ><b>GetPrevDateISOString</b>&nbsp;&nbsp;&nbsp;(src/.../datetimes.ts)</a>
+                        </li>
+                        <li>
                             <a href="#HacktoberfestConfig" title="src/config/hacktoberfest.config.ts" ><b>HacktoberfestConfig</b>&nbsp;&nbsp;&nbsp;(src/.../hacktoberfest.config.ts)</a>
                         </li>
                         <li>
@@ -395,6 +398,30 @@
 
   await app.close();
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/common/util/datetimes.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GetPrevDateISOString"></a>
+                    <span class="name">
+                        <span ><b>GetPrevDateISOString</b></span>
+                        <a href="#GetPrevDateISOString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(prev_start_date &#x3D; 0): string &#x3D;&gt;
+  new Date(Date.now() - prev_start_date * 24 * 60 * 60 * 1000).toISOString()</code>
                     </td>
                 </tr>
 

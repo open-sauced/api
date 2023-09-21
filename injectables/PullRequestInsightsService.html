@@ -120,7 +120,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -207,8 +207,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -246,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -333,8 +333,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -406,8 +406,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -443,8 +443,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:49</a></div>
                 </td>
             </tr>
 
@@ -516,8 +516,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/pull-requests/pull-request-insights.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -633,6 +633,7 @@ import { ObjectLiteral, Repository, SelectQueryBuilder } from &quot;typeorm&quot
 import { ConfigService } from &quot;@nestjs/config&quot;;
 import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
 import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
+import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { DbPRInsight } from &quot;./entities/pull-request-insight.entity&quot;;
 
 @Injectable()
@@ -693,11 +694,12 @@ export class PullRequestInsightsService {
     interval &#x3D; 0,
     options: FilterOptionsDto
   ) {
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
     const prQuery &#x3D; this.baseQueryBuilder()
       .select(&#x60;COALESCE(COUNT(&quot;pr&quot;.&quot;id&quot;), 0)&#x60;)
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pr&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;);
 
-    const filters &#x3D; this.repoFilterService.getRepoFilters(options, interval);
+    const filters &#x3D; this.repoFilterService.getRepoFilters(options, startDate, interval);
 
     switch (options.topic) {
       case &quot;hacktoberfest&quot;:
@@ -706,7 +708,8 @@ export class PullRequestInsightsService {
         break;
 
       default:
-        filters.push([&#x60;now() - INTERVAL &#x27;${interval} days&#x27; &lt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
+        filters.push([&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
+        filters.push([&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${interval} days&#x27; &lt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
         break;
     }
 
@@ -720,6 +723,7 @@ export class PullRequestInsightsService {
   }
 
   async getInsight(interval &#x3D; 0, options: FilterOptionsDto): Promise&lt;DbPRInsight&gt; {
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
     let queryBuilder: SelectQueryBuilder&lt;DbPRInsight&gt;;
 
     switch (options.topic) {
@@ -731,7 +735,7 @@ export class PullRequestInsightsService {
 
       default:
         queryBuilder &#x3D; this.baseQueryBuilder()
-          .select(&#x60;TO_CHAR(now() - INTERVAL &#x27;${interval} days&#x27;, &#x27;YYYY-MM-DD&#x27;)&#x60;, &quot;day&quot;)
+          .select(&#x60;TO_CHAR(&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${interval} days&#x27;, &#x27;YYYY-MM-DD&#x27;)&#x60;, &quot;day&quot;)
           .addSelect(&#x60;${interval}::INTEGER&#x60;, &quot;interval&quot;);
         break;
     }

@@ -122,8 +122,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/common/filters/repo-filter.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/common/filters/repo-filter.service.ts:86</a></div>
                 </td>
             </tr>
 
@@ -212,7 +212,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getRepoFilters(options: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>getRepoFilters(options: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -254,6 +254,21 @@
                                     </td>
 
                                     <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&quot;NOW()&quot;</code>
                                     </td>
 
                                 </tr>
@@ -308,7 +323,7 @@ export class RepoFilterService {
    * @param range
    */
 
-  getRepoFilters(options: FilterOptionsDto, range &#x3D; 0): [string, object][] {
+  getRepoFilters(options: FilterOptionsDto, startDate &#x3D; &quot;NOW()&quot;, range &#x3D; 0): [string, object][] {
     const filters: [string, object][] &#x3D; [];
 
     if (options.repoIds) {
@@ -347,7 +362,8 @@ export class RepoFilterService {
           FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
           WHERE
             &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
-            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )
       &#x60;,
         {},
