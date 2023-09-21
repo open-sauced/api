@@ -2,6 +2,7 @@ import { ConflictException, Injectable, NotFoundException, UnauthorizedException
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
@@ -111,6 +112,7 @@ export class UserHighlightsService {
 
   async findTop(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
     const queryBuilder = this.baseQueryBuilder();
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
     queryBuilder
@@ -122,7 +124,8 @@ export class UserHighlightsService {
       `,
         "reactions"
       )
-      .where(`now() - INTERVAL '${range} days' <= user_highlights.created_at`)
+      .where(`'${startDate}'::DATE >= user_highlights.created_at`)
+      .andWhere(`'${startDate}'::DATE - INTERVAL '${range} days' <= user_highlights.created_at`)
       .limit(10)
       .orderBy("reactions", "DESC");
 
