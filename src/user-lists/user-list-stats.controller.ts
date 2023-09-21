@@ -12,10 +12,12 @@ import {
 import { PageDto } from "../common/dtos/page.dto";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
-import { DbUserList } from "./entities/user-list.entity";
 import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import { UserListStatsService } from "./user-list-stat.service";
+import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
+import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
+import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -29,7 +31,7 @@ export class UserListStatsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserList })
+  @ApiOkResponse({ type: PageDto<DbUserListContributorStat> })
   @ApiNotFoundResponse({ description: "Unable to get user lists" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
@@ -38,5 +40,38 @@ export class UserListStatsController {
     @Query() pageOptionsDto: UserListMostActiveContributorsDto
   ): Promise<PageDto<DbUserListContributorStat>> {
     return this.userListStatsService.findContributorStatsByListId(pageOptionsDto, id);
+  }
+
+  @Get(":id/stats/contributions-evolution-by-type")
+  @ApiOperation({
+    operationId: "getContributionsByTimeFrame",
+    summary: "Gets contributions in a given timeframe",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbContributionStatTimeframe })
+  @ApiNotFoundResponse({ description: "Unable to get contributions" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getContributionsByTimeFrame(
+    @Param("id") id: string,
+    @Query() options: ContributionsTimeframeDto
+  ): Promise<DbContributionStatTimeframe[]> {
+    return this.userListStatsService.findContributionsInTimeframe(options, id);
+  }
+
+  @Get(":id/stats/contributions-by-project")
+  @ApiOperation({
+    operationId: "getContributionsByProject",
+    summary: "Gets contributions in a given timeframe",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbContributionsProjects })
+  @ApiNotFoundResponse({ description: "Unable to get contributions" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getContributionsByProject(@Param("id") id: string): Promise<DbContributionsProjects[]> {
+    return this.userListStatsService.findContributionsByProject(id);
   }
 }

@@ -12,13 +12,21 @@ import { UserListController } from "./user-list.controller";
 import { UserListStatsService } from "./user-list-stat.service";
 import { UserListStatsController } from "./user-list-stats.controller";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
+import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 
 @Module({
   imports: [
     ApiServicesModule,
     UserModule,
     TypeOrmModule.forFeature(
-      [DbUser, DbUserList, DbPullRequest, DbUserListContributor, DbUserListContributorStat],
+      [
+        DbUser,
+        DbUserList,
+        DbPullRequest,
+        DbUserListContributor,
+        DbUserListContributorStat,
+        DbContributionStatTimeframe,
+      ],
       "ApiConnection"
     ),
   ],
