@@ -16,6 +16,7 @@ import {
   StripeConfig,
   OpenAIConfig,
   PizzaConfig,
+  HacktoberfestConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -77,7 +78,16 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig, PizzaConfig],
+      load: [
+        ApiConfig,
+        DbApiConfig,
+        DbLoggingConfig,
+        EndpointConfig,
+        StripeConfig,
+        OpenAIConfig,
+        PizzaConfig,
+        HacktoberfestConfig,
+      ],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
