@@ -85,6 +85,9 @@
                             <a href="#getDomain" title="src/config/endpoint.config.ts" ><b>getDomain</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#HacktoberfestConfig" title="src/config/hacktoberfest.config.ts" ><b>HacktoberfestConfig</b>&nbsp;&nbsp;&nbsp;(src/.../hacktoberfest.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OpenAIConfig" title="src/config/openai.config.ts" ><b>OpenAIConfig</b>&nbsp;&nbsp;&nbsp;(src/.../openai.config.ts)</a>
                         </li>
                         <li>
@@ -392,6 +395,31 @@
 
   await app.close();
 }</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/hacktoberfest.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="HacktoberfestConfig"></a>
+                    <span class="name">
+                        <span ><b>HacktoberfestConfig</b></span>
+                        <a href="#HacktoberfestConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;hacktoberfest&quot;, () &#x3D;&gt; ({
+  year: String(process.env.HACKTOBERFEST_YEAR ?? &#x60;${new Date().getFullYear()}&#x60;),
+}))</code>
                     </td>
                 </tr>
 

@@ -499,8 +499,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="222"
-                            class="link-to-prism">src/app.module.ts:222</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app.module.ts:232</a></div>
                 </td>
             </tr>
 
@@ -571,6 +571,7 @@ import {
   StripeConfig,
   OpenAIConfig,
   PizzaConfig,
+  HacktoberfestConfig,
 } from &quot;./config&quot;;
 import { RepoModule } from &quot;./repo/repo.module&quot;;
 import { HealthModule } from &quot;./health/health.module&quot;;
@@ -632,7 +633,16 @@ import { DbUserListContributor } from &quot;./user-lists/entities/user-list-cont
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [ApiConfig, DbApiConfig, DbLoggingConfig, EndpointConfig, StripeConfig, OpenAIConfig, PizzaConfig],
+      load: [
+        ApiConfig,
+        DbApiConfig,
+        DbLoggingConfig,
+        EndpointConfig,
+        StripeConfig,
+        OpenAIConfig,
+        PizzaConfig,
+        HacktoberfestConfig,
+      ],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
