@@ -126,6 +126,18 @@ export class PullRequestService {
       ]);
     }
 
+    if (pageOptionsDto.listId) {
+      filters.push([
+        `author_login IN (
+          SELECT login FROM 
+          user_list_contributors
+          JOIN users ON user_list_contributors.user_id=users.id AND users.deleted_at IS NULL
+          WHERE list_id=:listId
+        )`,
+        { listId: pageOptionsDto.listId },
+      ]);
+    }
+
     if (pageOptionsDto.status) {
       filters.push([`(LOWER("pull_requests"."state")=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
     }
