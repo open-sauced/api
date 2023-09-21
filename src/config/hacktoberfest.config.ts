@@ -1,7 +1,7 @@
 import { registerAs } from "@nestjs/config";
 
 export const HacktoberfestConfig = registerAs("hacktoberfest", () => ({
-  year: String(process.env.HACKTOBERFEST_YEAR ?? "2023"),
+  year: String(process.env.HACKTOBERFEST_YEAR ?? `${new Date().getFullYear()}`),
 }));
 
 export default HacktoberfestConfig;
