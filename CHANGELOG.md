@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0...v1.49.0-beta.1) (2023-09-21)
+
+
+### 🍕 Features
+
+* Makes API repos / prs search endpoints "hacktoberfest" aware ([#309](https://github.com/open-sauced/api.opensauced.pizza/issues/309)) ([1a7d5d8](https://github.com/open-sauced/api.opensauced.pizza/commit/1a7d5d842edd7fcf3c0265287db9a9895dc3ba64))
+
 ## [1.48.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0...v1.48.0) (2023-09-20)
 
 
