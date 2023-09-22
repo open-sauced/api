@@ -950,7 +950,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -1073,7 +1073,7 @@ export class UserListController {
   @ApiNotFoundResponse({ description: &quot;Unable to delete user list&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  async deleteListForUser(@UserId() userId: number, @Param(&quot;id&quot;, ParseIntPipe) listId: string): Promise&lt;void&gt; {
+  async deleteListForUser(@UserId() userId: number, @Param(&quot;id&quot;) listId: string): Promise&lt;void&gt; {
     const list &#x3D; await this.userListService.findOneById(listId, userId);
 
     await this.userListService.deleteUserList(list.id);
