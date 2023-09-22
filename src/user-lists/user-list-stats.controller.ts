@@ -39,7 +39,7 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() pageOptionsDto: UserListMostActiveContributorsDto
   ): Promise<PageDto<DbUserListContributorStat>> {
-    return this.userListStatsService.findContributorStatsByListId(pageOptionsDto, id);
+    return this.userListStatsService.findAllListContributorStats(pageOptionsDto, id);
   }
 
   @Get(":id/stats/contributions-evolution-by-type")
@@ -73,5 +73,23 @@ export class UserListStatsController {
   @ApiParam({ name: "id", type: "string" })
   async getContributionsByProject(@Param("id") id: string): Promise<DbContributionsProjects[]> {
     return this.userListStatsService.findContributionsByProject(id);
+  }
+
+  @Get(":id/stats/top-project-contributions-by-contributor/")
+  @ApiOperation({
+    operationId: "getContributorContributionsByProject",
+    summary: "Gets top 20 contributor stats in a list by a given project",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiNotFoundResponse({ description: "Unable to get contributions" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getContributorContributionsByProject(
+    @Param("id") id: string,
+    @Query("repoId") repoId: number
+  ): Promise<DbUserListContributorStat[]> {
+    return this.userListStatsService.findListContributorStatsByProject(id, repoId);
   }
 }

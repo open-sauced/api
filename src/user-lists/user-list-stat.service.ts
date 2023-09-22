@@ -28,7 +28,39 @@ export class UserListStatsService {
     return builder;
   }
 
-  async findContributorStatsByListId(
+  async findListContributorStatsByProject(listId: string, repoId: number): Promise<DbUserListContributorStat[]> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
+
+    queryBuilder
+      .select("users.login", "login")
+      .andWhere("user_list_contributors.list_id = :listId", { listId })
+      .addSelect(
+        `(
+          SELECT SUM("pull_requests"."commits")
+          FROM "pull_requests"
+          WHERE "pull_requests"."author_login" = "users"."login"
+            AND "pull_requests"."repo_id" = ${repoId}
+        )::INTEGER`,
+        "commits"
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("pull_requests"."id"), 0)
+          FROM "pull_requests"
+          WHERE "pull_requests"."author_login" = "users"."login"
+            AND "pull_requests"."repo_id" = ${repoId}
+        )::INTEGER`,
+        "prsCreated"
+      );
+
+    const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  async findAllListContributorStats(
     pageOptionsDto: UserListMostActiveContributorsDto,
     listId: string
   ): Promise<PageDto<DbUserListContributorStat>> {
