@@ -18,6 +18,7 @@ import { UserListStatsService } from "./user-list-stat.service";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
+import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -90,6 +91,25 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query("repoId") repoId: number
   ): Promise<DbUserListContributorStat[]> {
+    // todo need only top 20.
     return this.userListStatsService.findListContributorStatsByProject(id, repoId);
+  }
+
+  @Get(":id/stats/contributions-evolution-by-contributor-type")
+  @ApiOperation({
+    operationId: "getContributorsByTimeframe",
+    summary: "Gets contributions by category within timeframe",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbContributorCategoryTimeframe })
+  @ApiNotFoundResponse({ description: "Unable to get contributions" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getContributionsByTimeframe(
+    @Param("id") id: string,
+    @Query() options: ContributionsTimeframeDto
+  ): Promise<DbContributorCategoryTimeframe[]> {
+    return this.userListStatsService.findContributorCategoriesByTimeframe(options, id);
   }
 }

@@ -14,6 +14,7 @@ import {
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
+import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 
 @Injectable()
 export class UserListStatsService {
@@ -135,6 +136,21 @@ export class UserListStatsService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  async findContributorCategoriesByTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise<DbContributorCategoryTimeframe[]> {
+    const denominator = 82;
+    const range = options.range!;
+    const dates = this.getDateFrames(range, denominator);
+
+    const framePromises = dates.map(async (frameStartDate) =>
+      this.findContributorCategoriesInTimeframeHelper(frameStartDate.toISOString(), range / denominator, listId)
+    );
+
+    return Promise.all(framePromises);
+  }
+
   async findContributionsInTimeframe(
     options: ContributionsTimeframeDto,
     listId: string
@@ -150,13 +166,13 @@ export class UserListStatsService {
     return Promise.all(framePromises);
   }
 
-  getDateFrames(range = 30): Date[] {
+  getDateFrames(range = 30, denominator = 7): Date[] {
     const currentDate = new Date();
-    const frameDuration = range / 7;
+    const frameDuration = range / denominator;
     const dates: Date[] = [];
 
     // eslint-disable-next-line no-loops/no-loops
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < denominator; i++) {
       const frameDate = new Date(currentDate.getTime() - (range - i * frameDuration) * 86400000);
 
       dates.push(frameDate);
@@ -239,6 +255,57 @@ export class UserListStatsService {
     entity.timeEnd = `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`;
 
     return entity;
+  }
+
+  async findContributorCategoriesInTimeframeHelper(
+    startDate: string,
+    range: number,
+    listId: string
+  ): Promise<DbContributorCategoryTimeframe> {
+    const activeCountQueryBuilder = this.baseQueryBuilder();
+
+    activeCountQueryBuilder.innerJoin(
+      "users",
+      "users",
+      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
+    );
+
+    this.applyActiveContributorsFilter(activeCountQueryBuilder, startDate, range);
+
+    const activeCount = await activeCountQueryBuilder.getCount();
+
+    const newCountQueryBuilder = this.baseQueryBuilder();
+
+    newCountQueryBuilder.innerJoin(
+      "users",
+      "users",
+      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
+    );
+
+    this.applyNewContributorsFilter(newCountQueryBuilder, startDate, range);
+
+    const newCount = await newCountQueryBuilder.getCount();
+
+    const alumniCountQueryBuilder = this.baseQueryBuilder();
+
+    alumniCountQueryBuilder.innerJoin(
+      "users",
+      "users",
+      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
+    );
+
+    this.applyAlumniContributorsFilter(alumniCountQueryBuilder, startDate, range);
+
+    const alumniCount = await alumniCountQueryBuilder.getCount();
+
+    return {
+      timeStart: startDate,
+      timeEnd: `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`,
+      active: activeCount,
+      new: newCount,
+      alumni: alumniCount,
+      all: activeCount + newCount + alumniCount,
+    };
   }
 
   async findContributionsByProject(listId: string): Promise<DbContributionsProjects[]> {
@@ -328,7 +395,7 @@ export class UserListStatsService {
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
             WHERE "pull_requests"."updated_at" BETWEEN NOW() - INTERVAL '${range + range} days'
-              AND '${startDate}'::DATE - INTERVAL "${range} days"
+              AND '${startDate}'::DATE - INTERVAL '${range} days'
           )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
