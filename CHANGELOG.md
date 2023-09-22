@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.3...v1.49.0-beta.4) (2023-09-22)
+
+
+### 🐛 Bug Fixes
+
+* Enable proper string input of list IDs enabling delete ([#325](https://github.com/open-sauced/api.opensauced.pizza/issues/325)) ([3902608](https://github.com/open-sauced/api.opensauced.pizza/commit/3902608c0c295c5c9e25eb70a2ad62a03eb51ef8))
+
 ## [1.49.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.2...v1.49.0-beta.3) (2023-09-21)
 
 
