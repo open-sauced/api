@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -121,7 +121,7 @@ export class UserListController {
   @ApiNotFoundResponse({ description: "Unable to delete user list" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  async deleteListForUser(@UserId() userId: number, @Param("id", ParseIntPipe) listId: string): Promise<void> {
+  async deleteListForUser(@UserId() userId: number, @Param("id") listId: string): Promise<void> {
     const list = await this.userListService.findOneById(listId, userId);
 
     await this.userListService.deleteUserList(list.id);
