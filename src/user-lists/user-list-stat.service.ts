@@ -56,6 +56,9 @@ export class UserListStatsService {
         "prsCreated"
       );
 
+    // limit to only the top 20 contributors for stats by projects
+    queryBuilder.limit(20);
+
     const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
 
     return entities;
@@ -129,6 +132,9 @@ export class UserListStatsService {
     }
 
     const itemCount = await queryBuilder.getCount();
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
     const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
 
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });

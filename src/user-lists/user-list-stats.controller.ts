@@ -91,7 +91,6 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query("repoId") repoId: number
   ): Promise<DbUserListContributorStat[]> {
-    // todo need only top 20.
     return this.userListStatsService.findListContributorStatsByProject(id, repoId);
   }
 
