@@ -12,6 +12,7 @@ import {
 import { PageDto } from "../common/dtos/page.dto";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import { UserListStatsService } from "./user-list-stat.service";
@@ -19,7 +20,6 @@ import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
-import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 
 @Controller("lists")
 @ApiTags("User Lists service")
