@@ -13,7 +13,7 @@ export class DbContributionsProjects {
     select: false,
     insert: false,
   })
-  orgId: string;
+  org_id: string;
 
   @ApiModelProperty({
     description: "The project name of the repo",
@@ -25,7 +25,7 @@ export class DbContributionsProjects {
     select: false,
     insert: false,
   })
-  projectId: string;
+  project_id: string;
 
   @ApiModelProperty({
     description: "The number of contributions associated with a org/repo",

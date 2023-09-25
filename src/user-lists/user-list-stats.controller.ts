@@ -19,6 +19,7 @@ import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -32,8 +33,9 @@ export class UserListStatsController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: PageDto<DbUserListContributorStat> })
-  @ApiNotFoundResponse({ description: "Unable to get user lists" })
+  @ApiPaginatedResponse(DbUserListContributorStat)
+  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   async getMostActiveContributors(
@@ -69,7 +71,7 @@ export class UserListStatsController {
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributionsProjects })
-  @ApiNotFoundResponse({ description: "Unable to get contributions" })
+  @ApiNotFoundResponse({ description: "Unable to get contributions by project" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   async getContributionsByProject(@Param("id") id: string): Promise<DbContributionsProjects[]> {

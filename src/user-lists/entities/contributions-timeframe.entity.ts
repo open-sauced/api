@@ -4,8 +4,8 @@ import { Column, Entity } from "typeorm";
 @Entity({ name: "user_list_contributors" })
 export class DbContributionStatTimeframe {
   @ApiModelProperty({
-    description: "The ISO timestamp of the start of the time frame",
-    example: 0,
+    description: "The ISO timestamp for the start of the time frame",
+    example: "2023-08-26T23:55:49.204Z",
     type: "string",
   })
   @Column({
@@ -13,11 +13,11 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  timeStart: string;
+  time_start: string;
 
   @ApiModelProperty({
-    description: "The ISO timestamp of the end of the time frame",
-    example: 0,
+    description: "The ISO timestamp for the end of the time frame",
+    example: "2023-08-26T23:55:49.204Z",
     type: "string",
   })
   @Column({
@@ -25,7 +25,7 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  timeEnd: string;
+  time_end: string;
 
   @ApiModelProperty({
     description: "Number of commits associated with a user login",
@@ -40,7 +40,7 @@ export class DbContributionStatTimeframe {
   commits: number;
 
   @ApiModelProperty({
-    description: "Number of PRs associated with a user login",
+    description: "Number of PRs created associated with a user login",
     example: 0,
     type: "integer",
   })
@@ -49,7 +49,7 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  prsCreated: number;
+  prs_created: number;
 
   @ApiModelProperty({
     description: "Number of PRs reviewed by a user login",
@@ -61,7 +61,7 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  prsReviewed: number;
+  prs_reviewed: number;
 
   @ApiModelProperty({
     description: "Number of issues created by a user login",
@@ -73,7 +73,7 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  issuesCreated: number;
+  issues_created: number;
 
   @ApiModelProperty({
     description: "Number of comments associated with a user login",

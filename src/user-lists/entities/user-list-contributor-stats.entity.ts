@@ -27,7 +27,7 @@ export class DbUserListContributorStat {
   commits: number;
 
   @ApiModelProperty({
-    description: "Number of PRs associated with a user login",
+    description: "Number of PRs created associated with a user login",
     example: 0,
     type: "integer",
   })
@@ -36,7 +36,7 @@ export class DbUserListContributorStat {
     select: false,
     insert: false,
   })
-  prsCreated: number;
+  prs_created: number;
 
   @ApiModelProperty({
     description: "Number of PRs reviewed by a user login",
@@ -48,7 +48,7 @@ export class DbUserListContributorStat {
     select: false,
     insert: false,
   })
-  prsReviewed: number;
+  prs_reviewed: number;
 
   @ApiModelProperty({
     description: "Number of issues created by a user login",
@@ -60,7 +60,7 @@ export class DbUserListContributorStat {
     select: false,
     insert: false,
   })
-  issuesCreated: number;
+  issues_created: number;
 
   @ApiModelProperty({
     description: "Number of comments associated with a user login",

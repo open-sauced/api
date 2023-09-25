@@ -53,7 +53,7 @@ export class UserListStatsService {
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
         )::INTEGER`,
-        "prsCreated"
+        "prs_created"
       );
 
     // limit to only the top 20 contributors for stats by projects
@@ -115,7 +115,7 @@ export class UserListStatsService {
           WHERE "pull_requests"."author_login" = "users"."login"
             AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
         )::INTEGER`,
-        "prsCreated"
+        "prs_created"
       );
 
     switch (pageOptionsDto.orderBy) {
@@ -123,8 +123,8 @@ export class UserListStatsService {
         queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
         break;
 
-      case UserListContributorStatsOrderEnum.prsCreated:
-        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prsCreated}"`, pageOptionsDto.orderDirection);
+      case UserListContributorStatsOrderEnum.prs_created:
+        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
         break;
 
       default:
@@ -241,13 +241,13 @@ export class UserListStatsService {
             AND "pull_requests"."updated_at" > '${startDate}'::DATE - INTERVAL '${range} days'
             AND "pull_requests"."updated_at" <= '${startDate}'::DATE
         )::INTEGER`,
-        "all_prsCreated"
+        "all_prs_created"
       );
 
     const queryBuilder = this.userListContributorRepository.manager
       .createQueryBuilder()
       .select(`SUM("subQ"."all_commits")`, "commits")
-      .addSelect(`SUM("subQ"."all_prsCreated")`, "prsCreated")
+      .addSelect(`SUM("subQ"."all_prs_created")`, "prs_created")
       .from(`( ${subQueryBuilder.getQuery()} )`, "subQ")
       .setParameters(subQueryBuilder.getParameters());
 
@@ -257,8 +257,8 @@ export class UserListStatsService {
       throw new NotFoundException();
     }
 
-    entity.timeStart = startDate;
-    entity.timeEnd = `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`;
+    entity.time_start = startDate;
+    entity.time_end = `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`;
 
     return entity;
   }
@@ -305,8 +305,8 @@ export class UserListStatsService {
     const alumniCount = await alumniCountQueryBuilder.getCount();
 
     return {
-      timeStart: startDate,
-      timeEnd: `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`,
+      time_start: startDate,
+      time_end: `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`,
       active: activeCount,
       new: newCount,
       alumni: alumniCount,
@@ -320,8 +320,8 @@ export class UserListStatsService {
 
     const queryBuilder = this.userListContributorRepository.manager
       .createQueryBuilder()
-      .select("split_part(repos.full_name, '/', 1)", "orgId")
-      .addSelect("split_part(repos.full_name, '/', 2)", "projectId")
+      .select("split_part(repos.full_name, '/', 1)", "org_id")
+      .addSelect("split_part(repos.full_name, '/', 2)", "project_id")
       .addSelect("COUNT(pr.id)", "contributions")
 
       // grab pull requests first
