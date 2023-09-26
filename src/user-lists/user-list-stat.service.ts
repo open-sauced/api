@@ -406,8 +406,8 @@ export class UserListStatsService {
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
       )
-      .where(`"previous_month_prs"."author_login" IS NOT NULL`)
-      .andWhere(`"current_month_prs"."author_login" IS NULL`);
+      .where(`"previous_month_prs"."author_login" IS NULL`)
+      .andWhere(`"current_month_prs"."author_login" IS NOT NULL`);
   }
 
   private applyAlumniContributorsFilter(
@@ -436,7 +436,7 @@ export class UserListStatsService {
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
       )
-      .where(`"previous_month_prs"."author_login" IS NULL`)
-      .andWhere(`"current_month_prs"."author_login" IS NOT NULL`);
+      .where(`"previous_month_prs"."author_login" IS NOT NULL`)
+      .andWhere(`"current_month_prs"."author_login" IS NULL`);
   }
 }
