@@ -1643,8 +1643,8 @@ export class UserListStatsService {
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
       )
-      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
-      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;);
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
   }
 
   private applyAlumniContributorsFilter(
@@ -1673,8 +1673,8 @@ export class UserListStatsService {
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
       )
-      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;)
-      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;);
   }
 }
 </code></pre>
