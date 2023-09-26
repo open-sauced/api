@@ -2,6 +2,8 @@ import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { ConfigService } from "@nestjs/config";
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
@@ -19,13 +21,39 @@ export class PullRequestService {
   constructor(
     @InjectRepository(DbPullRequest, "ApiConnection")
     private pullRequestRepository: Repository<DbPullRequest>,
-    private filterService: RepoFilterService
+    private filterService: RepoFilterService,
+    private configService: ConfigService
   ) {}
 
   baseQueryBuilder() {
     const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
+  }
+
+  hacktoberfestPrFilterBuilderStart() {
+    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * this is inclusive of previous years where the current pull_requests have "newer" updates
+     */
+    return `to_date('${hacktoberfestYear}', 'YYYY')
+                + INTERVAL '10 months'
+                - INTERVAL '1 day' >= "pull_requests"."updated_at"`;
+  }
+
+  hacktoberfestPrFilterBuilderEnd(range = 30) {
+    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
+     */
+    return `to_date('${hacktoberfestYear}', 'YYYY')
+                + INTERVAL '10 months'
+                - INTERVAL '1 day'
+                - INTERVAL '${range} days' <= "pull_requests"."updated_at"`;
   }
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
@@ -46,12 +74,14 @@ export class PullRequestService {
 
   async findAllByContributor(contributor: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() })
-      .andWhere(`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
+      .andWhere(`'${startDate}'::DATE >= "pull_requests"."updated_at"`)
+      .andWhere(`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
       .addSelect("repos.id", "pull_requests_repo_id")
       .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
@@ -68,6 +98,7 @@ export class PullRequestService {
 
   async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
     queryBuilder
@@ -75,14 +106,35 @@ export class PullRequestService {
       .addSelect("repos.full_name", "pull_requests_full_name")
       .addSelect("repos.id", "pull_requests_repo_id");
 
-    const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
+    const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+    switch (pageOptionsDto.topic) {
+      case "hacktoberfest":
+        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
+        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
+        break;
+      default:
+        filters.push([`'${startDate}'::DATE >= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+        break;
+    }
 
     if (pageOptionsDto.contributor) {
       filters.push([
         `LOWER("pull_requests"."author_login")=:contributor`,
         { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) },
+      ]);
+    }
+
+    if (pageOptionsDto.listId) {
+      filters.push([
+        `author_login IN (
+          SELECT login FROM 
+          user_list_contributors
+          JOIN users ON user_list_contributors.user_id=users.id AND users.deleted_at IS NULL
+          WHERE list_id=:listId
+        )`,
+        { listId: pageOptionsDto.listId },
       ]);
     }
 
@@ -113,6 +165,7 @@ export class PullRequestService {
     pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
     const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
     queryBuilder
@@ -123,9 +176,18 @@ export class PullRequestService {
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .addGroupBy("author_login");
 
-    const filters = this.filterService.getRepoFilters(pageOptionsDto, range);
+    const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    filters.push([`now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+    switch (pageOptionsDto.topic) {
+      case "hacktoberfest":
+        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
+        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
+        break;
+      default:
+        filters.push([`'${startDate}'::DATE >= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+        break;
+    }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
@@ -153,11 +215,12 @@ export class PullRequestService {
   async findNewContributorsInTimeRange(
     pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
     const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
-    const currentMonthQuery = this.getContributorRangeQueryBuilder(0, range, repoIds);
+    const currentMonthQuery = this.getContributorRangeQueryBuilder(startDate, 0, range, repoIds);
 
     queryBuilder
       .select("current_month.author_login")
@@ -170,8 +233,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range + range} days'`)
-            .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${range} days'`)
+            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range + range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '${range} days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "previous_month",
@@ -190,10 +253,11 @@ export class PullRequestService {
   async findAllRecentContributors(
     pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
-    const queryBuilder = this.getContributorRangeQueryBuilder(0, range, repoIds);
+    const queryBuilder = this.getContributorRangeQueryBuilder(startDate, 0, range, repoIds);
     const entities: DbPullRequestContributor[] = await queryBuilder.getRawMany();
     const itemCount = entities.length;
 
@@ -208,11 +272,12 @@ export class PullRequestService {
   async findAllChurnContributors(
     pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
     const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
-    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const prevMonthQuery = this.getContributorRangeQueryBuilder(startDate, range, range + range, repoIds);
 
     queryBuilder
       .select("previous_month.author_login")
@@ -225,8 +290,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= now() - INTERVAL '${range} days'`)
-            .andWhere("pull_requests.updated_at < now() - INTERVAL '0 days'")
+            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '0 days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "current_month",
@@ -245,11 +310,12 @@ export class PullRequestService {
   async findAllRepeatContributors(
     pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
     const repoIds = pageOptionsDto.repoIds?.split(",") ?? [];
 
     const queryBuilder = this.pullRequestRepository.manager.createQueryBuilder();
-    const prevMonthQuery = this.getContributorRangeQueryBuilder(range, range + range, repoIds);
+    const prevMonthQuery = this.getContributorRangeQueryBuilder(startDate, range, range + range, repoIds);
 
     queryBuilder
       .select("previous_month.author_login")
@@ -262,8 +328,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= now() - INTERVAL '${range} days'`)
-            .andWhere("pull_requests.updated_at < now() - INTERVAL '0 days'")
+            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '0 days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "current_month",
@@ -279,15 +345,20 @@ export class PullRequestService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  private getContributorRangeQueryBuilder(start: number, range: number, repoIds: string[]) {
+  private getContributorRangeQueryBuilder(
+    start_date: string,
+    start_range: number,
+    end_range: number,
+    repoIds: string[]
+  ) {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
       .select("author_login")
       .distinct()
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`pull_requests.updated_at >= NOW() - INTERVAL '${range} days'`)
-      .andWhere(`pull_requests.updated_at < NOW() - INTERVAL '${start} days'`)
+      .where(`pull_requests.updated_at >= '${start_date}'::DATE - INTERVAL '${end_range} days'`)
+      .andWhere(`pull_requests.updated_at < '${start_date}'::DATE - INTERVAL '${start_range} days'`)
       .andWhere("pull_requests.author_login != ''");
 
     if (repoIds.length > 0) {

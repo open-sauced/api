@@ -5,6 +5,34 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.3...v1.49.0-beta.4) (2023-09-22)
+
+
+### 🐛 Bug Fixes
+
+* Enable proper string input of list IDs enabling delete ([#325](https://github.com/open-sauced/api.opensauced.pizza/issues/325)) ([3902608](https://github.com/open-sauced/api.opensauced.pizza/commit/3902608c0c295c5c9e25eb70a2ad62a03eb51ef8))
+
+## [1.49.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.2...v1.49.0-beta.3) (2023-09-21)
+
+
+### 🍕 Features
+
+* add option search pull requests by list id ([#319](https://github.com/open-sauced/api.opensauced.pizza/issues/319)) ([0df7e5d](https://github.com/open-sauced/api.opensauced.pizza/commit/0df7e5dcd4113d1ddc01f8edef35113229f5abf1))
+
+## [1.49.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.1...v1.49.0-beta.2) (2023-09-21)
+
+
+### 🍕 Features
+
+* Dynamic contributor timeblocks for insights with ranges ([#312](https://github.com/open-sauced/api.opensauced.pizza/issues/312)) ([9f94589](https://github.com/open-sauced/api.opensauced.pizza/commit/9f94589f2f7c65f49c48a045499a16c2fafd2a02))
+
+## [1.49.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0...v1.49.0-beta.1) (2023-09-21)
+
+
+### 🍕 Features
+
+* Makes API repos / prs search endpoints "hacktoberfest" aware ([#309](https://github.com/open-sauced/api.opensauced.pizza/issues/309)) ([1a7d5d8](https://github.com/open-sauced/api.opensauced.pizza/commit/1a7d5d842edd7fcf3c0265287db9a9895dc3ba64))
+
 ## [1.48.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.47.0...v1.48.0) (2023-09-20)
 
 
