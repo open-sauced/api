@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.4...v1.49.0-beta.5) (2023-09-26)
+
+
+### 🍕 Features
+
+* Initial `lists/:id/stats` features ([#320](https://github.com/open-sauced/api.opensauced.pizza/issues/320)) ([3a0bafb](https://github.com/open-sauced/api.opensauced.pizza/commit/3a0bafb1e4aa9655356b08a47bce1ed71c263f50))
+
 ## [1.49.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.3...v1.49.0-beta.4) (2023-09-22)
 
 
