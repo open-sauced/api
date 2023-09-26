@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.6...v1.49.0-beta.7) (2023-09-26)
+
+
+### 🍕 Features
+
+* GET /list/:id able to be public for authenticated users ([#331](https://github.com/open-sauced/api.opensauced.pizza/issues/331)) ([416bb37](https://github.com/open-sauced/api.opensauced.pizza/commit/416bb3737d9993cb80d342ce8d569065f51cc1a9))
+
 ## [1.49.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.5...v1.49.0-beta.6) (2023-09-26)
 
 
