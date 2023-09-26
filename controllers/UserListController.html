@@ -1033,7 +1033,7 @@ export class UserListController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
   async getUserList(@Param(&quot;id&quot;) id: string, @UserId() userId: number): Promise&lt;DbUserList&gt; {
-    return this.userListService.findOneById(id, userId);
+    return this.userListService.findPublicOneById(id, userId);
   }
 
   @Patch(&quot;/:id&quot;)

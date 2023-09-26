@@ -405,7 +405,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;User ID&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false})<br />
+                            @ApiModelProperty({description: &#x27;User ID&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -461,7 +461,7 @@ export class DbUserList extends BaseEntity {
   })
   @Column({
     type: &quot;bigint&quot;,
-    select: false,
+    select: true,
   })
   public user_id: number;
 
