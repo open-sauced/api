@@ -24,10 +24,11 @@
 
 ## Indexes
 
-| Name       | Definition                                                                                   |
-| ---------- | -------------------------------------------------------------------------------------------- |
-| stars_pkey | CREATE UNIQUE INDEX stars_pkey ON public.users_to_repos_stars USING btree (id)               |
-| stars_hash | CREATE UNIQUE INDEX stars_hash ON public.users_to_repos_stars USING btree (user_id, repo_id) |
+| Name                             | Definition                                                                                         |
+| -------------------------------- | -------------------------------------------------------------------------------------------------- |
+| stars_pkey                       | CREATE UNIQUE INDEX stars_pkey ON public.users_to_repos_stars USING btree (id)                     |
+| stars_hash                       | CREATE UNIQUE INDEX stars_hash ON public.users_to_repos_stars USING btree (user_id, repo_id)       |
+| users_to_repos_stars_idx_repo_id | CREATE INDEX users_to_repos_stars_idx_repo_id ON public.users_to_repos_stars USING btree (repo_id) |
 
 ## Relations
 

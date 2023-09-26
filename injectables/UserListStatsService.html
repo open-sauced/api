@@ -1,0 +1,1755 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >UserListStatsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/user-lists/user-list-stat.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyActiveContributorsFilter" >applyActiveContributorsFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyAlumniContributorsFilter" >applyAlumniContributorsFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyNewContributorsFilter" >applyNewContributorsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#baseQueryBuilder" >baseQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllListContributorStats" >findAllListContributorStats</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findContributionsByProject" >findContributionsByProject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findContributionsInTimeframe" >findContributionsInTimeframe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findContributionsInTimeframeHelper" >findContributionsInTimeframeHelper</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findContributorCategoriesByTimeframe" >findContributorCategoriesByTimeframe</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findContributorCategoriesInTimeframeHelper" >findContributorCategoriesInTimeframeHelper</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findListContributorStatsByProject" >findListContributorStatsByProject</a>
+                            </li>
+                            <li>
+                                <a href="#getDateFrames" >getDateFrames</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(userListContributorRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user-lists/user-list-stat.service.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>userListContributorRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserListContributor&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyActiveContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyActiveContributorsFilter</b></span>
+                        <a href="#applyActiveContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyActiveContributorsFilter(queryBuilder: <a href="../s/User.html" target="_self">SelectQueryBuilder&lt;DbUserListContributor&gt;</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="353"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:353</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyAlumniContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyAlumniContributorsFilter</b></span>
+                        <a href="#applyAlumniContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyAlumniContributorsFilter(queryBuilder: <a href="../s/User.html" target="_self">SelectQueryBuilder&lt;DbUserListContributor&gt;</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="413"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:413</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyNewContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyNewContributorsFilter</b></span>
+                        <a href="#applyNewContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyNewContributorsFilter(queryBuilder: <a href="../s/User.html" target="_self">SelectQueryBuilder&lt;DbUserListContributor&gt;</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="383"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:383</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllListContributorStats"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllListContributorStats</b></span>
+                        <a href="#findAllListContributorStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllListContributorStats(pageOptionsDto: <a href="../classes/UserListMostActiveContributorsDto.html" target="_self">UserListMostActiveContributorsDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:67</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/UserListMostActiveContributorsDto.html" target="_self" >UserListMostActiveContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributionsByProject"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributionsByProject</b></span>
+                        <a href="#findContributionsByProject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributionsByProject(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:317</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbContributionsProjects[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributionsInTimeframe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributionsInTimeframe</b></span>
+                        <a href="#findContributionsInTimeframe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributionsInTimeframe(options: <a href="../classes/ContributionsTimeframeDto.html" target="_self">ContributionsTimeframeDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:160</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/ContributionsTimeframeDto.html" target="_self" >ContributionsTimeframeDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbContributionStatTimeframe[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributionsInTimeframeHelper"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributionsInTimeframeHelper</b></span>
+                        <a href="#findContributionsInTimeframeHelper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributionsInTimeframeHelper(startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:190</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbContributionStatTimeframe&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributorCategoriesByTimeframe"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributorCategoriesByTimeframe</b></span>
+                        <a href="#findContributorCategoriesByTimeframe"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributorCategoriesByTimeframe(options: <a href="../classes/ContributionsTimeframeDto.html" target="_self">ContributionsTimeframeDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:145</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/ContributionsTimeframeDto.html" target="_self" >ContributionsTimeframeDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbContributorCategoryTimeframe.html" target="_self" >Promise&lt;DbContributorCategoryTimeframe[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributorCategoriesInTimeframeHelper"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributorCategoriesInTimeframeHelper</b></span>
+                        <a href="#findContributorCategoriesInTimeframeHelper"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributorCategoriesInTimeframeHelper(startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbContributorCategoryTimeframe.html" target="_self" >Promise&lt;DbContributorCategoryTimeframe&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findListContributorStatsByProject"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findListContributorStatsByProject</b></span>
+                        <a href="#findListContributorStatsByProject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findListContributorStatsByProject(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:32</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserListContributorStat[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getDateFrames"></a>
+                    <span class="name">
+                        <span ><b>getDateFrames</b></span>
+                        <a href="#getDateFrames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getDateFrames(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, denominator: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:175</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>denominator</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>7</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Date[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
+import { DbUserListContributorStat } from &quot;./entities/user-list-contributor-stats.entity&quot;;
+import {
+  UserListContributorStatsOrderEnum,
+  UserListContributorStatsTypeEnum,
+  UserListMostActiveContributorsDto,
+} from &quot;./dtos/most-active-contributors.dto&quot;;
+import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
+import { DbContributionStatTimeframe } from &quot;./entities/contributions-timeframe.entity&quot;;
+import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
+import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
+
+@Injectable()
+export class UserListStatsService {
+  constructor(
+    @InjectRepository(DbUserListContributor, &quot;ApiConnection&quot;)
+    private userListContributorRepository: Repository&lt;DbUserListContributor&gt;
+  ) {}
+
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbUserListContributor&gt; {
+    const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
+
+    return builder;
+  }
+
+  async findListContributorStatsByProject(listId: string, repoId: number): Promise&lt;DbUserListContributorStat[]&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
+
+    queryBuilder
+      .select(&quot;users.login&quot;, &quot;login&quot;)
+      .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
+      .addSelect(
+        &#x60;(
+          SELECT SUM(&quot;pull_requests&quot;.&quot;commits&quot;)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+        )::INTEGER&#x60;,
+        &quot;commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+        )::INTEGER&#x60;,
+        &quot;prs_created&quot;
+      );
+
+    // limit to only the top 20 contributors for stats by projects
+    queryBuilder.limit(20);
+
+    const entities: DbUserListContributorStat[] &#x3D; await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  async findAllListContributorStats(
+    pageOptionsDto: UserListMostActiveContributorsDto,
+    listId: string
+  ): Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const now &#x3D; new Date().toISOString();
+
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
+
+    switch (pageOptionsDto.contributorType) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(queryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(queryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(queryBuilder, now, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    queryBuilder
+      .select(&quot;users.login&quot;, &quot;login&quot;)
+      .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
+      .addSelect(
+        &#x60;(
+          SELECT SUM(&quot;pull_requests&quot;.&quot;commits&quot;)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &quot;commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &quot;prs_created&quot;
+      );
+
+    switch (pageOptionsDto.orderBy) {
+      case UserListContributorStatsOrderEnum.commits:
+        queryBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.commits}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.prs_created:
+        queryBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      default:
+        break;
+    }
+
+    const itemCount &#x3D; await queryBuilder.getCount();
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbUserListContributorStat[] &#x3D; await queryBuilder.getRawMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findContributorCategoriesByTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributorCategoryTimeframe[]&gt; {
+    const denominator &#x3D; 82;
+    const range &#x3D; options.range!;
+    const dates &#x3D; this.getDateFrames(range, denominator);
+
+    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
+      this.findContributorCategoriesInTimeframeHelper(frameStartDate.toISOString(), range / denominator, listId)
+    );
+
+    return Promise.all(framePromises);
+  }
+
+  async findContributionsInTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributionStatTimeframe[]&gt; {
+    const range &#x3D; options.range!;
+    const contributorType &#x3D; options.contributorType!;
+    const dates &#x3D; this.getDateFrames(range);
+
+    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
+      this.findContributionsInTimeframeHelper(frameStartDate.toISOString(), range / 7, contributorType, listId)
+    );
+
+    return Promise.all(framePromises);
+  }
+
+  getDateFrames(range &#x3D; 30, denominator &#x3D; 7): Date[] {
+    const currentDate &#x3D; new Date();
+    const frameDuration &#x3D; range / denominator;
+    const dates: Date[] &#x3D; [];
+
+    // eslint-disable-next-line no-loops/no-loops
+    for (let i &#x3D; 0; i &lt; denominator; i++) {
+      const frameDate &#x3D; new Date(currentDate.getTime() - (range - i * frameDuration) * 86400000);
+
+      dates.push(frameDate);
+    }
+
+    return dates;
+  }
+
+  async findContributionsInTimeframeHelper(
+    startDate: string,
+    range: number,
+    contributorType: string,
+    listId: string
+  ): Promise&lt;DbContributionStatTimeframe&gt; {
+    const subQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    subQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    switch (contributorType) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    subQueryBuilder
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+        )::INTEGER&#x60;,
+        &quot;all_commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+        )::INTEGER&#x60;,
+        &quot;all_prs_created&quot;
+      );
+
+    const queryBuilder &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .select(&#x60;SUM(&quot;subQ&quot;.&quot;all_commits&quot;)&#x60;, &quot;commits&quot;)
+      .addSelect(&#x60;SUM(&quot;subQ&quot;.&quot;all_prs_created&quot;)&#x60;, &quot;prs_created&quot;)
+      .from(&#x60;( ${subQueryBuilder.getQuery()} )&#x60;, &quot;subQ&quot;)
+      .setParameters(subQueryBuilder.getParameters());
+
+    const entity: DbContributionStatTimeframe | undefined &#x3D; await queryBuilder.getRawOne();
+
+    if (!entity) {
+      throw new NotFoundException();
+    }
+
+    entity.time_start &#x3D; startDate;
+    entity.time_end &#x3D; &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;;
+
+    return entity;
+  }
+
+  async findContributorCategoriesInTimeframeHelper(
+    startDate: string,
+    range: number,
+    listId: string
+  ): Promise&lt;DbContributorCategoryTimeframe&gt; {
+    const activeCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    activeCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyActiveContributorsFilter(activeCountQueryBuilder, startDate, range);
+
+    const activeCount &#x3D; await activeCountQueryBuilder.getCount();
+
+    const newCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    newCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyNewContributorsFilter(newCountQueryBuilder, startDate, range);
+
+    const newCount &#x3D; await newCountQueryBuilder.getCount();
+
+    const alumniCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    alumniCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyAlumniContributorsFilter(alumniCountQueryBuilder, startDate, range);
+
+    const alumniCount &#x3D; await alumniCountQueryBuilder.getCount();
+
+    return {
+      time_start: startDate,
+      time_end: &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;,
+      active: activeCount,
+      new: newCount,
+      alumni: alumniCount,
+      all: activeCount + newCount + alumniCount,
+    };
+  }
+
+  async findContributionsByProject(listId: string): Promise&lt;DbContributionsProjects[]&gt; {
+    // todo (jpmcb) - in the future we&#x27;ll likely want to make this range dynamic.
+    const range &#x3D; 30;
+
+    const queryBuilder &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .select(&quot;split_part(repos.full_name, &#x27;/&#x27;, 1)&quot;, &quot;org_id&quot;)
+      .addSelect(&quot;split_part(repos.full_name, &#x27;/&#x27;, 2)&quot;, &quot;project_id&quot;)
+      .addSelect(&quot;COUNT(pr.id)&quot;, &quot;contributions&quot;)
+
+      // grab pull requests first
+      .from(&quot;pull_requests&quot;, &quot;pr&quot;)
+
+      // and join them with repos
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x27;pr.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;&#x27;)
+
+      // join with filtered users from the user list
+      .innerJoin(
+        (subQuery) &#x3D;&gt;
+          subQuery
+            .select(&quot;users.login&quot;, &quot;user_login&quot;)
+            .from(&quot;user_list_contributors&quot;, &quot;user_list_contributors&quot;)
+            .innerJoin(&quot;users&quot;, &quot;users&quot;, &#x27;&quot;user_list_contributors&quot;.&quot;user_id&quot; &#x3D; &quot;users&quot;.&quot;id&quot;&#x27;)
+            .where(&#x60;&quot;user_list_contributors&quot;.&quot;list_id&quot; &#x3D; &#x27;${listId}&#x27;&#x60;),
+        &quot;filtered_users&quot;,
+        &#x27;pr.&quot;author_login&quot; &#x3D; &quot;filtered_users&quot;.&quot;user_login&quot;&#x27;
+      )
+
+      .where(&#x60;pr.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27; AND NOW()&#x60;)
+      .groupBy(&quot;repos.full_name&quot;);
+
+    const entities: DbContributionsProjects[] &#x3D; await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  private applyActiveContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT &quot;author_login&quot;
+        FROM &quot;pull_requests&quot;
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          AND &#x27;${startDate}&#x27;::DATE
+      )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT &quot;author_login&quot;
+        FROM &quot;pull_requests&quot;
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
+          AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+      )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
+  }
+
+  private applyNewContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;);
+  }
+
+  private applyAlumniContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserListStatsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

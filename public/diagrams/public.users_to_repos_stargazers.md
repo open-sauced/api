@@ -24,10 +24,11 @@
 
 ## Indexes
 
-| Name            | Definition                                                                                             |
-| --------------- | ------------------------------------------------------------------------------------------------------ |
-| stargazers_pkey | CREATE UNIQUE INDEX stargazers_pkey ON public.users_to_repos_stargazers USING btree (id)               |
-| stargazers_hash | CREATE UNIQUE INDEX stargazers_hash ON public.users_to_repos_stargazers USING btree (user_id, repo_id) |
+| Name                                  | Definition                                                                                                   |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| stargazers_pkey                       | CREATE UNIQUE INDEX stargazers_pkey ON public.users_to_repos_stargazers USING btree (id)                     |
+| stargazers_hash                       | CREATE UNIQUE INDEX stargazers_hash ON public.users_to_repos_stargazers USING btree (user_id, repo_id)       |
+| users_to_repos_stargazers_idx_repo_id | CREATE INDEX users_to_repos_stargazers_idx_repo_id ON public.users_to_repos_stargazers USING btree (repo_id) |
 
 ## Relations
 
