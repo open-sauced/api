@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.5...v1.49.0-beta.6) (2023-09-26)
+
+
+### 🐛 Bug Fixes
+
+* fixed commited merge conflict bits ([#328](https://github.com/open-sauced/api.opensauced.pizza/issues/328)) ([b9eaebe](https://github.com/open-sauced/api.opensauced.pizza/commit/b9eaebe52a19fafba08d4323c27cceb2aacf09bf))
+* Updates the alum / new filters in user-lists-stats ([#330](https://github.com/open-sauced/api.opensauced.pizza/issues/330)) ([f254ded](https://github.com/open-sauced/api.opensauced.pizza/commit/f254ded642f3c91bead59f402275469364504d19))
+
 ## [1.49.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.4...v1.49.0-beta.5) (2023-09-26)
 
 
