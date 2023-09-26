@@ -36,7 +36,7 @@ export class DbUserList extends BaseEntity {
   })
   @Column({
     type: "bigint",
-    select: false,
+    select: true,
   })
   public user_id: number;
 

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -52,6 +52,27 @@ export class UserListService {
 
     if (!item) {
       throw new NotFoundException();
+    }
+
+    return item;
+  }
+
+  async findPublicOneById(id: string, userId?: number): Promise<DbUserList> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .innerJoin("users", "users", "user_lists.user_id=users.id")
+      .addSelect("users.login", "user_lists_login")
+      .where("user_lists.id = :id", { id });
+
+    const item: DbUserList | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    if (!item.is_public && userId !== item.user_id) {
+      throw new UnauthorizedException("You're not authorized to view this list");
     }
 
     return item;
