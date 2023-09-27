@@ -81,7 +81,7 @@ This command will build the Docker image using the Dockerfile in the current dir
 **3.Run the Docker container:**
 
 ```shell
-docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:latest
+docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image
 ```
 
 This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.
