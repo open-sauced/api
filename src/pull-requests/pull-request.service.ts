@@ -351,7 +351,7 @@ export class PullRequestService {
     end_range: number,
     repoIds: string[]
   ) {
-    if (repoIds.length < 1) {
+    if (repoIds.length === 0) {
       throw new BadRequestException("Repo Ids cannot be empty");
     }
 
