@@ -363,11 +363,8 @@ export class PullRequestService {
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .where(`pull_requests.updated_at >= '${start_date}'::DATE - INTERVAL '${end_range} days'`)
       .andWhere(`pull_requests.updated_at < '${start_date}'::DATE - INTERVAL '${start_range} days'`)
-      .andWhere("pull_requests.author_login != ''");
-
-    if (repoIds.length > 0) {
-      queryBuilder.andWhere("repos.id IN (:...repoIds)", { repoIds });
-    }
+      .andWhere("pull_requests.author_login != ''")
+      .andWhere("repos.id IN (:...repoIds)", { repoIds });
 
     return queryBuilder;
   }
