@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -351,6 +351,10 @@ export class PullRequestService {
     end_range: number,
     repoIds: string[]
   ) {
+    if (repoIds.length < 1) {
+      throw new BadRequestException("Repo Ids cannot be empty");
+    }
+
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
