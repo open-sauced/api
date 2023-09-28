@@ -1053,7 +1053,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -1406,6 +1406,10 @@ export class PullRequestService {
     end_range: number,
     repoIds: string[]
   ) {
+    if (repoIds.length &#x3D;&#x3D;&#x3D; 0) {
+      throw new BadRequestException(&quot;Repo Ids cannot be empty&quot;);
+    }
+
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -1414,11 +1418,8 @@ export class PullRequestService {
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
       .where(&#x60;pull_requests.updated_at &gt;&#x3D; &#x27;${start_date}&#x27;::DATE - INTERVAL &#x27;${end_range} days&#x27;&#x60;)
       .andWhere(&#x60;pull_requests.updated_at &lt; &#x27;${start_date}&#x27;::DATE - INTERVAL &#x27;${start_range} days&#x27;&#x60;)
-      .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;);
-
-    if (repoIds.length &gt; 0) {
-      queryBuilder.andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds });
-    }
+      .andWhere(&quot;pull_requests.author_login !&#x3D; &#x27;&#x27;&quot;)
+      .andWhere(&quot;repos.id IN (:...repoIds)&quot;, { repoIds });
 
     return queryBuilder;
   }
