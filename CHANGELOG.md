@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.7...v1.49.0-beta.8) (2023-09-28)
+
+
+### 🐛 Bug Fixes
+
+* added fix to disallow empty repoids for `/v1/contributor/insights/` ([#334](https://github.com/open-sauced/api.opensauced.pizza/issues/334)) ([b2dca4c](https://github.com/open-sauced/api.opensauced.pizza/commit/b2dca4c2e27bba8319cc85a91b5443a8d61d7ca4))
+
 ## [1.49.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.6...v1.49.0-beta.7) (2023-09-26)
 
 
