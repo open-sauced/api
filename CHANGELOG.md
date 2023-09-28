@@ -5,6 +5,25 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.49.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0...v1.49.0) (2023-09-28)
+
+
+### 🍕 Features
+
+* add option search pull requests by list id ([#319](https://github.com/open-sauced/api.opensauced.pizza/issues/319)) ([0df7e5d](https://github.com/open-sauced/api.opensauced.pizza/commit/0df7e5dcd4113d1ddc01f8edef35113229f5abf1))
+* Dynamic contributor timeblocks for insights with ranges ([#312](https://github.com/open-sauced/api.opensauced.pizza/issues/312)) ([9f94589](https://github.com/open-sauced/api.opensauced.pizza/commit/9f94589f2f7c65f49c48a045499a16c2fafd2a02))
+* GET /list/:id able to be public for authenticated users ([#331](https://github.com/open-sauced/api.opensauced.pizza/issues/331)) ([416bb37](https://github.com/open-sauced/api.opensauced.pizza/commit/416bb3737d9993cb80d342ce8d569065f51cc1a9))
+* Initial `lists/:id/stats` features ([#320](https://github.com/open-sauced/api.opensauced.pizza/issues/320)) ([3a0bafb](https://github.com/open-sauced/api.opensauced.pizza/commit/3a0bafb1e4aa9655356b08a47bce1ed71c263f50))
+* Makes API repos / prs search endpoints "hacktoberfest" aware ([#309](https://github.com/open-sauced/api.opensauced.pizza/issues/309)) ([1a7d5d8](https://github.com/open-sauced/api.opensauced.pizza/commit/1a7d5d842edd7fcf3c0265287db9a9895dc3ba64))
+
+
+### 🐛 Bug Fixes
+
+* added fix to disallow empty repoids for `/v1/contributor/insights/` ([#334](https://github.com/open-sauced/api.opensauced.pizza/issues/334)) ([b2dca4c](https://github.com/open-sauced/api.opensauced.pizza/commit/b2dca4c2e27bba8319cc85a91b5443a8d61d7ca4))
+* Enable proper string input of list IDs enabling delete ([#325](https://github.com/open-sauced/api.opensauced.pizza/issues/325)) ([3902608](https://github.com/open-sauced/api.opensauced.pizza/commit/3902608c0c295c5c9e25eb70a2ad62a03eb51ef8))
+* fixed commited merge conflict bits ([#328](https://github.com/open-sauced/api.opensauced.pizza/issues/328)) ([b9eaebe](https://github.com/open-sauced/api.opensauced.pizza/commit/b9eaebe52a19fafba08d4323c27cceb2aacf09bf))
+* Updates the alum / new filters in user-lists-stats ([#330](https://github.com/open-sauced/api.opensauced.pizza/issues/330)) ([f254ded](https://github.com/open-sauced/api.opensauced.pizza/commit/f254ded642f3c91bead59f402275469364504d19))
+
 ## [1.49.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0-beta.7...v1.49.0-beta.8) (2023-09-28)
 
 
