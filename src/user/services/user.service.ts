@@ -16,6 +16,7 @@ import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
 import { DbFilteredUser } from "../entities/filtered-users.entity";
 import { FilteredUsersDto } from "../dtos/filtered-users.dto";
+import { ApplyUserCouponDto } from "../dtos/apply-user-coupon.dto";
 
 @Injectable()
 export class UserService {
@@ -307,6 +308,13 @@ export class UserService {
     return this.userRepository.update(id, {
       display_email: user.display_email,
       receive_collaboration: user.receive_collaboration,
+    });
+  }
+
+  async applyCoupon(id: number, coupon: string) {
+    return this.userRepository.update(id, {
+      coupon_code: coupon,
+      role: 50,
     });
   }
 

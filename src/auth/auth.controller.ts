@@ -12,6 +12,8 @@ import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseGuard } from "./supabase.guard";
 import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
+import { ApplyUserCouponDto } from "../user/dtos/apply-user-coupon.dto";
+import { CouponService } from "../coupon/coupon.service";
 
 @Controller("auth")
 @ApiTags("Authentication service")
@@ -19,7 +21,8 @@ export class AuthController {
   constructor(
     private userService: UserService,
     private stripeService: StripeService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private couponService: CouponService
   ) {}
 
   @Get("/session")
@@ -63,6 +66,7 @@ export class AuthController {
         linkedin_url,
         discord_url,
         notification_count,
+        coupon_code,
       } = await this.userService.checkAddUser(user);
 
       userProfile = {
@@ -81,6 +85,7 @@ export class AuthController {
         linkedin_url,
         discord_url,
         notification_count,
+        coupon_code,
       };
     } catch (e) {
       // leave user profile as-is
@@ -208,6 +213,27 @@ export class AuthController {
     @Body() updateUserDto: UpdateUserEmailPreferencesDto
   ): Promise<DbUser> {
     await this.userService.updateEmailPreferences(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
+
+  @Patch("/profile/coupon")
+  @ApiOperation({
+    operationId: "applyCouponForUser",
+    summary: "Applies a coupon for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to apply coupon for the user profile" })
+  @ApiBody({ type: ApplyUserCouponDto })
+  async applyCouponForUser(@UserId() userId: number, @Body() applyUserCouponDto: ApplyUserCouponDto): Promise<DbUser> {
+    // check for valid coupon
+    await this.couponService.findCoupon(applyUserCouponDto.couponCode);
+
+    await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
+
+    await this.couponService.deleteCoupon(applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
   }
