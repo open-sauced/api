@@ -8,12 +8,12 @@ import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
+import { ApplyUserCouponDto } from "../user/dtos/apply-user-coupon.dto";
+import { CouponService } from "../coupon/coupon.service";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { User, UserId } from "./supabase.user.decorator";
 import { SupabaseGuard } from "./supabase.guard";
 import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
-import { ApplyUserCouponDto } from "../user/dtos/apply-user-coupon.dto";
-import { CouponService } from "../coupon/coupon.service";
 
 @Controller("auth")
 @ApiTags("Authentication service")

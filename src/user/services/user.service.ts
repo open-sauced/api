@@ -16,7 +16,6 @@ import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
 import { DbFilteredUser } from "../entities/filtered-users.entity";
 import { FilteredUsersDto } from "../dtos/filtered-users.dto";
-import { ApplyUserCouponDto } from "../dtos/apply-user-coupon.dto";
 
 @Injectable()
 export class UserService {
