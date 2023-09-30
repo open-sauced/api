@@ -115,7 +115,7 @@ npm test
 You can request a coverage report by running the following command:
 
 ```shell
-npm run test:coverage
+npm run test:cov
 ```
 
 For writing tests, the rule is move business or service logic to the lib folder and write unit tests. Logic that needs to be in a React component, then leverage tools like [Cypress](https://www.cypress.io/) or [Vitest mocking](https://vitest.dev/guide/mocking.html) to write tests.

@@ -1,6 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import { Fetch } from "@supabase/supabase-js/dist/module/lib/types";
 import { ConfigService } from "@nestjs/config";
+import { map } from "rxjs/operators";
+import { lastValueFrom } from "rxjs";
+import { HttpService } from "@nestjs/axios";
+import { AxiosResponse } from "@nestjs/terminus/dist/health-indicator/http/axios.interfaces";
 
 interface ChatResponse {
   choices: { message: { content: string } }[];
@@ -8,40 +11,42 @@ interface ChatResponse {
 
 @Injectable()
 export class OpenAiService {
-  constructor(private configService: ConfigService) {}
+  private readonly apiKey: string;
+  private readonly modelName: string;
+  private readonly completionsURL: string;
 
-  async generateCompletion(systemMessage: string, userMessage: string, temperature: number) {
-    // eslint-disable-next-line
-    const fetcher: Fetch = typeof fetch !== "undefined" ? fetch : (require("node-fetch") as Fetch);
-    const response = await fetcher(this.configService.get<string>("openai.completionsURL")!, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${this.configService.get<string>("openai.APIKey")!}`,
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        model: this.configService.get<string>("openai.modelName"),
-        messages: [
-          {
-            role: "system",
-            content: systemMessage,
+  constructor(private readonly configService: ConfigService, private readonly httpService: HttpService) {
+    this.apiKey = this.configService.get<string>("openai.APIKey")!;
+    this.modelName = this.configService.get<string>("openai.modelName")!;
+    this.completionsURL = this.configService.get<string>("openai.completionsURL")!;
+  }
+
+  async generateCompletion(systemMessage: string, userMessage: string, temperature: number): Promise<string> {
+    const body = {
+      model: this.modelName,
+      messages: [
+        { role: "system", content: systemMessage },
+        { role: "user", content: userMessage },
+      ],
+      temperature: temperature / 10,
+      n: 1,
+    };
+
+    return lastValueFrom(
+      this.httpService
+        .post(this.completionsURL, body, {
+          headers: {
+            Authorization: `Bearer ${this.apiKey}`,
+            "Content-type": "application/json",
           },
-          {
-            role: "user",
-            content: userMessage,
-          },
-        ],
-        temperature: temperature / 10,
-        n: 1,
-      }),
-    });
+        })
+        .pipe(
+          map((response: AxiosResponse<ChatResponse>) => {
+            const chatResponse: ChatResponse = response.data;
 
-    if (response.ok) {
-      const data = (await response.json()) as ChatResponse;
-
-      return data.choices[0]?.message.content;
-    }
-
-    throw new Error(response.statusText);
+            return chatResponse.choices[0]?.message.content;
+          })
+        )
+    );
   }
 }
