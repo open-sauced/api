@@ -16,7 +16,6 @@ import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
 import { DbFilteredUser } from "../entities/filtered-users.entity";
 import { FilteredUsersDto } from "../dtos/filtered-users.dto";
-import { DbTimezone } from "../entities/timezones.entity";
 
 @Injectable()
 export class UserService {
@@ -326,19 +325,5 @@ export class UserService {
     }
 
     return item;
-  }
-
-  async getAllTimezones(): Promise<DbTimezone[]> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .select("users.timezone as timezone")
-      .where("users.timezone IS NOT NULL")
-      .andWhere("users.timezone != ''")
-      .groupBy("users.timezone");
-
-    const timezones: DbTimezone[] = await queryBuilder.getRawMany();
-
-    return timezones;
   }
 }

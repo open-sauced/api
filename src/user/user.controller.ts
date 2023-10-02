@@ -16,7 +16,6 @@ import { DbTopUser } from "./entities/top-users.entity";
 import { TopUsersDto } from "./dtos/top-users.dto";
 import { DbFilteredUser } from "./entities/filtered-users.entity";
 import { FilteredUsersDto } from "./dtos/filtered-users.dto";
-import { DbTimezone } from "./entities/timezones.entity";
 
 @Controller("users")
 @ApiTags("User service")
@@ -107,15 +106,5 @@ export class UserController {
   @ApiBadRequestResponse({ description: "Username is required" })
   async getUsersByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
     return this.userService.findUsersByFilter(pageOptionsDto);
-  }
-
-  @Get("/timezones")
-  @ApiOperation({
-    operationId: "findAllTimezones",
-    summary: "Listing all timezones",
-  })
-  @ApiOkResponse({ type: DbTimezone })
-  async findAllTimezones(): Promise<DbTimezone[]> {
-    return this.userService.getAllTimezones();
   }
 }
