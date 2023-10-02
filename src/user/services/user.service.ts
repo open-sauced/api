@@ -331,7 +331,6 @@ export class UserService {
   async getAllTimezones(): Promise<DbTimezone[]> {
     const queryBuilder = this.baseQueryBuilder();
 
-    //  return all timezones that are not empty and not duplicates and not null
     queryBuilder
       .select("users.timezone as timezone")
       .where("users.timezone IS NOT NULL")
