@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0...v1.50.0-beta.1) (2023-10-02)
+
+
+### 🍕 Features
+
+* add endpoint for applying coupons for a user ([#338](https://github.com/open-sauced/api.opensauced.pizza/issues/338)) ([8e3c684](https://github.com/open-sauced/api.opensauced.pizza/commit/8e3c684c87150d27b2def6fa0d0c9204f835b071))
+
 ## [1.49.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.48.0...v1.49.0) (2023-09-28)
 
 
