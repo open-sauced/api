@@ -433,6 +433,16 @@ export class DbUser extends BaseEntity {
   readonly timezone?: string;
 
   @ApiModelProperty({
+    description: "Coupon Code",
+    example: "saucy",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly coupon_code?: string;
+
+  @ApiModelProperty({
     description: "GitHub top languages",
     example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }",
     default: {},
