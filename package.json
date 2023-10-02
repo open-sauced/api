@@ -65,7 +65,6 @@
     "@nestjs/terminus": "^9.2.2",
     "@nestjs/typeorm": "^9.0.1",
     "@supabase/supabase-js": "^1.35.6",
-    "axios": "^1.5.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "nestjs-pino": "^3.2.0",
