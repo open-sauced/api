@@ -100,6 +100,11 @@
                             <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
+                                <a href="#coupon_code" >coupon_code</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#created_at" >created_at</a>
                             </li>
                             <li>
@@ -315,6 +320,43 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="coupon_code"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>coupon_code</b></span>
+                        <a href="#coupon_code"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({description: &#x27;Coupon Code&#x27;, example: &#x27;saucy&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/auth/dtos/supabase-auth-response.dto.ts:142</a></div>
                         </td>
                     </tr>
 
@@ -1171,6 +1213,12 @@ export class SupabaseAuthDto {
     type: &quot;integer&quot;,
   })
   readonly notification_count?: number;
+
+  @ApiPropertyOptional({
+    description: &quot;Coupon Code&quot;,
+    example: &quot;saucy&quot;,
+  })
+  readonly coupon_code?: string;
 }
 </code></pre>
     </div>

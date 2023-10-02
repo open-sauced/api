@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#applyCouponForUser" >applyCouponForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getSession" >getSession</a>
                             </li>
                             <li>
@@ -132,6 +136,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="applyCouponForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>applyCouponForUser</b></span>
+                        <a href="#applyCouponForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyCouponForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, applyUserCouponDto: <a href="../classes/ApplyUserCouponDto.html" target="_self">ApplyUserCouponDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/profile/coupon&#x27;)<br />@ApiOperation({operationId: &#x27;applyCouponForUser&#x27;, summary: &#x27;Applies a coupon for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to apply coupon for the user profile&#x27;})<br />@ApiBody({type: ApplyUserCouponDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="230"
+                            class="link-to-prism">src/auth/auth.controller.ts:230</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>applyUserCouponDto</td>
+                                    <td>
+                                                <code><a href="../classes/ApplyUserCouponDto.html" target="_self" >ApplyUserCouponDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getSession"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -157,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/auth/auth.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/auth/auth.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -235,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/auth/auth.controller.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/auth/auth.controller.ts:147</a></div>
                 </td>
             </tr>
 
@@ -313,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/auth/auth.controller.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/auth/auth.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -403,8 +497,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/auth/auth.controller.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/auth/auth.controller.ts:134</a></div>
                 </td>
             </tr>
 
@@ -481,8 +575,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/auth/auth.controller.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/auth/auth.controller.ts:211</a></div>
                 </td>
             </tr>
 
@@ -571,8 +665,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/auth/auth.controller.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/auth/auth.controller.ts:192</a></div>
                 </td>
             </tr>
 
@@ -661,8 +755,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/auth/auth.controller.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/auth/auth.controller.ts:178</a></div>
                 </td>
             </tr>
 
@@ -736,6 +830,8 @@ import { DbUser } from &quot;../user/user.entity&quot;;
 import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 import { UpdateUserEmailPreferencesDto } from &quot;../user/dtos/update-user-email-prefs.dto&quot;;
 import { UpdateUserProfileInterestsDto } from &quot;../user/dtos/update-user-interests.dto&quot;;
+import { ApplyUserCouponDto } from &quot;../user/dtos/apply-user-coupon.dto&quot;;
+import { CouponService } from &quot;../coupon/coupon.service&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { User, UserId } from &quot;./supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;./supabase.guard&quot;;
@@ -747,7 +843,8 @@ export class AuthController {
   constructor(
     private userService: UserService,
     private stripeService: StripeService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private couponService: CouponService
   ) {}
 
   @Get(&quot;/session&quot;)
@@ -791,6 +888,7 @@ export class AuthController {
         linkedin_url,
         discord_url,
         notification_count,
+        coupon_code,
       } &#x3D; await this.userService.checkAddUser(user);
 
       userProfile &#x3D; {
@@ -809,6 +907,7 @@ export class AuthController {
         linkedin_url,
         discord_url,
         notification_count,
+        coupon_code,
       };
     } catch (e) {
       // leave user profile as-is
@@ -936,6 +1035,27 @@ export class AuthController {
     @Body() updateUserDto: UpdateUserEmailPreferencesDto
   ): Promise&lt;DbUser&gt; {
     await this.userService.updateEmailPreferences(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
+
+  @Patch(&quot;/profile/coupon&quot;)
+  @ApiOperation({
+    operationId: &quot;applyCouponForUser&quot;,
+    summary: &quot;Applies a coupon for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to apply coupon for the user profile&quot; })
+  @ApiBody({ type: ApplyUserCouponDto })
+  async applyCouponForUser(@UserId() userId: number, @Body() applyUserCouponDto: ApplyUserCouponDto): Promise&lt;DbUser&gt; {
+    // check for valid coupon
+    await this.couponService.findCoupon(applyUserCouponDto.couponCode);
+
+    await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
+
+    await this.couponService.deleteCoupon(applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
   }
