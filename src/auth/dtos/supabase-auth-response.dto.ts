@@ -134,4 +134,10 @@ export class SupabaseAuthDto {
     type: "integer",
   })
   readonly notification_count?: number;
+
+  @ApiPropertyOptional({
+    description: "Coupon Code",
+    example: "saucy",
+  })
+  readonly coupon_code?: string;
 }
