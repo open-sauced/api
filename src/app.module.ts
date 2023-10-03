@@ -72,8 +72,10 @@ import { IssueSummaryModule } from "./issues/issue-summary.module";
 import { BlogSummaryModule } from "./blogs/issue-summary.module";
 import { PizzaOvenModule } from "./pizza/pizza-oven.module";
 import { UserListModule } from "./user-lists/user-list.module";
+import { CouponModule } from "./coupon/coupon.module";
 import { DbUserList } from "./user-lists/entities/user-list.entity";
 import { DbUserListContributor } from "./user-lists/entities/user-list-contributor.entity";
+import { DbCoupon } from "./coupon/entities/coupon.entity";
 
 @Module({
   imports: [
@@ -133,6 +135,7 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
             DbUserOrganization,
             DbUserList,
             DbUserListContributor,
+            DbCoupon,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
@@ -217,6 +220,7 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
     OpenAiModule,
     PizzaOvenModule,
     UserListModule,
+    CouponModule,
   ],
   providers: [],
 })
