@@ -233,8 +233,6 @@ export class AuthController {
 
     await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
 
-    await this.couponService.deleteCoupon(applyUserCouponDto.couponCode);
-
     return this.userService.findOneById(userId);
   }
 }
