@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.1...v1.50.0-beta.2) (2023-10-03)
+
+
+### 🐛 Bug Fixes
+
+* add ability to apply coupon code more than once ([#342](https://github.com/open-sauced/api.opensauced.pizza/issues/342)) ([fe95480](https://github.com/open-sauced/api.opensauced.pizza/commit/fe95480301b0c3c95249580a41955ee6d6c82218))
+
 ## [1.50.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0...v1.50.0-beta.1) (2023-10-02)
 
 
