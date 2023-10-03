@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 
 import { OpenAiService } from "../open-ai/open-ai.service";
 import { CreateIssueSummaryDto } from "./dtos/create-issue-summary.dto";
@@ -19,7 +19,19 @@ export class IssueSummaryService {
   }
 
   async generateIssueSummary(options: CreateIssueSummaryDto) {
-    const content = `Issue Title: ${options.issueTitle}\nIssue Description: ${options.issueDescription}\nIssue Comments: ${options.issueComments}`;
+    if (options.issueTitle === "") {
+      throw new BadRequestException("Issue title is required for summary");
+    }
+
+    let content = `Issue Title: ${options.issueTitle}\n`;
+
+    if (options.issueDescription !== "") {
+      content += `Issue Description: ${options.issueDescription}\n`;
+    }
+
+    if (options.issueComments !== "") {
+      content += `Issue Comments: ${options.issueComments}`;
+    }
 
     try {
       const completion = this.openAiService.generateCompletion(
