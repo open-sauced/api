@@ -199,10 +199,9 @@ export class UserListService {
     const queryBuilder = this.baseUserQueryBuilder();
 
     queryBuilder
-      .select("users.timezone as timezone")
+      .select("DISTINCT users.timezone as timezone")
       .where("users.timezone IS NOT NULL")
-      .andWhere("users.timezone != ''")
-      .groupBy("users.timezone");
+      .andWhere("users.timezone != ''");
 
     const timezones: DbTimezone[] = await queryBuilder.getRawMany();
 
