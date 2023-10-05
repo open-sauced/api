@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.2...v1.50.0-beta.3) (2023-10-05)
+
+
+### 🍕 Features
+
+* add timzone endpoint ([baac78c](https://github.com/open-sauced/api.opensauced.pizza/commit/baac78c8398f38a0c1899718e3b3f09963113fc8))
+* refactor timezone service modules ([aeda42a](https://github.com/open-sauced/api.opensauced.pizza/commit/aeda42afc146165505836024e974020a59597cce))
+
 ## [1.50.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.1...v1.50.0-beta.2) (2023-10-03)
 
 
