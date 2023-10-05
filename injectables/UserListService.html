@@ -149,7 +149,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, userListContributorRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
+<code>constructor(userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, userListContributorRepository: <a href="../classes/Contributor.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -187,7 +187,7 @@
                                                         <td>userListContributorRepository</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserListContributor&gt;</a></code>
+                                                                        <code><a href="../classes/Contributor.html" target="_self" >Repository&lt;DbUserListContributor&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -331,7 +331,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserListContributor(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addUserListContributor(listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, username?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -383,6 +383,18 @@
 
 
                                 </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -429,7 +441,7 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
 
                     </div>
                 </td>
@@ -532,8 +544,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:137</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -603,8 +615,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:119</a></div>
                 </td>
             </tr>
 
@@ -769,8 +781,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="141"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:141</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:142</a></div>
                 </td>
             </tr>
 
@@ -840,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:182</a></div>
                 </td>
             </tr>
 
@@ -891,7 +903,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1089,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -1128,8 +1140,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:133</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:134</a></div>
                 </td>
             </tr>
 
@@ -1303,10 +1315,11 @@ export class UserListService {
     return this.userListRepository.save(newUserList);
   }
 
-  async addUserListContributor(listId: string, userId: number) {
+  async addUserListContributor(listId: string, userId: number, username?: string) {
     const newUserListContributor &#x3D; this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
+      username,
     });
 
     return this.userListContributorRepository.save(newUserListContributor);
@@ -1382,7 +1395,7 @@ export class UserListService {
     const queryBuilder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
 
     queryBuilder
-      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;)
+      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;)
       .addSelect(&quot;users.login&quot;, &quot;user_list_contributors_login&quot;)
       .where(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId });
 

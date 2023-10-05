@@ -1026,6 +1026,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ContributionsTimeframeDto.html" data-type="entity-link" >ContributionsTimeframeDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Contributor.html" data-type="entity-link" >Contributor</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CreateBlogSummaryDto.html" data-type="entity-link" >CreateBlogSummaryDto</a>
                             </li>
                             <li class="link">

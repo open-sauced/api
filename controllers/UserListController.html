@@ -794,7 +794,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -884,7 +884,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserListContributor[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >Promise&lt;DbUserListContributor[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1063,8 +1063,8 @@ export class UserListController {
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise&lt;DbUserList&gt; {
     const newList &#x3D; await this.userListService.addUserList(userId, createUserListDto);
 
-    const listContributors &#x3D; createUserListDto.contributors.map(async (contributorId) &#x3D;&gt;
-      this.userListService.addUserListContributor(newList.id, contributorId)
+    const listContributors &#x3D; createUserListDto.contributors.map(async (contributor) &#x3D;&gt;
+      this.userListService.addUserListContributor(newList.id, contributor.id, contributor.login)
     );
 
     await Promise.allSettled(listContributors);
