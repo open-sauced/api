@@ -1062,6 +1062,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DbPullRequestContributor.html" data-type="entity-link" >DbPullRequestContributor</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DbTimezone.html" data-type="entity-link" >DbTimezone</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DbTopUser.html" data-type="entity-link" >DbTopUser</a>
                             </li>
                             <li class="link">
