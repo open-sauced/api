@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.3...v1.50.0-beta.4) (2023-10-05)
+
+
+### 🐛 Bug Fixes
+
+* Coalesce on commits in list stats ([#349](https://github.com/open-sauced/api.opensauced.pizza/issues/349)) ([62b15ad](https://github.com/open-sauced/api.opensauced.pizza/commit/62b15ad5267c55bebf32c8edc805d16396103b08))
+
 ## [1.50.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.2...v1.50.0-beta.3) (2023-10-05)
 
 
