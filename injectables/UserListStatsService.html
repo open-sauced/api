@@ -1276,7 +1276,7 @@ export class UserListStatsService {
       .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
       .addSelect(
         &#x60;(
-          SELECT SUM(&quot;pull_requests&quot;.&quot;commits&quot;)
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
             AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
@@ -1338,7 +1338,7 @@ export class UserListStatsService {
       .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
       .addSelect(
         &#x60;(
-          SELECT SUM(&quot;pull_requests&quot;.&quot;commits&quot;)
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
             AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
