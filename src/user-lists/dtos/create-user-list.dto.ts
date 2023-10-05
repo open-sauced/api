@@ -1,6 +1,11 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsArray, IsBoolean, IsString } from "class-validator";
+
+export class Contributor {
+  id: number;
+  login: string;
+}
 
 export class CreateUserListDto {
   @ApiProperty({
@@ -19,11 +24,12 @@ export class CreateUserListDto {
   @IsBoolean()
   is_public: boolean;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "An array of contributor objects",
     isArray: true,
     example: [{ id: 12345, login: "sauceduser" }],
   })
   @IsArray()
+  @Type(() => Contributor)
   contributors: { id: number; login: string }[];
 }
