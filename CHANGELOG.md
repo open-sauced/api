@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.4...v1.50.0-beta.5) (2023-10-05)
+
+
+### 🐛 Bug Fixes
+
+* add username when adding list contributors and left join users ([#350](https://github.com/open-sauced/api.opensauced.pizza/issues/350)) ([e789d3c](https://github.com/open-sauced/api.opensauced.pizza/commit/e789d3cb357d6ca3f162849fda88a382c9055a5a))
+
 ## [1.50.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.3...v1.50.0-beta.4) (2023-10-05)
 
 
