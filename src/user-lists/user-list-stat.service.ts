@@ -228,8 +228,8 @@ export class UserListStatsService {
           SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::DATE - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::DATE
+            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
         )::INTEGER`,
         "all_commits"
       )
@@ -238,8 +238,8 @@ export class UserListStatsService {
           SELECT COALESCE(COUNT("pull_requests"."id"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::DATE - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::DATE
+            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
         )::INTEGER`,
         "all_prs_created"
       );
@@ -360,8 +360,8 @@ export class UserListStatsService {
         `(
         SELECT DISTINCT "author_login"
         FROM "pull_requests"
-        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range} days'
-          AND '${startDate}'::DATE
+        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+          AND '${startDate}'::TIMESTAMP
       )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -370,8 +370,8 @@ export class UserListStatsService {
         `(
         SELECT DISTINCT "author_login"
         FROM "pull_requests"
-        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range + range} days'
-          AND '${startDate}'::DATE - INTERVAL '${range} days'
+        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range + range} days'
+          AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
       )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
@@ -391,7 +391,7 @@ export class UserListStatsService {
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
             WHERE "pull_requests"."updated_at" BETWEEN NOW() - INTERVAL '${range} days'
-              AND '${startDate}'::DATE
+              AND '${startDate}'::TIMESTAMP
           )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -401,7 +401,7 @@ export class UserListStatsService {
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
             WHERE "pull_requests"."updated_at" BETWEEN NOW() - INTERVAL '${range + range} days'
-              AND '${startDate}'::DATE - INTERVAL '${range} days'
+              AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
           )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
@@ -420,8 +420,8 @@ export class UserListStatsService {
         `(
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
-            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range} days'
-              AND '${startDate}'::DATE
+            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+              AND '${startDate}'::TIMESTAMP
           )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -430,8 +430,8 @@ export class UserListStatsService {
         `(
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
-            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range + range} days'
-              AND '${startDate}'::DATE - INTERVAL '${range} days'
+            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range + range} days'
+              AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
           )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`

@@ -80,8 +80,8 @@ export class PullRequestInsightsService {
         break;
 
       default:
-        filters.push([`'${startDate}'::DATE >= "pr"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::DATE - INTERVAL '${interval} days' <= "pr"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP >= "pr"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${interval} days' <= "pr"."updated_at"`, {}]);
         break;
     }
 
@@ -107,7 +107,7 @@ export class PullRequestInsightsService {
 
       default:
         queryBuilder = this.baseQueryBuilder()
-          .select(`TO_CHAR('${startDate}'::DATE - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
+          .select(`TO_CHAR('${startDate}'::TIMESTAMP - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
           .addSelect(`${interval}::INTEGER`, "interval");
         break;
     }

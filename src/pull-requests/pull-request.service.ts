@@ -80,8 +80,8 @@ export class PullRequestService {
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() })
-      .andWhere(`'${startDate}'::DATE >= "pull_requests"."updated_at"`)
-      .andWhere(`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
+      .andWhere(`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
       .addSelect("repos.id", "pull_requests_repo_id")
       .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
@@ -114,8 +114,8 @@ export class PullRequestService {
         filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
         break;
       default:
-        filters.push([`'${startDate}'::DATE >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
         break;
     }
 
@@ -129,7 +129,7 @@ export class PullRequestService {
     if (pageOptionsDto.listId) {
       filters.push([
         `author_login IN (
-          SELECT login FROM 
+          SELECT login FROM
           user_list_contributors
           JOIN users ON user_list_contributors.user_id=users.id AND users.deleted_at IS NULL
           WHERE list_id=:listId
@@ -184,8 +184,8 @@ export class PullRequestService {
         filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
         break;
       default:
-        filters.push([`'${startDate}'::DATE >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
+        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
         break;
     }
 
@@ -233,8 +233,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range + range} days'`)
-            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '${range} days'`)
+            .where(`pull_requests.updated_at >= '${startDate}'::TIMESTAMP - INTERVAL '${range + range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::TIMESTAMP - INTERVAL '${range} days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "previous_month",
@@ -290,8 +290,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range} days'`)
-            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '0 days'`)
+            .where(`pull_requests.updated_at >= '${startDate}'::TIMESTAMP - INTERVAL '${range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::TIMESTAMP - INTERVAL '0 days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "current_month",
@@ -328,8 +328,8 @@ export class PullRequestService {
             .distinct()
             .from(DbPullRequest, "pull_requests")
             .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-            .where(`pull_requests.updated_at >= '${startDate}'::DATE - INTERVAL '${range} days'`)
-            .andWhere(`pull_requests.updated_at < '${startDate}'::DATE - INTERVAL '0 days'`)
+            .where(`pull_requests.updated_at >= '${startDate}'::TIMESTAMP - INTERVAL '${range} days'`)
+            .andWhere(`pull_requests.updated_at < '${startDate}'::TIMESTAMP - INTERVAL '0 days'`)
             .andWhere("pull_requests.author_login != ''")
             .andWhere("repos.id IN (:...repoIds)", { repoIds }),
         "current_month",
@@ -361,8 +361,8 @@ export class PullRequestService {
       .select("author_login")
       .distinct()
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`pull_requests.updated_at >= '${start_date}'::DATE - INTERVAL '${end_range} days'`)
-      .andWhere(`pull_requests.updated_at < '${start_date}'::DATE - INTERVAL '${start_range} days'`)
+      .where(`pull_requests.updated_at >= '${start_date}'::TIMESTAMP - INTERVAL '${end_range} days'`)
+      .andWhere(`pull_requests.updated_at < '${start_date}'::TIMESTAMP - INTERVAL '${start_range} days'`)
       .andWhere("pull_requests.author_login != ''")
       .andWhere("repos.id IN (:...repoIds)", { repoIds });
 
