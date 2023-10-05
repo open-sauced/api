@@ -106,10 +106,11 @@ export class UserListService {
     return this.userListRepository.save(newUserList);
   }
 
-  async addUserListContributor(listId: string, userId: number) {
+  async addUserListContributor(listId: string, userId: number, username?: string) {
     const newUserListContributor = this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
+      username,
     });
 
     return this.userListContributorRepository.save(newUserListContributor);
@@ -185,7 +186,7 @@ export class UserListService {
     const queryBuilder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
 
     queryBuilder
-      .innerJoin("users", "users", "user_list_contributors.user_id=users.id")
+      .leftJoin("users", "users", "user_list_contributors.user_id=users.id")
       .addSelect("users.login", "user_list_contributors_login")
       .where("user_list_contributors.list_id = :listId", { listId });
 

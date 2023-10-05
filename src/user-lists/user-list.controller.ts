@@ -61,8 +61,8 @@ export class UserListController {
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise<DbUserList> {
     const newList = await this.userListService.addUserList(userId, createUserListDto);
 
-    const listContributors = createUserListDto.contributors.map(async (contributorId) =>
-      this.userListService.addUserListContributor(newList.id, contributorId)
+    const listContributors = createUserListDto.contributors.map(async (contributor) =>
+      this.userListService.addUserListContributor(newList.id, contributor.id, contributor.login)
     );
 
     await Promise.allSettled(listContributors);
