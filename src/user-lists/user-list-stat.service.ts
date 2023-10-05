@@ -39,7 +39,7 @@ export class UserListStatsService {
       .andWhere("user_list_contributors.list_id = :listId", { listId })
       .addSelect(
         `(
-          SELECT SUM("pull_requests"."commits")
+          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
@@ -101,7 +101,7 @@ export class UserListStatsService {
       .andWhere("user_list_contributors.list_id = :listId", { listId })
       .addSelect(
         `(
-          SELECT SUM("pull_requests"."commits")
+          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
