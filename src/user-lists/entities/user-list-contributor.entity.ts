@@ -41,6 +41,13 @@ export class DbUserListContributor {
   @Column()
   public list_id!: string;
 
+  @ApiModelProperty({
+    description: "List user source username",
+    example: "sauceduser",
+  })
+  @Column({ type: "text" })
+  public username?: string;
+
   @ApiModelPropertyOptional({
     description: "Timestamp representing top repo first index",
     example: "2016-10-19 13:24:51.000000",

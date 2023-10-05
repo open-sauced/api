@@ -2,6 +2,11 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsArray, IsBoolean, IsString } from "class-validator";
 
+export class Contributor {
+  id: number;
+  login: string;
+}
+
 export class CreateUserListDto {
   @ApiProperty({
     description: "List Name",
@@ -20,12 +25,11 @@ export class CreateUserListDto {
   is_public: boolean;
 
   @ApiProperty({
-    description: "An array of contributor user IDs",
+    description: "An array of contributor objects",
     isArray: true,
-    type: "integer",
-    example: [42211, 81233],
+    example: [{ id: 12345, login: "sauceduser" }],
   })
-  @Type(() => Number)
   @IsArray()
-  contributors: number[];
+  @Type(() => Contributor)
+  contributors: { id: number; login: string }[];
 }
