@@ -272,6 +272,10 @@ export class UserListStatsService {
         cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
         break;
 
+      case UserListContributorStatsOrderEnum.total_contributions:
+        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.total_contributions}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
       default:
         break;
     }

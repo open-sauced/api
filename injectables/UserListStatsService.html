@@ -212,8 +212,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="382"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:382</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="386"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:386</a></div>
                 </td>
             </tr>
 
@@ -315,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="442"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:442</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:446</a></div>
                 </td>
             </tr>
 
@@ -418,8 +418,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="412"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:412</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="416"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:416</a></div>
                 </td>
             </tr>
 
@@ -641,8 +641,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="346"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:346</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="350"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:350</a></div>
                 </td>
             </tr>
 
@@ -712,8 +712,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:193</a></div>
                 </td>
             </tr>
 
@@ -795,8 +795,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="219"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:219</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:223</a></div>
                 </td>
             </tr>
 
@@ -902,8 +902,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:178</a></div>
                 </td>
             </tr>
 
@@ -985,8 +985,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="295"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:295</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="299"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:299</a></div>
                 </td>
             </tr>
 
@@ -1161,8 +1161,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="204"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:204</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -1367,6 +1367,10 @@ export class UserListStatsService {
 
       case UserListContributorStatsOrderEnum.prs_created:
         cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.total_contributions:
+        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.total_contributions}&quot;&#x60;, pageOptionsDto.orderDirection);
         break;
 
       default:
