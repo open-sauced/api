@@ -1,0 +1,681 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li
+  >
+  AllContributionsCount</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/user-lists/user-list-stat.service.ts</code>
+        </p>
+
+
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#all_contributions" 
+>
+                                            all_contributions
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="all_contributions"></a>
+                                        <span class="name "><b>all_contributions</b>
+                                            <a href="#all_contributions">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>all_contributions:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
+import { DbUserListContributorStat } from &quot;./entities/user-list-contributor-stats.entity&quot;;
+import {
+  UserListContributorStatsOrderEnum,
+  UserListContributorStatsTypeEnum,
+  UserListMostActiveContributorsDto,
+} from &quot;./dtos/most-active-contributors.dto&quot;;
+import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
+import { DbContributionStatTimeframe } from &quot;./entities/contributions-timeframe.entity&quot;;
+import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
+import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
+import { ContributionPageMetaDto as ContributionsPageMetaDto } from &quot;./dtos/contributions-pagemeta.dto&quot;;
+import { ContributionsPageDto } from &quot;./dtos/contributions-page.dto&quot;;
+
+interface AllContributionsCount {
+  all_contributions: number;
+}
+
+@Injectable()
+export class UserListStatsService {
+  constructor(
+    @InjectRepository(DbUserListContributor, &quot;ApiConnection&quot;)
+    private userListContributorRepository: Repository&lt;DbUserListContributor&gt;
+  ) {}
+
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbUserListContributor&gt; {
+    const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
+
+    return builder;
+  }
+
+  async findListContributorStatsByProject(listId: string, repoId: number): Promise&lt;DbUserListContributorStat[]&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
+
+    queryBuilder
+      .select(&quot;users.login&quot;, &quot;login&quot;)
+      .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+        )::INTEGER&#x60;,
+        &quot;commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+        )::INTEGER&#x60;,
+        &quot;prs_created&quot;
+      );
+
+    // limit to only the top 20 contributors for stats by projects
+    queryBuilder.limit(20);
+
+    const entities: DbUserListContributorStat[] &#x3D; await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  async findAllListContributorStats(
+    pageOptionsDto: UserListMostActiveContributorsDto,
+    listId: string
+  ): Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const now &#x3D; new Date().toISOString();
+
+    const cteBuilder &#x3D; this.baseQueryBuilder();
+
+    cteBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
+
+    switch (pageOptionsDto.contributorType) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(cteBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(cteBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(cteBuilder, now, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    cteBuilder
+      .select(&quot;users.login&quot;, &quot;login&quot;)
+      .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &quot;commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
+        )::INTEGER&#x60;,
+        &quot;prs_created&quot;
+      );
+
+    switch (pageOptionsDto.orderBy) {
+      case UserListContributorStatsOrderEnum.commits:
+        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.commits}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.prs_created:
+        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      default:
+        break;
+    }
+
+    const entityQb &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&quot;login&quot;)
+      .addSelect(&quot;commits&quot;)
+      .addSelect(&quot;prs_created&quot;)
+      .addSelect(&#x60;(&quot;commits&quot; + &quot;prs_created&quot;) AS &quot;total_contributions&quot;&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    const allCountQb &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&#x60;SUM(&quot;commits&quot; + &quot;prs_created&quot;) OVER () AS &quot;all_contributions&quot;&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    const itemCount &#x3D; await cteBuilder.getCount();
+    const allContributionsResult: AllContributionsCount | undefined &#x3D; await allCountQb.getRawOne();
+
+    if (!allContributionsResult) {
+      throw new NotFoundException();
+    }
+
+    const allContributionsCount &#x3D; allContributionsResult.all_contributions;
+
+    cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbUserListContributorStat[] &#x3D; await entityQb.getRawMany();
+
+    const pageMetaDto &#x3D; new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
+
+    return new ContributionsPageDto(entities, pageMetaDto);
+  }
+
+  async findContributorCategoriesByTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributorCategoryTimeframe[]&gt; {
+    const denominator &#x3D; 82;
+    const range &#x3D; options.range!;
+    const dates &#x3D; this.getDateFrames(range, denominator);
+
+    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
+      this.findContributorCategoriesInTimeframeHelper(frameStartDate.toISOString(), range / denominator, listId)
+    );
+
+    return Promise.all(framePromises);
+  }
+
+  async findContributionsInTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributionStatTimeframe[]&gt; {
+    const range &#x3D; options.range!;
+    const contributorType &#x3D; options.contributorType!;
+    const dates &#x3D; this.getDateFrames(range);
+
+    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
+      this.findContributionsInTimeframeHelper(frameStartDate.toISOString(), range / 7, contributorType, listId)
+    );
+
+    return Promise.all(framePromises);
+  }
+
+  getDateFrames(range &#x3D; 30, denominator &#x3D; 7): Date[] {
+    const currentDate &#x3D; new Date();
+    const frameDuration &#x3D; range / denominator;
+    const dates: Date[] &#x3D; [];
+
+    // eslint-disable-next-line no-loops/no-loops
+    for (let i &#x3D; 0; i &lt; denominator; i++) {
+      const frameDate &#x3D; new Date(currentDate.getTime() - (range - i * frameDuration) * 86400000);
+
+      dates.push(frameDate);
+    }
+
+    return dates;
+  }
+
+  async findContributionsInTimeframeHelper(
+    startDate: string,
+    range: number,
+    contributorType: string,
+    listId: string
+  ): Promise&lt;DbContributionStatTimeframe&gt; {
+    const subQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    subQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    switch (contributorType) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(subQueryBuilder, startDate, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    subQueryBuilder
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+        )::INTEGER&#x60;,
+        &quot;all_commits&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
+          FROM &quot;pull_requests&quot;
+          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+        )::INTEGER&#x60;,
+        &quot;all_prs_created&quot;
+      );
+
+    const queryBuilder &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .select(&#x60;SUM(&quot;subQ&quot;.&quot;all_commits&quot;)&#x60;, &quot;commits&quot;)
+      .addSelect(&#x60;SUM(&quot;subQ&quot;.&quot;all_prs_created&quot;)&#x60;, &quot;prs_created&quot;)
+      .from(&#x60;( ${subQueryBuilder.getQuery()} )&#x60;, &quot;subQ&quot;)
+      .setParameters(subQueryBuilder.getParameters());
+
+    const entity: DbContributionStatTimeframe | undefined &#x3D; await queryBuilder.getRawOne();
+
+    if (!entity) {
+      throw new NotFoundException();
+    }
+
+    entity.time_start &#x3D; startDate;
+    entity.time_end &#x3D; &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;;
+
+    return entity;
+  }
+
+  async findContributorCategoriesInTimeframeHelper(
+    startDate: string,
+    range: number,
+    listId: string
+  ): Promise&lt;DbContributorCategoryTimeframe&gt; {
+    const activeCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    activeCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyActiveContributorsFilter(activeCountQueryBuilder, startDate, range);
+
+    const activeCount &#x3D; await activeCountQueryBuilder.getCount();
+
+    const newCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    newCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyNewContributorsFilter(newCountQueryBuilder, startDate, range);
+
+    const newCount &#x3D; await newCountQueryBuilder.getCount();
+
+    const alumniCountQueryBuilder &#x3D; this.baseQueryBuilder();
+
+    alumniCountQueryBuilder.innerJoin(
+      &quot;users&quot;,
+      &quot;users&quot;,
+      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
+    );
+
+    this.applyAlumniContributorsFilter(alumniCountQueryBuilder, startDate, range);
+
+    const alumniCount &#x3D; await alumniCountQueryBuilder.getCount();
+
+    return {
+      time_start: startDate,
+      time_end: &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;,
+      active: activeCount,
+      new: newCount,
+      alumni: alumniCount,
+      all: activeCount + newCount + alumniCount,
+    };
+  }
+
+  async findContributionsByProject(listId: string): Promise&lt;DbContributionsProjects[]&gt; {
+    // todo (jpmcb) - in the future we&#x27;ll likely want to make this range dynamic.
+    const range &#x3D; 30;
+
+    const queryBuilder &#x3D; this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .select(&quot;split_part(repos.full_name, &#x27;/&#x27;, 1)&quot;, &quot;org_id&quot;)
+      .addSelect(&quot;split_part(repos.full_name, &#x27;/&#x27;, 2)&quot;, &quot;project_id&quot;)
+      .addSelect(&quot;COUNT(pr.id)&quot;, &quot;contributions&quot;)
+
+      // grab pull requests first
+      .from(&quot;pull_requests&quot;, &quot;pr&quot;)
+
+      // and join them with repos
+      .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x27;pr.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;&#x27;)
+
+      // join with filtered users from the user list
+      .innerJoin(
+        (subQuery) &#x3D;&gt;
+          subQuery
+            .select(&quot;users.login&quot;, &quot;user_login&quot;)
+            .from(&quot;user_list_contributors&quot;, &quot;user_list_contributors&quot;)
+            .innerJoin(&quot;users&quot;, &quot;users&quot;, &#x27;&quot;user_list_contributors&quot;.&quot;user_id&quot; &#x3D; &quot;users&quot;.&quot;id&quot;&#x27;)
+            .where(&#x60;&quot;user_list_contributors&quot;.&quot;list_id&quot; &#x3D; &#x27;${listId}&#x27;&#x60;),
+        &quot;filtered_users&quot;,
+        &#x27;pr.&quot;author_login&quot; &#x3D; &quot;filtered_users&quot;.&quot;user_login&quot;&#x27;
+      )
+
+      .where(&#x60;pr.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27; AND NOW()&#x60;)
+      .groupBy(&quot;repos.full_name&quot;);
+
+    const entities: DbContributionsProjects[] &#x3D; await queryBuilder.getRawMany();
+
+    return entities;
+  }
+
+  private applyActiveContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT &quot;author_login&quot;
+        FROM &quot;pull_requests&quot;
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          AND &#x27;${startDate}&#x27;::DATE
+      )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT &quot;author_login&quot;
+        FROM &quot;pull_requests&quot;
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
+          AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+      )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
+  }
+
+  private applyNewContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;);
+  }
+
+  private applyAlumniContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbUserListContributor&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT &quot;author_login&quot;
+            FROM &quot;pull_requests&quot;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;author_login&quot; IS NULL&#x60;);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'AllContributionsCount.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

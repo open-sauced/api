@@ -1020,7 +1020,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CommitsDto.html" data-type="entity-link" >CommitsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ContributionPageMetaDto.html" data-type="entity-link" >ContributionPageMetaDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ContributionsPageDto.html" data-type="entity-link" >ContributionsPageDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ContributionsTimeframeDto.html" data-type="entity-link" >ContributionsTimeframeDto</a>
@@ -1214,6 +1220,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/AllContributionsCount.html" data-type="entity-link" >AllContributionsCount</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/ChatResponse.html" data-type="entity-link" >ChatResponse</a>
                             </li>
