@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.6...v1.50.0-beta.7) (2023-10-06)
+
+
+### 🐛 Bug Fixes
+
+* added order by total_contributions for user list stat service ([#352](https://github.com/open-sauced/api.opensauced.pizza/issues/352)) ([0479d98](https://github.com/open-sauced/api.opensauced.pizza/commit/0479d98328d9c453f1e10b20f39f50d08bf30912))
+
 ## [1.50.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.5...v1.50.0-beta.6) (2023-10-06)
 
 
