@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.5...v1.50.0-beta.6) (2023-10-06)
+
+
+### 🍕 Features
+
+* add "total_contributions" and "all_contributions" counts ([#351](https://github.com/open-sauced/api.opensauced.pizza/issues/351)) ([e276a7c](https://github.com/open-sauced/api.opensauced.pizza/commit/e276a7c76e99567b59bd3f174dd056f35d85aad9))
+
 ## [1.50.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.4...v1.50.0-beta.5) (2023-10-05)
 
 
