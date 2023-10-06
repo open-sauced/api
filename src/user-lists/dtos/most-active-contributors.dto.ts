@@ -6,6 +6,7 @@ import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 export enum UserListContributorStatsOrderEnum {
   commits = "commits",
   prs_created = "prs_created",
+  total_contributions = "total_contributions",
 }
 
 export enum UserListContributorStatsTypeEnum {
