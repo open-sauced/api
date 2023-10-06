@@ -3,7 +3,6 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import {
@@ -15,6 +14,12 @@ import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
+import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
+import { ContributionsPageDto } from "./dtos/contributions-page.dto";
+
+interface AllContributionsCount {
+  all_contributions: number;
+}
 
 @Injectable()
 export class UserListStatsService {
@@ -71,24 +76,24 @@ export class UserListStatsService {
     const range = pageOptionsDto.range!;
     const now = new Date().toISOString();
 
-    const queryBuilder = this.baseQueryBuilder();
+    const cteBuilder = this.baseQueryBuilder();
 
-    queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
+    cteBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
 
     switch (pageOptionsDto.contributorType) {
       case UserListContributorStatsTypeEnum.all:
         break;
 
       case UserListContributorStatsTypeEnum.active:
-        this.applyActiveContributorsFilter(queryBuilder, now, range);
+        this.applyActiveContributorsFilter(cteBuilder, now, range);
         break;
 
       case UserListContributorStatsTypeEnum.new:
-        this.applyNewContributorsFilter(queryBuilder, now, range);
+        this.applyNewContributorsFilter(cteBuilder, now, range);
         break;
 
       case UserListContributorStatsTypeEnum.alumni: {
-        this.applyAlumniContributorsFilter(queryBuilder, now, range);
+        this.applyAlumniContributorsFilter(cteBuilder, now, range);
         break;
       }
 
@@ -96,7 +101,7 @@ export class UserListStatsService {
         break;
     }
 
-    queryBuilder
+    cteBuilder
       .select("users.login", "login")
       .andWhere("user_list_contributors.list_id = :listId", { listId })
       .addSelect(
@@ -120,26 +125,50 @@ export class UserListStatsService {
 
     switch (pageOptionsDto.orderBy) {
       case UserListContributorStatsOrderEnum.commits:
-        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
+        cteBuilder.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
         break;
 
       case UserListContributorStatsOrderEnum.prs_created:
-        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
+        cteBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
         break;
 
       default:
         break;
     }
 
-    const itemCount = await queryBuilder.getCount();
+    const entityQb = this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select("login")
+      .addSelect("commits")
+      .addSelect("prs_created")
+      .addSelect(`("commits" + "prs_created") AS "total_contributions"`)
+      .from("CTE", "CTE");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+    const allCountQb = this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select(`SUM("commits" + "prs_created") OVER () AS "all_contributions"`)
+      .from("CTE", "CTE");
 
-    const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
+    const itemCount = await cteBuilder.getCount();
+    const allContributionsResult: AllContributionsCount | undefined = await allCountQb.getRawOne();
 
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+    if (!allContributionsResult) {
+      throw new NotFoundException();
+    }
 
-    return new PageDto(entities, pageMetaDto);
+    const allContributionsCount = allContributionsResult.all_contributions;
+
+    cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbUserListContributorStat[] = await entityQb.getRawMany();
+
+    const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
+
+    return new ContributionsPageDto(entities, pageMetaDto);
   }
 
   async findContributorCategoriesByTimeframe(
