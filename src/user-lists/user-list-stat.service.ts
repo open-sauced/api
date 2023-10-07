@@ -123,23 +123,6 @@ export class UserListStatsService {
         "prs_created"
       );
 
-    switch (pageOptionsDto.orderBy) {
-      case UserListContributorStatsOrderEnum.commits:
-        cteBuilder.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
-        break;
-
-      case UserListContributorStatsOrderEnum.prs_created:
-        cteBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
-        break;
-
-      case UserListContributorStatsOrderEnum.total_contributions:
-        cteBuilder.orderBy(`"${UserListContributorStatsOrderEnum.total_contributions}"`, pageOptionsDto.orderDirection);
-        break;
-
-      default:
-        break;
-    }
-
     const entityQb = this.userListContributorRepository.manager
       .createQueryBuilder()
       .addCommonTableExpression(cteBuilder, "CTE")
@@ -149,6 +132,23 @@ export class UserListStatsService {
       .addSelect("prs_created")
       .addSelect(`("commits" + "prs_created") AS "total_contributions"`)
       .from("CTE", "CTE");
+
+    switch (pageOptionsDto.orderBy) {
+      case UserListContributorStatsOrderEnum.commits:
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.prs_created:
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.total_contributions:
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.total_contributions}"`, pageOptionsDto.orderDirection);
+        break;
+
+      default:
+        break;
+    }
 
     const allCountQb = this.userListContributorRepository.manager
       .createQueryBuilder()
