@@ -1086,8 +1086,8 @@ export class RepoService {
           WHERE
             LOWER(&quot;open_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;open&#x27;
             AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &quot;repos_open_prs_count&quot;
       )
@@ -1099,8 +1099,8 @@ export class RepoService {
             LOWER(&quot;closed_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
             AND &quot;closed_pull_requests&quot;.&quot;merged&quot; &#x3D; false
             AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;repos_closed_prs_count&#x60;
       )
@@ -1112,8 +1112,8 @@ export class RepoService {
             (LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;merged&#x27;
             OR &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true)
             AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;repos_merged_prs_count&#x60;
       )
@@ -1124,8 +1124,8 @@ export class RepoService {
           WHERE
             &quot;draft_pull_requests&quot;.&quot;draft&quot; &#x3D; true
             AND &quot;draft_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;repos_draft_prs_count&#x60;
       )
@@ -1136,8 +1136,8 @@ export class RepoService {
           WHERE
             &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
             AND &quot;spam_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;repos_spam_prs_count&#x60;
       )
@@ -1148,8 +1148,8 @@ export class RepoService {
           WHERE
             &quot;pull_requests_velocity&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
             AND &quot;pull_requests_velocity&quot;.&quot;closed_at&quot; &gt; &quot;pull_requests_velocity&quot;.&quot;created_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &#x60;repos_pr_velocity_count&#x60;
       )
@@ -1159,8 +1159,8 @@ export class RepoService {
           FROM &quot;pull_requests&quot; &quot;active_pull_requests&quot;
           WHERE
             &quot;active_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
             AND &quot;active_pull_requests&quot;.state !&#x3D; &#x27;closed&#x27;
         )::INTEGER&#x60;,
         &#x60;repo_active_prs_count&#x60;
@@ -1376,8 +1376,8 @@ export class RepoService {
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
     if (!pageOptionsDto.repoIds &amp;&amp; !pageOptionsDto.repo) {
-      filters.push([&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
-      filters.push([&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+      filters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+      filters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
@@ -1402,8 +1402,8 @@ export class RepoService {
     const countFilters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
     if (!pageOptionsDto.repoIds) {
-      countFilters.push([&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
-      countFilters.push([&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+      countFilters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
+      countFilters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
     }
 
     this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
@@ -1476,8 +1476,8 @@ export class RepoService {
         &quot;repos.full_name LIKE user_orgs.login || &#x27;/%&#x27;&quot;
       )
       .where(&quot;user_orgs.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;)
-      .andWhere(&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;)
       .orderBy(&quot;repos.stars&quot;, pageOptionsDto.orderDirection)
       .addOrderBy(&quot;repos.updated_at&quot;, pageOptionsDto.orderDirection);
 

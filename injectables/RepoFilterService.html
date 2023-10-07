@@ -362,8 +362,8 @@ export class RepoFilterService {
           FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
           WHERE
             &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
-            AND &#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
+            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )
       &#x60;,
         {},

@@ -263,23 +263,6 @@ export class UserListStatsService {
         &quot;prs_created&quot;
       );
 
-    switch (pageOptionsDto.orderBy) {
-      case UserListContributorStatsOrderEnum.commits:
-        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.commits}&quot;&#x60;, pageOptionsDto.orderDirection);
-        break;
-
-      case UserListContributorStatsOrderEnum.prs_created:
-        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
-        break;
-
-      case UserListContributorStatsOrderEnum.total_contributions:
-        cteBuilder.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.total_contributions}&quot;&#x60;, pageOptionsDto.orderDirection);
-        break;
-
-      default:
-        break;
-    }
-
     const entityQb &#x3D; this.userListContributorRepository.manager
       .createQueryBuilder()
       .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
@@ -289,6 +272,23 @@ export class UserListStatsService {
       .addSelect(&quot;prs_created&quot;)
       .addSelect(&#x60;(&quot;commits&quot; + &quot;prs_created&quot;) AS &quot;total_contributions&quot;&#x60;)
       .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    switch (pageOptionsDto.orderBy) {
+      case UserListContributorStatsOrderEnum.commits:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.commits}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.prs_created:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.total_contributions:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.total_contributions}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      default:
+        break;
+    }
 
     const allCountQb &#x3D; this.userListContributorRepository.manager
       .createQueryBuilder()
@@ -401,8 +401,8 @@ export class UserListStatsService {
           SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::TIMESTAMP
         )::INTEGER&#x60;,
         &quot;all_commits&quot;
       )
@@ -411,8 +411,8 @@ export class UserListStatsService {
           SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::DATE
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::TIMESTAMP
         )::INTEGER&#x60;,
         &quot;all_prs_created&quot;
       );
@@ -533,8 +533,8 @@ export class UserListStatsService {
         &#x60;(
         SELECT DISTINCT &quot;author_login&quot;
         FROM &quot;pull_requests&quot;
-        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
-          AND &#x27;${startDate}&#x27;::DATE
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+          AND &#x27;${startDate}&#x27;::TIMESTAMP
       )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
@@ -543,8 +543,8 @@ export class UserListStatsService {
         &#x60;(
         SELECT DISTINCT &quot;author_login&quot;
         FROM &quot;pull_requests&quot;
-        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
-          AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+        WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range + range} days&#x27;
+          AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
       )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
@@ -564,7 +564,7 @@ export class UserListStatsService {
             SELECT DISTINCT &quot;author_login&quot;
             FROM &quot;pull_requests&quot;
             WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27;
-              AND &#x27;${startDate}&#x27;::DATE
+              AND &#x27;${startDate}&#x27;::TIMESTAMP
           )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
@@ -574,7 +574,7 @@ export class UserListStatsService {
             SELECT DISTINCT &quot;author_login&quot;
             FROM &quot;pull_requests&quot;
             WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range + range} days&#x27;
-              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
           )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;
@@ -593,8 +593,8 @@ export class UserListStatsService {
         &#x60;(
             SELECT DISTINCT &quot;author_login&quot;
             FROM &quot;pull_requests&quot;
-            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
-              AND &#x27;${startDate}&#x27;::DATE
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP
           )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;author_login&quot;&#x60;
@@ -603,8 +603,8 @@ export class UserListStatsService {
         &#x60;(
             SELECT DISTINCT &quot;author_login&quot;
             FROM &quot;pull_requests&quot;
-            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range + range} days&#x27;
-              AND &#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27;
+            WHERE &quot;pull_requests&quot;.&quot;updated_at&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
           )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;author_login&quot;&#x60;

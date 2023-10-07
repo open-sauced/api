@@ -708,8 +708,8 @@ export class PullRequestInsightsService {
         break;
 
       default:
-        filters.push([&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
-        filters.push([&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${interval} days&#x27; &lt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
+        filters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
+        filters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${interval} days&#x27; &lt;&#x3D; &quot;pr&quot;.&quot;updated_at&quot;&#x60;, {}]);
         break;
     }
 
@@ -735,7 +735,7 @@ export class PullRequestInsightsService {
 
       default:
         queryBuilder &#x3D; this.baseQueryBuilder()
-          .select(&#x60;TO_CHAR(&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${interval} days&#x27;, &#x27;YYYY-MM-DD&#x27;)&#x60;, &quot;day&quot;)
+          .select(&#x60;TO_CHAR(&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${interval} days&#x27;, &#x27;YYYY-MM-DD&#x27;)&#x60;, &quot;day&quot;)
           .addSelect(&#x60;${interval}::INTEGER&#x60;, &quot;interval&quot;);
         break;
     }

@@ -1669,8 +1669,8 @@ export class UserHighlightsService {
       &#x60;,
         &quot;reactions&quot;
       )
-      .where(&#x60;&#x27;${startDate}&#x27;::DATE &gt;&#x3D; user_highlights.created_at&#x60;)
-      .andWhere(&#x60;&#x27;${startDate}&#x27;::DATE - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; user_highlights.created_at&#x60;)
+      .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; user_highlights.created_at&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; user_highlights.created_at&#x60;)
       .limit(10)
       .orderBy(&quot;reactions&quot;, &quot;DESC&quot;);
 
