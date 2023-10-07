@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.7...v1.50.0-beta.8) (2023-10-07)
+
+
+### 🐛 Bug Fixes
+
+* Ordering for CTE based query ([#353](https://github.com/open-sauced/api.opensauced.pizza/issues/353)) ([30cf454](https://github.com/open-sauced/api.opensauced.pizza/commit/30cf454016e68b692373c751b97208c27e1003b6))
+* Refactors "::DATE" casts to "::TIMESTAMP" casting ([#346](https://github.com/open-sauced/api.opensauced.pizza/issues/346)) ([263610d](https://github.com/open-sauced/api.opensauced.pizza/commit/263610d83259749b637e7291f3de28dbdd6c5859))
+
 ## [1.50.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.6...v1.50.0-beta.7) (2023-10-06)
 
 
