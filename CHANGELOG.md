@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.9...v1.50.0-beta.10) (2023-10-09)
+
+
+### 🐛 Bug Fixes
+
+* Hotfix for db migration and ORM not applying to pr-reviews ([#355](https://github.com/open-sauced/api.opensauced.pizza/issues/355)) ([9502850](https://github.com/open-sauced/api.opensauced.pizza/commit/9502850e5ab709fce5afffc26703e4b4a2a1fa47))
+
 ## [1.50.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.8...v1.50.0-beta.9) (2023-10-09)
 
 
