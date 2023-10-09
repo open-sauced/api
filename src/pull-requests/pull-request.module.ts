@@ -16,9 +16,15 @@ import { CodeTestSuggestionController } from "./code-test.suggestion.controller"
 import { CodeExplanationService } from "./code-explanation.service";
 import { CodeExplanationController } from "./code-explanation.controller";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
+import { PullRequestReviewService } from "./pull-request-review.service";
+import { DbPullRequestReview } from "./entities/pull-request-review.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"), RepoFilterModule, OpenAiModule],
+  imports: [
+    TypeOrmModule.forFeature([DbPullRequest, DbPRInsight, DbPullRequestReview], "ApiConnection"),
+    RepoFilterModule,
+    OpenAiModule,
+  ],
   controllers: [
     PullRequestController,
     PullRequestDescriptionController,
@@ -33,7 +39,8 @@ import { CodeTestSuggestionService } from "./code-test-suggestion.service";
     CodeRefactorSuggestionService,
     CodeTestSuggestionService,
     CodeExplanationService,
+    PullRequestReviewService,
   ],
-  exports: [PullRequestService],
+  exports: [PullRequestService, PullRequestReviewService],
 })
 export class PullRequestModule {}
