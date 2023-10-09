@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.8...v1.50.0-beta.9) (2023-10-09)
+
+
+### 🍕 Features
+
+* initial commit for PR reviews ([#332](https://github.com/open-sauced/api.opensauced.pizza/issues/332)) ([c4fc34c](https://github.com/open-sauced/api.opensauced.pizza/commit/c4fc34c8fb09b0680113183d016d8be052cec197))
+
 ## [1.50.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.7...v1.50.0-beta.8) (2023-10-07)
 
 
