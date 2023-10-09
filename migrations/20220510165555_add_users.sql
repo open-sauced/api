@@ -16,7 +16,7 @@ create table if not exists public.users
   is_waitlisted boolean not null default false,
   hireable boolean not null default false,
   display_email boolean NOT NULL DEFAULT false,
-  receive_collaboration boolean NOT NULL DEFAULT false,
+  receive_connection boolean NOT NULL DEFAULT false,
   created_at timestamp without time zone not null default now(),
   updated_at timestamp without time zone not null default now(),
   deleted_at timestamp without time zone default null,
@@ -68,7 +68,7 @@ create index if not exists users_idx_is_onboarded on public.users (is_onboarded)
 create index if not exists users_idx_is_waitlisted on public.users (is_waitlisted);
 create index if not exists users_idx_hireable on public.users (hireable);
 create index if not exists users_idx_display_email on public.users (display_email);
-create index if not exists users_idx_receive_collaboration on public.users (receive_collaboration);
+create index if not exists users_idx_receive_connection on public.users (receive_connection);
 create index if not exists users_idx_created_at on public.users (created_at);
 create index if not exists users_idx_updated_at on public.users (updated_at);
 create index if not exists users_idx_deleted_at on public.users (deleted_at);

@@ -26,7 +26,7 @@ import { DbUserNotification } from "./entities/user-notification.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
-import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { DbUserConnection } from "./entities/user-connection.entity";
 import { DbUserOrganization } from "./entities/user-organization.entity";
 
 @Entity({ name: "users" })
@@ -413,14 +413,14 @@ export class DbUser extends BaseEntity {
   readonly display_email?: boolean;
 
   @ApiModelProperty({
-    description: "User receives collaboration requests",
+    description: "User receives connection requests",
     example: false,
   })
   @Column({
     type: "boolean",
     default: false,
   })
-  readonly receive_collaboration?: boolean;
+  readonly receive_connection?: boolean;
 
   @ApiModelProperty({
     description: "User timezone in UTC",
@@ -558,12 +558,12 @@ export class DbUser extends BaseEntity {
   public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user)
-  public collaborations: DbUserCollaboration[];
+  @OneToMany(() => DbUserConnection, (connection) => connection.user)
+  public connections: DbUserConnection[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user)
-  public request_collaborations: DbUserCollaboration[];
+  @OneToMany(() => DbUserConnection, (connection) => connection.request_user)
+  public request_connections: DbUserConnection[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.user)

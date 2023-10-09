@@ -205,7 +205,7 @@
 <text text-anchor="start" x="2133" y="-893.9" font-family="Arial" font-size="14.00" fill="#000000">display_email </text>
 <text text-anchor="start" x="2221.6732" y="-893.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 <polygon fill="none" stroke="#000000" points="2126,-852.5 2126,-882.5 2477,-882.5 2477,-852.5 2126,-852.5"/>
-<text text-anchor="start" x="2133" y="-863.9" font-family="Arial" font-size="14.00" fill="#000000">receive_collaboration </text>
+<text text-anchor="start" x="2133" y="-863.9" font-family="Arial" font-size="14.00" fill="#000000">receive_connection </text>
 <text text-anchor="start" x="2269.1374" y="-863.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 <polygon fill="none" stroke="#000000" points="2126,-822.5 2126,-852.5 2477,-852.5 2477,-822.5 2126,-822.5"/>
 <text text-anchor="start" x="2133" y="-833.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
@@ -783,12 +783,12 @@
 <polygon fill="#000000" stroke="#000000" points="3017.5818,-2209.1387 3025.4874,-2216.7382 3022.2909,-2210.8194 3027,-2212.5 3027,-2212.5 3027,-2212.5 3022.2909,-2210.8194 3028.5126,-2208.2618 3017.5818,-2209.1387 3017.5818,-2209.1387"/>
 <text text-anchor="start" x="2573.9425" y="-2222.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE</text>
 </g>
-<!-- public.user_collaborations -->
+<!-- public.user_connections -->
 <g id="node13" class="node">
-<title>public.user_collaborations</title>
+<title>public.user_connections</title>
 <polygon fill="#efefef" stroke="transparent" points="3489,-2302.5 3489,-2337.5 3847,-2337.5 3847,-2302.5 3489,-2302.5"/>
 <polygon fill="none" stroke="#000000" points="3489,-2302.5 3489,-2337.5 3847,-2337.5 3847,-2302.5 3489,-2302.5"/>
-<text text-anchor="start" x="3515.3529" y="-2315.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_collaborations</text>
+<text text-anchor="start" x="3515.3529" y="-2315.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_connections</text>
 <text text-anchor="start" x="3723.3933" y="-2315.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
 <text text-anchor="start" x="3727.2839" y="-2315.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
 <polygon fill="none" stroke="#000000" points="3489,-2272.5 3489,-2302.5 3847,-2302.5 3847,-2272.5 3489,-2272.5"/>
@@ -819,19 +819,19 @@
 <text text-anchor="start" x="3496" y="-2043.9" font-family="Arial" font-size="14.00" fill="#000000">status </text>
 <text text-anchor="start" x="3537.237" y="-2043.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(20)]</text>
 <polygon fill="none" stroke="#000000" points="3489,-2002.5 3489,-2032.5 3847,-2032.5 3847,-2002.5 3489,-2002.5"/>
-<text text-anchor="start" x="3495.6887" y="-2013.9" font-family="Arial" font-size="14.00" fill="#000000">collaboration_emailed_at </text>
+<text text-anchor="start" x="3495.6887" y="-2013.9" font-family="Arial" font-size="14.00" fill="#000000">connection_emailed_at </text>
 <text text-anchor="start" x="3655.1711" y="-2013.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
 </g>
-<!-- public.user_collaborations&#45;&gt;public.users -->
+<!-- public.user_connections&#45;&gt;public.users -->
 <g id="edge18" class="edge">
-<title>public.user_collaborations:request_user_id&#45;&gt;public.users:id</title>
+<title>public.user_connections:request_user_id&#45;&gt;public.users:id</title>
 <path fill="none" stroke="#000000" d="M3479.1967,-2223.976C3409.5595,-2169.7828 3493.9129,-1507.894 3437,-1447 3363.506,-1368.3651 2584.6328,-1317.5 2477,-1317.5"/>
 <polygon fill="#000000" stroke="#000000" points="3479.5895,-2224.1171 3487.4777,-2231.7347 3484.2948,-2225.8086 3489,-2227.5 3489,-2227.5 3489,-2227.5 3484.2948,-2225.8086 3490.5223,-2223.2653 3479.5895,-2224.1171 3479.5895,-2224.1171"/>
 <text text-anchor="start" x="3496.491" y="-2237.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (request_user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE</text>
 </g>
-<!-- public.user_collaborations&#45;&gt;public.users -->
+<!-- public.user_connections&#45;&gt;public.users -->
 <g id="edge19" class="edge">
-<title>public.user_collaborations:user_id&#45;&gt;public.users:id</title>
+<title>public.user_connections:user_id&#45;&gt;public.users:id</title>
 <path fill="none" stroke="#000000" d="M3479.2738,-2254.1768C3406.3083,-2200.3716 3496.1335,-1510.4258 3437,-1447 3363.6026,-1368.2749 2584.6328,-1317.5 2477,-1317.5"/>
 <polygon fill="#000000" stroke="#000000" points="3479.5371,-2254.2667 3487.545,-2261.7583 3484.2686,-2255.8833 3489,-2257.5 3489,-2257.5 3489,-2257.5 3484.2686,-2255.8833 3490.455,-2253.2417 3479.5371,-2254.2667 3479.5371,-2254.2667"/>
 <text text-anchor="start" x="3035.9425" y="-2267.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE</text>

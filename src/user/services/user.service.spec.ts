@@ -399,7 +399,7 @@ describe("UserService", () => {
     it("should update user's email preferences", async () => {
       const userId = faker.number.int();
 
-      await userService.updateEmailPreferences(userId, { display_email: false, receive_collaboration: true });
+      await userService.updateEmailPreferences(userId, { display_email: false, receive_connection: true });
       expect(dbUserRepositoryMock.update).toHaveBeenCalled();
     });
   });

@@ -22,11 +22,11 @@ import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserNotification } from "./entities/user-notification.entity";
-import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { DbUserConnection } from "./entities/user-connection.entity";
 import { UserNotificationService } from "./user-notifcation.service";
 import { UserNotificationController } from "./user-notification.controller";
-import { UserCollaborationService } from "./user-collaboration.service";
-import { UserCollaborationController } from "./user-collaboration.controller";
+import { UserConnectionService } from "./user-connection.service";
+import { UserConnectionController } from "./user-connection.controller";
 import { UserEndorsementController } from "./user-endorsement.controller";
 
 import { UserRecommendationController } from "./user-recommendation.controller";
@@ -42,7 +42,7 @@ import { DbUserOrganization } from "./entities/user-organization.entity";
         DbUserToUserFollows,
         DbUserTopRepo,
         DbUserNotification,
-        DbUserCollaboration,
+        DbUserConnection,
         DbRepo,
         DbEndorsement,
         DbUserOrganization,
@@ -58,7 +58,7 @@ import { DbUserOrganization } from "./entities/user-organization.entity";
     UserHighlightsController,
     UserFollowsController,
     UserNotificationController,
-    UserCollaborationController,
+    UserConnectionController,
     UserEndorsementController,
     UserRecommendationController,
   ],
@@ -71,7 +71,7 @@ import { DbUserOrganization } from "./entities/user-organization.entity";
     RepoService,
     RepoFilterService,
     UserNotificationService,
-    UserCollaborationService,
+    UserConnectionService,
     EndorsementService,
   ],
   exports: [UserService, UserHighlightsService, UserFollowService, RepoService, EndorsementService],

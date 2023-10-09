@@ -4,7 +4,7 @@ import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-prop
 @Entity({ name: "user_list_contributors" })
 export class DbUserListContributorStat {
   @ApiModelProperty({
-    description: "User list collaborator's login",
+    description: "User list connection's login",
     example: "bdougie",
   })
   @Column({

@@ -29,7 +29,7 @@
 | [public.user_top_repos](public.user_top_repos.md)                         | 6       |         | BASE TABLE |
 | [public.pg_stat_statements_info](public.pg_stat_statements_info.md)       | 2       |         | VIEW       |
 | [public.pg_stat_statements](public.pg_stat_statements.md)                 | 43      |         | VIEW       |
-| [public.user_collaborations](public.user_collaborations.md)               | 10      |         | BASE TABLE |
+| [public.user_connections](public.user_connections.md)                     | 10      |         | BASE TABLE |
 | [public.endorsements](public.endorsements.md)                             | 8       |         | BASE TABLE |
 | [public.baked_repos](public.baked_repos.md)                               | 3       |         | BASE TABLE |
 | [public.commit_authors](public.commit_authors.md)                         | 2       |         | BASE TABLE |

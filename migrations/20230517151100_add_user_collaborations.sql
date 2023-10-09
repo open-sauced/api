@@ -1,4 +1,4 @@
-create table if not exists public.user_collaborations
+create table if not exists public.user_connections
 (
   -- static columns
   id uuid default uuid_generate_v4() not null,
@@ -14,14 +14,14 @@ create table if not exists public.user_collaborations
   status character varying(20) collate pg_catalog."default" not null default 'pending',
 
 -- dynamic columns
-  constraint user_collaborations_pkey primary key (id)
+  constraint user_connections_pkey primary key (id)
 )
 
 tablespace pg_default;
 
 -- indexes
-create index user_collaborations_idx_created_at on public.user_collaborations (created_at);
-create index user_collaborations_idx_updated_at on public.user_collaborations (updated_at);
-create index user_collaborations_idx_deleted_at on public.user_collaborations (deleted_at);
-create index user_collaborations_idx_request_emailed_at on public.user_collaborations (request_emailed_at);
-create index user_collaborations_idx_status on public.user_collaborations (status);
+create index user_connections_idx_created_at on public.user_connections (created_at);
+create index user_connections_idx_updated_at on public.user_connections (updated_at);
+create index user_connections_idx_deleted_at on public.user_connections (deleted_at);
+create index user_connections_idx_request_emailed_at on public.user_connections (request_emailed_at);
+create index user_connections_idx_status on public.user_connections (status);

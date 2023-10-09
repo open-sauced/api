@@ -306,7 +306,7 @@ export class UserService {
   async updateEmailPreferences(id: number, user: UpdateUserEmailPreferencesDto) {
     return this.userRepository.update(id, {
       display_email: user.display_email,
-      receive_collaboration: user.receive_collaboration,
+      receive_connection: user.receive_connection,
     });
   }
 

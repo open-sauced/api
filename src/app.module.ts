@@ -62,7 +62,7 @@ import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction
 import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
-import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
+import { DbUserConnection } from "./user/entities/user-connection.entity";
 import { DbUserOrganization } from "./user/entities/user-organization.entity";
 import { EndorsementModule } from "./endorsement/endorsement.module";
 import { DbEndorsement } from "./endorsement/entities/endorsement.entity";
@@ -111,7 +111,7 @@ import { DbCoupon } from "./coupon/entities/coupon.entity";
             DbUserHighlight,
             DbUserHighlightReaction,
             DbUserNotification,
-            DbUserCollaboration,
+            DbUserConnection,
             DbRepo,
             DbContribution,
             DbRepoToUserVotes,

@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsIn, IsString } from "class-validator";
 
-export class UpdateUserCollaborationDto {
+export class UpdateUserConnectionDto {
   @ApiProperty({
-    description: "Collaboration Request Status",
+    description: "Connection Request Status",
     type: String,
     example: "accept",
   })

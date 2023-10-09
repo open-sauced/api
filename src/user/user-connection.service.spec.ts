@@ -6,11 +6,11 @@ import { PagerService } from "../common/services/pager.service";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
-import { DbUserCollaboration } from "./entities/user-collaboration.entity";
-import { UserCollaborationService } from "./user-collaboration.service";
+import { DbUserConnection } from "./entities/user-connection.entity";
+import { UserConnectionService } from "./user-connection.service";
 
-describe("UserCollaborationService", () => {
-  let service: UserCollaborationService;
+describe("UserConnectionService", () => {
+  let service: UserConnectionService;
 
   const queryBuilderMock = {
     withDeleted: jest.fn().mockReturnThis(),
@@ -24,7 +24,7 @@ describe("UserCollaborationService", () => {
     applyPagination: jest.fn(),
   };
 
-  const userCollaborationRepositoryMock = {
+  const userConnectionRepositoryMock = {
     createQueryBuilder: jest.fn().mockReturnValue(queryBuilderMock),
     save: jest.fn(),
     update: jest.fn(),
@@ -34,26 +34,26 @@ describe("UserCollaborationService", () => {
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        UserCollaborationService,
+        UserConnectionService,
         {
           provide: PagerService,
           useValue: pagerServiceMock,
         },
         {
-          provide: getRepositoryToken(DbUserCollaboration, "ApiConnection"),
-          useValue: userCollaborationRepositoryMock,
+          provide: getRepositoryToken(DbUserConnection, "ApiConnection"),
+          useValue: userConnectionRepositoryMock,
         },
       ],
     }).compile();
 
-    service = module.get<UserCollaborationService>(UserCollaborationService);
+    service = module.get<UserConnectionService>(UserConnectionService);
   });
 
   afterEach(() => {
-    userCollaborationRepositoryMock.createQueryBuilder.mockClear();
-    userCollaborationRepositoryMock.save.mockClear();
-    userCollaborationRepositoryMock.update.mockClear();
-    userCollaborationRepositoryMock.softDelete.mockClear();
+    userConnectionRepositoryMock.createQueryBuilder.mockClear();
+    userConnectionRepositoryMock.save.mockClear();
+    userConnectionRepositoryMock.update.mockClear();
+    userConnectionRepositoryMock.softDelete.mockClear();
   });
 
   it("should be defined", () => {
@@ -61,17 +61,17 @@ describe("UserCollaborationService", () => {
   });
 
   describe("findOneById", () => {
-    it("should return a user collaboration when given a valid id", async () => {
+    it("should return a user connection when given a valid id", async () => {
       const id = faker.string.uuid();
       const userId = faker.number.int();
       const requestUserId = faker.number.int();
-      const userCollaboration = { id, user_id: userId, request_user_id: requestUserId };
+      const userConnection = { id, user_id: userId, request_user_id: requestUserId };
 
-      queryBuilderMock.getOne.mockResolvedValue(userCollaboration);
+      queryBuilderMock.getOne.mockResolvedValue(userConnection);
 
       const result = await service.findOneById(id);
 
-      expect(result).toEqual(userCollaboration);
+      expect(result).toEqual(userConnection);
       expect(queryBuilderMock.getOne).toHaveBeenCalled();
     });
 
@@ -83,61 +83,61 @@ describe("UserCollaborationService", () => {
     });
   });
 
-  describe("addUserCollaboration", () => {
-    it("should create a new user collaboration", async () => {
+  describe("addUserConnection", () => {
+    it("should create a new user connection", async () => {
       const id = faker.string.uuid();
       const userId = faker.number.int();
       const requestUserId = faker.number.int();
-      const userCollaboration = { id, user_id: userId, request_user_id: requestUserId };
+      const userConnection = { id, user_id: userId, request_user_id: requestUserId };
 
-      userCollaborationRepositoryMock.save.mockResolvedValue(userCollaboration);
-      const result = await service.addUserCollaboration(userCollaboration);
+      userConnectionRepositoryMock.save.mockResolvedValue(userConnection);
+      const result = await service.addUserConnection(userConnection);
 
-      expect(userCollaborationRepositoryMock.save).toHaveBeenCalledWith(userCollaboration);
-      expect(result).toEqual(userCollaboration);
+      expect(userConnectionRepositoryMock.save).toHaveBeenCalledWith(userConnection);
+      expect(result).toEqual(userConnection);
     });
   });
 
-  describe("updateUserCollaboration", () => {
-    it("should update a user collaboration", async () => {
+  describe("updateUserConnection", () => {
+    it("should update a user connection", async () => {
       const id = faker.string.uuid();
       const userId = faker.number.int();
       const requestUserId = faker.number.int();
-      const userCollaboration = { id, user_id: userId, request_user_id: requestUserId };
+      const userConnection = { id, user_id: userId, request_user_id: requestUserId };
 
-      userCollaborationRepositoryMock.update.mockResolvedValue(userCollaboration);
-      const result = await service.updateUserCollaboration(id, userCollaboration);
+      userConnectionRepositoryMock.update.mockResolvedValue(userConnection);
+      const result = await service.updateUserConnection(id, userConnection);
 
-      expect(userCollaborationRepositoryMock.update).toHaveBeenCalledWith(id, userCollaboration);
-      expect(result).toEqual(userCollaboration);
+      expect(userConnectionRepositoryMock.update).toHaveBeenCalledWith(id, userConnection);
+      expect(result).toEqual(userConnection);
     });
   });
 
-  describe("removeUserCollaboration", () => {
-    it("should remove a user collaboration", async () => {
+  describe("removeUserConnection", () => {
+    it("should remove a user connection", async () => {
       const id = faker.string.uuid();
       const userId = faker.number.int();
       const requestUserId = faker.number.int();
-      const userCollaboration = { id, user_id: userId, request_user_id: requestUserId };
+      const userConnection = { id, user_id: userId, request_user_id: requestUserId };
 
-      userCollaborationRepositoryMock.softDelete.mockResolvedValue(userCollaboration);
-      const result = await service.removeUserCollaboration(id);
+      userConnectionRepositoryMock.softDelete.mockResolvedValue(userConnection);
+      const result = await service.removeUserConnection(id);
 
-      expect(userCollaborationRepositoryMock.softDelete).toHaveBeenCalledWith(id);
-      expect(result).toEqual(userCollaboration);
+      expect(userConnectionRepositoryMock.softDelete).toHaveBeenCalledWith(id);
+      expect(result).toEqual(userConnection);
     });
   });
 
-  describe("findAllUserCollaborations", () => {
-    it("should return all user collaborations for the given user", async () => {
+  describe("findAllUserConnections", () => {
+    it("should return all user connections for the given user", async () => {
       const pageOptionsDto: PageOptionsDto = { page: 1, limit: 10, skip: 0 };
       const id = faker.string.uuid();
       const userId = faker.number.int();
       const requestUserId = faker.number.int();
-      const userCollaboration = { id, user_id: userId, request_user_id: requestUserId };
-      const userCollaborations = [userCollaboration];
+      const userConnection = { id, user_id: userId, request_user_id: requestUserId };
+      const userConnections = [userConnection];
       const pageMetaDto = new PageMetaDto({ pageOptionsDto, itemCount: 1 });
-      const expectedResult = new PageDto(userCollaborations, pageMetaDto);
+      const expectedResult = new PageDto(userConnections, pageMetaDto);
 
       const createQueryBuilderMock = {
         innerJoinAndSelect: jest.fn().mockReturnThis(),
@@ -146,10 +146,10 @@ describe("UserCollaborationService", () => {
       };
 
       pagerServiceMock.applyPagination.mockReturnValue(expectedResult);
-      userCollaborationRepositoryMock.createQueryBuilder.mockReturnValue(createQueryBuilderMock);
-      const result = await service.findAllUserCollaborations(pageOptionsDto, userId);
+      userConnectionRepositoryMock.createQueryBuilder.mockReturnValue(createQueryBuilderMock);
+      const result = await service.findAllUserConnections(pageOptionsDto, userId);
 
-      expect(userCollaborationRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(userConnectionRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.innerJoinAndSelect).toHaveBeenCalled();
       expect(createQueryBuilderMock.where).toHaveBeenCalled();
       expect(createQueryBuilderMock.orderBy).toHaveBeenCalled();

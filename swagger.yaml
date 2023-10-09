@@ -12,8 +12,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SupabaseAuthDto"
-      tags:
-        &a1
+      tags: &a1
         - Authentication service
       security:
         - bearer: []
@@ -168,8 +167,7 @@ paths:
                 $ref: "#/components/schemas/DbUser"
         "404":
           description: User not found
-      tags:
-        &a2
+      tags: &a2
         - User service
   "/v1/users/{username}/prs":
     get:
@@ -430,8 +428,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to add user highlight
-      tags:
-        &a3
+      tags: &a3
         - User Highlights service
       security:
         - bearer: []
@@ -705,8 +702,7 @@ paths:
                 $ref: "#/components/schemas/DbUserToUserFollows"
         "404":
           description: User follow not found
-      tags:
-        &a4
+      tags: &a4
         - User service
       security:
         - bearer: []
@@ -801,10 +797,10 @@ paths:
         - User service
       security:
         - bearer: []
-  /v1/user/collaborations:
+  /v1/user/connections:
     get:
-      operationId: findAllUserCollaborations
-      summary: Listing all collaborations for the authenticated user
+      operationId: findAllUserConnections
+      summary: Listing all connections for the authenticated user
       parameters:
         - name: page
           required: false
@@ -845,48 +841,47 @@ paths:
                       data:
                         type: array
                         items:
-                          $ref: "#/components/schemas/DbUserCollaboration"
-      tags:
-        &a5
-        - User Collaborations service
+                          $ref: "#/components/schemas/DbUserConnection"
+      tags: &a5
+        - User Connections service
       security:
         - bearer: []
     post:
-      operationId: addUserCollaboration
-      summary: Adds a new collaboration request for the user
+      operationId: addUserConnection
+      summary: Adds a new connection request for the user
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateUserCollaborationDto"
+              $ref: "#/components/schemas/CreateUserConnectionDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserCollaboration"
+                $ref: "#/components/schemas/DbUserConnection"
         "201":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserCollaboration"
+                $ref: "#/components/schemas/DbUserConnection"
         "400":
           description: Invalid request
         "404":
-          description: Unable to add user collaboration
+          description: Unable to add user connection
         "409":
-          description: The requested user is not accepting collaboration requests
+          description: The requested user is not accepting connection requests
       tags: *a5
       security:
         - bearer: []
-  "/v1/user/collaborations/{id}":
+  "/v1/user/connections/{id}":
     patch:
-      operationId: updateUserCollaboration
-      summary: Updates a user collaboration
+      operationId: updateUserConnection
+      summary: Updates a user connection
       parameters:
         - name: id
           required: true
@@ -898,24 +893,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateUserCollaborationDto"
+              $ref: "#/components/schemas/UpdateUserConnectionDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserCollaboration"
+                $ref: "#/components/schemas/DbUserConnection"
         "400":
           description: Invalid request
         "404":
-          description: Unable to find user collaboration
+          description: Unable to find user connection
       tags: *a5
       security:
         - bearer: []
     delete:
-      operationId: removeUserCollaborationById
-      summary: Removes the user collaboration request
+      operationId: removeUserConnectionById
+      summary: Removes the user connection request
       parameters:
         - name: id
           required: true
@@ -928,7 +923,7 @@ paths:
         "400":
           description: Invalid request
         "404":
-          description: Unable to remove user collaboration
+          description: Unable to remove user connection
       tags: *a5
       security:
         - bearer: []
@@ -978,8 +973,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
-      tags:
-        &a6
+      tags: &a6
         - Endorsements service
       security:
         - bearer: []
@@ -1050,8 +1044,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags:
-        &a7
+      tags: &a7
         - User Recommendations service
       security:
         - bearer: []
@@ -1148,8 +1141,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequest"
-      tags:
-        &a8
+      tags: &a8
         - Pull Requests service
   /v1/prs/search:
     get:
@@ -1398,8 +1390,7 @@ paths:
                 $ref: "#/components/schemas/DbRepo"
         "404":
           description: Repository not found
-      tags:
-        &a9
+      tags: &a9
         - Repository service
   "/v1/repos/{owner}/{repo}":
     get:
@@ -1567,10 +1558,8 @@ paths:
                     example: ok
                   info:
                     type: object
-                    example:
-                      &a10
-                      database:
-                        &a11
+                    example: &a10
+                      database: &a11
                         status: up
                     additionalProperties:
                       type: object
@@ -1625,8 +1614,7 @@ paths:
                   error:
                     type: object
                     example:
-                      redis:
-                        &a12
+                      redis: &a12
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -1649,8 +1637,7 @@ paths:
                           type: string
                       additionalProperties:
                         type: string
-      tags:
-        &a16
+      tags: &a16
         - Health check service
   /v1/health/web:
     get:
@@ -1670,10 +1657,8 @@ paths:
                     example: ok
                   info:
                     type: object
-                    example:
-                      &a13
-                      database:
-                        &a14
+                    example: &a13
+                      database: &a14
                         status: up
                     additionalProperties:
                       type: object
@@ -1728,8 +1713,7 @@ paths:
                   error:
                     type: object
                     example:
-                      redis:
-                        &a15
+                      redis: &a15
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -1803,8 +1787,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags:
-        &a17
+      tags: &a17
         - Repository service guarded
         - Vote service
       security:
@@ -1984,8 +1967,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags:
-        &a18
+      tags: &a18
         - Repository service guarded
         - Star service
       security:
@@ -2144,8 +2126,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags:
-        &a19
+      tags: &a19
         - Repository service guarded
         - Stargaze service
       security:
@@ -2304,8 +2285,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags:
-        &a20
+      tags: &a20
         - Repository service guarded
         - Submit service
       security:
@@ -2471,8 +2451,7 @@ paths:
                           $ref: "#/components/schemas/DbContribution"
         "404":
           description: Repo not found
-      tags:
-        &a21
+      tags: &a21
         - Repository service
         - Contribution service
   "/v1/repos/{owner}/{repo}/contributions":
@@ -2560,8 +2539,7 @@ paths:
           description: Not Authorized to view this Insight
         "404":
           description: Insight page not found
-      tags:
-        &a22
+      tags: &a22
         - Insights service
     delete:
       operationId: removeInsightForUser
@@ -2639,8 +2617,7 @@ paths:
                           $ref: "#/components/schemas/DbInsight"
         "404":
           description: Insights not found
-      tags:
-        &a23
+      tags: &a23
         - Insights service
       security:
         - bearer: []
@@ -2758,8 +2735,7 @@ paths:
                           $ref: "#/components/schemas/DbInsightMember"
         "404":
           description: Insight not found
-      tags:
-        &a24
+      tags: &a24
         - Insights service
       security:
         - bearer: []
@@ -2881,8 +2857,7 @@ paths:
           description: ""
         "400":
           description: Invalid request
-      tags:
-        &a25
+      tags: &a25
         - Pizza oven service
   "/v1/bake/repos/{id}":
     get:
@@ -3241,8 +3216,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
-      tags:
-        &a26
+      tags: &a26
         - Highlights service
   /v1/highlights/featured:
     get:
@@ -3542,8 +3516,7 @@ paths:
             application/json:
               schema:
                 type: object
-      tags:
-        &a27
+      tags: &a27
         - Endorsements service
     get:
       operationId: findAllEndorsements
@@ -3971,8 +3944,7 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
-      tags:
-        &a28
+      tags: &a28
         - Contributors service
   /v1/contributors/insights/recent:
     get:
@@ -4172,8 +4144,7 @@ paths:
           description: Invalid request
         "404":
           description: Unable to get user lists
-      tags:
-        &a29
+      tags: &a29
         - User Lists service
       security:
         - bearer: []
@@ -4410,7 +4381,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CollaboratorsDto"
+              $ref: "#/components/schemas/ConnectionsDto"
       responses:
         "201":
           description: ""
@@ -4455,7 +4426,7 @@ paths:
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
-    
+
     ## Swagger-UI API Documentation
 
 
@@ -4879,9 +4850,9 @@ components:
           type: boolean
           description: User display public email
           example: false
-        receive_collaboration:
+        receive_connection:
           type: boolean
-          description: User receives collaboration requests
+          description: User receives connection requests
           example: false
         timezone:
           type: string
@@ -4965,13 +4936,13 @@ components:
           type: boolean
           description: User Display Public Email
           example: false
-        receive_collaboration:
+        receive_connection:
           type: boolean
-          description: User Recieve Collaboration Requests
+          description: User Recieve Connection Requests
           example: false
       required:
         - display_email
-        - receive_collaboration
+        - receive_connection
     PageMetaDto:
       type: object
       properties:
@@ -5197,8 +5168,8 @@ components:
         highlight:
           type: string
           description: Highlight Text
-          example: |-2
-            
+          example: |2-
+
                 I made my first open source pull request!
 
                 github.com/open-sauced/insights/pull/1
@@ -5674,78 +5645,78 @@ components:
         - id
         - user_id
         - following_user_id
-    DbUserCollaboration:
+    DbUserConnection:
       type: object
       properties:
         id:
           type: string
-          description: User Collaboration identifier
+          description: User Connection identifier
           example: uuid-v4
         user_id:
           type: integer
-          description: Collaboration Receipient User ID
+          description: Connection Receipient User ID
           example: 237133
         request_user_id:
           type: integer
-          description: Collaboration Request User ID
+          description: Connection Request User ID
           example: 31333
         message:
           type: string
-          description: Collaboration Request Message
+          description: Connection Request Message
           example: Hey, are you up for collaborating on this cool project?
         status:
           type: string
-          description: Collaboration Status
+          description: Connection Status
           example: pending
         created_at:
           format: date-time
           type: string
-          description: Timestamp representing user collaboration creation
+          description: Timestamp representing user connection creation
           example: 2022-10-19 13:24:51.000000
         updated_at:
           format: date-time
           type: string
-          description: Timestamp representing user collaboration last updated
+          description: Timestamp representing user connection last updated
           example: 2022-10-19 13:24:51.000000
         deleted_at:
           format: date-time
           type: string
-          description: Timestamp representing user collaboration deletion
+          description: Timestamp representing user connection deletion
           example: 2022-10-19 13:24:51.000000
         request_emailed_at:
           format: date-time
           type: string
-          description: Timestamp representing collaboration request email sent date
+          description: Timestamp representing connection request email sent date
           example: 2023-04-10 13:24:51.000000
-        collaboration_emailed_at:
+        connection_emailed_at:
           format: date-time
           type: string
-          description: Timestamp representing collaboration acceptance email sent date
+          description: Timestamp representing connection acceptance email sent date
           example: 2023-04-10 13:24:51.000000
       required:
         - id
         - message
         - status
-    CreateUserCollaborationDto:
+    CreateUserConnectionDto:
       type: object
       properties:
         username:
           type: string
-          description: Collaboration Recipient Username
+          description: Connection Recipient Username
           example: bdougie
         message:
           type: string
-          description: Collaboration Request Message
+          description: Connection Request Message
           example: Come collaborate on a cool project
       required:
         - username
         - message
-    UpdateUserCollaborationDto:
+    UpdateUserConnectionDto:
       type: object
       properties:
         status:
           type: string
-          description: Collaboration Request Status
+          description: Connection Request Status
           example: accept
       required:
         - status
@@ -6217,8 +6188,7 @@ components:
           example: false
         repos:
           description: An array of repository information objects
-          example:
-            &a30
+          example: &a30
             - id: 797
               full_name: open-sauced/insights
           type: array
@@ -6625,13 +6595,13 @@ components:
           example: 2016-10-19 13:24:51.000000
         login:
           type: string
-          description: User list collaborator's login
+          description: User list connection's login
           example: bdougie
       required:
         - id
         - user_id
         - list_id
-    CollaboratorsDto:
+    ConnectionsDto:
       type: object
       properties:
         contributors:

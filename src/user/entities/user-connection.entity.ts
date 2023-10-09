@@ -18,10 +18,10 @@ import {
 import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../user.entity";
 
-@Entity({ name: "user_collaborations" })
-export class DbUserCollaboration extends BaseEntity {
+@Entity({ name: "user_connections" })
+export class DbUserConnection extends BaseEntity {
   @ApiModelProperty({
-    description: "User Collaboration identifier",
+    description: "User Connection identifier",
     example: "uuid-v4",
   })
   @PrimaryColumn()
@@ -29,7 +29,7 @@ export class DbUserCollaboration extends BaseEntity {
   public id!: string;
 
   @ApiModelProperty({
-    description: "Collaboration Receipient User ID",
+    description: "Connection Receipient User ID",
     example: 237133,
     type: "integer",
   })
@@ -37,7 +37,7 @@ export class DbUserCollaboration extends BaseEntity {
   public user_id?: number;
 
   @ApiModelProperty({
-    description: "Collaboration Request User ID",
+    description: "Connection Request User ID",
     example: 31333,
     type: "integer",
   })
@@ -45,7 +45,7 @@ export class DbUserCollaboration extends BaseEntity {
   public request_user_id?: number;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.collaborations)
+  @ManyToOne(() => DbUser, (user) => user.connections)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
@@ -53,7 +53,7 @@ export class DbUserCollaboration extends BaseEntity {
   public user: DbUser;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.request_collaborations)
+  @ManyToOne(() => DbUser, (user) => user.request_connections)
   @JoinColumn({
     name: "request_user_id",
     referencedColumnName: "id",
@@ -61,7 +61,7 @@ export class DbUserCollaboration extends BaseEntity {
   public request_user: DbUser;
 
   @ApiModelProperty({
-    description: "Collaboration Request Message",
+    description: "Connection Request Message",
     example: "Hey, are you up for collaborating on this cool project?",
   })
   @Column({
@@ -72,7 +72,7 @@ export class DbUserCollaboration extends BaseEntity {
   public message: string;
 
   @ApiModelProperty({
-    description: "Collaboration Status",
+    description: "Connection Status",
     example: "pending",
   })
   @Column({
@@ -83,7 +83,7 @@ export class DbUserCollaboration extends BaseEntity {
   public status: string;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing user collaboration creation",
+    description: "Timestamp representing user connection creation",
     example: "2022-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
@@ -93,7 +93,7 @@ export class DbUserCollaboration extends BaseEntity {
   public created_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing user collaboration last updated",
+    description: "Timestamp representing user connection last updated",
     example: "2022-10-19 13:24:51.000000",
   })
   @UpdateDateColumn({
@@ -103,7 +103,7 @@ export class DbUserCollaboration extends BaseEntity {
   public updated_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing user collaboration deletion",
+    description: "Timestamp representing user connection deletion",
     example: "2022-10-19 13:24:51.000000",
   })
   @DeleteDateColumn({
@@ -113,7 +113,7 @@ export class DbUserCollaboration extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing collaboration request email sent date",
+    description: "Timestamp representing connection request email sent date",
     example: "2023-04-10 13:24:51.000000",
   })
   @Column({
@@ -123,12 +123,12 @@ export class DbUserCollaboration extends BaseEntity {
   public request_emailed_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing collaboration acceptance email sent date",
+    description: "Timestamp representing connection acceptance email sent date",
     example: "2023-04-10 13:24:51.000000",
   })
   @Column({
     type: "timestamp without time zone",
     select: false,
   })
-  public collaboration_emailed_at?: Date;
+  public connection_emailed_at?: Date;
 }

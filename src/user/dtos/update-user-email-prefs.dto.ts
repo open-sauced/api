@@ -11,10 +11,10 @@ export class UpdateUserEmailPreferencesDto {
   public display_email: boolean;
 
   @ApiProperty({
-    description: "User Recieve Collaboration Requests",
+    description: "User Recieve Connection Requests",
     type: Boolean,
     example: false,
   })
   @IsBoolean()
-  public receive_collaboration: boolean;
+  public receive_connection: boolean;
 }

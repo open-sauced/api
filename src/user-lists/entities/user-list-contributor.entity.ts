@@ -74,7 +74,7 @@ export class DbUserListContributor {
   public user_list_contributor!: DbUser;
 
   @ApiModelProperty({
-    description: "User list collaborator's login",
+    description: "User list connection's login",
     example: "bdougie",
   })
   @Column({

@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, MaxLength, MinLength } from "class-validator";
 
-export class CreateUserCollaborationDto {
+export class CreateUserConnectionDto {
   @ApiProperty({
-    description: "Collaboration Recipient Username",
+    description: "Connection Recipient Username",
     type: String,
     example: "bdougie",
   })
@@ -11,7 +11,7 @@ export class CreateUserCollaborationDto {
   username: string;
 
   @ApiProperty({
-    description: "Collaboration Request Message",
+    description: "Connection Request Message",
     type: String,
     example: "Come collaborate on a cool project",
   })

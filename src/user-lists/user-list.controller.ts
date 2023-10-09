@@ -21,7 +21,7 @@ import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
-import { CollaboratorsDto } from "./dtos/collaborators.dto";
+import { ConnectionsDto } from "./dtos/connections.dto";
 import { FilterListContributorsDto } from "./dtos/filter-contributors.dto";
 import { DbTimezone } from "./entities/timezones.entity";
 
@@ -173,10 +173,10 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   async postUserListContributors(
-    @Body() updateCollaboratorsDto: CollaboratorsDto,
+    @Body() updateConnectionsDto: ConnectionsDto,
     @Param("id") id: string
   ): Promise<DbUserListContributor[]> {
-    const contributors = updateCollaboratorsDto.contributors.map(async (contributorId) =>
+    const contributors = updateConnectionsDto.contributors.map(async (contributorId) =>
       this.userListService.addUserListContributor(id, contributorId)
     );
 

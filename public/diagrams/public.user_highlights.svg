@@ -149,7 +149,7 @@
 <text text-anchor="start" x="530" y="-893.9" font-family="Arial" font-size="14.00" fill="#000000">display_email </text>
 <text text-anchor="start" x="618.6732" y="-893.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 <polygon fill="none" stroke="#000000" points="523,-852.5 523,-882.5 874,-882.5 874,-852.5 523,-852.5"/>
-<text text-anchor="start" x="530" y="-863.9" font-family="Arial" font-size="14.00" fill="#000000">receive_collaboration </text>
+<text text-anchor="start" x="530" y="-863.9" font-family="Arial" font-size="14.00" fill="#000000">receive_connection </text>
 <text text-anchor="start" x="666.1374" y="-863.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 <polygon fill="none" stroke="#000000" points="523,-822.5 523,-852.5 874,-852.5 874,-822.5 523,-822.5"/>
 <text text-anchor="start" x="530" y="-833.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
