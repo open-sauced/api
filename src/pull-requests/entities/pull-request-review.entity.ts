@@ -3,7 +3,6 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUser } from "../../user/user.entity";
 import { DbPullRequest } from "./pull-request.entity";
 
 @Entity("pull_request_reviews")
@@ -14,15 +13,18 @@ export class DbPullRequestReview extends BaseEntity {
     type: "integer",
   })
   @PrimaryColumn("integer")
-  id: number;
+  public id: number;
 
   @ManyToOne(() => DbPullRequest)
   @JoinColumn({ name: "pull_request_id" })
-  pullRequest: DbPullRequest;
+  public pullRequest: DbPullRequest;
 
-  @ManyToOne(() => DbUser)
-  @JoinColumn({ name: "reviewer_login", referencedColumnName: "login" })
-  reviewer: DbUser;
+  @ApiModelProperty({
+    description: "Pull request reviewer username",
+    example: "Bdougie",
+  })
+  @Column("text")
+  public reviewer_login: string;
 
   @ApiModelPropertyOptional({
     description: "Timestamp representing pr review creation date",
@@ -32,7 +34,7 @@ export class DbPullRequestReview extends BaseEntity {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  created_at?: Date;
+  public created_at?: Date;
 
   @ApiModelProperty({
     description: "Timestamp representing pr review published date",
@@ -42,7 +44,7 @@ export class DbPullRequestReview extends BaseEntity {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  published_at?: Date;
+  public published_at?: Date;
 
   @ApiModelProperty({
     description: "Timestamp representing pr review update date",
@@ -52,8 +54,12 @@ export class DbPullRequestReview extends BaseEntity {
     type: "timestamp without time zone",
     default: () => "now()",
   })
-  updated_at?: Date;
+  public updated_at?: Date;
 
-  @Column({ type: "string", nullable: true })
-  state?: string;
+  @ApiModelProperty({
+    description: "Pull request review state",
+    example: "approved",
+  })
+  @Column("text")
+  public state?: string;
 }
