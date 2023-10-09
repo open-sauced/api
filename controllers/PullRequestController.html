@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getPullRequestReviews" >getPullRequestReviews</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#listAllPullRequests" >listAllPullRequests</a>
                             </li>
                             <li>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -194,6 +198,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getPullRequestReviews"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getPullRequestReviews</b></span>
+                        <a href="#getPullRequestReviews"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPullRequestReviews(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/reviews&#x27;)<br />@ApiOperation({operationId: &#x27;getPullRequestReviews&#x27;, summary: &#x27;Find all pull request reviews by pull request ID&#x27;})<br />@ApiOkResponse({type: undefined})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbPullRequestReview[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listAllPullRequests"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -219,8 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -297,8 +379,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -350,8 +432,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
+import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
@@ -362,13 +444,16 @@ import { PullRequestService } from &quot;./pull-request.service&quot;;
 import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
 import { PullRequestInsightsService } from &quot;./pull-request-insights.service&quot;;
 import { DbPRInsight } from &quot;./entities/pull-request-insight.entity&quot;;
+import { DbPullRequestReview } from &quot;./entities/pull-request-review.entity&quot;;
+import { PullRequestReviewService } from &quot;./pull-request-review.service&quot;;
 
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class PullRequestController {
   constructor(
     private readonly pullRequestService: PullRequestService,
-    private readonly pullRequestsInsightService: PullRequestInsightsService
+    private readonly pullRequestsInsightService: PullRequestInsightsService,
+    private readonly pullRequestReviewService: PullRequestReviewService
   ) {}
 
   @Get(&quot;/list&quot;)
@@ -403,6 +488,17 @@ export class PullRequestController {
     return Promise.all(
       [30, 60].map(async (interval) &#x3D;&gt; this.pullRequestsInsightService.getInsight(interval, pageOptionsDto))
     );
+  }
+
+  @Get(&quot;/:id/reviews&quot;)
+  @ApiOperation({
+    operationId: &quot;getPullRequestReviews&quot;,
+    summary: &quot;Find all pull request reviews by pull request ID&quot;,
+  })
+  @ApiOkResponse({ type: [DbPullRequestReview] })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async getPullRequestReviews(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbPullRequestReview[]&gt; {
+    return this.pullRequestReviewService.findAllReviewsByPrId(id);
   }
 }
 </code></pre>

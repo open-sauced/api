@@ -18,13 +18,13 @@
 <title>cluster_AuthModule_providers</title>
 <polygon fill="none" stroke="black" points="628,-40.8 628,-92.8 965,-92.8 965,-40.8 628,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_AuthModule_exports</title>
-<polygon fill="none" stroke="black" points="300,-170.8 300,-222.8 561,-222.8 561,-170.8 300,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_AuthModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 620,-92.8 620,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_AuthModule_exports</title>
+<polygon fill="none" stroke="black" points="300,-170.8 300,-222.8 561,-222.8 561,-170.8 300,-170.8"/>
 </g>
 <!-- CouponModule -->
 <g id="node1" class="node">
