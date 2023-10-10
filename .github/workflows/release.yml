@@ -134,6 +134,9 @@ jobs:
     environment:
       name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
       url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
+
     outputs:
       release-tag: ${{ steps.semantic-release.outputs.release-tag }}
     name: Semantic release
