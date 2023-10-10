@@ -212,8 +212,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="386"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:386</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:387</a></div>
                 </td>
             </tr>
 
@@ -315,8 +315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="446"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:446</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="447"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:447</a></div>
                 </td>
             </tr>
 
@@ -418,8 +418,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="416"
-                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:416</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="417"
+                            class="link-to-prism">src/user-lists/user-list-stat.service.ts:417</a></div>
                 </td>
             </tr>
 
@@ -1592,6 +1592,7 @@ export class UserListStatsService {
       .createQueryBuilder()
       .select(&quot;split_part(repos.full_name, &#x27;/&#x27;, 1)&quot;, &quot;org_id&quot;)
       .addSelect(&quot;split_part(repos.full_name, &#x27;/&#x27;, 2)&quot;, &quot;project_id&quot;)
+      .addSelect(&quot;repos.id&quot;, &quot;repo_id&quot;)
       .addSelect(&quot;COUNT(pr.id)&quot;, &quot;contributions&quot;)
 
       // grab pull requests first
@@ -1613,7 +1614,7 @@ export class UserListStatsService {
       )
 
       .where(&#x60;pr.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27; AND NOW()&#x60;)
-      .groupBy(&quot;repos.full_name&quot;);
+      .groupBy(&quot;repos.full_name, repos.id&quot;);
 
     const entities: DbContributionsProjects[] &#x3D; await queryBuilder.getRawMany();
 

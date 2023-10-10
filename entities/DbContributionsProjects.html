@@ -83,6 +83,9 @@
                             <li>
                                 <a href="#project_id" >project_id</a>
                             </li>
+                            <li>
+                                <a href="#repo_id" >repo_id</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -129,7 +132,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -158,7 +161,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The org name of the repo&#x27;, example: 0, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;The org name of the repo&#x27;, example: &#x27;open-sauced&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
@@ -193,13 +196,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The project name of the repo&#x27;, example: 0, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;The project name of the repo&#x27;, example: &#x27;api&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repo_id"></a>
+                    <span class="name">
+                        <span ><b>repo_id</b></span>
+                        <a href="#repo_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;The ID of the associated repo in the OpenSauced API context&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -218,7 +256,7 @@ import { Column, Entity } from &quot;typeorm&quot;;
 export class DbContributionsProjects {
   @ApiModelProperty({
     description: &quot;The org name of the repo&quot;,
-    example: 0,
+    example: &quot;open-sauced&quot;,
     type: &quot;string&quot;,
   })
   @Column({
@@ -230,7 +268,7 @@ export class DbContributionsProjects {
 
   @ApiModelProperty({
     description: &quot;The project name of the repo&quot;,
-    example: 0,
+    example: &quot;api&quot;,
     type: &quot;string&quot;,
   })
   @Column({
@@ -239,6 +277,18 @@ export class DbContributionsProjects {
     insert: false,
   })
   project_id: string;
+
+  @ApiModelProperty({
+    description: &quot;The ID of the associated repo in the OpenSauced API context&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  repo_id: number;
 
   @ApiModelProperty({
     description: &quot;The number of contributions associated with a org/repo&quot;,

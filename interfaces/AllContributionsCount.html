@@ -495,6 +495,7 @@ export class UserListStatsService {
       .createQueryBuilder()
       .select(&quot;split_part(repos.full_name, &#x27;/&#x27;, 1)&quot;, &quot;org_id&quot;)
       .addSelect(&quot;split_part(repos.full_name, &#x27;/&#x27;, 2)&quot;, &quot;project_id&quot;)
+      .addSelect(&quot;repos.id&quot;, &quot;repo_id&quot;)
       .addSelect(&quot;COUNT(pr.id)&quot;, &quot;contributions&quot;)
 
       // grab pull requests first
@@ -516,7 +517,7 @@ export class UserListStatsService {
       )
 
       .where(&#x60;pr.&quot;updated_at&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27; AND NOW()&#x60;)
-      .groupBy(&quot;repos.full_name&quot;);
+      .groupBy(&quot;repos.full_name, repos.id&quot;);
 
     const entities: DbContributionsProjects[] &#x3D; await queryBuilder.getRawMany();
 
