@@ -7,6 +7,7 @@ import {
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
+  ApiQuery,
 } from "@nestjs/swagger";
 
 import { PageDto } from "../common/dtos/page.dto";
@@ -20,6 +21,7 @@ import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
+import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -74,8 +76,12 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: "Unable to get contributions by project" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  async getContributionsByProject(@Param("id") id: string): Promise<DbContributionsProjects[]> {
-    return this.userListStatsService.findContributionsByProject(id);
+  @ApiQuery({ name: "range", type: "integer", required: false })
+  async getContributionsByProject(
+    @Param("id") id: string,
+    @Query() options: ContributionsByProjectDto
+  ): Promise<DbContributionsProjects[]> {
+    return this.userListStatsService.findContributionsByProject(id, options);
   }
 
   @Get(":id/stats/top-project-contributions-by-contributor/")
