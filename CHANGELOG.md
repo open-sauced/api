@@ -5,6 +5,15 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.10...v1.50.0-beta.11) (2023-10-10)
+
+
+### 🔁 Continuous Integration
+
+* add environment variables for Supabase ([81ab4b9](https://github.com/open-sauced/api.opensauced.pizza/commit/81ab4b9eccb5c73c69dccd5655929df3a51a9547))
+* fix env for swagger gen ([f36b576](https://github.com/open-sauced/api.opensauced.pizza/commit/f36b576823084522e5652686785454939863e61e))
+* remove swagger gen changes ([aaccb4f](https://github.com/open-sauced/api.opensauced.pizza/commit/aaccb4fbf5bb8682990c0c34d3bbce0686ada528))
+
 ## [1.50.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.9...v1.50.0-beta.10) (2023-10-09)
 
 

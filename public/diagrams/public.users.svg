@@ -1011,33 +1011,36 @@
 <!-- public.user_list_contributors -->
 <g id="node18" class="node">
 <title>public.user_list_contributors</title>
-<polygon fill="#efefef" stroke="transparent" points="3151,-3542.5 3151,-3577.5 3485,-3577.5 3485,-3542.5 3151,-3542.5"/>
-<polygon fill="none" stroke="#000000" points="3151,-3542.5 3151,-3577.5 3485,-3577.5 3485,-3542.5 3151,-3542.5"/>
-<text text-anchor="start" x="3157.8577" y="-3555.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_list_contributors</text>
-<text text-anchor="start" x="3380.8885" y="-3555.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
-<text text-anchor="start" x="3384.7791" y="-3555.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
-<polygon fill="none" stroke="#000000" points="3151,-3512.5 3151,-3542.5 3485,-3542.5 3485,-3512.5 3151,-3512.5"/>
-<text text-anchor="start" x="3158" y="-3523.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
-<text text-anchor="start" x="3172.7798" y="-3523.9" font-family="Arial" font-size="14.00" fill="#666666">[uuid]</text>
-<polygon fill="none" stroke="#000000" points="3151,-3482.5 3151,-3512.5 3485,-3512.5 3485,-3482.5 3151,-3482.5"/>
-<text text-anchor="start" x="3158" y="-3493.9" font-family="Arial" font-size="14.00" fill="#000000">list_id </text>
-<text text-anchor="start" x="3197.6662" y="-3493.9" font-family="Arial" font-size="14.00" fill="#666666">[uuid]</text>
-<polygon fill="none" stroke="#000000" points="3151,-3452.5 3151,-3482.5 3485,-3482.5 3485,-3452.5 3151,-3452.5"/>
-<text text-anchor="start" x="3158" y="-3463.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
-<text text-anchor="start" x="3207.7882" y="-3463.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="3151,-3422.5 3151,-3452.5 3485,-3452.5 3485,-3422.5 3151,-3422.5"/>
-<text text-anchor="start" x="3158" y="-3433.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="3228.028" y="-3433.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
-<polygon fill="none" stroke="#000000" points="3151,-3392.5 3151,-3422.5 3485,-3422.5 3485,-3392.5 3151,-3392.5"/>
-<text text-anchor="start" x="3158" y="-3403.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
-<text text-anchor="start" x="3227.2566" y="-3403.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
+<polygon fill="#efefef" stroke="transparent" points="3151,-3557.5 3151,-3592.5 3485,-3592.5 3485,-3557.5 3151,-3557.5"/>
+<polygon fill="none" stroke="#000000" points="3151,-3557.5 3151,-3592.5 3485,-3592.5 3485,-3557.5 3151,-3557.5"/>
+<text text-anchor="start" x="3157.8577" y="-3570.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.user_list_contributors</text>
+<text text-anchor="start" x="3380.8885" y="-3570.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
+<text text-anchor="start" x="3384.7791" y="-3570.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3527.5 3151,-3557.5 3485,-3557.5 3485,-3527.5 3151,-3527.5"/>
+<text text-anchor="start" x="3158" y="-3538.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
+<text text-anchor="start" x="3172.7798" y="-3538.9" font-family="Arial" font-size="14.00" fill="#666666">[uuid]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3497.5 3151,-3527.5 3485,-3527.5 3485,-3497.5 3151,-3497.5"/>
+<text text-anchor="start" x="3158" y="-3508.9" font-family="Arial" font-size="14.00" fill="#000000">list_id </text>
+<text text-anchor="start" x="3197.6662" y="-3508.9" font-family="Arial" font-size="14.00" fill="#666666">[uuid]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3467.5 3151,-3497.5 3485,-3497.5 3485,-3467.5 3151,-3467.5"/>
+<text text-anchor="start" x="3158" y="-3478.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
+<text text-anchor="start" x="3207.7882" y="-3478.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3437.5 3151,-3467.5 3485,-3467.5 3485,-3437.5 3151,-3437.5"/>
+<text text-anchor="start" x="3158" y="-3448.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="3228.028" y="-3448.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3407.5 3151,-3437.5 3485,-3437.5 3485,-3407.5 3151,-3407.5"/>
+<text text-anchor="start" x="3158" y="-3418.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
+<text text-anchor="start" x="3227.2566" y="-3418.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
+<polygon fill="none" stroke="#000000" points="3151,-3377.5 3151,-3407.5 3485,-3407.5 3485,-3377.5 3151,-3377.5"/>
+<text text-anchor="start" x="3158" y="-3388.9" font-family="Arial" font-size="14.00" fill="#000000">username </text>
+<text text-anchor="start" x="3224.1248" y="-3388.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar(36)]</text>
 </g>
 <!-- public.user_list_contributors&#45;&gt;public.user_lists -->
 <g id="edge24" class="edge">
 <title>public.user_list_contributors:list_id&#45;&gt;public.user_lists:id</title>
-<path fill="none" stroke="#000000" d="M3140.9245,-3496.3731C3033.3737,-3470.8216 3184.546,-3018.4529 3099,-2930 3009.6289,-2837.5921 2900.8448,-2986.9141 2812,-2894 2762.0424,-2841.7542 2832.2868,-2245.5 2760,-2245.5"/>
-<polygon fill="#000000" stroke="#000000" points="3141.062,-3496.3884 3150.4998,-3501.9721 3146.031,-3496.9442 3151,-3497.5 3151,-3497.5 3151,-3497.5 3146.031,-3496.9442 3151.5002,-3493.0279 3141.062,-3496.3884 3141.062,-3496.3884"/>
-<text text-anchor="start" x="3157.6695" y="-3507.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (list_id) REFERENCES user_lists(id) ON UPDATE CASCADE ON DELETE CASCADE</text>
+<path fill="none" stroke="#000000" d="M3140.9967,-3511.4213C3030.0458,-3486.0547 3186.7704,-3020.9656 3099,-2930 3009.7371,-2837.4876 2900.8448,-2986.9141 2812,-2894 2762.0424,-2841.7542 2832.2868,-2245.5 2760,-2245.5"/>
+<polygon fill="#000000" stroke="#000000" points="3141.0576,-3511.4278 3150.5175,-3516.9741 3146.0288,-3511.9639 3151,-3512.5 3151,-3512.5 3151,-3512.5 3146.0288,-3511.9639 3151.4825,-3508.0259 3141.0576,-3511.4278 3141.0576,-3511.4278"/>
+<text text-anchor="start" x="3157.6695" y="-3522.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (list_id) REFERENCES user_lists(id) ON UPDATE CASCADE ON DELETE CASCADE</text>
 </g>
 </g>
 </svg>
