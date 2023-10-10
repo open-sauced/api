@@ -134,8 +134,6 @@ jobs:
     environment:
       name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
       url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
 
     outputs:
       release-tag: ${{ steps.semantic-release.outputs.release-tag }}
@@ -174,6 +172,9 @@ jobs:
 
       - name: "📃 generate swagger doc"
         run: npm run generate:swagger
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
 
       - name: "♻️ clean up artifact paths"
         run: |
