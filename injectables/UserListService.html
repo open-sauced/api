@@ -544,8 +544,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:149</a></div>
                 </td>
             </tr>
 
@@ -615,8 +615,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:130</a></div>
                 </td>
             </tr>
 
@@ -781,8 +781,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:153</a></div>
                 </td>
             </tr>
 
@@ -852,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:193</a></div>
                 </td>
             </tr>
 
@@ -1101,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:210</a></div>
                 </td>
             </tr>
 
@@ -1140,8 +1140,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:145</a></div>
                 </td>
             </tr>
 
@@ -1316,6 +1316,17 @@ export class UserListService {
   }
 
   async addUserListContributor(listId: string, userId: number, username?: string) {
+    const existingContributor &#x3D; await this.userListContributorRepository.findOne({
+      where: {
+        list_id: listId,
+        user_id: userId,
+      },
+    });
+
+    if (existingContributor) {
+      return existingContributor;
+    }
+
     const newUserListContributor &#x3D; this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
