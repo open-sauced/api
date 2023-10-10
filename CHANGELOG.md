@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.51.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0...v1.51.0-beta.1) (2023-10-10)
+
+
+### 🍕 Features
+
+* Don't allow adding the same list-contributors to a single list ([#360](https://github.com/open-sauced/api.opensauced.pizza/issues/360)) ([d8e7519](https://github.com/open-sauced/api.opensauced.pizza/commit/d8e75196054149e22fa57f3c7d4090423a8ba328))
+
 ## [1.50.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0...v1.50.0) (2023-10-10)
 
 
