@@ -69,6 +69,15 @@ export class InsightsService {
     queryBuilder
       .where("insights.user_id = :userId", { userId })
       .orWhere(
+        `(
+          (((SELECT COUNT(id) FROM insight_repos where user_id=:userId)=0)
+          AND
+          (is_featured=true AND insights.deleted_at IS NULL))
+        )
+      `,
+        { userId }
+      )
+      .orWhere(
         `:userId IN (
           SELECT user_id
           FROM insight_members
