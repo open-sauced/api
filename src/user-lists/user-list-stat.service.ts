@@ -16,6 +16,7 @@ import { DbContributionsProjects } from "./entities/contributions-projects.entit
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
+import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -347,9 +348,11 @@ export class UserListStatsService {
     };
   }
 
-  async findContributionsByProject(listId: string): Promise<DbContributionsProjects[]> {
-    // todo (jpmcb) - in the future we'll likely want to make this range dynamic.
-    const range = 30;
+  async findContributionsByProject(
+    listId: string,
+    options: ContributionsByProjectDto
+  ): Promise<DbContributionsProjects[]> {
+    const range = options.range!;
 
     const queryBuilder = this.userListContributorRepository.manager
       .createQueryBuilder()
