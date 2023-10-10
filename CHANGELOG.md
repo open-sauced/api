@@ -5,6 +5,35 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.50.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0...v1.50.0) (2023-10-10)
+
+
+### 🍕 Features
+
+* add "total_contributions" and "all_contributions" counts ([#351](https://github.com/open-sauced/api.opensauced.pizza/issues/351)) ([e276a7c](https://github.com/open-sauced/api.opensauced.pizza/commit/e276a7c76e99567b59bd3f174dd056f35d85aad9))
+* add endpoint for applying coupons for a user ([#338](https://github.com/open-sauced/api.opensauced.pizza/issues/338)) ([8e3c684](https://github.com/open-sauced/api.opensauced.pizza/commit/8e3c684c87150d27b2def6fa0d0c9204f835b071))
+* add timzone endpoint ([baac78c](https://github.com/open-sauced/api.opensauced.pizza/commit/baac78c8398f38a0c1899718e3b3f09963113fc8))
+* initial commit for PR reviews ([#332](https://github.com/open-sauced/api.opensauced.pizza/issues/332)) ([c4fc34c](https://github.com/open-sauced/api.opensauced.pizza/commit/c4fc34c8fb09b0680113183d016d8be052cec197))
+* refactor timezone service modules ([aeda42a](https://github.com/open-sauced/api.opensauced.pizza/commit/aeda42afc146165505836024e974020a59597cce))
+
+
+### 🐛 Bug Fixes
+
+* add ability to apply coupon code more than once ([#342](https://github.com/open-sauced/api.opensauced.pizza/issues/342)) ([fe95480](https://github.com/open-sauced/api.opensauced.pizza/commit/fe95480301b0c3c95249580a41955ee6d6c82218))
+* add username when adding list contributors and left join users ([#350](https://github.com/open-sauced/api.opensauced.pizza/issues/350)) ([e789d3c](https://github.com/open-sauced/api.opensauced.pizza/commit/e789d3cb357d6ca3f162849fda88a382c9055a5a))
+* added order by total_contributions for user list stat service ([#352](https://github.com/open-sauced/api.opensauced.pizza/issues/352)) ([0479d98](https://github.com/open-sauced/api.opensauced.pizza/commit/0479d98328d9c453f1e10b20f39f50d08bf30912))
+* Coalesce on commits in list stats ([#349](https://github.com/open-sauced/api.opensauced.pizza/issues/349)) ([62b15ad](https://github.com/open-sauced/api.opensauced.pizza/commit/62b15ad5267c55bebf32c8edc805d16396103b08))
+* Hotfix for db migration and ORM not applying to pr-reviews ([#355](https://github.com/open-sauced/api.opensauced.pizza/issues/355)) ([9502850](https://github.com/open-sauced/api.opensauced.pizza/commit/9502850e5ab709fce5afffc26703e4b4a2a1fa47))
+* Ordering for CTE based query ([#353](https://github.com/open-sauced/api.opensauced.pizza/issues/353)) ([30cf454](https://github.com/open-sauced/api.opensauced.pizza/commit/30cf454016e68b692373c751b97208c27e1003b6))
+* Refactors "::DATE" casts to "::TIMESTAMP" casting ([#346](https://github.com/open-sauced/api.opensauced.pizza/issues/346)) ([263610d](https://github.com/open-sauced/api.opensauced.pizza/commit/263610d83259749b637e7291f3de28dbdd6c5859))
+
+
+### 🔁 Continuous Integration
+
+* add environment variables for Supabase ([81ab4b9](https://github.com/open-sauced/api.opensauced.pizza/commit/81ab4b9eccb5c73c69dccd5655929df3a51a9547))
+* fix env for swagger gen ([f36b576](https://github.com/open-sauced/api.opensauced.pizza/commit/f36b576823084522e5652686785454939863e61e))
+* remove swagger gen changes ([aaccb4f](https://github.com/open-sauced/api.opensauced.pizza/commit/aaccb4fbf5bb8682990c0c34d3bbce0686ada528))
+
 ## [1.50.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0-beta.10...v1.50.0-beta.11) (2023-10-10)
 
 
