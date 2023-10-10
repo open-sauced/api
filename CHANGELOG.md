@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.51.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.2...v1.51.0-beta.3) (2023-10-10)
+
+
+### 🍕 Features
+
+* Time range for contributions-by-project endpoint ([#363](https://github.com/open-sauced/api.opensauced.pizza/issues/363)) ([00090bc](https://github.com/open-sauced/api.opensauced.pizza/commit/00090bcb131f49681423db28852feeb1309f723b))
+
 ## [1.51.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.1...v1.51.0-beta.2) (2023-10-10)
 
 
