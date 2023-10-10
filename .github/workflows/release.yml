@@ -170,11 +170,11 @@ jobs:
       - name: "📦 install dependencies"
         uses: bahmutov/npm-install@v1
 
-      - name: "📃 generate swagger doc"
-        run: npm run generate:swagger
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
+      # - name: "📃 generate swagger doc"
+      #   run: npm run generate:swagger
+      #   env:
+      #     SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      #     SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
 
       - name: "♻️ clean up artifact paths"
         run: |
