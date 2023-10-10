@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.51.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.1...v1.51.0-beta.2) (2023-10-10)
+
+
+### 🍕 Features
+
+* add repo_id for contributions-by-project stat endpoint ([#362](https://github.com/open-sauced/api.opensauced.pizza/issues/362)) ([d264ccd](https://github.com/open-sauced/api.opensauced.pizza/commit/d264ccddc3b2265f39540566d967e6b942930ea7))
+
 ## [1.51.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0...v1.51.0-beta.1) (2023-10-10)
 
 
