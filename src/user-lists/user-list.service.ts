@@ -107,6 +107,17 @@ export class UserListService {
   }
 
   async addUserListContributor(listId: string, userId: number, username?: string) {
+    const existingContributor = await this.userListContributorRepository.findOne({
+      where: {
+        list_id: listId,
+        user_id: userId,
+      },
+    });
+
+    if (existingContributor) {
+      return existingContributor;
+    }
+
     const newUserListContributor = this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
