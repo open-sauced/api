@@ -135,7 +135,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getContributionsByProject(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getContributionsByProject(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: <a href="../classes/ContributionsByProjectDto.html" target="_self">ContributionsByProjectDto</a>)</code>
                 </td>
             </tr>
 
@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, required: false})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -174,6 +174,18 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/ContributionsByProjectDto.html" target="_self" >ContributionsByProjectDto</a></code>
                                     </td>
 
                                     <td>
@@ -227,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -317,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -407,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:98</a></div>
                 </td>
             </tr>
 
@@ -497,8 +509,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -571,6 +583,7 @@ import {
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
+  ApiQuery,
 } from &quot;@nestjs/swagger&quot;;
 
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -584,6 +597,7 @@ import { DbContributionStatTimeframe } from &quot;./entities/contributions-timef
 import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
 import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
 import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
+import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
 
 @Controller(&quot;lists&quot;)
 @ApiTags(&quot;User Lists service&quot;)
@@ -638,8 +652,12 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions by project&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  async getContributionsByProject(@Param(&quot;id&quot;) id: string): Promise&lt;DbContributionsProjects[]&gt; {
-    return this.userListStatsService.findContributionsByProject(id);
+  @ApiQuery({ name: &quot;range&quot;, type: &quot;integer&quot;, required: false })
+  async getContributionsByProject(
+    @Param(&quot;id&quot;) id: string,
+    @Query() options: ContributionsByProjectDto
+  ): Promise&lt;DbContributionsProjects[]&gt; {
+    return this.userListStatsService.findContributionsByProject(id, options);
   }
 
   @Get(&quot;:id/stats/top-project-contributions-by-contributor/&quot;)

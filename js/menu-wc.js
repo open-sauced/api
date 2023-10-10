@@ -1032,6 +1032,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/ContributionPageOptionsDto.html" data-type="entity-link" >ContributionPageOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ContributionsByProjectDto.html" data-type="entity-link" >ContributionsByProjectDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ContributionsPageDto.html" data-type="entity-link" >ContributionsPageDto</a>
                             </li>
                             <li class="link">
