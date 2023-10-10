@@ -134,7 +134,6 @@ jobs:
     environment:
       name: ${{ needs.setup.outputs.DEPLOY_ENVIRONMENT }}
       url: https://github.com/${{ github.repository }}/releases/tag/${{ steps.semantic-release.outputs.release-tag }}
-
     outputs:
       release-tag: ${{ steps.semantic-release.outputs.release-tag }}
     name: Semantic release
@@ -158,23 +157,6 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
-
-      - name: "🔧 setup node"
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 18
-
-      - name: "🔧 install npm@latest"
-        run: npm i -g npm@latest
-
-      - name: "📦 install dependencies"
-        uses: bahmutov/npm-install@v1
-
-      # - name: "📃 generate swagger doc"
-      #   run: npm run generate:swagger
-      #   env:
-      #     SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      #     SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
 
       - name: "♻️ clean up artifact paths"
         run: |
