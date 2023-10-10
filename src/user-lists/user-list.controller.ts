@@ -23,6 +23,7 @@ import { UserListService } from "./user-list.service";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { CollaboratorsDto } from "./dtos/collaborators.dto";
 import { FilterListContributorsDto } from "./dtos/filter-contributors.dto";
+import { DbTimezone } from "./entities/timezones.entity";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -60,8 +61,8 @@ export class UserListController {
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise<DbUserList> {
     const newList = await this.userListService.addUserList(userId, createUserListDto);
 
-    const listContributors = createUserListDto.contributors.map(async (contributorId) =>
-      this.userListService.addUserListContributor(newList.id, contributorId)
+    const listContributors = createUserListDto.contributors.map(async (contributor) =>
+      this.userListService.addUserListContributor(newList.id, contributor.id, contributor.login)
     );
 
     await Promise.allSettled(listContributors);
@@ -198,5 +199,16 @@ export class UserListController {
     @Param("userListContributorId") userListContributorId: string
   ): Promise<void> {
     await this.userListService.deleteUserListContributor(id, userListContributorId);
+  }
+
+  @Get("/timezones")
+  @ApiOperation({
+    operationId: "getTimezones",
+    summary: "Retrieves all users timezones",
+  })
+  @ApiOkResponse({ type: DbTimezone })
+  @ApiNotFoundResponse({ description: "Unable to get timezones" })
+  async getTimezones(): Promise<DbTimezone[]> {
+    return this.userListService.getAllTimezones();
   }
 }

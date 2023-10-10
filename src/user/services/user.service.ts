@@ -310,6 +310,13 @@ export class UserService {
     });
   }
 
+  async applyCoupon(id: number, coupon: string) {
+    return this.userRepository.update(id, {
+      coupon_code: coupon,
+      role: 50,
+    });
+  }
+
   async findOneByEmail(email: string): Promise<DbUser | null> {
     const queryBuilder = this.baseQueryBuilder();
 

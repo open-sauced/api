@@ -3,7 +3,6 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import {
@@ -15,6 +14,12 @@ import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
+import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
+import { ContributionsPageDto } from "./dtos/contributions-page.dto";
+
+interface AllContributionsCount {
+  all_contributions: number;
+}
 
 @Injectable()
 export class UserListStatsService {
@@ -39,7 +44,7 @@ export class UserListStatsService {
       .andWhere("user_list_contributors.list_id = :listId", { listId })
       .addSelect(
         `(
-          SELECT SUM("pull_requests"."commits")
+          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
@@ -71,24 +76,24 @@ export class UserListStatsService {
     const range = pageOptionsDto.range!;
     const now = new Date().toISOString();
 
-    const queryBuilder = this.baseQueryBuilder();
+    const cteBuilder = this.baseQueryBuilder();
 
-    queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
+    cteBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
 
     switch (pageOptionsDto.contributorType) {
       case UserListContributorStatsTypeEnum.all:
         break;
 
       case UserListContributorStatsTypeEnum.active:
-        this.applyActiveContributorsFilter(queryBuilder, now, range);
+        this.applyActiveContributorsFilter(cteBuilder, now, range);
         break;
 
       case UserListContributorStatsTypeEnum.new:
-        this.applyNewContributorsFilter(queryBuilder, now, range);
+        this.applyNewContributorsFilter(cteBuilder, now, range);
         break;
 
       case UserListContributorStatsTypeEnum.alumni: {
-        this.applyAlumniContributorsFilter(queryBuilder, now, range);
+        this.applyAlumniContributorsFilter(cteBuilder, now, range);
         break;
       }
 
@@ -96,12 +101,12 @@ export class UserListStatsService {
         break;
     }
 
-    queryBuilder
+    cteBuilder
       .select("users.login", "login")
       .andWhere("user_list_contributors.list_id = :listId", { listId })
       .addSelect(
         `(
-          SELECT SUM("pull_requests"."commits")
+          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
@@ -118,28 +123,56 @@ export class UserListStatsService {
         "prs_created"
       );
 
+    const entityQb = this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select("login")
+      .addSelect("commits")
+      .addSelect("prs_created")
+      .addSelect(`("commits" + "prs_created") AS "total_contributions"`)
+      .from("CTE", "CTE");
+
     switch (pageOptionsDto.orderBy) {
       case UserListContributorStatsOrderEnum.commits:
-        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.commits}"`, pageOptionsDto.orderDirection);
         break;
 
       case UserListContributorStatsOrderEnum.prs_created:
-        queryBuilder.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.prs_created}"`, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.total_contributions:
+        entityQb.orderBy(`"${UserListContributorStatsOrderEnum.total_contributions}"`, pageOptionsDto.orderDirection);
         break;
 
       default:
         break;
     }
 
-    const itemCount = await queryBuilder.getCount();
+    const allCountQb = this.userListContributorRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select(`SUM("commits" + "prs_created") OVER () AS "all_contributions"`)
+      .from("CTE", "CTE");
 
-    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+    const itemCount = await cteBuilder.getCount();
+    const allContributionsResult: AllContributionsCount | undefined = await allCountQb.getRawOne();
 
-    const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
+    if (!allContributionsResult) {
+      throw new NotFoundException();
+    }
 
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+    const allContributionsCount = allContributionsResult.all_contributions;
 
-    return new PageDto(entities, pageMetaDto);
+    cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbUserListContributorStat[] = await entityQb.getRawMany();
+
+    const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
+
+    return new ContributionsPageDto(entities, pageMetaDto);
   }
 
   async findContributorCategoriesByTimeframe(
@@ -228,8 +261,8 @@ export class UserListStatsService {
           SELECT COALESCE(SUM("pull_requests"."commits"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::DATE - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::DATE
+            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
         )::INTEGER`,
         "all_commits"
       )
@@ -238,8 +271,8 @@ export class UserListStatsService {
           SELECT COALESCE(COUNT("pull_requests"."id"), 0)
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::DATE - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::DATE
+            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
         )::INTEGER`,
         "all_prs_created"
       );
@@ -360,8 +393,8 @@ export class UserListStatsService {
         `(
         SELECT DISTINCT "author_login"
         FROM "pull_requests"
-        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range} days'
-          AND '${startDate}'::DATE
+        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+          AND '${startDate}'::TIMESTAMP
       )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -370,8 +403,8 @@ export class UserListStatsService {
         `(
         SELECT DISTINCT "author_login"
         FROM "pull_requests"
-        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range + range} days'
-          AND '${startDate}'::DATE - INTERVAL '${range} days'
+        WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range + range} days'
+          AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
       )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
@@ -391,7 +424,7 @@ export class UserListStatsService {
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
             WHERE "pull_requests"."updated_at" BETWEEN NOW() - INTERVAL '${range} days'
-              AND '${startDate}'::DATE
+              AND '${startDate}'::TIMESTAMP
           )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -401,7 +434,7 @@ export class UserListStatsService {
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
             WHERE "pull_requests"."updated_at" BETWEEN NOW() - INTERVAL '${range + range} days'
-              AND '${startDate}'::DATE - INTERVAL '${range} days'
+              AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
           )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`
@@ -420,8 +453,8 @@ export class UserListStatsService {
         `(
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
-            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range} days'
-              AND '${startDate}'::DATE
+            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+              AND '${startDate}'::TIMESTAMP
           )`,
         "current_month_prs",
         `"users"."login" = "current_month_prs"."author_login"`
@@ -430,8 +463,8 @@ export class UserListStatsService {
         `(
             SELECT DISTINCT "author_login"
             FROM "pull_requests"
-            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::DATE - INTERVAL '${range + range} days'
-              AND '${startDate}'::DATE - INTERVAL '${range} days'
+            WHERE "pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range + range} days'
+              AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
           )`,
         "previous_month_prs",
         `"users"."login" = "previous_month_prs"."author_login"`

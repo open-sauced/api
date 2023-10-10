@@ -51,8 +51,8 @@ export class RepoFilterService {
           FROM "pull_requests" "spam_pull_requests"
           WHERE
             'spam' = ANY("spam_pull_requests"."label_names")
-            AND '${startDate}'::DATE >= "spam_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "spam_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
         )
       `,
         {},

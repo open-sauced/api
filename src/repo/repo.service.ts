@@ -73,8 +73,8 @@ export class RepoService {
           WHERE
             LOWER("open_pull_requests"."state") = 'open'
             AND "open_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "open_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "open_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
         )::INTEGER`,
         "repos_open_prs_count"
       )
@@ -86,8 +86,8 @@ export class RepoService {
             LOWER("closed_pull_requests"."state") = 'closed'
             AND "closed_pull_requests"."merged" = false
             AND "closed_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "closed_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "closed_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
         )::INTEGER`,
         `repos_closed_prs_count`
       )
@@ -99,8 +99,8 @@ export class RepoService {
             (LOWER("merged_pull_requests"."state") = 'merged'
             OR "merged_pull_requests"."merged" = true)
             AND "merged_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "merged_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "merged_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
         )::INTEGER`,
         `repos_merged_prs_count`
       )
@@ -111,8 +111,8 @@ export class RepoService {
           WHERE
             "draft_pull_requests"."draft" = true
             AND "draft_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "draft_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "draft_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
         )::INTEGER`,
         `repos_draft_prs_count`
       )
@@ -123,8 +123,8 @@ export class RepoService {
           WHERE
             'spam' = ANY("spam_pull_requests"."label_names")
             AND "spam_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "spam_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "spam_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
         )::INTEGER`,
         `repos_spam_prs_count`
       )
@@ -135,8 +135,8 @@ export class RepoService {
           WHERE
             "pull_requests_velocity"."repo_id" = "repos"."id"
             AND "pull_requests_velocity"."closed_at" > "pull_requests_velocity"."created_at"
-            AND '${startDate}'::DATE >= "pull_requests_velocity"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "pull_requests_velocity"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
         )::INTEGER`,
         `repos_pr_velocity_count`
       )
@@ -146,8 +146,8 @@ export class RepoService {
           FROM "pull_requests" "active_pull_requests"
           WHERE
             "active_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::DATE >= "active_pull_requests"."updated_at"
-            AND '${startDate}'::DATE - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP >= "active_pull_requests"."updated_at"
+            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
             AND "active_pull_requests".state != 'closed'
         )::INTEGER`,
         `repo_active_prs_count`
@@ -363,8 +363,8 @@ export class RepoService {
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
     if (!pageOptionsDto.repoIds && !pageOptionsDto.repo) {
-      filters.push([`'${startDate}'::DATE >= "repos"."updated_at"`, { range }]);
-      filters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+      filters.push([`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`, { range }]);
+      filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
@@ -389,8 +389,8 @@ export class RepoService {
     const countFilters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
     if (!pageOptionsDto.repoIds) {
-      countFilters.push([`'${startDate}'::DATE >= "repos"."updated_at"`, { range }]);
-      countFilters.push([`'${startDate}'::DATE - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
+      countFilters.push([`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`, { range }]);
+      countFilters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
     }
 
     this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
@@ -463,8 +463,8 @@ export class RepoService {
         "repos.full_name LIKE user_orgs.login || '/%'"
       )
       .where("user_orgs.user_id = :userId", { userId })
-      .andWhere(`'${startDate}'::DATE >= "repos"."updated_at"`)
-      .andWhere(`'${startDate}'::DATE - INTERVAL '${range} days' <= "repos"."updated_at"`)
+      .andWhere(`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "repos"."updated_at"`)
       .orderBy("repos.stars", pageOptionsDto.orderDirection)
       .addOrderBy("repos.updated_at", pageOptionsDto.orderDirection);
 

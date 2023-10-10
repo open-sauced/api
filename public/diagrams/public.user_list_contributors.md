@@ -4,13 +4,14 @@
 
 ## Columns
 
-| Name       | Type                        | Default            | Nullable | Children | Parents                                   | Comment |
-| ---------- | --------------------------- | ------------------ | -------- | -------- | ----------------------------------------- | ------- |
-| id         | uuid                        | uuid_generate_v4() | false    |          |                                           |         |
-| list_id    | uuid                        |                    | false    |          | [public.user_lists](public.user_lists.md) |         |
-| user_id    | bigint                      |                    | false    |          |                                           |         |
-| created_at | timestamp without time zone | now()              | false    |          |                                           |         |
-| deleted_at | timestamp without time zone |                    | true     |          |                                           |         |
+| Name       | Type                        | Default               | Nullable | Children | Parents                                   | Comment |
+| ---------- | --------------------------- | --------------------- | -------- | -------- | ----------------------------------------- | ------- |
+| id         | uuid                        | uuid_generate_v4()    | false    |          |                                           |         |
+| list_id    | uuid                        |                       | false    |          | [public.user_lists](public.user_lists.md) |         |
+| user_id    | bigint                      |                       | false    |          |                                           |         |
+| created_at | timestamp without time zone | now()                 | false    |          |                                           |         |
+| deleted_at | timestamp without time zone |                       | true     |          |                                           |         |
+| username   | varchar(36)                 | ''::character varying | true     |          |                                           |         |
 
 ## Constraints
 

@@ -53,6 +53,7 @@ import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
+import { DbPullRequestReview } from "./pull-requests/entities/pull-request-review.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
@@ -72,8 +73,10 @@ import { IssueSummaryModule } from "./issues/issue-summary.module";
 import { BlogSummaryModule } from "./blogs/issue-summary.module";
 import { PizzaOvenModule } from "./pizza/pizza-oven.module";
 import { UserListModule } from "./user-lists/user-list.module";
+import { CouponModule } from "./coupon/coupon.module";
 import { DbUserList } from "./user-lists/entities/user-list.entity";
 import { DbUserListContributor } from "./user-lists/entities/user-list-contributor.entity";
+import { DbCoupon } from "./coupon/entities/coupon.entity";
 
 @Module({
   imports: [
@@ -122,6 +125,7 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
             DbCustomer,
             DbSubscription,
             DbPullRequest,
+            DbPullRequestReview,
             DbPRInsight,
             DbUserToUserFollows,
             DbEmoji,
@@ -133,6 +137,7 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
             DbUserOrganization,
             DbUserList,
             DbUserListContributor,
+            DbCoupon,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
@@ -217,6 +222,7 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
     OpenAiModule,
     PizzaOvenModule,
     UserListModule,
+    CouponModule,
   ],
   providers: [],
 })

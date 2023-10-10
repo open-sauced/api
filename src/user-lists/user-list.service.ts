@@ -11,6 +11,7 @@ import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { FilterListContributorsDto } from "./dtos/filter-contributors.dto";
+import { DbTimezone } from "./entities/timezones.entity";
 
 @Injectable()
 export class UserListService {
@@ -32,6 +33,12 @@ export class UserListService {
 
   baseListContributorQueryBuilder(): SelectQueryBuilder<DbUserListContributor> {
     const builder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
+
+    return builder;
+  }
+
+  baseUserQueryBuilder(): SelectQueryBuilder<DbUser> {
+    const builder = this.userRepository.createQueryBuilder("users");
 
     return builder;
   }
@@ -99,10 +106,11 @@ export class UserListService {
     return this.userListRepository.save(newUserList);
   }
 
-  async addUserListContributor(listId: string, userId: number) {
+  async addUserListContributor(listId: string, userId: number, username?: string) {
     const newUserListContributor = this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
+      username,
     });
 
     return this.userListContributorRepository.save(newUserListContributor);
@@ -178,7 +186,7 @@ export class UserListService {
     const queryBuilder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
 
     queryBuilder
-      .innerJoin("users", "users", "user_list_contributors.user_id=users.id")
+      .leftJoin("users", "users", "user_list_contributors.user_id=users.id")
       .addSelect("users.login", "user_list_contributors_login")
       .where("user_list_contributors.list_id = :listId", { listId });
 
@@ -186,5 +194,18 @@ export class UserListService {
       pageOptionsDto,
       queryBuilder,
     });
+  }
+
+  async getAllTimezones(): Promise<DbTimezone[]> {
+    const queryBuilder = this.baseUserQueryBuilder();
+
+    queryBuilder
+      .select("DISTINCT users.timezone as timezone")
+      .where("users.timezone IS NOT NULL")
+      .andWhere("users.timezone != ''");
+
+    const timezones: DbTimezone[] = await queryBuilder.getRawMany();
+
+    return timezones;
   }
 }

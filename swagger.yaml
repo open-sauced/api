@@ -149,6 +149,29 @@ paths:
       tags: *a1
       security:
         - bearer: []
+  /v1/auth/profile/coupon:
+    patch:
+      operationId: applyCouponForUser
+      summary: Applies a coupon for the authenticated user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApplyUserCouponDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUser"
+        "404":
+          description: Unable to apply coupon for the user profile
+      tags: *a1
+      security:
+        - bearer: []
   "/v1/users/{username}":
     get:
       operationId: findOneUserByUserame
@@ -208,6 +231,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -261,6 +291,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -313,6 +350,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -618,6 +662,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: repo
           required: false
           in: query
@@ -666,6 +717,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: repo
           required: false
@@ -788,6 +846,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: ""
@@ -832,6 +897,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -965,6 +1037,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -1015,6 +1094,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -1087,6 +1173,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -1134,6 +1227,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -1183,6 +1283,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1219,6 +1326,12 @@ paths:
           required: false
           in: query
           example: bdougie
+          schema:
+            type: string
+        - name: listId
+          required: false
+          in: query
+          example: uuid-v4
           schema:
             type: string
       responses:
@@ -1267,6 +1380,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: filter
           required: false
           in: query
@@ -1298,6 +1418,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/DbPRInsight"
+      tags: *a8
+  "/v1/prs/{id}/reviews":
+    get:
+      operationId: getPullRequestReviews
+      summary: Find all pull request reviews by pull request ID
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPullRequestReview"
       tags: *a8
   /v1/prs/description/generate:
     post:
@@ -1458,6 +1598,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1508,6 +1655,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: orderBy
           required: false
@@ -1785,6 +1939,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -1966,6 +2127,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2126,6 +2294,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2285,6 +2460,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: orderBy
           required: false
@@ -2451,6 +2633,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: orderBy
           required: false
           in: query
@@ -2517,6 +2706,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: orderBy
           required: false
@@ -2623,6 +2819,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -2737,6 +2940,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: id
           required: true
@@ -2936,6 +3146,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3001,6 +3218,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -3068,6 +3292,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: id
           required: true
           in: path
@@ -3118,6 +3349,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: id
           required: true
@@ -3221,6 +3459,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: repo
           required: false
           in: query
@@ -3275,6 +3520,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: repo
           required: false
@@ -3382,6 +3634,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3450,6 +3709,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3495,6 +3761,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -3576,6 +3849,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3626,6 +3906,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -3682,6 +3969,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -3787,6 +4081,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3838,6 +4139,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
           description: Successfully received model list
@@ -3883,6 +4191,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: filter
           required: false
@@ -3953,6 +4268,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -4006,6 +4328,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -4057,6 +4386,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
         - name: repoIds
           required: false
@@ -4110,6 +4446,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: repoIds
           required: false
           in: query
@@ -4160,6 +4503,13 @@ paths:
           description: Range in days
           schema:
             default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
             type: integer
       responses:
         "200":
@@ -4371,6 +4721,13 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
         - name: id
           required: true
           in: path
@@ -4450,6 +4807,222 @@ paths:
         "404":
           description: Unable to delete user from user list contributors
       tags: *a29
+      security:
+        - bearer: []
+  /v1/lists/timezones:
+    get:
+      operationId: getTimezones
+      summary: Retrieves all users timezones
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbTimezone"
+        "404":
+          description: Unable to get timezones
+      tags: *a29
+  "/v1/lists/{id}/stats/most-active-contributors":
+    get:
+      operationId: getMostActiveContributors
+      summary: Gets most active contributors for a given list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsOrderEnum"
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserListContributorStat"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get list most active contributors
+      tags:
+        &a30
+        - User Lists service
+      security:
+        - bearer: []
+  "/v1/lists/{id}/stats/contributions-evolution-by-type":
+    get:
+      operationId: getContributionsByTimeFrame
+      summary: Gets contributions in a given timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributionStatTimeframe"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a30
+      security:
+        - bearer: []
+  "/v1/lists/{id}/stats/contributions-by-project":
+    get:
+      operationId: getContributionsByProject
+      summary: Gets contributions in a given timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributionsProjects"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions by project
+      tags: *a30
+      security:
+        - bearer: []
+  "/v1/lists/{id}/stats/top-project-contributions-by-contributor":
+    get:
+      operationId: getContributorContributionsByProject
+      summary: Gets top 20 contributor stats in a list by a given project
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repoId
+          required: true
+          in: query
+          schema:
+            type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserListContributorStat"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a30
+      security:
+        - bearer: []
+  "/v1/lists/{id}/stats/contributions-evolution-by-contributor-type":
+    get:
+      operationId: getContributorsByTimeframe
+      summary: Gets contributions by category within timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributorCategoryTimeframe"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a30
       security:
         - bearer: []
 info:
@@ -4645,6 +5218,10 @@ components:
           type: integer
           description: Unread User Notification Count
           example: 5
+        coupon_code:
+          type: string
+          description: Coupon Code
+          example: saucy
       required:
         - id
     UserOnboardingDto:
@@ -4887,6 +5464,10 @@ components:
           type: string
           description: User timezone in UTC
           example: UTC-5
+        coupon_code:
+          type: string
+          description: Coupon Code
+          example: saucy
         languages:
           type: object
           description: GitHub top languages
@@ -4972,6 +5553,15 @@ components:
       required:
         - display_email
         - receive_collaboration
+    ApplyUserCouponDto:
+      type: object
+      properties:
+        couponCode:
+          type: string
+          description: Coupon Code
+          example: saucy
+      required:
+        - couponCode
     PageMetaDto:
       type: object
       properties:
@@ -5845,6 +6435,42 @@ components:
         - all_prs
         - accepted_prs
         - spam_prs
+    DbPullRequestReview:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Pull request review identifier
+          example: 123456789
+        reviewer_login:
+          type: string
+          description: Pull request reviewer username
+          example: Bdougie
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr review creation date
+          example: 2022-08-28 22:04:29.000000
+        published_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr review published date
+          example: 2022-08-28 22:04:29.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr review update date
+          example: 2022-08-28 22:04:29.000000
+        state:
+          type: string
+          description: Pull request review state
+          example: approved
+        pullRequest:
+          $ref: "#/components/schemas/DbPullRequest"
+      required:
+        - id
+        - reviewer_login
+        - pullRequest
     GeneratePullRequestDescriptionDto:
       type: object
       properties:
@@ -6218,7 +6844,7 @@ components:
         repos:
           description: An array of repository information objects
           example:
-            &a30
+            &a31
             - id: 797
               full_name: open-sauced/insights
           type: array
@@ -6241,7 +6867,7 @@ components:
           example: false
         repos:
           description: An array of repository information objects
-          example: *a30
+          example: *a31
           type: array
           items:
             $ref: "#/components/schemas/RepoInfo"
@@ -6592,13 +7218,13 @@ components:
           description: List Visibility
           example: false
         contributors:
-          description: An array of contributor user IDs
+          description: An array of contributor objects
           example:
-            - 42211
-            - 81233
+            - id: 12345
+              login: sauceduser
           type: array
           items:
-            type: integer
+            type: array
       required:
         - name
         - is_public
@@ -6618,6 +7244,10 @@ components:
           type: string
           description: List identifier
           example: uuid-v4
+        username:
+          type: string
+          description: List user source username
+          example: sauceduser
         created_at:
           format: date-time
           type: string
@@ -6644,3 +7274,153 @@ components:
             type: integer
       required:
         - contributors
+    DbTimezone:
+      type: object
+      properties:
+        timezone:
+          type: string
+          description: Timezone string
+          example: America/Los_Angeles
+      required:
+        - timezone
+    DbUserListContributorStat:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
+        commits:
+          type: integer
+          description: Number of commits associated with a user login
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created associated with a user login
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed by a user login
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created by a user login
+          example: 0
+        comments:
+          type: integer
+          description: Number of comments associated with a user login
+          example: 0
+      required:
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - comments
+    UserListContributorStatsTypeEnum:
+      type: string
+      enum:
+        - all
+        - active
+        - new
+        - alumni
+    UserListContributorStatsOrderEnum:
+      type: string
+      enum:
+        - commits
+        - prs_created
+        - total_contributions
+    DbContributionStatTimeframe:
+      type: object
+      properties:
+        time_start:
+          type: string
+          description: The ISO timestamp for the start of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        time_end:
+          type: string
+          description: The ISO timestamp for the end of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        commits:
+          type: integer
+          description: Number of commits associated with a user login
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created associated with a user login
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed by a user login
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created by a user login
+          example: 0
+        comments:
+          type: integer
+          description: Number of comments associated with a user login
+          example: 0
+      required:
+        - time_start
+        - time_end
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - comments
+    DbContributionsProjects:
+      type: object
+      properties:
+        org_id:
+          type: string
+          description: The org name of the repo
+          example: 0
+        project_id:
+          type: string
+          description: The project name of the repo
+          example: 0
+        contributions:
+          type: integer
+          description: The number of contributions associated with a org/repo
+          example: 0
+      required:
+        - org_id
+        - project_id
+        - contributions
+    DbContributorCategoryTimeframe:
+      type: object
+      properties:
+        time_start:
+          type: string
+          description: The ISO timestamp for the start of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        time_end:
+          type: string
+          description: The ISO timestamp for the end of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        all:
+          type: integer
+          description: Number of all contributors (active, new, and alumni)
+          example: 0
+        active:
+          type: integer
+          description: Number of contributors who contributed in current time frame and
+            previous time frame
+          example: 0
+        new:
+          type: integer
+          description: Number of contributors who are new to contributing (contributed in
+            current time frame but not the previous time frame)
+          example: 0
+        alumni:
+          type: integer
+          description: Number of contributors who did not contribute in current time frame
+            but did in the previous time frame
+          example: 0
+      required:
+        - time_start
+        - time_end
+        - all
+        - active
+        - new
+        - alumni
