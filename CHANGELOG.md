@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.51.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0...v1.51.1-beta.1) (2023-10-11)
+
+
+### 🐛 Bug Fixes
+
+* remove guards from lists stats endpoints ([#368](https://github.com/open-sauced/api.opensauced.pizza/issues/368)) ([f75dd7c](https://github.com/open-sauced/api.opensauced.pizza/commit/f75dd7c3fe0f5f6e5c591bc08dd6571ad1ea2a64))
+
 ## [1.51.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0...v1.51.0) (2023-10-11)
 
 
