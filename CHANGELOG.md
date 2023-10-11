@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.51.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1-beta.1...v1.51.1-beta.2) (2023-10-11)
+
+
+### 🐛 Bug Fixes
+
+* update userId check for list ([#371](https://github.com/open-sauced/api.opensauced.pizza/issues/371)) ([a39935f](https://github.com/open-sauced/api.opensauced.pizza/commit/a39935f7f49cfc5082d913a790e62de80143e384))
+* user-lists stats for not found entities returns empty results ([#370](https://github.com/open-sauced/api.opensauced.pizza/issues/370)) ([d00da4e](https://github.com/open-sauced/api.opensauced.pizza/commit/d00da4e5f05955f8a547358ac8e86ba9dc426d19))
+
 ### [1.51.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0...v1.51.1-beta.1) (2023-10-11)
 
 
