@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.51.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.4...v1.51.0-beta.5) (2023-10-11)
+
+
+### 🍕 Features
+
+* add contributor search to list contributors ([#364](https://github.com/open-sauced/api.opensauced.pizza/issues/364)) ([0b3c360](https://github.com/open-sauced/api.opensauced.pizza/commit/0b3c360129ff95929615e69e1bcad5a641c680fd))
+* add flag for featured insights, insights count to user session ([#361](https://github.com/open-sauced/api.opensauced.pizza/issues/361)) ([c5f75f1](https://github.com/open-sauced/api.opensauced.pizza/commit/c5f75f1a49672e86bb23c90fd9a58a5a4fa34f9c))
+
 ## [1.51.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.3...v1.51.0-beta.4) (2023-10-11)
 
 
