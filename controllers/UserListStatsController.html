@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, required: false})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, required: false})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-contributor-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorsByTimeframe&#x27;, summary: &#x27;Gets contributions by category within timeframe&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbContributorCategoryTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-contributor-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorsByTimeframe&#x27;, summary: &#x27;Gets contributions by category within timeframe&#x27;})<br />@ApiOkResponse({type: DbContributorCategoryTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -323,14 +323,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByTimeFrame&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbContributionStatTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByTimeFrame&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionStatTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -413,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -503,14 +503,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributors&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributors&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -574,12 +574,11 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
   ApiNotFoundResponse,
-  ApiBearerAuth,
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
@@ -587,7 +586,6 @@ import {
 } from &quot;@nestjs/swagger&quot;;
 
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { UserListMostActiveContributorsDto } from &quot;./dtos/most-active-contributors.dto&quot;;
@@ -610,8 +608,6 @@ export class UserListStatsController {
     operationId: &quot;getMostActiveContributors&quot;,
     summary: &quot;Gets most active contributors for a given list&quot;,
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserListContributorStat)
   @ApiOkResponse({ type: DbUserListContributorStat })
   @ApiNotFoundResponse({ description: &quot;Unable to get list most active contributors&quot; })
@@ -629,8 +625,6 @@ export class UserListStatsController {
     operationId: &quot;getContributionsByTimeFrame&quot;,
     summary: &quot;Gets contributions in a given timeframe&quot;,
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributionStatTimeframe })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
@@ -647,8 +641,6 @@ export class UserListStatsController {
     operationId: &quot;getContributionsByProject&quot;,
     summary: &quot;Gets contributions in a given timeframe&quot;,
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributionsProjects })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions by project&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
@@ -666,8 +658,6 @@ export class UserListStatsController {
     operationId: &quot;getContributorContributionsByProject&quot;,
     summary: &quot;Gets top 20 contributor stats in a list by a given project&quot;,
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserListContributorStat })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
@@ -684,8 +674,6 @@ export class UserListStatsController {
     operationId: &quot;getContributorsByTimeframe&quot;,
     summary: &quot;Gets contributions by category within timeframe&quot;,
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributorCategoryTimeframe })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
