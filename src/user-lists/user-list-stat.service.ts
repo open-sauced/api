@@ -17,6 +17,7 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
+import { TopProjectsDto } from "./dtos/top-projects.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -35,7 +36,13 @@ export class UserListStatsService {
     return builder;
   }
 
-  async findListContributorStatsByProject(listId: string, repoId: number): Promise<DbUserListContributorStat[]> {
+  async findListContributorStatsByProject(
+    options: TopProjectsDto,
+    listId: string
+  ): Promise<DbUserListContributorStat[]> {
+    const range = options.range!;
+    const repoId = options.repo_id;
+
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
@@ -49,6 +56,7 @@ export class UserListStatsService {
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
+            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
         )::INTEGER`,
         "commits"
       )
@@ -58,6 +66,7 @@ export class UserListStatsService {
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
+            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
         )::INTEGER`,
         "prs_created"
       );
