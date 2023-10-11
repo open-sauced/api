@@ -467,6 +467,18 @@ export class DbUser extends BaseEntity {
   public notification_count: number;
 
   @ApiModelProperty({
+    description: "User insight pages count",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public insights_count: number;
+
+  @ApiModelProperty({
     description: "User highlights count",
     example: 0,
     type: "integer",
