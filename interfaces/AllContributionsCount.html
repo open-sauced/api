@@ -157,6 +157,7 @@ import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-tim
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from &quot;./dtos/contributions-pagemeta.dto&quot;;
 import { ContributionsPageDto } from &quot;./dtos/contributions-page.dto&quot;;
 import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
+import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -175,7 +176,13 @@ export class UserListStatsService {
     return builder;
   }
 
-  async findListContributorStatsByProject(listId: string, repoId: number): Promise&lt;DbUserListContributorStat[]&gt; {
+  async findListContributorStatsByProject(
+    options: TopProjectsDto,
+    listId: string
+  ): Promise&lt;DbUserListContributorStat[]&gt; {
+    const range &#x3D; options.range!;
+    const repoId &#x3D; options.repo_id;
+
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
@@ -189,6 +196,7 @@ export class UserListStatsService {
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
             AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &quot;commits&quot;
       )
@@ -198,6 +206,7 @@ export class UserListStatsService {
           FROM &quot;pull_requests&quot;
           WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
             AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
+            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
         )::INTEGER&#x60;,
         &quot;prs_created&quot;
       );

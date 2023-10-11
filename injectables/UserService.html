@@ -236,8 +236,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="313"
-                            class="link-to-prism">src/user/services/user.service.ts:313</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="321"
+                            class="link-to-prism">src/user/services/user.service.ts:321</a></div>
                 </td>
             </tr>
 
@@ -356,8 +356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/user/services/user.service.ts:205</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="213"
+                            class="link-to-prism">src/user/services/user.service.ts:213</a></div>
                 </td>
             </tr>
 
@@ -427,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="320"
-                            class="link-to-prism">src/user/services/user.service.ts:320</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="328"
+                            class="link-to-prism">src/user/services/user.service.ts:328</a></div>
                 </td>
             </tr>
 
@@ -586,8 +586,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/user/services/user.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user/services/user.service.ts:116</a></div>
                 </td>
             </tr>
 
@@ -728,8 +728,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">src/user/services/user.service.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="190"
+                            class="link-to-prism">src/user/services/user.service.ts:190</a></div>
                 </td>
             </tr>
 
@@ -836,8 +836,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="306"
-                            class="link-to-prism">src/user/services/user.service.ts:306</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="314"
+                            class="link-to-prism">src/user/services/user.service.ts:314</a></div>
                 </td>
             </tr>
 
@@ -919,8 +919,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="302"
-                            class="link-to-prism">src/user/services/user.service.ts:302</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="310"
+                            class="link-to-prism">src/user/services/user.service.ts:310</a></div>
                 </td>
             </tr>
 
@@ -1002,8 +1002,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="267"
-                            class="link-to-prism">src/user/services/user.service.ts:267</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/user/services/user.service.ts:275</a></div>
                 </td>
             </tr>
 
@@ -1085,8 +1085,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="292"
-                            class="link-to-prism">src/user/services/user.service.ts:292</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/user/services/user.service.ts:300</a></div>
                 </td>
             </tr>
 
@@ -1168,8 +1168,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="242"
-                            class="link-to-prism">src/user/services/user.service.ts:242</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/user/services/user.service.ts:250</a></div>
                 </td>
             </tr>
 
@@ -1251,8 +1251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="282"
-                            class="link-to-prism">src/user/services/user.service.ts:282</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/user/services/user.service.ts:290</a></div>
                 </td>
             </tr>
 
@@ -1389,6 +1389,14 @@ export class UserService {
           AND user_notifications.read_at IS NULL
         )::INTEGER&#x60;,
         &quot;users_notification_count&quot;
+      )
+      .addSelect(
+        &#x60;(
+          SELECT COALESCE(COUNT(&quot;insights&quot;.&quot;id&quot;), 0)
+          FROM insights
+          WHERE user_id &#x3D; :userId
+        )::INTEGER&#x60;,
+        &quot;users_insights_count&quot;
       )
       .where(&quot;id &#x3D; :id&quot;, { id });
 

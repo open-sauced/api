@@ -83,6 +83,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#contributor" >contributor</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#limit" >limit</a>
@@ -137,6 +141,42 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contributor"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>contributor</b></span>
+                        <a href="#contributor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiPropertyOptional({type: &#x27;string&#x27;, example: &#x27;bdougie&#x27;})<br />@IsString()<br />@IsOptional()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -286,7 +326,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:60</a></div>
                         </td>
                     </tr>
 
@@ -322,7 +362,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -357,7 +397,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/user-lists/dtos/filter-contributors.dto.ts:62</a></div>
                                 </td>
                             </tr>
 
@@ -404,6 +444,14 @@ export class FilterListContributorsDto {
   @IsString()
   @IsOptional()
   location?: string;
+
+  @ApiPropertyOptional({
+    type: &quot;string&quot;,
+    example: &quot;bdougie&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  contributor?: string;
 
   @ApiPropertyOptional({
     type: &quot;string&quot;,

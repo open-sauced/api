@@ -852,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:193</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -1101,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:210</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:216</a></div>
                 </td>
             </tr>
 
@@ -1361,6 +1361,12 @@ export class UserListService {
 
   async findContributorsByFilter(pageOptionsDto: FilterListContributorsDto): Promise&lt;PageDto&lt;DbUser&gt;&gt; {
     const queryBuilder &#x3D; this.userRepository.createQueryBuilder(&quot;user&quot;);
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere(&quot;LOWER(user.login) LIKE :contributor&quot;, {
+        contributor: &#x60;%${pageOptionsDto.contributor.toLowerCase()}%&#x60;,
+      });
+    }
 
     if (pageOptionsDto.location) {
       queryBuilder.andWhere(&quot;user.location &#x3D; :location&quot;, { location: pageOptionsDto.location });

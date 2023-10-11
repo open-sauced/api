@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:81</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:117</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -405,7 +405,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getContributorContributionsByProject(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>getContributorContributionsByProject(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, options: <a href="../classes/TopProjectsDto.html" target="_self">TopProjectsDto</a>)</code>
                 </td>
             </tr>
 
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:99</a></div>
                 </td>
             </tr>
 
@@ -453,9 +453,9 @@
 
                                 </tr>
                                 <tr>
-                                    <td>repoId</td>
+                                    <td>options</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="../classes/TopProjectsDto.html" target="_self" >TopProjectsDto</a></code>
                                     </td>
 
                                     <td>
@@ -509,8 +509,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -598,6 +598,7 @@ import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.d
 import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
 import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
 import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
+import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
 
 @Controller(&quot;lists&quot;)
 @ApiTags(&quot;User Lists service&quot;)
@@ -673,9 +674,9 @@ export class UserListStatsController {
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
   async getContributorContributionsByProject(
     @Param(&quot;id&quot;) id: string,
-    @Query(&quot;repoId&quot;) repoId: number
+    @Query() options: TopProjectsDto
   ): Promise&lt;DbUserListContributorStat[]&gt; {
-    return this.userListStatsService.findListContributorStatsByProject(id, repoId);
+    return this.userListStatsService.findListContributorStatsByProject(options, id);
   }
 
   @Get(&quot;:id/stats/contributions-evolution-by-contributor-type&quot;)
