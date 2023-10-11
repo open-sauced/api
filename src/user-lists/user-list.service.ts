@@ -153,6 +153,12 @@ export class UserListService {
   async findContributorsByFilter(pageOptionsDto: FilterListContributorsDto): Promise<PageDto<DbUser>> {
     const queryBuilder = this.userRepository.createQueryBuilder("user");
 
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(user.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
+
     if (pageOptionsDto.location) {
       queryBuilder.andWhere("user.location = :location", { location: pageOptionsDto.location });
     }
