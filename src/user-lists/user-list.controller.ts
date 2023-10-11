@@ -75,14 +75,12 @@ export class UserListController {
     operationId: "getUserList",
     summary: "Retrieves an individual user list",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserList })
   @ApiNotFoundResponse({ description: "Unable to get user list" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  async getUserList(@Param("id") id: string, @UserId() userId: number): Promise<DbUserList> {
-    return this.userListService.findPublicOneById(id, userId);
+  async getUserList(@Param("id") id: string): Promise<DbUserList> {
+    return this.userListService.findPublicOneById(id);
   }
 
   @Patch("/:id")
@@ -148,8 +146,6 @@ export class UserListController {
     operationId: "getUserListContributors",
     summary: "Retrieves contributors for an individual user list",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserListContributor)
   @ApiOkResponse({ type: DbUserListContributor })
   @ApiNotFoundResponse({ description: "Unable to get user list contributors" })
