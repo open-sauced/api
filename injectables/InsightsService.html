@@ -673,9 +673,9 @@ export class InsightsService {
       .where(&quot;insights.user_id &#x3D; :userId&quot;, { userId })
       .orWhere(
         &#x60;(
-          (((SELECT COUNT(id) FROM insight_repos where user_id&#x3D;:userId)&#x3D;0)
+          ((SELECT COUNT(id) FROM insights where user_id&#x3D;:userId)&#x3D;0)
           AND
-          (is_featured&#x3D;true AND insights.deleted_at IS NULL))
+          (is_featured&#x3D;true AND insights.deleted_at IS NULL)
         )
       &#x60;,
         { userId }
