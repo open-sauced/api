@@ -67,6 +67,7 @@ export class AuthController {
         discord_url,
         notification_count,
         coupon_code,
+        insights_count,
       } = await this.userService.checkAddUser(user);
 
       userProfile = {
@@ -86,6 +87,7 @@ export class AuthController {
         discord_url,
         notification_count,
         coupon_code,
+        insights_count,
       };
     } catch (e) {
       // leave user profile as-is

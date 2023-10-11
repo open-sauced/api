@@ -5,6 +5,42 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.51.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.4...v1.51.0-beta.5) (2023-10-11)
+
+
+### 🍕 Features
+
+* add contributor search to list contributors ([#364](https://github.com/open-sauced/api.opensauced.pizza/issues/364)) ([0b3c360](https://github.com/open-sauced/api.opensauced.pizza/commit/0b3c360129ff95929615e69e1bcad5a641c680fd))
+* add flag for featured insights, insights count to user session ([#361](https://github.com/open-sauced/api.opensauced.pizza/issues/361)) ([c5f75f1](https://github.com/open-sauced/api.opensauced.pizza/commit/c5f75f1a49672e86bb23c90fd9a58a5a4fa34f9c))
+
+## [1.51.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.3...v1.51.0-beta.4) (2023-10-11)
+
+
+### 🍕 Features
+
+* Time frame for top-projects user-lists stats endpoint ([#365](https://github.com/open-sauced/api.opensauced.pizza/issues/365)) ([8c833a8](https://github.com/open-sauced/api.opensauced.pizza/commit/8c833a8ace77affaff3de150f02db74368d0e5dd))
+
+## [1.51.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.2...v1.51.0-beta.3) (2023-10-10)
+
+
+### 🍕 Features
+
+* Time range for contributions-by-project endpoint ([#363](https://github.com/open-sauced/api.opensauced.pizza/issues/363)) ([00090bc](https://github.com/open-sauced/api.opensauced.pizza/commit/00090bcb131f49681423db28852feeb1309f723b))
+
+## [1.51.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.0-beta.1...v1.51.0-beta.2) (2023-10-10)
+
+
+### 🍕 Features
+
+* add repo_id for contributions-by-project stat endpoint ([#362](https://github.com/open-sauced/api.opensauced.pizza/issues/362)) ([d264ccd](https://github.com/open-sauced/api.opensauced.pizza/commit/d264ccddc3b2265f39540566d967e6b942930ea7))
+
+## [1.51.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.50.0...v1.51.0-beta.1) (2023-10-10)
+
+
+### 🍕 Features
+
+* Don't allow adding the same list-contributors to a single list ([#360](https://github.com/open-sauced/api.opensauced.pizza/issues/360)) ([d8e7519](https://github.com/open-sauced/api.opensauced.pizza/commit/d8e75196054149e22fa57f3c7d4090423a8ba328))
+
 ## [1.50.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.49.0...v1.50.0) (2023-10-10)
 
 

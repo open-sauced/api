@@ -16,6 +16,8 @@ import { DbContributionsProjects } from "./entities/contributions-projects.entit
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
+import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
+import { TopProjectsDto } from "./dtos/top-projects.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -34,7 +36,13 @@ export class UserListStatsService {
     return builder;
   }
 
-  async findListContributorStatsByProject(listId: string, repoId: number): Promise<DbUserListContributorStat[]> {
+  async findListContributorStatsByProject(
+    options: TopProjectsDto,
+    listId: string
+  ): Promise<DbUserListContributorStat[]> {
+    const range = options.range!;
+    const repoId = options.repo_id;
+
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
@@ -48,6 +56,7 @@ export class UserListStatsService {
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
+            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
         )::INTEGER`,
         "commits"
       )
@@ -57,6 +66,7 @@ export class UserListStatsService {
           FROM "pull_requests"
           WHERE "pull_requests"."author_login" = "users"."login"
             AND "pull_requests"."repo_id" = ${repoId}
+            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
         )::INTEGER`,
         "prs_created"
       );
@@ -347,14 +357,17 @@ export class UserListStatsService {
     };
   }
 
-  async findContributionsByProject(listId: string): Promise<DbContributionsProjects[]> {
-    // todo (jpmcb) - in the future we'll likely want to make this range dynamic.
-    const range = 30;
+  async findContributionsByProject(
+    listId: string,
+    options: ContributionsByProjectDto
+  ): Promise<DbContributionsProjects[]> {
+    const range = options.range!;
 
     const queryBuilder = this.userListContributorRepository.manager
       .createQueryBuilder()
       .select("split_part(repos.full_name, '/', 1)", "org_id")
       .addSelect("split_part(repos.full_name, '/', 2)", "project_id")
+      .addSelect("repos.id", "repo_id")
       .addSelect("COUNT(pr.id)", "contributions")
 
       // grab pull requests first
@@ -376,7 +389,7 @@ export class UserListStatsService {
       )
 
       .where(`pr."updated_at" BETWEEN NOW() - INTERVAL '${range} days' AND NOW()`)
-      .groupBy("repos.full_name");
+      .groupBy("repos.full_name, repos.id");
 
     const entities: DbContributionsProjects[] = await queryBuilder.getRawMany();
 

@@ -82,6 +82,14 @@ export class UserService {
         )::INTEGER`,
         "users_notification_count"
       )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("insights"."id"), 0)
+          FROM insights
+          WHERE user_id = :userId
+        )::INTEGER`,
+        "users_insights_count"
+      )
       .where("id = :id", { id });
 
     if (includeEmail) {

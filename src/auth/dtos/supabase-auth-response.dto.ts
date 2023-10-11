@@ -136,6 +136,13 @@ export class SupabaseAuthDto {
   readonly notification_count?: number;
 
   @ApiPropertyOptional({
+    description: "Unread Insight Pagees Count",
+    example: 2,
+    type: "integer",
+  })
+  readonly insights_count?: number;
+
+  @ApiPropertyOptional({
     description: "Coupon Code",
     example: "saucy",
   })

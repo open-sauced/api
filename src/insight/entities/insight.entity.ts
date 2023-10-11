@@ -68,6 +68,13 @@ export class DbInsight extends BaseEntity {
   public is_favorite: boolean;
 
   @ApiModelProperty({
+    description: "Flag indicating featured insight",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_featured: boolean;
+
+  @ApiModelProperty({
     description: "Title",
     example: "Insight Page Short Code",
   })

@@ -107,6 +107,17 @@ export class UserListService {
   }
 
   async addUserListContributor(listId: string, userId: number, username?: string) {
+    const existingContributor = await this.userListContributorRepository.findOne({
+      where: {
+        list_id: listId,
+        user_id: userId,
+      },
+    });
+
+    if (existingContributor) {
+      return existingContributor;
+    }
+
     const newUserListContributor = this.userListContributorRepository.create({
       list_id: listId,
       user_id: userId,
@@ -141,6 +152,12 @@ export class UserListService {
 
   async findContributorsByFilter(pageOptionsDto: FilterListContributorsDto): Promise<PageDto<DbUser>> {
     const queryBuilder = this.userRepository.createQueryBuilder("user");
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(user.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
 
     if (pageOptionsDto.location) {
       queryBuilder.andWhere("user.location = :location", { location: pageOptionsDto.location });

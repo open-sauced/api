@@ -5,7 +5,7 @@ import { Column, Entity } from "typeorm";
 export class DbContributionsProjects {
   @ApiModelProperty({
     description: "The org name of the repo",
-    example: 0,
+    example: "open-sauced",
     type: "string",
   })
   @Column({
@@ -17,7 +17,7 @@ export class DbContributionsProjects {
 
   @ApiModelProperty({
     description: "The project name of the repo",
-    example: 0,
+    example: "api",
     type: "string",
   })
   @Column({
@@ -26,6 +26,18 @@ export class DbContributionsProjects {
     insert: false,
   })
   project_id: string;
+
+  @ApiModelProperty({
+    description: "The ID of the associated repo in the OpenSauced API context",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  repo_id: number;
 
   @ApiModelProperty({
     description: "The number of contributions associated with a org/repo",
