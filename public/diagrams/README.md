@@ -15,7 +15,7 @@
 | [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
 | [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |         | BASE TABLE |
 | [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |         | BASE TABLE |
-| [public.insights](public.insights.md)                                     | 9       |         | BASE TABLE |
+| [public.insights](public.insights.md)                                     | 10      |         | BASE TABLE |
 | [public.insight_repos](public.insight_repos.md)                           | 6       |         | BASE TABLE |
 | [public.user_repos](public.user_repos.md)                                 | 4       |         | BASE TABLE |
 | [public.customers](public.customers.md)                                   | 2       |         | BASE TABLE |
