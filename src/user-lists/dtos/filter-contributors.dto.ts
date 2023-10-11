@@ -37,6 +37,14 @@ export class FilterListContributorsDto {
 
   @ApiPropertyOptional({
     type: "string",
+    example: "bdougie",
+  })
+  @IsString()
+  @IsOptional()
+  contributor?: string;
+
+  @ApiPropertyOptional({
+    type: "string",
     example: "Mountain Standard Time",
   })
   @IsString()
