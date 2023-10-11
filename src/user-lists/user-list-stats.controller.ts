@@ -1,9 +1,8 @@
-import { Controller, Get, Param, Query, UseGuards } from "@nestjs/common";
+import { Controller, Get, Param, Query } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
   ApiNotFoundResponse,
-  ApiBearerAuth,
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
@@ -11,7 +10,6 @@ import {
 } from "@nestjs/swagger";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
@@ -34,8 +32,6 @@ export class UserListStatsController {
     operationId: "getMostActiveContributors",
     summary: "Gets most active contributors for a given list",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserListContributorStat)
   @ApiOkResponse({ type: DbUserListContributorStat })
   @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
@@ -53,8 +49,6 @@ export class UserListStatsController {
     operationId: "getContributionsByTimeFrame",
     summary: "Gets contributions in a given timeframe",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributionStatTimeframe })
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
@@ -71,8 +65,6 @@ export class UserListStatsController {
     operationId: "getContributionsByProject",
     summary: "Gets contributions in a given timeframe",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributionsProjects })
   @ApiNotFoundResponse({ description: "Unable to get contributions by project" })
   @ApiBadRequestResponse({ description: "Invalid request" })
@@ -90,8 +82,6 @@ export class UserListStatsController {
     operationId: "getContributorContributionsByProject",
     summary: "Gets top 20 contributor stats in a list by a given project",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserListContributorStat })
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
@@ -108,8 +98,6 @@ export class UserListStatsController {
     operationId: "getContributorsByTimeframe",
     summary: "Gets contributions by category within timeframe",
   })
-  @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbContributorCategoryTimeframe })
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
