@@ -22,6 +22,7 @@ import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
+import { TopProjectsDto } from "./dtos/top-projects.dto";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -97,9 +98,9 @@ export class UserListStatsController {
   @ApiParam({ name: "id", type: "string" })
   async getContributorContributionsByProject(
     @Param("id") id: string,
-    @Query("repoId") repoId: number
+    @Query() options: TopProjectsDto
   ): Promise<DbUserListContributorStat[]> {
-    return this.userListStatsService.findListContributorStatsByProject(id, repoId);
+    return this.userListStatsService.findListContributorStatsByProject(options, id);
   }
 
   @Get(":id/stats/contributions-evolution-by-contributor-type")
