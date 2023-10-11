@@ -749,44 +749,47 @@
 <!-- public.insights -->
 <g id="node12" class="node">
 <title>public.insights</title>
-<polygon fill="#efefef" stroke="transparent" points="2897,-825.5 2897,-860.5 3165,-860.5 3165,-825.5 2897,-825.5"/>
-<polygon fill="none" stroke="#000000" points="2897,-825.5 2897,-860.5 3165,-860.5 3165,-825.5 2897,-825.5"/>
-<text text-anchor="start" x="2925.8639" y="-838.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.insights</text>
-<text text-anchor="start" x="3038.8823" y="-838.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
-<text text-anchor="start" x="3042.7729" y="-838.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
-<polygon fill="none" stroke="#000000" points="2897,-795.5 2897,-825.5 3165,-825.5 3165,-795.5 2897,-795.5"/>
-<text text-anchor="start" x="2904" y="-806.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
-<text text-anchor="start" x="2918.7798" y="-806.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="2897,-765.5 2897,-795.5 3165,-795.5 3165,-765.5 2897,-765.5"/>
-<text text-anchor="start" x="2904" y="-776.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
-<text text-anchor="start" x="2953.7882" y="-776.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
-<polygon fill="none" stroke="#000000" points="2897,-735.5 2897,-765.5 3165,-765.5 3165,-735.5 2897,-735.5"/>
-<text text-anchor="start" x="2904" y="-746.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
-<text text-anchor="start" x="2942.899" y="-746.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
-<polygon fill="none" stroke="#000000" points="2897,-705.5 2897,-735.5 3165,-735.5 3165,-705.5 2897,-705.5"/>
-<text text-anchor="start" x="2904" y="-716.9" font-family="Arial" font-size="14.00" fill="#000000">is_public </text>
-<text text-anchor="start" x="2962.3408" y="-716.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
-<polygon fill="none" stroke="#000000" points="2897,-675.5 2897,-705.5 3165,-705.5 3165,-675.5 2897,-675.5"/>
-<text text-anchor="start" x="2904" y="-686.9" font-family="Arial" font-size="14.00" fill="#000000">is_favorite </text>
-<text text-anchor="start" x="2971.676" y="-686.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
-<polygon fill="none" stroke="#000000" points="2897,-645.5 2897,-675.5 3165,-675.5 3165,-645.5 2897,-645.5"/>
-<text text-anchor="start" x="2904" y="-656.9" font-family="Arial" font-size="14.00" fill="#000000">short_code </text>
-<text text-anchor="start" x="2977.1374" y="-656.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
-<polygon fill="none" stroke="#000000" points="2897,-615.5 2897,-645.5 3165,-645.5 3165,-615.5 2897,-615.5"/>
-<text text-anchor="start" x="2904" y="-626.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
-<text text-anchor="start" x="2974.028" y="-626.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
-<polygon fill="none" stroke="#000000" points="2897,-585.5 2897,-615.5 3165,-615.5 3165,-585.5 2897,-585.5"/>
-<text text-anchor="start" x="2904" y="-596.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
-<text text-anchor="start" x="2977.9326" y="-596.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
-<polygon fill="none" stroke="#000000" points="2897,-555.5 2897,-585.5 3165,-585.5 3165,-555.5 2897,-555.5"/>
-<text text-anchor="start" x="2903.8016" y="-566.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
-<text text-anchor="start" x="2973.0582" y="-566.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
+<polygon fill="#efefef" stroke="transparent" points="2897,-840.5 2897,-875.5 3165,-875.5 3165,-840.5 2897,-840.5"/>
+<polygon fill="none" stroke="#000000" points="2897,-840.5 2897,-875.5 3165,-875.5 3165,-840.5 2897,-840.5"/>
+<text text-anchor="start" x="2925.8639" y="-853.3" font-family="Arial Bold" font-size="18.00" fill="#000000">public.insights</text>
+<text text-anchor="start" x="3038.8823" y="-853.3" font-family="Arial" font-size="14.00" fill="#000000"> </text>
+<text text-anchor="start" x="3042.7729" y="-853.3" font-family="Arial" font-size="14.00" fill="#666666">[BASE TABLE]</text>
+<polygon fill="none" stroke="#000000" points="2897,-810.5 2897,-840.5 3165,-840.5 3165,-810.5 2897,-810.5"/>
+<text text-anchor="start" x="2904" y="-821.9" font-family="Arial" font-size="14.00" fill="#000000">id </text>
+<text text-anchor="start" x="2918.7798" y="-821.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="2897,-780.5 2897,-810.5 3165,-810.5 3165,-780.5 2897,-780.5"/>
+<text text-anchor="start" x="2904" y="-791.9" font-family="Arial" font-size="14.00" fill="#000000">user_id </text>
+<text text-anchor="start" x="2953.7882" y="-791.9" font-family="Arial" font-size="14.00" fill="#666666">[bigint]</text>
+<polygon fill="none" stroke="#000000" points="2897,-750.5 2897,-780.5 3165,-780.5 3165,-750.5 2897,-750.5"/>
+<text text-anchor="start" x="2904" y="-761.9" font-family="Arial" font-size="14.00" fill="#000000">name </text>
+<text text-anchor="start" x="2942.899" y="-761.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
+<polygon fill="none" stroke="#000000" points="2897,-720.5 2897,-750.5 3165,-750.5 3165,-720.5 2897,-720.5"/>
+<text text-anchor="start" x="2904" y="-731.9" font-family="Arial" font-size="14.00" fill="#000000">is_public </text>
+<text text-anchor="start" x="2962.3408" y="-731.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
+<polygon fill="none" stroke="#000000" points="2897,-690.5 2897,-720.5 3165,-720.5 3165,-690.5 2897,-690.5"/>
+<text text-anchor="start" x="2904" y="-701.9" font-family="Arial" font-size="14.00" fill="#000000">is_favorite </text>
+<text text-anchor="start" x="2971.676" y="-701.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
+<polygon fill="none" stroke="#000000" points="2897,-660.5 2897,-690.5 3165,-690.5 3165,-660.5 2897,-660.5"/>
+<text text-anchor="start" x="2904" y="-671.9" font-family="Arial" font-size="14.00" fill="#000000">short_code </text>
+<text text-anchor="start" x="2977.1374" y="-671.9" font-family="Arial" font-size="14.00" fill="#666666">[varchar]</text>
+<polygon fill="none" stroke="#000000" points="2897,-630.5 2897,-660.5 3165,-660.5 3165,-630.5 2897,-630.5"/>
+<text text-anchor="start" x="2904" y="-641.9" font-family="Arial" font-size="14.00" fill="#000000">created_at </text>
+<text text-anchor="start" x="2974.028" y="-641.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="2897,-600.5 2897,-630.5 3165,-630.5 3165,-600.5 2897,-600.5"/>
+<text text-anchor="start" x="2904" y="-611.9" font-family="Arial" font-size="14.00" fill="#000000">updated_at </text>
+<text text-anchor="start" x="2977.9326" y="-611.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp with time zone]</text>
+<polygon fill="none" stroke="#000000" points="2897,-570.5 2897,-600.5 3165,-600.5 3165,-570.5 2897,-570.5"/>
+<text text-anchor="start" x="2903.8016" y="-581.9" font-family="Arial" font-size="14.00" fill="#000000">deleted_at </text>
+<text text-anchor="start" x="2973.0582" y="-581.9" font-family="Arial" font-size="14.00" fill="#666666">[timestamp without time zone]</text>
+<polygon fill="none" stroke="#000000" points="2897,-540.5 2897,-570.5 3165,-570.5 3165,-540.5 2897,-540.5"/>
+<text text-anchor="start" x="2904" y="-551.9" font-family="Arial" font-size="14.00" fill="#000000">is_featured </text>
+<text text-anchor="start" x="2977.1346" y="-551.9" font-family="Arial" font-size="14.00" fill="#666666">[boolean]</text>
 </g>
 <!-- public.insight_members&#45;&gt;public.insights -->
 <g id="edge16" class="edge">
 <title>public.insight_members:insight_id&#45;&gt;public.insights:id</title>
-<path fill="none" stroke="#000000" d="M3206.4412,-2209.5412C3273.498,-2110.5165 3240.1034,-810.5 3165,-810.5"/>
-<polygon fill="#000000" stroke="#000000" points="3206.1696,-2209.7329 3195.4048,-2211.8237 3202.0848,-2212.6165 3198,-2215.5 3198,-2215.5 3198,-2215.5 3202.0848,-2212.6165 3200.5952,-2219.1763 3206.1696,-2209.7329 3206.1696,-2209.7329"/>
+<path fill="none" stroke="#000000" d="M3206.3496,-2209.6048C3272.6661,-2111.6373 3239.3021,-825.5 3165,-825.5"/>
+<polygon fill="#000000" stroke="#000000" points="3206.1691,-2209.7323 3195.4045,-2211.8239 3202.0845,-2212.6161 3198,-2215.5 3198,-2215.5 3198,-2215.5 3202.0845,-2212.6161 3200.5955,-2219.1761 3206.1691,-2209.7323 3206.1691,-2209.7323"/>
 <text text-anchor="start" x="2965.9955" y="-2199.5" font-family="Arial" font-size="10.00" fill="#000000">FOREIGN KEY (insight_id) REFERENCES insights(id) ON UPDATE CASCADE ON DELETE CASCADE</text>
 </g>
 <!-- public.user_highlight_reactions -->
