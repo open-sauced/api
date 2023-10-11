@@ -311,7 +311,10 @@ export class UserListStatsService {
     const allContributionsResult: AllContributionsCount | undefined &#x3D; await allCountQb.getRawOne();
 
     if (!allContributionsResult) {
-      throw new NotFoundException();
+      return new ContributionsPageDto(
+        new Array&lt;DbUserListContributorStat&gt;(),
+        new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, 0)
+      );
     }
 
     const allContributionsCount &#x3D; allContributionsResult.all_contributions;
@@ -429,8 +432,8 @@ export class UserListStatsService {
 
     const queryBuilder &#x3D; this.userListContributorRepository.manager
       .createQueryBuilder()
-      .select(&#x60;SUM(&quot;subQ&quot;.&quot;all_commits&quot;)&#x60;, &quot;commits&quot;)
-      .addSelect(&#x60;SUM(&quot;subQ&quot;.&quot;all_prs_created&quot;)&#x60;, &quot;prs_created&quot;)
+      .select(&#x60;COALESCE(SUM(&quot;subQ&quot;.&quot;all_commits&quot;), 0)&#x60;, &quot;commits&quot;)
+      .addSelect(&#x60;COALESCE(SUM(&quot;subQ&quot;.&quot;all_prs_created&quot;), 0)&#x60;, &quot;prs_created&quot;)
       .from(&#x60;( ${subQueryBuilder.getQuery()} )&#x60;, &quot;subQ&quot;)
       .setParameters(subQueryBuilder.getParameters());
 

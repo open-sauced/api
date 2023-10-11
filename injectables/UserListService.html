@@ -1287,7 +1287,7 @@ export class UserListService {
       throw new NotFoundException();
     }
 
-    if (!item.is_public &amp;&amp; userId !&#x3D;&#x3D; item.user_id) {
+    if (!item.is_public &amp;&amp; userId &amp;&amp; userId !&#x3D;&#x3D; item.user_id) {
       throw new UnauthorizedException(&quot;You&#x27;re not authorized to view this list&quot;);
     }
 
