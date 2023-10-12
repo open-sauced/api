@@ -70,9 +70,9 @@ export class InsightsService {
       .where("insights.user_id = :userId", { userId })
       .orWhere(
         `(
-          (((SELECT COUNT(id) FROM insight_repos where user_id=:userId)=0)
+          ((SELECT COUNT(id) FROM insights where user_id=:userId)=0)
           AND
-          (is_featured=true AND insights.deleted_at IS NULL))
+          (is_featured=true AND insights.deleted_at IS NULL)
         )
       `,
         { userId }
