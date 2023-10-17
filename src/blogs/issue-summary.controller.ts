@@ -3,7 +3,7 @@ import { ApiOperation, ApiBearerAuth, ApiBadRequestResponse, ApiBody, ApiTags } 
 
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { CreateBlogSummaryDto } from "./dtos/create-blog-summary.dto";
-import { BlogSummaryService } from "./issue-summary.service";
+import { BlogSummaryService } from "./blog-summary.service";
 
 @Controller("blogs")
 @ApiTags("Blog summary service")
