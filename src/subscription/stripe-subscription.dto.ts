@@ -49,7 +49,7 @@ export class DbSubscription extends BaseEntity {
   @Column({ type: "bigint" })
   public quantity!: number;
 
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: "Timestamp representing subscription creation",
     example: "2016-10-19 13:24:51.000000",
   })

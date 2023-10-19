@@ -25,7 +25,7 @@ export class DbUserCollaboration extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Collaboration Receipient User ID",
     example: 237133,
     type: "integer",
@@ -33,7 +33,7 @@ export class DbUserCollaboration extends BaseEntity {
   @Column({ type: "integer" })
   public user_id?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Collaboration Request User ID",
     example: 31333,
     type: "integer",

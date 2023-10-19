@@ -29,7 +29,7 @@ export class DbInsightMember extends BaseEntity {
   @Column()
   public insight_id: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User ID",
     example: 237133,
     type: "integer",
@@ -37,7 +37,7 @@ export class DbInsightMember extends BaseEntity {
   @Column({ type: "integer" })
   public user_id?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User's Name",
     example: "Brian Douglas",
   })
@@ -96,7 +96,7 @@ export class DbInsightMember extends BaseEntity {
   })
   public invitation_emailed_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Team Member Invitation Email",
     example: "hello@opensauced.pizza",
   })

@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class DbPullRequestContributor {
   @ApiProperty({
@@ -7,7 +7,7 @@ export class DbPullRequestContributor {
   })
   public author_login: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing pr last update",
     example: "2022-08-28 22:04:29.000000",
   })

@@ -39,7 +39,7 @@ export class DbRepoToUserSubmissions {
   @Column()
   public repo_id!: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Flag representing if the submission is approved by open sauced staff",
     example: false,
   })

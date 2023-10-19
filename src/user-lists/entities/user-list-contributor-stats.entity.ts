@@ -1,9 +1,9 @@
 import { Column, Entity } from "typeorm";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 @Entity({ name: "user_list_contributors" })
 export class DbUserListContributorStat {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User list collaborator's login",
     example: "bdougie",
   })

@@ -14,12 +14,11 @@
     "target": "ES2016",
     "sourceMap": true,
     "outDir": "./dist",
-    //    "rootDir": "./src",
+    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
+  "exclude": ["node_modules", "**/*.js", "**/*.spec.ts", "**/*.e2e-spec.ts", "dist"]
 }

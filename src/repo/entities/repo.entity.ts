@@ -300,7 +300,7 @@ export class DbRepo extends BaseEntity {
   })
   public svn_url: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository mirror url",
     example: null,
   })
@@ -384,6 +384,7 @@ export class DbRepo extends BaseEntity {
 
   @ApiProperty({
     description: "Repository GitHub topics",
+    isArray: true,
     example: ["open-sauced", "open-source", "github"],
   })
   @Column({
@@ -466,7 +467,7 @@ export class DbRepo extends BaseEntity {
   public repoToUserTopRepos: Relation<DbUserTopRepo[]>;
 
   // virtual columns
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository number of open PRs",
     example: 5,
     type: "integer",
@@ -478,7 +479,7 @@ export class DbRepo extends BaseEntity {
   })
   public open_prs_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository number of closed PRs",
     example: 173,
     type: "integer",
@@ -490,7 +491,7 @@ export class DbRepo extends BaseEntity {
   })
   public closed_prs_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository number of merged PRs",
     example: 276,
     type: "integer",
@@ -502,7 +503,7 @@ export class DbRepo extends BaseEntity {
   })
   public merged_prs_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository number of draft PRs",
     example: 2,
     type: "integer",
@@ -514,7 +515,7 @@ export class DbRepo extends BaseEntity {
   })
   public draft_prs_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository number of spam PRs",
     example: 2,
     type: "integer",
@@ -526,7 +527,7 @@ export class DbRepo extends BaseEntity {
   })
   public spam_prs_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repository average open/close time for PRs",
     example: 0,
     type: "integer",
@@ -538,7 +539,7 @@ export class DbRepo extends BaseEntity {
   })
   public pr_velocity_count?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Number of non-closed PRs updated within the day range",
     example: 0,
     type: "integer",

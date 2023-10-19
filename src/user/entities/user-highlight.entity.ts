@@ -34,14 +34,14 @@ export class DbUserHighlight extends BaseEntity {
   @Column("bigint")
   public user_id: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Highlight Pull Request URL",
     example: "github.com/open-sauced/insights/pull/1",
   })
   @Column("text")
   public url?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Highlight Title",
     example: "My First PR!",
   })
@@ -65,7 +65,7 @@ export class DbUserHighlight extends BaseEntity {
   @Column("text")
   public type: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Whether the highlight is pinned to the top",
     example: false,
   })
@@ -75,7 +75,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public pinned?: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Whether the highlight is featured or not",
     example: false,
   })
@@ -119,7 +119,7 @@ export class DbUserHighlight extends BaseEntity {
   @Column({ type: "timestamp without time zone" })
   public shipped_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Highlight Repo Full Name",
     example: "open-sauced/insights",
   })
@@ -130,7 +130,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public full_name?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Highlight User Full Name",
     example: "Brian Douglas",
   })
@@ -141,7 +141,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public name?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Highlight User Login",
     example: "bdougie",
   })

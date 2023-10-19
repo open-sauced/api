@@ -33,7 +33,7 @@ export class DbPullRequestReview extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing pr review published date",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -43,7 +43,7 @@ export class DbPullRequestReview extends BaseEntity {
   })
   public published_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing pr review update date",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -53,7 +53,7 @@ export class DbPullRequestReview extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request review state",
     example: "approved",
   })

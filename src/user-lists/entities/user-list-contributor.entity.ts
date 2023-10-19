@@ -38,7 +38,7 @@ export class DbUserListContributor {
   @Column()
   public list_id!: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "List user source username",
     example: "sauceduser",
   })
@@ -70,7 +70,7 @@ export class DbUserListContributor {
   })
   public user_list_contributor!: Relation<DbUser>;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User list collaborator's login",
     example: "bdougie",
   })

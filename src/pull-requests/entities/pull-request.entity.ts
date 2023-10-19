@@ -68,7 +68,7 @@ export class DbPullRequest extends BaseEntity {
   @Column("text")
   public title: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request source ref",
     example: "Th3nn3ss:cli_split_kwargs",
   })
@@ -78,7 +78,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public source_label?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request target ref",
     example: "aws:main",
   })
@@ -88,21 +88,21 @@ export class DbPullRequest extends BaseEntity {
   })
   public target_label?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request source branch",
     example: "main",
   })
   @Column("text")
   public source_branch?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request target branch",
     example: "cli_split_kwargs",
   })
   @Column("text")
   public target_branch?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request labels",
     example: `[
       {
@@ -122,8 +122,9 @@ export class DbPullRequest extends BaseEntity {
   })
   public labels?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request label names",
+    isArray: true,
     example: `showcase`,
   })
   @Column({
@@ -146,7 +147,7 @@ export class DbPullRequest extends BaseEntity {
   @Column("text")
   public author_avatar: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request assignee username",
     example: null,
   })
@@ -156,7 +157,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public assignee_login?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request assignee avatar",
     example: null,
   })
@@ -176,7 +177,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing pr close date",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -186,7 +187,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public closed_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing pr merge date",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -196,14 +197,14 @@ export class DbPullRequest extends BaseEntity {
   })
   public merged_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request merged by username",
     example: "bdougie",
   })
   @Column("text")
   public merged_by_login?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing repository last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -213,7 +214,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Timestamp representing internal last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -223,7 +224,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public last_updated_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "PR comments",
     example: 0,
     type: "integer",
@@ -231,7 +232,7 @@ export class DbPullRequest extends BaseEntity {
   @Column({ type: "bigint" })
   public comments?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "PR lines added",
     example: 10,
     type: "integer",
@@ -239,7 +240,7 @@ export class DbPullRequest extends BaseEntity {
   @Column({ type: "bigint" })
   public additions?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "PR lines deleted",
     example: 5,
     type: "integer",
@@ -247,7 +248,7 @@ export class DbPullRequest extends BaseEntity {
   @Column({ type: "bigint" })
   public deletions?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "PR files changed",
     example: 5,
     type: "integer",
@@ -255,7 +256,7 @@ export class DbPullRequest extends BaseEntity {
   @Column({ type: "bigint" })
   public changed_files?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Pull request repo full name",
     example: "open-sauced/insights",
   })
@@ -266,7 +267,7 @@ export class DbPullRequest extends BaseEntity {
   })
   public full_name?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Number of commits in the PR",
     example: 4,
     type: "integer",

@@ -132,7 +132,7 @@ export class DbUser extends BaseEntity {
   })
   public avatar_url: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User GitHub gravatar URL",
     example: "",
   })
@@ -142,7 +142,7 @@ export class DbUser extends BaseEntity {
   })
   public gravatar_id?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User GitHub profile URL",
     example: "https://api.github.com/users/0-vortex",
   })
@@ -221,7 +221,7 @@ export class DbUser extends BaseEntity {
   @Column({ default: 10 })
   public role: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User bio information",
     example: "OpenSauced User",
   })
@@ -231,7 +231,7 @@ export class DbUser extends BaseEntity {
   })
   readonly bio?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "GitHub blog information",
     example: "https://opensauced.pizza/blog",
   })
@@ -241,7 +241,7 @@ export class DbUser extends BaseEntity {
   })
   public blog?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User name information",
     example: "MrPizza",
   })
@@ -251,7 +251,7 @@ export class DbUser extends BaseEntity {
   })
   readonly name?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User Twitter information",
     example: "saucedopen",
   })
@@ -261,7 +261,7 @@ export class DbUser extends BaseEntity {
   })
   readonly twitter_username?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "LinkedIn URL",
     example: "https://www.linkedin.com/in/brianldouglas",
   })
@@ -271,7 +271,7 @@ export class DbUser extends BaseEntity {
   })
   readonly linkedin_url?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "GitHub Sponsors URL",
     example: "https://github.com/sponsors/open-sauced",
   })
@@ -281,7 +281,7 @@ export class DbUser extends BaseEntity {
   })
   readonly github_sponsors_url?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Discord URL",
     example: "https://discord.gg/opensauced",
   })
@@ -291,7 +291,7 @@ export class DbUser extends BaseEntity {
   })
   readonly discord_url?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User company information",
     example: "OpenSauced",
   })
@@ -301,7 +301,7 @@ export class DbUser extends BaseEntity {
   })
   readonly company?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User location information",
     example: "San Francisco, CA",
   })
@@ -311,7 +311,7 @@ export class DbUser extends BaseEntity {
   })
   readonly location?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User display local time information",
     example: false,
   })
@@ -321,7 +321,7 @@ export class DbUser extends BaseEntity {
   })
   readonly display_local_time?: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User topic interests",
     example: "javascript",
   })
@@ -331,7 +331,7 @@ export class DbUser extends BaseEntity {
   })
   readonly interests?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "GitHub user hireable status",
     example: false,
   })
@@ -399,7 +399,7 @@ export class DbUser extends BaseEntity {
   })
   public type: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User display public email",
     example: false,
   })
@@ -409,7 +409,7 @@ export class DbUser extends BaseEntity {
   })
   readonly display_email?: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User receives collaboration requests",
     example: false,
   })
@@ -419,7 +419,7 @@ export class DbUser extends BaseEntity {
   })
   readonly receive_collaboration?: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User timezone in UTC",
     example: "UTC-5",
   })
@@ -429,7 +429,7 @@ export class DbUser extends BaseEntity {
   })
   readonly timezone?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Coupon Code",
     example: "saucy",
   })

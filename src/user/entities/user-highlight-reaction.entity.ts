@@ -82,7 +82,7 @@ export class DbUserHighlightReaction {
   public deleted_at?: Date;
 
   // virtual columns
-  @ApiProperty({ type: "integer" })
+  @ApiPropertyOptional({ type: "integer" })
   @Column({
     type: "integer",
     select: false,

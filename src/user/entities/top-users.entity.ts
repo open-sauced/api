@@ -1,7 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiPropertyOptional } from "@nestjs/swagger";
 
 export class DbTopUser {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Top User Login",
     example: "bdougie",
   })

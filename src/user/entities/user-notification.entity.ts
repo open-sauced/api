@@ -21,7 +21,7 @@ export class DbUserNotification extends BaseEntity {
   @Column({ type: "bigint" })
   public user_id: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "From User ID",
     example: 43311,
     type: "integer",
@@ -40,7 +40,7 @@ export class DbUserNotification extends BaseEntity {
   })
   public type: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "User notification message",
     example: "bdougie followed you",
   })
@@ -69,7 +69,7 @@ export class DbUserNotification extends BaseEntity {
   })
   public read_at?: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Notification Source ID (highlight, user, invite)",
     example: "133",
   })

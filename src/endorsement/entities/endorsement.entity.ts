@@ -10,7 +10,7 @@ export class DbEndorsement {
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Endorsement Creator User ID",
     example: 237133,
     type: "integer",
@@ -18,7 +18,7 @@ export class DbEndorsement {
   @Column({ type: "integer" })
   public creator_user_id?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Endorsement Recipient User ID",
     example: 31333,
     type: "integer",
@@ -34,7 +34,7 @@ export class DbEndorsement {
   @Column({ type: "integer" })
   public repo_id: number;
 
-  @ApiProperty({ description: "Endorsement Source Comment URL" })
+  @ApiPropertyOptional({ description: "Endorsement Source Comment URL" })
   @Column({
     type: "character varying",
     length: 500,

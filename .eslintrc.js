@@ -45,17 +45,8 @@ module.exports = {
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "object",
-          "type",
-          "index",
-          "parent",
-          "sibling"
-        ]
-      }
+        groups: ["builtin", "external", "internal", "object", "type", "index", "parent", "sibling"],
+      },
     ],
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],
@@ -361,4 +352,5 @@ module.exports = {
       "@typescript-eslint/parser": [".js", ".ts"],
     },
   },
+  ignorePatterns: ["**/*.js", "**/*.spec.ts", "**/*.e2e-spec.ts", "**/*.d.ts"],
 };
