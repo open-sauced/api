@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.51.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1...v1.51.2) (2023-10-12)
+
+
+### 🐛 Bug Fixes
+
+* update query for showing featured insights ([#374](https://github.com/open-sauced/api.opensauced.pizza/issues/374)) ([1b14cac](https://github.com/open-sauced/api.opensauced.pizza/commit/1b14cac91145a46be6b19b2dde533296c238c6b3))
+
 ### [1.51.2-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1...v1.51.2-beta.1) (2023-10-11)
 
 
