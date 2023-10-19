@@ -187,11 +187,10 @@ import { OpenAiModule } from "./open-ai/open-ai.module";
 export class AppModule {
   constructor(
     @InjectDataSource("ApiConnection")
-    private readonly apiConnection: DataSource
-    /*
-     * @InjectDataSource("LogConnection")
-     * private readonly logConnection: DataSource
-     */
+    private readonly apiConnection: DataSource,
+
+    @InjectDataSource("LogConnection")
+    private readonly logConnection: DataSource
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
