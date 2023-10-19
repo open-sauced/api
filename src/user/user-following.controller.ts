@@ -2,13 +2,13 @@ import { Controller, Get, Param } from "@nestjs/common";
 import { ApiNotFoundResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { UserService } from "./services/user.service";
 import { DbUser } from "./user.entity";
-import { UserFollowingService } from "./user-following.service";
+import { UserFollowService } from "./user-follow.service";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 
 @Controller("users")
 @ApiTags("User service")
 export class UserFollowingController {
-  constructor(private readonly userService: UserService, private readonly userFollowingService: UserFollowingService) {}
+  constructor(private readonly userService: UserService, private readonly userFollowService: UserFollowService) {}
 
   @Get("/:username/following")
   @ApiOperation({
@@ -19,6 +19,6 @@ export class UserFollowingController {
   async getFollowingListByUsername(@Param("username") username: string): Promise<DbUserToUserFollows[]> {
     const user: DbUser = await this.userService.findOneByUsername(username);
 
-    return this.userFollowingService.findAllFollowingList(user.id);
+    return this.userFollowService.findAllFollowingList(user.id);
   }
 }
