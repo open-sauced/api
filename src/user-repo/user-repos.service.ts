@@ -4,10 +4,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
 
-import { DbUserRepo } from "./user-repo.entity";
-import { UserRepoOptionsDto } from "./dtos/user-repo-options.dto";
 import { RepoInfo } from "../repo/dtos/repo-info.dto";
 import { PagerService } from "../common/services/pager.service";
+import { DbUserRepo } from "./user-repo.entity";
+import { UserRepoOptionsDto } from "./dtos/user-repo-options.dto";
 
 @Injectable()
 export class UserReposService {

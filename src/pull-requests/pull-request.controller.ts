@@ -1,22 +1,25 @@
-import { Controller, Get, Query } from "@nestjs/common";
-import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
+import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { DbPullRequest } from "./entities/pull-request.entity";
 import { PageDto } from "../common/dtos/page.dto";
+import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestService } from "./pull-request.service";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { DbPRInsight } from "./entities/pull-request-insight.entity";
-import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { DbPullRequestReview } from "./entities/pull-request-review.entity";
+import { PullRequestReviewService } from "./pull-request-review.service";
 
 @Controller("prs")
 @ApiTags("Pull Requests service")
 export class PullRequestController {
   constructor(
     private readonly pullRequestService: PullRequestService,
-    private readonly pullRequestsInsightService: PullRequestInsightsService
+    private readonly pullRequestsInsightService: PullRequestInsightsService,
+    private readonly pullRequestReviewService: PullRequestReviewService
   ) {}
 
   @Get("/list")
@@ -51,5 +54,16 @@ export class PullRequestController {
     return Promise.all(
       [30, 60].map(async (interval) => this.pullRequestsInsightService.getInsight(interval, pageOptionsDto))
     );
+  }
+
+  @Get("/:id/reviews")
+  @ApiOperation({
+    operationId: "getPullRequestReviews",
+    summary: "Find all pull request reviews by pull request ID",
+  })
+  @ApiOkResponse({ type: [DbPullRequestReview] })
+  @ApiParam({ name: "id", type: "string" })
+  async getPullRequestReviews(@Param("id", ParseIntPipe) id: number): Promise<DbPullRequestReview[]> {
+    return this.pullRequestReviewService.findAllReviewsByPrId(id);
   }
 }

@@ -1,28 +1,24 @@
 import { Entity, BaseEntity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 @Entity({ name: "subscriptions" })
 export class DbSubscription extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Subscription identifier",
     example: "sub_1234",
   })
   @PrimaryColumn("text")
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 42211,
   })
   @Column({ type: "bigint" })
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Subscription Status",
     example: "active",
   })
@@ -39,28 +35,28 @@ export class DbSubscription extends BaseEntity {
   })
   public metadata!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Price ID",
     example: "price_12345",
   })
   @Column({ type: "text" })
   public price_id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Quantity",
     example: 1,
   })
   @Column({ type: "bigint" })
   public quantity!: number;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing subscription creation",
     example: "2016-10-19 13:24:51.000000",
   })
   @Column({ type: "boolean" })
   public cancel_at_period_end!: boolean;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing subscription creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -70,7 +66,7 @@ export class DbSubscription extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing current period start date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -80,7 +76,7 @@ export class DbSubscription extends BaseEntity {
   })
   public current_period_start_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing current period end date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -90,7 +86,7 @@ export class DbSubscription extends BaseEntity {
   })
   public current_period_end_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing end date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -100,7 +96,7 @@ export class DbSubscription extends BaseEntity {
   })
   public ended_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing cancel date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -110,7 +106,7 @@ export class DbSubscription extends BaseEntity {
   })
   public cancel_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing canceled date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -120,7 +116,7 @@ export class DbSubscription extends BaseEntity {
   })
   public canceled_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing trial start date",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -130,7 +126,7 @@ export class DbSubscription extends BaseEntity {
   })
   public trial_start_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing trial end date",
     example: "2016-10-19 13:24:51.000000",
   })

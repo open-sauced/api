@@ -5,41 +5,41 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  Relation,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "users_to_repos_stars" })
 export class DbRepoToUserStars {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Star identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public repo_id!: number;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing star creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -49,7 +49,7 @@ export class DbRepoToUserStars {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing star last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -72,7 +72,7 @@ export class DbRepoToUserStars {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user!: DbUser;
+  public user!: Relation<DbUser>;
 
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.repoToUserStars)
@@ -80,5 +80,5 @@ export class DbRepoToUserStars {
     name: "repo_id",
     referencedColumnName: "id",
   })
-  public repo!: DbRepo;
+  public repo!: Relation<DbRepo>;
 }

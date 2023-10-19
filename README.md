@@ -38,11 +38,59 @@ In order to run the project we need the following software binaries installed on
 - `npm>=8.0.0`
 - `docker>=20.10.12`
 
-You also need the `.env` environment file added to your repo for the project to run. To get it, kindly contact @open-sauced/triage team.
-
-> Note: For Windows users, the `API_HOST` key's value in the `.env` file should be `127.0.0.1`, instead of `0.0.0.0`, so that the project can run correctly on localhost.
-
 ## 🖥️ Local development
+
+## 📡 Setting Up Your Supabase Instance
+
+Before setting up your local PostgreSQL database, a Supabase instance should be created. To do this, follow these steps:
+
+**1. Create a new Supabase project:** Visit [Supabase](https://supabase.com/) and create a new project.
+
+**2. Set Environment Variables in .env file:** Once your project is created, Supabase will provide a URL and an API key. Set these in your project's `.env` file:
+
+```
+SUPABASE_URL=your_supabase_url
+SUPABASE_API_KEY=your_supabase_api_key
+SUPABASE_JWT_SECRET=your_supabase_jwt_secret
+API_DOMAIN=your_api_domain
+```
+
+Replace `your_supabase_url`, `your_supabase_api_key`, `your_supabase_jwt_secret`, and `your_api_domain` with the actual values provided by Supabase and your project's settings.
+
+### 🗄️ Setting Up A PostgreSQL Database Locally
+
+A PostgreSQL Docker container has been set up to facilitate local development. After navigating to the `dev/` directory, this container can be set up as follows:
+
+**1. Obtain SSL Certificates:**  
+For secure SSL communication, you need a pair of SSL certificates: `server.crt` and `server.key`. You can generate self-signed certificates by using OpenSSL:
+
+```shell
+openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 -nodes -subj "/CN=localhost"
+```
+
+Please note that this generates self-signed certificates which should only be used for local development.
+
+**2.Build the Docker image:**
+
+```shell
+docker build -t my_postgres_image -f Dockerfile.local-postgres .
+```
+
+This command will build the Docker image using the Dockerfile in the current directory. The previously generated SSL certificates will need to be in the same directory as the Dockerfile.
+
+**3.Run the Docker container:**
+
+```shell
+docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:latest
+```
+
+This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.
+
+Once the database is stood up,
+can use the `dev/apply-migrations.sh` script to apply all the migrations in
+the `migrations/` directory.
+
+### 🛠️ Installation
 
 To install the application:
 
@@ -105,6 +153,10 @@ npm run format
 
 It is advised to run this command before committing or opening a pull request.
 
+### 🕺 OpenAPI Swagger Doc
+
+When making API changes, make sure to run `npm run generate:swagger` to generate any new Swagger document bits.
+
 ### 📕 Types
 
 We have a couple of scripts to check and adjust missing types.
@@ -127,6 +179,17 @@ A production deployment is a complete build of the project, including the build 
 
 ```shell
 npm run build
+```
+
+### 🍕 Pizza service integration
+
+This API integrates with the [pizza service](https://github.com/open-sauced/pizza)
+to accept requests for ingesting commits to the database.
+The environment variables for this are:
+
+```
+PIZZA_OVEN_HOST="http://example.com"
+PIZZA_OVEN_API=80
 ```
 
 ## 🔑 Database structure

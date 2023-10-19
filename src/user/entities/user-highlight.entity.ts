@@ -2,54 +2,53 @@ import {
   Entity,
   BaseEntity,
   Column,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   CreateDateColumn,
   DeleteDateColumn,
   UpdateDateColumn,
   OneToMany,
   ManyToOne,
+  Relation,
   JoinColumn,
 } from "typeorm";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUserHighlightReaction } from "./user-highlight-reaction.entity";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { DbUser } from "../user.entity";
+import { DbUserHighlightReaction } from "./user-highlight-reaction.entity";
 
 @Entity({ name: "user_highlights" })
 export class DbUserHighlight extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User Highlight identifier",
     example: 237133,
+    type: "integer",
   })
-  @PrimaryColumn("bigint")
+  @PrimaryGeneratedColumn({ type: "bigint" })
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column("bigint")
   public user_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight Pull Request URL",
     example: "github.com/open-sauced/insights/pull/1",
   })
   @Column("text")
   public url?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight Title",
     example: "My First PR!",
   })
   @Column("text")
   public title?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight Text",
     example: `
     I made my first open source pull request!
@@ -59,7 +58,14 @@ export class DbUserHighlight extends BaseEntity {
   @Column("text")
   public highlight: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
+    description: "Highlight type",
+    example: "pull_request",
+  })
+  @Column("text")
+  public type: string;
+
+  @ApiProperty({
     description: "Whether the highlight is pinned to the top",
     example: false,
   })
@@ -69,7 +75,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public pinned?: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Whether the highlight is featured or not",
     example: false,
   })
@@ -79,7 +85,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public featured?: boolean;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight creation date",
     example: "2023-01-19 13:24:51.000000",
   })
@@ -89,7 +95,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight updated date",
     example: "2023-01-19 13:24:51.000000",
   })
@@ -99,21 +105,21 @@ export class DbUserHighlight extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight deletion date",
     example: "2023-01-19 13:24:51.000000",
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight shipped date",
     example: "2023-01-19 13:24:51.000000",
   })
   @Column({ type: "timestamp without time zone" })
   public shipped_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight Repo Full Name",
     example: "open-sauced/insights",
   })
@@ -124,7 +130,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public full_name?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight User Full Name",
     example: "Brian Douglas",
   })
@@ -135,7 +141,7 @@ export class DbUserHighlight extends BaseEntity {
   })
   public name?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight User Login",
     example: "bdougie",
   })
@@ -146,13 +152,26 @@ export class DbUserHighlight extends BaseEntity {
   })
   public login?: string;
 
+  @ApiProperty({
+    description: "An array of full-names of tagged repositories",
+    example: ["open-sauced/insights", "open-sauced/ai"],
+    type: "string",
+    isArray: true,
+  })
+  @Column({
+    type: "varchar",
+    array: true,
+    default: "{}",
+  })
+  public tagged_repos: string[];
+
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.highlights)
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user: DbUser;
+  public user: Relation<DbUser>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserHighlightReaction, (highlightReaction) => highlightReaction.highlight)
@@ -160,5 +179,5 @@ export class DbUserHighlight extends BaseEntity {
     name: "highlight_id",
     referencedColumnName: "id",
   })
-  public reactions: DbUserHighlightReaction[];
+  public reactions: Relation<DbUserHighlightReaction[]>;
 }

@@ -1,16 +1,18 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { SupabaseGuard } from "./supabase.guard";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
-import { User, UserId } from "./supabase.user.decorator";
-import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user.service";
 import { StripeService } from "../stripe/stripe.service";
 import { CustomerService } from "../customer/customer.service";
 import { DbUser } from "../user/user.entity";
 import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
+import { ApplyUserCouponDto } from "../user/dtos/apply-user-coupon.dto";
+import { CouponService } from "../coupon/coupon.service";
+import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
+import { User, UserId } from "./supabase.user.decorator";
+import { SupabaseGuard } from "./supabase.guard";
 import { UserOnboardingDto } from "./dtos/user-onboarding.dto";
 
 @Controller("auth")
@@ -19,7 +21,8 @@ export class AuthController {
   constructor(
     private userService: UserService,
     private stripeService: StripeService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private couponService: CouponService
   ) {}
 
   @Get("/session")
@@ -61,7 +64,10 @@ export class AuthController {
         email,
         github_sponsors_url,
         linkedin_url,
+        discord_url,
         notification_count,
+        coupon_code,
+        insights_count,
       } = await this.userService.checkAddUser(user);
 
       userProfile = {
@@ -78,7 +84,10 @@ export class AuthController {
         email,
         github_sponsors_url,
         linkedin_url,
+        discord_url,
         notification_count,
+        coupon_code,
+        insights_count,
       };
     } catch (e) {
       // leave user profile as-is
@@ -206,6 +215,25 @@ export class AuthController {
     @Body() updateUserDto: UpdateUserEmailPreferencesDto
   ): Promise<DbUser> {
     await this.userService.updateEmailPreferences(userId, updateUserDto);
+
+    return this.userService.findOneById(userId);
+  }
+
+  @Patch("/profile/coupon")
+  @ApiOperation({
+    operationId: "applyCouponForUser",
+    summary: "Applies a coupon for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to apply coupon for the user profile" })
+  @ApiBody({ type: ApplyUserCouponDto })
+  async applyCouponForUser(@UserId() userId: number, @Body() applyUserCouponDto: ApplyUserCouponDto): Promise<DbUser> {
+    // check for valid coupon
+    await this.couponService.findCoupon(applyUserCouponDto.couponCode);
+
+    await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
   }

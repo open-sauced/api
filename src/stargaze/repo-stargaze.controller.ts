@@ -5,11 +5,11 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
-import { StargazeService } from "./stargaze.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
@@ -17,6 +17,7 @@ import { ApiPaginatedResponse } from "../common/decorators/api-paginated-respons
 import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
+import { StargazeService } from "./stargaze.service";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Stargaze service")
@@ -52,6 +53,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already followed this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async stargazeOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -97,6 +99,7 @@ export class RepoStargazeController {
   })
   @ApiNotFoundResponse({ description: "Repo or follow not found" })
   @ApiConflictResponse({ description: "You have already unfollowed this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async downStargazeOneById(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number

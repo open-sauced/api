@@ -6,18 +6,19 @@ import {
   ApiBadRequestResponse,
   ApiNotFoundResponse,
   ApiBearerAuth,
+  ApiParam,
 } from "@nestjs/swagger";
 
 import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
-import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
-import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
 import { UserHighlightsService } from "../user/user-highlights.service";
+import { DbUserHighlightRepo } from "./entities/user-highlight-repo.entity";
+import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "./dtos/highlight-options.dto";
 
 @Controller("highlights")
 @ApiTags("Highlights service")
@@ -56,6 +57,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async featureHighlight(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -73,6 +75,7 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Unable to find highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async unfeatureHighlight(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -99,7 +102,19 @@ export class HighlightController {
   @ApiOkResponse({ type: DbUserHighlightReactionResponse })
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "integer" })
   async getAllHighlightReactions(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlightReactionResponse[]> {
     return this.userHighlightsService.findAllHighlightReactions(id);
+  }
+
+  @Get("/top")
+  @ApiOperation({
+    operationId: "findTopHighlights",
+    summary: "Finds top highlights for the day range and paginates them",
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  async findTopHighlights(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    return this.userHighlightsService.findTop(pageOptionsDto);
   }
 }

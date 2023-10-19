@@ -5,47 +5,45 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 import { DbUserHighlightReaction } from "../../user/entities/user-highlight-reaction.entity";
 
 @Entity({ name: "emojis" })
 export class DbEmoji {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Emoji identifier",
     example: "uuid-v4",
   })
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Emoji Name",
     example: "100",
   })
   @Column({ type: "text" })
   public name: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Emoji URL",
     example: "https://github.githubassets.com/images/icons/emoji/unicode/1f4af.png?v8",
   })
   @Column({ type: "text" })
   public url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Emoji display order",
     example: 1,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public display_order!: number;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight reaction creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -55,7 +53,7 @@ export class DbEmoji {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight reaction last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -74,5 +72,5 @@ export class DbEmoji {
 
   @ApiHideProperty()
   @OneToMany(() => DbUserHighlightReaction, (highlightReaction) => highlightReaction.emoji)
-  public reactions: DbUserHighlightReaction[];
+  public reactions: Relation<DbUserHighlightReaction[]>;
 }

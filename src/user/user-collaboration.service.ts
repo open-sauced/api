@@ -4,9 +4,9 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
 
-import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PagerService } from "../common/services/pager.service";
+import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 
 @Injectable()
 export class UserCollaborationService {

@@ -6,37 +6,40 @@ import {
   OneToMany,
   CreateDateColumn,
   DeleteDateColumn,
+  Relation,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 import { DbRepo } from "../repo/entities/repo.entity";
 import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbInsight } from "../insight/entities/insight.entity";
+import { DbUserList } from "../user-lists/entities/user-list.entity";
+import { DbUserListContributor } from "../user-lists/entities/user-list-contributor.entity";
+import { DbUserNotification } from "./entities/user-notification.entity";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
+import { DbUserOrganization } from "./entities/user-organization.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of open issues user has across public activity",
     example: 498,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -44,7 +47,7 @@ export class DbUser extends BaseEntity {
   })
   public open_issues: number;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -54,7 +57,7 @@ export class DbUser extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -79,7 +82,7 @@ export class DbUser extends BaseEntity {
   })
   public last_fetched_users_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user first open PR",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -89,7 +92,7 @@ export class DbUser extends BaseEntity {
   })
   public first_opened_pr_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user first commit push",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -99,7 +102,7 @@ export class DbUser extends BaseEntity {
   })
   public first_pushed_commit_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user logging in to open sauced for the first time",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -109,7 +112,7 @@ export class DbUser extends BaseEntity {
   })
   public connected_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User GitHub node id",
     example: "MDQ6VXNlcjIzNzEzMw==",
   })
@@ -119,7 +122,7 @@ export class DbUser extends BaseEntity {
   })
   public node_id: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User GitHub avatar URL",
     example: "https://avatars.githubusercontent.com/u/237133?v=4",
   })
@@ -129,7 +132,7 @@ export class DbUser extends BaseEntity {
   })
   public avatar_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User GitHub gravatar URL",
     example: "",
   })
@@ -139,7 +142,7 @@ export class DbUser extends BaseEntity {
   })
   public gravatar_id?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User GitHub profile URL",
     example: "https://api.github.com/users/0-vortex",
   })
@@ -149,7 +152,7 @@ export class DbUser extends BaseEntity {
   })
   public url?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User unique login name",
     example: "0-vortex",
   })
@@ -159,7 +162,7 @@ export class DbUser extends BaseEntity {
   })
   public login: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User email address",
     example: "hello@opensauced.pizza",
   })
@@ -177,7 +180,7 @@ export class DbUser extends BaseEntity {
   })
   public has_stars_data: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating whether user opted to have a private profile (beta feature",
     example: false,
     default: false,
@@ -185,7 +188,7 @@ export class DbUser extends BaseEntity {
   @Column({ default: false })
   public is_private: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating app.opensauced user status",
     example: false,
     default: false,
@@ -193,7 +196,7 @@ export class DbUser extends BaseEntity {
   @Column({ default: false })
   public is_open_sauced_member: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating user's onboarding status",
     example: false,
     default: false,
@@ -201,7 +204,7 @@ export class DbUser extends BaseEntity {
   @Column({ default: false })
   public is_onboarded: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating user's waitlist status",
     example: false,
     default: false,
@@ -209,15 +212,16 @@ export class DbUser extends BaseEntity {
   @Column({ default: false })
   public is_waitlisted: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insights Role",
     example: 10,
     default: 10,
+    type: "integer",
   })
   @Column({ default: 10 })
   public role: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User bio information",
     example: "OpenSauced User",
   })
@@ -227,7 +231,7 @@ export class DbUser extends BaseEntity {
   })
   readonly bio?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub blog information",
     example: "https://opensauced.pizza/blog",
   })
@@ -237,7 +241,7 @@ export class DbUser extends BaseEntity {
   })
   public blog?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User name information",
     example: "MrPizza",
   })
@@ -247,7 +251,7 @@ export class DbUser extends BaseEntity {
   })
   readonly name?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User Twitter information",
     example: "saucedopen",
   })
@@ -257,7 +261,7 @@ export class DbUser extends BaseEntity {
   })
   readonly twitter_username?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "LinkedIn URL",
     example: "https://www.linkedin.com/in/brianldouglas",
   })
@@ -267,7 +271,7 @@ export class DbUser extends BaseEntity {
   })
   readonly linkedin_url?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub Sponsors URL",
     example: "https://github.com/sponsors/open-sauced",
   })
@@ -277,7 +281,17 @@ export class DbUser extends BaseEntity {
   })
   readonly github_sponsors_url?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
+    description: "Discord URL",
+    example: "https://discord.gg/opensauced",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  readonly discord_url?: string;
+
+  @ApiProperty({
     description: "User company information",
     example: "OpenSauced",
   })
@@ -287,7 +301,7 @@ export class DbUser extends BaseEntity {
   })
   readonly company?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User location information",
     example: "San Francisco, CA",
   })
@@ -297,7 +311,7 @@ export class DbUser extends BaseEntity {
   })
   readonly location?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User display local time information",
     example: false,
   })
@@ -307,7 +321,7 @@ export class DbUser extends BaseEntity {
   })
   readonly display_local_time?: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User topic interests",
     example: "javascript",
   })
@@ -317,7 +331,7 @@ export class DbUser extends BaseEntity {
   })
   readonly interests?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user hireable status",
     example: false,
   })
@@ -327,9 +341,10 @@ export class DbUser extends BaseEntity {
   })
   public hireable?: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user public repos number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -337,9 +352,10 @@ export class DbUser extends BaseEntity {
   })
   public public_repos: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user public gists number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -347,9 +363,10 @@ export class DbUser extends BaseEntity {
   })
   public public_gists: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user public followers number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -358,9 +375,10 @@ export class DbUser extends BaseEntity {
   })
   public followers: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user public following number",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -369,7 +387,7 @@ export class DbUser extends BaseEntity {
   })
   public following: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "GitHub user type",
     example: "User",
     default: "User",
@@ -381,7 +399,7 @@ export class DbUser extends BaseEntity {
   })
   public type: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User display public email",
     example: false,
   })
@@ -391,7 +409,7 @@ export class DbUser extends BaseEntity {
   })
   readonly display_email?: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User receives collaboration requests",
     example: false,
   })
@@ -401,7 +419,7 @@ export class DbUser extends BaseEntity {
   })
   readonly receive_collaboration?: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User timezone in UTC",
     example: "UTC-5",
   })
@@ -411,10 +429,20 @@ export class DbUser extends BaseEntity {
   })
   readonly timezone?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
+    description: "Coupon Code",
+    example: "saucy",
+  })
+  @Column({
+    type: "character varying",
+    length: 50,
+  })
+  readonly coupon_code?: string;
+
+  @ApiProperty({
     description: "GitHub top languages",
     example: "{ TypeScript: 33128, HTML: 453, JavaScript: 90, CSS: 80 }",
-    default: "{}",
+    default: {},
   })
   @Column({
     type: "jsonb",
@@ -423,9 +451,10 @@ export class DbUser extends BaseEntity {
   })
   public languages: object;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User notification count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -434,9 +463,22 @@ export class DbUser extends BaseEntity {
   })
   public notification_count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
+    description: "User insight pages count",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public insights_count: number;
+
+  @ApiProperty({
     description: "User highlights count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -445,9 +487,10 @@ export class DbUser extends BaseEntity {
   })
   public highlights_count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User following count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -456,9 +499,10 @@ export class DbUser extends BaseEntity {
   })
   public following_count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User followers count",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -467,9 +511,10 @@ export class DbUser extends BaseEntity {
   })
   public followers_count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Count of user pull requests within the last 30 days",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -478,9 +523,10 @@ export class DbUser extends BaseEntity {
   })
   public recent_pull_requests_count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User average pull request velocity in days over the last 30 days",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -489,47 +535,78 @@ export class DbUser extends BaseEntity {
   })
   public recent_pull_request_velocity_count: number;
 
+  @ApiProperty({
+    description: "Flag to indicate if user is a maintainer of any repos",
+    example: true,
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  public is_maintainer: boolean;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsight, (insight) => insight.user)
-  public insights: DbInsight[];
+  public insights: Relation<DbInsight[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, (repo) => repo.user)
-  public repos: DbRepo[];
+  public repos: Relation<DbRepo[]>;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbRepo, (repo) => repo.org_user)
+  public repo_orgs: Relation<DbRepo[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbInsight, (highlights) => highlights.user)
-  public highlights: DbUserHighlight[];
+  public highlights: Relation<DbUserHighlight[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserHighlightReaction, (highlightReactions) => highlightReactions.user)
-  public reactions: DbUserHighlightReaction[];
+  public reactions: Relation<DbUserHighlightReaction[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user)
-  public collaborations: DbUserCollaboration[];
+  public collaborations: Relation<DbUserCollaboration[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user)
-  public request_collaborations: DbUserCollaboration[];
+  public request_collaborations: Relation<DbUserCollaboration[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.user)
-  public repoToUserVotes: DbRepoToUserVotes[];
+  public repoToUserVotes: Relation<DbRepoToUserVotes[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStars, (repoToUserStars) => repoToUserStars.user)
-  public repoToUserStars: DbRepoToUserStars[];
+  public repoToUserStars: Relation<DbRepoToUserStars[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserSubmissions, (repoToUserSubmissions) => repoToUserSubmissions.user)
-  public repoToUserSubmissions: DbRepoToUserSubmissions[];
+  public repoToUserSubmissions: Relation<DbRepoToUserSubmissions[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, (repoToUserStargazers) => repoToUserStargazers.user)
-  public repoToUserStargazers: DbRepoToUserStargazers[];
+  public repoToUserStargazers: Relation<DbRepoToUserStargazers[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserTopRepo, (repoToUserTopRepos) => repoToUserTopRepos.user)
-  public topRepos: DbUserTopRepo[];
+  public topRepos: Relation<DbUserTopRepo[]>;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserNotification, (fromUserNotifications) => fromUserNotifications.from_user)
+  public from_user_notifications: Relation<DbUserNotification[]>;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserOrganization, (userOrgs) => userOrgs.organization_user)
+  public organizations: Relation<DbUserOrganization[]>;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserList, (userLists) => userLists.list_user)
+  public lists: Relation<DbUserList[]>;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserListContributor, (userLists) => userLists.user_list_contributor)
+  public user_list_contributors: Relation<DbUserListContributor[]>;
 }

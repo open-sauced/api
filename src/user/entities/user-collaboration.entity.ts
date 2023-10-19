@@ -6,21 +6,18 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryGeneratedColumn,
+  Relation,
   DeleteDateColumn,
   JoinColumn,
   ManyToOne,
 } from "typeorm";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional, ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../user.entity";
-import { ApiHideProperty } from "@nestjs/swagger";
 
 @Entity({ name: "user_collaborations" })
 export class DbUserCollaboration extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User Collaboration identifier",
     example: "uuid-v4",
   })
@@ -28,16 +25,18 @@ export class DbUserCollaboration extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Collaboration Receipient User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public user_id?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Collaboration Request User ID",
     example: 31333,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public request_user_id?: number;
@@ -48,7 +47,7 @@ export class DbUserCollaboration extends BaseEntity {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user: DbUser;
+  public user: Relation<DbUser>;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.request_collaborations)
@@ -56,9 +55,9 @@ export class DbUserCollaboration extends BaseEntity {
     name: "request_user_id",
     referencedColumnName: "id",
   })
-  public request_user: DbUser;
+  public request_user: Relation<DbUser>;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Collaboration Request Message",
     example: "Hey, are you up for collaborating on this cool project?",
   })
@@ -69,7 +68,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public message: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Collaboration Status",
     example: "pending",
   })
@@ -80,7 +79,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public status: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user collaboration creation",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -90,7 +89,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user collaboration last updated",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -100,7 +99,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user collaboration deletion",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -110,7 +109,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public deleted_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing collaboration request email sent date",
     example: "2023-04-10 13:24:51.000000",
   })
@@ -120,7 +119,7 @@ export class DbUserCollaboration extends BaseEntity {
   })
   public request_emailed_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing collaboration acceptance email sent date",
     example: "2023-04-10 13:24:51.000000",
   })

@@ -8,6 +8,7 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     minimum: 1,
     default: 1,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()
@@ -19,6 +20,7 @@ export class PageOptionsDto {
     minimum: 1,
     maximum: 1000,
     default: 10,
+    type: "integer",
   })
   @Type(() => Number)
   @IsInt()
@@ -35,12 +37,24 @@ export class PageOptionsDto {
   @ApiPropertyOptional({
     description: "Range in days",
     default: 30,
+    type: "integer",
   })
   @Type(() => Number)
   @IsIn([7, 30, 90])
   @IsInt()
   @IsOptional()
   readonly range?: number = 30;
+
+  @ApiPropertyOptional({
+    description: "Number of days in the past to start range block",
+    default: 0,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsIn([0, 7, 30, 90])
+  @IsInt()
+  @IsOptional()
+  readonly prev_days_start_date?: number = 0;
 
   get skip(): number {
     return ((this.page ?? 1) - 1) * (this.limit ?? 50);

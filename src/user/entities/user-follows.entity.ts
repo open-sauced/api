@@ -1,34 +1,33 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional, ApiHideProperty } from "@nestjs/swagger";
 
 @Entity({ name: "users_to_users_followers" })
 export class DbUserToUserFollows {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User Follow identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User follower identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public following_user_id!: number;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user follow creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -38,7 +37,7 @@ export class DbUserToUserFollows {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user follow last update",
     example: "2022-08-28 22:04:29.000000",
   })

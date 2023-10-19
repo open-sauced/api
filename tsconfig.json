@@ -11,13 +11,14 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "target": "ES2019",
+    "target": "ES2016",
     "sourceMap": true,
     "outDir": "./dist",
     //    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts", "dist"]

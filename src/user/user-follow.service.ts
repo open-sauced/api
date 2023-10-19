@@ -4,7 +4,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { UserNotificationService } from "./user-notifcation.service";
-import { UserService } from "./user.service";
+import { UserService } from "./services/user.service";
 
 @Injectable()
 export class UserFollowService {
@@ -19,6 +19,19 @@ export class UserFollowService {
     const builder = this.userFollowRepository.createQueryBuilder("user_follows").withDeleted();
 
     return builder;
+  }
+
+  async findAllFollowers(userId: number) {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .innerJoin("users", "users", "user_follows.user_id=users.id")
+      .where("user_follows.following_user_id = :userId", { userId })
+      .andWhere("user_follows.deleted_at IS NULL");
+
+    const entities = await queryBuilder.getMany();
+
+    return entities;
   }
 
   async findUserFollowerById(userId: number, followerUserId: number): Promise<DbUserToUserFollows> {

@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, ValidateNested } from "class-validator";
-import { PageMetaDto } from "./page-meta.dto";
 import { Type } from "class-transformer";
+import { PageMetaDto } from "./page-meta.dto";
 
 export class PageDto<T> {
   @IsArray()

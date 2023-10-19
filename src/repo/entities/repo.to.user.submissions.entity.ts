@@ -6,47 +6,47 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbRepo } from "./repo.entity";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "users_to_repos_submissions" })
 export class DbRepoToUserSubmissions {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Submission identifier",
     example: 196,
+    type: "integer",
   })
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column()
   public repo_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag representing if the submission is approved by open sauced staff",
     example: false,
   })
   @Column({ default: false })
   public is_accepted?: boolean;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing submission creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -56,7 +56,7 @@ export class DbRepoToUserSubmissions {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing submission last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -79,7 +79,7 @@ export class DbRepoToUserSubmissions {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user!: DbUser;
+  public user!: Relation<DbUser>;
 
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.repoToUserSubmissions)
@@ -87,5 +87,5 @@ export class DbRepoToUserSubmissions {
     name: "repo_id",
     referencedColumnName: "id",
   })
-  public repo!: DbRepo;
+  public repo!: Relation<DbRepo>;
 }

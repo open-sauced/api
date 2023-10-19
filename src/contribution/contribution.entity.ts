@@ -9,26 +9,24 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 import { DbRepo } from "../repo/entities/repo.entity";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
 @Entity({ name: "contributions" })
 export class DbContribution extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Contribution identifier",
     example: 12237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -36,9 +34,10 @@ export class DbContribution extends BaseEntity {
   })
   public repo_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of contributed pull requests",
     example: 15,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -46,14 +45,14 @@ export class DbContribution extends BaseEntity {
   })
   public count: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Timestamp representing last contribution merge to the default branch",
     example: "2016-10-19 13:24:51.000000",
   })
   @Column({ type: "timestamp without time zone" })
   public last_merged_at: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing contribution creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -63,7 +62,7 @@ export class DbContribution extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing contribution last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -80,7 +79,7 @@ export class DbContribution extends BaseEntity {
   })
   public deleted_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Contributor unique user name",
     example: "0-vortex",
   })
@@ -90,7 +89,7 @@ export class DbContribution extends BaseEntity {
   })
   public contributor: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Contribution GitHub origin URL",
     example: "https://github.com/open-sauced/hot/pull/320",
   })

@@ -3,7 +3,7 @@ import { ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } fr
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { UserService } from "../user/user.service";
+import { UserService } from "../user/services/user.service";
 
 import { EndorsementService } from "./endorsement.service";
 import { CreateEndorsementDto } from "./dto/create-endorsement.dto";
@@ -99,12 +99,15 @@ export class EndorsementController {
 
   @Get("/user/:username/created")
   @ApiOperation({
-    operationId: "findAllUserReceivedEndorsements",
+    operationId: "findAllUserCreatedEndorsementsByUsername",
     summary: "Finds all endorsements received by the user and paginates them",
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserCreatedEndorsements(@Param("username") username: string, @Query() pageOptionsDto: PageOptionsDto) {
+  async findAllUserCreatedEndorsementsByUsername(
+    @Param("username") username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     const user = await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByCreatorUserId(user.id, pageOptionsDto);
@@ -112,12 +115,15 @@ export class EndorsementController {
 
   @Get("/user/:username/received")
   @ApiOperation({
-    operationId: "findAllUserReceivedEndorsements",
+    operationId: "findAllUserReceivedEndorsementsByUsername",
     summary: "Finds all endorsements received by the user and paginates them",
   })
   @ApiPaginatedResponse(DbEndorsement)
   @ApiOkResponse({ type: DbEndorsement })
-  async findAllUserReceivedEndorsements(@Param("username") username: string, @Query() pageOptionsDto: PageOptionsDto) {
+  async findAllUserReceivedEndorsementsByUsername(
+    @Param("username") username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ) {
     const user = await this.userService.findOneByUsername(username);
 
     return this.endorsementService.findAllByRecipientUserId(user.id, pageOptionsDto);

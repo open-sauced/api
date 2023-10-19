@@ -10,30 +10,28 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  Relation,
 } from "typeorm";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { ApiHideProperty } from "@nestjs/swagger";
-
-import { DbInsightRepo } from "./insight-repo.entity";
 import { DbUser } from "../../user/user.entity";
+import { DbInsightRepo } from "./insight-repo.entity";
 
 @Entity({ name: "insights" })
 export class DbInsight extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn()
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -41,7 +39,7 @@ export class DbInsight extends BaseEntity {
   })
   public user_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight Page Name",
     example: "Open Sauced Team",
   })
@@ -51,21 +49,28 @@ export class DbInsight extends BaseEntity {
   })
   public name: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating insight visibility",
     example: false,
   })
   @Column({ default: false })
   public is_public: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating insight favorite",
     example: false,
   })
   @Column({ default: false })
   public is_favorite: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
+    description: "Flag indicating featured insight",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_featured: boolean;
+
+  @ApiProperty({
     description: "Title",
     example: "Insight Page Short Code",
   })
@@ -75,7 +80,7 @@ export class DbInsight extends BaseEntity {
   })
   public short_code: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing insight creation",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -85,7 +90,7 @@ export class DbInsight extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing insight last updated",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -95,7 +100,7 @@ export class DbInsight extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing insight deletion",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -111,9 +116,9 @@ export class DbInsight extends BaseEntity {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user!: DbUser;
+  public user!: Relation<DbUser>;
 
   @ApiHideProperty()
   @OneToMany(() => DbInsightRepo, (insightRepo) => insightRepo.insight)
-  public repos: DbInsightRepo[];
+  public repos: Relation<DbInsightRepo[]>;
 }

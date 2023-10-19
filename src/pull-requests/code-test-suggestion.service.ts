@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { GenerateCodeTestSuggestionDto } from "./dtos/create-code-test-suggestion.dto";
 import { OpenAiService } from "../open-ai/open-ai.service";
+import { GenerateCodeTestSuggestionDto } from "./dtos/create-code-test-suggestion.dto";
 
 @Injectable()
 export class CodeTestSuggestionService {

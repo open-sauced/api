@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { RepoFilterModule } from "../common/filters/repo-filter.module";
+import { OpenAiModule } from "../open-ai/open-ai.module";
 import { DbPRInsight } from "./entities/pull-request-insight.entity";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
@@ -15,10 +16,15 @@ import { CodeTestSuggestionController } from "./code-test.suggestion.controller"
 import { CodeExplanationService } from "./code-explanation.service";
 import { CodeExplanationController } from "./code-explanation.controller";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
-import { OpenAiModule } from "../open-ai/open-ai.module";
+import { PullRequestReviewService } from "./pull-request-review.service";
+import { DbPullRequestReview } from "./entities/pull-request-review.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"), RepoFilterModule, OpenAiModule],
+  imports: [
+    TypeOrmModule.forFeature([DbPullRequest, DbPRInsight, DbPullRequestReview], "ApiConnection"),
+    RepoFilterModule,
+    OpenAiModule,
+  ],
   controllers: [
     PullRequestController,
     PullRequestDescriptionController,
@@ -33,7 +39,8 @@ import { OpenAiModule } from "../open-ai/open-ai.module";
     CodeRefactorSuggestionService,
     CodeTestSuggestionService,
     CodeExplanationService,
+    PullRequestReviewService,
   ],
-  exports: [PullRequestService],
+  exports: [PullRequestService, PullRequestReviewService],
 })
 export class PullRequestModule {}

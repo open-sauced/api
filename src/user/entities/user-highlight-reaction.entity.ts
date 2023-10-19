@@ -5,30 +5,28 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  Relation,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUserHighlight } from "./user-highlight.entity";
+import { ApiProperty, ApiPropertyOptional, ApiHideProperty } from "@nestjs/swagger";
 import { DbEmoji } from "../../emoji/entities/emoji.entity";
 import { DbUser } from "../user.entity";
+import { DbUserHighlight } from "./user-highlight.entity";
 
 @Entity({ name: "user_highlight_reactions" })
 export class DbUserHighlightReaction {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Reaction identifier",
     example: "uuid-v4",
   })
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight identifier",
     example: 71359796,
+    type: "integer",
   })
   @Column({
     type: "integer",
@@ -36,9 +34,10 @@ export class DbUserHighlightReaction {
   })
   public highlight_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
+    type: "integer",
   })
   @Column({
     type: "integer",
@@ -46,7 +45,7 @@ export class DbUserHighlightReaction {
   })
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Emoji identifier",
     example: "uuid-v4",
   })
@@ -56,7 +55,7 @@ export class DbUserHighlightReaction {
   })
   public emoji_id!: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight reaction creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -67,7 +66,7 @@ export class DbUserHighlightReaction {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing highlight reaction last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -83,6 +82,7 @@ export class DbUserHighlightReaction {
   public deleted_at?: Date;
 
   // virtual columns
+  @ApiProperty({ type: "integer" })
   @Column({
     type: "integer",
     select: false,
@@ -96,7 +96,7 @@ export class DbUserHighlightReaction {
     name: "highlight_id",
     referencedColumnName: "id",
   })
-  highlight?: DbUserHighlight;
+  highlight?: Relation<DbUserHighlight>;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUserHighlightReaction, (reaction) => reaction.user)
@@ -104,7 +104,7 @@ export class DbUserHighlightReaction {
     name: "user_id",
     referencedColumnName: "id",
   })
-  user?: DbUser;
+  user?: Relation<DbUser>;
 
   @ApiHideProperty()
   @ManyToOne(() => DbUserHighlightReaction, (reaction) => reaction.emoji)
@@ -112,5 +112,5 @@ export class DbUserHighlightReaction {
     name: "emoji_id",
     referencedColumnName: "id",
   })
-  emoji?: DbEmoji;
+  emoji?: Relation<DbEmoji>;
 }

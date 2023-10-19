@@ -44,6 +44,7 @@ create table if not exists public.users
   languages jsonb default '{}' not null,
   linkedin_url character varying(255) collate pg_catalog."default" not null default '',
   github_sponsors_url character varying(255) collate pg_catalog."default" not null default '',
+  discord_url character varying(255) collate pg_catalog."default" not null default '',
 
   -- dynamic columns
   constraint users_pkey primary key (id),

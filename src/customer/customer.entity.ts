@@ -1,17 +1,16 @@
 import { Entity, Column, BaseEntity, PrimaryColumn } from "typeorm";
-
-import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty } from "@nestjs/swagger";
 
 @Entity({ name: "customers" })
 export class DbCustomer extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Stripe Customer Id",
     example: 498,
   })

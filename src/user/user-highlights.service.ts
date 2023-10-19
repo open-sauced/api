@@ -2,16 +2,18 @@ import { ConflictException, Injectable, NotFoundException, UnauthorizedException
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbUserHighlightReactionResponse, HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { PagerService } from "../common/services/pager.service";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { CreateUserHighlightDto } from "./dtos/create-user-highlight.dto";
 import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
 import { UserNotificationService } from "./user-notifcation.service";
-import { UserService } from "./user.service";
-import { PagerService } from "../common/services/pager.service";
+import { UserService } from "./services/user.service";
+import { UserFollowService } from "./user-follow.service";
 
 @Injectable()
 export class UserHighlightsService {
@@ -22,6 +24,7 @@ export class UserHighlightsService {
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
     private userNotificationService: UserNotificationService,
     private userService: UserService,
+    private userFollowService: UserFollowService,
     private pagerService: PagerService
   ) {}
 
@@ -100,6 +103,31 @@ export class UserHighlightsService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where(`user_highlights.featured = true`).orderBy("user_highlights.updated_at", "DESC");
+
+    return this.pagerService.applyPagination<DbUserHighlight>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
+
+  async findTop(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserHighlight>> {
+    const queryBuilder = this.baseQueryBuilder();
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range!;
+
+    queryBuilder
+      .addSelect(
+        `
+        (SELECT COUNT(id) FROM user_highlight_reactions
+        WHERE highlight_id=user_highlights.id
+        AND deleted_at IS NULL)
+      `,
+        "reactions"
+      )
+      .where(`'${startDate}'::TIMESTAMP >= user_highlights.created_at`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= user_highlights.created_at`)
+      .limit(10)
+      .orderBy("reactions", "DESC");
 
     return this.pagerService.applyPagination<DbUserHighlight>({
       pageOptionsDto,
@@ -204,9 +232,21 @@ export class UserHighlightsService {
       highlight: highlight.highlight,
       title: highlight.title ?? "",
       shipped_at: highlight.shipped_at ? new Date(highlight.shipped_at) : new Date(),
+      type: highlight.type,
+      tagged_repos: highlight.taggedRepos,
     });
 
-    return this.userHighlightRepository.save(newUserHighlight);
+    const newHighlight = await this.userHighlightRepository.save(newUserHighlight);
+
+    const followers = await this.userFollowService.findAllFollowers(userId);
+
+    const notifications = followers.map(async (follower) =>
+      this.userNotificationService.addUserHighlightNotification(newHighlight.id, userId, follower.user_id)
+    );
+
+    await Promise.all(notifications);
+
+    return newHighlight;
   }
 
   async updateUserHighlight(highlightId: number, highlight: Partial<DbUserHighlight>) {
@@ -223,7 +263,10 @@ export class UserHighlightsService {
     queryBuilder
       .select("emoji_id", "emoji_id")
       .addSelect("COUNT(emoji_id)", "reaction_count")
-      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId });
+      .addSelect("ARRAY_AGG(users.login)", "reaction_users")
+      .innerJoin("users", "users", "user_highlight_reactions.user_id=users.id")
+      .where("user_highlight_reactions.highlight_id = :highlightId", { highlightId })
+      .addGroupBy("emoji_id");
 
     if (userId) {
       queryBuilder.andWhere("user_highlight_reactions.user_id = :userId", { userId });
@@ -271,12 +314,12 @@ export class UserHighlightsService {
       }
 
       await this.userHighlightReactionRepository.restore(reactionExists.id);
-      await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+      await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
       return reactionExists;
     }
 
-    await this.userNotificationService.addUserHighlightNotification(userId, highlightUserId, highlightId);
+    await this.userNotificationService.addUserHighlightReactionNotification(userId, highlightUserId, highlightId);
 
     return this.userHighlightReactionRepository.save({
       user_id: userId,

@@ -1,12 +1,12 @@
 import { Controller, Get, Query, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags, OmitType } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { DbUserNotification } from "./entities/user-notification.entity";
-import { UserNotificationService } from "./user-notifcation.service";
 import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
+import { DbUserNotification } from "./entities/user-notification.entity";
+import { UserNotificationService } from "./user-notifcation.service";
 
 @Controller("user/notifications")
 @ApiTags("User service")
@@ -20,7 +20,7 @@ export class UserNotificationController {
   })
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
-  @ApiOkResponse({ type: DbUserNotification })
+  @ApiOkResponse({ type: OmitType(DbUserNotification, ["read_at"]) })
   @ApiNotFoundResponse({ description: "Unable to get user notifications" })
   async getUserNotifications(
     @UserId() userId: number,

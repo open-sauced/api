@@ -1,54 +1,54 @@
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "endorsements" })
 export class DbEndorsement {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Endorsement identifier",
     example: "uuid-v4",
   })
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Endorsement Creator User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public creator_user_id?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Endorsement Recipient User ID",
     example: 31333,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public recipient_user_id?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository ID",
     example: 78133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public repo_id: number;
 
-  @ApiModelProperty({ description: "Endorsement Source Comment URL" })
+  @ApiProperty({ description: "Endorsement Source Comment URL" })
   @Column({
     type: "character varying",
     length: 500,
   })
   public source_comment_url?: string;
 
-  @ApiModelProperty({ description: "Endorsement Source Context URL" })
+  @ApiProperty({ description: "Endorsement Source Context URL" })
   @Column({
     type: "character varying",
     length: 20,
   })
   public source_context_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Endorsement Type",
     example: "doc",
   })
@@ -58,7 +58,7 @@ export class DbEndorsement {
   })
   public type: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing endorsement creation",
     example: "2022-10-19 13:24:51.000000",
   })

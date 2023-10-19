@@ -1,41 +1,38 @@
 import { Entity, BaseEntity, Column, PrimaryColumn, CreateDateColumn } from "typeorm";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 @Entity({ name: "user_repos" })
 export class DbUserRepo extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User Repo identifier",
     example: 237133,
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User identifier",
     example: 237133,
   })
   @Column("bigint")
   public user_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repo identifier",
     example: 237133,
   })
   @Column("bigint")
   public repo_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repo Full Name",
     example: "open-sauced/insights",
   })
   @Column({ type: "text" })
   public full_name: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user creation",
     example: "2022-10-19 13:24:51.000000",
   })

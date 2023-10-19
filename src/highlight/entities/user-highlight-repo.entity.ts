@@ -1,7 +1,7 @@
-import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty } from "@nestjs/swagger";
 
 export class DbUserHighlightRepo {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Highlight Repo Full Name",
     example: "open-sauced/insights",
   })

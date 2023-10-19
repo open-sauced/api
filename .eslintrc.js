@@ -31,8 +31,32 @@ module.exports = {
     jest: true,
     es2021: true,
   },
-  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js"],
+  ignorePatterns: ["test", "dist", "public", "/**/node_modules/*", ".eslintrc.js", "coverage"],
+  overrides: [
+    {
+      env: {
+        jest: true,
+      },
+      files: ["**/__tests__/**/*.[jt]s", "**/?(*.)+(spec|test).[jt]s"],
+      extends: ["plugin:jest/recommended"],
+    },
+  ],
   rules: {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "object",
+          "type",
+          "index",
+          "parent",
+          "sibling"
+        ]
+      }
+    ],
     // eslint:recommended
     "arrow-body-style": ["error", "as-needed"],
     "capitalized-comments": [
@@ -179,7 +203,7 @@ module.exports = {
     "newline-per-chained-call": [
       "error",
       {
-        ignoreChainWithDepth: 2,
+        ignoreChainWithDepth: 3,
       },
     ],
     "no-multi-spaces": "error",

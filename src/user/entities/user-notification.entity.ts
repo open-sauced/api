@@ -1,34 +1,35 @@
-import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn } from "typeorm";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { Entity, Column, BaseEntity, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne, Relation } from "typeorm";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { DbUser } from "../user.entity";
 import { UserNotificationTypes } from "./user-notification.constants";
 
 @Entity({ name: "user_notifications" })
 export class DbUserNotification extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Notification identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User ID",
     example: 498,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public user_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "From User ID",
     example: 43311,
+    type: "integer",
   })
   @Column({ type: "bigint" })
   public from_user_id?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User notification type",
     example: "welcome",
   })
@@ -39,7 +40,7 @@ export class DbUserNotification extends BaseEntity {
   })
   public type: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User notification message",
     example: "bdougie followed you",
   })
@@ -49,7 +50,7 @@ export class DbUserNotification extends BaseEntity {
   })
   public message?: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing db-user-notification creation",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -59,17 +60,16 @@ export class DbUserNotification extends BaseEntity {
   })
   public notified_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing user notification read date",
     example: "2023-04-19 13:24:51.000000",
   })
   @Column({
     type: "timestamp without time zone",
-    select: false,
   })
   public read_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Notification Source ID (highlight, user, invite)",
     example: "133",
   })
@@ -78,4 +78,12 @@ export class DbUserNotification extends BaseEntity {
     length: 32,
   })
   public meta_id?: string;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.from_user_notifications)
+  @JoinColumn({
+    name: "from_user_id",
+    referencedColumnName: "id",
+  })
+  public from_user: Relation<DbUser>;
 }

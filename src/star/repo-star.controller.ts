@@ -5,11 +5,11 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 
 import { RepoService } from "../repo/repo.service";
-import { StarService } from "./star.service";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
@@ -17,6 +17,7 @@ import { ApiPaginatedResponse } from "../common/decorators/api-paginated-respons
 import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoPageOptionsDto } from "../repo/dtos/repo-page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
+import { StarService } from "./star.service";
 
 @Controller("repos")
 @ApiTags("Repository service guarded", "Star service")
@@ -52,6 +53,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already starred this repo" })
+  @ApiParam({ name: "id", type: "integer" })
   async starOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 
@@ -94,6 +96,7 @@ export class RepoStarController {
   })
   @ApiNotFoundResponse({ description: "Repo or star not found" })
   @ApiConflictResponse({ description: "You have already removed your star" })
+  @ApiParam({ name: "id", type: "integer" })
   async downStarOneById(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<DbRepoToUserStars> {
     const item = await this.repoService.findOneById(id);
 

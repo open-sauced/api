@@ -4,7 +4,7 @@ import { IsIn, IsNumber, IsOptional, IsString, Max, Min } from "class-validator"
 export class GeneratePullRequestDescriptionDto {
   @ApiProperty({
     description: "Description Length",
-    type: Number,
+    type: "integer",
     example: 250,
   })
   @IsNumber()
@@ -14,7 +14,7 @@ export class GeneratePullRequestDescriptionDto {
 
   @ApiProperty({
     description: "Description Temperature",
-    type: Number,
+    type: "integer",
     example: 7,
   })
   @IsNumber()

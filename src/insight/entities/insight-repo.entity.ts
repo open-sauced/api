@@ -8,48 +8,47 @@ import {
   JoinColumn,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  Relation,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
-
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 import { DbInsight } from "./insight.entity";
 
 @Entity({ name: "insight_repos" })
 export class DbInsightRepo extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight identifier",
     example: 237133,
+    type: "integer",
   })
   @PrimaryColumn()
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight ID",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public insight_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repo ID",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public repo_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repo Full Name",
     example: "open-sauced/insights",
   })
   @Column({ type: "text" })
   public full_name: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing insight repo creation",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -59,7 +58,7 @@ export class DbInsightRepo extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing insight repo deletion",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -75,5 +74,5 @@ export class DbInsightRepo extends BaseEntity {
     name: "insight_id",
     referencedColumnName: "id",
   })
-  public insight!: DbInsight;
+  public insight!: Relation<DbInsight>;
 }

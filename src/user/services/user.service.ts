@@ -1,16 +1,21 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
-import { DbUser } from "./user.entity";
-import { UpdateUserDto } from "./dtos/update-user.dto";
-import { UpdateUserProfileInterestsDto } from "./dtos/update-user-interests.dto";
-import { UpdateUserEmailPreferencesDto } from "./dtos/update-user-email-prefs.dto";
-import { UserOnboardingDto } from "../auth/dtos/user-onboarding.dto";
-import { userNotificationTypes } from "./entities/user-notification.constants";
-import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.entity";
-import { DbTopUser } from "./entities/top-users.entity";
+import { DbUser } from "../user.entity";
+import { UpdateUserDto } from "../dtos/update-user.dto";
+import { UpdateUserProfileInterestsDto } from "../dtos/update-user-interests.dto";
+import { UpdateUserEmailPreferencesDto } from "../dtos/update-user-email-prefs.dto";
+import { UserOnboardingDto } from "../../auth/dtos/user-onboarding.dto";
+import { userNotificationTypes } from "../entities/user-notification.constants";
+import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
+import { DbTopUser } from "../entities/top-users.entity";
+import { TopUsersDto } from "../dtos/top-users.dto";
+import { PageDto } from "../../common/dtos/page.dto";
+import { PageMetaDto } from "../../common/dtos/page-meta.dto";
+import { DbFilteredUser } from "../entities/filtered-users.entity";
+import { FilteredUsersDto } from "../dtos/filtered-users.dto";
 
 @Injectable()
 export class UserService {
@@ -33,20 +38,34 @@ export class UserService {
     return builder;
   }
 
-  async findTopUsers(limit = 10): Promise<DbTopUser[]> {
+  async findTopUsers(pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
     const queryBuilder = this.reactionsQueryBuilder();
+
+    const { userId } = pageOptionsDto;
 
     queryBuilder
       .select("users.login as login")
-      .innerJoin("users", "users", "users.id = user_highlight_reactions.user_id")
-      .where("user_highlight_reactions.deleted_at IS NULL")
-      .groupBy("login")
-      .orderBy("COUNT(user_highlight_reactions.emoji_id)", "DESC")
-      .limit(limit);
+      .from(DbUser, "users")
+      .innerJoin("user_highlights", "user_highlights", "user_highlights.user_id = users.id")
+      .innerJoin("user_highlight_reactions", "reactions", "reactions.highlight_id = user_highlights.id")
+      .where("reactions.deleted_at IS NULL");
 
-    const items: DbTopUser[] = await queryBuilder.getRawMany();
+    if (userId) {
+      queryBuilder
+        .andWhere(
+          "users.id NOT IN (SELECT following_user_id FROM users_to_users_followers WHERE user_id = :userId AND deleted_at IS NULL)"
+        )
+        .setParameters({ userId });
+    }
 
-    return items;
+    queryBuilder.groupBy("users.login").orderBy("COUNT(reactions.user_id)", "DESC");
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async findOneById(id: number, includeEmail = false): Promise<DbUser> {
@@ -62,6 +81,14 @@ export class UserService {
           AND user_notifications.read_at IS NULL
         )::INTEGER`,
         "users_notification_count"
+      )
+      .addSelect(
+        `(
+          SELECT COALESCE(COUNT("insights"."id"), 0)
+          FROM insights
+          WHERE user_id = :userId
+        )::INTEGER`,
+        "users_insights_count"
       )
       .where("id = :id", { id });
 
@@ -135,6 +162,19 @@ export class UserService {
         )::INTEGER`,
         `users_recent_pull_request_velocity_count`
       )
+      .addSelect(
+        `(
+          SELECT
+            CASE
+              WHEN COUNT(DISTINCT full_name) > 0 THEN true
+              ELSE false
+            END
+          FROM pull_requests prs
+          JOIN repos on prs.repo_id=repos.id
+          WHERE LOWER(prs.merged_by_login) = :username
+        )::BOOLEAN`,
+        "users_is_maintainer"
+      )
       .where("LOWER(login) = :username", { username: username.toLowerCase() })
       .setParameters({ username: username.toLowerCase() });
 
@@ -145,6 +185,29 @@ export class UserService {
     }
 
     return item;
+  }
+
+  async findUsersByFilter(pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    const { username, limit } = pageOptionsDto;
+
+    if (!username) {
+      throw new BadRequestException();
+    }
+
+    queryBuilder
+      .select(["users.login as login", "users.name as full_name"])
+      .where(`LOWER(users.login) LIKE :username`)
+      .setParameters({ username: `%${username.toLowerCase()}%` })
+      .limit(limit);
+
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async checkAddUser(user: User): Promise<DbUser> {
@@ -159,7 +222,7 @@ export class UserService {
     try {
       const user = await this.findOneById(id, true);
 
-      if (user && !user.is_open_sauced_member) {
+      if (!user.is_open_sauced_member) {
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
           connected_at: new Date(),
@@ -169,7 +232,7 @@ export class UserService {
       return user;
     } catch (e) {
       // create new user
-      const newUser = this.userRepository.create({
+      const newUser = await this.userRepository.save({
         id,
         name: name as string,
         is_open_sauced_member: true,
@@ -179,8 +242,6 @@ export class UserService {
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
-
-      await newUser.save();
 
       return newUser;
     }
@@ -202,6 +263,7 @@ export class UserService {
         timezone: user.timezone,
         github_sponsors_url: user.github_sponsors_url ?? "",
         linkedin_url: user.linkedin_url ?? "",
+        discord_url: user.discord_url ?? "",
       });
 
       return this.findOneById(id);
@@ -253,6 +315,13 @@ export class UserService {
     return this.userRepository.update(id, {
       display_email: user.display_email,
       receive_collaboration: user.receive_collaboration,
+    });
+  }
+
+  async applyCoupon(id: number, coupon: string) {
+    return this.userRepository.update(id, {
+      coupon_code: coupon,
+      role: 50,
     });
   }
 

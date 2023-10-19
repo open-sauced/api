@@ -9,14 +9,11 @@ import {
   DeleteDateColumn,
 } from "typeorm";
 
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 @Entity({ name: "insight_members" })
 export class DbInsightMember extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight Member identifier",
     example: "uuid-v4",
   })
@@ -24,21 +21,23 @@ export class DbInsightMember extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight ID",
     example: 237133,
+    type: "integer",
   })
   @Column()
   public insight_id: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User ID",
     example: 237133,
+    type: "integer",
   })
   @Column({ type: "integer" })
   public user_id?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "User's Name",
     example: "Brian Douglas",
   })
@@ -49,7 +48,7 @@ export class DbInsightMember extends BaseEntity {
   })
   public name?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Insight Member Access",
     example: "pending",
   })
@@ -60,7 +59,7 @@ export class DbInsightMember extends BaseEntity {
   })
   public access: string;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing team member creation",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -70,7 +69,7 @@ export class DbInsightMember extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing team member last updated",
     example: "2022-10-19 13:24:51.000000",
   })
@@ -80,14 +79,14 @@ export class DbInsightMember extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing team member deletion",
     example: "2022-10-19 13:24:51.000000",
   })
   @DeleteDateColumn({ type: "timestamp without time zone" })
   public deleted_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing team member invitation email sent date",
     example: "2023-04-10 13:24:51.000000",
   })
@@ -97,7 +96,7 @@ export class DbInsightMember extends BaseEntity {
   })
   public invitation_emailed_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Team Member Invitation Email",
     example: "hello@opensauced.pizza",
   })

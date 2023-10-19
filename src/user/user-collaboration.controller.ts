@@ -28,11 +28,11 @@ import { User, UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
 
-import { UserService } from "../user/user.service";
+import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { UserService } from "./services/user.service";
 import { UserCollaborationService } from "./user-collaboration.service";
 import { CreateUserCollaborationDto } from "./dtos/create-user-collaboration.dto";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { UpdateUserCollaborationDto } from "./dtos/update-user-collaboration.dto";
 
 @Controller("user/collaborations")
@@ -78,8 +78,8 @@ export class UserCollaborationController {
     const recipient = await this.userService.findOneByUsername(createUserCollaborationDto.username);
     const requester = await this.userService.findOneById(user.user_metadata.sub as number);
 
-    if (requester.role <= 50) {
-      throw new UnauthorizedException();
+    if (requester.role < 50) {
+      throw new UnauthorizedException("You're not authorized to perform this action");
     }
 
     if (!recipient.receive_collaboration) {

@@ -64,6 +64,7 @@ export class SupabaseAuthDto {
   @ApiPropertyOptional({
     description: "Authenticated User's Insights Role",
     example: 10,
+    type: "integer",
   })
   readonly insights_role?: number;
 
@@ -122,8 +123,28 @@ export class SupabaseAuthDto {
   readonly github_sponsors_url?: string;
 
   @ApiPropertyOptional({
+    description: "Discord URL",
+    example: "https://discord.gg/opensauced",
+  })
+  readonly discord_url?: string;
+
+  @ApiPropertyOptional({
     description: "Unread User Notification Count",
     example: 5,
+    type: "integer",
   })
   readonly notification_count?: number;
+
+  @ApiPropertyOptional({
+    description: "Unread Insight Pagees Count",
+    example: 2,
+    type: "integer",
+  })
+  readonly insights_count?: number;
+
+  @ApiPropertyOptional({
+    description: "Coupon Code",
+    example: "saucy",
+  })
+  readonly coupon_code?: string;
 }

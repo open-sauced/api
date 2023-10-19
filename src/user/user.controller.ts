@@ -1,18 +1,21 @@
 import { Controller, Get, Param, Query } from "@nestjs/common";
-import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { DbUserHighlight } from "./entities/user-highlight.entity";
-import { UserHighlightsService } from "./user-highlights.service";
-import { DbUser } from "./user.entity";
-import { UserService } from "./user.service";
 import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
+import { DbUserHighlight } from "./entities/user-highlight.entity";
+import { UserHighlightsService } from "./user-highlights.service";
+import { DbUser } from "./user.entity";
+import { UserService } from "./services/user.service";
 import { DbTopUser } from "./entities/top-users.entity";
+import { TopUsersDto } from "./dtos/top-users.dto";
+import { DbFilteredUser } from "./entities/filtered-users.entity";
+import { FilteredUsersDto } from "./dtos/filtered-users.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -90,7 +93,18 @@ export class UserController {
     summary: "List top users",
   })
   @ApiOkResponse({ type: DbTopUser })
-  async getTopUsers(): Promise<DbTopUser[]> {
-    return this.userService.findTopUsers(10);
+  async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
+    return this.userService.findTopUsers(pageOptionsDto);
+  }
+
+  @Get("/search")
+  @ApiOperation({
+    operationId: "getUsersByFilter",
+    summary: "Search users",
+  })
+  @ApiOkResponse({ type: DbFilteredUser })
+  @ApiBadRequestResponse({ description: "Username is required" })
+  async getUsersByFilter(@Query() pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
+    return this.userService.findUsersByFilter(pageOptionsDto);
   }
 }

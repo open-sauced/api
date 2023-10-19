@@ -7,22 +7,19 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
+  Relation,
   OneToMany,
   DeleteDateColumn,
 } from "typeorm";
-import { ApiHideProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 import { DbUser } from "../../user/user.entity";
 import { DbContribution } from "../../contribution/contribution.entity";
+import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "./repo.to.user.stargazers.entity";
-import {
-  ApiModelProperty,
-  ApiModelPropertyOptional,
-} from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 
 @Entity({
   name: "repos",
@@ -32,16 +29,18 @@ import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
   },
 })
 export class DbRepo extends BaseEntity {
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository identifier",
     example: 71359796,
+    type: "integer",
   })
   @PrimaryColumn("bigint")
   public id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Owner user identifier",
     example: 57568598,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -49,9 +48,10 @@ export class DbRepo extends BaseEntity {
   })
   public user_id!: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total size in bytes",
     example: 274322,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -59,9 +59,10 @@ export class DbRepo extends BaseEntity {
   })
   public size: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of issues",
     example: 274,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -69,9 +70,10 @@ export class DbRepo extends BaseEntity {
   })
   public issues: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of stars",
     example: 5,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -79,9 +81,10 @@ export class DbRepo extends BaseEntity {
   })
   public stars: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of forks",
     example: 1,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -89,9 +92,10 @@ export class DbRepo extends BaseEntity {
   })
   public forks: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of watchers",
     example: 5473,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -99,9 +103,10 @@ export class DbRepo extends BaseEntity {
   })
   public watchers: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of subscribers",
     example: 11756,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -109,9 +114,10 @@ export class DbRepo extends BaseEntity {
   })
   public subscribers: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Total number of network usages",
     example: 4,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -119,84 +125,84 @@ export class DbRepo extends BaseEntity {
   })
   public network: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo is a fork",
     example: false,
   })
   @Column({ default: false })
   public is_fork: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo is private",
     example: false,
   })
   @Column({ default: false })
   public is_private: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo is a template",
     example: false,
   })
   @Column({ default: false })
   public is_template: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo is archived",
     example: false,
   })
   @Column({ default: false })
   public is_archived: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo is disabled",
     example: false,
   })
   @Column({ default: false })
   public is_disabled: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has issues enabled",
     example: false,
   })
   @Column({ default: true })
   public has_issues: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has projects enabled",
     example: false,
   })
   @Column({ default: true })
   public has_projects: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has downloads enabled",
     example: false,
   })
   @Column({ default: true })
   public has_downloads: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has wiki enabled",
     example: false,
   })
   @Column({ default: true })
   public has_wiki: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has pages enabled",
     example: false,
   })
   @Column({ default: true })
   public has_pages: boolean;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Flag indicating repo has discussions enabled",
     example: false,
   })
   @Column({ default: true })
   public has_discussions: boolean;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing repository creation",
     example: "2016-10-19 13:24:51.000000",
   })
@@ -206,7 +212,7 @@ export class DbRepo extends BaseEntity {
   })
   public created_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing repository last update",
     example: "2022-08-28 22:04:29.000000",
   })
@@ -216,7 +222,7 @@ export class DbRepo extends BaseEntity {
   })
   public updated_at?: Date;
 
-  @ApiModelPropertyOptional({
+  @ApiPropertyOptional({
     description: "Timestamp representing repository last push",
     example: "2022-08-28 22:04:39.000000",
   })
@@ -233,7 +239,7 @@ export class DbRepo extends BaseEntity {
   })
   public deleted_at?: Date;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository default branch",
     example: "main",
   })
@@ -244,7 +250,7 @@ export class DbRepo extends BaseEntity {
   })
   public default_branch: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository GQL node id",
     example: "MDEwOlJlcG9zaXRvcnk3MTM1OTc5Ng==",
   })
@@ -254,7 +260,7 @@ export class DbRepo extends BaseEntity {
   })
   public node_id: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository git url",
     example: "git://github.com/open-sauced/insights.git",
   })
@@ -264,7 +270,7 @@ export class DbRepo extends BaseEntity {
   })
   public git_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository ssh url",
     example: "git@github.com:open-sauced/insights.git",
   })
@@ -274,7 +280,7 @@ export class DbRepo extends BaseEntity {
   })
   public ssh_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository clone url",
     example: "https://github.com/open-sauced/insights.git",
   })
@@ -284,7 +290,7 @@ export class DbRepo extends BaseEntity {
   })
   public clone_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository svn url",
     example: "https://github.com/open-sauced/insights",
   })
@@ -294,7 +300,7 @@ export class DbRepo extends BaseEntity {
   })
   public svn_url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository mirror url",
     example: null,
   })
@@ -304,7 +310,7 @@ export class DbRepo extends BaseEntity {
   })
   public mirror_url?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository unique name",
     example: "open-sauced",
   })
@@ -314,7 +320,7 @@ export class DbRepo extends BaseEntity {
   })
   public name: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository full name",
     example: "open-sauced/insights",
   })
@@ -324,7 +330,7 @@ export class DbRepo extends BaseEntity {
   })
   public full_name: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository short description",
     example: "🍕This is a project to identify your next open source contribution! 🍕",
   })
@@ -334,7 +340,7 @@ export class DbRepo extends BaseEntity {
   })
   public description: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository programming language",
     example: "JavaScript",
   })
@@ -344,7 +350,7 @@ export class DbRepo extends BaseEntity {
   })
   public language: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository SPDX license",
     example: "MIT",
   })
@@ -354,7 +360,7 @@ export class DbRepo extends BaseEntity {
   })
   public license: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository GitHub linked URL",
     example: "https://api.github.com/repos/open-sauced/insights",
   })
@@ -365,7 +371,7 @@ export class DbRepo extends BaseEntity {
   })
   public url: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository GitHub homepage",
     example: "https://app.opensauced.pizza",
   })
@@ -376,7 +382,7 @@ export class DbRepo extends BaseEntity {
   })
   public homepage: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository GitHub topics",
     example: ["open-sauced", "open-source", "github"],
   })
@@ -425,36 +431,45 @@ export class DbRepo extends BaseEntity {
     name: "user_id",
     referencedColumnName: "id",
   })
-  public user!: DbUser;
+  public user!: Relation<DbUser>;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.repo_orgs)
+  @JoinColumn({
+    name: "organization_id",
+    referencedColumnName: "id",
+  })
+  public org_user!: Relation<DbUser>;
 
   @ApiHideProperty()
   @OneToMany(() => DbContribution, (contribution) => contribution.repo)
-  public contributions: DbContribution[];
+  public contributions: Relation<DbContribution[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.repo)
-  public repoToUserVotes: DbRepoToUserVotes[];
+  public repoToUserVotes: Relation<DbRepoToUserVotes[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStars, (repoToUserStars) => repoToUserStars.repo)
-  public repoToUserStars: DbRepoToUserStars[];
+  public repoToUserStars: Relation<DbRepoToUserStars[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserSubmissions, (repoToUserSubmissions) => repoToUserSubmissions.repo)
-  public repoToUserSubmissions: DbRepoToUserSubmissions[];
+  public repoToUserSubmissions: Relation<DbRepoToUserSubmissions[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserStargazers, (repoToUserStargazers) => repoToUserStargazers.repo)
-  public repoToUserStargazers: DbRepoToUserStargazers[];
+  public repoToUserStargazers: Relation<DbRepoToUserStargazers[]>;
 
   @ApiHideProperty()
   @OneToMany(() => DbUserTopRepo, (repoToUserTopRepos) => repoToUserTopRepos.repo)
-  public repoToUserTopRepos: DbUserTopRepo[];
+  public repoToUserTopRepos: Relation<DbUserTopRepo[]>;
 
   // virtual columns
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository number of open PRs",
     example: 5,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -463,9 +478,10 @@ export class DbRepo extends BaseEntity {
   })
   public open_prs_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository number of closed PRs",
     example: 173,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -474,9 +490,10 @@ export class DbRepo extends BaseEntity {
   })
   public closed_prs_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository number of merged PRs",
     example: 276,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -485,9 +502,10 @@ export class DbRepo extends BaseEntity {
   })
   public merged_prs_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository number of draft PRs",
     example: 2,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -496,9 +514,10 @@ export class DbRepo extends BaseEntity {
   })
   public draft_prs_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository number of spam PRs",
     example: 2,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -507,9 +526,10 @@ export class DbRepo extends BaseEntity {
   })
   public spam_prs_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Repository average open/close time for PRs",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",
@@ -518,9 +538,10 @@ export class DbRepo extends BaseEntity {
   })
   public pr_velocity_count?: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of non-closed PRs updated within the day range",
     example: 0,
+    type: "integer",
   })
   @Column({
     type: "bigint",

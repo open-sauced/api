@@ -8,6 +8,7 @@ import {
   ApiBadRequestResponse,
   ApiBearerAuth,
   ApiBody,
+  ApiParam,
 } from "@nestjs/swagger";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
@@ -29,6 +30,7 @@ export class InsightController {
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: "Insight page not found" })
   @ApiUnauthorizedResponse({ description: "Not Authorized to view this Insight" })
+  @ApiParam({ name: "id", type: "integer" })
   async findInsightPageById(@Param("id", ParseIntPipe) id: number): Promise<DbInsight> {
     return this.insightsService.findOneById(id);
   }
@@ -44,6 +46,7 @@ export class InsightController {
   @ApiNotFoundResponse({ description: "Unable to remove user insight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: UpdateInsightDto })
+  @ApiParam({ name: "id", type: "integer" })
   async removeInsightForUser(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<void> {
     const insight = await this.insightsService.findOneById(id);
 
