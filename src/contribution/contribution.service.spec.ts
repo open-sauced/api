@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { DbUser } from "../user/user.entity";
 import { ContributionService } from "./contribution.service";
 import { DbContribution } from "./contribution.entity";
 import { ContributionOrderFieldsEnum, ContributionPageOptionsDto } from "./dtos/contribution-page-options.dto";
@@ -21,6 +22,10 @@ describe("ContributionService", () => {
         ContributionService,
         {
           provide: getRepositoryToken(DbContribution, "ApiConnection"),
+          useValue: contributionRepositoryMock,
+        },
+        {
+          provide: getRepositoryToken(DbUser, "ApiConnection"),
           useValue: contributionRepositoryMock,
         },
       ],
