@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.51.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.51.3-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* use custom logger to connect to logging db ([#382](https://github.com/open-sauced/api.opensauced.pizza/issues/382)) ([4548c14](https://github.com/open-sauced/api.opensauced.pizza/commit/4548c14984cef8825ce23e2555d95a3619258b6c))
+
 ### [1.51.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1...v1.51.2) (2023-10-12)
 
 
