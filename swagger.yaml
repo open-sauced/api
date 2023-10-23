@@ -2735,6 +2735,49 @@ paths:
         "404":
           description: Repo not found
       tags: *a21
+  "/v1/repos/{owner}/{repo}/{login}/contributions":
+    get:
+      operationId: findAllByOwnerRepoAndContributorLogin
+      summary: Finds a repo by :owner and :repo listing all contributions for a given
+        :login and paginating them
+      parameters:
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: login
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Previous number of days to go back to start date range
+          schema:
+            type: integer
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbRepoLoginContributions"
+        "404":
+          description: Repo not found
+      tags: *a21
   "/v1/insights/{id}":
     get:
       operationId: findInsightPageById
@@ -4579,8 +4622,6 @@ paths:
         "404":
           description: Unable to get user list
       tags: *a29
-      security:
-        - bearer: []
     patch:
       operationId: updateListForUser
       summary: Updates the list for the authenticated user
@@ -4652,15 +4693,29 @@ paths:
         - name: location
           required: false
           in: query
-          example: Denver, Colorado
+          example:
+            - Denver, Colorado
+            - Germany
+          schema:
+            type: array
+            items:
+              type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
           schema:
             type: string
         - name: timezone
           required: false
           in: query
-          example: Mountain Standard Time
+          example:
+            - Mountain Standard Time
+            - UTC
           schema:
-            type: string
+            type: array
+            items:
+              type: string
         - name: pr_velocity
           required: false
           in: query
@@ -4751,8 +4806,6 @@ paths:
         "404":
           description: Unable to get user list contributors
       tags: *a29
-      security:
-        - bearer: []
     post:
       operationId: postUserListContributors
       summary: Add new contributors to an individual user list
@@ -4898,8 +4951,6 @@ paths:
       tags:
         &a30
         - User Lists service
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-evolution-by-type":
     get:
       operationId: getContributionsByTimeFrame
@@ -4934,8 +4985,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-by-project":
     get:
       operationId: getContributionsByProject
@@ -4946,6 +4995,13 @@ paths:
           in: path
           schema:
             type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
       responses:
         "200":
           description: ""
@@ -4958,8 +5014,6 @@ paths:
         "404":
           description: Unable to get contributions by project
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/top-project-contributions-by-contributor":
     get:
       operationId: getContributorContributionsByProject
@@ -4970,11 +5024,20 @@ paths:
           in: path
           schema:
             type: string
-        - name: repoId
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: repo_id
           required: true
           in: query
+          description: Repo ID
+          example: 234343
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -4987,8 +5050,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-evolution-by-contributor-type":
     get:
       operationId: getContributorsByTimeframe
@@ -5023,8 +5084,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
@@ -5218,6 +5277,10 @@ components:
           type: integer
           description: Unread User Notification Count
           example: 5
+        insights_count:
+          type: integer
+          description: Unread Insight Pagees Count
+          example: 2
         coupon_code:
           type: string
           description: Coupon Code
@@ -5477,6 +5540,10 @@ components:
           type: integer
           description: User notification count
           example: 0
+        insights_count:
+          type: integer
+          description: User insight pages count
+          example: 0
         highlights_count:
           type: integer
           description: User highlights count
@@ -5520,6 +5587,7 @@ components:
         - type
         - languages
         - notification_count
+        - insights_count
         - highlights_count
         - following_count
         - followers_count
@@ -6083,8 +6151,6 @@ components:
           type: string
           description: Top User Login
           example: bdougie
-      required:
-        - login
     DbFilteredUser:
       type: object
       properties:
@@ -6233,8 +6299,6 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
-      required:
-        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -6767,6 +6831,39 @@ components:
         - last_merged_at
         - contributor
         - url
+    DbRepoLoginContributions:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
+        commits:
+          type: integer
+          description: Number of commits associated with a user login
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created associated with a user login
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed by a user login
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created by a user login
+          example: 0
+        comments:
+          type: integer
+          description: Number of comments associated with a user login
+          example: 0
+      required:
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - comments
     DbInsight:
       type: object
       properties:
@@ -6789,6 +6886,10 @@ components:
         is_favorite:
           type: boolean
           description: Flag indicating insight favorite
+          example: false
+        is_featured:
+          type: boolean
+          description: Flag indicating featured insight
           example: false
         short_code:
           type: string
@@ -6815,6 +6916,7 @@ components:
         - name
         - is_public
         - is_favorite
+        - is_featured
         - short_code
     RepoInfo:
       type: object
@@ -7166,7 +7268,6 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-        - updated_at
     DbUserList:
       type: object
       properties:
@@ -7374,10 +7475,14 @@ components:
         org_id:
           type: string
           description: The org name of the repo
-          example: 0
+          example: open-sauced
         project_id:
           type: string
           description: The project name of the repo
+          example: api
+        repo_id:
+          type: integer
+          description: The ID of the associated repo in the OpenSauced API context
           example: 0
         contributions:
           type: integer
@@ -7386,6 +7491,7 @@ components:
       required:
         - org_id
         - project_id
+        - repo_id
         - contributions
     DbContributorCategoryTimeframe:
       type: object
