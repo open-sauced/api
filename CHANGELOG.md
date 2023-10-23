@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.52.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.3-beta.1...v1.52.0-beta.1) (2023-10-23)
+
+
+### 🍕 Features
+
+* v1/repos/:owner/:repo/:login/contributions ([6a875b9](https://github.com/open-sauced/api.opensauced.pizza/commit/6a875b97f239be747da4ae0d022b7bcf815ea02d))
+
 ### [1.51.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.51.3-beta.1) (2023-10-23)
 
 
