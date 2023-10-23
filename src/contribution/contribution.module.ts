@@ -3,12 +3,13 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { DbRepo } from "../repo/entities/repo.entity";
 import { RepoModule } from "../repo/repo.module";
+import { DbUser } from "../user/user.entity";
 import { DbContribution } from "./contribution.entity";
 import { ContributionService } from "./contribution.service";
 import { RepoContributionsController } from "./repo-contributions.controller";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbRepo, DbContribution], "ApiConnection"), RepoModule],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbContribution, DbUser], "ApiConnection"), RepoModule],
   controllers: [RepoContributionsController],
   providers: [ContributionService],
   exports: [ContributionService],
