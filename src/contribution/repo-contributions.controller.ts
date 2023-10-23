@@ -49,6 +49,36 @@ export class RepoContributionsController {
     return this.contributionService.findAll(pageOptionsDto, item.id);
   }
 
+  @Get("/:owner/:repo/contributions/contributors")
+  @ApiOperation({
+    operationId: "findAllContributorsByRepoId",
+    summary: "Finds a repo by :owner and :repo listing all contributions by their user login",
+  })
+  @ApiOkResponse({ type: DbRepoLoginContributions })
+  @ApiNotFoundResponse({ description: "Repo not found" })
+  @ApiQuery({
+    name: "range",
+    type: "integer",
+    description: "Range in days",
+    required: false,
+  })
+  @ApiQuery({
+    name: "prev_days_start_date",
+    type: "integer",
+    description: "Previous number of days to go back to start date range",
+    required: false,
+  })
+  async findAllUserContributionsByRepoId(
+    @Param("owner") owner: string,
+    @Param("repo") repo: string,
+    @Query("range") range = 30,
+    @Query("prev_days_start_date") prev_days_start_date = 0
+  ): Promise<DbRepoLoginContributions[]> {
+    const item = await this.repoService.findOneByOwnerAndRepo(owner, repo);
+
+    return this.contributionService.findAllByRepoId(item.id, range, prev_days_start_date);
+  }
+
   @Get("/:owner/:repo/:login/contributions")
   @ApiOperation({
     operationId: "findAllByOwnerRepoAndContributorLogin",
