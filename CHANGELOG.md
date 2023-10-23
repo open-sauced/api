@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.52.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.1...v1.52.0-beta.2) (2023-10-23)
+
+
+### 🍕 Features
+
+* Enable multi select for location and timezone ([fa71fa5](https://github.com/open-sauced/api.opensauced.pizza/commit/fa71fa513d9d103a057be80a48d3e14130d32dee))
+
 ## [1.52.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.3-beta.1...v1.52.0-beta.1) (2023-10-23)
 
 
