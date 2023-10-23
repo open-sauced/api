@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.52.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0...v1.52.1-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* fast-forward swagger doc for most recent release ([#387](https://github.com/open-sauced/api.opensauced.pizza/issues/387)) ([8ff8275](https://github.com/open-sauced/api.opensauced.pizza/commit/8ff8275d48b69f71ab0557e2027f108163fa141c))
+
 ## [1.52.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.52.0) (2023-10-23)
 
 
