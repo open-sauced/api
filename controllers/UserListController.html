@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:193</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:195</a></div>
                 </td>
             </tr>
 
@@ -607,8 +607,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="207"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:207</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:209</a></div>
                 </td>
             </tr>
 
@@ -731,8 +731,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="156"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:156</a></div>
                 </td>
             </tr>
 
@@ -821,8 +821,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:171</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:173</a></div>
                 </td>
             </tr>
 
@@ -988,7 +988,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -1127,7 +1127,9 @@ export class UserListController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributors&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
-  async getContributors(@Query() pageOptionsDto: FilterListContributorsDto): Promise&lt;PageDto&lt;DbUser&gt;&gt; {
+  async getContributors(
+    @Query(new ValidationPipe({ transform: true, forbidUnknownValues: true })) pageOptionsDto: FilterListContributorsDto
+  ): Promise&lt;PageDto&lt;DbUser&gt;&gt; {
     return this.userListService.findContributorsByFilter(pageOptionsDto);
   }
 

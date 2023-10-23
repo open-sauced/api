@@ -1369,11 +1369,11 @@ export class UserListService {
     }
 
     if (pageOptionsDto.location) {
-      queryBuilder.andWhere(&quot;user.location &#x3D; :location&quot;, { location: pageOptionsDto.location });
+      queryBuilder.andWhere(&quot;user.location in (:...location)&quot;, { location: pageOptionsDto.location });
     }
 
     if (pageOptionsDto.timezone) {
-      queryBuilder.andWhere(&quot;user.timezone &#x3D; :timezone&quot;, { timezone: pageOptionsDto.timezone });
+      queryBuilder.andWhere(&quot;user.timezone in (:...timezone)&quot;, { timezone: pageOptionsDto.timezone });
     }
 
     if (pageOptionsDto.pr_velocity) {
