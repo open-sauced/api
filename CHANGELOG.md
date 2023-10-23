@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.52.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.2...v1.52.0-beta.3) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* Move logging database migrations out of core db migrations dir ([#384](https://github.com/open-sauced/api.opensauced.pizza/issues/384)) ([cc96252](https://github.com/open-sauced/api.opensauced.pizza/commit/cc9625212779b1cd4c41d1519d482a38440b2637))
+
 ## [1.52.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.1...v1.52.0-beta.2) (2023-10-23)
 
 
