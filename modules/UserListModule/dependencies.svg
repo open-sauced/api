@@ -16,93 +16,93 @@
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_UserListModule_exports</title>
-<polygon fill="none" stroke="black" points="219,-170.8 219,-222.8 499,-222.8 499,-170.8 219,-170.8"/>
-</g>
-<g id="clust3" class="cluster">
-<title>cluster_UserListModule_imports</title>
-<polygon fill="none" stroke="black" points="388,-40.8 388,-92.8 636,-92.8 636,-40.8 388,-40.8"/>
+<polygon fill="none" stroke="black" points="136,-170.8 136,-222.8 416,-222.8 416,-170.8 136,-170.8"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_UserListModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 380,-92.8 380,-40.8 16,-40.8"/>
+<polygon fill="none" stroke="black" points="272,-40.8 272,-92.8 636,-92.8 636,-40.8 272,-40.8"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_UserListModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 264,-92.8 264,-40.8 16,-40.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">
 <title>ApiServicesModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="627.98,-84.8 624.98,-88.8 603.98,-88.8 600.98,-84.8 500.02,-84.8 500.02,-48.8 627.98,-48.8 627.98,-84.8"/>
-<text text-anchor="middle" x="564" y="-62.6" font-family="Times,serif" font-size="14.00">ApiServicesModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="255.98,-84.8 252.98,-88.8 231.98,-88.8 228.98,-84.8 128.02,-84.8 128.02,-48.8 255.98,-48.8 255.98,-84.8"/>
+<text text-anchor="middle" x="192" y="-62.6" font-family="Times,serif" font-size="14.00">ApiServicesModule</text>
 </g>
 <!-- UserListModule -->
 <g id="node3" class="node">
 <title>UserListModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="418.77,-149.8 415.77,-153.8 394.77,-153.8 391.77,-149.8 311.23,-149.8 311.23,-113.8 418.77,-113.8 418.77,-149.8"/>
-<text text-anchor="middle" x="365" y="-127.6" font-family="Times,serif" font-size="14.00">UserListModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="335.77,-149.8 332.77,-153.8 311.77,-153.8 308.77,-149.8 228.23,-149.8 228.23,-113.8 335.77,-113.8 335.77,-149.8"/>
+<text text-anchor="middle" x="282" y="-127.6" font-family="Times,serif" font-size="14.00">UserListModule</text>
 </g>
 <!-- ApiServicesModule&#45;&gt;UserListModule -->
 <g id="edge1" class="edge">
 <title>ApiServicesModule&#45;&gt;UserListModule</title>
-<path fill="none" stroke="black" d="M564,-84.91C564,-104.14 564,-131.8 564,-131.8 564,-131.8 428.85,-131.8 428.85,-131.8"/>
-<polygon fill="black" stroke="black" points="428.85,-128.3 418.85,-131.8 428.85,-135.3 428.85,-128.3"/>
+<path fill="none" stroke="black" d="M242.05,-84.91C242.05,-84.91 242.05,-103.79 242.05,-103.79"/>
+<polygon fill="black" stroke="black" points="238.55,-103.79 242.05,-113.79 245.55,-103.79 238.55,-103.79"/>
 </g>
 <!-- UserModule -->
 <g id="node2" class="node">
 <title>UserModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="481.99,-84.8 478.99,-88.8 457.99,-88.8 454.99,-84.8 396.01,-84.8 396.01,-48.8 481.99,-48.8 481.99,-84.8"/>
-<text text-anchor="middle" x="439" y="-62.6" font-family="Times,serif" font-size="14.00">UserModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="109.99,-84.8 106.99,-88.8 85.99,-88.8 82.99,-84.8 24.01,-84.8 24.01,-48.8 109.99,-48.8 109.99,-84.8"/>
+<text text-anchor="middle" x="67" y="-62.6" font-family="Times,serif" font-size="14.00">UserModule</text>
 </g>
 <!-- UserModule&#45;&gt;UserListModule -->
 <g id="edge2" class="edge">
 <title>UserModule&#45;&gt;UserListModule</title>
-<path fill="none" stroke="black" d="M407.44,-84.91C407.44,-84.91 407.44,-103.79 407.44,-103.79"/>
-<polygon fill="black" stroke="black" points="403.94,-103.79 407.44,-113.79 410.94,-103.79 403.94,-103.79"/>
+<path fill="none" stroke="black" d="M67,-84.91C67,-104.14 67,-131.8 67,-131.8 67,-131.8 218.02,-131.8 218.02,-131.8"/>
+<polygon fill="black" stroke="black" points="218.02,-135.3 228.02,-131.8 218.02,-128.3 218.02,-135.3"/>
 </g>
 <!-- UserListService  -->
 <g id="node4" class="node">
 <title>UserListService </title>
-<polygon fill="#fb8072" stroke="black" points="490.69,-214.8 381.31,-214.8 381.31,-178.8 490.69,-178.8 490.69,-214.8"/>
-<text text-anchor="middle" x="436" y="-192.6" font-family="Times,serif" font-size="14.00">UserListService </text>
+<polygon fill="#fb8072" stroke="black" points="407.69,-214.8 298.31,-214.8 298.31,-178.8 407.69,-178.8 407.69,-214.8"/>
+<text text-anchor="middle" x="353" y="-192.6" font-family="Times,serif" font-size="14.00">UserListService </text>
 </g>
 <!-- UserListModule&#45;&gt;UserListService  -->
 <g id="edge3" class="edge">
 <title>UserListModule&#45;&gt;UserListService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M400.02,-149.91C400.02,-149.91 400.02,-168.79 400.02,-168.79"/>
-<polygon fill="black" stroke="black" points="396.52,-168.79 400.02,-178.79 403.52,-168.79 396.52,-168.79"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M317.02,-149.91C317.02,-149.91 317.02,-168.79 317.02,-168.79"/>
+<polygon fill="black" stroke="black" points="313.52,-168.79 317.02,-178.79 320.52,-168.79 313.52,-168.79"/>
 </g>
 <!-- UserListStatsService  -->
 <g id="node5" class="node">
 <title>UserListStatsService </title>
-<polygon fill="#fb8072" stroke="black" points="363.42,-214.8 226.58,-214.8 226.58,-178.8 363.42,-178.8 363.42,-214.8"/>
-<text text-anchor="middle" x="295" y="-192.6" font-family="Times,serif" font-size="14.00">UserListStatsService </text>
+<polygon fill="#fb8072" stroke="black" points="280.42,-214.8 143.58,-214.8 143.58,-178.8 280.42,-178.8 280.42,-214.8"/>
+<text text-anchor="middle" x="212" y="-192.6" font-family="Times,serif" font-size="14.00">UserListStatsService </text>
 </g>
 <!-- UserListModule&#45;&gt;UserListStatsService  -->
 <g id="edge4" class="edge">
 <title>UserListModule&#45;&gt;UserListStatsService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M337.29,-149.91C337.29,-149.91 337.29,-168.79 337.29,-168.79"/>
-<polygon fill="black" stroke="black" points="333.79,-168.79 337.29,-178.79 340.79,-168.79 333.79,-168.79"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M254.29,-149.91C254.29,-149.91 254.29,-168.79 254.29,-168.79"/>
+<polygon fill="black" stroke="black" points="250.79,-168.79 254.29,-178.79 257.79,-168.79 250.79,-168.79"/>
 </g>
 <!-- UserListService -->
 <g id="node6" class="node">
 <title>UserListService</title>
-<ellipse fill="#fdb462" stroke="black" cx="299" cy="-66.8" rx="73" ry="18"/>
-<text text-anchor="middle" x="299" y="-62.6" font-family="Times,serif" font-size="14.00">UserListService</text>
+<ellipse fill="#fdb462" stroke="black" cx="555" cy="-66.8" rx="73" ry="18"/>
+<text text-anchor="middle" x="555" y="-62.6" font-family="Times,serif" font-size="14.00">UserListService</text>
 </g>
 <!-- UserListService&#45;&gt;UserListModule -->
 <g id="edge5" class="edge">
 <title>UserListService&#45;&gt;UserListModule</title>
-<path fill="none" stroke="black" d="M341.68,-81.55C341.68,-81.55 341.68,-103.39 341.68,-103.39"/>
-<polygon fill="black" stroke="black" points="338.18,-103.39 341.68,-113.39 345.18,-103.39 338.18,-103.39"/>
+<path fill="none" stroke="black" d="M555,-84.91C555,-104.14 555,-131.8 555,-131.8 555,-131.8 345.94,-131.8 345.94,-131.8"/>
+<polygon fill="black" stroke="black" points="345.94,-128.3 335.94,-131.8 345.94,-135.3 345.94,-128.3"/>
 </g>
 <!-- UserListStatsService -->
 <g id="node7" class="node">
 <title>UserListStatsService</title>
-<ellipse fill="#fdb462" stroke="black" cx="116" cy="-66.8" rx="92.06" ry="18"/>
-<text text-anchor="middle" x="116" y="-62.6" font-family="Times,serif" font-size="14.00">UserListStatsService</text>
+<ellipse fill="#fdb462" stroke="black" cx="372" cy="-66.8" rx="92.06" ry="18"/>
+<text text-anchor="middle" x="372" y="-62.6" font-family="Times,serif" font-size="14.00">UserListStatsService</text>
 </g>
 <!-- UserListStatsService&#45;&gt;UserListModule -->
 <g id="edge6" class="edge">
 <title>UserListStatsService&#45;&gt;UserListModule</title>
-<path fill="none" stroke="black" d="M116,-84.91C116,-104.14 116,-131.8 116,-131.8 116,-131.8 300.97,-131.8 300.97,-131.8"/>
-<polygon fill="black" stroke="black" points="300.97,-135.3 310.97,-131.8 300.97,-128.3 300.97,-135.3"/>
+<path fill="none" stroke="black" d="M307.93,-79.95C307.93,-79.95 307.93,-103.49 307.93,-103.49"/>
+<polygon fill="black" stroke="black" points="304.43,-103.49 307.93,-113.49 311.43,-103.49 304.43,-103.49"/>
 </g>
 </g>
 </svg>
