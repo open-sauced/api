@@ -9,8 +9,8 @@ export class BlogSummaryService {
 
   private generatePrompt(language: string, maxLength: number, tone: string) {
     return [
-      `Generate a blog summary for a blog with the specifications mentioned below`,
-      `The summary should be written in ${tone} tone`,
+      `I will generate a blog summary for a blog with the specifications mentioned below`,
+      `The summary should be written in the first person with a ${tone} tone`,
       `Summary language: ${language}`,
       `Summary must be a maximum of ${maxLength} characters.`,
       "Exclude anything unnecessary such as translation. Your entire response will be used to summarize and analyze the blog.",

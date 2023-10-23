@@ -5,6 +5,34 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.52.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.2...v1.52.0-beta.3) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* Move logging database migrations out of core db migrations dir ([#384](https://github.com/open-sauced/api.opensauced.pizza/issues/384)) ([cc96252](https://github.com/open-sauced/api.opensauced.pizza/commit/cc9625212779b1cd4c41d1519d482a38440b2637))
+
+## [1.52.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.1...v1.52.0-beta.2) (2023-10-23)
+
+
+### 🍕 Features
+
+* Enable multi select for location and timezone ([fa71fa5](https://github.com/open-sauced/api.opensauced.pizza/commit/fa71fa513d9d103a057be80a48d3e14130d32dee))
+
+## [1.52.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.3-beta.1...v1.52.0-beta.1) (2023-10-23)
+
+
+### 🍕 Features
+
+* v1/repos/:owner/:repo/:login/contributions ([6a875b9](https://github.com/open-sauced/api.opensauced.pizza/commit/6a875b97f239be747da4ae0d022b7bcf815ea02d))
+
+### [1.51.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.51.3-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* use custom logger to connect to logging db ([#382](https://github.com/open-sauced/api.opensauced.pizza/issues/382)) ([4548c14](https://github.com/open-sauced/api.opensauced.pizza/commit/4548c14984cef8825ce23e2555d95a3619258b6c))
+
 ### [1.51.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1...v1.51.2) (2023-10-12)
 
 

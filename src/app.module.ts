@@ -77,6 +77,7 @@ import { CouponModule } from "./coupon/coupon.module";
 import { DbUserList } from "./user-lists/entities/user-list.entity";
 import { DbUserListContributor } from "./user-lists/entities/user-list-contributor.entity";
 import { DbCoupon } from "./coupon/entities/coupon.entity";
+import { LogModule } from "./log/log.module";
 
 @Module({
   imports: [
@@ -223,6 +224,7 @@ import { DbCoupon } from "./coupon/entities/coupon.entity";
     PizzaOvenModule,
     UserListModule,
     CouponModule,
+    LogModule,
   ],
   providers: [],
 })

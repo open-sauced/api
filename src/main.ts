@@ -6,12 +6,12 @@ import { SwaggerModule, DocumentBuilder, SwaggerCustomOptions } from "@nestjs/sw
 import { ValidationPipe, VersioningType } from "@nestjs/common";
 import fastifyHelmet from "@fastify/helmet";
 import { ConfigService } from "@nestjs/config";
-import { Logger } from "nestjs-pino";
 import fastifyRateLimit from "@fastify/rate-limit";
 import { major } from "semver";
 
 import { AppModule } from "./app.module";
 import { swaggerMarkdownDescription } from "./common/util/swagger";
+import CustomLogger from "./log/custom-logger";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ logger: false }), {
@@ -22,7 +22,7 @@ async function bootstrap() {
   const apiDomain = String(configService.get("api.domain"));
   const markdownDescription = swaggerMarkdownDescription(apiDomain);
 
-  app.useLogger(app.get(Logger));
+  app.useLogger(app.get(CustomLogger));
   app.flushLogs();
   app.enableCors();
   app.enableVersioning({

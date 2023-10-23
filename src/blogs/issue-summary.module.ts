@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { OpenAiModule } from "../open-ai/open-ai.module";
-import { BlogSummaryService } from "./issue-summary.service";
+import { BlogSummaryService } from "./blog-summary.service";
 import { BlogSummaryController } from "./issue-summary.controller";
 
 @Module({
