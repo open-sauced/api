@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.53.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.1...v1.53.0-beta.2) (2023-10-24)
+
+
+### 🍕 Features
+
+* add endpoint for displaying contributor following list ([#379](https://github.com/open-sauced/api.opensauced.pizza/issues/379)) ([d36a6c6](https://github.com/open-sauced/api.opensauced.pizza/commit/d36a6c682f27a6a2e7f67b5199cc5be6d3b61dce))
+
 ## [1.53.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.1-beta.1...v1.53.0-beta.1) (2023-10-24)
 
 
