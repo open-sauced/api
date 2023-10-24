@@ -31,6 +31,7 @@ import { UserEndorsementController } from "./user-endorsement.controller";
 
 import { UserRecommendationController } from "./user-recommendation.controller";
 import { DbUserOrganization } from "./entities/user-organization.entity";
+import { UserFollowingController } from "./user-following.controller";
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { DbUserOrganization } from "./entities/user-organization.entity";
     UserCollaborationController,
     UserEndorsementController,
     UserRecommendationController,
+    UserFollowingController,
   ],
   providers: [
     UserService,

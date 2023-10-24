@@ -5,6 +5,34 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.53.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.2...v1.53.0-beta.3) (2023-10-24)
+
+
+### 🍕 Features
+
+* Follow multiple users endpoint ([#390](https://github.com/open-sauced/api.opensauced.pizza/issues/390)) ([bd92ceb](https://github.com/open-sauced/api.opensauced.pizza/commit/bd92cebb6fe30bcd42eeb2fe6feaa930f36d4995))
+
+## [1.53.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.1...v1.53.0-beta.2) (2023-10-24)
+
+
+### 🍕 Features
+
+* add endpoint for displaying contributor following list ([#379](https://github.com/open-sauced/api.opensauced.pizza/issues/379)) ([d36a6c6](https://github.com/open-sauced/api.opensauced.pizza/commit/d36a6c682f27a6a2e7f67b5199cc5be6d3b61dce))
+
+## [1.53.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.1-beta.1...v1.53.0-beta.1) (2023-10-24)
+
+
+### 🍕 Features
+
+* Granular contributions for individual repos ([#388](https://github.com/open-sauced/api.opensauced.pizza/issues/388)) ([f9ced6a](https://github.com/open-sauced/api.opensauced.pizza/commit/f9ced6ae0297b4c5c2de63c1ba07dab4b8600f81))
+
+### [1.52.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0...v1.52.1-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* fast-forward swagger doc for most recent release ([#387](https://github.com/open-sauced/api.opensauced.pizza/issues/387)) ([8ff8275](https://github.com/open-sauced/api.opensauced.pizza/commit/8ff8275d48b69f71ab0557e2027f108163fa141c))
+
 ## [1.52.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.52.0) (2023-10-23)
 
 
