@@ -814,6 +814,27 @@ paths:
       tags: *a4
       security:
         - bearer: []
+  "/v1/users/{username}/follows":
+    put:
+      operationId: followUsersByUsernames
+      summary: Follows a number of users by username
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FollowManyUsersDto"
+      responses:
+        "200":
+          description: ""
+        "404":
+          description: Users not found
+        "409":
+          description: You have already followed this user
+      tags: *a4
+      security:
+        - bearer: []
   /v1/user/notifications:
     get:
       operationId: getUserNotifications
@@ -1196,6 +1217,29 @@ paths:
       tags: *a7
       security:
         - bearer: []
+  "/v1/users/{username}/following":
+    get:
+      operationId: getFollowingListByUsername
+      summary: Get list of following users by the provided username
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbUserToUserFollows"
+        "404":
+          description: User not found
+      tags:
+        - User service
   /v1/prs/list:
     get:
       operationId: listAllPullRequests
@@ -2732,6 +2776,44 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbContribution"
+        "404":
+          description: Repo not found
+      tags: *a21
+  "/v1/repos/{owner}/{repo}/contributions/contributors":
+    get:
+      operationId: findAllContributorsByRepoId
+      summary: Finds a repo by :owner and :repo listing all contributions by their
+        user login
+      parameters:
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Previous number of days to go back to start date range
+          schema:
+            type: integer
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbRepoLoginContributions"
         "404":
           description: Repo not found
       tags: *a21
@@ -6328,6 +6410,20 @@ components:
         - id
         - user_id
         - following_user_id
+    FollowManyUsersDto:
+      type: object
+      properties:
+        usernames:
+          description: An array of usernames  to follow
+          example:
+            - jpmcb
+            - bdougie
+            - brandonroberts
+          type: array
+          items:
+            type: string
+      required:
+        - usernames
     DbUserCollaboration:
       type: object
       properties:

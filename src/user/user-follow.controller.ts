@@ -1,6 +1,7 @@
-import { Controller, Delete, Get, Param, Put, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Put, UseGuards } from "@nestjs/common";
 import {
   ApiBearerAuth,
+  ApiBody,
   ApiConflictResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -13,6 +14,7 @@ import { UserId } from "../auth/supabase.user.decorator";
 import { DbUserToUserFollows } from "./entities/user-follows.entity";
 import { UserFollowService } from "./user-follow.service";
 import { UserService } from "./services/user.service";
+import { FollowManyUsersDto } from "./dtos/follow-many-users.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -52,6 +54,42 @@ export class UserFollowsController {
     const user = await this.userService.findOneByUsername(username);
 
     return this.userFollowService.addUserFollowerByUserId(userId, user.id);
+  }
+
+  @Put("/:username/follows")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "followUsersByUsernames",
+    summary: "Follows a number of users by username",
+  })
+  @ApiNotFoundResponse({ description: "Users not found" })
+  @ApiConflictResponse({ description: "You have already followed this user" })
+  @ApiBody({ type: FollowManyUsersDto })
+  async followUsersByUsernames(
+    @Body() bulkFollow: FollowManyUsersDto,
+    @UserId() userId: number
+  ): Promise<{ follows: DbUserToUserFollows[]; errors: Error[] }> {
+    const users = await this.userService.findManyByUsernames(bulkFollow.usernames);
+    const allErrs: Error[] = [];
+
+    const promises = users.map(async (user) => {
+      try {
+        return await this.userFollowService.addUserFollowerByUserId(userId, user.id);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          allErrs.push(e);
+        }
+      }
+    });
+
+    const results = await Promise.all(promises);
+    const validResults = results.filter(Boolean);
+
+    return {
+      follows: validResults as DbUserToUserFollows[],
+      errors: allErrs,
+    };
   }
 
   @Delete("/:username/follow")

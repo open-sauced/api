@@ -187,6 +187,26 @@ export class UserService {
     return item;
   }
 
+  async findManyByUsernames(usernames: string[]): Promise<DbUser[]> {
+    const queryBuilder = this.baseQueryBuilder();
+    const lowerCaseUsernames = usernames.map((username) => username.toLowerCase());
+
+    queryBuilder
+      .where("LOWER(login) IN (:...usernames)", { usernames: lowerCaseUsernames })
+      .setParameters({ usernames: lowerCaseUsernames });
+
+    const items: DbUser[] = await queryBuilder.getMany();
+
+    const foundUsernames = items.map((user) => user.login.toLowerCase());
+    const notFoundUsernames = lowerCaseUsernames.filter((username) => !foundUsernames.includes(username));
+
+    if (notFoundUsernames.length > 0) {
+      throw new NotFoundException(notFoundUsernames);
+    }
+
+    return items;
+  }
+
   async findUsersByFilter(pageOptionsDto: FilteredUsersDto): Promise<PageDto<DbFilteredUser>> {
     const queryBuilder = this.baseQueryBuilder();
 
