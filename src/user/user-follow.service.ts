@@ -72,7 +72,7 @@ export class UserFollowService {
 
     if (followExists) {
       if (!followExists.deleted_at) {
-        throw new ConflictException("You have already followed this user");
+        throw new ConflictException(`You have already followed this user: ${followedUserId}`);
       }
 
       await this.userFollowRepository.restore(followExists.id);
