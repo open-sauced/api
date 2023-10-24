@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.53.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.2...v1.53.0-beta.3) (2023-10-24)
+
+
+### 🍕 Features
+
+* Follow multiple users endpoint ([#390](https://github.com/open-sauced/api.opensauced.pizza/issues/390)) ([bd92ceb](https://github.com/open-sauced/api.opensauced.pizza/commit/bd92cebb6fe30bcd42eeb2fe6feaa930f36d4995))
+
 ## [1.53.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.1...v1.53.0-beta.2) (2023-10-24)
 
 
