@@ -199,12 +199,13 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
 import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
+import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
 import { DbContribution } from &quot;./contribution.entity&quot;;
 import { ContributionService } from &quot;./contribution.service&quot;;
 import { RepoContributionsController } from &quot;./repo-contributions.controller&quot;;
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DbRepo, DbContribution, DbUser], &quot;ApiConnection&quot;), RepoModule],
+  imports: [TypeOrmModule.forFeature([DbRepo, DbContribution, DbUser, DbPullRequest], &quot;ApiConnection&quot;), RepoModule],
   controllers: [RepoContributionsController],
   providers: [ContributionService],
   exports: [ContributionService],

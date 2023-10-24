@@ -84,6 +84,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllByRepoId" >findAllByRepoId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllByUserLogin" >findAllByUserLogin</a>
                             </li>
                         </ul>
@@ -104,12 +108,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(contributionRepository: <a href="../entitys/DbContribution.html" target="_self">Repository&lt;DbContribution&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>)</code>
+<code>constructor(contributionRepository: <a href="../entitys/DbContribution.html" target="_self">Repository&lt;DbContribution&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, pullRequestRepository: <a href="../entitys/DbPullRequest.html" target="_self">Repository&lt;DbPullRequest&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/contribution/contribution.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/contribution/contribution.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -143,6 +147,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/DbUser.html" target="_self" >Repository&lt;DbUser&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pullRequestRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/DbPullRequest.html" target="_self" >Repository&lt;DbPullRequest&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -186,8 +202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/contribution/contribution.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/contribution/contribution.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -251,6 +267,101 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllByRepoId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllByRepoId</b></span>
+                        <a href="#findAllByRepoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllByRepoId(repoId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prev_days_start_date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/contribution/contribution.service.ts:91</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prev_days_start_date</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbRepoLoginContributions[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllByUserLogin"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -269,8 +380,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/contribution/contribution.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/contribution/contribution.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -363,6 +474,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
@@ -378,7 +490,9 @@ export class ContributionService {
     @InjectRepository(DbContribution, &quot;ApiConnection&quot;)
     private contributionRepository: Repository&lt;DbContribution&gt;,
     @InjectRepository(DbUser, &quot;ApiConnection&quot;)
-    private userRepository: Repository&lt;DbUser&gt;
+    private userRepository: Repository&lt;DbUser&gt;,
+    @InjectRepository(DbPullRequest, &quot;ApiConnection&quot;)
+    private pullRequestRepository: Repository&lt;DbPullRequest&gt;
   ) {}
 
   async findAll(pageOptionsDto: ContributionPageOptionsDto, repoId?: number): Promise&lt;PageDto&lt;DbContribution&gt;&gt; {
@@ -445,6 +559,38 @@ export class ContributionService {
     }
 
     return entity;
+  }
+
+  async findAllByRepoId(
+    repoId: number,
+    range: number,
+    prev_days_start_date: number
+  ): Promise&lt;DbRepoLoginContributions[]&gt; {
+    const startDate &#x3D; GetPrevDateISOString(prev_days_start_date);
+
+    const cteBuilder &#x3D; this.pullRequestRepository
+      .createQueryBuilder(&quot;pull_requests&quot;)
+      .select(&quot;pull_requests.author_login&quot;, &quot;login&quot;)
+      .addSelect(&quot;COALESCE(SUM(pull_requests.commits), 0)::INTEGER&quot;, &quot;commits&quot;)
+      .addSelect(&quot;COUNT(pull_requests.id)::INTEGER&quot;, &quot;prs_created&quot;)
+      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;pull_requests.author_login &#x3D; users.login&quot;)
+      .where(&#x60;pull_requests.repo_id &#x3D; ${repoId}&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;&#x60;)
+      .andWhere(&quot;users.deleted_at IS NULL&quot;)
+      .groupBy(&quot;pull_requests.author_login&quot;);
+
+    const entitiesQb &#x3D; this.userRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&quot;login&quot;)
+      .addSelect(&quot;commits&quot;)
+      .addSelect(&quot;prs_created&quot;)
+      .addSelect(&quot;(commits + prs_created)::INTEGER AS total_contributions&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    return entitiesQb.getRawMany();
   }
 }
 </code></pre>

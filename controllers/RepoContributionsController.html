@@ -95,6 +95,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#findAllByRepoId" >findAllByRepoId</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllUserContributionsByRepoId" >findAllUserContributionsByRepoId</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -243,8 +247,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:101</a></div>
                 </td>
             </tr>
 
@@ -443,6 +447,131 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllUserContributionsByRepoId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllUserContributionsByRepoId</b></span>
+                        <a href="#findAllUserContributionsByRepoId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllUserContributionsByRepoId(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prev_days_start_date: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:owner/:repo/contributions/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findAllContributorsByRepoId&#x27;, summary: &#x27;Finds a repo by :owner and :repo listing all contributions by their user login&#x27;})<br />@ApiOkResponse({type: DbRepoLoginContributions})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, description: &#x27;Range in days&#x27;, required: false})<br />@ApiQuery({name: &#x27;prev_days_start_date&#x27;, type: &#x27;integer&#x27;, description: &#x27;Previous number of days to go back to start date range&#x27;, required: false})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/contribution/repo-contributions.controller.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>owner</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>prev_days_start_date</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>0</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbRepoLoginContributions[]&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
@@ -496,6 +625,36 @@ export class RepoContributionsController {
     const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
 
     return this.contributionService.findAll(pageOptionsDto, item.id);
+  }
+
+  @Get(&quot;/:owner/:repo/contributions/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllContributorsByRepoId&quot;,
+    summary: &quot;Finds a repo by :owner and :repo listing all contributions by their user login&quot;,
+  })
+  @ApiOkResponse({ type: DbRepoLoginContributions })
+  @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
+  @ApiQuery({
+    name: &quot;range&quot;,
+    type: &quot;integer&quot;,
+    description: &quot;Range in days&quot;,
+    required: false,
+  })
+  @ApiQuery({
+    name: &quot;prev_days_start_date&quot;,
+    type: &quot;integer&quot;,
+    description: &quot;Previous number of days to go back to start date range&quot;,
+    required: false,
+  })
+  async findAllUserContributionsByRepoId(
+    @Param(&quot;owner&quot;) owner: string,
+    @Param(&quot;repo&quot;) repo: string,
+    @Query(&quot;range&quot;) range &#x3D; 30,
+    @Query(&quot;prev_days_start_date&quot;) prev_days_start_date &#x3D; 0
+  ): Promise&lt;DbRepoLoginContributions[]&gt; {
+    const item &#x3D; await this.repoService.findOneByOwnerAndRepo(owner, repo);
+
+    return this.contributionService.findAllByRepoId(item.id, range, prev_days_start_date);
   }
 
   @Get(&quot;/:owner/:repo/:login/contributions&quot;)
