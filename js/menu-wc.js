@@ -1110,6 +1110,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FilterOptionsDto.html" data-type="entity-link" >FilterOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/FollowManyUsersDto.html" data-type="entity-link" >FollowManyUsersDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/GenerateCodeExplanationDto.html" data-type="entity-link" >GenerateCodeExplanationDto</a>
                             </li>
                             <li class="link">

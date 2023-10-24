@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#followUsersByUsernames" >followUsersByUsernames</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getFollowStatusByUsername" >getFollowStatusByUsername</a>
                             </li>
                             <li>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/user/user-follow.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/user/user-follow.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -206,6 +210,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="followUsersByUsernames"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>followUsersByUsernames</b></span>
+                        <a href="#followUsersByUsernames"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>followUsersByUsernames(bulkFollow: <a href="../classes/FollowManyUsersDto.html" target="_self">FollowManyUsersDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Put(&#x27;/:username/follows&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;followUsersByUsernames&#x27;, summary: &#x27;Follows a number of users by username&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Users not found&#x27;})<br />@ApiConflictResponse({description: &#x27;You have already followed this user&#x27;})<br />@ApiBody({type: FollowManyUsersDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/user-follow.controller.ts:69</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bulkFollow</td>
+                                    <td>
+                                                <code><a href="../classes/FollowManyUsersDto.html" target="_self" >FollowManyUsersDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getFollowStatusByUsername"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -231,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/user/user-follow.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/user/user-follow.controller.ts:32</a></div>
                 </td>
             </tr>
 
@@ -321,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/user/user-follow.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/user/user-follow.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -386,9 +480,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, Put, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Put, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiBearerAuth,
+  ApiBody,
   ApiConflictResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
@@ -401,6 +496,7 @@ import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { DbUserToUserFollows } from &quot;./entities/user-follows.entity&quot;;
 import { UserFollowService } from &quot;./user-follow.service&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
+import { FollowManyUsersDto } from &quot;./dtos/follow-many-users.dto&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
@@ -440,6 +536,42 @@ export class UserFollowsController {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.userFollowService.addUserFollowerByUserId(userId, user.id);
+  }
+
+  @Put(&quot;/:username/follows&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;followUsersByUsernames&quot;,
+    summary: &quot;Follows a number of users by username&quot;,
+  })
+  @ApiNotFoundResponse({ description: &quot;Users not found&quot; })
+  @ApiConflictResponse({ description: &quot;You have already followed this user&quot; })
+  @ApiBody({ type: FollowManyUsersDto })
+  async followUsersByUsernames(
+    @Body() bulkFollow: FollowManyUsersDto,
+    @UserId() userId: number
+  ): Promise&lt;{ follows: DbUserToUserFollows[]; errors: Error[] }&gt; {
+    const users &#x3D; await this.userService.findManyByUsernames(bulkFollow.usernames);
+    const allErrs: Error[] &#x3D; [];
+
+    const promises &#x3D; users.map(async (user) &#x3D;&gt; {
+      try {
+        return await this.userFollowService.addUserFollowerByUserId(userId, user.id);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          allErrs.push(e);
+        }
+      }
+    });
+
+    const results &#x3D; await Promise.all(promises);
+    const validResults &#x3D; results.filter(Boolean);
+
+    return {
+      follows: validResults as DbUserToUserFollows[],
+      errors: allErrs,
+    };
   }
 
   @Delete(&quot;/:username/follow&quot;)
