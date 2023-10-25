@@ -470,7 +470,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo/contributions/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findAllContributorsByRepoId&#x27;, summary: &#x27;Finds a repo by :owner and :repo listing all contributions by their user login&#x27;})<br />@ApiOkResponse({type: DbRepoLoginContributions})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, description: &#x27;Range in days&#x27;, required: false})<br />@ApiQuery({name: &#x27;prev_days_start_date&#x27;, type: &#x27;integer&#x27;, description: &#x27;Previous number of days to go back to start date range&#x27;, required: false})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo/contributions/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findAllContributorsByRepoId&#x27;, summary: &#x27;Finds a repo by :owner and :repo listing all contributions by their user login&#x27;})<br />@ApiOkResponse({type: DbRepoLoginContributions, isArray: true})<br />@ApiNotFoundResponse({description: &#x27;Repo not found&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, description: &#x27;Range in days&#x27;, required: false})<br />@ApiQuery({name: &#x27;prev_days_start_date&#x27;, type: &#x27;integer&#x27;, description: &#x27;Previous number of days to go back to start date range&#x27;, required: false})<br /></code>
                 </td>
             </tr>
 
@@ -632,7 +632,7 @@ export class RepoContributionsController {
     operationId: &quot;findAllContributorsByRepoId&quot;,
     summary: &quot;Finds a repo by :owner and :repo listing all contributions by their user login&quot;,
   })
-  @ApiOkResponse({ type: DbRepoLoginContributions })
+  @ApiOkResponse({ type: DbRepoLoginContributions, isArray: true })
   @ApiNotFoundResponse({ description: &quot;Repo not found&quot; })
   @ApiQuery({
     name: &quot;range&quot;,
