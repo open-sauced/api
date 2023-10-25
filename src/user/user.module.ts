@@ -32,6 +32,7 @@ import { UserEndorsementController } from "./user-endorsement.controller";
 import { UserRecommendationController } from "./user-recommendation.controller";
 import { DbUserOrganization } from "./entities/user-organization.entity";
 import { UserFollowingController } from "./user-following.controller";
+import { UserOrganizationService } from "./user-organization.service";
 
 @Module({
   imports: [
@@ -75,7 +76,15 @@ import { UserFollowingController } from "./user-following.controller";
     UserNotificationService,
     UserCollaborationService,
     EndorsementService,
+    UserOrganizationService,
   ],
-  exports: [UserService, UserHighlightsService, UserFollowService, RepoService, EndorsementService],
+  exports: [
+    UserService,
+    UserHighlightsService,
+    UserFollowService,
+    RepoService,
+    EndorsementService,
+    UserOrganizationService,
+  ],
 })
 export class UserModule {}
