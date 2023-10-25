@@ -89,6 +89,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllOrgsByUsername" >findAllOrgsByUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllTopReposByUsername" >findAllTopReposByUsername</a>
                             </li>
                             <li>
@@ -153,8 +157,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/user/user.controller.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/user/user.controller.ts:67</a></div>
                 </td>
             </tr>
 
@@ -218,6 +222,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllOrgsByUsername"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllOrgsByUsername</b></span>
+                        <a href="#findAllOrgsByUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllOrgsByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:username/organizations&#x27;)<br />@ApiOperation({operationId: &#x27;findAllOrgsByUsername&#x27;, summary: &#x27;Listing public orgs for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserOrganization)<br />@ApiOkResponse({type: DbUserOrganization})<br />@ApiNotFoundResponse({description: &#x27;Top repos not found&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/user/user.controller.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserOrganization&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllTopReposByUsername"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -243,8 +337,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/user/user.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/user/user.controller.ts:84</a></div>
                 </td>
             </tr>
 
@@ -333,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/user/user.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/user/user.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -423,8 +517,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/user/user.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user/user.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -501,8 +595,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/user/user.controller.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/user/user.controller.ts:116</a></div>
                 </td>
             </tr>
 
@@ -579,8 +673,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/user/user.controller.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/user/user.controller.ts:127</a></div>
                 </td>
             </tr>
 
@@ -650,6 +744,8 @@ import { DbTopUser } from &quot;./entities/top-users.entity&quot;;
 import { TopUsersDto } from &quot;./dtos/top-users.dto&quot;;
 import { DbFilteredUser } from &quot;./entities/filtered-users.entity&quot;;
 import { FilteredUsersDto } from &quot;./dtos/filtered-users.dto&quot;;
+import { DbUserOrganization } from &quot;./entities/user-organization.entity&quot;;
+import { UserOrganizationService } from &quot;./user-organization.service&quot;;
 
 @Controller(&quot;users&quot;)
 @ApiTags(&quot;User service&quot;)
@@ -658,7 +754,8 @@ export class UserController {
     private userService: UserService,
     private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
-    private repoService: RepoService
+    private repoService: RepoService,
+    private userOrganizationService: UserOrganizationService
   ) {}
 
   @Get(&quot;/:username&quot;)
@@ -719,6 +816,23 @@ export class UserController {
     const user &#x3D; await this.userService.findOneByUsername(username);
 
     return this.repoService.findAll(pageOptionsDto, user.id, [&quot;TopRepos&quot;]);
+  }
+
+  @Get(&quot;/:username/organizations&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllOrgsByUsername&quot;,
+    summary: &quot;Listing public orgs for a user and paginate them&quot;,
+  })
+  @ApiPaginatedResponse(DbUserOrganization)
+  @ApiOkResponse({ type: DbUserOrganization })
+  @ApiNotFoundResponse({ description: &quot;Top repos not found&quot; })
+  async findAllOrgsByUsername(
+    @Param(&quot;username&quot;) username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbUserOrganization&gt;&gt; {
+    const user &#x3D; await this.userService.findOneByUsername(username);
+
+    return this.userOrganizationService.findAllByUserId(user.id, pageOptionsDto);
   }
 
   @Get(&quot;/top&quot;)
