@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0...v1.54.0-beta.1) (2023-10-25)
+
+
+### 🍕 Features
+
+* add endpoint for public user organizations ([#393](https://github.com/open-sauced/api.opensauced.pizza/issues/393)) ([db87662](https://github.com/open-sauced/api.opensauced.pizza/commit/db8766201d74a01e600e0e9099924428e74d288f))
+
 ## [1.53.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0...v1.53.0) (2023-10-24)
 
 
