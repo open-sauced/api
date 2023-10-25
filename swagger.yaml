@@ -374,6 +374,66 @@ paths:
         "404":
           description: Top repos not found
       tags: *a2
+  "/v1/users/{username}/organizations":
+    get:
+      operationId: findAllOrgsByUsername
+      summary: Listing public orgs for a user and paginate them
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserOrganization"
+        "404":
+          description: Top repos not found
+      tags: *a2
   /v1/users/top:
     get:
       operationId: getTop10Highlights
@@ -2813,7 +2873,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbRepoLoginContributions"
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbRepoLoginContributions"
         "404":
           description: Repo not found
       tags: *a21
@@ -6226,6 +6288,30 @@ components:
         - url
         - homepage
         - topics
+    DbUserOrganization:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User organization identifier
+          example: 196
+        user_id:
+          type: integer
+          description: User identifier
+          example: 237133
+        organization_id:
+          type: integer
+          description: Organization identifier
+          example: 71359796
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing top repo first index
+          example: 2016-10-19 13:24:51.000000
+      required:
+        - id
+        - user_id
+        - organization_id
     DbTopUser:
       type: object
       properties:
