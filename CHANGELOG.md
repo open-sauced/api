@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.1...v1.54.0-beta.2) (2023-10-25)
+
+
+### 🐛 Bug Fixes
+
+* add "isArray = true" for contributors endpoint ([68c1d4f](https://github.com/open-sauced/api.opensauced.pizza/commit/68c1d4fd01f3717379e32a4b4a168955eff69844))
+
 ## [1.54.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0...v1.54.0-beta.1) (2023-10-25)
 
 
