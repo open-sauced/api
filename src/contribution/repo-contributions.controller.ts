@@ -54,7 +54,7 @@ export class RepoContributionsController {
     operationId: "findAllContributorsByRepoId",
     summary: "Finds a repo by :owner and :repo listing all contributions by their user login",
   })
-  @ApiOkResponse({ type: DbRepoLoginContributions })
+  @ApiOkResponse({ type: DbRepoLoginContributions, isArray: true })
   @ApiNotFoundResponse({ description: "Repo not found" })
   @ApiQuery({
     name: "range",
