@@ -23,7 +23,7 @@ export class AuthController {
     private stripeService: StripeService,
     private customerService: CustomerService,
     private couponService: CouponService
-  ) {}
+  ) { }
 
   @Get("/session")
   @ApiBearerAuth()
@@ -245,7 +245,7 @@ export class AuthController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to delete user account" })
-  async deleteUserAccount(@UserId() userId: number): Promise<void> {
-    await this.userService.deleteUser(userId);
+  async deleteUserAccount(@UserId() userId: number): Promise<DbUser> {
+    return this.userService.deleteUser(userId);
   }
 }

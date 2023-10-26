@@ -24,7 +24,7 @@ export class UserService {
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
-  ) {}
+  ) { }
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
     const builder = this.userRepository.createQueryBuilder("users");
@@ -336,12 +336,15 @@ export class UserService {
 
   async deleteUser(id: number) {
     try {
-      await this.findOneById(id);
+      const user = await this.findOneById(id);
+
       await this.userRepository.update(id, {
         is_onboarded: false,
         is_open_sauced_member: false,
         deleted_at: new Date(),
       });
+
+      return user;
     } catch (e) {
       throw new NotFoundException("Unable to delete user");
     }
