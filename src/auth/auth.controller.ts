@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { UserService } from "../user/services/user.service";
@@ -23,7 +23,7 @@ export class AuthController {
     private stripeService: StripeService,
     private customerService: CustomerService,
     private couponService: CouponService
-  ) {}
+  ) { }
 
   @Get("/session")
   @ApiBearerAuth()
@@ -234,5 +234,18 @@ export class AuthController {
     await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
+  }
+
+  @Delete("/profile")
+  @ApiOperation({
+    operationId: "deleteUserAccount",
+    summary: "Deletes the authenticated user's account",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to delete user account" })
+  async deleteUserAccount(@UserId() userId: number): Promise<void> {
+    await this.userService.deleteUser(userId);
   }
 }
