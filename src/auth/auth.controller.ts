@@ -23,7 +23,7 @@ export class AuthController {
     private stripeService: StripeService,
     private customerService: CustomerService,
     private couponService: CouponService
-  ) { }
+  ) {}
 
   @Get("/session")
   @ApiBearerAuth()

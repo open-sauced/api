@@ -24,7 +24,7 @@ export class UserService {
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
     private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
-  ) { }
+  ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
     const builder = this.userRepository.createQueryBuilder("users");
