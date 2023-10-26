@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.2...v1.54.0-beta.3) (2023-10-26)
+
+
+### 🍕 Features
+
+* users can be deleted from the system now ([09cf26b](https://github.com/open-sauced/api.opensauced.pizza/commit/09cf26bf91ab5fa2e525459d6f45ab62ad86c43c))
+
+
+### ✅ Tests
+
+* added tests for the deleteUser method of the UserService ([b9bb221](https://github.com/open-sauced/api.opensauced.pizza/commit/b9bb22182a86e2c867c93c9e84ad6fd5d71959ce))
+
 ## [1.54.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.1...v1.54.0-beta.2) (2023-10-25)
 
 
