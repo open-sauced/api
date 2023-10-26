@@ -17,6 +17,7 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
   update: jest.fn(),
   create: jest.fn(),
   save: jest.fn(),
+  softDelete: jest.fn(),
 });
 
 describe("UserService", () => {
@@ -438,19 +439,10 @@ describe("UserService", () => {
     const userId = faker.number.int();
     const user = {
       id: userId,
-      name: faker.person.firstName(),
-      email: "",
-      bio: "",
-      url: "",
-      twitter_username: "",
-      company: "",
-      location: "",
-      display_local_time: false,
-      timezone: "",
-      github_sponsors_url: "",
-      linkedin_url: "",
-      discord_url: "",
-    };
+      is_onboarded: true,
+      is_open_sauced_member: true,
+      deleted_at: undefined,
+    } as DbUser;
     const createQueryBuilderMock = {
       addSelect: jest.fn().mockReturnThis(),
       where: jest.fn().mockReturnThis(),
@@ -460,11 +452,12 @@ describe("UserService", () => {
 
     it("should delete the user if found", async () => {
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
-      await userService.deleteUser(userId);
+      const deletedUser = await userService.deleteUser(userId);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
       expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(deletedUser).toBeDefined();
     });
   });
 });
