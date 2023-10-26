@@ -361,4 +361,22 @@ export class UserService {
 
     return item;
   }
+
+  async deleteUser(id: number) {
+    try {
+      const user = await this.findOneById(id);
+
+      await this.userRepository.softDelete(id);
+
+      // need to reset these as we're only doing a soft delete.
+      await this.userRepository.update(id, {
+        is_onboarded: false,
+        is_open_sauced_member: false,
+      });
+
+      return user;
+    } catch (e) {
+      throw new NotFoundException("Unable to delete user");
+    }
+  }
 }

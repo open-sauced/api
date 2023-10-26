@@ -17,6 +17,7 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
   update: jest.fn(),
   create: jest.fn(),
   save: jest.fn(),
+  softDelete: jest.fn(),
 });
 
 describe("UserService", () => {
@@ -430,6 +431,33 @@ describe("UserService", () => {
 
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("users.email = :email", { email: email.toLowerCase() });
       expect(result).toEqual(null);
+    });
+  });
+
+  // create tests for deleteUser
+  describe("[deleteUser]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      is_onboarded: true,
+      is_open_sauced_member: true,
+      deleted_at: undefined,
+    } as DbUser;
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should delete the user if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      const deletedUser = await userService.deleteUser(userId);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(deletedUser).toBeDefined();
     });
   });
 });
