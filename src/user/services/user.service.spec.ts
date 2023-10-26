@@ -432,4 +432,39 @@ describe("UserService", () => {
       expect(result).toEqual(null);
     });
   });
+
+  // create tests for deleteUser
+  describe("[deleteUser]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      name: faker.person.firstName(),
+      email: "",
+      bio: "",
+      url: "",
+      twitter_username: "",
+      company: "",
+      location: "",
+      display_local_time: false,
+      timezone: "",
+      github_sponsors_url: "",
+      linkedin_url: "",
+      discord_url: "",
+    };
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should delete the user if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      await userService.deleteUser(userId);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+    });
+  });
 });
