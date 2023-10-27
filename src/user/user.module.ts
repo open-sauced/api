@@ -10,6 +10,8 @@ import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { EndorsementService } from "../endorsement/endorsement.service";
 import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
 import { ApiServicesModule } from "../common/services/api-services.module";
+import { DbUserList } from "../user-lists/entities/user-list.entity";
+import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUser } from "./user.entity";
 import { UserService } from "./services/user.service";
 import { UserController } from "./user.controller";
@@ -48,6 +50,8 @@ import { UserOrganizationService } from "./user-organization.service";
         DbRepo,
         DbEndorsement,
         DbUserOrganization,
+        DbInsight,
+        DbUserList,
       ],
       "ApiConnection"
     ),
