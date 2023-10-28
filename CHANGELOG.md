@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.3...v1.54.0-beta.4) (2023-10-28)
+
+
+### 🍕 Features
+
+* manually cascade soft deletes for users relations ([1c4ff50](https://github.com/open-sauced/api.opensauced.pizza/commit/1c4ff5017224a64fb22f9a1b0e7ec6efe705bb15))
+
 ## [1.54.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.2...v1.54.0-beta.3) (2023-10-26)
 
 
