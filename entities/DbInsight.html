@@ -529,7 +529,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@ManyToOne(undefined, user &#x3D;&gt; user.insights)<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, user &#x3D;&gt; user.insights, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -700,7 +700,7 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.insights)
+  @ManyToOne(() &#x3D;&gt; DbUser, (user) &#x3D;&gt; user.insights, { onDelete: &quot;CASCADE&quot; })
   @JoinColumn({
     name: &quot;user_id&quot;,
     referencedColumnName: &quot;id&quot;,

@@ -451,6 +451,8 @@ import { RepoFilterService } from &quot;../common/filters/repo-filter.service&qu
 import { EndorsementService } from &quot;../endorsement/endorsement.service&quot;;
 import { DbEndorsement } from &quot;../endorsement/entities/endorsement.entity&quot;;
 import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
+import { DbUserList } from &quot;../user-lists/entities/user-list.entity&quot;;
+import { DbInsight } from &quot;../insight/entities/insight.entity&quot;;
 import { DbUser } from &quot;./user.entity&quot;;
 import { UserService } from &quot;./services/user.service&quot;;
 import { UserController } from &quot;./user.controller&quot;;
@@ -489,6 +491,8 @@ import { UserOrganizationService } from &quot;./user-organization.service&quot;;
         DbRepo,
         DbEndorsement,
         DbUserOrganization,
+        DbInsight,
+        DbUserList,
       ],
       &quot;ApiConnection&quot;
     ),
