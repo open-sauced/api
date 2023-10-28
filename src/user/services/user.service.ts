@@ -16,6 +16,10 @@ import { PageDto } from "../../common/dtos/page.dto";
 import { PageMetaDto } from "../../common/dtos/page-meta.dto";
 import { DbFilteredUser } from "../entities/filtered-users.entity";
 import { FilteredUsersDto } from "../dtos/filtered-users.dto";
+import { DbUserHighlight } from "../entities/user-highlight.entity";
+import { DbInsight } from "../../insight/entities/insight.entity";
+import { DbUserCollaboration } from "../entities/user-collaboration.entity";
+import { DbUserList } from "../../user-lists/entities/user-list.entity";
 
 @Injectable()
 export class UserService {
@@ -23,7 +27,15 @@ export class UserService {
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     @InjectRepository(DbUserHighlightReaction, "ApiConnection")
-    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>
+    private userHighlightReactionRepository: Repository<DbUserHighlightReaction>,
+    @InjectRepository(DbUserHighlight, "ApiConnection")
+    private userHighlightRepository: Repository<DbUserHighlight>,
+    @InjectRepository(DbInsight, "ApiConnection")
+    private userInsightsRepository: Repository<DbInsight>,
+    @InjectRepository(DbUserCollaboration, "ApiConnection")
+    private userCollaborationRepository: Repository<DbUserCollaboration>,
+    @InjectRepository(DbUserList, "ApiConnection")
+    private userListRepository: Repository<DbUserList>
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -366,6 +378,25 @@ export class UserService {
     try {
       const user = await this.findOneById(id);
 
+      /*
+       * typeORM doesn't play well with soft deletes and foreign key constraints.
+       * so, we capture all the users's relations and soft delete them manually
+       * without disrupting the foreign key constraint back to the user
+       */
+      const userAndRelations = await this.userRepository.findOneOrFail({
+        where: {
+          id,
+        },
+        relations: [
+          "highlights",
+          "insights",
+          "collaborations",
+          "request_collaborations",
+          "from_user_notifications",
+          "lists",
+        ],
+      });
+
       await this.userRepository.softDelete(id);
 
       // need to reset these as we're only doing a soft delete.
@@ -373,6 +404,42 @@ export class UserService {
         is_onboarded: false,
         is_open_sauced_member: false,
       });
+
+      await Promise.all([
+        // soft delete the user's highlights
+        Promise.all(
+          userAndRelations.highlights.map(async (highlight) => {
+            await this.userHighlightRepository.softDelete(highlight.id);
+          })
+        ),
+
+        // soft delete the user's insight pages
+        Promise.all(
+          userAndRelations.insights.map(async (insight) => {
+            await this.userInsightsRepository.softDelete(insight.id);
+          })
+        ),
+
+        // soft delete the user's collaborations
+        Promise.all(
+          userAndRelations.collaborations.map(async (collab) => {
+            await this.userCollaborationRepository.softDelete(collab.id);
+          })
+        ),
+        // soft delete the user's collaboration requests
+        Promise.all(
+          userAndRelations.request_collaborations.map(async (req_collab) => {
+            await this.userCollaborationRepository.softDelete(req_collab.id);
+          })
+        ),
+
+        // soft delete the user's lists
+        Promise.all(
+          userAndRelations.lists.map(async (list) => {
+            await this.userListRepository.softDelete(list.id);
+          })
+        ),
+      ]);
 
       return user;
     } catch (e) {

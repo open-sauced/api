@@ -115,7 +115,7 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.insights)
+  @ManyToOne(() => DbUser, (user) => user.insights, { onDelete: "CASCADE" })
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",

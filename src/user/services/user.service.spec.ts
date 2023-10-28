@@ -9,6 +9,10 @@ import { User } from "@supabase/supabase-js";
 import { userNotificationTypes } from "../entities/user-notification.constants";
 import { DbUser } from "../user.entity";
 import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
+import { DbUserHighlight } from "../entities/user-highlight.entity";
+import { DbInsight } from "../../insight/entities/insight.entity";
+import { DbUserCollaboration } from "../entities/user-collaboration.entity";
+import { DbUserList } from "../../user-lists/entities/user-list.entity";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -18,6 +22,7 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
   create: jest.fn(),
   save: jest.fn(),
   softDelete: jest.fn(),
+  findOneOrFail: jest.fn(),
 });
 
 describe("UserService", () => {
@@ -35,6 +40,22 @@ describe("UserService", () => {
         },
         {
           provide: getRepositoryToken(DbUserHighlightReaction, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserHighlight, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbInsight, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserCollaboration, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserList, "ApiConnection"),
           useValue: createMockRepository(),
         },
       ],
@@ -442,7 +463,12 @@ describe("UserService", () => {
       is_onboarded: true,
       is_open_sauced_member: true,
       deleted_at: undefined,
-    } as DbUser;
+      highlights: [],
+      collaborations: [],
+      request_collaborations: [],
+      insights: [],
+      lists: [],
+    } as unknown as DbUser;
     const createQueryBuilderMock = {
       addSelect: jest.fn().mockReturnThis(),
       where: jest.fn().mockReturnThis(),
@@ -452,6 +478,7 @@ describe("UserService", () => {
 
     it("should delete the user if found", async () => {
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      dbUserRepositoryMock.findOneOrFail?.mockReturnValue(user);
       const deletedUser = await userService.deleteUser(userId);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
