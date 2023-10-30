@@ -6,3 +6,4 @@ export * from "./stripe.config";
 export * from "./openai.config";
 export * from "./pizza.config";
 export * from "./hacktoberfest.config";
+export * from "./tier.config";

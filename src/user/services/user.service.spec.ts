@@ -4,6 +4,7 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { Test } from "@nestjs/testing";
 import { faker } from "@faker-js/faker";
 import { ObjectLiteral, Repository } from "typeorm";
+import { ConfigService } from "@nestjs/config";
 
 import { User } from "@supabase/supabase-js";
 import { userNotificationTypes } from "../entities/user-notification.constants";
@@ -13,6 +14,7 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
+import { TierService } from "../../tier/tier.service";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -27,6 +29,7 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
 
 describe("UserService", () => {
   let userService: UserService;
+  let tierService: TierService;
   let dbUserRepositoryMock: MockRepository;
   let dbUserHighlightReactionRepositoryMock: MockRepository;
 
@@ -34,6 +37,8 @@ describe("UserService", () => {
     const module = await Test.createTestingModule({
       providers: [
         UserService,
+        TierService,
+        ConfigService,
         {
           provide: getRepositoryToken(DbUser, "ApiConnection"),
           useValue: createMockRepository(),
@@ -62,6 +67,10 @@ describe("UserService", () => {
     }).compile();
 
     userService = module.get<UserService>(UserService);
+    tierService = module.get<TierService>(TierService);
+    tierService.checkAddOrg = jest.fn(async () => {
+      // do nothing
+    });
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
     dbUserHighlightReactionRepositoryMock = module.get<MockRepository>(
       getRepositoryToken(DbUserHighlightReaction, "ApiConnection")

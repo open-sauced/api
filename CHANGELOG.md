@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.4...v1.54.0-beta.5) (2023-10-30)
+
+
+### 🍕 Features
+
+* add tier.run service and check if user is registered ([#399](https://github.com/open-sauced/api.opensauced.pizza/issues/399)) ([af60e28](https://github.com/open-sauced/api.opensauced.pizza/commit/af60e28d5aa733c464673847296de46f89faa778))
+
 ## [1.54.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.3...v1.54.0-beta.4) (2023-10-28)
 
 
