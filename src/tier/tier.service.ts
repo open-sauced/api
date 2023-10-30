@@ -8,7 +8,7 @@ export class TierService {
 
   constructor(private configService: ConfigService) {}
 
-  async checkAddOrg(userId: number, userDetails: { email: string; name: string; login: string }, proAccount = false) {
+  async checkAddOrg(userId: number, userDetails: { email: string; name: string; login: string }) {
     try {
       // check to see if the user is registered
       await lookupOrg(`org:${userId}`);
@@ -16,13 +16,11 @@ export class TierService {
       const { email, name, login } = userDetails;
 
       // grandparent existing pro account if necessary
-      const plan: Features = (
-        proAccount ? this.configService.get("tier.proPlan")! : this.configService.get("tier.freePlan")!
-      ) as Features;
+      const plan: Features = this.configService.get("tier.proPlan")! as Features;
 
       try {
         // register the user with a free/pro account
-        await subscribe(`org:${userId}`, [plan] as Features[], {
+        await subscribe(`org:${userId}`, plan, {
           info: {
             email,
             name,
@@ -33,8 +31,10 @@ export class TierService {
             },
           },
         });
-      } catch (e) {
-        this.logger.error(`Unable to register account for ${login}`);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          this.logger.error(`Unable to register account for ${login}`);
+        }
       }
     }
   }

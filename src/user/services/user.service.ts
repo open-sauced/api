@@ -263,11 +263,11 @@ export class UserService {
         });
       }
 
-      await this.tierService.checkAddOrg(
-        id,
-        { email: email as string, name: name as string, login: user_name as string },
-        user.role >= 50
-      );
+      await this.tierService.checkAddOrg(id, {
+        email: email as string,
+        name: name as string,
+        login: user_name as string,
+      });
 
       return user;
     } catch (e) {
