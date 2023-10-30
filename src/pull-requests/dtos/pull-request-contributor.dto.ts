@@ -11,7 +11,7 @@ export class DbPullRequestContributor {
     description: "Pull request author id",
     example: 1,
   })
-  public author_id: number;
+  public user_id: number;
 
   @ApiModelProperty({
     description: "Timestamp representing pr last update",
