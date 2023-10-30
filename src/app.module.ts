@@ -17,6 +17,7 @@ import {
   OpenAIConfig,
   PizzaConfig,
   HacktoberfestConfig,
+  TierConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -91,6 +92,7 @@ import { LogModule } from "./log/log.module";
         OpenAIConfig,
         PizzaConfig,
         HacktoberfestConfig,
+        TierConfig,
       ],
       isGlobal: true,
     }),
