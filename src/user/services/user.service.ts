@@ -20,6 +20,7 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
+import { TierService } from "../../tier/tier.service";
 
 @Injectable()
 export class UserService {
@@ -35,7 +36,8 @@ export class UserService {
     @InjectRepository(DbUserCollaboration, "ApiConnection")
     private userCollaborationRepository: Repository<DbUserCollaboration>,
     @InjectRepository(DbUserList, "ApiConnection")
-    private userListRepository: Repository<DbUserList>
+    private userListRepository: Repository<DbUserList>,
+    private tierService: TierService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -261,6 +263,8 @@ export class UserService {
         });
       }
 
+      this.tierService.checkAddOrg(id, { email, name, login: user_name }, user.role >= 50);
+
       return user;
     } catch (e) {
       // create new user
@@ -274,6 +278,8 @@ export class UserService {
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
+
+      this.tierService.checkAddOrg(id, { email, name, login: user_name });
 
       return newUser;
     }

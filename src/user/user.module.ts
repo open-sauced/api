@@ -35,6 +35,7 @@ import { UserRecommendationController } from "./user-recommendation.controller";
 import { DbUserOrganization } from "./entities/user-organization.entity";
 import { UserFollowingController } from "./user-following.controller";
 import { UserOrganizationService } from "./user-organization.service";
+import { TierModule } from "../tier/tier.module";
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { UserOrganizationService } from "./user-organization.service";
     PullRequestModule,
     RepoModule,
     ApiServicesModule,
+    TierModule,
   ],
   controllers: [
     UserController,
