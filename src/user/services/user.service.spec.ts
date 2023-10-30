@@ -14,8 +14,8 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
-import { UserService } from "./user.service";
 import { TierService } from "../../tier/tier.service";
+import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T> => ({
@@ -68,7 +68,9 @@ describe("UserService", () => {
 
     userService = module.get<UserService>(UserService);
     tierService = module.get<TierService>(TierService);
-    tierService.checkAddOrg = jest.fn(async () => {});
+    tierService.checkAddOrg = jest.fn(async () => {
+      // do nothing
+    });
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
     dbUserHighlightReactionRepositoryMock = module.get<MockRepository>(
       getRepositoryToken(DbUserHighlightReaction, "ApiConnection")

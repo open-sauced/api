@@ -1,6 +1,6 @@
 import { Injectable, Logger } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import tier, { Features } from "tier";
+import { Features, lookupOrg, subscribe } from "tier";
 
 @Injectable()
 export class TierService {
@@ -11,16 +11,18 @@ export class TierService {
   async checkAddOrg(userId: number, userDetails: { email: string; name: string; login: string }, proAccount = false) {
     try {
       // check to see if the user is registered
-      await tier.lookupOrg(`org:${userId}`);
+      await lookupOrg(`org:${userId}`);
     } catch (e) {
       const { email, name, login } = userDetails;
 
       // grandparent existing pro account if necessary
-      const plan = proAccount ? this.configService.get("tier.proPlan") : this.configService.get("tier.freePlan");
+      const plan: Features = (
+        proAccount ? this.configService.get("tier.proPlan")! : this.configService.get("tier.freePlan")!
+      ) as Features;
 
       try {
         // register the user with a free/pro account
-        await tier.subscribe(`org:${userId}`, [plan] as Features[], {
+        await subscribe(`org:${userId}`, [plan] as Features[], {
           info: {
             email,
             name,

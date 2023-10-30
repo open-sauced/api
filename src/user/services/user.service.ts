@@ -263,7 +263,11 @@ export class UserService {
         });
       }
 
-      this.tierService.checkAddOrg(id, { email, name, login: user_name }, user.role >= 50);
+      await this.tierService.checkAddOrg(
+        id,
+        { email: email as string, name: name as string, login: user_name as string },
+        user.role >= 50
+      );
 
       return user;
     } catch (e) {
@@ -279,7 +283,11 @@ export class UserService {
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
 
-      this.tierService.checkAddOrg(id, { email, name, login: user_name });
+      await this.tierService.checkAddOrg(id, {
+        email: email as string,
+        name: name as string,
+        login: user_name as string,
+      });
 
       return newUser;
     }
