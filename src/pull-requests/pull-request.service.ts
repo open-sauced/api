@@ -177,7 +177,7 @@ export class PullRequestService {
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
       .innerJoin("users", "users", `"pull_requests"."author_login"="users"."login"`)
       .addGroupBy("author_login")
-      .addGroupBy("user_id");
+      .addGroupBy("users.id");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
