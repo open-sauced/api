@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.6...v1.54.0-beta.7) (2023-10-31)
+
+
+### 🐛 Bug Fixes
+
+* enroll new users with a free tiered account ([#402](https://github.com/open-sauced/api.opensauced.pizza/issues/402)) ([1ede9f5](https://github.com/open-sauced/api.opensauced.pizza/commit/1ede9f5137d21f3e4eaa26fa4e29ec58d0b92fe7))
+
 ## [1.54.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.5...v1.54.0-beta.6) (2023-10-31)
 
 
