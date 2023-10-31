@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.5...v1.54.0-beta.6) (2023-10-31)
+
+
+### 🐛 Bug Fixes
+
+* update orderby to use original column key ([419bdf1](https://github.com/open-sauced/api.opensauced.pizza/commit/419bdf10c08f27c44cd7abcb5e435143b21ca075))
+
 ## [1.54.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.4...v1.54.0-beta.5) (2023-10-30)
 
 
