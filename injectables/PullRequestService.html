@@ -1232,7 +1232,7 @@ export class PullRequestService {
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
       .innerJoin(&quot;users&quot;, &quot;users&quot;, &#x60;&quot;pull_requests&quot;.&quot;author_login&quot;&#x3D;&quot;users&quot;.&quot;login&quot;&#x60;)
       .addGroupBy(&quot;author_login&quot;)
-      .addGroupBy(&quot;user_id&quot;);
+      .addGroupBy(&quot;users.id&quot;);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
