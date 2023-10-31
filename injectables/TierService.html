@@ -301,11 +301,11 @@ export class TierService {
     } catch (e) {
       const { email, name, login } &#x3D; userDetails;
 
-      // grandparent existing pro account if necessary
-      const plan: Features &#x3D; this.configService.get(&quot;tier.proPlan&quot;)! as Features;
+      // use free account plan
+      const plan: Features &#x3D; this.configService.get(&quot;tier.freePlan&quot;)! as Features;
 
       try {
-        // register the user with a free/pro account
+        // register the user with a free account
         await subscribe(&#x60;org:${userId}&#x60;, plan, {
           info: {
             email,
