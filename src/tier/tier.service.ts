@@ -15,11 +15,11 @@ export class TierService {
     } catch (e) {
       const { email, name, login } = userDetails;
 
-      // grandparent existing pro account if necessary
-      const plan: Features = this.configService.get("tier.proPlan")! as Features;
+      // use free account plan
+      const plan: Features = this.configService.get("tier.freePlan")! as Features;
 
       try {
-        // register the user with a free/pro account
+        // register the user with a free account
         await subscribe(`org:${userId}`, plan, {
           info: {
             email,
