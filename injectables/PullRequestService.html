@@ -426,8 +426,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="272"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:272</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:275</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="253"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:253</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:256</a></div>
                 </td>
             </tr>
 
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="310"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:310</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="313"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:313</a></div>
                 </td>
             </tr>
 
@@ -781,8 +781,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="215"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:215</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:218</a></div>
                 </td>
             </tr>
 
@@ -852,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="348"
-                            class="link-to-prism">src/pull-requests/pull-request.service.ts:348</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="351"
+                            class="link-to-prism">src/pull-requests/pull-request.service.ts:351</a></div>
                 </td>
             </tr>
 
@@ -1228,8 +1228,11 @@ export class PullRequestService {
       .distinct()
       .select(&quot;pull_requests.author_login&quot;, &quot;author_login&quot;)
       .addSelect(&quot;MAX(pull_requests.updated_at)&quot;, &quot;updated_at&quot;)
+      .addSelect(&quot;users.id&quot;, &quot;user_id&quot;)
       .innerJoin(&quot;repos&quot;, &quot;repos&quot;, &#x60;&quot;pull_requests&quot;.&quot;repo_id&quot;&#x3D;&quot;repos&quot;.&quot;id&quot;&#x60;)
-      .addGroupBy(&quot;author_login&quot;);
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &#x60;&quot;pull_requests&quot;.&quot;author_login&quot;&#x3D;&quot;users&quot;.&quot;login&quot;&#x60;)
+      .addGroupBy(&quot;author_login&quot;)
+      .addGroupBy(&quot;user_id&quot;);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
