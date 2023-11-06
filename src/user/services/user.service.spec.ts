@@ -4,11 +4,17 @@ import { getRepositoryToken } from "@nestjs/typeorm";
 import { Test } from "@nestjs/testing";
 import { faker } from "@faker-js/faker";
 import { ObjectLiteral, Repository } from "typeorm";
+import { ConfigService } from "@nestjs/config";
 
 import { User } from "@supabase/supabase-js";
 import { userNotificationTypes } from "../entities/user-notification.constants";
 import { DbUser } from "../user.entity";
 import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
+import { DbUserHighlight } from "../entities/user-highlight.entity";
+import { DbInsight } from "../../insight/entities/insight.entity";
+import { DbUserCollaboration } from "../entities/user-collaboration.entity";
+import { DbUserList } from "../../user-lists/entities/user-list.entity";
+import { TierService } from "../../tier/tier.service";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -17,10 +23,13 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
   update: jest.fn(),
   create: jest.fn(),
   save: jest.fn(),
+  softDelete: jest.fn(),
+  findOneOrFail: jest.fn(),
 });
 
 describe("UserService", () => {
   let userService: UserService;
+  let tierService: TierService;
   let dbUserRepositoryMock: MockRepository;
   let dbUserHighlightReactionRepositoryMock: MockRepository;
 
@@ -28,6 +37,8 @@ describe("UserService", () => {
     const module = await Test.createTestingModule({
       providers: [
         UserService,
+        TierService,
+        ConfigService,
         {
           provide: getRepositoryToken(DbUser, "ApiConnection"),
           useValue: createMockRepository(),
@@ -36,10 +47,30 @@ describe("UserService", () => {
           provide: getRepositoryToken(DbUserHighlightReaction, "ApiConnection"),
           useValue: createMockRepository(),
         },
+        {
+          provide: getRepositoryToken(DbUserHighlight, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbInsight, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserCollaboration, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserList, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
       ],
     }).compile();
 
     userService = module.get<UserService>(UserService);
+    tierService = module.get<TierService>(TierService);
+    tierService.checkAddOrg = jest.fn(async () => {
+      // do nothing
+    });
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
     dbUserHighlightReactionRepositoryMock = module.get<MockRepository>(
       getRepositoryToken(DbUserHighlightReaction, "ApiConnection")
@@ -430,6 +461,39 @@ describe("UserService", () => {
 
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("users.email = :email", { email: email.toLowerCase() });
       expect(result).toEqual(null);
+    });
+  });
+
+  // create tests for deleteUser
+  describe("[deleteUser]", () => {
+    const userId = faker.number.int();
+    const user = {
+      id: userId,
+      is_onboarded: true,
+      is_open_sauced_member: true,
+      deleted_at: undefined,
+      highlights: [],
+      collaborations: [],
+      request_collaborations: [],
+      insights: [],
+      lists: [],
+    } as unknown as DbUser;
+    const createQueryBuilderMock = {
+      addSelect: jest.fn().mockReturnThis(),
+      where: jest.fn().mockReturnThis(),
+      setParameters: jest.fn().mockReturnThis(),
+      getOne: jest.fn().mockResolvedValue(user),
+    };
+
+    it("should delete the user if found", async () => {
+      dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
+      dbUserRepositoryMock.findOneOrFail?.mockReturnValue(user);
+      const deletedUser = await userService.deleteUser(userId);
+
+      expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalled();
+      expect(createQueryBuilderMock.where).toHaveBeenCalledWith("id = :id", { id: user.id });
+      expect(deletedUser).toBeDefined();
     });
   });
 });

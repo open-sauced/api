@@ -550,7 +550,7 @@ export class DbUser extends BaseEntity {
   public is_maintainer: boolean;
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, (insight) => insight.user)
+  @OneToMany(() => DbInsight, (insight) => insight.user, { cascade: true })
   public insights: DbInsight[];
 
   @ApiHideProperty()
@@ -562,7 +562,7 @@ export class DbUser extends BaseEntity {
   public repo_orgs: DbRepo[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, (highlights) => highlights.user)
+  @OneToMany(() => DbUserHighlight, (highlights) => highlights.user, { cascade: true })
   public highlights: DbUserHighlight[];
 
   @ApiHideProperty()
@@ -570,11 +570,13 @@ export class DbUser extends BaseEntity {
   public reactions: DbUserHighlightReaction[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user, { cascade: true })
   public collaborations: DbUserCollaboration[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user, {
+    cascade: true,
+  })
   public request_collaborations: DbUserCollaboration[];
 
   @ApiHideProperty()
@@ -606,7 +608,7 @@ export class DbUser extends BaseEntity {
   public organizations: DbUserOrganization[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserList, (userLists) => userLists.list_user)
+  @OneToMany(() => DbUserList, (userLists) => userLists.list_user, { cascade: true })
   public lists: DbUserList[];
 
   @ApiHideProperty()

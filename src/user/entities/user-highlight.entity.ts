@@ -169,7 +169,7 @@ export class DbUserHighlight extends BaseEntity {
   public tagged_repos: string[];
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.highlights)
+  @ManyToOne(() => DbUser, (user) => user.highlights, { onDelete: "CASCADE" })
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",
