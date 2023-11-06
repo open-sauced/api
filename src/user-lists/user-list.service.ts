@@ -207,6 +207,12 @@ export class UserListService {
       .addSelect("users.login", "user_list_contributors_login")
       .where("user_list_contributors.list_id = :listId", { listId });
 
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(users.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
+
     return this.pagerService.applyPagination<DbUserListContributor>({
       pageOptionsDto,
       queryBuilder,
