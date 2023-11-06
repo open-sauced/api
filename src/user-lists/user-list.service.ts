@@ -197,7 +197,7 @@ export class UserListService {
   }
 
   async findContributorsByListId(
-    pageOptionsDto: PageOptionsDto,
+    pageOptionsDto: FilterListContributorsDto,
     listId: string
   ): Promise<PageDto<DbUserListContributor>> {
     const queryBuilder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
