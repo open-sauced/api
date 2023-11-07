@@ -10,12 +10,12 @@ import { OrderDirectionEnum } from "../common/constants/order-direction.constant
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { ContributorPullRequestsDto, RangeTypeEnum } from "../user/dtos/contributor-prs.dto";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
 import { PullRequestContributorInsightsDto } from "./dtos/pull-request-contributor-insights.dto";
-import { ContributorPullRequestsDto, RangeTypeEnum } from "../user/dtos/contributor-prs.dto";
 
 @Injectable()
 export class PullRequestService {
