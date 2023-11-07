@@ -717,7 +717,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getUserListContributors(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>getUserListContributors(pageOptionsDto: <a href="../classes/FilterListContributorsDto.html" target="_self">FilterListContributorsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -755,7 +755,7 @@
                                 <tr>
                                     <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                                <code><a href="../classes/FilterListContributorsDto.html" target="_self" >FilterListContributorsDto</a></code>
                                     </td>
 
                                     <td>
@@ -1144,7 +1144,7 @@ export class UserListController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
   async getUserListContributors(
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: FilterListContributorsDto,
     @Param(&quot;id&quot;) id: string
   ): Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt; {
     return this.userListService.findContributorsByListId(pageOptionsDto, id);

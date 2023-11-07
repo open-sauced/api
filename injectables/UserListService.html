@@ -845,7 +845,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findContributorsByListId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findContributorsByListId(pageOptionsDto: <a href="../classes/FilterListContributorsDto.html" target="_self">FilterListContributorsDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -876,7 +876,7 @@
                                 <tr>
                                     <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                                <code><a href="../classes/FilterListContributorsDto.html" target="_self" >FilterListContributorsDto</a></code>
                                     </td>
 
                                     <td>
@@ -1101,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:222</a></div>
                 </td>
             </tr>
 
@@ -1406,7 +1406,7 @@ export class UserListService {
   }
 
   async findContributorsByListId(
-    pageOptionsDto: PageOptionsDto,
+    pageOptionsDto: FilterListContributorsDto,
     listId: string
   ): Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt; {
     const queryBuilder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
@@ -1415,6 +1415,12 @@ export class UserListService {
       .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;)
       .addSelect(&quot;users.login&quot;, &quot;user_list_contributors_login&quot;)
       .where(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId });
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere(&quot;LOWER(users.login) LIKE :contributor&quot;, {
+        contributor: &#x60;%${pageOptionsDto.contributor.toLowerCase()}%&#x60;,
+      });
+    }
 
     return this.pagerService.applyPagination&lt;DbUserListContributor&gt;({
       pageOptionsDto,
