@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.54.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.7...v1.54.0-beta.8) (2023-11-07)
+
+
+### 🐛 Bug Fixes
+
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+
 ## [1.54.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.6...v1.54.0-beta.7) (2023-10-31)
 
 
