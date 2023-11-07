@@ -197,7 +197,7 @@ export class UserListService {
   }
 
   async findContributorsByListId(
-    pageOptionsDto: PageOptionsDto,
+    pageOptionsDto: FilterListContributorsDto,
     listId: string
   ): Promise<PageDto<DbUserListContributor>> {
     const queryBuilder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
@@ -206,6 +206,12 @@ export class UserListService {
       .leftJoin("users", "users", "user_list_contributors.user_id=users.id")
       .addSelect("users.login", "user_list_contributors_login")
       .where("user_list_contributors.list_id = :listId", { listId });
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(users.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
 
     return this.pagerService.applyPagination<DbUserListContributor>({
       pageOptionsDto,
