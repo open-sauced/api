@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.55.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0-beta.1...v1.55.0-beta.2) (2023-11-08)
+
+
+### 🐛 Bug Fixes
+
+* Left join on prs for filtering on contributors ([#409](https://github.com/open-sauced/api.opensauced.pizza/issues/409)) ([0e7f862](https://github.com/open-sauced/api.opensauced.pizza/commit/0e7f8623cf033331e3838d1d7c3659a02d02feed))
+
 ## [1.55.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.1-beta.1...v1.55.0-beta.1) (2023-11-08)
 
 
