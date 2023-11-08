@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
@@ -28,6 +29,7 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
         DbUserListContributorStat,
         DbContributionStatTimeframe,
         DbContributorCategoryTimeframe,
+        DbUserHighlight,
       ],
       "ApiConnection"
     ),

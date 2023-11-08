@@ -2,6 +2,8 @@ import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/co
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
@@ -18,6 +20,8 @@ export class UserListService {
   constructor(
     @InjectRepository(DbUserList, "ApiConnection")
     private userListRepository: Repository<DbUserList>,
+    @InjectRepository(DbUserHighlight, "ApiConnection")
+    private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUserListContributor, "ApiConnection")
     private userListContributorRepository: Repository<DbUserListContributor>,
     @InjectRepository(DbUser, "ApiConnection")
@@ -217,6 +221,30 @@ export class UserListService {
       pageOptionsDto,
       queryBuilder,
     });
+  }
+
+  async findListContributorsHighlights(
+    pageOptionsDto: HighlightOptionsDto,
+    listId: string
+  ): Promise<PageDto<DbUserHighlight>> {
+    const queryBuilder = this.userHighlightRepository.createQueryBuilder("user_highlights");
+
+    // return all highlights that belongs to a contributor of the list id
+    queryBuilder
+      .innerJoin("users", "users", "user_highlights.user_id=users.id")
+      .addSelect("users.login", "user_highlights_login")
+      .innerJoin("user_list_contributors", "user_list_contributors", "user_list_contributors.user_id=users.id")
+      .where("user_list_contributors.list_id = :listId", { listId })
+      .groupBy("user_highlights_login");
+
+    queryBuilder.groupBy("user_highlights.id").orderBy("user_highlights.updated_at", "DESC");
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getMany();
+    const itemCount = entities.length;
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async getAllTimezones(): Promise<DbTimezone[]> {

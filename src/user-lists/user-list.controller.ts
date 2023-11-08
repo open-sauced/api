@@ -17,6 +17,8 @@ import { PageDto } from "../common/dtos/page.dto";
 import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
@@ -197,6 +199,23 @@ export class UserListController {
     @Param("userListContributorId") userListContributorId: string
   ): Promise<void> {
     await this.userListService.deleteUserListContributor(id, userListContributorId);
+  }
+
+  @Get("/:id/contributors/highlights")
+  @ApiOperation({
+    operationId: "getUserListContributorHighlights",
+    summary: "Retrieves highlights for contributors for an individual user list",
+  })
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: "Unable to get user list contributor highlights" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getUserListContributorHighlights(
+    @Query() pageOptionsDto: HighlightOptionsDto,
+    @Param("id") id: string
+  ): Promise<PageDto<DbUserHighlight>> {
+    return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
   }
 
   @Get("/timezones")
