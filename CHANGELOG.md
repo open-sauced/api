@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.55.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.1-beta.1...v1.55.0-beta.1) (2023-11-08)
+
+
+### 🍕 Features
+
+* add rangeType query param to contributor PRs endpoint ([#407](https://github.com/open-sauced/api.opensauced.pizza/issues/407)) ([0d1449a](https://github.com/open-sauced/api.opensauced.pizza/commit/0d1449a6430e135ba72c556df62b9b48a0ddc665))
+
 ### [1.54.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.54.1-beta.1) (2023-11-07)
 
 
