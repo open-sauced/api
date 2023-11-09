@@ -154,7 +154,7 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   async getUserListContributors(
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: FilterListContributorsDto,
     @Param("id") id: string
   ): Promise<PageDto<DbUserListContributor>> {
     return this.userListService.findContributorsByListId(pageOptionsDto, id);

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/co
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
@@ -153,6 +154,21 @@ export class UserListService {
   async findContributorsByFilter(pageOptionsDto: FilterListContributorsDto): Promise<PageDto<DbUser>> {
     const queryBuilder = this.userRepository.createQueryBuilder("user");
 
+    queryBuilder.leftJoin(
+      (qb) =>
+        qb
+          .select("author_login")
+          .addSelect(
+            "COALESCE(AVG((pull_requests.merged_at::DATE - pull_requests.created_at::DATE)), 0)",
+            "avg_merge_time"
+          )
+          .from(DbPullRequest, "pull_requests")
+          .where("now() - INTERVAL '30 days' <= pull_requests.updated_at")
+          .groupBy("pull_requests.author_login"),
+      "pr_stats",
+      "LOWER(pr_stats.author_login) = LOWER(user.login)"
+    );
+
     if (pageOptionsDto.contributor) {
       queryBuilder.andWhere("LOWER(user.login) LIKE :contributor", {
         contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
@@ -168,24 +184,8 @@ export class UserListService {
     }
 
     if (pageOptionsDto.pr_velocity) {
-      queryBuilder.andWhere(
-        `
-        (
-          SELECT COALESCE(AVG(("pull_requests"."merged_at"::DATE - "pull_requests"."created_at"::DATE)), 0)
-          FROM "pull_requests"
-          WHERE LOWER("pull_requests"."author_login") = LOWER(user.login)
-          AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-        ) <= :pr_velocity
-        AND
-        (
-          SELECT COALESCE(AVG(("pull_requests"."merged_at"::DATE - "pull_requests"."created_at"::DATE)), 0)
-          FROM "pull_requests"
-          WHERE LOWER("pull_requests"."author_login") = LOWER(user.login)
-          AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-        ) != 0
-      `,
-        { pr_velocity: pageOptionsDto.pr_velocity }
-      );
+      queryBuilder.andWhere("pr_stats.avg_merge_time <= :pr_velocity", { pr_velocity: pageOptionsDto.pr_velocity });
+      queryBuilder.andWhere("pr_stats.avg_merge_time != 0");
     }
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
@@ -197,7 +197,7 @@ export class UserListService {
   }
 
   async findContributorsByListId(
-    pageOptionsDto: PageOptionsDto,
+    pageOptionsDto: FilterListContributorsDto,
     listId: string
   ): Promise<PageDto<DbUserListContributor>> {
     const queryBuilder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
@@ -206,6 +206,12 @@ export class UserListService {
       .leftJoin("users", "users", "user_list_contributors.user_id=users.id")
       .addSelect("users.login", "user_list_contributors_login")
       .where("user_list_contributors.list_id = :listId", { listId });
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(users.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
 
     return this.pagerService.applyPagination<DbUserListContributor>({
       pageOptionsDto,

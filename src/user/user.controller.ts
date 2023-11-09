@@ -18,6 +18,7 @@ import { DbFilteredUser } from "./entities/filtered-users.entity";
 import { FilteredUsersDto } from "./dtos/filtered-users.dto";
 import { DbUserOrganization } from "./entities/user-organization.entity";
 import { UserOrganizationService } from "./user-organization.service";
+import { ContributorPullRequestsDto } from "./dtos/contributor-prs.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -51,7 +52,7 @@ export class UserController {
   @ApiNotFoundResponse({ description: "User not found" })
   async findContributorPullRequests(
     @Param("username") username: string,
-    @Query() pageOptionsDto: PageOptionsDto
+    @Query() pageOptionsDto: ContributorPullRequestsDto
   ): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }

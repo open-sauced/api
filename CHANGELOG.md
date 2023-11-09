@@ -5,6 +5,27 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.55.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0-beta.1...v1.55.0-beta.2) (2023-11-08)
+
+
+### 🐛 Bug Fixes
+
+* Left join on prs for filtering on contributors ([#409](https://github.com/open-sauced/api.opensauced.pizza/issues/409)) ([0e7f862](https://github.com/open-sauced/api.opensauced.pizza/commit/0e7f8623cf033331e3838d1d7c3659a02d02feed))
+
+## [1.55.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.1-beta.1...v1.55.0-beta.1) (2023-11-08)
+
+
+### 🍕 Features
+
+* add rangeType query param to contributor PRs endpoint ([#407](https://github.com/open-sauced/api.opensauced.pizza/issues/407)) ([0d1449a](https://github.com/open-sauced/api.opensauced.pizza/commit/0d1449a6430e135ba72c556df62b9b48a0ddc665))
+
+### [1.54.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.54.1-beta.1) (2023-11-07)
+
+
+### 🐛 Bug Fixes
+
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+
 ## [1.54.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0...v1.54.0) (2023-11-06)
 
 
@@ -23,9 +44,13 @@
 
 ### 🐛 Bug Fixes
 
+<<<<<<< HEAD
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+=======
 * add "isArray = true" for contributors endpoint ([68c1d4f](https://github.com/open-sauced/api.opensauced.pizza/commit/68c1d4fd01f3717379e32a4b4a168955eff69844))
 * enroll new users with a free tiered account ([#402](https://github.com/open-sauced/api.opensauced.pizza/issues/402)) ([1ede9f5](https://github.com/open-sauced/api.opensauced.pizza/commit/1ede9f5137d21f3e4eaa26fa4e29ec58d0b92fe7))
 * update orderby to use original column key ([419bdf1](https://github.com/open-sauced/api.opensauced.pizza/commit/419bdf10c08f27c44cd7abcb5e435143b21ca075))
+>>>>>>> main
 
 ## [1.54.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.6...v1.54.0-beta.7) (2023-10-31)
 
