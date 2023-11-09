@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.55.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.55.0) (2023-11-09)
+
+
+### 🍕 Features
+
+* add rangeType query param to contributor PRs endpoint ([#407](https://github.com/open-sauced/api.opensauced.pizza/issues/407)) ([0d1449a](https://github.com/open-sauced/api.opensauced.pizza/commit/0d1449a6430e135ba72c556df62b9b48a0ddc665))
+
+
+### 🐛 Bug Fixes
+
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+* Left join on prs for filtering on contributors ([#409](https://github.com/open-sauced/api.opensauced.pizza/issues/409)) ([0e7f862](https://github.com/open-sauced/api.opensauced.pizza/commit/0e7f8623cf033331e3838d1d7c3659a02d02feed))
+
 ## [1.55.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0-beta.1...v1.55.0-beta.2) (2023-11-08)
 
 
