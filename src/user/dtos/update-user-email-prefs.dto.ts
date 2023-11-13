@@ -17,4 +17,12 @@ export class UpdateUserEmailPreferencesDto {
   })
   @IsBoolean()
   public receive_collaboration: boolean;
+
+  @ApiProperty({
+    description: "User Recieve Email Product Updates",
+    type: Boolean,
+    example: false,
+  })
+  @IsBoolean()
+  public receive_product_updates: boolean;
 }

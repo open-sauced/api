@@ -361,6 +361,7 @@ export class UserService {
     return this.userRepository.update(id, {
       display_email: user.display_email,
       receive_collaboration: user.receive_collaboration,
+      receive_product_updates: user.receive_product_updates,
     });
   }
 
