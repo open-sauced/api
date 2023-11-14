@@ -423,6 +423,16 @@ export class DbUser extends BaseEntity {
   readonly receive_collaboration?: boolean;
 
   @ApiModelProperty({
+    description: "User receives product updates through email",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: true,
+  })
+  readonly receive_product_updates?: boolean;
+
+  @ApiModelProperty({
     description: "User timezone in UTC",
     example: "UTC-5",
   })
