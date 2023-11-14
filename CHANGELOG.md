@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.56.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0...v1.56.0-beta.1) (2023-11-14)
+
+
+### 🍕 Features
+
+* add ability for user to toggle receiving email product updates ([#412](https://github.com/open-sauced/api.opensauced.pizza/issues/412)) ([e1fc77b](https://github.com/open-sauced/api.opensauced.pizza/commit/e1fc77b0f5b0fb775b8c87cee2c0f4324a120f0e))
+
 ## [1.55.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.55.0) (2023-11-09)
 
 
