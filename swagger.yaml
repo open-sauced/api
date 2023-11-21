@@ -103,6 +103,22 @@ paths:
       tags: *a1
       security:
         - bearer: []
+    delete:
+      operationId: deleteUserAccount
+      summary: Deletes the authenticated user's account
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUser"
+        "404":
+          description: Unable to delete user account
+      tags: *a1
+      security:
+        - bearer: []
   /v1/auth/profile/interests:
     patch:
       operationId: updateInterestsForUserProfile
@@ -238,6 +254,11 @@ paths:
           schema:
             default: 0
             type: integer
+        - name: rangeType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
       responses:
         "200":
           description: Successfully received model list
@@ -4908,24 +4929,39 @@ paths:
             maximum: 1000
             default: 10
             type: integer
-        - name: orderDirection
+        - name: location
           required: false
           in: query
+          example:
+            - Denver, Colorado
+            - Germany
           schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
+            type: array
+            items:
+              type: string
+        - name: contributor
           required: false
           in: query
-          description: Range in days
+          example: bdougie
           schema:
-            default: 30
-            type: integer
-        - name: prev_days_start_date
+            type: string
+        - name: timezone
           required: false
           in: query
-          description: Number of days in the past to start range block
+          example:
+            - Mountain Standard Time
+            - UTC
           schema:
-            default: 0
+            type: array
+            items:
+              type: string
+        - name: pr_velocity
+          required: false
+          in: query
+          example: 2
+          description: Less than or equal to the average number of days to merge a PR over
+            the last 30 days
+          schema:
             type: integer
         - name: id
           required: true
@@ -5667,6 +5703,10 @@ components:
           type: boolean
           description: User receives collaboration requests
           example: false
+        receive_product_updates:
+          type: boolean
+          description: User receives product updates through email
+          example: false
         timezone:
           type: string
           description: User timezone in UTC
@@ -5762,9 +5802,14 @@ components:
           type: boolean
           description: User Recieve Collaboration Requests
           example: false
+        receive_product_updates:
+          type: boolean
+          description: User Recieve Email Product Updates
+          example: false
       required:
         - display_email
         - receive_collaboration
+        - receive_product_updates
     ApplyUserCouponDto:
       type: object
       properties:
@@ -6319,6 +6364,8 @@ components:
           type: string
           description: Top User Login
           example: bdougie
+      required:
+        - login
     DbFilteredUser:
       type: object
       properties:
@@ -6467,6 +6514,8 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
+      required:
+        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -7443,6 +7492,10 @@ components:
           type: string
           description: Pull request author username
           example: Th3nn3ss
+        user_id:
+          type: number
+          description: Pull request author id
+          example: 1
         updated_at:
           format: date-time
           type: string
@@ -7450,6 +7503,7 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
+        - user_id
     DbUserList:
       type: object
       properties:

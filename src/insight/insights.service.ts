@@ -45,7 +45,13 @@ export class InsightsService {
         wait: false,
       };
 
-      await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+      try {
+        await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          console.error(`error posting to pizza-oven service for repo ${bakeRepoInfo.url}: ${e.message}`);
+        }
+      }
     });
 
     return item;
