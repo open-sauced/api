@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.56.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.0...v1.56.1-beta.1) (2023-11-21)
+
+
+### 🐛 Bug Fixes
+
+* try/catch for posting to pizza service ([#416](https://github.com/open-sauced/api.opensauced.pizza/issues/416)) ([a714597](https://github.com/open-sauced/api.opensauced.pizza/commit/a7145978ccb543cf59b505d0b8a0d560641f6400))
+
 ## [1.56.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0...v1.56.0) (2023-11-16)
 
 
