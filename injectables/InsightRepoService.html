@@ -269,8 +269,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -348,7 +348,13 @@ export class InsightRepoService {
       wait: false,
     };
 
-    await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+    try {
+      await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        console.error(&#x60;error posting to pizza-oven service for repo ${bakeRepoInfo.url}: ${e.message}&#x60;);
+      }
+    }
 
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
   }
