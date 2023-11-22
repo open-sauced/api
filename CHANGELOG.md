@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.56.2-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.1...v1.56.2-beta.1) (2023-11-22)
+
+
+### 🐛 Bug Fixes
+
+* Ignore org user types in v1/lists/contributors ([#419](https://github.com/open-sauced/api.opensauced.pizza/issues/419)) ([85b1298](https://github.com/open-sauced/api.opensauced.pizza/commit/85b1298832177a2550ea448d32a55452b74e2100))
+
 ### [1.56.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.0...v1.56.1) (2023-11-21)
 
 
