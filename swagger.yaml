@@ -103,6 +103,22 @@ paths:
       tags: *a1
       security:
         - bearer: []
+    delete:
+      operationId: deleteUserAccount
+      summary: Deletes the authenticated user's account
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUser"
+        "404":
+          description: Unable to delete user account
+      tags: *a1
+      security:
+        - bearer: []
   /v1/auth/profile/interests:
     patch:
       operationId: updateInterestsForUserProfile
@@ -238,6 +254,11 @@ paths:
           schema:
             default: 0
             type: integer
+        - name: rangeType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
       responses:
         "200":
           description: Successfully received model list
@@ -371,6 +392,66 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
+        "404":
+          description: Top repos not found
+      tags: *a2
+  "/v1/users/{username}/organizations":
+    get:
+      operationId: findAllOrgsByUsername
+      summary: Listing public orgs for a user and paginate them
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserOrganization"
         "404":
           description: Top repos not found
       tags: *a2
@@ -814,6 +895,27 @@ paths:
       tags: *a4
       security:
         - bearer: []
+  "/v1/users/{username}/follows":
+    put:
+      operationId: followUsersByUsernames
+      summary: Follows a number of users by username
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FollowManyUsersDto"
+      responses:
+        "200":
+          description: ""
+        "404":
+          description: Users not found
+        "409":
+          description: You have already followed this user
+      tags: *a4
+      security:
+        - bearer: []
   /v1/user/notifications:
     get:
       operationId: getUserNotifications
@@ -1196,6 +1298,29 @@ paths:
       tags: *a7
       security:
         - bearer: []
+  "/v1/users/{username}/following":
+    get:
+      operationId: getFollowingListByUsername
+      summary: Get list of following users by the provided username
+      parameters:
+        - name: username
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbUserToUserFollows"
+        "404":
+          description: User not found
+      tags:
+        - User service
   /v1/prs/list:
     get:
       operationId: listAllPullRequests
@@ -2732,6 +2857,89 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbContribution"
+        "404":
+          description: Repo not found
+      tags: *a21
+  "/v1/repos/{owner}/{repo}/contributions/contributors":
+    get:
+      operationId: findAllContributorsByRepoId
+      summary: Finds a repo by :owner and :repo listing all contributions by their
+        user login
+      parameters:
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Previous number of days to go back to start date range
+          schema:
+            type: integer
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbRepoLoginContributions"
+        "404":
+          description: Repo not found
+      tags: *a21
+  "/v1/repos/{owner}/{repo}/{login}/contributions":
+    get:
+      operationId: findAllByOwnerRepoAndContributorLogin
+      summary: Finds a repo by :owner and :repo listing all contributions for a given
+        :login and paginating them
+      parameters:
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: login
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Previous number of days to go back to start date range
+          schema:
+            type: integer
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbRepoLoginContributions"
         "404":
           description: Repo not found
       tags: *a21
@@ -4579,8 +4787,6 @@ paths:
         "404":
           description: Unable to get user list
       tags: *a29
-      security:
-        - bearer: []
     patch:
       operationId: updateListForUser
       summary: Updates the list for the authenticated user
@@ -4652,15 +4858,29 @@ paths:
         - name: location
           required: false
           in: query
-          example: Denver, Colorado
+          example:
+            - Denver, Colorado
+            - Germany
+          schema:
+            type: array
+            items:
+              type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
           schema:
             type: string
         - name: timezone
           required: false
           in: query
-          example: Mountain Standard Time
+          example:
+            - Mountain Standard Time
+            - UTC
           schema:
-            type: string
+            type: array
+            items:
+              type: string
         - name: pr_velocity
           required: false
           in: query
@@ -4709,24 +4929,39 @@ paths:
             maximum: 1000
             default: 10
             type: integer
-        - name: orderDirection
+        - name: location
           required: false
           in: query
+          example:
+            - Denver, Colorado
+            - Germany
           schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
+            type: array
+            items:
+              type: string
+        - name: contributor
           required: false
           in: query
-          description: Range in days
+          example: bdougie
           schema:
-            default: 30
-            type: integer
-        - name: prev_days_start_date
+            type: string
+        - name: timezone
           required: false
           in: query
-          description: Number of days in the past to start range block
+          example:
+            - Mountain Standard Time
+            - UTC
           schema:
-            default: 0
+            type: array
+            items:
+              type: string
+        - name: pr_velocity
+          required: false
+          in: query
+          example: 2
+          description: Less than or equal to the average number of days to merge a PR over
+            the last 30 days
+          schema:
             type: integer
         - name: id
           required: true
@@ -4751,8 +4986,6 @@ paths:
         "404":
           description: Unable to get user list contributors
       tags: *a29
-      security:
-        - bearer: []
     post:
       operationId: postUserListContributors
       summary: Add new contributors to an individual user list
@@ -4898,8 +5131,6 @@ paths:
       tags:
         &a30
         - User Lists service
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-evolution-by-type":
     get:
       operationId: getContributionsByTimeFrame
@@ -4934,8 +5165,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-by-project":
     get:
       operationId: getContributionsByProject
@@ -4946,6 +5175,13 @@ paths:
           in: path
           schema:
             type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
       responses:
         "200":
           description: ""
@@ -4958,8 +5194,6 @@ paths:
         "404":
           description: Unable to get contributions by project
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/top-project-contributions-by-contributor":
     get:
       operationId: getContributorContributionsByProject
@@ -4970,11 +5204,20 @@ paths:
           in: path
           schema:
             type: string
-        - name: repoId
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: repo_id
           required: true
           in: query
+          description: Repo ID
+          example: 234343
           schema:
-            type: number
+            type: integer
       responses:
         "200":
           description: ""
@@ -4987,8 +5230,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
   "/v1/lists/{id}/stats/contributions-evolution-by-contributor-type":
     get:
       operationId: getContributorsByTimeframe
@@ -5023,8 +5264,6 @@ paths:
         "404":
           description: Unable to get contributions
       tags: *a30
-      security:
-        - bearer: []
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
@@ -5218,6 +5457,10 @@ components:
           type: integer
           description: Unread User Notification Count
           example: 5
+        insights_count:
+          type: integer
+          description: Unread Insight Pagees Count
+          example: 2
         coupon_code:
           type: string
           description: Coupon Code
@@ -5460,6 +5703,10 @@ components:
           type: boolean
           description: User receives collaboration requests
           example: false
+        receive_product_updates:
+          type: boolean
+          description: User receives product updates through email
+          example: false
         timezone:
           type: string
           description: User timezone in UTC
@@ -5476,6 +5723,10 @@ components:
         notification_count:
           type: integer
           description: User notification count
+          example: 0
+        insights_count:
+          type: integer
+          description: User insight pages count
           example: 0
         highlights_count:
           type: integer
@@ -5520,6 +5771,7 @@ components:
         - type
         - languages
         - notification_count
+        - insights_count
         - highlights_count
         - following_count
         - followers_count
@@ -5550,9 +5802,14 @@ components:
           type: boolean
           description: User Recieve Collaboration Requests
           example: false
+        receive_product_updates:
+          type: boolean
+          description: User Recieve Email Product Updates
+          example: false
       required:
         - display_email
         - receive_collaboration
+        - receive_product_updates
     ApplyUserCouponDto:
       type: object
       properties:
@@ -6076,6 +6333,30 @@ components:
         - url
         - homepage
         - topics
+    DbUserOrganization:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User organization identifier
+          example: 196
+        user_id:
+          type: integer
+          description: User identifier
+          example: 237133
+        organization_id:
+          type: integer
+          description: Organization identifier
+          example: 71359796
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing top repo first index
+          example: 2016-10-19 13:24:51.000000
+      required:
+        - id
+        - user_id
+        - organization_id
     DbTopUser:
       type: object
       properties:
@@ -6264,6 +6545,20 @@ components:
         - id
         - user_id
         - following_user_id
+    FollowManyUsersDto:
+      type: object
+      properties:
+        usernames:
+          description: An array of usernames  to follow
+          example:
+            - jpmcb
+            - bdougie
+            - brandonroberts
+          type: array
+          items:
+            type: string
+      required:
+        - usernames
     DbUserCollaboration:
       type: object
       properties:
@@ -6767,6 +7062,39 @@ components:
         - last_merged_at
         - contributor
         - url
+    DbRepoLoginContributions:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
+        commits:
+          type: integer
+          description: Number of commits associated with a user login
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created associated with a user login
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed by a user login
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created by a user login
+          example: 0
+        comments:
+          type: integer
+          description: Number of comments associated with a user login
+          example: 0
+      required:
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - comments
     DbInsight:
       type: object
       properties:
@@ -6789,6 +7117,10 @@ components:
         is_favorite:
           type: boolean
           description: Flag indicating insight favorite
+          example: false
+        is_featured:
+          type: boolean
+          description: Flag indicating featured insight
           example: false
         short_code:
           type: string
@@ -6815,6 +7147,7 @@ components:
         - name
         - is_public
         - is_favorite
+        - is_featured
         - short_code
     RepoInfo:
       type: object
@@ -7159,6 +7492,10 @@ components:
           type: string
           description: Pull request author username
           example: Th3nn3ss
+        user_id:
+          type: number
+          description: Pull request author id
+          example: 1
         updated_at:
           format: date-time
           type: string
@@ -7166,7 +7503,7 @@ components:
           example: 2022-08-28 22:04:29.000000
       required:
         - author_login
-        - updated_at
+        - user_id
     DbUserList:
       type: object
       properties:
@@ -7374,10 +7711,14 @@ components:
         org_id:
           type: string
           description: The org name of the repo
-          example: 0
+          example: open-sauced
         project_id:
           type: string
           description: The project name of the repo
+          example: api
+        repo_id:
+          type: integer
+          description: The ID of the associated repo in the OpenSauced API context
           example: 0
         contributions:
           type: integer
@@ -7386,6 +7727,7 @@ components:
       required:
         - org_id
         - project_id
+        - repo_id
         - contributions
     DbContributorCategoryTimeframe:
       type: object

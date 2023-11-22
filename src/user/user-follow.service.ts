@@ -34,6 +34,16 @@ export class UserFollowService {
     return entities;
   }
 
+  async findAllFollowingList(userId: number): Promise<DbUserToUserFollows[]> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    return queryBuilder
+      .innerJoin("users", "users", "user_follows.user_id=users.id")
+      .where("user_follows.user_id = :userId", { userId })
+      .andWhere("user_follows.deleted_at IS NULL")
+      .getMany();
+  }
+
   async findUserFollowerById(userId: number, followerUserId: number): Promise<DbUserToUserFollows> {
     const queryBuilder = this.baseQueryBuilder();
 
@@ -62,7 +72,7 @@ export class UserFollowService {
 
     if (followExists) {
       if (!followExists.deleted_at) {
-        throw new ConflictException("You have already followed this user");
+        throw new ConflictException(`You have already followed this user: ${followedUserId}`);
       }
 
       await this.userFollowRepository.restore(followExists.id);

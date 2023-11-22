@@ -5,6 +5,225 @@
 
 > All notable changes to this project will be documented in this file
 
+### [1.56.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.0...v1.56.1-beta.1) (2023-11-21)
+
+
+### 🐛 Bug Fixes
+
+* try/catch for posting to pizza service ([#416](https://github.com/open-sauced/api.opensauced.pizza/issues/416)) ([a714597](https://github.com/open-sauced/api.opensauced.pizza/commit/a7145978ccb543cf59b505d0b8a0d560641f6400))
+
+## [1.56.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0...v1.56.0) (2023-11-16)
+
+
+### 🍕 Features
+
+* add ability for user to toggle receiving email product updates ([#412](https://github.com/open-sauced/api.opensauced.pizza/issues/412)) ([e1fc77b](https://github.com/open-sauced/api.opensauced.pizza/commit/e1fc77b0f5b0fb775b8c87cee2c0f4324a120f0e))
+
+## [1.56.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0...v1.56.0-beta.1) (2023-11-14)
+
+
+### 🍕 Features
+
+* add ability for user to toggle receiving email product updates ([#412](https://github.com/open-sauced/api.opensauced.pizza/issues/412)) ([e1fc77b](https://github.com/open-sauced/api.opensauced.pizza/commit/e1fc77b0f5b0fb775b8c87cee2c0f4324a120f0e))
+
+## [1.55.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.55.0) (2023-11-09)
+
+
+### 🍕 Features
+
+* add rangeType query param to contributor PRs endpoint ([#407](https://github.com/open-sauced/api.opensauced.pizza/issues/407)) ([0d1449a](https://github.com/open-sauced/api.opensauced.pizza/commit/0d1449a6430e135ba72c556df62b9b48a0ddc665))
+
+
+### 🐛 Bug Fixes
+
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+* Left join on prs for filtering on contributors ([#409](https://github.com/open-sauced/api.opensauced.pizza/issues/409)) ([0e7f862](https://github.com/open-sauced/api.opensauced.pizza/commit/0e7f8623cf033331e3838d1d7c3659a02d02feed))
+
+## [1.55.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.55.0-beta.1...v1.55.0-beta.2) (2023-11-08)
+
+
+### 🐛 Bug Fixes
+
+* Left join on prs for filtering on contributors ([#409](https://github.com/open-sauced/api.opensauced.pizza/issues/409)) ([0e7f862](https://github.com/open-sauced/api.opensauced.pizza/commit/0e7f8623cf033331e3838d1d7c3659a02d02feed))
+
+## [1.55.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.1-beta.1...v1.55.0-beta.1) (2023-11-08)
+
+
+### 🍕 Features
+
+* add rangeType query param to contributor PRs endpoint ([#407](https://github.com/open-sauced/api.opensauced.pizza/issues/407)) ([0d1449a](https://github.com/open-sauced/api.opensauced.pizza/commit/0d1449a6430e135ba72c556df62b9b48a0ddc665))
+
+### [1.54.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0...v1.54.1-beta.1) (2023-11-07)
+
+
+### 🐛 Bug Fixes
+
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+
+## [1.54.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0...v1.54.0) (2023-11-06)
+
+
+### ✅ Tests
+
+* added tests for the deleteUser method of the UserService ([b9bb221](https://github.com/open-sauced/api.opensauced.pizza/commit/b9bb22182a86e2c867c93c9e84ad6fd5d71959ce))
+
+
+### 🍕 Features
+
+* add endpoint for public user organizations ([#393](https://github.com/open-sauced/api.opensauced.pizza/issues/393)) ([db87662](https://github.com/open-sauced/api.opensauced.pizza/commit/db8766201d74a01e600e0e9099924428e74d288f))
+* add tier.run service and check if user is registered ([#399](https://github.com/open-sauced/api.opensauced.pizza/issues/399)) ([af60e28](https://github.com/open-sauced/api.opensauced.pizza/commit/af60e28d5aa733c464673847296de46f89faa778))
+* manually cascade soft deletes for users relations ([1c4ff50](https://github.com/open-sauced/api.opensauced.pizza/commit/1c4ff5017224a64fb22f9a1b0e7ec6efe705bb15))
+* users can be deleted from the system now ([09cf26b](https://github.com/open-sauced/api.opensauced.pizza/commit/09cf26bf91ab5fa2e525459d6f45ab62ad86c43c))
+
+
+### 🐛 Bug Fixes
+
+<<<<<<< HEAD
+* added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
+=======
+* add "isArray = true" for contributors endpoint ([68c1d4f](https://github.com/open-sauced/api.opensauced.pizza/commit/68c1d4fd01f3717379e32a4b4a168955eff69844))
+* enroll new users with a free tiered account ([#402](https://github.com/open-sauced/api.opensauced.pizza/issues/402)) ([1ede9f5](https://github.com/open-sauced/api.opensauced.pizza/commit/1ede9f5137d21f3e4eaa26fa4e29ec58d0b92fe7))
+* update orderby to use original column key ([419bdf1](https://github.com/open-sauced/api.opensauced.pizza/commit/419bdf10c08f27c44cd7abcb5e435143b21ca075))
+>>>>>>> main
+
+## [1.54.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.6...v1.54.0-beta.7) (2023-10-31)
+
+
+### 🐛 Bug Fixes
+
+* enroll new users with a free tiered account ([#402](https://github.com/open-sauced/api.opensauced.pizza/issues/402)) ([1ede9f5](https://github.com/open-sauced/api.opensauced.pizza/commit/1ede9f5137d21f3e4eaa26fa4e29ec58d0b92fe7))
+
+## [1.54.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.5...v1.54.0-beta.6) (2023-10-31)
+
+
+### 🐛 Bug Fixes
+
+* update orderby to use original column key ([419bdf1](https://github.com/open-sauced/api.opensauced.pizza/commit/419bdf10c08f27c44cd7abcb5e435143b21ca075))
+
+## [1.54.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.4...v1.54.0-beta.5) (2023-10-30)
+
+
+### 🍕 Features
+
+* add tier.run service and check if user is registered ([#399](https://github.com/open-sauced/api.opensauced.pizza/issues/399)) ([af60e28](https://github.com/open-sauced/api.opensauced.pizza/commit/af60e28d5aa733c464673847296de46f89faa778))
+
+## [1.54.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.3...v1.54.0-beta.4) (2023-10-28)
+
+
+### 🍕 Features
+
+* manually cascade soft deletes for users relations ([1c4ff50](https://github.com/open-sauced/api.opensauced.pizza/commit/1c4ff5017224a64fb22f9a1b0e7ec6efe705bb15))
+
+## [1.54.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.2...v1.54.0-beta.3) (2023-10-26)
+
+
+### 🍕 Features
+
+* users can be deleted from the system now ([09cf26b](https://github.com/open-sauced/api.opensauced.pizza/commit/09cf26bf91ab5fa2e525459d6f45ab62ad86c43c))
+
+
+### ✅ Tests
+
+* added tests for the deleteUser method of the UserService ([b9bb221](https://github.com/open-sauced/api.opensauced.pizza/commit/b9bb22182a86e2c867c93c9e84ad6fd5d71959ce))
+
+## [1.54.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.1...v1.54.0-beta.2) (2023-10-25)
+
+
+### 🐛 Bug Fixes
+
+* add "isArray = true" for contributors endpoint ([68c1d4f](https://github.com/open-sauced/api.opensauced.pizza/commit/68c1d4fd01f3717379e32a4b4a168955eff69844))
+
+## [1.54.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0...v1.54.0-beta.1) (2023-10-25)
+
+
+### 🍕 Features
+
+* add endpoint for public user organizations ([#393](https://github.com/open-sauced/api.opensauced.pizza/issues/393)) ([db87662](https://github.com/open-sauced/api.opensauced.pizza/commit/db8766201d74a01e600e0e9099924428e74d288f))
+
+## [1.53.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0...v1.53.0) (2023-10-24)
+
+
+### 🐛 Bug Fixes
+
+* fast-forward swagger doc for most recent release ([#387](https://github.com/open-sauced/api.opensauced.pizza/issues/387)) ([8ff8275](https://github.com/open-sauced/api.opensauced.pizza/commit/8ff8275d48b69f71ab0557e2027f108163fa141c))
+
+
+### 🍕 Features
+
+* add endpoint for displaying contributor following list ([#379](https://github.com/open-sauced/api.opensauced.pizza/issues/379)) ([d36a6c6](https://github.com/open-sauced/api.opensauced.pizza/commit/d36a6c682f27a6a2e7f67b5199cc5be6d3b61dce))
+* Follow multiple users endpoint ([#390](https://github.com/open-sauced/api.opensauced.pizza/issues/390)) ([bd92ceb](https://github.com/open-sauced/api.opensauced.pizza/commit/bd92cebb6fe30bcd42eeb2fe6feaa930f36d4995))
+* Granular contributions for individual repos ([#388](https://github.com/open-sauced/api.opensauced.pizza/issues/388)) ([f9ced6a](https://github.com/open-sauced/api.opensauced.pizza/commit/f9ced6ae0297b4c5c2de63c1ba07dab4b8600f81))
+
+## [1.53.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.2...v1.53.0-beta.3) (2023-10-24)
+
+
+### 🍕 Features
+
+* Follow multiple users endpoint ([#390](https://github.com/open-sauced/api.opensauced.pizza/issues/390)) ([bd92ceb](https://github.com/open-sauced/api.opensauced.pizza/commit/bd92cebb6fe30bcd42eeb2fe6feaa930f36d4995))
+
+## [1.53.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.53.0-beta.1...v1.53.0-beta.2) (2023-10-24)
+
+
+### 🍕 Features
+
+* add endpoint for displaying contributor following list ([#379](https://github.com/open-sauced/api.opensauced.pizza/issues/379)) ([d36a6c6](https://github.com/open-sauced/api.opensauced.pizza/commit/d36a6c682f27a6a2e7f67b5199cc5be6d3b61dce))
+
+## [1.53.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.1-beta.1...v1.53.0-beta.1) (2023-10-24)
+
+
+### 🍕 Features
+
+* Granular contributions for individual repos ([#388](https://github.com/open-sauced/api.opensauced.pizza/issues/388)) ([f9ced6a](https://github.com/open-sauced/api.opensauced.pizza/commit/f9ced6ae0297b4c5c2de63c1ba07dab4b8600f81))
+
+### [1.52.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0...v1.52.1-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* fast-forward swagger doc for most recent release ([#387](https://github.com/open-sauced/api.opensauced.pizza/issues/387)) ([8ff8275](https://github.com/open-sauced/api.opensauced.pizza/commit/8ff8275d48b69f71ab0557e2027f108163fa141c))
+
+## [1.52.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.52.0) (2023-10-23)
+
+
+### 🍕 Features
+
+* Enable multi select for location and timezone ([fa71fa5](https://github.com/open-sauced/api.opensauced.pizza/commit/fa71fa513d9d103a057be80a48d3e14130d32dee))
+* v1/repos/:owner/:repo/:login/contributions ([6a875b9](https://github.com/open-sauced/api.opensauced.pizza/commit/6a875b97f239be747da4ae0d022b7bcf815ea02d))
+
+
+### 🐛 Bug Fixes
+
+* Move logging database migrations out of core db migrations dir ([#384](https://github.com/open-sauced/api.opensauced.pizza/issues/384)) ([cc96252](https://github.com/open-sauced/api.opensauced.pizza/commit/cc9625212779b1cd4c41d1519d482a38440b2637))
+* use custom logger to connect to logging db ([#382](https://github.com/open-sauced/api.opensauced.pizza/issues/382)) ([4548c14](https://github.com/open-sauced/api.opensauced.pizza/commit/4548c14984cef8825ce23e2555d95a3619258b6c))
+
+## [1.52.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.2...v1.52.0-beta.3) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* Move logging database migrations out of core db migrations dir ([#384](https://github.com/open-sauced/api.opensauced.pizza/issues/384)) ([cc96252](https://github.com/open-sauced/api.opensauced.pizza/commit/cc9625212779b1cd4c41d1519d482a38440b2637))
+
+## [1.52.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.52.0-beta.1...v1.52.0-beta.2) (2023-10-23)
+
+
+### 🍕 Features
+
+* Enable multi select for location and timezone ([fa71fa5](https://github.com/open-sauced/api.opensauced.pizza/commit/fa71fa513d9d103a057be80a48d3e14130d32dee))
+
+## [1.52.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.3-beta.1...v1.52.0-beta.1) (2023-10-23)
+
+
+### 🍕 Features
+
+* v1/repos/:owner/:repo/:login/contributions ([6a875b9](https://github.com/open-sauced/api.opensauced.pizza/commit/6a875b97f239be747da4ae0d022b7bcf815ea02d))
+
+### [1.51.3-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.2...v1.51.3-beta.1) (2023-10-23)
+
+
+### 🐛 Bug Fixes
+
+* use custom logger to connect to logging db ([#382](https://github.com/open-sauced/api.opensauced.pizza/issues/382)) ([4548c14](https://github.com/open-sauced/api.opensauced.pizza/commit/4548c14984cef8825ce23e2555d95a3619258b6c))
+
 ### [1.51.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.51.1...v1.51.2) (2023-10-12)
 
 

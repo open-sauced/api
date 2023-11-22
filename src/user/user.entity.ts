@@ -420,6 +420,16 @@ export class DbUser extends BaseEntity {
   readonly receive_collaboration?: boolean;
 
   @ApiPropertyOptional({
+    description: "User receives product updates through email",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: true,
+  })
+  readonly receive_product_updates?: boolean;
+
+  @ApiPropertyOptional({
     description: "User timezone in UTC",
     example: "UTC-5",
   })
@@ -547,7 +557,7 @@ export class DbUser extends BaseEntity {
   public is_maintainer: boolean;
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, (insight) => insight.user)
+  @OneToMany(() => DbInsight, (insight) => insight.user, { cascade: true })
   public insights: Relation<DbInsight[]>;
 
   @ApiHideProperty()
@@ -559,7 +569,7 @@ export class DbUser extends BaseEntity {
   public repo_orgs: Relation<DbRepo[]>;
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, (highlights) => highlights.user)
+  @OneToMany(() => DbUserHighlight, (highlights) => highlights.user, { cascade: true })
   public highlights: Relation<DbUserHighlight[]>;
 
   @ApiHideProperty()
@@ -567,11 +577,11 @@ export class DbUser extends BaseEntity {
   public reactions: Relation<DbUserHighlightReaction[]>;
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.user, { cascade: true })
   public collaborations: Relation<DbUserCollaboration[]>;
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user)
+  @OneToMany(() => DbUserCollaboration, (collaboration) => collaboration.request_user, { cascade: true })
   public request_collaborations: Relation<DbUserCollaboration[]>;
 
   @ApiHideProperty()
@@ -603,7 +613,7 @@ export class DbUser extends BaseEntity {
   public organizations: Relation<DbUserOrganization[]>;
 
   @ApiHideProperty()
-  @OneToMany(() => DbUserList, (userLists) => userLists.list_user)
+  @OneToMany(() => DbUserList, (userLists) => userLists.list_user, { cascade: true })
   public lists: Relation<DbUserList[]>;
 
   @ApiHideProperty()

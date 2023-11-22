@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -137,7 +137,9 @@ export class UserListController {
   @ApiOkResponse({ type: DbUser })
   @ApiNotFoundResponse({ description: "Unable to get contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
-  async getContributors(@Query() pageOptionsDto: FilterListContributorsDto): Promise<PageDto<DbUser>> {
+  async getContributors(
+    @Query(new ValidationPipe({ transform: true, forbidUnknownValues: true })) pageOptionsDto: FilterListContributorsDto
+  ): Promise<PageDto<DbUser>> {
     return this.userListService.findContributorsByFilter(pageOptionsDto);
   }
 
@@ -152,7 +154,7 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   async getUserListContributors(
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: FilterListContributorsDto,
     @Param("id") id: string
   ): Promise<PageDto<DbUserListContributor>> {
     return this.userListService.findContributorsByListId(pageOptionsDto, id);

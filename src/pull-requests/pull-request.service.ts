@@ -10,6 +10,7 @@ import { OrderDirectionEnum } from "../common/constants/order-direction.constant
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
+import { ContributorPullRequestsDto, RangeTypeEnum } from "../user/dtos/contributor-prs.dto";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
@@ -72,18 +73,27 @@ export class PullRequestService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllByContributor(contributor: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
+  async findAllByContributor(
+    contributor: string,
+    pageOptionsDto: ContributorPullRequestsDto
+  ): Promise<PageDto<DbPullRequest>> {
     const queryBuilder = this.baseQueryBuilder();
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
     queryBuilder
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() })
-      .andWhere(`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`)
-      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`)
       .addSelect("repos.full_name", "pull_requests_full_name")
       .addSelect("repos.id", "pull_requests_repo_id")
+      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() });
+
+    if (pageOptionsDto.rangeType === RangeTypeEnum.Recent) {
+      queryBuilder
+        .andWhere(`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`)
+        .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`);
+    }
+
+    queryBuilder
       .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
@@ -173,8 +183,11 @@ export class PullRequestService {
       .distinct()
       .select("pull_requests.author_login", "author_login")
       .addSelect("MAX(pull_requests.updated_at)", "updated_at")
+      .addSelect("users.id", "user_id")
       .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addGroupBy("author_login");
+      .innerJoin("users", "users", `"pull_requests"."author_login"="users"."login"`)
+      .addGroupBy("author_login")
+      .addGroupBy("users.id");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 

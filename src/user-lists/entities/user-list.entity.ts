@@ -85,7 +85,7 @@ export class DbUserList extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.lists)
+  @ManyToOne(() => DbUser, (user) => user.lists, { onDelete: "CASCADE" })
   @JoinColumn({
     name: "user_id",
     referencedColumnName: "id",

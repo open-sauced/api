@@ -16,6 +16,9 @@ import { DbTopUser } from "./entities/top-users.entity";
 import { TopUsersDto } from "./dtos/top-users.dto";
 import { DbFilteredUser } from "./entities/filtered-users.entity";
 import { FilteredUsersDto } from "./dtos/filtered-users.dto";
+import { DbUserOrganization } from "./entities/user-organization.entity";
+import { UserOrganizationService } from "./user-organization.service";
+import { ContributorPullRequestsDto } from "./dtos/contributor-prs.dto";
 
 @Controller("users")
 @ApiTags("User service")
@@ -24,7 +27,8 @@ export class UserController {
     private userService: UserService,
     private pullRequestService: PullRequestService,
     private userHighlightsService: UserHighlightsService,
-    private repoService: RepoService
+    private repoService: RepoService,
+    private userOrganizationService: UserOrganizationService
   ) {}
 
   @Get("/:username")
@@ -48,7 +52,7 @@ export class UserController {
   @ApiNotFoundResponse({ description: "User not found" })
   async findContributorPullRequests(
     @Param("username") username: string,
-    @Query() pageOptionsDto: PageOptionsDto
+    @Query() pageOptionsDto: ContributorPullRequestsDto
   ): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
   }
@@ -85,6 +89,23 @@ export class UserController {
     const user = await this.userService.findOneByUsername(username);
 
     return this.repoService.findAll(pageOptionsDto, user.id, ["TopRepos"]);
+  }
+
+  @Get("/:username/organizations")
+  @ApiOperation({
+    operationId: "findAllOrgsByUsername",
+    summary: "Listing public orgs for a user and paginate them",
+  })
+  @ApiPaginatedResponse(DbUserOrganization)
+  @ApiOkResponse({ type: DbUserOrganization })
+  @ApiNotFoundResponse({ description: "Top repos not found" })
+  async findAllOrgsByUsername(
+    @Param("username") username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise<PageDto<DbUserOrganization>> {
+    const user = await this.userService.findOneByUsername(username);
+
+    return this.userOrganizationService.findAllByUserId(user.id, pageOptionsDto);
   }
 
   @Get("/top")
