@@ -1,9 +1,9 @@
 import { Column, Entity } from "typeorm";
-import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 @Entity({ name: "repo_user_contributions" })
 export class DbRepoLoginContributions {
-  @ApiModelProperty({
+  @ApiPropertyOptional({
     description: "User list collaborator's login",
     example: "bdougie",
   })
@@ -14,7 +14,7 @@ export class DbRepoLoginContributions {
   })
   public login?: string;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of commits associated with a user login",
     example: 0,
     type: "integer",
@@ -26,7 +26,7 @@ export class DbRepoLoginContributions {
   })
   commits: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of PRs created associated with a user login",
     example: 0,
     type: "integer",
@@ -38,7 +38,7 @@ export class DbRepoLoginContributions {
   })
   prs_created: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of PRs reviewed by a user login",
     example: 0,
     type: "integer",
@@ -50,7 +50,7 @@ export class DbRepoLoginContributions {
   })
   prs_reviewed: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of issues created by a user login",
     example: 0,
     type: "integer",
@@ -62,7 +62,7 @@ export class DbRepoLoginContributions {
   })
   issues_created: number;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: "Number of comments associated with a user login",
     example: 0,
     type: "integer",
