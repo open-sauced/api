@@ -8,6 +8,9 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
 import { DbUser } from "../user/user.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
@@ -21,6 +24,8 @@ export class UserListService {
     private userListRepository: Repository<DbUserList>,
     @InjectRepository(DbUserListContributor, "ApiConnection")
     private userListContributorRepository: Repository<DbUserListContributor>,
+    @InjectRepository(DbUserHighlight, "ApiConnection")
+    private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     private pagerService: PagerService
@@ -220,6 +225,45 @@ export class UserListService {
       pageOptionsDto,
       queryBuilder,
     });
+  }
+
+  async findListContributorsHighlights(
+    pageOptionsDto: HighlightOptionsDto,
+    listId: string
+  ): Promise<PageDto<DbUserHighlight>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range ?? 30;
+    const orderBy = pageOptionsDto.orderDirection ?? "DESC";
+    const queryBuilder = this.userHighlightRepository.createQueryBuilder("user_highlights");
+
+    // return all highlights that belongs to a contributor of the list id
+    queryBuilder
+      .innerJoin(
+        "user_list_contributors",
+        "user_list_contributors",
+        "user_list_contributors.user_id = user_highlights.user_id"
+      )
+      .where("user_list_contributors.list_id = :listId", { listId })
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "user_highlights"."updated_at"`);
+
+    if (pageOptionsDto.repo) {
+      queryBuilder.andWhere(
+        `EXISTS (
+        SELECT 1
+        FROM unnest(user_highlights.tagged_repos) AS repos
+        WHERE repos LIKE '%${pageOptionsDto.repo}%'
+      )`
+      );
+    }
+
+    queryBuilder.orderBy("user_highlights.updated_at", orderBy);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getMany();
+    const itemCount = entities.length;
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async getAllTimezones(): Promise<DbTimezone[]> {

@@ -5,6 +5,7 @@ import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
@@ -23,6 +24,7 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
       [
         DbUser,
         DbUserList,
+        DbUserHighlight,
         DbPullRequest,
         DbUserListContributor,
         DbUserListContributorStat,
