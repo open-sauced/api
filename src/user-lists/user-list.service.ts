@@ -188,6 +188,9 @@ export class UserListService {
       queryBuilder.andWhere("pr_stats.avg_merge_time != 0");
     }
 
+    // skip "users" who are actually orgs
+    queryBuilder.andWhere("type != 'Organization'");
+
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
