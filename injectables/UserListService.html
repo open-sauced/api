@@ -852,8 +852,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:202</a></div>
                 </td>
             </tr>
 
@@ -1101,8 +1101,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="222"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:222</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="225"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:225</a></div>
                 </td>
             </tr>
 
@@ -1396,6 +1396,9 @@ export class UserListService {
       queryBuilder.andWhere(&quot;pr_stats.avg_merge_time &lt;&#x3D; :pr_velocity&quot;, { pr_velocity: pageOptionsDto.pr_velocity });
       queryBuilder.andWhere(&quot;pr_stats.avg_merge_time !&#x3D; 0&quot;);
     }
+
+    // skip &quot;users&quot; who are actually orgs
+    queryBuilder.andWhere(&quot;type !&#x3D; &#x27;Organization&#x27;&quot;);
 
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
