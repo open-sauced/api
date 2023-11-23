@@ -21,6 +21,8 @@ import { DbContributionsProjects } from "./entities/contributions-projects.entit
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
+import { DbUserListLanguageStat } from "./entities/user-list-languages-stat";
+import { UserListMostUsedLanguagesDto } from "./dtos/most-used-languages.dto";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -107,5 +109,22 @@ export class UserListStatsController {
     @Query() options: ContributionsTimeframeDto
   ): Promise<DbContributorCategoryTimeframe[]> {
     return this.userListStatsService.findContributorCategoriesByTimeframe(options, id);
+  }
+
+  @Get(":id/stats/most-used-languages")
+  @ApiOperation({
+    operationId: "getMostUsedLanguages",
+    summary: "Gets most used languages for a given list",
+  })
+  @ApiPaginatedResponse(DbUserListLanguageStat)
+  @ApiOkResponse({ type: DbUserListLanguageStat })
+  @ApiNotFoundResponse({ description: "Unable to get list most used languages" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getMostUsedLanguages(
+    @Param("id") id: string,
+    @Query() pageOptionsDto: UserListMostUsedLanguagesDto
+  ): Promise<PageDto<DbUserListLanguageStat>> {
+    return this.userListStatsService.findAllListLanguageStats(pageOptionsDto, id);
   }
 }

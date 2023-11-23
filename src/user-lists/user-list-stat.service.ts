@@ -18,6 +18,9 @@ import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/cont
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
+import { UserListMostUsedLanguagesDto } from "./dtos/most-used-languages.dto";
+import { DbUserListLanguageStat } from "./entities/user-list-languages-stat";
+import { MostUsedLanguagesPageDto } from "./dtos/most-used-languages-page.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -186,6 +189,67 @@ export class UserListStatsService {
     const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
 
     return new ContributionsPageDto(entities, pageMetaDto);
+  }
+
+  async findAllListLanguageStats(
+    pageOptionsDto: UserListMostUsedLanguagesDto,
+    listId: string
+  ): Promise<PageDto<DbUserListLanguageStat>> {
+    /*
+     * const range = pageOptionsDto.range!;
+     * const now = new Date().toISOString();
+     */
+
+    const cteBuilder = this.baseQueryBuilder();
+
+    /*
+     * switch (pageOptionsDto.contributorType) {
+     *   case UserListContributorStatsTypeEnum.all:
+     *     break;
+     */
+
+    /*
+     *   case UserListContributorStatsTypeEnum.active:
+     *     this.applyActiveContributorsFilter(cteBuilder, now, range);
+     *     break;
+     */
+
+    /*
+     *   case UserListContributorStatsTypeEnum.new:
+     *     this.applyNewContributorsFilter(cteBuilder, now, range);
+     *     break;
+     */
+
+    /*
+     *   case UserListContributorStatsTypeEnum.alumni: {
+     *     this.applyAlumniContributorsFilter(cteBuilder, now, range);
+     *     break;
+     *   }
+     */
+
+    /*
+     *   default:
+     *     break;
+     * }
+     */
+
+    cteBuilder
+      .select("language.key AS name")
+      .addSelect("SUM(CAST(language.value AS INTEGER)) AS value")
+      .innerJoin("user.userListContributors", "ulc")
+      .where("ulc.listId = :listId", { listId })
+      .groupBy("language.key")
+      .orderBy("value", "DESC");
+
+    const itemCount = await cteBuilder.getCount();
+
+    // cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbUserListLanguageStat[] = await cteBuilder.getRawMany();
+
+    const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, itemCount);
+
+    return new MostUsedLanguagesPageDto(entities, pageMetaDto);
   }
 
   async findContributorCategoriesByTimeframe(
