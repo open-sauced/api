@@ -31,7 +31,7 @@ export class UserListStatsService {
   constructor(
     @InjectRepository(DbUserListContributor, "ApiConnection")
     private userListContributorRepository: Repository<DbUserListContributor>
-  ) {}
+  ) { }
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserListContributor> {
     const builder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
@@ -234,10 +234,11 @@ export class UserListStatsService {
      */
 
     cteBuilder
-      .select("language.key AS name")
-      .addSelect("SUM(CAST(language.value AS INTEGER)) AS value")
-      .innerJoin("user.userListContributors", "ulc")
-      .where("ulc.listId = :listId", { listId })
+      .select("language.key", "name")
+      .addSelect("SUM(COALESCE(language.value))", "value")
+      .innerJoin("users", "users", "user_list_contributors.user_id=users.id")
+      .innerJoin("user_list_contributors", "ulc")
+      .where("ulc.list_id = :listId", { listId })
       .groupBy("language.key")
       .orderBy("value", "DESC");
 
