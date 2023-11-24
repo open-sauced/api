@@ -248,6 +248,7 @@ import { UserModule } from &quot;../user/user.module&quot;;
 import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
 import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
+import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
 import { DbUserList } from &quot;./entities/user-list.entity&quot;;
 import { UserListService } from &quot;./user-list.service&quot;;
@@ -266,6 +267,7 @@ import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-tim
       [
         DbUser,
         DbUserList,
+        DbUserHighlight,
         DbPullRequest,
         DbUserListContributor,
         DbUserListContributorStat,
