@@ -195,58 +195,28 @@ export class UserListStatsService {
     pageOptionsDto: UserListMostUsedLanguagesDto,
     listId: string
   ): Promise<PageDto<DbUserListLanguageStat>> {
-    /*
-     * const range = pageOptionsDto.range!;
-     * const now = new Date().toISOString();
-     */
+    const rawQuery = `
+    SELECT sub.key as name, SUM(sub.value) as value
+    FROM (
+        SELECT jsonb_object_keys(u.languages) as key,
+               CAST(jsonb_extract_path_text(u.languages, jsonb_object_keys(u.languages)) AS INTEGER) as value
+        FROM users u
+        INNER JOIN user_list_contributors ulc ON ulc.user_id = u.id
+        WHERE ulc.list_id = $1
+    ) as sub
+    GROUP BY sub.key
+    ORDER BY value DESC
+    LIMIT
+      5
+`;
 
-    const cteBuilder = this.baseQueryBuilder();
+    const entities = (await this.userListContributorRepository.manager.query(rawQuery, [
+      listId,
+    ])) as DbUserListLanguageStat[];
 
-    /*
-     * switch (pageOptionsDto.contributorType) {
-     *   case UserListContributorStatsTypeEnum.all:
-     *     break;
-     */
-
-    /*
-     *   case UserListContributorStatsTypeEnum.active:
-     *     this.applyActiveContributorsFilter(cteBuilder, now, range);
-     *     break;
-     */
-
-    /*
-     *   case UserListContributorStatsTypeEnum.new:
-     *     this.applyNewContributorsFilter(cteBuilder, now, range);
-     *     break;
-     */
-
-    /*
-     *   case UserListContributorStatsTypeEnum.alumni: {
-     *     this.applyAlumniContributorsFilter(cteBuilder, now, range);
-     *     break;
-     *   }
-     */
-
-    /*
-     *   default:
-     *     break;
-     * }
-     */
-
-    cteBuilder
-      .select("language.key", "name")
-      .addSelect("SUM(COALESCE(language.value))", "value")
-      .innerJoin("users", "users", "user_list_contributors.user_id=users.id")
-      .innerJoin("user_list_contributors", "ulc")
-      .where("ulc.list_id = :listId", { listId })
-      .groupBy("language.key")
-      .orderBy("value", "DESC");
-
-    const itemCount = await cteBuilder.getCount();
+    const itemCount = entities.length;
 
     // cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
-
-    const entities: DbUserListLanguageStat[] = await cteBuilder.getRawMany();
 
     const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, itemCount);
 
