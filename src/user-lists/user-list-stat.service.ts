@@ -195,19 +195,79 @@ export class UserListStatsService {
     pageOptionsDto: UserListMostUsedLanguagesDto,
     listId: string
   ): Promise<PageDto<DbUserListLanguageStat>> {
+    const { range = 30, contributorType = "all" } = pageOptionsDto;
+    const startDate = new Date().toISOString();
+
+    /*
+     * the range + range is to go back the previous date range.And that's used to check if someone is an "alum", "active", or "new" contributor.
+     * "Alum" contributed in previous date range but not current date range
+     * "Active" contributed in previous date range and current date range
+     * "New" did not contribute in previous date range but did in current
+     */
+
     const rawQuery = `
-    SELECT sub.key as name, SUM(sub.value) as value
-    FROM (
-        SELECT jsonb_object_keys(u.languages) as key,
-               CAST(jsonb_extract_path_text(u.languages, jsonb_object_keys(u.languages)) AS INTEGER) as value
-        FROM users u
-        INNER JOIN user_list_contributors ulc ON ulc.user_id = u.id
-        WHERE ulc.list_id = $1
-    ) as sub
-    GROUP BY sub.key
-    ORDER BY value DESC
-    LIMIT
-      5
+WITH "CTE" AS (
+	SELECT
+		"users"."id" AS "user_id",
+		"users"."languages",
+		(
+			SELECT
+				COALESCE(SUM("pull_requests"."commits"),
+					0)
+			FROM
+				"pull_requests"
+			WHERE
+				"pull_requests"."author_login" = "users"."login"
+				AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at")::INTEGER AS "commits",
+			(
+				SELECT
+					COALESCE(COUNT("pull_requests"."id"),
+						0)
+				FROM
+					"pull_requests"
+				WHERE
+					"pull_requests"."author_login" = "users"."login"
+					AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at")::INTEGER AS "prs_created"
+			FROM
+				"user_list_contributors" "user_list_contributors"
+				INNER JOIN "users" "users" ON "user_list_contributors"."user_id" = "users"."id"
+					AND "users"."deleted_at" IS NULL
+			LEFT JOIN ( SELECT DISTINCT
+					"author_login"
+				FROM
+					"pull_requests"
+				WHERE
+					"pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
+					AND '${startDate}'::TIMESTAMP) "current_month_prs" ON "users"."login" = "current_month_prs"."author_login"
+			LEFT JOIN ( SELECT DISTINCT
+					"author_login"
+				FROM
+					"pull_requests"
+				WHERE
+					"pull_requests"."updated_at" BETWEEN '${startDate}'::TIMESTAMP - INTERVAL '60 days'
+					AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days') "previous_month_prs" ON "users"."login" = "previous_month_prs"."author_login"
+			WHERE ("previous_month_prs"."author_login" IS NOT NULL
+				AND "current_month_prs"."author_login" IS NOT NULL
+				AND "user_list_contributors"."list_id" = $1)
+			AND("user_list_contributors"."deleted_at" IS NULL)
+		LIMIT 10
+)
+-- add up the languages of each user
+-- languages is e.g. user 1 -> { "TypeScript": 8009, "Go": 100000 }	user 2 -> { "TypeScript": 2001, "Go": 800 }
+-- Which would return e.g. TypeScript -> 10010 Go -> 10800
+SELECT
+	language.key AS name, SUM(CAST(language.value AS INTEGER)) AS value
+FROM
+	"CTE"
+	CROSS JOIN jsonb_each_text(Languages) AS
+	LANGUAGE
+GROUP BY
+	user_id,
+	language.key
+ORDER BY
+	value DESC
+-- limit to the top 5 languages as that's what all the graph shows
+LIMIT 5
 `;
 
     const entities = (await this.userListContributorRepository.manager.query(rawQuery, [
