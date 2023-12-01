@@ -112,7 +112,7 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .where("is_featured=true AND insights.deleted_at IS NULL")
+      .andWhere("is_featured=true")
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
       .orderBy("insights.updated_at", "DESC");
 
