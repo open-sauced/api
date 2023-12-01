@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.57.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0-beta.1...v1.57.0-beta.2) (2023-12-01)
+
+
+### 🍕 Features
+
+* add field and endpoint for featured user lists ([#429](https://github.com/open-sauced/api.opensauced.pizza/issues/429)) ([7c63ee2](https://github.com/open-sauced/api.opensauced.pizza/commit/7c63ee2bfc36a5e2c431087369194b54ed285189))
+
 ## [1.57.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.2-beta.1...v1.57.0-beta.1) (2023-11-24)
 
 
