@@ -90,6 +90,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#is_featured" >is_featured</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#is_public" >is_public</a>
                             </li>
                             <li>
@@ -157,7 +161,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -194,7 +198,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:95</a></div>
                         </td>
                     </tr>
 
@@ -231,6 +235,42 @@
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="is_featured"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>is_featured</b></span>
+                        <a href="#is_featured"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Flag indicating featured list&#x27;, example: false})<br />@Column({default: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -302,7 +342,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:96</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -375,7 +415,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/user-lists/entities/user-list.entity.ts:85</a></div>
                         </td>
                     </tr>
 
@@ -481,6 +521,13 @@ export class DbUserList extends BaseEntity {
   })
   @Column({ default: false })
   public is_public: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Flag indicating featured list&quot;,
+    example: false,
+  })
+  @Column({ default: false })
+  public is_featured: boolean;
 
   @ApiModelPropertyOptional({
     description: &quot;Timestamp representing insight creation&quot;,
