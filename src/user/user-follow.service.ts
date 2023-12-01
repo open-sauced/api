@@ -39,6 +39,7 @@ export class UserFollowService {
 
     return queryBuilder
       .innerJoin("users", "users", "user_follows.user_id=users.id")
+      .innerJoinAndSelect("user_follows.following_user", "following_user")
       .where("user_follows.user_id = :userId", { userId })
       .andWhere("user_follows.deleted_at IS NULL")
       .getMany();

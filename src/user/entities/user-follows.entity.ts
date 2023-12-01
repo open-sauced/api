@@ -1,9 +1,19 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { ApiHideProperty } from "@nestjs/swagger";
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbUser } from "../user.entity";
 
 @Entity({ name: "users_to_users_followers" })
 export class DbUserToUserFollows {
@@ -57,4 +67,11 @@ export class DbUserToUserFollows {
     select: false,
   })
   public deleted_at?: Date;
+
+  @ManyToOne(() => DbUser, (user) => user.following_user)
+  @JoinColumn({
+    name: "following_user_id",
+    referencedColumnName: "id",
+  })
+  public following_user: DbUser;
 }
