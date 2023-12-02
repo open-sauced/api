@@ -112,7 +112,8 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .andWhere("is_featured=true")
+      .where("is_featured=true")
+      .andWhere("is_public=true")
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
       .orderBy("insights.updated_at", "DESC");
 
