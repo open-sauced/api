@@ -91,6 +91,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllFeatured" >findAllFeatured</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOneById" >findOneById</a>
                             </li>
                             <li>
@@ -346,6 +350,77 @@
                                     <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllFeatured"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllFeatured</b></span>
+                        <a href="#findAllFeatured"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllFeatured(pageOptionsDto: <a href="../classes/InsightPageOptionsDto.html" target="_self">InsightPageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/insight/insights.service.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/InsightPageOptionsDto.html" target="_self" >InsightPageOptionsDto</a></code>
                                     </td>
 
                                     <td>
@@ -698,6 +773,25 @@ export class InsightsService {
       &#x60;,
         { userId }
       )
+      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
+      .orderBy(&quot;insights.updated_at&quot;, &quot;DESC&quot;);
+
+    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
+
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllFeatured(pageOptionsDto: InsightPageOptionsDto): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
+    const queryBuilder &#x3D; this.insightRepository.createQueryBuilder(&quot;insights&quot;);
+
+    queryBuilder
+      .where(&quot;is_featured&#x3D;true&quot;)
+      .andWhere(&quot;is_public&#x3D;true&quot;)
       .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
       .orderBy(&quot;insights.updated_at&quot;, &quot;DESC&quot;);
 

@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findFeaturedInsights" >findFeaturedInsights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findInsightPageById" >findInsightPageById</a>
                             </li>
                             <li>
@@ -108,6 +112,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findFeaturedInsights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findFeaturedInsights</b></span>
+                        <a href="#findFeaturedInsights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findFeaturedInsights(pageOptionsDto: <a href="../classes/InsightPageOptionsDto.html" target="_self">InsightPageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/featured&#x27;)<br />@ApiOperation({operationId: &#x27;findFeaturedInsights&#x27;, summary: &#x27;Finds featured insights&#x27;})<br />@ApiOkResponse({type: DbInsight})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/insight/insight.controller.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/InsightPageOptionsDto.html" target="_self" >InsightPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -137,8 +219,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/insight/insight.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/insight/insight.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -215,8 +297,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/insight/insight.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/insight/insight.controller.ts:63</a></div>
                 </td>
             </tr>
 
@@ -280,7 +362,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, ParseIntPipe, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Delete, Get, Param, ParseIntPipe, Query, UnauthorizedException, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -292,12 +374,14 @@ import {
   ApiBody,
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { UpdateInsightDto } from &quot;./dtos/update-insight.dto&quot;;
 
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
 import { InsightsService } from &quot;./insights.service&quot;;
+import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
 
 @Controller(&quot;insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
@@ -315,6 +399,17 @@ export class InsightController {
   @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async findInsightPageById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbInsight&gt; {
     return this.insightsService.findOneById(id);
+  }
+
+  @Get(&quot;/featured&quot;)
+  @ApiOperation({
+    operationId: &quot;findFeaturedInsights&quot;,
+    summary: &quot;Finds featured insights&quot;,
+  })
+  @ApiOkResponse({ type: DbInsight })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async findFeaturedInsights(@Query() pageOptionsDto: InsightPageOptionsDto): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
+    return this.insightsService.findAllFeatured(pageOptionsDto);
   }
 
   @Delete(&quot;/:id&quot;)
