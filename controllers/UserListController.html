@@ -117,6 +117,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getUserListContributorHighlightedRepos" >getUserListContributorHighlightedRepos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getUserListContributorHighlights" >getUserListContributorHighlights</a>
                             </li>
                             <li>
@@ -177,8 +181,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -267,8 +271,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="135"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:135</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:136</a></div>
                 </td>
             </tr>
 
@@ -357,8 +361,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="207"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:207</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:208</a></div>
                 </td>
             </tr>
 
@@ -447,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:153</a></div>
                 </td>
             </tr>
 
@@ -525,8 +529,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -603,8 +607,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -693,8 +697,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="238"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:238</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:256</a></div>
                 </td>
             </tr>
 
@@ -739,8 +743,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:95</a></div>
                 </td>
             </tr>
 
@@ -792,6 +796,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getUserListContributorHighlightedRepos"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserListContributorHighlightedRepos</b></span>
+                        <a href="#getUserListContributorHighlightedRepos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserListContributorHighlightedRepos(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/contributors/highlights/tagged-repos&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributorHighlightedRepos&#x27;, summary: &#x27;Retrieves highlighted repos for contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserHighlightRepo)<br />@ApiOkResponse({type: DbUserHighlightRepo})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:242</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getUserListContributorHighlights"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -817,8 +911,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="224"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:224</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="225"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:225</a></div>
                 </td>
             </tr>
 
@@ -907,8 +1001,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="168"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:168</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:169</a></div>
                 </td>
             </tr>
 
@@ -997,8 +1091,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="185"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:185</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:186</a></div>
                 </td>
             </tr>
 
@@ -1087,8 +1181,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:111</a></div>
                 </td>
             </tr>
 
@@ -1176,6 +1270,7 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
+import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
@@ -1392,6 +1487,23 @@ export class UserListController {
     @Param(&quot;id&quot;) id: string
   ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
     return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
+  }
+
+  @Get(&quot;/:id/contributors/highlights/tagged-repos&quot;)
+  @ApiOperation({
+    operationId: &quot;getUserListContributorHighlightedRepos&quot;,
+    summary: &quot;Retrieves highlighted repos for contributors for an individual user list&quot;,
+  })
+  @ApiPaginatedResponse(DbUserHighlightRepo)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user list contributor highlights&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async getUserListContributorHighlightedRepos(
+    @Query() pageOptionsDto: PageOptionsDto,
+    @Param(&quot;id&quot;) id: string
+  ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
+    return this.userListService.findListContributorsHighlightedRepos(pageOptionsDto, id);
   }
 
   @Get(&quot;/timezones&quot;)
