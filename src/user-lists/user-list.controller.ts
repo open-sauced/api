@@ -50,6 +50,16 @@ export class UserListController {
     return this.userListService.findAllByUserId(pageOptionsDto, userId);
   }
 
+  @Get("/featured")
+  @ApiOperation({
+    operationId: "getFeaturedLists",
+    summary: "Gets public featured lists",
+  })
+  @ApiOkResponse({ type: DbUserList })
+  async getFeaturedLists(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserList>> {
+    return this.userListService.findAllFeatured(pageOptionsDto);
+  }
+
   @Post("/")
   @ApiOperation({
     operationId: "addListForUser",
