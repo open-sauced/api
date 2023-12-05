@@ -254,6 +254,9 @@ export class UserListService {
         "user_list_contributors",
         "user_list_contributors.user_id = user_highlights.user_id"
       )
+      .innerJoin("users", "users", "user_highlights.user_id=users.id")
+      .addSelect("users.name", "user_highlights_name")
+      .addSelect("users.login", "user_highlights_login")
       .where("user_list_contributors.list_id = :listId", { listId })
       .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "user_highlights"."updated_at"`);
 
