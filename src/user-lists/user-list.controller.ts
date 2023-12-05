@@ -10,6 +10,7 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
+import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbUser } from "../user/user.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
@@ -216,6 +217,23 @@ export class UserListController {
     @Param("id") id: string
   ): Promise<PageDto<DbUserHighlight>> {
     return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
+  }
+
+  @Get("/:id/contributors/highlighted-repos")
+  @ApiOperation({
+    operationId: "getUserListContributorHighlightedRepos",
+    summary: "Retrieves highlighted repos for contributors for an individual user list",
+  })
+  @ApiPaginatedResponse(DbUserHighlightRepo)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
+  @ApiNotFoundResponse({ description: "Unable to get user list contributor highlights" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getUserListContributorHighlightedRepos(
+    @Query() pageOptionsDto: PageOptionsDto,
+    @Param("id") id: string
+  ): Promise<PageDto<DbUserHighlightRepo>> {
+    return this.userListService.findListContributorsHighlightedRepos(pageOptionsDto, id);
   }
 
   @Get("/timezones")
