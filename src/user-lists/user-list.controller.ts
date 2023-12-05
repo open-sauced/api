@@ -229,7 +229,7 @@ export class UserListController {
     return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
   }
 
-  @Get("/:id/contributors/highlighted-repos")
+  @Get("/:id/contributors/highlights/tagged-repos")
   @ApiOperation({
     operationId: "getUserListContributorHighlightedRepos",
     summary: "Retrieves highlighted repos for contributors for an individual user list",
