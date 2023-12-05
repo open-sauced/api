@@ -5,6 +5,28 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.57.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.56.1...v1.57.0) (2023-12-05)
+
+
+### 🐛 Bug Fixes
+
+* Ignore org user types in v1/lists/contributors ([#419](https://github.com/open-sauced/api.opensauced.pizza/issues/419)) ([85b1298](https://github.com/open-sauced/api.opensauced.pizza/commit/85b1298832177a2550ea448d32a55452b74e2100))
+
+
+### 🍕 Features
+
+* add campaign_start_date field to users table ([#434](https://github.com/open-sauced/api.opensauced.pizza/issues/434)) ([9091422](https://github.com/open-sauced/api.opensauced.pizza/commit/909142268ed4c6d62cba4bb3412e55cbf7a3ffef))
+* add endpoint to get featured insights pages ([8f03a4d](https://github.com/open-sauced/api.opensauced.pizza/commit/8f03a4d351a4121b9631273ac4dab7e7cb8e7d89))
+* add field and endpoint for featured user lists ([#429](https://github.com/open-sauced/api.opensauced.pizza/issues/429)) ([7c63ee2](https://github.com/open-sauced/api.opensauced.pizza/commit/7c63ee2bfc36a5e2c431087369194b54ed285189))
+* User highlights for users in list contributors ([be1aeca](https://github.com/open-sauced/api.opensauced.pizza/commit/be1aeca5bf9f799d4a301d7c8012e2e76ff3a5a9))
+
+## [1.57.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0-beta.3...v1.57.0-beta.4) (2023-12-05)
+
+
+### 🍕 Features
+
+* add campaign_start_date field to users table ([#434](https://github.com/open-sauced/api.opensauced.pizza/issues/434)) ([9091422](https://github.com/open-sauced/api.opensauced.pizza/commit/909142268ed4c6d62cba4bb3412e55cbf7a3ffef))
+
 ## [1.57.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0-beta.2...v1.57.0-beta.3) (2023-12-04)
 
 
