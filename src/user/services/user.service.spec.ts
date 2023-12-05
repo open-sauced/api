@@ -258,6 +258,7 @@ describe("UserService", () => {
         created_at: new Date(supabaseUser.identities[0].created_at),
         updated_at: new Date(supabaseUser.identities[0].updated_at),
         connected_at: new Date(supabaseUser.confirmed_at),
+        campaign_start_date: new Date(supabaseUser.confirmed_at),
       };
 
       dbUserRepositoryMock.save?.mockReturnValue(newUser);
