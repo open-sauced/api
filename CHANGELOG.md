@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.57.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0-beta.3...v1.57.0-beta.4) (2023-12-05)
+
+
+### 🍕 Features
+
+* add campaign_start_date field to users table ([#434](https://github.com/open-sauced/api.opensauced.pizza/issues/434)) ([9091422](https://github.com/open-sauced/api.opensauced.pizza/commit/909142268ed4c6d62cba4bb3412e55cbf7a3ffef))
+
 ## [1.57.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0-beta.2...v1.57.0-beta.3) (2023-12-04)
 
 
