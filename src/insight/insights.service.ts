@@ -107,4 +107,23 @@ export class InsightsService {
 
     return new PageDto(entities, pageMetaDto);
   }
+
+  async findAllFeatured(pageOptionsDto: InsightPageOptionsDto): Promise<PageDto<DbInsight>> {
+    const queryBuilder = this.insightRepository.createQueryBuilder("insights");
+
+    queryBuilder
+      .where("is_featured=true")
+      .andWhere("is_public=true")
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .orderBy("insights.updated_at", "DESC");
+
+    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
+
+    const itemCount = await queryBuilder.getCount();
+    const entities = await queryBuilder.getMany();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
 }

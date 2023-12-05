@@ -8,6 +8,9 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
 import { DbUser } from "../user/user.entity";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
+import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { DbUserHighlight } from "../user/entities/user-highlight.entity";
+import { GetPrevDateISOString } from "../common/util/datetimes";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
@@ -21,6 +24,8 @@ export class UserListService {
     private userListRepository: Repository<DbUserList>,
     @InjectRepository(DbUserListContributor, "ApiConnection")
     private userListContributorRepository: Repository<DbUserListContributor>,
+    @InjectRepository(DbUserHighlight, "ApiConnection")
+    private userHighlightRepository: Repository<DbUserHighlight>,
     @InjectRepository(DbUser, "ApiConnection")
     private userRepository: Repository<DbUser>,
     private pagerService: PagerService
@@ -90,6 +95,17 @@ export class UserListService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("user_lists.user_id = :userId", { userId }).orderBy("user_lists.updated_at", "DESC");
+
+    return this.pagerService.applyPagination<DbUserList>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
+
+  async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserList>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("is_featured=true").andWhere("is_public=true").orderBy("user_lists.updated_at", "DESC");
 
     return this.pagerService.applyPagination<DbUserList>({
       pageOptionsDto,
@@ -188,6 +204,9 @@ export class UserListService {
       queryBuilder.andWhere("pr_stats.avg_merge_time != 0");
     }
 
+    // skip "users" who are actually orgs
+    queryBuilder.andWhere("type != 'Organization'");
+
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
@@ -217,6 +236,48 @@ export class UserListService {
       pageOptionsDto,
       queryBuilder,
     });
+  }
+
+  async findListContributorsHighlights(
+    pageOptionsDto: HighlightOptionsDto,
+    listId: string
+  ): Promise<PageDto<DbUserHighlight>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range ?? 30;
+    const orderBy = pageOptionsDto.orderDirection ?? "DESC";
+    const queryBuilder = this.userHighlightRepository.createQueryBuilder("user_highlights");
+
+    // return all highlights that belongs to a contributor of the list id
+    queryBuilder
+      .innerJoin(
+        "user_list_contributors",
+        "user_list_contributors",
+        "user_list_contributors.user_id = user_highlights.user_id"
+      )
+      .innerJoin("users", "users", "user_highlights.user_id=users.id")
+      .addSelect("users.name", "user_highlights_name")
+      .addSelect("users.login", "user_highlights_login")
+      .where("user_list_contributors.list_id = :listId", { listId })
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "user_highlights"."updated_at"`);
+
+    if (pageOptionsDto.repo) {
+      queryBuilder.andWhere(
+        `EXISTS (
+        SELECT 1
+        FROM unnest(user_highlights.tagged_repos) AS repos
+        WHERE repos LIKE '%${pageOptionsDto.repo}%'
+      )`
+      );
+    }
+
+    queryBuilder.orderBy("user_highlights.updated_at", orderBy);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getMany();
+    const itemCount = entities.length;
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async getAllTimezones(): Promise<DbTimezone[]> {

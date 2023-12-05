@@ -115,6 +115,16 @@ export class DbUser extends BaseEntity {
   })
   public connected_at?: Date;
 
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing user email campaign start date",
+    example: "2022-08-28 22:04:29.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    default: null,
+  })
+  public campaign_start_date?: Date;
+
   @ApiModelProperty({
     description: "User GitHub node id",
     example: "MDQ6VXNlcjIzNzEzMw==",

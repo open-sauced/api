@@ -260,6 +260,7 @@ export class UserService {
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
           connected_at: new Date(),
+          campaign_start_date: new Date(),
         });
       }
 
@@ -281,6 +282,7 @@ export class UserService {
         created_at: new Date(github.created_at),
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
+        campaign_start_date: confirmed_at ? new Date(confirmed_at) : new Date(),
       });
 
       await this.tierService.checkAddOrg(id, {
