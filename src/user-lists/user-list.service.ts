@@ -102,6 +102,17 @@ export class UserListService {
     });
   }
 
+  async findAllFeatured(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserList>> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("is_featured=true").andWhere("is_public=true").orderBy("user_lists.updated_at", "DESC");
+
+    return this.pagerService.applyPagination<DbUserList>({
+      pageOptionsDto,
+      queryBuilder,
+    });
+  }
+
   async addUserList(userId: number, list: CreateUserListDto) {
     const newUserList = this.userListRepository.create({
       user_id: userId,
