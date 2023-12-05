@@ -8,7 +8,7 @@
 
 | Name                                                                      | Columns | Comment | Type       |
 | ------------------------------------------------------------------------- | ------- | ------- | ---------- |
-| [public.users](public.users.md)                                           | 44      |         | BASE TABLE |
+| [public.users](public.users.md)                                           | 45      |         | BASE TABLE |
 | [public.repos](public.repos.md)                                           | 44      |         | BASE TABLE |
 | [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
 | [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
@@ -36,7 +36,7 @@
 | [public.commits](public.commits.md)                                       | 5       |         | BASE TABLE |
 | [public.maintainers](public.maintainers.md)                               | 1       |         | BASE TABLE |
 | [public.user_organizations](public.user_organizations.md)                 | 5       |         | BASE TABLE |
-| [public.user_lists](public.user_lists.md)                                 | 7       |         | BASE TABLE |
+| [public.user_lists](public.user_lists.md)                                 | 8       |         | BASE TABLE |
 | [public.user_list_contributors](public.user_list_contributors.md)         | 6       |         | BASE TABLE |
 | [public.coupons](public.coupons.md)                                       | 3       |         | BASE TABLE |
 | [public.pull_request_reviews](public.pull_request_reviews.md)             | 7       |         | BASE TABLE |
