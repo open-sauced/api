@@ -1275,8 +1275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="280"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:280</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:283</a></div>
                 </td>
             </tr>
 
@@ -1637,6 +1637,9 @@ export class UserListService {
         &quot;user_list_contributors&quot;,
         &quot;user_list_contributors.user_id &#x3D; user_highlights.user_id&quot;
       )
+      .innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_highlights.user_id&#x3D;users.id&quot;)
+      .addSelect(&quot;users.name&quot;, &quot;user_highlights_name&quot;)
+      .addSelect(&quot;users.login&quot;, &quot;user_highlights_login&quot;)
       .where(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
       .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;user_highlights&quot;.&quot;updated_at&quot;&#x60;);
 
