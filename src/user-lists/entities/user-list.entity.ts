@@ -57,6 +57,13 @@ export class DbUserList extends BaseEntity {
   @Column({ default: false })
   public is_public: boolean;
 
+  @ApiModelProperty({
+    description: "Flag indicating featured list",
+    example: false,
+  })
+  @Column({ default: false })
+  public is_featured: boolean;
+
   @ApiModelPropertyOptional({
     description: "Timestamp representing insight creation",
     example: "2022-10-19 13:24:51.000000",
