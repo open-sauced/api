@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.58.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0-beta.1...v1.58.0-beta.2) (2023-12-06)
+
+
+### 🐛 Bug Fixes
+
+* Most active contribs limit is now accurate ([063ce2f](https://github.com/open-sauced/api.opensauced.pizza/commit/063ce2f1d54152c07cafa8c2001870b393dbc1ac))
+
 ## [1.58.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0...v1.58.0-beta.1) (2023-12-05)
 
 
