@@ -11,6 +11,14 @@ export class HighlightOptionsDto extends PageOptionsDto {
   @IsString()
   @IsOptional()
   readonly repo?: string;
+
+  @ApiPropertyOptional({
+    description: "Highlight User Filter",
+    example: "RitaDee",
+  })
+  @IsString()
+  @IsOptional()
+  readonly contributor?: string;
 }
 
 export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, ["emoji_id", "reaction_count"]) {
