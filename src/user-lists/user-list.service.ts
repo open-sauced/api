@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/co
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
@@ -274,6 +275,35 @@ export class UserListService {
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const entities = await queryBuilder.getMany();
+    const itemCount = entities.length;
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findListContributorsHighlightedRepos(
+    pageOptionsDto: PageOptionsDto,
+    listId: string
+  ): Promise<PageDto<DbUserHighlightRepo>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range ?? 30;
+    const orderBy = pageOptionsDto.orderDirection ?? "DESC";
+    const queryBuilder = this.userHighlightRepository.createQueryBuilder("user_highlights");
+
+    queryBuilder.select("DISTINCT UNNEST(user_highlights.tagged_repos) AS full_name");
+
+    queryBuilder
+      .innerJoin(
+        "user_list_contributors",
+        "user_list_contributors",
+        "user_list_contributors.user_id = user_highlights.user_id"
+      )
+      .where("user_list_contributors.list_id = :listId", { listId })
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "user_highlights"."updated_at"`);
+    queryBuilder.orderBy("full_name", orderBy);
+    queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities = await queryBuilder.getRawMany();
     const itemCount = entities.length;
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 

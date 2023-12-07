@@ -141,7 +141,9 @@ export class UserListStatsService {
       .addSelect("commits")
       .addSelect("prs_created")
       .addSelect(`("commits" + "prs_created") AS "total_contributions"`)
-      .from("CTE", "CTE");
+      .from("CTE", "CTE")
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
 
     switch (pageOptionsDto.orderBy) {
       case UserListContributorStatsOrderEnum.commits:
@@ -178,8 +180,6 @@ export class UserListStatsService {
     }
 
     const allContributionsCount = allContributionsResult.all_contributions;
-
-    cteBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const entities: DbUserListContributorStat[] = await entityQb.getRawMany();
 
