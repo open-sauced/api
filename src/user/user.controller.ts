@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, Query, Version } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
@@ -8,6 +8,8 @@ import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";
 import { DbUser } from "./user.entity";
@@ -26,6 +28,7 @@ export class UserController {
   constructor(
     private userService: UserService,
     private pullRequestService: PullRequestService,
+    private pullRequestGitHubEventsService: PullRequestGithubEventsService,
     private userHighlightsService: UserHighlightsService,
     private repoService: RepoService,
     private userOrganizationService: UserOrganizationService
@@ -55,6 +58,22 @@ export class UserController {
     @Query() pageOptionsDto: ContributorPullRequestsDto
   ): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllByContributor(username, pageOptionsDto);
+  }
+
+  @Version("2")
+  @Get("/:username/prs")
+  @ApiOperation({
+    operationId: "findContributorPullRequestGitHubEvents",
+    summary: "Finds pull requests by :username",
+  })
+  @ApiPaginatedResponse(DbPullRequestGitHubEvents)
+  @ApiOkResponse({ type: DbPullRequestGitHubEvents })
+  @ApiNotFoundResponse({ description: "User not found" })
+  async findContributorPullRequestGitHubEvents(
+    @Param("username") username: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise<PageDto<DbPullRequestGitHubEvents>> {
+    return this.pullRequestGitHubEventsService.findAllByPrAuthor(username, pageOptionsDto);
   }
 
   @Get("/:username/highlights")
