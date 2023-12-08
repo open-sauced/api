@@ -18,6 +18,7 @@ import {
   PizzaConfig,
   HacktoberfestConfig,
   TierConfig,
+  DbTimescaleConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -79,6 +80,8 @@ import { DbUserList } from "./user-lists/entities/user-list.entity";
 import { DbUserListContributor } from "./user-lists/entities/user-list-contributor.entity";
 import { DbCoupon } from "./coupon/entities/coupon.entity";
 import { LogModule } from "./log/log.module";
+import { TimescaleModule } from "./timescale/timescale.module";
+import { DbPullRequestGitHubEvents } from "./timescale/entities/pull_request_github_event";
 
 @Module({
   imports: [
@@ -93,6 +96,7 @@ import { LogModule } from "./log/log.module";
         PizzaConfig,
         HacktoberfestConfig,
         TierConfig,
+        DbTimescaleConfig,
       ],
       isGlobal: true,
     }),
@@ -149,6 +153,28 @@ import { LogModule } from "./log/log.module";
             rejectUnauthorized: false,
           },
           maxQueryExecutionTime: configService.get("db-api.maxQueryExecutionTime"),
+        } as TypeOrmModuleOptions),
+      inject: [ConfigService],
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      name: "TimescaleConnection",
+      useFactory: (configService: ConfigService) =>
+        ({
+          type: configService.get("db-timescale.connection"),
+          host: configService.get("db-timescale.host"),
+          port: configService.get("db-timescale.port"),
+          username: configService.get("db-timescale.username"),
+          password: configService.get("db-timescale.password"),
+          database: configService.get("db-timescale.database"),
+          autoLoadEntities: false,
+          entities: [DbPullRequestGitHubEvents],
+          synchronize: false,
+          logger: new DatabaseLoggerMiddleware("OS"),
+          ssl: {
+            ca: configService.get("db-timescale.certificate"),
+            rejectUnauthorized: false,
+          },
         } as TypeOrmModuleOptions),
       inject: [ConfigService],
     }),
@@ -227,6 +253,7 @@ import { LogModule } from "./log/log.module";
     UserListModule,
     CouponModule,
     LogModule,
+    TimescaleModule,
   ],
   providers: [],
 })
@@ -235,11 +262,15 @@ export class AppModule {
     @InjectDataSource("ApiConnection")
     private readonly apiConnection: DataSource,
 
+    @InjectDataSource("TimescaleConnection")
+    private readonly timescaleConnection: DataSource,
+
     @InjectDataSource("LogConnection")
     private readonly logConnection: DataSource
   ) {}
 
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(HttpLoggerMiddleware).forRoutes(`v1`);
+    consumer.apply(HttpLoggerMiddleware).forRoutes(`v2`);
   }
 }
