@@ -32,14 +32,20 @@ async function bootstrap() {
 
   const options = new DocumentBuilder();
 
-  if (configService.get("api.development")) {
+  if (configService.get("api.codename") === "api-local") {
     options.addServer(`http://localhost:${String(configService.get("api.port"))}`, "Development", {});
+  }
+
+  if (configService.get("api.codename") === "api-beta" || configService.get("api.codename") === "api-local") {
+    options.addServer(`https://beta.${apiDomain}`, "Beta", {});
+  }
+
+  if (configService.get("api.codename") === "api-alpha" || configService.get("api.codename") === "api-local") {
+    options.addServer(`https://alpha.${apiDomain}`, "Alpha", {});
   }
 
   options
     .addServer(`https://${apiDomain}`, "Production", {})
-    .addServer(`https://beta.${apiDomain}`, "Beta", {})
-    .addServer(`https://alpha.${apiDomain}`, "Alpha", {})
     .setTitle(`@open-sauced/api.opensauced.pizza`)
     .setDescription(markdownDescription)
     .setVersion(`1`)
