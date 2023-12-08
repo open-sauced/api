@@ -1,0 +1,1320 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content entity">
+                   <div class="content-data">
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Entities</li>
+  <li >DbPullRequestGitHubEvents</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/timescale/entities/pull_request_github_event.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#event_id" >event_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_additions" >pr_additions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_author_login" >pr_author_login</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_base_label" >pr_base_label</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_base_ref" >pr_base_ref</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_changed_files" >pr_changed_files</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_closed_at" >pr_closed_at</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_comments" >pr_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_commits" >pr_commits</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_created_at" >pr_created_at</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_deletions" >pr_deletions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_head_label" >pr_head_label</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_head_ref" >pr_head_ref</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_is_draft" >pr_is_draft</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_is_merged" >pr_is_merged</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_is_rebaseable" >pr_is_rebaseable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_mergeable_state" >pr_mergeable_state</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_merged_at" >pr_merged_at</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_number" >pr_number</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_state" >pr_state</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_title" >pr_title</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#pr_updated_at" >pr_updated_at</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#repo_name" >repo_name</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="event_id"></a>
+                    <span class="name">
+                        <span ><b>event_id</b></span>
+                        <a href="#event_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request event identifier&#x27;, example: 1045024650, type: &#x27;integer&#x27;})<br />@PrimaryColumn(&#x27;integer&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_additions"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_additions</b></span>
+                        <a href="#pr_additions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;PR lines added&#x27;, example: 10, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_author_login"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_author_login</b></span>
+                        <a href="#pr_author_login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request author username&#x27;, example: &#x27;Th3nn3ss&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:106</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_base_label"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_base_label</b></span>
+                        <a href="#pr_base_label"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request target ref&#x27;, example: &#x27;aws:main&#x27;})<br />@Column({type: &#x27;text&#x27;, default: &#x27;&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_base_ref"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_base_ref</b></span>
+                        <a href="#pr_base_ref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request target branch&#x27;, example: &#x27;main&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_changed_files"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_changed_files</b></span>
+                        <a href="#pr_changed_files"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;PR files changed&#x27;, example: 5, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="178" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:178</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_closed_at"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_closed_at</b></span>
+                        <a href="#pr_closed_at"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Timestamp representing pr close date&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="126" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_comments</b></span>
+                        <a href="#pr_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;PR comments&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:154</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_commits"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_commits</b></span>
+                        <a href="#pr_commits"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of commits in the PR&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_created_at"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_created_at</b></span>
+                        <a href="#pr_created_at"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing pr creation date&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_deletions"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_deletions</b></span>
+                        <a href="#pr_deletions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;PR lines deleted&#x27;, example: 5, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_head_label"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_head_label</b></span>
+                        <a href="#pr_head_label"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request source ref&#x27;, example: &#x27;Th3nn3ss:cli_split_kwargs&#x27;})<br />@Column({type: &#x27;text&#x27;, default: &#x27;&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_head_ref"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_head_ref</b></span>
+                        <a href="#pr_head_ref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request source branch&#x27;, example: &#x27;cli_split_kwargs&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_is_draft"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_is_draft</b></span>
+                        <a href="#pr_is_draft"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request is draft&#x27;, example: false})<br />@Column(&#x27;boolean&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_is_merged"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_is_merged</b></span>
+                        <a href="#pr_is_merged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request is merged&#x27;, example: false})<br />@Column(&#x27;boolean&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_is_rebaseable"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_is_rebaseable</b></span>
+                        <a href="#pr_is_rebaseable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request is rebaseable&#x27;, example: false})<br />@Column(&#x27;boolean&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_mergeable_state"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_mergeable_state</b></span>
+                        <a href="#pr_mergeable_state"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request mergeable state&#x27;, example: &#x27;unknown&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_merged_at"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_merged_at</b></span>
+                        <a href="#pr_merged_at"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Timestamp representing pr merge date&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_number"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_number</b></span>
+                        <a href="#pr_number"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request number&#x27;, example: 612, type: &#x27;integer&#x27;})<br />@Column(&#x27;integer&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:23</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_state"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_state</b></span>
+                        <a href="#pr_state"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request state&#x27;, example: &#x27;closed&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_title"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_title</b></span>
+                        <a href="#pr_title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request title&#x27;, example: &#x27;fix(cli): arg tags value with equal sign&#x27;})<br />@Column(&#x27;text&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_updated_at"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>pr_updated_at</b></span>
+                        <a href="#pr_updated_at"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" target="_blank" >Date</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Timestamp representing repository last update&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:146</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repo_name"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
+                        <span ><b>repo_name</b></span>
+                        <a href="#repo_name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Pull request repo full name&#x27;, example: &#x27;open-sauced/insights&#x27;})<br />@Column({type: &#x27;text&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="189" class="link-to-prism">src/timescale/entities/pull_request_github_event.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ApiModelProperty,
+  ApiModelPropertyOptional,
+} from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import { Entity, BaseEntity, PrimaryColumn, Column, CreateDateColumn } from &quot;typeorm&quot;;
+
+@Entity({ name: &quot;pull_request_github_events&quot; })
+export class DbPullRequestGitHubEvents extends BaseEntity {
+  @ApiModelProperty({
+    description: &quot;Pull request event identifier&quot;,
+    example: 1045024650,
+    type: &quot;integer&quot;,
+  })
+  @PrimaryColumn(&quot;integer&quot;)
+  event_id: number;
+
+  @ApiModelProperty({
+    description: &quot;Pull request number&quot;,
+    example: 612,
+    type: &quot;integer&quot;,
+  })
+  @Column(&quot;integer&quot;)
+  public pr_number: number;
+
+  @ApiModelProperty({
+    description: &quot;Pull request state&quot;,
+    example: &quot;closed&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_state: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request is draft&quot;,
+    example: false,
+  })
+  @Column(&quot;boolean&quot;)
+  public pr_is_draft: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Pull request is merged&quot;,
+    example: false,
+  })
+  @Column(&quot;boolean&quot;)
+  public pr_is_merged: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Pull request mergeable state&quot;,
+    example: &quot;unknown&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_mergeable_state: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request is rebaseable&quot;,
+    example: false,
+  })
+  @Column(&quot;boolean&quot;)
+  public pr_is_rebaseable: boolean;
+
+  @ApiModelProperty({
+    description: &quot;Pull request title&quot;,
+    example: &quot;fix(cli): arg tags value with equal sign&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_title: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request source ref&quot;,
+    example: &quot;Th3nn3ss:cli_split_kwargs&quot;,
+  })
+  @Column({
+    type: &quot;text&quot;,
+    default: &quot;&quot;,
+  })
+  public pr_head_label?: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request target ref&quot;,
+    example: &quot;aws:main&quot;,
+  })
+  @Column({
+    type: &quot;text&quot;,
+    default: &quot;&quot;,
+  })
+  public pr_base_label?: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request source branch&quot;,
+    example: &quot;cli_split_kwargs&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_head_ref?: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request target branch&quot;,
+    example: &quot;main&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_base_ref?: string;
+
+  @ApiModelProperty({
+    description: &quot;Pull request author username&quot;,
+    example: &quot;Th3nn3ss&quot;,
+  })
+  @Column(&quot;text&quot;)
+  public pr_author_login: string;
+
+  @ApiModelPropertyOptional({
+    description: &quot;Timestamp representing pr creation date&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
+  @CreateDateColumn({
+    type: &quot;timestamp without time zone&quot;,
+    default: () &#x3D;&gt; &quot;now()&quot;,
+  })
+  public pr_created_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;Timestamp representing pr close date&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
+  @Column({
+    type: &quot;timestamp without time zone&quot;,
+    default: () &#x3D;&gt; &quot;now()&quot;,
+  })
+  public pr_closed_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;Timestamp representing pr merge date&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
+  @Column({
+    type: &quot;timestamp without time zone&quot;,
+    default: () &#x3D;&gt; &quot;now()&quot;,
+  })
+  public pr_merged_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;Timestamp representing repository last update&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
+  @Column({
+    type: &quot;timestamp without time zone&quot;,
+    default: () &#x3D;&gt; &quot;now()&quot;,
+  })
+  public pr_updated_at?: Date;
+
+  @ApiModelProperty({
+    description: &quot;PR comments&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({ type: &quot;bigint&quot; })
+  public pr_comments?: number;
+
+  @ApiModelProperty({
+    description: &quot;PR lines added&quot;,
+    example: 10,
+    type: &quot;integer&quot;,
+  })
+  @Column({ type: &quot;bigint&quot; })
+  public pr_additions?: number;
+
+  @ApiModelProperty({
+    description: &quot;PR lines deleted&quot;,
+    example: 5,
+    type: &quot;integer&quot;,
+  })
+  @Column({ type: &quot;bigint&quot; })
+  public pr_deletions?: number;
+
+  @ApiModelProperty({
+    description: &quot;PR files changed&quot;,
+    example: 5,
+    type: &quot;integer&quot;,
+  })
+  @Column({ type: &quot;bigint&quot; })
+  public pr_changed_files?: number;
+
+  @ApiModelProperty({
+    description: &quot;Pull request repo full name&quot;,
+    example: &quot;open-sauced/insights&quot;,
+  })
+  @Column({
+    type: &quot;text&quot;,
+    select: false,
+    insert: false,
+  })
+  public repo_name?: string;
+
+  @ApiModelProperty({
+    description: &quot;Number of commits in the PR&quot;,
+    example: 4,
+    type: &quot;integer&quot;,
+  })
+  @Column({ type: &quot;bigint&quot; })
+  public pr_commits?: number;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
+            var COMPODOC_CURRENT_PAGE_URL = 'DbPullRequestGitHubEvents.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

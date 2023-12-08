@@ -76,6 +76,9 @@
                             <a href="#DbLoggingConfig" title="src/config/db-logging.config.ts" ><b>DbLoggingConfig</b>&nbsp;&nbsp;&nbsp;(src/.../db-logging.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#DbTimescaleConfig" title="src/config/timescale.config.ts" ><b>DbTimescaleConfig</b>&nbsp;&nbsp;&nbsp;(src/.../timescale.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EndpointConfig" title="src/config/endpoint.config.ts" ><b>EndpointConfig</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
@@ -284,6 +287,37 @@
   database: String(process.env.TYPEORM_DATABASE_LOGGING ?? &quot;defaultdb&quot;),
   certificate: String(process.env.TYPEORM_SSL_CERT_LOGGING ?? &quot;-----------------------------&quot;),
   maxQueryExecutionTime: Number(parseInt(process.env.TYPEORM_MAX_QUERY_EXECUTION_TIME_LOGGING ?? &quot;10000&quot;, 10)),
+}))</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/timescale.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DbTimescaleConfig"></a>
+                    <span class="name">
+                        <span ><b>DbTimescaleConfig</b></span>
+                        <a href="#DbTimescaleConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;db-timescale&quot;, () &#x3D;&gt; ({
+  connection: String(process.env.TYPEORM_CONNECTION_TIMESCALE ?? &quot;postgres&quot;),
+  host: String(process.env.TYPEORM_HOST_TIMESCALE ?? &quot;localhost&quot;),
+  port: String(process.env.TYPEORM_PORT_TIMESCALE ?? &quot;5432&quot;),
+  username: String(process.env.TYPEORM_USERNAME_TIMESCALE ?? &quot;tsdbadmin&quot;),
+  password: String(process.env.TYPEORM_PASSWORD_TIMESCALE ?? &quot;password&quot;),
+  database: String(process.env.TYPEORM_DATABASE_TIMESCALE ?? &quot;tsdb&quot;),
+  certificate: String(process.env.TYPEORM_SSL_CERT_TIMESCALE ?? &quot;-----------------------------&quot;),
 }))</code>
                     </td>
                 </tr>
