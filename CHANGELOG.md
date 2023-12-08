@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.59.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0...v1.59.0-beta.1) (2023-12-08)
+
+
+### 🍕 Features
+
+* Initial timescale integration for user PRs ([aa72537](https://github.com/open-sauced/api.opensauced.pizza/commit/aa7253748e753f52952e286f553de65783c7e114))
+
 ## [1.58.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.57.0...v1.58.0) (2023-12-07)
 
 
