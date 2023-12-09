@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.59.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0-beta.1...v1.59.0-beta.2) (2023-12-08)
+
+
+### 🐛 Bug Fixes
+
+* provide servers for Swagger page based on environment ([#443](https://github.com/open-sauced/api.opensauced.pizza/issues/443)) ([4df9e61](https://github.com/open-sauced/api.opensauced.pizza/commit/4df9e6134a5069210ba826a34a1514d5bde5899b))
+
 ## [1.59.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0...v1.59.0-beta.1) (2023-12-08)
 
 
