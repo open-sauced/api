@@ -271,6 +271,12 @@ export class UserListService {
       );
     }
 
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere("LOWER(users.login) LIKE :contributor", {
+        contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
+      });
+    }
+
     queryBuilder.orderBy("user_highlights.updated_at", orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
