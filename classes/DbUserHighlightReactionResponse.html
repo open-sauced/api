@@ -136,7 +136,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/highlight/dtos/highlight-options.dto.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -168,6 +168,14 @@ export class HighlightOptionsDto extends PageOptionsDto {
   @IsString()
   @IsOptional()
   readonly repo?: string;
+
+  @ApiPropertyOptional({
+    description: &quot;Highlight User Filter&quot;,
+    example: &quot;RitaDee&quot;,
+  })
+  @IsString()
+  @IsOptional()
+  readonly contributor?: string;
 }
 
 export class DbUserHighlightReactionResponse extends PickType(DbUserHighlightReaction, [&quot;emoji_id&quot;, &quot;reaction_count&quot;]) {

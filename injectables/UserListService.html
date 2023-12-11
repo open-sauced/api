@@ -1030,8 +1030,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="284"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:284</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:290</a></div>
                 </td>
             </tr>
 
@@ -1362,8 +1362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="313"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:313</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="319"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:319</a></div>
                 </td>
             </tr>
 
@@ -1739,6 +1739,12 @@ export class UserListService {
         WHERE repos LIKE &#x27;%${pageOptionsDto.repo}%&#x27;
       )&#x60;
       );
+    }
+
+    if (pageOptionsDto.contributor) {
+      queryBuilder.andWhere(&quot;LOWER(users.login) LIKE :contributor&quot;, {
+        contributor: &#x60;%${pageOptionsDto.contributor.toLowerCase()}%&#x60;,
+      });
     }
 
     queryBuilder.orderBy(&quot;user_highlights.updated_at&quot;, orderBy);
