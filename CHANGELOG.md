@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.59.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0-beta.2...v1.59.0-beta.3) (2023-12-11)
+
+
+### 🍕 Features
+
+* add support for contributors search ([#439](https://github.com/open-sauced/api.opensauced.pizza/issues/439)) ([53ecea0](https://github.com/open-sauced/api.opensauced.pizza/commit/53ecea0e8386d32db518de9dec888f5569bcd3f2))
+
 ## [1.59.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0-beta.1...v1.59.0-beta.2) (2023-12-08)
 
 
