@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.59.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0...v1.59.0) (2023-12-12)
+
+
+### 🐛 Bug Fixes
+
+* provide servers for Swagger page based on environment ([#443](https://github.com/open-sauced/api.opensauced.pizza/issues/443)) ([4df9e61](https://github.com/open-sauced/api.opensauced.pizza/commit/4df9e6134a5069210ba826a34a1514d5bde5899b))
+
+
+### 🍕 Features
+
+* add support for contributors search ([#439](https://github.com/open-sauced/api.opensauced.pizza/issues/439)) ([53ecea0](https://github.com/open-sauced/api.opensauced.pizza/commit/53ecea0e8386d32db518de9dec888f5569bcd3f2))
+* Initial timescale integration for user PRs ([aa72537](https://github.com/open-sauced/api.opensauced.pizza/commit/aa7253748e753f52952e286f553de65783c7e114))
+
 ## [1.59.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0-beta.2...v1.59.0-beta.3) (2023-12-11)
 
 
