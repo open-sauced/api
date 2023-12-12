@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { TimescaleModule } from "../timescale/timescale.module";
 import { PullRequestModule } from "../pull-requests/pull-request.module";
 import { RepoModule } from "../repo/repo.module";
 
@@ -56,10 +58,12 @@ import { UserOrganizationService } from "./user-organization.service";
       ],
       "ApiConnection"
     ),
+    TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
     PullRequestModule,
     RepoModule,
     ApiServicesModule,
     TierModule,
+    TimescaleModule,
   ],
   controllers: [
     UserController,
