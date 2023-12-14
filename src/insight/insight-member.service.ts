@@ -7,14 +7,12 @@ import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PagerService } from "../common/services/pager.service";
 import { DbInsightMember } from "./entities/insight-member.entity";
-import { InsightsService } from "./insights.service";
 
 @Injectable()
 export class InsightMemberService {
   constructor(
     @InjectRepository(DbInsightMember, "ApiConnection")
     private insightMemberRepository: Repository<DbInsightMember>,
-    private insightService: InsightsService,
     private pagerService: PagerService
   ) {}
 
@@ -56,9 +54,14 @@ export class InsightMemberService {
     accessRoles: string[],
     checkOwner = true
   ): Promise<boolean> {
-    const insight = await this.insightService.findOneById(insightId);
+    const insightMember = await this.insightMemberRepository.findOne({
+      where: {
+        user_id: userId,
+        insight_id: insightId,
+      },
+    });
 
-    if (checkOwner && Number(insight.user.id) === userId) {
+    if (checkOwner && insightMember && insightMember.user_id === userId) {
       return true;
     }
 

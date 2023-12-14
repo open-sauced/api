@@ -6,10 +6,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
-  ManyToOne,
-  JoinColumn,
 } from "typeorm";
 
 import {
@@ -18,8 +17,9 @@ import {
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
 
-import { DbUser } from "../../user/user.entity";
+import { DbWorkspaceInsight } from "../../workspace/entities/workspace-insights.entity";
 import { DbInsightRepo } from "./insight-repo.entity";
+import { DbInsightMember } from "./insight-member.entity";
 
 @Entity({ name: "insights" })
 export class DbInsight extends BaseEntity {
@@ -31,17 +31,6 @@ export class DbInsight extends BaseEntity {
   @PrimaryColumn()
   @PrimaryGeneratedColumn()
   public id!: number;
-
-  @ApiModelProperty({
-    description: "User ID",
-    example: 237133,
-    type: "integer",
-  })
-  @Column({
-    type: "bigint",
-    select: false,
-  })
-  public user_id: number;
 
   @ApiModelProperty({
     description: "Insight Page Name",
@@ -115,12 +104,12 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbUser, (user) => user.insights, { onDelete: "CASCADE" })
-  @JoinColumn({
-    name: "user_id",
-    referencedColumnName: "id",
-  })
-  public user!: DbUser;
+  @OneToMany(() => DbInsightMember, (insightMember) => insightMember.insight, { onDelete: "CASCADE" })
+  public members: DbInsightMember[];
+
+  @ApiHideProperty()
+  @OneToOne(() => DbWorkspaceInsight, (workspaceInsights) => workspaceInsights.insight, { onDelete: "CASCADE" })
+  public workspaces: DbWorkspaceInsight[];
 
   @ApiHideProperty()
   @OneToMany(() => DbInsightRepo, (insightRepo) => insightRepo.insight)

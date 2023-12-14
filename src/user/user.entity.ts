@@ -14,12 +14,13 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbInsightMember } from "../insight/entities/insight-member.entity";
+import { DbWorkspaceMember } from "../workspace/entities/workspace-member.entity";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { DbRepoToUserVotes } from "../repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "../repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "../repo/entities/repo.to.user.submissions.entity";
 import { DbRepoToUserStargazers } from "../repo/entities/repo.to.user.stargazers.entity";
-import { DbInsight } from "../insight/entities/insight.entity";
 import { DbUserList } from "../user-lists/entities/user-list.entity";
 import { DbUserListContributor } from "../user-lists/entities/user-list-contributor.entity";
 import { DbUserNotification } from "./entities/user-notification.entity";
@@ -570,8 +571,12 @@ export class DbUser extends BaseEntity {
   public is_maintainer: boolean;
 
   @ApiHideProperty()
-  @OneToMany(() => DbInsight, (insight) => insight.user, { cascade: true })
-  public insights: DbInsight[];
+  @OneToMany(() => DbInsightMember, (insightMember) => insightMember.member, { cascade: true })
+  public insights: DbInsightMember[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbWorkspaceMember, (workspaceMember) => workspaceMember.member, { cascade: true })
+  public workspaces: DbWorkspaceMember[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepo, (repo) => repo.user)

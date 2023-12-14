@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, ParseIntPipe, Query, UnauthorizedException, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -61,12 +61,7 @@ export class InsightController {
   @ApiBody({ type: UpdateInsightDto })
   @ApiParam({ name: "id", type: "integer" })
   async removeInsightForUser(@Param("id", ParseIntPipe) id: number, @UserId() userId: number): Promise<void> {
-    const insight = await this.insightsService.findOneById(id);
-
-    if (Number(insight.user.id) !== userId) {
-      throw new UnauthorizedException();
-    }
-
+    await this.insightsService.findOneByIdAndUserId(id, userId);
     await this.insightsService.removeInsight(id);
   }
 }

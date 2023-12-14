@@ -79,10 +79,9 @@ export class UserInsightsController {
       throw new BadRequestException();
     }
 
-    const newInsight = await this.insightsService.addInsight({
+    const newInsight = await this.insightsService.addInsight(userId, {
       name: createInsightDto.name,
       is_public: createInsightDto.is_public,
-      user_id: userId,
     });
 
     createInsightDto.repos.forEach(async (repo) => {

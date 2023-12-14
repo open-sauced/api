@@ -9,12 +9,15 @@ import { PizzaOvenService } from "../pizza/pizza-oven.service";
 import { BakeRepoDto } from "../pizza/dtos/baked-repo.dto";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
+import { DbInsightMember } from "./entities/insight-member.entity";
 
 @Injectable()
 export class InsightsService {
   constructor(
     @InjectRepository(DbInsight, "ApiConnection")
     private insightRepository: Repository<DbInsight>,
+    @InjectRepository(DbInsightMember, "ApiConnection")
+    private insightMemberRepository: Repository<DbInsightMember>,
     private pizzaOvenService: PizzaOvenService
   ) {}
 
@@ -24,22 +27,8 @@ export class InsightsService {
     return builder;
   }
 
-  async findOneById(id: number): Promise<DbInsight> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .where("insights.id = :id", { id })
-      .innerJoinAndSelect(`insights.user`, `user`)
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
-
-    const item: DbInsight | null = await queryBuilder.getOne();
-
-    if (!item) {
-      throw new NotFoundException();
-    }
-
+  processPizza(item: DbInsight) {
     item.repos.forEach(async (url) => {
-      // when individual insight pages are fetched, go bake their repos to get fresh commit data
       const bakeRepoInfo: BakeRepoDto = {
         url: `https://github.com/${url.full_name}`,
         wait: false,
@@ -53,12 +42,57 @@ export class InsightsService {
         }
       }
     });
+  }
+
+  async findOneById(id: number): Promise<DbInsight> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoin("insight_members", "insight_members")
+      .where("insights.id = :id", { id })
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+
+    const item: DbInsight | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    this.processPizza(item);
 
     return item;
   }
 
-  async addInsight(insight: Partial<DbInsight>) {
-    return this.insightRepository.save(insight);
+  async findOneByIdAndUserId(id: number, userId: number): Promise<DbInsight> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoin("insight_members", "insight_members", "insight_members.user_id = :userId", { userId })
+      .where("insights.id = :id", { id })
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+
+    const item: DbInsight | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    this.processPizza(item);
+
+    return item;
+  }
+
+  async addInsight(userId: number, insight: Partial<DbInsight>) {
+    const newInsight = await this.insightRepository.save(insight);
+
+    /* creators of insight pages are automatically an admin for them */
+    await this.insightMemberRepository.save({
+      user_id: userId,
+      insight_id: insight.id,
+      access: "admin",
+    });
+
+    return newInsight;
   }
 
   async updateInsight(id: number, insight: Partial<DbInsight>) {
@@ -73,12 +107,12 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .where("insights.user_id = :userId", { userId })
-      .orWhere(
+      .leftJoin("insight_members", "insight_members", "insight_members.user_id = :userId", { userId })
+      .where(
         `(
-          ((SELECT COUNT(id) FROM insights where user_id=:userId)=0)
+          ((SELECT COUNT(id) FROM insight_members where insight_members.user_id=:userId)=0)
           AND
-          (is_featured=true AND insights.deleted_at IS NULL)
+          (insights.is_featured=true AND insights.deleted_at IS NULL)
         )
       `,
         { userId }
