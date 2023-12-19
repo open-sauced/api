@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.60.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0...v1.60.0-beta.1) (2023-12-19)
+
+
+### 🍕 Features
+
+* Initial migrations feature ([051e7f8](https://github.com/open-sauced/api.opensauced.pizza/commit/051e7f890723403c012aad1393a92f863cbbcf09))
+* Return members left join and select in insights ([1ea6378](https://github.com/open-sauced/api.opensauced.pizza/commit/1ea63789988ea65685668e28f63d05b2b1bf1a45))
+
+
+### 🐛 Bug Fixes
+
+* Make removing insight dependent on admin membership ([5455880](https://github.com/open-sauced/api.opensauced.pizza/commit/545588095e5c322bbe81442088408d026612d6d7))
+
 ## [1.59.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0...v1.59.0) (2023-12-12)
 
 
