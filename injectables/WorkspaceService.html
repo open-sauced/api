@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >InsightMemberService</li>
+  <li >WorkspaceService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/insight/insight-member.service.ts</code>
+            <code>src/workspace/workspace.service.ts</code>
         </p>
 
 
@@ -79,31 +79,23 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#addInsightMember" >addInsightMember</a>
-                            </li>
-                            <li>
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#canUserManageInsight" >canUserManageInsight</a>
+                                <a href="#createWorkspace" >createWorkspace</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAllInsightMembers" >findAllInsightMembers</a>
+                                <a href="#deleteWorkspace" >deleteWorkspace</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllByUserId" >findAllByUserId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOneById" >findOneById</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#removeInsightMember" >removeInsightMember</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#updateInsightMember" >updateInsightMember</a>
                             </li>
                         </ul>
                     </td>
@@ -123,12 +115,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(insightMemberRepository: Repository<DbInsightMember>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
+<code>constructor(workspaceMemberRepository: Repository<DbWorkspaceMember>, workspaceRepository: <a href="../entitys/DbWorkspace.html" target="_self">Repository&lt;DbWorkspace&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/insight/insight-member.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/workspace/workspace.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -146,10 +138,22 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>insightMemberRepository</td>
+                                                        <td>workspaceMemberRepository</td>
                                                   
                                                         <td>
-                                                                    <code>Repository&lt;DbInsightMember&gt;</code>
+                                                                    <code>Repository&lt;DbWorkspaceMember&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/DbWorkspace.html" target="_self" >Repository&lt;DbWorkspace&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -187,26 +191,63 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addInsightMember"></a>
+                    <a name="baseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/workspace/workspace.service.ts:22</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >SelectQueryBuilder&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createWorkspace"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>addInsightMember</b></span>
-                        <a href="#addInsightMember"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createWorkspace</b></span>
+                        <a href="#createWorkspace"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsightMember(insightMember: Partial<DbInsightMember>)</code>
+                    <code>createWorkspace(dto: <a href="../classes/CreateWorkspaceDto.html" target="_self">CreateWorkspaceDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/insight/insight-member.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/workspace/workspace.service.ts:55</a></div>
                 </td>
             </tr>
 
@@ -227,9 +268,92 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>insightMember</td>
+                                    <td>dto</td>
                                     <td>
-                                            <code>Partial&lt;DbInsightMember&gt;</code>
+                                                <code><a href="../classes/CreateWorkspaceDto.html" target="_self" >CreateWorkspaceDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteWorkspace"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteWorkspace</b></span>
+                        <a href="#deleteWorkspace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteWorkspace(workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/workspace/workspace.service.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>workspaceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -258,179 +382,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="baseQueryBuilder"></a>
-                    <span class="name">
-                        <span ><b>baseQueryBuilder</b></span>
-                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>baseQueryBuilder()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">src/insight/insight-member.service.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>SelectQueryBuilder&lt;DbInsightMember&gt;</code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="canUserManageInsight"></a>
+                    <a name="findAllByUserId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>canUserManageInsight</b></span>
-                        <a href="#canUserManageInsight"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllByUserId</b></span>
+                        <a href="#findAllByUserId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>canUserManageInsight(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, accessRoles: string[], checkOwner)</code>
+                    <code>findAllByUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/insight/insight-member.service.ts:51</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Default value</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>userId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>insightId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>accessRoles</td>
-                                    <td>
-                                            <code>string[]</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>checkOwner</td>
-                                    <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>true</code>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;boolean&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findAllInsightMembers"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>findAllInsightMembers</b></span>
-                        <a href="#findAllInsightMembers"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllInsightMembers(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/insight/insight-member.service.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/workspace/workspace.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -463,7 +434,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>insightId</td>
+                                    <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -480,7 +451,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbInsightMember&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbWorkspace&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -512,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/insight/insight-member.service.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/workspace/workspace.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -551,161 +522,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;DbInsightMember&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeInsightMember"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>removeInsightMember</b></span>
-                        <a href="#removeInsightMember"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeInsightMember(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/insight/insight-member.service.ts:47</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateInsightMember"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>updateInsightMember</b></span>
-                        <a href="#updateInsightMember"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateInsightMember(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, insightMember: Partial<DbInsightMember>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/insight/insight-member.service.ts:43</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>insightMember</td>
-                                    <td>
-                                            <code>Partial&lt;DbInsightMember&gt;</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -725,32 +542,35 @@
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PagerService } from &quot;../common/services/pager.service&quot;;
-import { DbInsightMember } from &quot;./entities/insight-member.entity&quot;;
+import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
+import { CreateWorkspaceDto } from &quot;./dtos/create-workspace.dto&quot;;
 
 @Injectable()
-export class InsightMemberService {
+export class WorkspaceService {
   constructor(
-    @InjectRepository(DbInsightMember, &quot;ApiConnection&quot;)
-    private insightMemberRepository: Repository&lt;DbInsightMember&gt;,
+    @InjectRepository(DbWorkspaceMember, &quot;ApiConnection&quot;)
+    private workspaceMemberRepository: Repository&lt;DbWorkspaceMember&gt;,
+    @InjectRepository(DbWorkspace, &quot;ApiConnection&quot;)
+    private workspaceRepository: Repository&lt;DbWorkspace&gt;,
     private pagerService: PagerService
   ) {}
 
-  baseQueryBuilder(): SelectQueryBuilder&lt;DbInsightMember&gt; {
-    const builder &#x3D; this.insightMemberRepository.createQueryBuilder(&quot;insight_members&quot;);
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbWorkspace&gt; {
+    const builder &#x3D; this.workspaceRepository.createQueryBuilder(&quot;workspaces&quot;);
 
     return builder;
   }
 
-  async findOneById(id: string): Promise&lt;DbInsightMember&gt; {
+  async findOneById(id: string): Promise&lt;DbWorkspace&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;insight_members.id &#x3D; :id&quot;, { id });
+    queryBuilder.where(&quot;workspaces.id &#x3D; :id&quot;, { id });
 
-    const item: DbInsightMember | null &#x3D; await queryBuilder.getOne();
+    const item: DbWorkspace | null &#x3D; await queryBuilder.getOne();
 
     if (!item) {
       throw new NotFoundException();
@@ -759,66 +579,52 @@ export class InsightMemberService {
     return item;
   }
 
-  async addInsightMember(insightMember: Partial&lt;DbInsightMember&gt;) {
-    return this.insightMemberRepository.save(insightMember);
-  }
+  async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbWorkspace&gt;&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
 
-  async updateInsightMember(id: string, insightMember: Partial&lt;DbInsightMember&gt;) {
-    return this.insightMemberRepository.update(id, insightMember);
-  }
-
-  async removeInsightMember(id: string) {
-    return this.insightMemberRepository.softDelete(id);
-  }
-
-  async canUserManageInsight(
-    userId: number,
-    insightId: number,
-    accessRoles: string[],
-    checkOwner &#x3D; true
-  ): Promise&lt;boolean&gt; {
-    const insightMember &#x3D; await this.insightMemberRepository.findOne({
-      where: {
-        user_id: userId,
-        insight_id: insightId,
-      },
+    queryBuilder.innerJoin(&quot;workspaces.members&quot;, &quot;workspace_members&quot;, &quot;workspace_members.user_id &#x3D; :userId&quot;, {
+      userId,
     });
 
-    if (checkOwner &amp;&amp; insightMember &amp;&amp; insightMember.user_id &#x3D;&#x3D;&#x3D; userId) {
-      return true;
-    }
-
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    queryBuilder
-      .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
-      .andWhere(&quot;insight_members.user_id &#x3D; :userId&quot;, { userId })
-      .andWhere(&quot;insight_members.access IN (:...accessRoles)&quot;, { accessRoles });
-
-    const item: DbInsightMember | null &#x3D; await queryBuilder.getOne();
-
-    if (!item) {
-      return false;
-    }
-
-    return true;
-  }
-
-  async findAllInsightMembers(pageOptionsDto: PageOptionsDto, insightId: number): Promise&lt;PageDto&lt;DbInsightMember&gt;&gt; {
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    queryBuilder
-      .addSelect(&quot;users.name&quot;, &quot;insight_members_name&quot;)
-      .addSelect(&quot;insight_members.invitation_email&quot;, &quot;insight_members_invitation_email&quot;)
-      .innerJoin(&quot;insights&quot;, &quot;insights&quot;, &quot;insight_members.insight_id&#x3D;insights.id&quot;)
-      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;insight_members.user_id&#x3D;users.id&quot;)
-      .where(&quot;insight_members.insight_id &#x3D; :insightId&quot;, { insightId })
-      .orderBy(&quot;users.name&quot;, &quot;ASC&quot;);
-
-    return this.pagerService.applyPagination&lt;DbInsightMember&gt;({
+    return this.pagerService.applyPagination&lt;DbWorkspace&gt;({
       pageOptionsDto,
       queryBuilder,
     });
+  }
+
+  async createWorkspace(dto: CreateWorkspaceDto, userId: number): Promise&lt;DbWorkspace&gt; {
+    const newWorkspace &#x3D; this.workspaceRepository.create({
+      name: dto.name,
+      description: dto.description,
+    });
+    const savedWorkspace &#x3D; await this.workspaceRepository.save(newWorkspace);
+
+    /* set the calling creator as the owner (so there&#x27;s always at least 1 owner by default)*/
+    const callerIsOwner &#x3D; this.workspaceMemberRepository.create({
+      user_id: userId,
+      workspace_id: savedWorkspace.id,
+      role: WorkspaceMemberRoleEnum.Owner,
+    });
+
+    await this.workspaceMemberRepository.save(callerIsOwner);
+
+    const promises &#x3D; dto.members.map(async (member) &#x3D;&gt; {
+      const newMember &#x3D; this.workspaceMemberRepository.create({
+        user_id: member.id,
+        workspace_id: savedWorkspace.id,
+        role: member.role,
+      });
+
+      return this.workspaceMemberRepository.save(newMember);
+    });
+
+    await Promise.all(promises);
+
+    return savedWorkspace;
+  }
+
+  async deleteWorkspace(workspaceId: string) {
+    return this.workspaceRepository.softDelete(workspaceId);
   }
 }
 </code></pre>
@@ -864,7 +670,7 @@ export class InsightMemberService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'InsightMemberService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'WorkspaceService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

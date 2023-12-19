@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Entities</li>
-  <li >DbInsight</li>
+  <li >DbWorkspaceInsight</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/insight/entities/insight.entity.ts</code>
+            <code>src/workspace/entities/workspace-insights.entity.ts</code>
         </p>
 
 
@@ -90,31 +90,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#is_favorite" >is_favorite</a>
+                                <a href="#insight" >insight</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#is_featured" >is_featured</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#is_public" >is_public</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#members" >members</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#name" >name</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#repos" >repos</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#short_code" >short_code</a>
+                                <a href="#insight_id" >insight_id</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -123,7 +103,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#workspaces" >workspaces</a>
+                                <a href="#workspace" >workspace</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#workspace_id" >workspace_id</a>
                             </li>
                         </ul>
                     </td>
@@ -167,13 +151,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing insight creation&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing workspace member creation&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@CreateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/insight/entities/insight.entity.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -204,13 +188,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing insight deletion&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing workspace member deletion&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@DeleteDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/insight/entities/insight.entity.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -231,6 +215,78 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Workspace insight identifier&#x27;, example: &#x27;abc-123&#x27;})<br />@PrimaryColumn()<br />@PrimaryGeneratedColumn()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insight"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>insight</b></span>
+                        <a href="#insight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../entitys/DbInsight.html" target="_self" >DbInsight</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiHideProperty()<br />@ManyToOne(undefined, insight &#x3D;&gt; insight.workspaces, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="insight_id"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>insight_id</b></span>
+                        <a href="#insight_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
@@ -240,265 +296,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@PrimaryColumn()<br />@PrimaryGeneratedColumn()<br />
+                            @ApiModelProperty({description: &#x27;Insight identifier&#x27;, example: 237133, type: &#x27;integer&#x27;})<br />@Column()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/insight/entities/insight.entity.ts:33</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="is_favorite"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>is_favorite</b></span>
-                        <a href="#is_favorite"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating insight favorite&#x27;, example: false})<br />@Column({default: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/insight/entities/insight.entity.ts:57</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="is_featured"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>is_featured</b></span>
-                        <a href="#is_featured"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating featured insight&#x27;, example: false})<br />@Column({default: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/insight/entities/insight.entity.ts:64</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="is_public"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>is_public</b></span>
-                        <a href="#is_public"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;Flag indicating insight visibility&#x27;, example: false})<br />@Column({default: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/insight/entities/insight.entity.ts:50</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="members"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>members</b></span>
-                        <a href="#members"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>DbInsightMember[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiHideProperty()<br />@OneToMany(undefined, insightMember &#x3D;&gt; insightMember.insight, {onDelete: &#x27;CASCADE&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/insight/entities/insight.entity.ts:108</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="name"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>name</b></span>
-                        <a href="#name"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;Insight Page Name&#x27;, example: &#x27;Open Sauced Team&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 255})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/insight/entities/insight.entity.ts:43</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="repos"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>repos</b></span>
-                        <a href="#repos"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>    <code>DbInsightRepo[]</code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiHideProperty()<br />@OneToMany(undefined, insightRepo &#x3D;&gt; insightRepo.insight)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/insight/entities/insight.entity.ts:116</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="short_code"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>short_code</b></span>
-                        <a href="#short_code"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;Title&#x27;, example: &#x27;Insight Page Short Code&#x27;})<br />@Column({type: &#x27;character varying&#x27;, length: 25})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/insight/entities/insight.entity.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -529,13 +333,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing insight last updated&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
+                            @ApiModelPropertyOptional({description: &#x27;Timestamp representing workspace member last updated&#x27;, example: &#x27;2022-10-19 13:24:51.000000&#x27;})<br />@UpdateDateColumn({type: &#x27;timestamp without time zone&#x27;, default: () &#x3D;&gt; now()})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/insight/entities/insight.entity.ts:94</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -546,17 +350,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="workspaces"></a>
+                    <a name="workspace"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>workspaces</b></span>
-                        <a href="#workspaces"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>workspace</b></span>
+                        <a href="#workspace"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>DbWorkspaceInsight[]</code>
+                        <i>Type : </i>        <code><a href="../entitys/DbWorkspace.html" target="_self" >DbWorkspace</a></code>
 
                     </td>
                 </tr>
@@ -565,13 +369,49 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@OneToOne(undefined, workspaceInsights &#x3D;&gt; workspaceInsights.insight, {onDelete: &#x27;CASCADE&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, workspace &#x3D;&gt; workspace.members)<br />@JoinColumn({name: &#x27;workspace_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/insight/entities/insight.entity.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workspace_id"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>workspace_id</b></span>
+                        <a href="#workspace_id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Workspace identifier&#x27;, example: &#x27;abc-123&#x27;})<br />@Column()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/workspace/entities/workspace-insights.entity.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -590,10 +430,10 @@
   PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-  OneToOne,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from &quot;typeorm&quot;;
 
 import {
@@ -601,65 +441,36 @@ import {
   ApiModelPropertyOptional,
 } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { ApiHideProperty } from &quot;@nestjs/swagger&quot;;
+import { DbInsight } from &quot;../../insight/entities/insight.entity&quot;;
+import { DbWorkspace } from &quot;./workspace.entity&quot;;
 
-import { DbWorkspaceInsight } from &quot;../../workspace/entities/workspace-insights.entity&quot;;
-import { DbInsightRepo } from &quot;./insight-repo.entity&quot;;
-import { DbInsightMember } from &quot;./insight-member.entity&quot;;
+@Entity({ name: &quot;workspace_insights&quot; })
+export class DbWorkspaceInsight extends BaseEntity {
+  @ApiModelProperty({
+    description: &quot;Workspace insight identifier&quot;,
+    example: &quot;abc-123&quot;,
+  })
+  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
+  public id!: string;
 
-@Entity({ name: &quot;insights&quot; })
-export class DbInsight extends BaseEntity {
   @ApiModelProperty({
     description: &quot;Insight identifier&quot;,
     example: 237133,
     type: &quot;integer&quot;,
   })
-  @PrimaryColumn()
-  @PrimaryGeneratedColumn()
-  public id!: number;
+  @Column()
+  public insight_id!: number;
 
   @ApiModelProperty({
-    description: &quot;Insight Page Name&quot;,
-    example: &quot;Open Sauced Team&quot;,
+    description: &quot;Workspace identifier&quot;,
+    example: &quot;abc-123&quot;,
   })
-  @Column({
-    type: &quot;character varying&quot;,
-    length: 255,
-  })
-  public name: string;
-
-  @ApiModelProperty({
-    description: &quot;Flag indicating insight visibility&quot;,
-    example: false,
-  })
-  @Column({ default: false })
-  public is_public: boolean;
-
-  @ApiModelProperty({
-    description: &quot;Flag indicating insight favorite&quot;,
-    example: false,
-  })
-  @Column({ default: false })
-  public is_favorite: boolean;
-
-  @ApiModelProperty({
-    description: &quot;Flag indicating featured insight&quot;,
-    example: false,
-  })
-  @Column({ default: false })
-  public is_featured: boolean;
-
-  @ApiModelProperty({
-    description: &quot;Title&quot;,
-    example: &quot;Insight Page Short Code&quot;,
-  })
-  @Column({
-    type: &quot;character varying&quot;,
-    length: 25,
-  })
-  public short_code: string;
+  @Column()
+  public workspace_id!: string;
 
   @ApiModelPropertyOptional({
-    description: &quot;Timestamp representing insight creation&quot;,
+    description: &quot;Timestamp representing workspace member creation&quot;,
     example: &quot;2022-10-19 13:24:51.000000&quot;,
   })
   @CreateDateColumn({
@@ -669,7 +480,7 @@ export class DbInsight extends BaseEntity {
   public created_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: &quot;Timestamp representing insight last updated&quot;,
+    description: &quot;Timestamp representing workspace member last updated&quot;,
     example: &quot;2022-10-19 13:24:51.000000&quot;,
   })
   @UpdateDateColumn({
@@ -679,7 +490,7 @@ export class DbInsight extends BaseEntity {
   public updated_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: &quot;Timestamp representing insight deletion&quot;,
+    description: &quot;Timestamp representing workspace member deletion&quot;,
     example: &quot;2022-10-19 13:24:51.000000&quot;,
   })
   @DeleteDateColumn({
@@ -689,16 +500,20 @@ export class DbInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @OneToMany(() &#x3D;&gt; DbInsightMember, (insightMember) &#x3D;&gt; insightMember.insight, { onDelete: &quot;CASCADE&quot; })
-  public members: DbInsightMember[];
+  @ManyToOne(() &#x3D;&gt; DbInsight, (insight) &#x3D;&gt; insight.workspaces, { onDelete: &quot;CASCADE&quot; })
+  @JoinColumn({
+    name: &quot;user_id&quot;,
+    referencedColumnName: &quot;id&quot;,
+  })
+  public insight: DbInsight;
 
   @ApiHideProperty()
-  @OneToOne(() &#x3D;&gt; DbWorkspaceInsight, (workspaceInsights) &#x3D;&gt; workspaceInsights.insight, { onDelete: &quot;CASCADE&quot; })
-  public workspaces: DbWorkspaceInsight[];
-
-  @ApiHideProperty()
-  @OneToMany(() &#x3D;&gt; DbInsightRepo, (insightRepo) &#x3D;&gt; insightRepo.insight)
-  public repos: DbInsightRepo[];
+  @ManyToOne(() &#x3D;&gt; DbWorkspace, (workspace) &#x3D;&gt; workspace.members)
+  @JoinColumn({
+    name: &quot;workspace_id&quot;,
+    referencedColumnName: &quot;id&quot;,
+  })
+  public workspace: DbWorkspace;
 }
 </code></pre>
     </div>
@@ -744,7 +559,7 @@ export class DbInsight extends BaseEntity {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'DbInsight.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'DbWorkspaceInsight.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

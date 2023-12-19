@@ -425,9 +425,11 @@ export class InsightController {
   @ApiBody({ type: UpdateInsightDto })
   @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
   async removeInsightForUser(@Param(&quot;id&quot;, ParseIntPipe) id: number, @UserId() userId: number): Promise&lt;void&gt; {
-    const insight &#x3D; await this.insightsService.findOneById(id);
+    const insight &#x3D; await this.insightsService.findOneByIdAndUserId(id, userId);
 
-    if (Number(insight.user.id) !&#x3D;&#x3D; userId) {
+    const membership &#x3D; insight.members.find((member) &#x3D;&gt; member.user_id &#x3D;&#x3D;&#x3D; userId);
+
+    if (!membership || membership.access !&#x3D;&#x3D; &quot;admin&quot;) {
       throw new UnauthorizedException();
     }
 

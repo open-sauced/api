@@ -922,6 +922,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </ul>
                                 </li>
                             </li>
+                            <li class="link">
+                                <a href="modules/WorkspaceModule.html" data-type="entity-link" >WorkspaceModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' :
+                                            'id="xs-controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                            <li class="link">
+                                                <a href="controllers/WorkspaceController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' :
+                                        'id="xs-injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                        <li class="link">
+                                            <a href="injectables/WorkspaceService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
                 </ul>
                 </li>
                         <li class="chapter">
@@ -1049,6 +1080,21 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <li class="link">
                                     <a href="entities/DbUserToUserFollows.html" data-type="entity-link" >DbUserToUserFollows</a>
                                 </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspace.html" data-type="entity-link" >DbWorkspace</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspaceInsight.html" data-type="entity-link" >DbWorkspaceInsight</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspaceMember.html" data-type="entity-link" >DbWorkspaceMember</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspaceOrg.html" data-type="entity-link" >DbWorkspaceOrg</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspaceRepo.html" data-type="entity-link" >DbWorkspaceRepo</a>
+                                </li>
                             </ul>
                         </li>
                     <li class="chapter">
@@ -1123,6 +1169,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateUserListDto.html" data-type="entity-link" >CreateUserListDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CreateWorkspaceDto.html" data-type="entity-link" >CreateWorkspaceDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DatabaseLoggerMiddleware.html" data-type="entity-link" >DatabaseLoggerMiddleware</a>
                             </li>
                             <li class="link">
@@ -1175,6 +1224,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/InsightPageOptionsDto.html" data-type="entity-link" >InsightPageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/NewMember.html" data-type="entity-link" >NewMember</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PageDto.html" data-type="entity-link" >PageDto</a>
