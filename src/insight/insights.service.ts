@@ -50,7 +50,8 @@ export class InsightsService {
     queryBuilder
       .leftJoin("insight_members", "insight_members")
       .where("insights.id = :id", { id })
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
@@ -69,7 +70,8 @@ export class InsightsService {
     queryBuilder
       .leftJoin("insight_members", "insight_members", "insight_members.user_id = :userId", { userId })
       .where("insights.id = :id", { id })
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`);
 
     const item: DbInsight | null = await queryBuilder.getOne();
 
@@ -107,7 +109,7 @@ export class InsightsService {
     const queryBuilder = this.insightRepository.createQueryBuilder("insights");
 
     queryBuilder
-      .leftJoin("insight_members", "insight_members", "insight_members.user_id = :userId", { userId })
+      .leftJoinAndSelect("insights.members", "insight_members", "insight_members.insight_id = insights.id")
       .where(
         `(
           ((SELECT COUNT(id) FROM insight_members where insight_members.user_id=:userId)=0)
@@ -149,6 +151,7 @@ export class InsightsService {
       .where("is_featured=true")
       .andWhere("is_public=true")
       .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
+      .leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`)
       .orderBy("insights.updated_at", "DESC");
 
     queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
