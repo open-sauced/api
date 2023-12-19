@@ -19,6 +19,7 @@ import {
 import { DbUser } from "../../user/user.entity";
 import { DbContribution } from "../../contribution/contribution.entity";
 import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
+import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
 import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo.to.user.submissions.entity";
@@ -443,6 +444,10 @@ export class DbRepo extends BaseEntity {
     referencedColumnName: "id",
   })
   public org_user!: DbUser;
+
+  @ApiHideProperty()
+  @OneToMany(() => DbWorkspaceRepo, (workspaceRepo) => workspaceRepo.repo)
+  public workspaces: DbWorkspaceRepo[];
 
   @ApiHideProperty()
   @OneToMany(() => DbContribution, (contribution) => contribution.repo)
