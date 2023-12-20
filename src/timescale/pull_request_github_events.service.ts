@@ -1,17 +1,26 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { Repository, SelectQueryBuilder } from "typeorm";
+import { ConfigService } from "@nestjs/config";
+import { FilterListContributorsDto } from "../user-lists/dtos/filter-contributors.dto";
+import { RepoService } from "../repo/repo.service";
+import { PullRequestPageOptionsDto } from "../pull-requests/dtos/pull-request-page-options.dto";
+import { RepoSearchOptionsDto } from "../repo/dtos/repo-search-options.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
+import { UserListService } from "../user-lists/user-list.service";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 
 @Injectable()
 export class PullRequestGithubEventsService {
   constructor(
     @InjectRepository(DbPullRequestGitHubEvents, "TimescaleConnection")
-    private pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>
+    private pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>,
+    private readonly configService: ConfigService,
+    private readonly repoService: RepoService,
+    private readonly userListService: UserListService
   ) {}
 
   baseQueryBuilder() {
@@ -20,26 +29,15 @@ export class PullRequestGithubEventsService {
     return builder;
   }
 
-  async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-    const order = pageOptionsDto.orderDirection!;
-
-    /*
-     * because PR events may be "opened" or "closed" many times, this inner CTE query gets similar PRs rows
-     *  based on pr_number and repo_name. This essentially gives a full picture of opened/closed PRs
-     *  and their current state
-     */
-
-    const cteBuilder = this.pullRequestGithubEventsRepository
-      .createQueryBuilder("pull_request_github_events")
-      .select("*")
-      .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`)
-      .where(`"pull_request_github_events"."pr_author_login"=:author`, { author: author.toLowerCase() })
-      .andWhere(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
-      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`)
-      .orderBy("event_time", order);
-
+  /*
+   * this function takes a cte builder and gets the common rows for pull_request_github_events
+   * off of it. It also builds a cte counter to ensure metadata is built correctly
+   * for the timescale query.
+   */
+  async execCommonTableExpression(
+    pageOptionsDto: PageOptionsDto,
+    cteBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>
+  ) {
     const queryBuilder = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
       .addCommonTableExpression(cteBuilder, "CTE")
@@ -90,5 +88,150 @@ export class PullRequestGithubEventsService {
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  hacktoberfestPrFilterBuilderStart() {
+    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * this is inclusive of previous years where the current pull_requests have "newer" updates
+     */
+    return `to_date('${hacktoberfestYear}', 'YYYY')
+                + INTERVAL '10 months'
+                - INTERVAL '1 day' >= "pull_request_github_events"."event_time"`;
+  }
+
+  hacktoberfestPrFilterBuilderEnd(range = 30) {
+    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
+     */
+    return `to_date('${hacktoberfestYear}', 'YYYY')
+                + INTERVAL '10 months'
+                - INTERVAL '1 day'
+                - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`;
+  }
+
+  async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range!;
+    const order = pageOptionsDto.orderDirection!;
+
+    /*
+     * because PR events may be "opened" or "closed" many times, this inner CTE query gets similar PRs rows
+     * based on pr_number and repo_name. This essentially gives a full picture of opened/closed PRs
+     * and their current state
+     */
+
+    const cteBuilder = this.pullRequestGithubEventsRepository
+      .createQueryBuilder("pull_request_github_events")
+      .select("*")
+      .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num`)
+      .where(`LOWER("pull_request_github_events"."pr_author_login") = LOWER(:author)`, { author: author.toLowerCase() })
+      .andWhere(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`)
+      .orderBy("event_time", order);
+
+    return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
+  }
+
+  async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range!;
+    const order = pageOptionsDto.orderDirection!;
+
+    const cteBuilder = this.pullRequestGithubEventsRepository
+      .createQueryBuilder("pull_request_github_events")
+      .select("*")
+      .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num`)
+      .orderBy("event_time", order);
+
+    /* filter for hacktoberfest PRs */
+    switch (pageOptionsDto.topic) {
+      case "hacktoberfest":
+        cteBuilder
+          .where(this.hacktoberfestPrFilterBuilderStart())
+          .andWhere(this.hacktoberfestPrFilterBuilderEnd(range));
+        break;
+      default:
+        cteBuilder
+          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+          .andWhere(
+            `'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`
+          );
+        break;
+    }
+
+    /* filter on PR author / contributor */
+    if (pageOptionsDto.contributor) {
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."pr_author_login") = LOWER(:author)`, {
+        author: pageOptionsDto.contributor,
+      });
+    }
+
+    /*
+     * apply repo specific filters (topics, top 100, etc.) - this captures a few
+     * pre-defined filters provided by the PullRequestPageOptionsDto.
+     * This will call out to the API connection to get metadata on the repos.
+     */
+    if (pageOptionsDto.filter || pageOptionsDto.topic) {
+      const filtersDto: RepoSearchOptionsDto = {
+        filter: pageOptionsDto.filter,
+        topic: pageOptionsDto.topic,
+        limit: 50,
+        skip: 0,
+        range,
+      };
+
+      const repos = await this.repoService.findAllWithFilters(filtersDto);
+      const repoNames = repos.data.map((repo) => repo.full_name);
+
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."repo_name") IN (LOWER(:...repoNames))`, {
+        repoNames,
+      });
+    }
+
+    /* apply user provided repo name filters */
+    if (pageOptionsDto.repo) {
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."repo_name") IN (LOWER(:...repoNames))`, {
+        repoNames: pageOptionsDto.repo.split(","),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (pageOptionsDto.repoIds) {
+      cteBuilder.andWhere(`"pull_request_github_events"."repo_id" IN (:...repoIds)`, {
+        repoIds: pageOptionsDto.repoIds.split(","),
+      });
+    }
+
+    /*
+     * filter on a given list ID: this uses the API connection to find the usernames
+     * to use for filtering on the timescale data.
+     */
+    if (pageOptionsDto.listId) {
+      const filtersDto: FilterListContributorsDto = {
+        skip: 0,
+      };
+
+      const users = await this.userListService.findContributorsByListId(filtersDto, pageOptionsDto.listId);
+      const userNames = users.data.filter((user) => user.username).map((user) => user.username);
+
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."pr_author_login") IN (LOWER(:...userNames))`, {
+        userNames,
+      });
+    }
+
+    /* filter on provided status */
+    if (pageOptionsDto.status) {
+      cteBuilder.andWhere(`"pull_request_github_events"."pr_state" = LOWER(:status)`, {
+        status: pageOptionsDto.status,
+      });
+    }
+
+    return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
   }
 }

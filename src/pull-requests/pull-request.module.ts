@@ -3,6 +3,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { RepoFilterModule } from "../common/filters/repo-filter.module";
 import { OpenAiModule } from "../open-ai/open-ai.module";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { TimescaleModule } from "../timescale/timescale.module";
 import { DbPRInsight } from "./entities/pull-request-insight.entity";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
@@ -21,7 +23,9 @@ import { DbPullRequestReview } from "./entities/pull-request-review.entity";
 
 @Module({
   imports: [
+    TimescaleModule,
     TypeOrmModule.forFeature([DbPullRequest, DbPRInsight, DbPullRequestReview], "ApiConnection"),
+    TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
     RepoFilterModule,
     OpenAiModule,
   ],
