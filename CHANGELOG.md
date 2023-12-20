@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.60.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.1...v1.60.0-beta.2) (2023-12-20)
+
+
+### 🍕 Features
+
+* V2 pr search using timescale data ([#444](https://github.com/open-sauced/api.opensauced.pizza/issues/444)) ([57dd070](https://github.com/open-sauced/api.opensauced.pizza/commit/57dd070a643480f0e227b440c3a6534e27b1cca6))
+
 ## [1.60.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0...v1.60.0-beta.1) (2023-12-19)
 
 
