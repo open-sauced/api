@@ -15,11 +15,11 @@ export PGHOST=${PGHOST:-localhost}
 export PGPORT=${PGPORT:-25060}
 export PGPASSWORD=${PGPASSWORD:-UCN2zrH2WGxKck7tT2JG4MY6wbHkeX9s}
 
-export DBNAME=${DBNAME:-defaultdb}
-export USERNAME=${USERNAME:-doadmin}
+export PGDBNAME=${PGDBNAME:-defaultdb}
+export PGUSERNAME=${PGUSERNAME:-doadmin}
 
 ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../ && pwd )
 
 for file in ${ROOT_DIR}/migrations/*; do
-  psql -U $USERNAME -d $DBNAME -f "${file}"
+  psql -U "${PGUSERNAME}" -d "${DBNAME}" -f "${file}"
 done
