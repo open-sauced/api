@@ -97,6 +97,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#searchAllPullRequestEvents" >searchAllPullRequestEvents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#searchAllPullRequests" >searchAllPullRequests</a>
                             </li>
                         </ul>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:70</a></div>
                 </td>
             </tr>
 
@@ -223,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -301,8 +305,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -354,6 +358,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="searchAllPullRequestEvents"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>searchAllPullRequestEvents</b></span>
+                        <a href="#searchAllPullRequestEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchAllPullRequestEvents(pageOptionsDto: <a href="../classes/PullRequestPageOptionsDto.html" target="_self">PullRequestPageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Version(&#x27;2&#x27;)<br />@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequestEvents&#x27;, summary: &#x27;Searches pull request events using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequestGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestGitHubEvents})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:58</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestPageOptionsDto.html" target="_self" >PullRequestPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="searchAllPullRequests"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -379,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -432,13 +514,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query, Version } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
+import { DbPullRequestGitHubEvents } from &quot;../timescale/entities/pull_request_github_event&quot;;
+import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
 import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
 import { PullRequestService } from &quot;./pull-request.service&quot;;
 import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
@@ -452,6 +536,7 @@ import { PullRequestReviewService } from &quot;./pull-request-review.service&quo
 export class PullRequestController {
   constructor(
     private readonly pullRequestService: PullRequestService,
+    private readonly pullRequestEventsService: PullRequestGithubEventsService,
     private readonly pullRequestsInsightService: PullRequestInsightsService,
     private readonly pullRequestReviewService: PullRequestReviewService
   ) {}
@@ -476,6 +561,20 @@ export class PullRequestController {
   @ApiOkResponse({ type: DbPullRequest })
   async searchAllPullRequests(@Query() pageOptionsDto: PullRequestPageOptionsDto): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
     return this.pullRequestService.findAllWithFilters(pageOptionsDto);
+  }
+
+  @Version(&quot;2&quot;)
+  @Get(&quot;/search&quot;)
+  @ApiOperation({
+    operationId: &quot;searchAllPullRequestEvents&quot;,
+    summary: &quot;Searches pull request events using filters and paginates them&quot;,
+  })
+  @ApiPaginatedResponse(DbPullRequestGitHubEvents)
+  @ApiOkResponse({ type: DbPullRequestGitHubEvents })
+  async searchAllPullRequestEvents(
+    @Query() pageOptionsDto: PullRequestPageOptionsDto
+  ): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
+    return this.pullRequestEventsService.findAllWithFilters(pageOptionsDto);
   }
 
   @Get(&quot;/insights&quot;)

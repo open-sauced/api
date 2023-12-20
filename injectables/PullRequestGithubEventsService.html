@@ -83,7 +83,21 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#execCommonTableExpression" >execCommonTableExpression</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAllByPrAuthor" >findAllByPrAuthor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllWithFilters" >findAllWithFilters</a>
+                            </li>
+                            <li>
+                                <a href="#hacktoberfestPrFilterBuilderEnd" >hacktoberfestPrFilterBuilderEnd</a>
+                            </li>
+                            <li>
+                                <a href="#hacktoberfestPrFilterBuilderStart" >hacktoberfestPrFilterBuilderStart</a>
                             </li>
                         </ul>
                     </td>
@@ -103,12 +117,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>)</code>
+<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, configService: ConfigService, repoService: <a href="../injectables/RepoService.html" target="_self">RepoService</a>, userListService: <a href="../injectables/UserListService.html" target="_self">UserListService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/timescale/pull_request_github_events.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/timescale/pull_request_github_events.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -130,6 +144,42 @@
                                                   
                                                         <td>
                                                                     <code>Repository&lt;DbPullRequestGitHubEvents&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>repoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RepoService.html" target="_self" >RepoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userListService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserListService.html" target="_self" >UserListService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -171,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -183,6 +233,89 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="execCommonTableExpression"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>execCommonTableExpression</b></span>
+                        <a href="#execCommonTableExpression"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>execCommonTableExpression(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, cteBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>cteBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -210,8 +343,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:118</a></div>
                 </td>
             </tr>
 
@@ -271,6 +404,187 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllWithFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllWithFilters</b></span>
+                        <a href="#findAllWithFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllWithFilters(pageOptionsDto: <a href="../classes/PullRequestPageOptionsDto.html" target="_self">PullRequestPageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:141</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestPageOptionsDto.html" target="_self" >PullRequestPageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hacktoberfestPrFilterBuilderEnd"></a>
+                    <span class="name">
+                        <span ><b>hacktoberfestPrFilterBuilderEnd</b></span>
+                        <a href="#hacktoberfestPrFilterBuilderEnd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hacktoberfestPrFilterBuilderEnd(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="hacktoberfestPrFilterBuilderStart"></a>
+                    <span class="name">
+                        <span ><b>hacktoberfestPrFilterBuilderStart</b></span>
+                        <a href="#hacktoberfestPrFilterBuilderStart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>hacktoberfestPrFilterBuilderStart()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -279,18 +593,27 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
-import { Repository } from &quot;typeorm&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { ConfigService } from &quot;@nestjs/config&quot;;
+import { FilterListContributorsDto } from &quot;../user-lists/dtos/filter-contributors.dto&quot;;
+import { RepoService } from &quot;../repo/repo.service&quot;;
+import { PullRequestPageOptionsDto } from &quot;../pull-requests/dtos/pull-request-page-options.dto&quot;;
+import { RepoSearchOptionsDto } from &quot;../repo/dtos/repo-search-options.dto&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { UserListService } from &quot;../user-lists/user-list.service&quot;;
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 
 @Injectable()
 export class PullRequestGithubEventsService {
   constructor(
     @InjectRepository(DbPullRequestGitHubEvents, &quot;TimescaleConnection&quot;)
-    private pullRequestGithubEventsRepository: Repository&lt;DbPullRequestGitHubEvents&gt;
+    private pullRequestGithubEventsRepository: Repository&lt;DbPullRequestGitHubEvents&gt;,
+    private readonly configService: ConfigService,
+    private readonly repoService: RepoService,
+    private readonly userListService: UserListService
   ) {}
 
   baseQueryBuilder() {
@@ -299,26 +622,15 @@ export class PullRequestGithubEventsService {
     return builder;
   }
 
-  async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
-    const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range &#x3D; pageOptionsDto.range!;
-    const order &#x3D; pageOptionsDto.orderDirection!;
-
-    /*
-     * because PR events may be &quot;opened&quot; or &quot;closed&quot; many times, this inner CTE query gets similar PRs rows
-     *  based on pr_number and repo_name. This essentially gives a full picture of opened/closed PRs
-     *  and their current state
-     */
-
-    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
-      .createQueryBuilder(&quot;pull_request_github_events&quot;)
-      .select(&quot;*&quot;)
-      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;)
-      .where(&#x60;&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;&#x3D;:author&#x60;, { author: author.toLowerCase() })
-      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
-      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
-      .orderBy(&quot;event_time&quot;, order);
-
+  /*
+   * this function takes a cte builder and gets the common rows for pull_request_github_events
+   * off of it. It also builds a cte counter to ensure metadata is built correctly
+   * for the timescale query.
+   */
+  async execCommonTableExpression(
+    pageOptionsDto: PageOptionsDto,
+    cteBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;
+  ) {
     const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
       .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
@@ -369,6 +681,151 @@ export class PullRequestGithubEventsService {
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  hacktoberfestPrFilterBuilderStart() {
+    const hacktoberfestYear: string &#x3D; this.configService.get(&quot;hacktoberfest.year&quot;)!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * this is inclusive of previous years where the current pull_requests have &quot;newer&quot; updates
+     */
+    return &#x60;to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
+                + INTERVAL &#x27;10 months&#x27;
+                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;;
+  }
+
+  hacktoberfestPrFilterBuilderEnd(range &#x3D; 30) {
+    const hacktoberfestYear: string &#x3D; this.configService.get(&quot;hacktoberfest.year&quot;)!;
+
+    /*
+     * take the date range starting from the last day of October.
+     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
+     */
+    return &#x60;to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
+                + INTERVAL &#x27;10 months&#x27;
+                - INTERVAL &#x27;1 day&#x27;
+                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;;
+  }
+
+  async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
+    const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range &#x3D; pageOptionsDto.range!;
+    const order &#x3D; pageOptionsDto.orderDirection!;
+
+    /*
+     * because PR events may be &quot;opened&quot; or &quot;closed&quot; many times, this inner CTE query gets similar PRs rows
+     * based on pr_number and repo_name. This essentially gives a full picture of opened/closed PRs
+     * and their current state
+     */
+
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;*&quot;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num&#x60;)
+      .where(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, { author: author.toLowerCase() })
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .orderBy(&quot;event_time&quot;, order);
+
+    return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
+  }
+
+  async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
+    const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range &#x3D; pageOptionsDto.range!;
+    const order &#x3D; pageOptionsDto.orderDirection!;
+
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;*&quot;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num&#x60;)
+      .orderBy(&quot;event_time&quot;, order);
+
+    /* filter for hacktoberfest PRs */
+    switch (pageOptionsDto.topic) {
+      case &quot;hacktoberfest&quot;:
+        cteBuilder
+          .where(this.hacktoberfestPrFilterBuilderStart())
+          .andWhere(this.hacktoberfestPrFilterBuilderEnd(range));
+        break;
+      default:
+        cteBuilder
+          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+          .andWhere(
+            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
+          );
+        break;
+    }
+
+    /* filter on PR author / contributor */
+    if (pageOptionsDto.contributor) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, {
+        author: pageOptionsDto.contributor,
+      });
+    }
+
+    /*
+     * apply repo specific filters (topics, top 100, etc.) - this captures a few
+     * pre-defined filters provided by the PullRequestPageOptionsDto.
+     * This will call out to the API connection to get metadata on the repos.
+     */
+    if (pageOptionsDto.filter || pageOptionsDto.topic) {
+      const filtersDto: RepoSearchOptionsDto &#x3D; {
+        filter: pageOptionsDto.filter,
+        topic: pageOptionsDto.topic,
+        limit: 50,
+        skip: 0,
+        range,
+      };
+
+      const repos &#x3D; await this.repoService.findAllWithFilters(filtersDto);
+      const repoNames &#x3D; repos.data.map((repo) &#x3D;&gt; repo.full_name);
+
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (LOWER(:...repoNames))&#x60;, {
+        repoNames,
+      });
+    }
+
+    /* apply user provided repo name filters */
+    if (pageOptionsDto.repo) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (LOWER(:...repoNames))&#x60;, {
+        repoNames: pageOptionsDto.repo.split(&quot;,&quot;),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (pageOptionsDto.repoIds) {
+      cteBuilder.andWhere(&#x60;&quot;pull_request_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;, {
+        repoIds: pageOptionsDto.repoIds.split(&quot;,&quot;),
+      });
+    }
+
+    /*
+     * filter on a given list ID: this uses the API connection to find the usernames
+     * to use for filtering on the timescale data.
+     */
+    if (pageOptionsDto.listId) {
+      const filtersDto: FilterListContributorsDto &#x3D; {
+        skip: 0,
+      };
+
+      const users &#x3D; await this.userListService.findContributorsByListId(filtersDto, pageOptionsDto.listId);
+      const userNames &#x3D; users.data.filter((user) &#x3D;&gt; user.username).map((user) &#x3D;&gt; user.username);
+
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) IN (LOWER(:...userNames))&#x60;, {
+        userNames,
+      });
+    }
+
+    /* filter on provided status */
+    if (pageOptionsDto.status) {
+      cteBuilder.andWhere(&#x60;&quot;pull_request_github_events&quot;.&quot;pr_state&quot; &#x3D; LOWER(:status)&#x60;, {
+        status: pageOptionsDto.status,
+      });
+    }
+
+    return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
   }
 }
 </code></pre>
