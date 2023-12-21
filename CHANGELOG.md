@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.60.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.2...v1.60.0-beta.3) (2023-12-21)
+
+
+### 🐛 Bug Fixes
+
+* Correct usage of lowercases in composite "IN" statements ([#451](https://github.com/open-sauced/api.opensauced.pizza/issues/451)) ([07da063](https://github.com/open-sauced/api.opensauced.pizza/commit/07da0637597010ca5b782086d602cf453ba3bb9e))
+
 ## [1.60.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.1...v1.60.0-beta.2) (2023-12-20)
 
 
