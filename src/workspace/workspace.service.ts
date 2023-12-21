@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -8,6 +8,7 @@ import { PagerService } from "../common/services/pager.service";
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
+import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
 
 @Injectable()
 export class WorkspaceService {
@@ -25,10 +26,23 @@ export class WorkspaceService {
     return builder;
   }
 
+  canUserManageWorkspace(workspace: DbWorkspace, userId: number, accessRoles: string[]): boolean {
+    const membership = workspace.members.find((member) => member.user_id === userId);
+    const canManage = membership && accessRoles.includes(membership.role);
+
+    if (!canManage) {
+      return false;
+    }
+
+    return true;
+  }
+
   async findOneById(id: string): Promise<DbWorkspace> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("workspaces.id = :id", { id });
+    queryBuilder
+      .leftJoinAndSelect(`workspaces.members`, `workspace_members`, `workspaces.id=workspace_members.workspace_id`)
+      .where("workspaces.id = :id", { id });
 
     const item: DbWorkspace | null = await queryBuilder.getOne();
 
@@ -42,7 +56,7 @@ export class WorkspaceService {
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbWorkspace>> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.innerJoin("workspaces.members", "workspace_members", "workspace_members.user_id = :userId", {
+    queryBuilder.leftJoinAndSelect("workspaces.members", "workspace_members", "workspace_members.user_id = :userId", {
       userId,
     });
 
@@ -81,6 +95,31 @@ export class WorkspaceService {
     await Promise.all(promises);
 
     return savedWorkspace;
+  }
+
+  async updateWorkspace(id: string, dto: UpdateWorkspaceDto, userId: number): Promise<DbWorkspace> {
+    const workspace = await this.findOneById(id);
+
+    /*
+     * editors and owners can update the workspace details
+     * membership modification is left to owners on different endpoints
+     */
+
+    const canUpdate = this.canUserManageWorkspace(workspace, userId, [
+      WorkspaceMemberRoleEnum.Editor,
+      WorkspaceMemberRoleEnum.Owner,
+    ]);
+
+    if (!canUpdate) {
+      throw new UnauthorizedException();
+    }
+
+    await this.workspaceRepository.update(id, {
+      name: dto.name,
+      description: dto.description,
+    });
+
+    return this.findOneById(id);
   }
 
   async deleteWorkspace(workspaceId: string) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -7,6 +7,8 @@ import {
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
+  ApiUnprocessableEntityResponse,
+  ApiBody,
 } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
@@ -17,6 +19,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { WorkspaceService } from "./workspace.service";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
+import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
 
 @Controller("workspaces")
 @ApiTags("Workspaces service")
@@ -51,6 +54,26 @@ export class WorkspaceController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   async createWorkspaceForUser(@UserId() userId: number, @Body() createWorkspaceDto: CreateWorkspaceDto) {
     return this.workspaceService.createWorkspace(createWorkspaceDto, userId);
+  }
+
+  @Patch("/:id")
+  @ApiOperation({
+    operationId: "updateWorkspaceForUser",
+    summary: "Updates a workspace for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspace })
+  @ApiNotFoundResponse({ description: "Unable to update workspace" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to process workspace" })
+  @ApiBody({ type: UpdateWorkspaceDto })
+  @ApiParam({ name: "id", type: "string" })
+  async updateWorkspaceForUser(
+    @Param("id") id: string,
+    @Body() updateWorkspaceDto: UpdateWorkspaceDto,
+    @UserId() userId: number
+  ): Promise<DbWorkspace> {
+    return this.workspaceService.updateWorkspace(id, updateWorkspaceDto, userId);
   }
 
   @Delete("/:id")
