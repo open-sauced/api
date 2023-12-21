@@ -1,9 +1,9 @@
 # Use an official PostgreSQL runtime as a parent image
-FROM postgres:13
+FROM postgres:15
 
 # Set environment variables
 ENV POSTGRES_USER doadmin
-ENV POSTGRES_PASSWORD UCN2zrH2WGxKck7tT2JG4MY6wbHkeX9s
+ENV POSTGRES_PASSWORD woof
 ENV POSTGRES_DB defaultdb
 
 # SSL config
