@@ -722,7 +722,7 @@ export class PullRequestGithubEventsService {
     const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
       .createQueryBuilder(&quot;pull_request_github_events&quot;)
       .select(&quot;*&quot;)
-      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num&#x60;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;)
       .where(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, { author: author.toLowerCase() })
       .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
       .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
@@ -739,7 +739,7 @@ export class PullRequestGithubEventsService {
     const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
       .createQueryBuilder(&quot;pull_request_github_events&quot;)
       .select(&quot;*&quot;)
-      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, LOWER(repo_name) ORDER BY event_time ${order}) AS row_num&#x60;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;)
       .orderBy(&quot;event_time&quot;, order);
 
     /* filter for hacktoberfest PRs */
@@ -780,17 +780,17 @@ export class PullRequestGithubEventsService {
       };
 
       const repos &#x3D; await this.repoService.findAllWithFilters(filtersDto);
-      const repoNames &#x3D; repos.data.map((repo) &#x3D;&gt; repo.full_name);
+      const repoNames &#x3D; repos.data.map((repo) &#x3D;&gt; repo.full_name.toLowerCase());
 
-      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (LOWER(:...repoNames))&#x60;, {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
         repoNames,
       });
     }
 
     /* apply user provided repo name filters */
     if (pageOptionsDto.repo) {
-      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (LOWER(:...repoNames))&#x60;, {
-        repoNames: pageOptionsDto.repo.split(&quot;,&quot;),
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames: pageOptionsDto.repo.toLowerCase().split(&quot;,&quot;),
       });
     }
 
@@ -811,9 +811,9 @@ export class PullRequestGithubEventsService {
       };
 
       const users &#x3D; await this.userListService.findContributorsByListId(filtersDto, pageOptionsDto.listId);
-      const userNames &#x3D; users.data.filter((user) &#x3D;&gt; user.username).map((user) &#x3D;&gt; user.username);
+      const userNames &#x3D; users.data.map((user) &#x3D;&gt; user.username?.toLowerCase());
 
-      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) IN (LOWER(:...userNames))&#x60;, {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) IN (:...userNames)&#x60;, {
         userNames,
       });
     }
