@@ -82,6 +82,7 @@ import { DbCoupon } from "./coupon/entities/coupon.entity";
 import { LogModule } from "./log/log.module";
 import { TimescaleModule } from "./timescale/timescale.module";
 import { DbPullRequestGitHubEvents } from "./timescale/entities/pull_request_github_event";
+import { DbPullRequestReviewGitHubEvents } from "./timescale/entities/pull_request_review_github_event";
 import { DbWorkspace } from "./workspace/entities/workspace.entity";
 import { DbWorkspaceMember } from "./workspace/entities/workspace-member.entity";
 import { DbWorkspaceOrg } from "./workspace/entities/workspace-org.entity";
@@ -179,7 +180,7 @@ import { WorkspaceModule } from "./workspace/workspace.module";
           password: configService.get("db-timescale.password"),
           database: configService.get("db-timescale.database"),
           autoLoadEntities: false,
-          entities: [DbPullRequestGitHubEvents],
+          entities: [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
           ssl: {

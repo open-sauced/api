@@ -20,12 +20,14 @@ import { CodeExplanationController } from "./code-explanation.controller";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
 import { PullRequestReviewService } from "./pull-request-review.service";
 import { DbPullRequestReview } from "./entities/pull-request-review.entity";
+import { PullRequestReviewsController } from "./pull-request-review.controller";
+import { DbPullRequestReviewGitHubEvents } from "../timescale/entities/pull_request_review_github_event";
 
 @Module({
   imports: [
     TimescaleModule,
     TypeOrmModule.forFeature([DbPullRequest, DbPRInsight, DbPullRequestReview], "ApiConnection"),
-    TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
+    TypeOrmModule.forFeature([DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents], "TimescaleConnection"),
     RepoFilterModule,
     OpenAiModule,
   ],
@@ -35,6 +37,7 @@ import { DbPullRequestReview } from "./entities/pull-request-review.entity";
     CodeRefactorSuggestionController,
     CodeTestSuggestionController,
     CodeExplanationController,
+    PullRequestReviewsController,
   ],
   providers: [
     PullRequestService,
