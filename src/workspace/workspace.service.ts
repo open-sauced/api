@@ -53,6 +53,27 @@ export class WorkspaceService {
     return item;
   }
 
+  async findOneByIdAndUserId(id: string, userId: number): Promise<DbWorkspace> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(
+        `workspaces.members`,
+        `workspace_members`,
+        `workspaces.id=workspace_members.workspace_id AND workspace_members.user_id = :userId`,
+        { userId }
+      )
+      .where("workspaces.id = :id", { id });
+
+    const item: DbWorkspace | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    return item;
+  }
+
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbWorkspace>> {
     const queryBuilder = this.baseQueryBuilder();
 
@@ -122,7 +143,14 @@ export class WorkspaceService {
     return this.findOneById(id);
   }
 
-  async deleteWorkspace(workspaceId: string) {
-    return this.workspaceRepository.softDelete(workspaceId);
+  async deleteWorkspace(id: string, userId: number) {
+    const workspace = await this.findOneByIdAndUserId(id, userId);
+    const canDelete = this.canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canDelete) {
+      throw new UnauthorizedException();
+    }
+
+    return this.workspaceRepository.softDelete(id);
   }
 }

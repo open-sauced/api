@@ -86,7 +86,7 @@ export class WorkspaceController {
   @ApiNotFoundResponse({ description: "Unable to delete workspace" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  async deleteWorkspaceForUser(@Param("id") id: string) {
-    return this.workspaceService.deleteWorkspace(id);
+  async deleteWorkspaceForUser(@Param("id") id: string, @UserId() userId: number) {
+    return this.workspaceService.deleteWorkspace(id, userId);
   }
 }
