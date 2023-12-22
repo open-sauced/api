@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [1.60.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.4...v1.60.0-beta.5) (2023-12-22)
+
+
+### 🍕 Features
+
+* Add patch for workspaces ([#453](https://github.com/open-sauced/api.opensauced.pizza/issues/453)) ([73bb06a](https://github.com/open-sauced/api.opensauced.pizza/commit/73bb06a2df00ca93dbf11474553b3c3fef216780))
+* Upgrade NPM package to 2.0.0 ([#452](https://github.com/open-sauced/api.opensauced.pizza/issues/452)) ([4e1f093](https://github.com/open-sauced/api.opensauced.pizza/commit/4e1f0935d5a82fe4c19c01f72a4c04181fcc04ee))
+
 ## [1.60.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.3...v1.60.0-beta.4) (2023-12-21)
 
 
