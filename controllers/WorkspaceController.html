@@ -95,6 +95,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#getWorkspacesForUser" >getWorkspacesForUser</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateWorkspaceForUser" >updateWorkspaceForUser</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -231,8 +235,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -309,8 +313,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -370,11 +374,113 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateWorkspaceForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateWorkspaceForUser</b></span>
+                        <a href="#updateWorkspaceForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateWorkspaceForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateWorkspaceDto: <a href="../classes/UpdateWorkspaceDto.html" target="_self">UpdateWorkspaceDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateWorkspaceForUser&#x27;, summary: &#x27;Updates a workspace for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspace})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace&#x27;})<br />@ApiBody({type: UpdateWorkspaceDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateWorkspaceDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateWorkspaceDto.html" target="_self" >UpdateWorkspaceDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -383,6 +489,8 @@ import {
   ApiTags,
   ApiBadRequestResponse,
   ApiParam,
+  ApiUnprocessableEntityResponse,
+  ApiBody,
 } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
@@ -393,6 +501,7 @@ import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { CreateWorkspaceDto } from &quot;./dtos/create-workspace.dto&quot;;
+import { UpdateWorkspaceDto } from &quot;./dtos/update-workspace.dto&quot;;
 
 @Controller(&quot;workspaces&quot;)
 @ApiTags(&quot;Workspaces service&quot;)
@@ -427,6 +536,26 @@ export class WorkspaceController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async createWorkspaceForUser(@UserId() userId: number, @Body() createWorkspaceDto: CreateWorkspaceDto) {
     return this.workspaceService.createWorkspace(createWorkspaceDto, userId);
+  }
+
+  @Patch(&quot;/:id&quot;)
+  @ApiOperation({
+    operationId: &quot;updateWorkspaceForUser&quot;,
+    summary: &quot;Updates a workspace for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspace })
+  @ApiNotFoundResponse({ description: &quot;Unable to update workspace&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to process workspace&quot; })
+  @ApiBody({ type: UpdateWorkspaceDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async updateWorkspaceForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Body() updateWorkspaceDto: UpdateWorkspaceDto,
+    @UserId() userId: number
+  ): Promise&lt;DbWorkspace&gt; {
+    return this.workspaceService.updateWorkspace(id, updateWorkspaceDto, userId);
   }
 
   @Delete(&quot;/:id&quot;)
