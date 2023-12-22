@@ -102,6 +102,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findOneByIdAndUserId" >findOneByIdAndUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateWorkspace" >updateWorkspace</a>
                             </li>
                         </ul>
@@ -346,8 +350,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/workspace/workspace.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/workspace/workspace.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -422,15 +426,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteWorkspace(workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteWorkspace(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/workspace/workspace.service.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/workspace/workspace.service.ts:146</a></div>
                 </td>
             </tr>
 
@@ -451,9 +455,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>workspaceId</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -500,8 +516,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/workspace/workspace.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/workspace/workspace.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -636,6 +652,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByIdAndUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByIdAndUserId</b></span>
+                        <a href="#findOneByIdAndUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByIdAndUserId(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/workspace/workspace.service.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateWorkspace"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -654,8 +753,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/workspace/workspace.service.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/workspace/workspace.service.ts:121</a></div>
                 </td>
             </tr>
 
@@ -788,6 +887,27 @@ export class WorkspaceService {
     return item;
   }
 
+  async findOneByIdAndUserId(id: string, userId: number): Promise&lt;DbWorkspace&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(
+        &#x60;workspaces.members&#x60;,
+        &#x60;workspace_members&#x60;,
+        &#x60;workspaces.id&#x3D;workspace_members.workspace_id AND workspace_members.user_id &#x3D; :userId&#x60;,
+        { userId }
+      )
+      .where(&quot;workspaces.id &#x3D; :id&quot;, { id });
+
+    const item: DbWorkspace | null &#x3D; await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    return item;
+  }
+
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbWorkspace&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
@@ -857,8 +977,15 @@ export class WorkspaceService {
     return this.findOneById(id);
   }
 
-  async deleteWorkspace(workspaceId: string) {
-    return this.workspaceRepository.softDelete(workspaceId);
+  async deleteWorkspace(id: string, userId: number) {
+    const workspace &#x3D; await this.findOneByIdAndUserId(id, userId);
+    const canDelete &#x3D; this.canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canDelete) {
+      throw new UnauthorizedException();
+    }
+
+    return this.workspaceRepository.softDelete(id);
   }
 }
 </code></pre>

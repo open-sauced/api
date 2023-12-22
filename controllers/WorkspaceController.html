@@ -221,7 +221,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteWorkspaceForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>deleteWorkspaceForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -260,6 +260,18 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -568,8 +580,8 @@ export class WorkspaceController {
   @ApiNotFoundResponse({ description: &quot;Unable to delete workspace&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  async deleteWorkspaceForUser(@Param(&quot;id&quot;) id: string) {
-    return this.workspaceService.deleteWorkspace(id);
+  async deleteWorkspaceForUser(@Param(&quot;id&quot;) id: string, @UserId() userId: number) {
+    return this.workspaceService.deleteWorkspace(id, userId);
   }
 }
 </code></pre>
