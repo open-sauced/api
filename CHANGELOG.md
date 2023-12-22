@@ -5,6 +5,17 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.5...v2.0.0-beta.1) (2023-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* v2.0.0 (#455)
+
+### 🍕 Features
+
+* v2.0.0 ([#455](https://github.com/open-sauced/api.opensauced.pizza/issues/455)) ([e4acbe4](https://github.com/open-sauced/api.opensauced.pizza/commit/e4acbe48ffc36d8676fd90adda8b59c37780b572))
+
 ## [1.60.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.4...v1.60.0-beta.5) (2023-12-22)
 
 
