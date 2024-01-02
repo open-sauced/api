@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2024-01-02)
+
+
+### 🍕 Features
+
+* add endpoint for pull request reviews search ([#456](https://github.com/open-sauced/api.opensauced.pizza/issues/456)) ([6504be3](https://github.com/open-sauced/api.opensauced.pizza/commit/6504be34f40de8b6d5c75dd77f5ea5b183c13f3c))
+
 ## [2.0.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.5...v2.0.0-beta.1) (2023-12-22)
 
 
