@@ -559,8 +559,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="284"
-                            class="link-to-prism">src/app.module.ts:284</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="285"
+                            class="link-to-prism">src/app.module.ts:285</a></div>
                 </td>
             </tr>
 
@@ -697,6 +697,7 @@ import { DbCoupon } from &quot;./coupon/entities/coupon.entity&quot;;
 import { LogModule } from &quot;./log/log.module&quot;;
 import { TimescaleModule } from &quot;./timescale/timescale.module&quot;;
 import { DbPullRequestGitHubEvents } from &quot;./timescale/entities/pull_request_github_event&quot;;
+import { DbPullRequestReviewGitHubEvents } from &quot;./timescale/entities/pull_request_review_github_event&quot;;
 import { DbWorkspace } from &quot;./workspace/entities/workspace.entity&quot;;
 import { DbWorkspaceMember } from &quot;./workspace/entities/workspace-member.entity&quot;;
 import { DbWorkspaceOrg } from &quot;./workspace/entities/workspace-org.entity&quot;;
@@ -794,7 +795,7 @@ import { WorkspaceModule } from &quot;./workspace/workspace.module&quot;;
           password: configService.get(&quot;db-timescale.password&quot;),
           database: configService.get(&quot;db-timescale.database&quot;),
           autoLoadEntities: false,
-          entities: [DbPullRequestGitHubEvents],
+          entities: [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
           ssl: {

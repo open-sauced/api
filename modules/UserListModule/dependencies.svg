@@ -18,13 +18,13 @@
 <title>cluster_UserListModule_providers</title>
 <polygon fill="none" stroke="black" points="168,-40.8 168,-92.8 532,-92.8 532,-40.8 168,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UserListModule_exports</title>
-<polygon fill="none" stroke="black" points="122,-170.8 122,-222.8 402,-222.8 402,-170.8 122,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_UserListModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 160,-92.8 160,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_UserListModule_exports</title>
+<polygon fill="none" stroke="black" points="122,-170.8 122,-222.8 402,-222.8 402,-170.8 122,-170.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">
