@@ -89,6 +89,7 @@ import { DbWorkspaceOrg } from "./workspace/entities/workspace-org.entity";
 import { DbWorkspaceRepo } from "./workspace/entities/workspace-repos.entity";
 import { DbWorkspaceInsight } from "./workspace/entities/workspace-insights.entity";
 import { WorkspaceModule } from "./workspace/workspace.module";
+import { HistogramModule } from "./histogram/histogram.module";
 
 @Module({
   imports: [
@@ -267,6 +268,7 @@ import { WorkspaceModule } from "./workspace/workspace.module";
     LogModule,
     TimescaleModule,
     WorkspaceModule,
+    HistogramModule,
   ],
   providers: [],
 })

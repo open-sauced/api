@@ -11,15 +11,20 @@ import { PullRequestGithubEventsService } from "./pull_request_github_events.ser
 import { PullRequestReviewGithubEventsService } from "./pull_request_review_github_events.service";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event";
+import { DbWatchGitHubEventsHistogram } from "./entities/watch_github_events_histogram";
+import { WatchGithubEventsService } from "./watch_github_events.service";
 
 @Module({
   imports: [
     RepoModule,
     UserListModule,
-    TypeOrmModule.forFeature([DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents], "TimescaleConnection"),
+    TypeOrmModule.forFeature(
+      [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents, DbWatchGitHubEventsHistogram],
+      "TimescaleConnection"
+    ),
     TypeOrmModule.forFeature([DbRepo, DbUser, DbUserList, DbUserListContributor, DbUserHighlight], "ApiConnection"),
   ],
-  providers: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService],
-  exports: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService],
+  providers: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService, WatchGithubEventsService],
+  exports: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService, WatchGithubEventsService],
 })
 export class TimescaleModule {}
