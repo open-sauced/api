@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { ConfigService } from "@nestjs/config";
+import { PullRequestHistogramDto } from "../histogram/dtos/pull_request";
 import { FilterListContributorsDto } from "../user-lists/dtos/filter-contributors.dto";
 import { RepoService } from "../repo/repo.service";
 import { PullRequestPageOptionsDto } from "../pull-requests/dtos/pull-request-page-options.dto";
@@ -12,7 +13,6 @@ import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
-import { PullRequestHistogramDto } from "src/histogram/dtos/pull_request";
 import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
 
 @Injectable()
