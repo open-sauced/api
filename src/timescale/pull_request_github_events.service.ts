@@ -12,6 +12,8 @@ import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
+import { PullRequestHistogramDto } from "src/histogram/dtos/pull_request";
+import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
 
 @Injectable()
 export class PullRequestGithubEventsService {
@@ -233,5 +235,26 @@ export class PullRequestGithubEventsService {
     }
 
     return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
+  }
+
+  async genPrHistogram(options: PullRequestHistogramDto): Promise<DbPullRequestGitHubEventsHistogram[]> {
+    const order = options.orderDirection!;
+    const range = options.range!;
+
+    const queryBuilder = this.pullRequestGithubEventsRepository.manager.createQueryBuilder();
+
+    queryBuilder
+      .select("time_bucket('1 day', event_time)", "bucket")
+      .addSelect("count(*)", "prs_count")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: options.repo.toLowerCase() })
+      .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
+      .andWhere(`LOWER(pr_action) = LOWER('opened')`)
+      .groupBy("bucket")
+      .orderBy("bucket", order);
+
+    const rawResults = await queryBuilder.getRawMany();
+
+    return rawResults as DbPullRequestGitHubEventsHistogram[];
   }
 }

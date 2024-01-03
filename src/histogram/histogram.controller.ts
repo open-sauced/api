@@ -16,6 +16,9 @@ import { PushesHistogramDto } from "./dtos/pushes";
 import { ForksHistogramDto } from "./dtos/forks";
 import { IssueCommentsHistogramDto } from "./dtos/issue_comments";
 import { IssueHistogramDto } from "./dtos/issue";
+import { DbPullRequestGitHubEventsHistogram } from "src/timescale/entities/pull_request_github_events_histogram";
+import { PullRequestHistogramDto } from "./dtos/pull_request";
+import { PullRequestGithubEventsService } from "src/timescale/pull_request_github_events.service";
 
 @Controller("histogram")
 @ApiTags("Histogram generation service")
@@ -24,6 +27,7 @@ export class HistogramController {
     private readonly forkGitHubEventsService: ForkGithubEventsService,
     private readonly issueCommentGitHubEventsService: IssueCommentGithubEventsService,
     private readonly issueGitHubEventsService: IssueGithubEventsService,
+    private readonly pullRequestGitHubEventsService: PullRequestGithubEventsService,
     private readonly pushGitHubEventsService: PushGithubEventsService,
     private readonly watchGitHubEventsService: WatchGithubEventsService
   ) {}
@@ -83,5 +87,16 @@ export class HistogramController {
   @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
   async issuesHistogram(@Query() options: IssueHistogramDto): Promise<DbIssueGitHubEventsHistogram[]> {
     return this.issueGitHubEventsService.genIssueHistogram(options);
+  }
+
+  @Version("2")
+  @Get("/pull-requests")
+  @ApiOperation({
+    operationId: "prsHistogram",
+    summary: "Generates a pull request created histogram based on 1 day time buckets",
+  })
+  @ApiOkResponse({ type: DbPullRequestGitHubEventsHistogram, isArray: true })
+  async prsHistogram(@Query() options: PullRequestHistogramDto): Promise<DbPullRequestGitHubEventsHistogram[]> {
+    return this.pullRequestGitHubEventsService.genPrHistogram(options);
   }
 }
