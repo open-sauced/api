@@ -19,6 +19,8 @@ import { DbForkGitHubEventsHistogram } from "./entities/fork_github_events_histo
 import { ForkGithubEventsService } from "./fork_github_events.service";
 import { DbIssueCommentGitHubEventsHistogram } from "./entities/issue_comment_github_events_histogram";
 import { IssueCommentGithubEventsService } from "./issue_comment_github_events.service";
+import { IssueGithubEventsService } from "./issue_github_events.service";
+import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_histogram";
 
 @Module({
   imports: [
@@ -28,6 +30,7 @@ import { IssueCommentGithubEventsService } from "./issue_comment_github_events.s
       [
         DbForkGitHubEventsHistogram,
         DbIssueCommentGitHubEventsHistogram,
+        DbIssueGitHubEventsHistogram,
         DbPullRequestGitHubEvents,
         DbPullRequestReviewGitHubEvents,
         DbPushGitHubEventsHistogram,
@@ -40,6 +43,7 @@ import { IssueCommentGithubEventsService } from "./issue_comment_github_events.s
   providers: [
     ForkGithubEventsService,
     IssueCommentGithubEventsService,
+    IssueGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
     PushGithubEventsService,
@@ -48,6 +52,7 @@ import { IssueCommentGithubEventsService } from "./issue_comment_github_events.s
   exports: [
     ForkGithubEventsService,
     IssueCommentGithubEventsService,
+    IssueGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
     PushGithubEventsService,

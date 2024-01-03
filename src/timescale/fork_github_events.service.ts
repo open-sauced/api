@@ -9,7 +9,7 @@ export class ForkGithubEventsService {
   constructor(
     @InjectRepository(DbForkGitHubEventsHistogram, "TimescaleConnection")
     private forkGitHubEventsHistogramRepository: Repository<DbForkGitHubEventsHistogram>
-  ) { }
+  ) {}
 
   baseQueryBuilder() {
     const builder = this.forkGitHubEventsHistogramRepository.manager.createQueryBuilder();

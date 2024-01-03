@@ -1,6 +1,8 @@
 import { Controller, Get, Query, Version } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
+import { DbIssueGitHubEventsHistogram } from "../timescale/entities/issue_github_events_histogram";
+import { IssueGithubEventsService } from "../timescale/issue_github_events.service";
 import { PushGithubEventsService } from "../timescale/push_github_events.service";
 import { DbPushGitHubEventsHistogram } from "../timescale/entities/push_github_events_histogram";
 import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
@@ -13,6 +15,7 @@ import { StarsHistogramDto } from "./dtos/stars";
 import { PushesHistogramDto } from "./dtos/pushes";
 import { ForksHistogramDto } from "./dtos/forks";
 import { IssueCommentsHistogramDto } from "./dtos/issue_comments";
+import { IssueHistogramDto } from "./dtos/issue";
 
 @Controller("histogram")
 @ApiTags("Histogram generation service")
@@ -20,6 +23,7 @@ export class HistogramController {
   constructor(
     private readonly forkGitHubEventsService: ForkGithubEventsService,
     private readonly issueCommentGitHubEventsService: IssueCommentGithubEventsService,
+    private readonly issueGitHubEventsService: IssueGithubEventsService,
     private readonly pushGitHubEventsService: PushGithubEventsService,
     private readonly watchGitHubEventsService: WatchGithubEventsService
   ) {}
@@ -68,5 +72,16 @@ export class HistogramController {
     @Query() options: IssueCommentsHistogramDto
   ): Promise<DbIssueCommentGitHubEventsHistogram[]> {
     return this.issueCommentGitHubEventsService.genIssueCommentHistogram(options);
+  }
+
+  @Version("2")
+  @Get("/issues")
+  @ApiOperation({
+    operationId: "issuesHistogram",
+    summary: "Generates a issues created histogram based on 1 day time buckets",
+  })
+  @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
+  async issuesHistogram(@Query() options: IssueHistogramDto): Promise<DbIssueGitHubEventsHistogram[]> {
+    return this.issueGitHubEventsService.genIssueHistogram(options);
   }
 }
