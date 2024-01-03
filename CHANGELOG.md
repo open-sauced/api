@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2024-01-03)
+
+
+### 🍕 Features
+
+* Introduce v2/histogram service and v2/histogram/stars endpoint ([#458](https://github.com/open-sauced/api.opensauced.pizza/issues/458)) ([ab02086](https://github.com/open-sauced/api.opensauced.pizza/commit/ab0208650c3e41a5e6b0ef4d13c3bfe6975ee0a1))
+
 ## [2.0.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2024-01-02)
 
 
