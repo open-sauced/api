@@ -9,7 +9,7 @@ export class PushGithubEventsService {
   constructor(
     @InjectRepository(DbPushGitHubEventsHistogram, "TimescaleConnection")
     private pushGitHubEventsHistogramRepository: Repository<DbPushGitHubEventsHistogram>
-  ) { }
+  ) {}
 
   baseQueryBuilder() {
     const builder = this.pushGitHubEventsHistogramRepository.manager.createQueryBuilder();

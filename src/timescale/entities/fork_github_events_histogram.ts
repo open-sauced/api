@@ -1,8 +1,8 @@
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { Entity, Column } from "typeorm";
 
-@Entity({ name: "push_github_events" })
-export class DbPushGitHubEventsHistogram {
+@Entity({ name: "fork_github_events" })
+export class DbForkGitHubEventsHistogram {
   @ApiModelProperty({
     description: "Timestamp representing histogram bucket day",
     example: "2022-08-28 22:04:29.000000",
@@ -15,7 +15,7 @@ export class DbPushGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: "Number of pushes in day bucket",
+    description: "Number of forks in day bucket",
     example: 4,
     type: "integer",
   })
@@ -24,5 +24,5 @@ export class DbPushGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public pushes_count: number;
+  public forks_count: number;
 }

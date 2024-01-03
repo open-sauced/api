@@ -15,6 +15,8 @@ import { DbWatchGitHubEventsHistogram } from "./entities/watch_github_events_his
 import { WatchGithubEventsService } from "./watch_github_events.service";
 import { DbPushGitHubEventsHistogram } from "./entities/push_github_events_histogram";
 import { PushGithubEventsService } from "./push_github_events.service";
+import { DbForkGitHubEventsHistogram } from "./entities/fork_github_events_histogram";
+import { ForkGithubEventsService } from "./fork_github_events.service";
 
 @Module({
   imports: [
@@ -22,9 +24,10 @@ import { PushGithubEventsService } from "./push_github_events.service";
     UserListModule,
     TypeOrmModule.forFeature(
       [
-        DbPushGitHubEventsHistogram,
+        DbForkGitHubEventsHistogram,
         DbPullRequestGitHubEvents,
         DbPullRequestReviewGitHubEvents,
+        DbPushGitHubEventsHistogram,
         DbWatchGitHubEventsHistogram,
       ],
       "TimescaleConnection"
@@ -32,15 +35,17 @@ import { PushGithubEventsService } from "./push_github_events.service";
     TypeOrmModule.forFeature([DbRepo, DbUser, DbUserList, DbUserListContributor, DbUserHighlight], "ApiConnection"),
   ],
   providers: [
-    PushGithubEventsService,
+    ForkGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
+    PushGithubEventsService,
     WatchGithubEventsService,
   ],
   exports: [
-    PushGithubEventsService,
+    ForkGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
+    PushGithubEventsService,
     WatchGithubEventsService,
   ],
 })
