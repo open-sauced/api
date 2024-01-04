@@ -7,12 +7,17 @@ import {
   UpdateDateColumn,
   PrimaryGeneratedColumn,
   DeleteDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from "typeorm";
 
 import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { ApiHideProperty } from "@nestjs/swagger";
+import { DbUser } from "../../user/user.entity";
+import { DbInsight } from "./insight.entity";
 
 @Entity({ name: "insight_members" })
 export class DbInsightMember extends BaseEntity {
@@ -108,4 +113,20 @@ export class DbInsightMember extends BaseEntity {
     select: false,
   })
   public invitation_email?: string;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbInsight, (insight) => insight.members)
+  @JoinColumn({
+    name: "insight_id",
+    referencedColumnName: "id",
+  })
+  public insight!: DbInsight;
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.insights, { onDelete: "CASCADE" })
+  @JoinColumn({
+    name: "user_id",
+    referencedColumnName: "id",
+  })
+  public member: DbUser;
 }

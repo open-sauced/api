@@ -100,7 +100,8 @@ export class UserService {
         `(
           SELECT COALESCE(COUNT("insights"."id"), 0)
           FROM insights
-          WHERE user_id = :userId
+          LEFT JOIN insight_members ON insights.id = insight_members.insight_id
+          WHERE insight_members.user_id = :userId
         )::INTEGER`,
         "users_insights_count"
       )

@@ -1,10 +1,12 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Query, Version } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
 import { FilterOptionsDto } from "../common/dtos/filter-options.dto";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestService } from "./pull-request.service";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
@@ -18,6 +20,7 @@ import { PullRequestReviewService } from "./pull-request-review.service";
 export class PullRequestController {
   constructor(
     private readonly pullRequestService: PullRequestService,
+    private readonly pullRequestEventsService: PullRequestGithubEventsService,
     private readonly pullRequestsInsightService: PullRequestInsightsService,
     private readonly pullRequestReviewService: PullRequestReviewService
   ) {}
@@ -42,6 +45,20 @@ export class PullRequestController {
   @ApiOkResponse({ type: DbPullRequest })
   async searchAllPullRequests(@Query() pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequest>> {
     return this.pullRequestService.findAllWithFilters(pageOptionsDto);
+  }
+
+  @Version("2")
+  @Get("/search")
+  @ApiOperation({
+    operationId: "searchAllPullRequestEvents",
+    summary: "Searches pull request events using filters and paginates them",
+  })
+  @ApiPaginatedResponse(DbPullRequestGitHubEvents)
+  @ApiOkResponse({ type: DbPullRequestGitHubEvents })
+  async searchAllPullRequestEvents(
+    @Query() pageOptionsDto: PullRequestPageOptionsDto
+  ): Promise<PageDto<DbPullRequestGitHubEvents>> {
+    return this.pullRequestEventsService.findAllWithFilters(pageOptionsDto);
   }
 
   @Get("/insights")

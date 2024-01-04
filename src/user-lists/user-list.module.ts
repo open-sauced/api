@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
-import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
@@ -19,7 +18,6 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 @Module({
   imports: [
     ApiServicesModule,
-    UserModule,
     TypeOrmModule.forFeature(
       [
         DbUser,

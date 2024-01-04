@@ -5,6 +5,80 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2024-01-04)
+
+
+### 🍕 Features
+
+* implements v2 histograms ([#459](https://github.com/open-sauced/api.opensauced.pizza/issues/459)) ([f97abb9](https://github.com/open-sauced/api.opensauced.pizza/commit/f97abb9dc485360a2e6312e03e4b271ebba62627))
+
+## [2.0.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2024-01-03)
+
+
+### 🍕 Features
+
+* Introduce v2/histogram service and v2/histogram/stars endpoint ([#458](https://github.com/open-sauced/api.opensauced.pizza/issues/458)) ([ab02086](https://github.com/open-sauced/api.opensauced.pizza/commit/ab0208650c3e41a5e6b0ef4d13c3bfe6975ee0a1))
+
+## [2.0.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2024-01-02)
+
+
+### 🍕 Features
+
+* add endpoint for pull request reviews search ([#456](https://github.com/open-sauced/api.opensauced.pizza/issues/456)) ([6504be3](https://github.com/open-sauced/api.opensauced.pizza/commit/6504be34f40de8b6d5c75dd77f5ea5b183c13f3c))
+
+## [2.0.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.5...v2.0.0-beta.1) (2023-12-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* v2.0.0 (#455)
+
+### 🍕 Features
+
+* v2.0.0 ([#455](https://github.com/open-sauced/api.opensauced.pizza/issues/455)) ([e4acbe4](https://github.com/open-sauced/api.opensauced.pizza/commit/e4acbe48ffc36d8676fd90adda8b59c37780b572))
+
+## [1.60.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.4...v1.60.0-beta.5) (2023-12-22)
+
+
+### 🍕 Features
+
+* Add patch for workspaces ([#453](https://github.com/open-sauced/api.opensauced.pizza/issues/453)) ([73bb06a](https://github.com/open-sauced/api.opensauced.pizza/commit/73bb06a2df00ca93dbf11474553b3c3fef216780))
+* Upgrade NPM package to 2.0.0 ([#452](https://github.com/open-sauced/api.opensauced.pizza/issues/452)) ([4e1f093](https://github.com/open-sauced/api.opensauced.pizza/commit/4e1f0935d5a82fe4c19c01f72a4c04181fcc04ee))
+
+## [1.60.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.3...v1.60.0-beta.4) (2023-12-21)
+
+
+### 🍕 Features
+
+* touchup some migration scripts ([#450](https://github.com/open-sauced/api.opensauced.pizza/issues/450)) ([104c2e2](https://github.com/open-sauced/api.opensauced.pizza/commit/104c2e2127e18f73491356843ce177c7c40d3320))
+
+## [1.60.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.2...v1.60.0-beta.3) (2023-12-21)
+
+
+### 🐛 Bug Fixes
+
+* Correct usage of lowercases in composite "IN" statements ([#451](https://github.com/open-sauced/api.opensauced.pizza/issues/451)) ([07da063](https://github.com/open-sauced/api.opensauced.pizza/commit/07da0637597010ca5b782086d602cf453ba3bb9e))
+
+## [1.60.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.60.0-beta.1...v1.60.0-beta.2) (2023-12-20)
+
+
+### 🍕 Features
+
+* V2 pr search using timescale data ([#444](https://github.com/open-sauced/api.opensauced.pizza/issues/444)) ([57dd070](https://github.com/open-sauced/api.opensauced.pizza/commit/57dd070a643480f0e227b440c3a6534e27b1cca6))
+
+## [1.60.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0...v1.60.0-beta.1) (2023-12-19)
+
+
+### 🍕 Features
+
+* Initial migrations feature ([051e7f8](https://github.com/open-sauced/api.opensauced.pizza/commit/051e7f890723403c012aad1393a92f863cbbcf09))
+* Return members left join and select in insights ([1ea6378](https://github.com/open-sauced/api.opensauced.pizza/commit/1ea63789988ea65685668e28f63d05b2b1bf1a45))
+
+
+### 🐛 Bug Fixes
+
+* Make removing insight dependent on admin membership ([5455880](https://github.com/open-sauced/api.opensauced.pizza/commit/545588095e5c322bbe81442088408d026612d6d7))
+
 ## [1.59.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.58.0...v1.59.0) (2023-12-12)
 
 
