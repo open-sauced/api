@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.0.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2024-01-04)
+
+
+### 🍕 Features
+
+* implements v2 histograms ([#459](https://github.com/open-sauced/api.opensauced.pizza/issues/459)) ([f97abb9](https://github.com/open-sauced/api.opensauced.pizza/commit/f97abb9dc485360a2e6312e03e4b271ebba62627))
+
 ## [2.0.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2024-01-03)
 
 
