@@ -14,6 +14,8 @@ import { WorkspaceMemberController } from "./workspace-members.controller";
 import { WorkspaceMembersService } from "./workspace-members.service";
 import { WorkspaceOrgController } from "./workspace-orgs.controller";
 import { WorkspaceOrgsService } from "./workspace-orgs.service";
+import { WorkspaceRepoController } from "./workspace-repos.controller";
+import { WorkspaceReposService } from "./workspace-repos.service";
 
 @Module({
   imports: [
@@ -24,8 +26,8 @@ import { WorkspaceOrgsService } from "./workspace-orgs.service";
       "ApiConnection"
     ),
   ],
-  controllers: [WorkspaceController, WorkspaceMemberController, WorkspaceOrgController],
-  providers: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService],
-  exports: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService],
+  controllers: [WorkspaceController, WorkspaceMemberController, WorkspaceOrgController, WorkspaceRepoController],
+  providers: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService, WorkspaceReposService],
+  exports: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService, WorkspaceReposService],
 })
 export class WorkspaceModule {}
