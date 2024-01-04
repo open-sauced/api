@@ -15,7 +15,7 @@
 | [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
 | [public.users_to_repos_submissions](public.users_to_repos_submissions.md) | 7       |         | BASE TABLE |
 | [public.users_to_repos_stargazers](public.users_to_repos_stargazers.md)   | 6       |         | BASE TABLE |
-| [public.insights](public.insights.md)                                     | 10      |         | BASE TABLE |
+| [public.insights](public.insights.md)                                     | 9       |         | BASE TABLE |
 | [public.insight_repos](public.insight_repos.md)                           | 6       |         | BASE TABLE |
 | [public.user_repos](public.user_repos.md)                                 | 4       |         | BASE TABLE |
 | [public.customers](public.customers.md)                                   | 2       |         | BASE TABLE |
@@ -40,6 +40,11 @@
 | [public.user_list_contributors](public.user_list_contributors.md)         | 6       |         | BASE TABLE |
 | [public.coupons](public.coupons.md)                                       | 3       |         | BASE TABLE |
 | [public.pull_request_reviews](public.pull_request_reviews.md)             | 7       |         | BASE TABLE |
+| [public.workspaces](public.workspaces.md)                                 | 6       |         | BASE TABLE |
+| [public.workspace_members](public.workspace_members.md)                   | 7       |         | BASE TABLE |
+| [public.workspace_orgs](public.workspace_orgs.md)                         | 6       |         | BASE TABLE |
+| [public.workspace_repos](public.workspace_repos.md)                       | 6       |         | BASE TABLE |
+| [public.workspace_insights](public.workspace_insights.md)                 | 6       |         | BASE TABLE |
 
 ## Relations
 
