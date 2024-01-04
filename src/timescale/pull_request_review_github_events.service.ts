@@ -10,7 +10,9 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
+import { PullRequestReviewHistogramDto } from "../histogram/dtos/pull_request_review";
 import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event";
+import { DbPullRequestReviewGitHubEventsHistogram } from "./entities/pull_request_review_github_events_histogram";
 
 @Injectable()
 export class PullRequestReviewGithubEventsService {
@@ -178,5 +180,27 @@ export class PullRequestReviewGithubEventsService {
     }
 
     return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
+  }
+
+  async genPrReviewHistogram(
+    options: PullRequestReviewHistogramDto
+  ): Promise<DbPullRequestReviewGitHubEventsHistogram[]> {
+    const order = options.orderDirection!;
+    const range = options.range!;
+
+    const queryBuilder = this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
+
+    queryBuilder
+      .select("time_bucket('1 day', event_time)", "bucket")
+      .addSelect("count(*)", "prs_count")
+      .from("pull_request_review_github_events", "pull_request_review_github_events")
+      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: options.repo.toLowerCase() })
+      .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
+      .groupBy("bucket")
+      .orderBy("bucket", order);
+
+    const rawResults = await queryBuilder.getRawMany();
+
+    return rawResults as DbPullRequestReviewGitHubEventsHistogram[];
   }
 }

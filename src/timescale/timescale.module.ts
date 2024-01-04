@@ -13,18 +13,50 @@ import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event"
 import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event";
 import { DbWatchGitHubEventsHistogram } from "./entities/watch_github_events_histogram";
 import { WatchGithubEventsService } from "./watch_github_events.service";
+import { DbPushGitHubEventsHistogram } from "./entities/push_github_events_histogram";
+import { PushGithubEventsService } from "./push_github_events.service";
+import { DbForkGitHubEventsHistogram } from "./entities/fork_github_events_histogram";
+import { ForkGithubEventsService } from "./fork_github_events.service";
+import { DbIssueCommentGitHubEventsHistogram } from "./entities/issue_comment_github_events_histogram";
+import { IssueCommentGithubEventsService } from "./issue_comment_github_events.service";
+import { IssueGithubEventsService } from "./issue_github_events.service";
+import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_histogram";
 
 @Module({
   imports: [
     RepoModule,
     UserListModule,
     TypeOrmModule.forFeature(
-      [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents, DbWatchGitHubEventsHistogram],
+      [
+        DbForkGitHubEventsHistogram,
+        DbIssueCommentGitHubEventsHistogram,
+        DbIssueGitHubEventsHistogram,
+        DbPullRequestGitHubEvents,
+        DbPullRequestReviewGitHubEvents,
+        DbPushGitHubEventsHistogram,
+        DbWatchGitHubEventsHistogram,
+      ],
       "TimescaleConnection"
     ),
     TypeOrmModule.forFeature([DbRepo, DbUser, DbUserList, DbUserListContributor, DbUserHighlight], "ApiConnection"),
   ],
-  providers: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService, WatchGithubEventsService],
-  exports: [PullRequestGithubEventsService, PullRequestReviewGithubEventsService, WatchGithubEventsService],
+  providers: [
+    ForkGithubEventsService,
+    IssueCommentGithubEventsService,
+    IssueGithubEventsService,
+    PullRequestGithubEventsService,
+    PullRequestReviewGithubEventsService,
+    PushGithubEventsService,
+    WatchGithubEventsService,
+  ],
+  exports: [
+    ForkGithubEventsService,
+    IssueCommentGithubEventsService,
+    IssueGithubEventsService,
+    PullRequestGithubEventsService,
+    PullRequestReviewGithubEventsService,
+    PushGithubEventsService,
+    WatchGithubEventsService,
+  ],
 })
 export class TimescaleModule {}
