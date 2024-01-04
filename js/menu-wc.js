@@ -768,18 +768,30 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/TimescaleModule.html" data-type="entity-link" >TimescaleModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-TimescaleModule-902a9b740e00167067e3bd6004843f3b56ca7357def0eeaae2955579386bb67e93f73e54d646a416d0f1f35ad9568a13bcab86129c1762bb566cb64ff46b32bf"' : 'data-target="#xs-injectables-links-module-TimescaleModule-902a9b740e00167067e3bd6004843f3b56ca7357def0eeaae2955579386bb67e93f73e54d646a416d0f1f35ad9568a13bcab86129c1762bb566cb64ff46b32bf"' }>
+                                        'data-target="#injectables-links-module-TimescaleModule-2e2965b5e4fb9afbd47c18aa7f63c09839c93e8e9f8a8b28868e857b29ee3e06dbd481b19002c2f7f04e8f8a6ede68cae54924c0f2d0ac2476a29885d6477596"' : 'data-target="#xs-injectables-links-module-TimescaleModule-2e2965b5e4fb9afbd47c18aa7f63c09839c93e8e9f8a8b28868e857b29ee3e06dbd481b19002c2f7f04e8f8a6ede68cae54924c0f2d0ac2476a29885d6477596"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-TimescaleModule-902a9b740e00167067e3bd6004843f3b56ca7357def0eeaae2955579386bb67e93f73e54d646a416d0f1f35ad9568a13bcab86129c1762bb566cb64ff46b32bf"' :
-                                        'id="xs-injectables-links-module-TimescaleModule-902a9b740e00167067e3bd6004843f3b56ca7357def0eeaae2955579386bb67e93f73e54d646a416d0f1f35ad9568a13bcab86129c1762bb566cb64ff46b32bf"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-TimescaleModule-2e2965b5e4fb9afbd47c18aa7f63c09839c93e8e9f8a8b28868e857b29ee3e06dbd481b19002c2f7f04e8f8a6ede68cae54924c0f2d0ac2476a29885d6477596"' :
+                                        'id="xs-injectables-links-module-TimescaleModule-2e2965b5e4fb9afbd47c18aa7f63c09839c93e8e9f8a8b28868e857b29ee3e06dbd481b19002c2f7f04e8f8a6ede68cae54924c0f2d0ac2476a29885d6477596"' }>
+                                        <li class="link">
+                                            <a href="injectables/ForkGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ForkGithubEventsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/IssueCommentGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IssueCommentGithubEventsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/IssueGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >IssueGithubEventsService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/PullRequestGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PullRequestGithubEventsService</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/PullRequestReviewGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PullRequestReviewGithubEventsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/PushGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PushGithubEventsService</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/WatchGithubEventsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WatchGithubEventsService</a>
@@ -1023,6 +1035,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbEndorsement.html" data-type="entity-link" >DbEndorsement</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbForkGitHubEventsHistogram.html" data-type="entity-link" >DbForkGitHubEventsHistogram</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbInsight.html" data-type="entity-link" >DbInsight</a>
                                 </li>
                                 <li class="link">
@@ -1030,6 +1045,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbInsightRepo.html" data-type="entity-link" >DbInsightRepo</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbIssueCommentGitHubEventsHistogram.html" data-type="entity-link" >DbIssueCommentGitHubEventsHistogram</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbIssueGitHubEventsHistogram.html" data-type="entity-link" >DbIssueGitHubEventsHistogram</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbLog.html" data-type="entity-link" >DbLog</a>
@@ -1044,10 +1065,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbPullRequestGitHubEvents.html" data-type="entity-link" >DbPullRequestGitHubEvents</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbPullRequestGitHubEventsHistogram.html" data-type="entity-link" >DbPullRequestGitHubEventsHistogram</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbPullRequestReview.html" data-type="entity-link" >DbPullRequestReview</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbPullRequestReviewGitHubEvents.html" data-type="entity-link" >DbPullRequestReviewGitHubEvents</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbPullRequestReviewGitHubEventsHistogram.html" data-type="entity-link" >DbPullRequestReviewGitHubEventsHistogram</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbPushGitHubEventsHistogram.html" data-type="entity-link" >DbPushGitHubEventsHistogram</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbRepo.html" data-type="entity-link" >DbRepo</a>
@@ -1144,6 +1174,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/BakeRepoDto.html" data-type="entity-link" >BakeRepoDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/BaseHistogramDto.html" data-type="entity-link" >BaseHistogramDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CollaboratorsDto.html" data-type="entity-link" >CollaboratorsDto</a>
                             </li>
                             <li class="link">
@@ -1237,6 +1270,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FollowManyUsersDto.html" data-type="entity-link" >FollowManyUsersDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ForksHistogramDto.html" data-type="entity-link" >ForksHistogramDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/GenerateCodeExplanationDto.html" data-type="entity-link" >GenerateCodeExplanationDto</a>
                             </li>
                             <li class="link">
@@ -1258,6 +1294,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/InsightPageOptionsDto.html" data-type="entity-link" >InsightPageOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/IssueCommentsHistogramDto.html" data-type="entity-link" >IssueCommentsHistogramDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/IssueHistogramDto.html" data-type="entity-link" >IssueHistogramDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/NewMember.html" data-type="entity-link" >NewMember</a>
                             </li>
                             <li class="link">
@@ -1276,7 +1318,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/PullRequestContributorOptionsDto.html" data-type="entity-link" >PullRequestContributorOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/PullRequestHistogramDto.html" data-type="entity-link" >PullRequestHistogramDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/PullRequestPageOptionsDto.html" data-type="entity-link" >PullRequestPageOptionsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PullRequestReviewHistogramDto.html" data-type="entity-link" >PullRequestReviewHistogramDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PushesHistogramDto.html" data-type="entity-link" >PushesHistogramDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RepoInfo.html" data-type="entity-link" >RepoInfo</a>
