@@ -9,6 +9,7 @@ import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
 import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
+import { canUserManageWorkspace } from "./common/memberAccess";
 
 @Injectable()
 export class WorkspaceService {
@@ -24,17 +25,6 @@ export class WorkspaceService {
     const builder = this.workspaceRepository.createQueryBuilder("workspaces");
 
     return builder;
-  }
-
-  canUserManageWorkspace(workspace: DbWorkspace, userId: number, accessRoles: string[]): boolean {
-    const membership = workspace.members.find((member) => member.user_id === userId);
-    const canManage = membership && accessRoles.includes(membership.role);
-
-    if (!canManage) {
-      return false;
-    }
-
-    return true;
   }
 
   async findOneById(id: string): Promise<DbWorkspace> {
@@ -126,7 +116,7 @@ export class WorkspaceService {
      * membership modification is left to owners on different endpoints
      */
 
-    const canUpdate = this.canUserManageWorkspace(workspace, userId, [
+    const canUpdate = canUserManageWorkspace(workspace, userId, [
       WorkspaceMemberRoleEnum.Editor,
       WorkspaceMemberRoleEnum.Owner,
     ]);
@@ -145,7 +135,7 @@ export class WorkspaceService {
 
   async deleteWorkspace(id: string, userId: number) {
     const workspace = await this.findOneByIdAndUserId(id, userId);
-    const canDelete = this.canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
 
     if (!canDelete) {
       throw new UnauthorizedException();

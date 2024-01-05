@@ -29,9 +29,9 @@ export class CreateWorkspaceDto {
   @ApiProperty({
     description: "An array of new member objects",
     isArray: true,
-    example: [{ id: 12345, login: "sauceduser", role: "owner" }],
+    example: [{ id: 12345, role: "owner" }],
   })
   @IsArray()
   @Type(() => NewMember)
-  members: { id: number; login: string; role: WorkspaceMemberRoleEnum }[];
+  members: { id: number; role: WorkspaceMemberRoleEnum }[];
 }
