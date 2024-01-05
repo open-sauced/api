@@ -12,6 +12,8 @@ import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
 import { WorkspaceMemberController } from "./workspace-members.controller";
 import { WorkspaceMembersService } from "./workspace-members.service";
+import { WorkspaceOrgController } from "./workspace-orgs.controller";
+import { WorkspaceOrgsService } from "./workspace-orgs.service";
 
 @Module({
   imports: [
@@ -22,8 +24,8 @@ import { WorkspaceMembersService } from "./workspace-members.service";
       "ApiConnection"
     ),
   ],
-  controllers: [WorkspaceController, WorkspaceMemberController],
-  providers: [WorkspaceService, WorkspaceMembersService],
-  exports: [WorkspaceService, WorkspaceMembersService],
+  controllers: [WorkspaceController, WorkspaceMemberController, WorkspaceOrgController],
+  providers: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService],
+  exports: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService],
 })
 export class WorkspaceModule {}

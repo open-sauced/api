@@ -77,7 +77,7 @@ export class DbWorkspaceOrg extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.workspaces, { onDelete: "CASCADE" })
   @JoinColumn({
-    name: "user_id",
+    name: "org_id",
     referencedColumnName: "id",
   })
   public org: DbUser;
