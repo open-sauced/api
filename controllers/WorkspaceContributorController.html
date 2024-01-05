@@ -1,0 +1,839 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content controller">
+                   <div class="content-data">
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Controllers</li>
+  <li >WorkspaceContributorController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/workspace/workspace-contributors.controller.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>workspaces/:id/contributors</code>
+            </p>
+
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addOneWorkspaceContributorForUser" >addOneWorkspaceContributorForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addWorkspaceContributorsForUser" >addWorkspaceContributorsForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteOneWorkspaceContributorForUser" >deleteOneWorkspaceContributorForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteWorkspaceContributorsForUser" >deleteWorkspaceContributorsForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getWorkspaceContributorsForUser" >getWorkspaceContributorsForUser</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addOneWorkspaceContributorForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addOneWorkspaceContributorForUser</b></span>
+                        <a href="#addOneWorkspaceContributorForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addOneWorkspaceContributorForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, contributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;addOneWorkspaceContributorForUser&#x27;, summary: &#x27;Updates a workspace contributor for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace contributor&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace contributor&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addWorkspaceContributorsForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addWorkspaceContributorsForUser</b></span>
+                        <a href="#addWorkspaceContributorsForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addWorkspaceContributorsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateWorkspaceContributorsDto: <a href="../classes/UpdateWorkspaceContributorsDto.html" target="_self">UpdateWorkspaceContributorsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post()<br />@ApiOperation({operationId: &#x27;addWorkspaceContributorsForUser&#x27;, summary: &#x27;Updates workspace contributor for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace contributors&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace contributors&#x27;})<br />@ApiBody({type: UpdateWorkspaceContributorsDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateWorkspaceContributorsDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateWorkspaceContributorsDto.html" target="_self" >UpdateWorkspaceContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteOneWorkspaceContributorForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteOneWorkspaceContributorForUser</b></span>
+                        <a href="#deleteOneWorkspaceContributorForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteOneWorkspaceContributorForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, contributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteOneWorkspaceContributorForUser&#x27;, summary: &#x27;Delete a workspace contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete workspace contributor&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteWorkspaceContributorsForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteWorkspaceContributorsForUser</b></span>
+                        <a href="#deleteWorkspaceContributorsForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteWorkspaceContributorsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, deleteWorkspaceContributorsDto: <a href="../classes/DeleteWorkspaceContributorsDto.html" target="_self">DeleteWorkspaceContributorsDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete()<br />@ApiOperation({operationId: &#x27;deleteWorkspaceContributorsForUser&#x27;, summary: &#x27;Deletes workspace contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete workspace contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: DeleteWorkspaceContributorsDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>deleteWorkspaceContributorsDto</td>
+                                    <td>
+                                                <code><a href="../classes/DeleteWorkspaceContributorsDto.html" target="_self" >DeleteWorkspaceContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWorkspaceContributorsForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getWorkspaceContributorsForUser</b></span>
+                        <a href="#getWorkspaceContributorsForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getWorkspaceContributorsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get()<br />@ApiOperation({operationId: &#x27;getWorkspaceContributorsForUser&#x27;, summary: &#x27;Gets workspace contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;PageDto&lt;DbWorkspaceContributor&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+import {
+  ApiOperation,
+  ApiOkResponse,
+  ApiNotFoundResponse,
+  ApiBearerAuth,
+  ApiTags,
+  ApiBadRequestResponse,
+  ApiUnprocessableEntityResponse,
+  ApiBody,
+  ApiParam,
+} from &quot;@nestjs/swagger&quot;;
+
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
+
+import { WorkspaceContributorsService } from &quot;./workspace-contributors.service&quot;;
+import { DbWorkspaceContributor } from &quot;./entities/workspace-contributors.entity&quot;;
+import { UpdateWorkspaceContributorsDto } from &quot;./dtos/update-workspace-contributors.dto&quot;;
+import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
+import { DeleteWorkspaceContributorsDto } from &quot;./dtos/delete-workspace-contributors.dto&quot;;
+
+@Controller(&quot;workspaces/:id/contributors&quot;)
+@ApiTags(&quot;Workspace contributors service&quot;)
+export class WorkspaceContributorController {
+  constructor(private readonly workspaceContributorService: WorkspaceContributorsService) {}
+
+  @Get()
+  @ApiOperation({
+    operationId: &quot;getWorkspaceContributorsForUser&quot;,
+    summary: &quot;Gets workspace contributors for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceContributor })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user workspace contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  async getWorkspaceContributorsForUser(
+    @Param(&quot;id&quot;) id: string,
+    @UserId() userId: number,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbWorkspaceContributor&gt;&gt; {
+    return this.workspaceContributorService.findAllContributorsByWorkspaceIdForUserId(pageOptionsDto, id, userId);
+  }
+
+  @Post()
+  @ApiOperation({
+    operationId: &quot;addWorkspaceContributorsForUser&quot;,
+    summary: &quot;Updates workspace contributor for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceContributor })
+  @ApiNotFoundResponse({ description: &quot;Unable to update workspace contributors&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to process workspace contributors&quot; })
+  @ApiBody({ type: UpdateWorkspaceContributorsDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async addWorkspaceContributorsForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Body() updateWorkspaceContributorsDto: UpdateWorkspaceContributorsDto,
+    @UserId() userId: number
+  ): Promise&lt;DbWorkspace&gt; {
+    return this.workspaceContributorService.addWorkspaceContributors(updateWorkspaceContributorsDto, id, userId);
+  }
+
+  @Post(&quot;/:contributorId&quot;)
+  @ApiOperation({
+    operationId: &quot;addOneWorkspaceContributorForUser&quot;,
+    summary: &quot;Updates a workspace contributor for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceContributor })
+  @ApiNotFoundResponse({ description: &quot;Unable to update workspace contributor&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to process workspace contributor&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;contributorId&quot;, type: &quot;string&quot; })
+  async addOneWorkspaceContributorForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;contributorId&quot;) contributorId: number,
+    @UserId() userId: number
+  ): Promise&lt;DbWorkspace&gt; {
+    return this.workspaceContributorService.addOneWorkspaceContributor(id, contributorId, userId);
+  }
+
+  @Delete()
+  @ApiOperation({
+    operationId: &quot;deleteWorkspaceContributorsForUser&quot;,
+    summary: &quot;Deletes workspace contributors for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to delete workspace contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiBody({ type: DeleteWorkspaceContributorsDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async deleteWorkspaceContributorsForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Body() deleteWorkspaceContributorsDto: DeleteWorkspaceContributorsDto,
+    @UserId() userId: number
+  ) {
+    return this.workspaceContributorService.deleteWorkspaceContributors(deleteWorkspaceContributorsDto, id, userId);
+  }
+
+  @Delete(&quot;/:contributorId&quot;)
+  @ApiOperation({
+    operationId: &quot;deleteOneWorkspaceContributorForUser&quot;,
+    summary: &quot;Delete a workspace contributors for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to delete workspace contributor&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;contributorId&quot;, type: &quot;string&quot; })
+  async deleteOneWorkspaceContributorForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;contributorId&quot;) contributorId: number,
+    @UserId() userId: number
+  ) {
+    return this.workspaceContributorService.deleteOneWorkspaceContributor(id, contributorId, userId);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'WorkspaceContributorController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -964,13 +964,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/WorkspaceModule.html" data-type="entity-link" >WorkspaceModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
+                                            'data-target="#controllers-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' :
-                                            'id="xs-controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' :
+                                            'id="xs-controllers-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' }>
+                                            <li class="link">
+                                                <a href="controllers/WorkspaceContributorController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceContributorController</a>
+                                            </li>
                                             <li class="link">
                                                 <a href="controllers/WorkspaceController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceController</a>
                                             </li>
@@ -987,13 +990,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
+                                        'data-target="#injectables-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' :
-                                        'id="xs-injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' :
+                                        'id="xs-injectables-links-module-WorkspaceModule-24944edc8bfc60ded994aea440adaf4f12f2ea1041ae5f4b49656bbc9a3d5aea88e19a8565976e0215e4e87a16f434e712060dedd6c20d4f196cffcd6a155477"' }>
+                                        <li class="link">
+                                            <a href="injectables/WorkspaceContributorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceContributorsService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/WorkspaceMembersService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceMembersService</a>
                                         </li>
@@ -1164,6 +1170,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbWorkspace.html" data-type="entity-link" >DbWorkspace</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbWorkspaceContributor.html" data-type="entity-link" >DbWorkspaceContributor</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbWorkspaceInsight.html" data-type="entity-link" >DbWorkspaceInsight</a>
                                 </li>
                                 <li class="link">
@@ -1276,6 +1285,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DbUserHighlightRepo.html" data-type="entity-link" >DbUserHighlightRepo</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DeleteWorkspaceContributorsDto.html" data-type="entity-link" >DeleteWorkspaceContributorsDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DeleteWorkspaceMembersDto.html" data-type="entity-link" >DeleteWorkspaceMembersDto</a>
                             </li>
                             <li class="link">
@@ -1328,6 +1340,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/NewMember.html" data-type="entity-link" >NewMember</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/NewWorkspaceContributor.html" data-type="entity-link" >NewWorkspaceContributor</a>
                             </li>
                             <li class="link">
                                 <a href="classes/NewWorkspaceOrg.html" data-type="entity-link" >NewWorkspaceOrg</a>
@@ -1403,6 +1418,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateUserProfileInterestsDto.html" data-type="entity-link" >UpdateUserProfileInterestsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateWorkspaceContributorsDto.html" data-type="entity-link" >UpdateWorkspaceContributorsDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateWorkspaceDto.html" data-type="entity-link" >UpdateWorkspaceDto</a>

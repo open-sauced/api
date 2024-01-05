@@ -574,8 +574,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="287"
-                            class="link-to-prism">src/app.module.ts:287</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/app.module.ts:289</a></div>
                 </td>
             </tr>
 
@@ -720,6 +720,7 @@ import { DbWorkspaceRepo } from &quot;./workspace/entities/workspace-repos.entit
 import { DbWorkspaceInsight } from &quot;./workspace/entities/workspace-insights.entity&quot;;
 import { WorkspaceModule } from &quot;./workspace/workspace.module&quot;;
 import { HistogramModule } from &quot;./histogram/histogram.module&quot;;
+import { DbWorkspaceContributor } from &quot;./workspace/entities/workspace-contributors.entity&quot;;
 
 @Module({
   imports: [
@@ -788,6 +789,7 @@ import { HistogramModule } from &quot;./histogram/histogram.module&quot;;
             DbWorkspaceOrg,
             DbWorkspaceRepo,
             DbWorkspaceInsight,
+            DbWorkspaceContributor,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
