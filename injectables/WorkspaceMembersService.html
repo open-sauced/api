@@ -1,0 +1,1077 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >WorkspaceMembersService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/workspace/workspace-members.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#baseQueryBuilder" >baseQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteOneWorkspaceMember" >deleteOneWorkspaceMember</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteWorkspaceMembers" >deleteWorkspaceMembers</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllMembersByWorkspaceIdForUserId" >findAllMembersByWorkspaceIdForUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateOneWorkspaceMember" >updateOneWorkspaceMember</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateWorkspaceMembers" >updateWorkspaceMembers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(workspaceMemberRepository: Repository<DbWorkspaceMember>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/workspace-members.service.ts:17</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>workspaceMemberRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DbWorkspaceMember&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>SelectQueryBuilder&lt;DbWorkspaceMember&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteOneWorkspaceMember"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteOneWorkspaceMember</b></span>
+                        <a href="#deleteOneWorkspaceMember"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteOneWorkspaceMember(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, memberId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>memberId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteWorkspaceMembers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteWorkspaceMembers</b></span>
+                        <a href="#deleteWorkspaceMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteWorkspaceMembers(dto: <a href="../classes/DeleteWorkspaceMembersDto.html" target="_self">DeleteWorkspaceMembersDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:216</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dto</td>
+                                    <td>
+                                                <code><a href="../classes/DeleteWorkspaceMembersDto.html" target="_self" >DeleteWorkspaceMembersDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllMembersByWorkspaceIdForUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllMembersByWorkspaceIdForUserId</b></span>
+                        <a href="#findAllMembersByWorkspaceIdForUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllMembersByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbWorkspaceMember&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateOneWorkspaceMember"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateOneWorkspaceMember</b></span>
+                        <a href="#updateOneWorkspaceMember"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateOneWorkspaceMember(dto: <a href="../classes/UpdateWorkspaceMemberDto.html" target="_self">UpdateWorkspaceMemberDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, memberId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateWorkspaceMemberDto.html" target="_self" >UpdateWorkspaceMemberDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>memberId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateWorkspaceMembers"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateWorkspaceMembers</b></span>
+                        <a href="#updateWorkspaceMembers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateWorkspaceMembers(dto: <a href="../classes/UpdateWorkspaceMembersDto.html" target="_self">UpdateWorkspaceMembersDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateWorkspaceMembersDto.html" target="_self" >UpdateWorkspaceMembersDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { UserService } from &quot;../user/services/user.service&quot;;
+import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
+import { WorkspaceService } from &quot;./workspace.service&quot;;
+import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
+import { UpdateWorkspaceMemberDto, UpdateWorkspaceMembersDto } from &quot;./dtos/update-workspace-members.dto&quot;;
+import { DeleteWorkspaceMembersDto } from &quot;./dtos/delete-workspace-member.dto&quot;;
+
+@Injectable()
+export class WorkspaceMembersService {
+  constructor(
+    @InjectRepository(DbWorkspaceMember, &quot;ApiConnection&quot;)
+    private workspaceMemberRepository: Repository&lt;DbWorkspaceMember&gt;,
+    private workspaceService: WorkspaceService,
+    private userService: UserService
+  ) {}
+
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbWorkspaceMember&gt; {
+    const builder &#x3D; this.workspaceMemberRepository.createQueryBuilder(&quot;workspace_members&quot;);
+
+    return builder;
+  }
+
+  async findAllMembersByWorkspaceIdForUserId(
+    pageOptionsDto: PageOptionsDto,
+    id: string,
+    userId: number
+  ): Promise&lt;PageDto&lt;DbWorkspaceMember&gt;&gt; {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see who belongs to a workspace
+     */
+
+    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
+      WorkspaceMemberRoleEnum.Viewer,
+      WorkspaceMemberRoleEnum.Editor,
+      WorkspaceMemberRoleEnum.Owner,
+    ]);
+
+    if (!canView) {
+      throw new UnauthorizedException();
+    }
+
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(
+        &quot;workspace_members.member&quot;,
+        &quot;workspace_member_users&quot;,
+        &quot;workspace_members.user_id &#x3D; workspace_member_users.id&quot;
+      )
+      .where(&quot;workspace_members.workspace_id &#x3D; :id&quot;, { id });
+
+    const itemCount &#x3D; await queryBuilder.getCount();
+    const entities &#x3D; await queryBuilder.getMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async updateOneWorkspaceMember(
+    dto: UpdateWorkspaceMemberDto,
+    id: string,
+    memberId: string,
+    userId: number
+  ): Promise&lt;DbWorkspace&gt; {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * owners can update the workspace members
+     */
+
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canUpdate) {
+      throw new UnauthorizedException();
+    }
+
+    const existingMember &#x3D; await this.workspaceMemberRepository.findOne({
+      where: {
+        id: memberId,
+        workspace_id: id,
+      },
+      withDeleted: true,
+    });
+
+    if (!existingMember) {
+      throw new NotFoundException();
+    }
+
+    /*
+     * throw an error if the user is attempting to update their own role.
+     * this (for now) shouldn&#x27;t be allowed in order to prevent any sort of &quot;orphaning&quot;
+     * scenarios from occurring.
+     * In the future, this should be expanded to allow this but prevent an &quot;ownerless&quot; workspace.
+     */
+    if (existingMember.user_id &#x3D;&#x3D;&#x3D; userId) {
+      throw new UnauthorizedException(&quot;cannot update own role in workspace&quot;);
+    }
+
+    existingMember.role &#x3D; dto.role!;
+    await this.workspaceMemberRepository.save(existingMember);
+
+    // restores previously soft deleted rows
+    if (existingMember.deleted_at) {
+      await this.workspaceMemberRepository.restore(existingMember.id);
+    }
+
+    return this.workspaceService.findOneById(id);
+  }
+
+  async updateWorkspaceMembers(dto: UpdateWorkspaceMembersDto, id: string, userId: number): Promise&lt;DbWorkspace&gt; {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * owners can update the workspace members
+     */
+
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canUpdate) {
+      throw new UnauthorizedException();
+    }
+
+    const promises &#x3D; dto.members.map(async (member) &#x3D;&gt; {
+      const existingMember &#x3D; await this.workspaceMemberRepository.findOne({
+        where: {
+          workspace_id: id,
+          user_id: member.id,
+        },
+        withDeleted: true,
+      });
+
+      if (existingMember) {
+        /*
+         * throw an error if the user is attempting to update their own role.
+         * this (for now) shouldn&#x27;t be allowed in order to prevent any sort of &quot;orphaning&quot;
+         * scenarios from occurring.
+         * In the future, this should be expanded to allow this but prevent an &quot;ownerless&quot; workspace.
+         */
+        if (existingMember.user_id &#x3D;&#x3D;&#x3D; userId) {
+          throw new UnauthorizedException(&quot;cannot update own role in workspace&quot;);
+        }
+
+        existingMember.role &#x3D; member.role;
+        await this.workspaceMemberRepository.save(existingMember);
+
+        // restores previously soft deleted rows
+        if (existingMember.deleted_at) {
+          await this.workspaceMemberRepository.restore(existingMember.id);
+        }
+      } else {
+        const user &#x3D; await this.userService.findOneById(member.id);
+        const newMember &#x3D; new DbWorkspaceMember();
+
+        newMember.workspace &#x3D; workspace;
+        newMember.member &#x3D; user;
+        newMember.role &#x3D; member.role;
+
+        await this.workspaceMemberRepository.save(newMember);
+      }
+    });
+
+    await Promise.all(promises);
+    return this.workspaceService.findOneById(id);
+  }
+
+  async deleteOneWorkspaceMember(id: string, memberId: string, userId: number) {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * owners can delete the workspace members
+     */
+
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canDelete) {
+      throw new UnauthorizedException();
+    }
+
+    const existingMember &#x3D; await this.workspaceMemberRepository.findOne({
+      where: {
+        id: memberId,
+        workspace_id: id,
+      },
+    });
+
+    if (!existingMember) {
+      throw new NotFoundException();
+    }
+
+    /*
+     * throw an error if the user is attempting to delete themselves.
+     * this (for now) shouldn&#x27;t be allowed in order to prevent any sort of &quot;orphaning&quot;
+     * scenarios from occurring.
+     * In the future, this should be expanded to prevent there from never being an owner.
+     */
+    if (existingMember.user_id &#x3D;&#x3D;&#x3D; userId) {
+      throw new UnauthorizedException(&quot;cannot delete self from workspace&quot;);
+    }
+
+    await this.workspaceMemberRepository.softDelete(existingMember.id);
+
+    return this.workspaceService.findOneById(id);
+  }
+
+  async deleteWorkspaceMembers(dto: DeleteWorkspaceMembersDto, id: string, userId: number) {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * owners can delete the workspace members
+     */
+
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    if (!canDelete) {
+      throw new UnauthorizedException();
+    }
+
+    const promises &#x3D; dto.members.map(async (member) &#x3D;&gt; {
+      const existingMember &#x3D; await this.workspaceMemberRepository.findOne({
+        where: {
+          workspace_id: id,
+          user_id: member.id,
+        },
+      });
+
+      if (!existingMember) {
+        throw new NotFoundException();
+      }
+
+      /*
+       * throw an error if the user is attempting to delete themselves.
+       * this (for now) shouldn&#x27;t be allowed in order to prevent any sort of &quot;orphaning&quot;
+       * scenarios from occurring.
+       * In the future, this should be expanded to prevent there from never being an owner.
+       */
+      if (existingMember.user_id &#x3D;&#x3D;&#x3D; userId) {
+        throw new UnauthorizedException(&quot;cannot delete self from workspace&quot;);
+      }
+
+      return this.workspaceMemberRepository.softDelete(existingMember.id);
+    });
+
+    try {
+      await Promise.all(promises);
+    } catch (error) {
+      dto.members.forEach(async (member) &#x3D;&gt; {
+        // restore the members who may have been soft deleted
+        const existingMember &#x3D; await this.workspaceMemberRepository.findOne({
+          where: {
+            workspace_id: id,
+            user_id: member.id,
+          },
+          withDeleted: true,
+        });
+
+        if (existingMember) {
+          await this.workspaceMemberRepository.restore(existingMember.id);
+        }
+      });
+
+      // throws the original error
+      throw error;
+    }
+
+    return this.workspaceService.findOneById(id);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'WorkspaceMembersService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

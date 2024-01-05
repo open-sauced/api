@@ -260,7 +260,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@ManyToOne(undefined, repo &#x3D;&gt; repo.workspaces, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, repo &#x3D;&gt; repo.workspaces, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;repo_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -502,7 +502,7 @@ export class DbWorkspaceRepo extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() &#x3D;&gt; DbRepo, (repo) &#x3D;&gt; repo.workspaces, { onDelete: &quot;CASCADE&quot; })
   @JoinColumn({
-    name: &quot;user_id&quot;,
+    name: &quot;repo_id&quot;,
     referencedColumnName: &quot;id&quot;,
   })
   public repo: DbRepo;

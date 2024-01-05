@@ -67,6 +67,9 @@
                             <a href="#ApiPaginatedResponse" title="src/common/decorators/api-paginated-response.decorator.ts" ><b>ApiPaginatedResponse</b>&nbsp;&nbsp;&nbsp;(src/.../api-paginated-response.decorator.ts)</a>
                         </li>
                         <li>
+                            <a href="#canUserManageWorkspace" title="src/workspace/common/memberAccess.ts" ><b>canUserManageWorkspace</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
+                        </li>
+                        <li>
                             <a href="#cliDuration" title="src/common/util/cli-duration.ts" ><b>cliDuration</b>&nbsp;&nbsp;&nbsp;(src/.../cli-duration.ts)</a>
                         </li>
                         <li>
@@ -200,6 +203,42 @@
       },
     })
   )</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/workspace/common/memberAccess.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canUserManageWorkspace"></a>
+                    <span class="name">
+                        <span ><b>canUserManageWorkspace</b></span>
+                        <a href="#canUserManageWorkspace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(
+  workspace: DbWorkspace,
+  userId: number,
+  accessRoles: WorkspaceMemberRoleEnum[]
+): boolean &#x3D;&gt; {
+  const membership &#x3D; workspace.members.find((member) &#x3D;&gt; member.user_id &#x3D;&#x3D;&#x3D; userId);
+  const canManage &#x3D; membership &amp;&amp; accessRoles.includes(membership.role);
+
+  if (!canManage) {
+    return false;
+  }
+
+  return true;
+}</code>
                     </td>
                 </tr>
 

@@ -964,27 +964,45 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/WorkspaceModule.html" data-type="entity-link" >WorkspaceModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                            'data-target="#controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' :
-                                            'id="xs-controllers-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' :
+                                            'id="xs-controllers-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
                                             <li class="link">
                                                 <a href="controllers/WorkspaceController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/WorkspaceMemberController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceMemberController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/WorkspaceOrgController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceOrgController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/WorkspaceRepoController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceRepoController</a>
                                             </li>
                                         </ul>
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                        'data-target="#injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' :
-                                        'id="xs-injectables-links-module-WorkspaceModule-63aedf56d23df80822c352504a441a9e78ea02bfc69bdf90bcab68051ae1822cf0c557bfb5e663cd6a680dee4a3d3d54a7872dcfdac221c87b19491792829351"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' :
+                                        'id="xs-injectables-links-module-WorkspaceModule-bc96a683fe7123cd21294aa1bee6f7be9d9e712c4aaa7e9adef965033b189c2adef5e08e6eaaecbbb73b9b55fe1b248c09a0acf600151f68abec7fa1fadbea2c"' }>
+                                        <li class="link">
+                                            <a href="injectables/WorkspaceMembersService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceMembersService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/WorkspaceOrgsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceOrgsService</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/WorkspaceReposService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceReposService</a>
+                                        </li>
                                         <li class="link">
                                             <a href="injectables/WorkspaceService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceService</a>
                                         </li>
@@ -1258,6 +1276,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DbUserHighlightRepo.html" data-type="entity-link" >DbUserHighlightRepo</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DeleteWorkspaceMembersDto.html" data-type="entity-link" >DeleteWorkspaceMembersDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteWorkspaceOrgsDto.html" data-type="entity-link" >DeleteWorkspaceOrgsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteWorkspaceReposDto.html" data-type="entity-link" >DeleteWorkspaceReposDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/FilteredUsersDto.html" data-type="entity-link" >FilteredUsersDto</a>
                             </li>
                             <li class="link">
@@ -1301,6 +1328,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/NewMember.html" data-type="entity-link" >NewMember</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/NewWorkspaceOrg.html" data-type="entity-link" >NewWorkspaceOrg</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/NewWorkspaceRepo.html" data-type="entity-link" >NewWorkspaceRepo</a>
                             </li>
                             <li class="link">
                                 <a href="classes/PageDto.html" data-type="entity-link" >PageDto</a>
@@ -1373,6 +1406,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateWorkspaceDto.html" data-type="entity-link" >UpdateWorkspaceDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateWorkspaceMemberDto.html" data-type="entity-link" >UpdateWorkspaceMemberDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateWorkspaceMembersDto.html" data-type="entity-link" >UpdateWorkspaceMembersDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateWorkspaceOrgsDto.html" data-type="entity-link" >UpdateWorkspaceOrgsDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateWorkspaceReposDto.html" data-type="entity-link" >UpdateWorkspaceReposDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UserListMostActiveContributorsDto.html" data-type="entity-link" >UserListMostActiveContributorsDto</a>
