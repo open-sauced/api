@@ -16,18 +16,39 @@ import { WorkspaceOrgController } from "./workspace-orgs.controller";
 import { WorkspaceOrgsService } from "./workspace-orgs.service";
 import { WorkspaceRepoController } from "./workspace-repos.controller";
 import { WorkspaceReposService } from "./workspace-repos.service";
+import { WorkspaceContributorController } from "./workspace-contributors.controller";
+import { WorkspaceContributorsService } from "./workspace-contributors.service";
+import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
 
 @Module({
   imports: [
     UserModule,
     ApiServicesModule,
     TypeOrmModule.forFeature(
-      [DbWorkspace, DbWorkspaceMember, DbWorkspaceOrg, DbWorkspaceRepo, DbWorkspaceInsight],
+      [DbWorkspace, DbWorkspaceMember, DbWorkspaceOrg, DbWorkspaceRepo, DbWorkspaceInsight, DbWorkspaceContributor],
       "ApiConnection"
     ),
   ],
-  controllers: [WorkspaceController, WorkspaceMemberController, WorkspaceOrgController, WorkspaceRepoController],
-  providers: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService, WorkspaceReposService],
-  exports: [WorkspaceService, WorkspaceMembersService, WorkspaceOrgsService, WorkspaceReposService],
+  controllers: [
+    WorkspaceController,
+    WorkspaceMemberController,
+    WorkspaceOrgController,
+    WorkspaceRepoController,
+    WorkspaceContributorController,
+  ],
+  providers: [
+    WorkspaceService,
+    WorkspaceMembersService,
+    WorkspaceOrgsService,
+    WorkspaceReposService,
+    WorkspaceContributorsService,
+  ],
+  exports: [
+    WorkspaceService,
+    WorkspaceMembersService,
+    WorkspaceOrgsService,
+    WorkspaceReposService,
+    WorkspaceContributorsService,
+  ],
 })
 export class WorkspaceModule {}

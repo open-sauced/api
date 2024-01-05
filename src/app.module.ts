@@ -90,6 +90,7 @@ import { DbWorkspaceRepo } from "./workspace/entities/workspace-repos.entity";
 import { DbWorkspaceInsight } from "./workspace/entities/workspace-insights.entity";
 import { WorkspaceModule } from "./workspace/workspace.module";
 import { HistogramModule } from "./histogram/histogram.module";
+import { DbWorkspaceContributor } from "./workspace/entities/workspace-contributors.entity";
 
 @Module({
   imports: [
@@ -158,6 +159,7 @@ import { HistogramModule } from "./histogram/histogram.module";
             DbWorkspaceOrg,
             DbWorkspaceRepo,
             DbWorkspaceInsight,
+            DbWorkspaceContributor,
           ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
