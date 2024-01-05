@@ -77,7 +77,7 @@ export class DbWorkspaceRepo extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() => DbRepo, (repo) => repo.workspaces, { onDelete: "CASCADE" })
   @JoinColumn({
-    name: "user_id",
+    name: "repo_id",
     referencedColumnName: "id",
   })
   public repo: DbRepo;
