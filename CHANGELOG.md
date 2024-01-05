@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0...v2.1.0-beta.1) (2024-01-05)
+
+
+### 🍕 Features
+
+* Workspace member management ([#460](https://github.com/open-sauced/api.opensauced.pizza/issues/460)) ([6084564](https://github.com/open-sauced/api.opensauced.pizza/commit/60845648f01125e042c08964db29f47f32161b97))
+* Workspace orgs ([#462](https://github.com/open-sauced/api.opensauced.pizza/issues/462)) ([43b1745](https://github.com/open-sauced/api.opensauced.pizza/commit/43b174546be1cea1e87e239953b64d45a95e6102))
+
 ## [2.0.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.59.0...v2.0.0) (2024-01-04)
 
 
