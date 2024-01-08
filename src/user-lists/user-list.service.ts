@@ -280,8 +280,8 @@ export class UserListService {
     queryBuilder.orderBy("user_highlights.updated_at", orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const entities = await queryBuilder.getMany();
-    const itemCount = entities.length;
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
+
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
@@ -309,8 +309,7 @@ export class UserListService {
     queryBuilder.orderBy("full_name", orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const entities = await queryBuilder.getRawMany();
-    const itemCount = entities.length;
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
