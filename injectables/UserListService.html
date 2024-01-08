@@ -1362,8 +1362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="319"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:319</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="318"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:318</a></div>
                 </td>
             </tr>
 
@@ -1750,8 +1750,8 @@ export class UserListService {
     queryBuilder.orderBy(&quot;user_highlights.updated_at&quot;, orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const entities &#x3D; await queryBuilder.getMany();
-    const itemCount &#x3D; entities.length;
+    const [itemCount, entities] &#x3D; await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
+
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
@@ -1779,8 +1779,7 @@ export class UserListService {
     queryBuilder.orderBy(&quot;full_name&quot;, orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const entities &#x3D; await queryBuilder.getRawMany();
-    const itemCount &#x3D; entities.length;
+    const [itemCount, entities] &#x3D; await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
