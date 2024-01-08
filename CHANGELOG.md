@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2024-01-08)
+
+
+### 🐛 Bug Fixes
+
+* now highlights pagination are accurate ([#469](https://github.com/open-sauced/api.opensauced.pizza/issues/469)) ([178acee](https://github.com/open-sauced/api.opensauced.pizza/commit/178aceec099688e6886596ef4b1688566c221241))
+
 ## [2.1.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.2...v2.1.0-beta.3) (2024-01-05)
 
 
