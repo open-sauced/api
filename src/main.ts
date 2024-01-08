@@ -27,7 +27,7 @@ async function bootstrap() {
   app.enableCors();
   app.enableVersioning({
     type: VersioningType.URI,
-    defaultVersion: String(major("1.8.0", { loose: false })),
+    defaultVersion: String(major("2.0.0", { loose: false })),
   });
 
   const options = new DocumentBuilder();
@@ -48,7 +48,7 @@ async function bootstrap() {
     .addServer(`https://${apiDomain}`, "Production", {})
     .setTitle(`@open-sauced/api.opensauced.pizza`)
     .setDescription(markdownDescription)
-    .setVersion(`1`)
+    .setVersion(`2`)
     .setContact("Open Sauced", "https://opensauced.pizza", "hello@opensauced.pizza")
     .setTermsOfService("https://github.com/open-sauced/code-of-conduct")
     .setLicense(`The MIT License`, `https://opensource.org/licenses/mit`)

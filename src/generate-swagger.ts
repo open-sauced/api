@@ -37,7 +37,7 @@ const generateSwaggerJson = async () => {
     .addServer(`https://alpha.${apiDomain}`, "Alpha", {})
     .setTitle(`@open-sauced/api.opensauced.pizza`)
     .setDescription(markdownDescription)
-    .setVersion(`1`)
+    .setVersion(`2`)
     .setContact("Open Sauced", "https://opensauced.pizza", "hello@opensauced.pizza")
     .setTermsOfService("https://github.com/open-sauced/code-of-conduct")
     .setLicense(`The MIT License`, `https://opensource.org/licenses/mit`)

@@ -6,11 +6,7 @@ import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
-import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
-import { ContributorPullRequestsDto, RangeTypeEnum } from "../user/dtos/contributor-prs.dto";
-import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
@@ -28,112 +24,6 @@ export class PullRequestService {
     const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
-  }
-
-  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .addOrderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
-  }
-
-  async findAllByContributor(
-    contributor: string,
-    pageOptionsDto: ContributorPullRequestsDto
-  ): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-
-    queryBuilder
-      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name")
-      .addSelect("repos.id", "pull_requests_repo_id")
-      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() });
-
-    if (pageOptionsDto.rangeType === RangeTypeEnum.Recent) {
-      queryBuilder
-        .andWhere(`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`)
-        .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`);
-    }
-
-    queryBuilder
-      .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
-  }
-
-  async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-
-    queryBuilder
-      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name")
-      .addSelect("repos.id", "pull_requests_repo_id");
-
-    const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
-
-    filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
-    filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
-
-    if (pageOptionsDto.contributor) {
-      filters.push([
-        `LOWER("pull_requests"."author_login")=:contributor`,
-        { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) },
-      ]);
-    }
-
-    if (pageOptionsDto.listId) {
-      filters.push([
-        `author_login IN (
-          SELECT login FROM
-          user_list_contributors
-          JOIN users ON user_list_contributors.user_id=users.id AND users.deleted_at IS NULL
-          WHERE list_id=:listId
-        )`,
-        { listId: pageOptionsDto.listId },
-      ]);
-    }
-
-    if (pageOptionsDto.status) {
-      filters.push([`(LOWER("pull_requests"."state")=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
-    }
-
-    this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
-
-    if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
-      queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
-    }
-
-    queryBuilder
-      .addOrderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
   }
 
   async findAllContributorsWithFilters(
