@@ -318,7 +318,7 @@ export class UserListService {
     const countQueryResult = await subQuery.getRawOne<{ count: number }>();
     const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
 
-    const [entities] = await Promise.all([queryBuilder.getRawMany()]);
+    const entities = await queryBuilder.getRawMany();
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
