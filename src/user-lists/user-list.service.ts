@@ -310,7 +310,6 @@ export class UserListService {
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
     const subQuery = this.userHighlightRepository.manager
-
       .createQueryBuilder()
       .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
       .setParameters(queryBuilder.getParameters())
