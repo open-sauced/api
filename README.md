@@ -125,7 +125,7 @@ For writing tests, the rule is move business or service logic to the lib folder 
 A development preview can also be run from docker:
 
 ```shell
-docker build -t api.opensauced.pizza .
+docker build -t api.opensauced.pizza -f do.Dockerfile .
 docker run -p 8080:3001 api.opensauced.pizza
 ```
 

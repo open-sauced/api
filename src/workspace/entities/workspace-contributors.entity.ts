@@ -19,10 +19,10 @@ import { ApiHideProperty } from "@nestjs/swagger";
 import { DbUser } from "../../user/user.entity";
 import { DbWorkspace } from "./workspace.entity";
 
-@Entity({ name: "workspace_orgs" })
-export class DbWorkspaceOrg extends BaseEntity {
+@Entity({ name: "workspace_contributors" })
+export class DbWorkspaceContributor extends BaseEntity {
   @ApiModelProperty({
-    description: "Workspace org identifier",
+    description: "Workspace contributor identifier",
     example: "abc-123",
   })
   @PrimaryColumn()
@@ -30,12 +30,12 @@ export class DbWorkspaceOrg extends BaseEntity {
   public id!: string;
 
   @ApiModelProperty({
-    description: "Org identifier",
+    description: "Contributor identifier",
     example: 237133,
     type: "integer",
   })
   @Column()
-  public org_id!: number;
+  public contributor_id!: number;
 
   @ApiModelProperty({
     description: "Workspace identifier",
@@ -45,7 +45,7 @@ export class DbWorkspaceOrg extends BaseEntity {
   public workspace_id!: string;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace org creation",
+    description: "Timestamp representing workspace member creation",
     example: "2022-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
@@ -55,7 +55,7 @@ export class DbWorkspaceOrg extends BaseEntity {
   public created_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace org last updated",
+    description: "Timestamp representing workspace member last updated",
     example: "2022-10-19 13:24:51.000000",
   })
   @UpdateDateColumn({
@@ -65,7 +65,7 @@ export class DbWorkspaceOrg extends BaseEntity {
   public updated_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace org deletion",
+    description: "Timestamp representing workspace member deletion",
     example: "2022-10-19 13:24:51.000000",
   })
   @DeleteDateColumn({
@@ -77,10 +77,10 @@ export class DbWorkspaceOrg extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() => DbUser, (user) => user.workspaces, { onDelete: "CASCADE" })
   @JoinColumn({
-    name: "org_id",
+    name: "contributor_id",
     referencedColumnName: "id",
   })
-  public org: DbUser;
+  public contributor: DbUser;
 
   @ApiHideProperty()
   @ManyToOne(() => DbWorkspace, (workspace) => workspace.members)
