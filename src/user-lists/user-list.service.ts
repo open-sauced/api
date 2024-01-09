@@ -309,7 +309,17 @@ export class UserListService {
     queryBuilder.orderBy("full_name", orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getRawMany()]);
+    const subQuery = this.userHighlightRepository.manager
+
+      .createQueryBuilder()
+      .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
+      .setParameters(queryBuilder.getParameters())
+      .select("count(full_name)");
+
+    const countQueryResult = await subQuery.getRawOne<{ count: number }>();
+    const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
+
+    const [entities] = await Promise.all([queryBuilder.getRawMany()]);
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
