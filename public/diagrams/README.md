@@ -45,6 +45,7 @@
 | [public.workspace_orgs](public.workspace_orgs.md)                         | 6       |         | BASE TABLE |
 | [public.workspace_repos](public.workspace_repos.md)                       | 6       |         | BASE TABLE |
 | [public.workspace_insights](public.workspace_insights.md)                 | 6       |         | BASE TABLE |
+| [public.workspace_contributors](public.workspace_contributors.md)         | 6       |         | BASE TABLE |
 
 ## Relations
 
