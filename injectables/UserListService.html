@@ -1362,8 +1362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="318"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:318</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="328"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:328</a></div>
                 </td>
             </tr>
 
@@ -1779,7 +1779,17 @@ export class UserListService {
     queryBuilder.orderBy(&quot;full_name&quot;, orderBy);
     queryBuilder.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
 
-    const [itemCount, entities] &#x3D; await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
+    const subQuery &#x3D; this.userHighlightRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(queryBuilder, &quot;CTE&quot;)
+      .setParameters(queryBuilder.getParameters())
+      .select(&quot;count(full_name)&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    const countQueryResult &#x3D; await subQuery.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${countQueryResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    const entities &#x3D; await queryBuilder.getRawMany();
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
