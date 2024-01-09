@@ -99,7 +99,7 @@ the <code>migrations/</code> directory.</p>
 <div><pre class="line-numbers"><code class="language-shell">npm run test:coverage</code></pre></div><p>For writing tests, the rule is move business or service logic to the lib folder and write unit tests. Logic that needs to be in a React component, then leverage tools like <a href="https://www.cypress.io/">Cypress</a> or <a href="https://vitest.dev/guide/mocking.html">Vitest mocking</a> to write tests.</p>
 <h3 id="📦-docker-builds">📦 Docker builds</h3>
 <p>A development preview can also be run from docker:</p>
-<div><pre class="line-numbers"><code class="language-shell">docker build -t api.opensauced.pizza .
+<div><pre class="line-numbers"><code class="language-shell">docker build -t api.opensauced.pizza -f do.Dockerfile .
 docker run -p 8080:3001 api.opensauced.pizza</code></pre></div><p>Alternatively you can pull the production container and skip all builds:</p>
 <div><pre class="line-numbers"><code class="language-shell">docker run -dit -p 8080:3001 ghcr.io/open-sauced/api.opensauced.pizza</code></pre></div><h3 id="🎨-code-linting">🎨 Code linting</h3>
 <p>To check the code and styles quality, use the following command:</p>
