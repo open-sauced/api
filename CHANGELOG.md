@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2024-01-09)
+
+
+### 📝 Documentation
+
+* update the docker file name ([#472](https://github.com/open-sauced/api.opensauced.pizza/issues/472)) ([78651d3](https://github.com/open-sauced/api.opensauced.pizza/commit/78651d338ba3bc40837f2c3f68219765e9c6fc91))
+
 ## [2.1.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.3...v2.1.0-beta.4) (2024-01-08)
 
 
