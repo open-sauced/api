@@ -5,6 +5,26 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0...v2.1.0) (2024-01-09)
+
+
+### 🍕 Features
+
+* Workspace contributors ([#466](https://github.com/open-sauced/api.opensauced.pizza/issues/466)) ([3572882](https://github.com/open-sauced/api.opensauced.pizza/commit/35728829971a331e5eb669a9c59f75da8228bbec))
+* Workspace member management ([#460](https://github.com/open-sauced/api.opensauced.pizza/issues/460)) ([6084564](https://github.com/open-sauced/api.opensauced.pizza/commit/60845648f01125e042c08964db29f47f32161b97))
+* Workspace orgs ([#462](https://github.com/open-sauced/api.opensauced.pizza/issues/462)) ([43b1745](https://github.com/open-sauced/api.opensauced.pizza/commit/43b174546be1cea1e87e239953b64d45a95e6102))
+* Workspace repos ([#465](https://github.com/open-sauced/api.opensauced.pizza/issues/465)) ([11b6fff](https://github.com/open-sauced/api.opensauced.pizza/commit/11b6fff0439dd5d136c135418ae55d26c844b988))
+
+
+### 🐛 Bug Fixes
+
+* now highlights pagination are accurate ([#469](https://github.com/open-sauced/api.opensauced.pizza/issues/469)) ([178acee](https://github.com/open-sauced/api.opensauced.pizza/commit/178aceec099688e6886596ef4b1688566c221241))
+
+
+### 📝 Documentation
+
+* update the docker file name ([#472](https://github.com/open-sauced/api.opensauced.pizza/issues/472)) ([78651d3](https://github.com/open-sauced/api.opensauced.pizza/commit/78651d338ba3bc40837f2c3f68219765e9c6fc91))
+
 ## [2.1.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2024-01-09)
 
 
