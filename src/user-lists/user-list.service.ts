@@ -311,10 +311,10 @@ export class UserListService {
 
     const subQuery = this.userHighlightRepository.manager
       .createQueryBuilder()
-      .from(`(${queryBuilder.getQuery()})`, "subquery_for_count")
       .addCommonTableExpression(queryBuilder, "CTE")
       .setParameters(queryBuilder.getParameters())
-      .select("count(full_name)");
+      .select("count(full_name)")
+      .from("CTE", "CTE");
 
     const countQueryResult = await subQuery.getRawOne<{ count: number }>();
     const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
