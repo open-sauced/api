@@ -14,6 +14,8 @@ import { UserListStatsController } from "./user-list-stats.controller";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { UserListEventsStatsService } from "./user-list-events-stats.service";
 
 @Module({
   imports: [
@@ -31,9 +33,10 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
       ],
       "ApiConnection"
     ),
+    TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
   ],
   controllers: [UserListController, UserListStatsController],
-  providers: [UserListService, UserListStatsService],
-  exports: [UserListService, UserListStatsService],
+  providers: [UserListService, UserListStatsService, UserListEventsStatsService],
+  exports: [UserListService, UserListStatsService, UserListEventsStatsService],
 })
 export class UserListModule {}
