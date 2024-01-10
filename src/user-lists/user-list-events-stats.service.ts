@@ -3,6 +3,7 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import {
   UserListContributorStatsOrderEnum,
@@ -11,7 +12,6 @@ import {
 } from "./dtos/most-active-contributors.dto";
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 
 interface AllContributionsCount {
@@ -63,7 +63,8 @@ export class UserListEventsStatsService {
 
     const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username));
 
-    const userListQueryBuilder = this.pullRequestGithubEventsRepository.manager.createQueryBuilder();
+    const userListQueryBuilder =
+      this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder<DbPullRequestGitHubEvents>;
 
     userListQueryBuilder.select("DISTINCT users.login", "login");
 
