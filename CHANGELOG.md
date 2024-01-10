@@ -25,6 +25,20 @@
 
 * update the docker file name ([#472](https://github.com/open-sauced/api.opensauced.pizza/issues/472)) ([78651d3](https://github.com/open-sauced/api.opensauced.pizza/commit/78651d338ba3bc40837f2c3f68219765e9c6fc91))
 
+## [2.1.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.6...v2.1.0-beta.7) (2024-01-10)
+
+
+### 📝 Documentation
+
+* clarify the local setup ([#471](https://github.com/open-sauced/api.opensauced.pizza/issues/471)) ([904e3ac](https://github.com/open-sauced/api.opensauced.pizza/commit/904e3ac8289a2c664cda021ef7c45078a56a893f))
+
+## [2.1.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2024-01-09)
+
+
+### 🐛 Bug Fixes
+
+* bug with highlight repos returning empty ([#473](https://github.com/open-sauced/api.opensauced.pizza/issues/473)) ([d826223](https://github.com/open-sauced/api.opensauced.pizza/commit/d8262238c9a563e47504c83bb89aa8b9e73fc536))
+
 ## [2.1.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.4...v2.1.0-beta.5) (2024-01-09)
 
 
@@ -351,13 +365,10 @@
 
 ### 🐛 Bug Fixes
 
-<<<<<<< HEAD
 * added missing search by contributor search term to /lists//contributors ([eca9a0b](https://github.com/open-sauced/api.opensauced.pizza/commit/eca9a0b46ba11758fcc798e57a2fb0afab73c7d2))
-=======
 * add "isArray = true" for contributors endpoint ([68c1d4f](https://github.com/open-sauced/api.opensauced.pizza/commit/68c1d4fd01f3717379e32a4b4a168955eff69844))
 * enroll new users with a free tiered account ([#402](https://github.com/open-sauced/api.opensauced.pizza/issues/402)) ([1ede9f5](https://github.com/open-sauced/api.opensauced.pizza/commit/1ede9f5137d21f3e4eaa26fa4e29ec58d0b92fe7))
 * update orderby to use original column key ([419bdf1](https://github.com/open-sauced/api.opensauced.pizza/commit/419bdf10c08f27c44cd7abcb5e435143b21ca075))
->>>>>>> main
 
 ## [1.54.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v1.54.0-beta.6...v1.54.0-beta.7) (2023-10-31)
 
