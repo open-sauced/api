@@ -61,7 +61,7 @@ Replace `your_supabase_url`, `your_supabase_api_key`, `your_supabase_jwt_secret`
 
 A PostgreSQL Docker container has been set up to facilitate local development. Here are the steps to follow: 
 
-**1. Navigate to Dev/** 
+**1. Navigate to the `dev/` directory** 
 
 **2. Obtain SSL Certificates:**  
 For secure SSL communication, you need a pair of SSL certificates: `server.crt` and `server.key`. You can generate self-signed certificates by using OpenSSL:
