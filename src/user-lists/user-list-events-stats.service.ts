@@ -49,10 +49,18 @@ export class UserListEventsStatsService {
     const userListUsersBuilder = this.userListUsersQueryBuilder();
 
     userListUsersBuilder
-      .innerJoin("users", "users", "user_list_contributors.user_id=users.id")
-      .andWhere("user_list_contributors.list_id = :listId", { listId });
+      .leftJoin("users", "users", "user_list_contributors.user_id=users.id")
+      .where("user_list_contributors.list_id = :listId", { listId });
 
     const allUsers = await userListUsersBuilder.getMany();
+
+    if (allUsers.length === 0) {
+      return new ContributionsPageDto(
+        new Array<DbUserListContributorStat>(),
+        new ContributionsPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
     const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username));
 
     const userListQueryBuilder = this.pullRequestGithubEventsRepository.manager.createQueryBuilder();
