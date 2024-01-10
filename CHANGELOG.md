@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.6...v2.1.0-beta.7) (2024-01-10)
+
+
+### 📝 Documentation
+
+* clarify the local setup ([#471](https://github.com/open-sauced/api.opensauced.pizza/issues/471)) ([904e3ac](https://github.com/open-sauced/api.opensauced.pizza/commit/904e3ac8289a2c664cda021ef7c45078a56a893f))
+
 ## [2.1.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-beta.5...v2.1.0-beta.6) (2024-01-09)
 
 
