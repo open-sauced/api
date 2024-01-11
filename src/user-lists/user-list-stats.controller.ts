@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Param, Query, Version } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -21,11 +21,33 @@ import { DbContributionsProjects } from "./entities/contributions-projects.entit
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
+import { UserListEventsStatsService } from "./user-list-events-stats.service";
 
 @Controller("lists")
 @ApiTags("User Lists service")
 export class UserListStatsController {
-  constructor(private readonly userListStatsService: UserListStatsService) {}
+  constructor(
+    private readonly userListStatsService: UserListStatsService,
+    private readonly userListEventsStatsService: UserListEventsStatsService
+  ) {}
+
+  @Version("2")
+  @Get(":id/stats/most-active-contributors")
+  @ApiOperation({
+    operationId: "getMostActiveContributorsV2",
+    summary: "Gets most active contributors for a given list",
+  })
+  @ApiPaginatedResponse(DbUserListContributorStat)
+  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getMostActiveContributorsV2(
+    @Param("id") id: string,
+    @Query() pageOptionsDto: UserListMostActiveContributorsDto
+  ): Promise<PageDto<DbUserListContributorStat>> {
+    return this.userListEventsStatsService.findAllListContributorStats(pageOptionsDto, id);
+  }
 
   @Get(":id/stats/most-active-contributors")
   @ApiOperation({
