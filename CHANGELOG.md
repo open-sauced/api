@@ -5,6 +5,18 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.2.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0...v2.2.0) (2024-01-11)
+
+
+### 🐛 Bug Fixes
+
+* bug with highlight repos returning empty ([#473](https://github.com/open-sauced/api.opensauced.pizza/issues/473)) ([d826223](https://github.com/open-sauced/api.opensauced.pizza/commit/d8262238c9a563e47504c83bb89aa8b9e73fc536))
+
+
+### 📝 Documentation
+
+* clarify the local setup ([#471](https://github.com/open-sauced/api.opensauced.pizza/issues/471)) ([904e3ac](https://github.com/open-sauced/api.opensauced.pizza/commit/904e3ac8289a2c664cda021ef7c45078a56a893f))
+
 ## [2.2.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0...v2.2.0-beta.1) (2024-01-10)
 
 
