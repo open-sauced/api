@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.2.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0-beta.1...v2.2.0-beta.2) (2024-01-11)
+
+
+### 🍕 Features
+
+* add v2 endpoint for user lists most-active-contributors stats ([#476](https://github.com/open-sauced/api.opensauced.pizza/issues/476)) ([defb784](https://github.com/open-sauced/api.opensauced.pizza/commit/defb784a722de068002606c5dd4741a8868f2bda))
+
 ## [2.2.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0...v2.2.0-beta.1) (2024-01-10)
 
 
