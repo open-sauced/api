@@ -1,0 +1,1055 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>@open-sauced/api documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">@open-sauced/api documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >UserListEventsStatsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/user-lists/user-list-events-stats.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyActiveContributorsFilter" >applyActiveContributorsFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyAlumniContributorsFilter" >applyAlumniContributorsFilter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyNewContributorsFilter" >applyNewContributorsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#baseQueryBuilder" >baseQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllListContributorStats" >findAllListContributorStats</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#userListUsersQueryBuilder" >userListUsersQueryBuilder</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, userListContributorRepository: <a href="../classes/Contributor.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>pullRequestGithubEventsRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DbPullRequestGitHubEvents&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userListContributorRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Contributor.html" target="_self" >Repository&lt;DbUserListContributor&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyActiveContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyActiveContributorsFilter</b></span>
+                        <a href="#applyActiveContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyActiveContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="225"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:225</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyAlumniContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyAlumniContributorsFilter</b></span>
+                        <a href="#applyAlumniContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyAlumniContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="291"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:291</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyNewContributorsFilter"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyNewContributorsFilter</b></span>
+                        <a href="#applyNewContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyNewContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseQueryBuilder</b></span>
+                        <a href="#baseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllListContributorStats"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllListContributorStats</b></span>
+                        <a href="#findAllListContributorStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllListContributorStats(pageOptionsDto: <a href="../classes/UserListMostActiveContributorsDto.html" target="_self">UserListMostActiveContributorsDto</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/UserListMostActiveContributorsDto.html" target="_self" >UserListMostActiveContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userListUsersQueryBuilder"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>userListUsersQueryBuilder</b></span>
+                        <a href="#userListUsersQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>userListUsersQueryBuilder()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >SelectQueryBuilder&lt;DbUserListContributor&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
+import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
+
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { DbPullRequestGitHubEvents } from &quot;../timescale/entities/pull_request_github_event&quot;;
+import { DbUserListContributorStat } from &quot;./entities/user-list-contributor-stats.entity&quot;;
+import {
+  UserListContributorStatsOrderEnum,
+  UserListContributorStatsTypeEnum,
+  UserListMostActiveContributorsDto,
+} from &quot;./dtos/most-active-contributors.dto&quot;;
+import { ContributionPageMetaDto as ContributionsPageMetaDto } from &quot;./dtos/contributions-pagemeta.dto&quot;;
+import { ContributionsPageDto } from &quot;./dtos/contributions-page.dto&quot;;
+import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
+
+interface AllContributionsCount {
+  all_contributions: number;
+}
+
+@Injectable()
+export class UserListEventsStatsService {
+  constructor(
+    @InjectRepository(DbPullRequestGitHubEvents, &quot;TimescaleConnection&quot;)
+    private pullRequestGithubEventsRepository: Repository&lt;DbPullRequestGitHubEvents&gt;,
+    @InjectRepository(DbUserListContributor, &quot;ApiConnection&quot;)
+    private userListContributorRepository: Repository&lt;DbUserListContributor&gt;
+  ) {}
+
+  baseQueryBuilder(): SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt; {
+    const builder &#x3D; this.pullRequestGithubEventsRepository.createQueryBuilder();
+
+    return builder;
+  }
+
+  private userListUsersQueryBuilder(): SelectQueryBuilder&lt;DbUserListContributor&gt; {
+    const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
+
+    return builder;
+  }
+
+  async findAllListContributorStats(
+    pageOptionsDto: UserListMostActiveContributorsDto,
+    listId: string
+  ): Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt; {
+    const range &#x3D; pageOptionsDto.range!;
+    const now &#x3D; new Date().toISOString();
+
+    const userListUsersBuilder &#x3D; this.userListUsersQueryBuilder();
+
+    userListUsersBuilder
+      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;)
+      .where(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId });
+
+    const allUsers &#x3D; await userListUsersBuilder.getMany();
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return new ContributionsPageDto(
+        new Array&lt;DbUserListContributorStat&gt;(),
+        new ContributionsPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
+    const users &#x3D; allUsers.map((user) &#x3D;&gt; (user.login ? user.login.toLowerCase() : user.username));
+
+    const userListQueryBuilder &#x3D;
+      this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;;
+
+    userListQueryBuilder.select(&quot;DISTINCT users.login&quot;, &quot;login&quot;);
+
+    userListQueryBuilder
+      .addSelect(
+        &#x60;(SELECT COALESCE(sum(push_num_commits), 0)
+          FROM push_github_events 
+          WHERE LOWER(actor_login)&#x3D;users.login
+          AND push_ref IN (&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+          AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;commits&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM pull_request_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND pr_action&#x3D;&#x27;opened&#x27;
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;prs_created&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM pull_request_review_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND pr_review_action&#x3D;&#x27;created&#x27;
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;prs_reviewed&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM issues_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND issue_action&#x3D;&#x27;opened&#x27;
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;issues_created&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM commit_comment_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;commit_comments&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM issue_comment_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;issue_comments&quot;
+      )
+      .addSelect(
+        &#x60;(SELECT COALESCE(count(event_id), 0)
+        FROM pull_request_review_comment_github_events 
+        WHERE LOWER(actor_login)&#x3D;users.login
+        AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
+        &quot;pr_review_comments&quot;
+      );
+
+    userListQueryBuilder.from(
+      (qb) &#x3D;&gt;
+        qb
+          .select(&quot;LOWER(actor_login)&quot;, &quot;login&quot;)
+          .distinct()
+          .from(DbPullRequestGitHubEvents, &quot;pull_request_github_events&quot;)
+          .where(&quot;LOWER(actor_login) IN (:...users)&quot;, { users }),
+      &quot;users&quot;
+    );
+
+    userListQueryBuilder.setParameters({ users });
+
+    switch (pageOptionsDto.contributorType) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(userListQueryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(userListQueryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(userListQueryBuilder, now, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(userListQueryBuilder, &quot;CTE&quot;)
+      .setParameters(userListQueryBuilder.getParameters())
+      .select(&quot;login&quot;)
+      .addSelect(&quot;commits&quot;)
+      .addSelect(&quot;prs_created&quot;)
+      .addSelect(&quot;prs_reviewed&quot;)
+      .addSelect(&quot;issues_created&quot;)
+      .addSelect(&quot;commit_comments&quot;)
+      .addSelect(&quot;issue_comments&quot;)
+      .addSelect(&quot;pr_review_comments&quot;)
+      .addSelect(&#x60;(&quot;commit_comments&quot; + &quot;issue_comments&quot; + &quot;pr_review_comments&quot;) AS &quot;comments&quot;&#x60;)
+      .addSelect(
+        &#x60;(&quot;commits&quot; + &quot;prs_created&quot; + &quot;prs_reviewed&quot; + &quot;issues_created&quot; + &quot;commit_comments&quot; + &quot;issue_comments&quot; + &quot;pr_review_comments&quot;) AS &quot;total_contributions&quot;&#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    switch (pageOptionsDto.orderBy) {
+      case UserListContributorStatsOrderEnum.commits:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.commits}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.prs_created:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.prs_created}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      case UserListContributorStatsOrderEnum.total_contributions:
+        entityQb.orderBy(&#x60;&quot;${UserListContributorStatsOrderEnum.total_contributions}&quot;&#x60;, pageOptionsDto.orderDirection);
+        break;
+
+      default:
+        break;
+    }
+
+    const allCountQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(userListQueryBuilder, &quot;CTE&quot;)
+      .setParameters(userListQueryBuilder.getParameters())
+      .select(
+        &#x60;SUM(&quot;commits&quot; + &quot;prs_created&quot; + &quot;prs_reviewed&quot; + &quot;issues_created&quot; + &quot;commit_comments&quot; + &quot;issue_comments&quot; + &quot;pr_review_comments&quot;) OVER () AS &quot;all_contributions&quot;&#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    const entities: DbUserListContributorStat[] &#x3D; await entityQb.getRawMany();
+    const allContributionsResult: AllContributionsCount | undefined &#x3D; await allCountQb.getRawOne();
+
+    if (!allContributionsResult) {
+      return new ContributionsPageDto(
+        new Array&lt;DbUserListContributorStat&gt;(),
+        new ContributionsPageMetaDto({ itemCount: entities.length, pageOptionsDto }, 0)
+      );
+    }
+
+    const allContributionsCount &#x3D; allContributionsResult.all_contributions;
+
+    const pageMetaDto &#x3D; new ContributionsPageMetaDto(
+      { itemCount: entities.length, pageOptionsDto },
+      allContributionsCount
+    );
+
+    return new ContributionsPageDto(entities, pageMetaDto);
+  }
+
+  private applyActiveContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+        FROM &quot;pull_request_github_events&quot;
+        WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+          AND &#x27;${startDate}&#x27;::TIMESTAMP
+          AND LOWER(actor_login) IN (:...users)
+      )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+        SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+        FROM &quot;pull_request_github_events&quot;
+        WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${
+          range + range
+        } days&#x27;
+          AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+          AND LOWER(actor_login) IN (:...users)
+      )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;actor_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;actor_login&quot; IS NOT NULL&#x60;);
+  }
+
+  private applyNewContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP
+              AND LOWER(actor_login) IN (:...users)
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN NOW() - INTERVAL &#x27;${range + range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND LOWER(actor_login) IN (:...users)
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;actor_login&quot; IS NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;actor_login&quot; IS NOT NULL&#x60;);
+  }
+
+  private applyAlumniContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP
+              AND LOWER(actor_login) IN (:...users)
+          )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${
+          range + range
+        } days&#x27;
+              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND LOWER(actor_login) IN (:...users)
+          )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
+      )
+      .where(&#x60;&quot;previous_month_prs&quot;.&quot;actor_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;actor_login&quot; IS NULL&#x60;);
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserListEventsStatsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

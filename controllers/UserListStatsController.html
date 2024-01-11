@@ -103,6 +103,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#getMostActiveContributors" >getMostActiveContributors</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getMostActiveContributorsV2" >getMostActiveContributorsV2</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -149,8 +153,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:95</a></div>
                 </td>
             </tr>
 
@@ -239,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:127</a></div>
                 </td>
             </tr>
 
@@ -329,8 +333,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:78</a></div>
                 </td>
             </tr>
 
@@ -419,8 +423,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:111</a></div>
                 </td>
             </tr>
 
@@ -509,8 +513,98 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/UserListMostActiveContributorsDto.html" target="_self" >UserListMostActiveContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMostActiveContributorsV2"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getMostActiveContributorsV2</b></span>
+                        <a href="#getMostActiveContributorsV2"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getMostActiveContributorsV2(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/UserListMostActiveContributorsDto.html" target="_self">UserListMostActiveContributorsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Version(&#x27;2&#x27;)<br />@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributorsV2&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -574,7 +668,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query, Version } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -597,11 +691,33 @@ import { DbContributionsProjects } from &quot;./entities/contributions-projects.
 import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
 import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
 import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
+import { UserListEventsStatsService } from &quot;./user-list-events-stats.service&quot;;
 
 @Controller(&quot;lists&quot;)
 @ApiTags(&quot;User Lists service&quot;)
 export class UserListStatsController {
-  constructor(private readonly userListStatsService: UserListStatsService) {}
+  constructor(
+    private readonly userListStatsService: UserListStatsService,
+    private readonly userListEventsStatsService: UserListEventsStatsService
+  ) {}
+
+  @Version(&quot;2&quot;)
+  @Get(&quot;:id/stats/most-active-contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;getMostActiveContributorsV2&quot;,
+    summary: &quot;Gets most active contributors for a given list&quot;,
+  })
+  @ApiPaginatedResponse(DbUserListContributorStat)
+  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiNotFoundResponse({ description: &quot;Unable to get list most active contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async getMostActiveContributorsV2(
+    @Param(&quot;id&quot;) id: string,
+    @Query() pageOptionsDto: UserListMostActiveContributorsDto
+  ): Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt; {
+    return this.userListEventsStatsService.findAllListContributorStats(pageOptionsDto, id);
+  }
 
   @Get(&quot;:id/stats/most-active-contributors&quot;)
   @ApiOperation({
