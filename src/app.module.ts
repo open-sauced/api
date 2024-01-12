@@ -16,7 +16,6 @@ import {
   StripeConfig,
   OpenAIConfig,
   PizzaConfig,
-  HacktoberfestConfig,
   TierConfig,
   DbTimescaleConfig,
 } from "./config";
@@ -103,7 +102,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
         StripeConfig,
         OpenAIConfig,
         PizzaConfig,
-        HacktoberfestConfig,
         TierConfig,
         DbTimescaleConfig,
       ],

@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, SelectQueryBuilder } from "typeorm";
-import { ConfigService } from "@nestjs/config";
 import { PullRequestHistogramDto } from "../histogram/dtos/pull_request";
 import { FilterListContributorsDto } from "../user-lists/dtos/filter-contributors.dto";
 import { RepoService } from "../repo/repo.service";
@@ -20,7 +19,6 @@ export class PullRequestGithubEventsService {
   constructor(
     @InjectRepository(DbPullRequestGitHubEvents, "TimescaleConnection")
     private pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>,
-    private readonly configService: ConfigService,
     private readonly repoService: RepoService,
     private readonly userListService: UserListService
   ) {}
@@ -92,31 +90,6 @@ export class PullRequestGithubEventsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  hacktoberfestPrFilterBuilderStart() {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * this is inclusive of previous years where the current pull_requests have "newer" updates
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "pull_request_github_events"."event_time"`;
-  }
-
-  hacktoberfestPrFilterBuilderEnd(range = 30) {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`;
-  }
-
   async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
@@ -149,23 +122,9 @@ export class PullRequestGithubEventsService {
       .createQueryBuilder("pull_request_github_events")
       .select("*")
       .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`)
-      .orderBy("event_time", order);
-
-    /* filter for hacktoberfest PRs */
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        cteBuilder
-          .where(this.hacktoberfestPrFilterBuilderStart())
-          .andWhere(this.hacktoberfestPrFilterBuilderEnd(range));
-        break;
-      default:
-        cteBuilder
-          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
-          .andWhere(
-            `'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`
-          );
-        break;
-    }
+      .orderBy("event_time", order)
+      .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`);
 
     /* filter on PR author / contributor */
     if (pageOptionsDto.contributor) {

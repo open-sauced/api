@@ -154,134 +154,6 @@ export class RepoService {
       );
   }
 
-  private hacktoberfestfilterquerybuilder(range = 30) {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    return this.repoRepository
-      .createQueryBuilder("repos")
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("open_pull_requests"."id"), 0)
-          FROM "pull_requests" "open_pull_requests"
-          WHERE
-            LOWER("open_pull_requests"."state") = 'open'
-            AND "open_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "open_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
-        )::INTEGER`,
-        "repos_open_prs_count"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("closed_pull_requests"."id"), 0)
-          FROM "pull_requests" "closed_pull_requests"
-          WHERE
-            LOWER("closed_pull_requests"."state") = 'closed'
-            AND "closed_pull_requests"."merged" = false
-            AND "closed_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "closed_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_closed_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("merged_pull_requests"."id"), 0)
-          FROM "pull_requests" "merged_pull_requests"
-          WHERE
-            (LOWER("merged_pull_requests"."state") = 'merged'
-            OR "merged_pull_requests"."merged" = true)
-            AND "merged_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "merged_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_merged_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("draft_pull_requests"."id"), 0)
-          FROM "pull_requests" "draft_pull_requests"
-          WHERE
-            "draft_pull_requests"."draft" = true
-            AND "draft_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "draft_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_draft_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("spam_pull_requests"."id"), 0)
-          FROM "pull_requests" "spam_pull_requests"
-          WHERE
-            'spam' = ANY("spam_pull_requests"."label_names")
-            AND "spam_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "spam_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_spam_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(AVG("pull_requests_velocity"."closed_at"::DATE-"pull_requests_velocity"."created_at"::DATE), 0)
-          FROM "pull_requests" "pull_requests_velocity"
-          WHERE
-            "pull_requests_velocity"."repo_id" = "repos"."id"
-            AND "pull_requests_velocity"."closed_at" > "pull_requests_velocity"."created_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "pull_requests_velocity"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
-        )::INTEGER`,
-        `repos_pr_velocity_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("active_pull_requests"."id"), 0)
-          FROM "pull_requests" "active_pull_requests"
-          WHERE
-            "active_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "active_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
-            AND "active_pull_requests".state != 'closed'
-        )::INTEGER`,
-        `repo_active_prs_count`
-      );
-  }
-
   async findOneById(id: number): Promise<DbRepo> {
     const queryBuilder = this.baseQueryBuilder();
 
@@ -349,16 +221,7 @@ export class RepoService {
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
 
-    let queryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        queryBuilder = this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        queryBuilder = this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
+    const queryBuilder = this.baseFilterQueryBuilder(startDate, range);
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
@@ -373,18 +236,7 @@ export class RepoService {
       queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
-    let countQueryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        countQueryBuilder = this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        countQueryBuilder = this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
-
-    countQueryBuilder.select("repos.id", "repos_id");
+    const countQueryBuilder = this.baseFilterQueryBuilder(startDate, range).select("repos.id", "repos_id");
 
     const countFilters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
