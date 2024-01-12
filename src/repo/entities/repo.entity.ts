@@ -17,7 +17,6 @@ import {
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbUser } from "../../user/user.entity";
-import { DbContribution } from "../../contribution/contribution.entity";
 import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
 import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
@@ -448,10 +447,6 @@ export class DbRepo extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbWorkspaceRepo, (workspaceRepo) => workspaceRepo.repo)
   public workspaces: DbWorkspaceRepo[];
-
-  @ApiHideProperty()
-  @OneToMany(() => DbContribution, (contribution) => contribution.repo)
-  public contributions: DbContribution[];
 
   @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.repo)
