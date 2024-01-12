@@ -43,6 +43,32 @@ export class WorkspaceService {
     return item;
   }
 
+  async findOneByIdGuarded(id: string, userId: number): Promise<DbWorkspace> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(`workspaces.members`, `workspace_members`, `workspaces.id=workspace_members.workspace_id`)
+      .where("workspaces.id = :id", { id });
+
+    const item: DbWorkspace | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    const canView = canUserManageWorkspace(item, userId, [
+      WorkspaceMemberRoleEnum.Viewer,
+      WorkspaceMemberRoleEnum.Editor,
+      WorkspaceMemberRoleEnum.Owner,
+    ]);
+
+    if (!canView) {
+      throw new UnauthorizedException();
+    }
+
+    return item;
+  }
+
   async findOneByIdAndUserId(id: string, userId: number): Promise<DbWorkspace> {
     const queryBuilder = this.baseQueryBuilder();
 
