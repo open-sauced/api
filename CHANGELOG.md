@@ -5,6 +5,17 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0-alpha.1) (2024-01-12)
+
+
+### 🍕 Features
+
+* "get" for single workspace ([#483](https://github.com/open-sauced/api.opensauced.pizza/issues/483)) ([0343a66](https://github.com/open-sauced/api.opensauced.pizza/commit/0343a66c9df113764936928e039417ee9da437c7))
+* add v2 endpoint for user lists most-active-contributors stats ([#476](https://github.com/open-sauced/api.opensauced.pizza/issues/476)) ([defb784](https://github.com/open-sauced/api.opensauced.pizza/commit/defb784a722de068002606c5dd4741a8868f2bda))
+* Remove hacktoberfest filtering and all references to hacktoberfest ([#481](https://github.com/open-sauced/api.opensauced.pizza/issues/481)) ([25c9fe0](https://github.com/open-sauced/api.opensauced.pizza/commit/25c9fe0d333c0556c45587c92806798fd991c4a0))
+* Removes contributions table and services/controllers ([#482](https://github.com/open-sauced/api.opensauced.pizza/issues/482)) ([befba0a](https://github.com/open-sauced/api.opensauced.pizza/commit/befba0a1412397da7c7dff142b1469962e1c0a34))
+* V2 api endpoints and timescale integration ([#470](https://github.com/open-sauced/api.opensauced.pizza/issues/470)) ([8d88878](https://github.com/open-sauced/api.opensauced.pizza/commit/8d88878045c2b414a596273f267d576ede71dfdc))
+
 ## [2.3.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2024-01-12)
 
 
