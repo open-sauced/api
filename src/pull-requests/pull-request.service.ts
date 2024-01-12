@@ -2,16 +2,11 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { ConfigService } from "@nestjs/config";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
-import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
-import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
-import { ContributorPullRequestsDto, RangeTypeEnum } from "../user/dtos/contributor-prs.dto";
-import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { DbPullRequestContributor } from "./dtos/pull-request-contributor.dto";
 import { PullRequestContributorOptionsDto } from "./dtos/pull-request-contributor-options.dto";
@@ -22,153 +17,13 @@ export class PullRequestService {
   constructor(
     @InjectRepository(DbPullRequest, "ApiConnection")
     private pullRequestRepository: Repository<DbPullRequest>,
-    private filterService: RepoFilterService,
-    private configService: ConfigService
+    private filterService: RepoFilterService
   ) {}
 
   baseQueryBuilder() {
     const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
-  }
-
-  hacktoberfestPrFilterBuilderStart() {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * this is inclusive of previous years where the current pull_requests have "newer" updates
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "pull_requests"."updated_at"`;
-  }
-
-  hacktoberfestPrFilterBuilderEnd(range = 30) {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "pull_requests"."updated_at"`;
-  }
-
-  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder
-      .addOrderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
-  }
-
-  async findAllByContributor(
-    contributor: string,
-    pageOptionsDto: ContributorPullRequestsDto
-  ): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-
-    queryBuilder
-      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name")
-      .addSelect("repos.id", "pull_requests_repo_id")
-      .where(`LOWER("pull_requests"."author_login")=:contributor`, { contributor: contributor.toLowerCase() });
-
-    if (pageOptionsDto.rangeType === RangeTypeEnum.Recent) {
-      queryBuilder
-        .andWhere(`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`)
-        .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`);
-    }
-
-    queryBuilder
-      .orderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
-  }
-
-  async findAllWithFilters(pageOptionsDto: PullRequestPageOptionsDto): Promise<PageDto<DbPullRequest>> {
-    const queryBuilder = this.baseQueryBuilder();
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-
-    queryBuilder
-      .innerJoin("repos", "repos", `"pull_requests"."repo_id"="repos"."id"`)
-      .addSelect("repos.full_name", "pull_requests_full_name")
-      .addSelect("repos.id", "pull_requests_repo_id");
-
-    const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
-
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
-        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
-        break;
-      default:
-        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
-        break;
-    }
-
-    if (pageOptionsDto.contributor) {
-      filters.push([
-        `LOWER("pull_requests"."author_login")=:contributor`,
-        { contributor: decodeURIComponent(pageOptionsDto.contributor.toLowerCase()) },
-      ]);
-    }
-
-    if (pageOptionsDto.listId) {
-      filters.push([
-        `author_login IN (
-          SELECT login FROM
-          user_list_contributors
-          JOIN users ON user_list_contributors.user_id=users.id AND users.deleted_at IS NULL
-          WHERE list_id=:listId
-        )`,
-        { listId: pageOptionsDto.listId },
-      ]);
-    }
-
-    if (pageOptionsDto.status) {
-      filters.push([`(LOWER("pull_requests"."state")=:status)`, { status: pageOptionsDto.status.toUpperCase() }]);
-    }
-
-    this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
-
-    if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
-      queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
-    }
-
-    queryBuilder
-      .addOrderBy(`"pull_requests"."updated_at"`, OrderDirectionEnum.DESC)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
-
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
   }
 
   async findAllContributorsWithFilters(
@@ -191,16 +46,8 @@ export class PullRequestService {
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
-        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
-        break;
-      default:
-        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
-        break;
-    }
+    filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
+    filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
