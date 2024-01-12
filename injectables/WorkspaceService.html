@@ -103,6 +103,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findOneByIdGuarded" >findOneByIdGuarded</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#updateWorkspace" >updateWorkspace</a>
                             </li>
                         </ul>
@@ -254,8 +258,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/workspace/workspace.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/workspace/workspace.service.ts:106</a></div>
                 </td>
             </tr>
 
@@ -337,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/workspace/workspace.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/workspace/workspace.service.ts:162</a></div>
                 </td>
             </tr>
 
@@ -420,8 +424,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/workspace/workspace.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/workspace/workspace.service.ts:93</a></div>
                 </td>
             </tr>
 
@@ -574,6 +578,89 @@
 
             <tr>
                 <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/workspace/workspace.service.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneByIdGuarded"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByIdGuarded</b></span>
+                        <a href="#findOneByIdGuarded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByIdGuarded(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="46"
                             class="link-to-prism">src/workspace/workspace.service.ts:46</a></div>
                 </td>
@@ -657,8 +744,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/workspace/workspace.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/workspace/workspace.service.ts:137</a></div>
                 </td>
             </tr>
 
@@ -776,6 +863,32 @@ export class WorkspaceService {
 
     if (!item) {
       throw new NotFoundException();
+    }
+
+    return item;
+  }
+
+  async findOneByIdGuarded(id: string, userId: number): Promise&lt;DbWorkspace&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(&#x60;workspaces.members&#x60;, &#x60;workspace_members&#x60;, &#x60;workspaces.id&#x3D;workspace_members.workspace_id&#x60;)
+      .where(&quot;workspaces.id &#x3D; :id&quot;, { id });
+
+    const item: DbWorkspace | null &#x3D; await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    const canView &#x3D; canUserManageWorkspace(item, userId, [
+      WorkspaceMemberRoleEnum.Viewer,
+      WorkspaceMemberRoleEnum.Editor,
+      WorkspaceMemberRoleEnum.Owner,
+    ]);
+
+    if (!canView) {
+      throw new UnauthorizedException();
     }
 
     return item;
