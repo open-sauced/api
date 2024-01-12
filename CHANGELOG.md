@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-alpha.2...v2.1.0-alpha.3) (2024-01-12)
+
+
+### 🍕 Features
+
+* V2 api endpoints and timescale integration ([#470](https://github.com/open-sauced/api.opensauced.pizza/issues/470)) ([8d88878](https://github.com/open-sauced/api.opensauced.pizza/commit/8d88878045c2b414a596273f267d576ede71dfdc))
+
 ## [2.1.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-alpha.1...v2.1.0-alpha.2) (2024-01-12)
 
 
