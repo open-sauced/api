@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 
@@ -42,27 +42,5 @@ export class PullRequestInsightsService {
     this.repoFilterService.applyQueryBuilderFilters(prQuery, filters);
 
     return qb.addSelect(`(${prQuery.getQuery()})::INTEGER`, `${type}_prs`);
-  }
-
-  async getInsight(interval = 0, options: FilterOptionsDto): Promise<DbPRInsight> {
-    const startDate = GetPrevDateISOString(options.prev_days_start_date);
-    const queryBuilder = this.baseQueryBuilder()
-      .select(`TO_CHAR('${startDate}'::TIMESTAMP - INTERVAL '${interval} days', 'YYYY-MM-DD')`, "day")
-      .addSelect(`${interval}::INTEGER`, "interval")
-      .limit(1);
-
-    ["all", "accepted", "spam"].forEach((type) => {
-      this.subQueryCountPrs(queryBuilder, type, interval, options);
-    });
-
-    queryBuilder.setParameters({ ...options, repoIds: options.repoIds ? options.repoIds.split(",") : [] });
-
-    const item: DbPRInsight | undefined = await queryBuilder.getRawOne();
-
-    if (!item) {
-      throw new NotFoundException();
-    }
-
-    return item;
   }
 }

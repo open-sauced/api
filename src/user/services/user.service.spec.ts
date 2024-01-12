@@ -15,6 +15,14 @@ import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
 import { TierService } from "../../tier/tier.service";
+import { PullRequestGithubEventsService } from "../../timescale/pull_request_github_events.service";
+import { DbPullRequestGitHubEvents } from "../../timescale/entities/pull_request_github_event";
+import { RepoService } from "../../repo/repo.service";
+import { UserListService } from "../../user-lists/user-list.service";
+import { DbRepo } from "../../repo/entities/repo.entity";
+import { RepoFilterService } from "../../common/filters/repo-filter.service";
+import { DbUserListContributor } from "../../user-lists/entities/user-list-contributor.entity";
+import { PagerService } from "../../common/services/pager.service";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -30,6 +38,7 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
 describe("UserService", () => {
   let userService: UserService;
   let tierService: TierService;
+  let prEventService: PullRequestGithubEventsService;
   let dbUserRepositoryMock: MockRepository;
   let dbUserHighlightReactionRepositoryMock: MockRepository;
 
@@ -39,8 +48,17 @@ describe("UserService", () => {
         UserService,
         TierService,
         ConfigService,
+        PullRequestGithubEventsService,
+        RepoService,
+        UserListService,
+        RepoFilterService,
+        PagerService,
         {
           provide: getRepositoryToken(DbUser, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbRepo, "ApiConnection"),
           useValue: createMockRepository(),
         },
         {
@@ -63,6 +81,22 @@ describe("UserService", () => {
           provide: getRepositoryToken(DbUserList, "ApiConnection"),
           useValue: createMockRepository(),
         },
+        {
+          provide: getRepositoryToken(DbPullRequestGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserList, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserListContributor, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbUserHighlight, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
       ],
     }).compile();
 
@@ -71,6 +105,18 @@ describe("UserService", () => {
     tierService.checkAddOrg = jest.fn(async () => {
       // do nothing
     });
+
+    // mocks out asynchronous timescale calls used within the user service
+    prEventService = module.get<PullRequestGithubEventsService>(PullRequestGithubEventsService);
+    prEventService.findCountByPrAuthor = jest.fn(async () => {
+      await Promise.resolve();
+      return 1;
+    });
+    prEventService.findVelocityByPrAuthor = jest.fn(async () => {
+      await Promise.resolve();
+      return 1;
+    });
+
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
     dbUserHighlightReactionRepositoryMock = module.get<MockRepository>(
       getRepositoryToken(DbUserHighlightReaction, "ApiConnection")
@@ -170,7 +216,7 @@ describe("UserService", () => {
       const result = await userService.findOneByUsername(username);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(6);
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(4);
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("LOWER(login) = :username", {
         username: username.toLowerCase(),
       });

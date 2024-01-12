@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Version } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -12,7 +12,6 @@ import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto"
 export class PullRequestReviewsController {
   constructor(private readonly pullRequestReviewService: PullRequestReviewGithubEventsService) {}
 
-  @Version("2")
   @Get("/search")
   @ApiOperation({
     operationId: "searchAllPullRequestsReviews",
