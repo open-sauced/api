@@ -7,6 +7,7 @@
     "": {
       "name": "@open-sauced/api",
       "version": "2.2.0-beta.2",
+      "version": "2.2.0",
       "license": "MIT",
       "dependencies": {
         "@fastify/express": "^2.3.0",
