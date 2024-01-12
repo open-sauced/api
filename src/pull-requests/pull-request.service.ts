@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { ConfigService } from "@nestjs/config";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
@@ -22,39 +21,13 @@ export class PullRequestService {
   constructor(
     @InjectRepository(DbPullRequest, "ApiConnection")
     private pullRequestRepository: Repository<DbPullRequest>,
-    private filterService: RepoFilterService,
-    private configService: ConfigService
+    private filterService: RepoFilterService
   ) {}
 
   baseQueryBuilder() {
     const builder = this.pullRequestRepository.createQueryBuilder("pull_requests");
 
     return builder;
-  }
-
-  hacktoberfestPrFilterBuilderStart() {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * this is inclusive of previous years where the current pull_requests have "newer" updates
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "pull_requests"."updated_at"`;
-  }
-
-  hacktoberfestPrFilterBuilderEnd(range = 30) {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    /*
-     * take the date range starting from the last day of October.
-     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
-     */
-    return `to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "pull_requests"."updated_at"`;
   }
 
   async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequest>> {
@@ -118,16 +91,8 @@ export class PullRequestService {
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
-        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
-        break;
-      default:
-        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
-        break;
-    }
+    filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
+    filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     if (pageOptionsDto.contributor) {
       filters.push([
@@ -191,16 +156,8 @@ export class PullRequestService {
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        filters.push([this.hacktoberfestPrFilterBuilderStart(), {}]);
-        filters.push([this.hacktoberfestPrFilterBuilderEnd(range), {}]);
-        break;
-      default:
-        filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
-        filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
-        break;
-    }
+    filters.push([`'${startDate}'::TIMESTAMP >= "pull_requests"."updated_at"`, {}]);
+    filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests"."updated_at"`, {}]);
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
