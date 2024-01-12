@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.1.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.1.0-alpha.1...v2.1.0-alpha.2) (2024-01-12)
+
+
+### 🍕 Features
+
+* Removes contributions table and services/controllers ([#482](https://github.com/open-sauced/api.opensauced.pizza/issues/482)) ([befba0a](https://github.com/open-sauced/api.opensauced.pizza/commit/befba0a1412397da7c7dff142b1469962e1c0a34))
+
 ## [2.1.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.0.0...v2.1.0-alpha.1) (2024-01-12)
 
 
