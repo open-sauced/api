@@ -340,7 +340,7 @@ export class RepoFilterService {
 
     if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Recent) {
       filters.push([&quot;repos.stars &gt;&#x3D; 1000&quot;, {}]);
-    } else if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Top100) {
+    } else if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Top100 || options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.Top) {
       filters.push([
         &#x60;
         repos.id IN (
