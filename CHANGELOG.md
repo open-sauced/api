@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2024-01-16)
+
+
+### 🍕 Features
+
+* /v2/lists/{id}/stats/contributions-evolution-by-type ([#485](https://github.com/open-sauced/api.opensauced.pizza/issues/485)) ([e0f5375](https://github.com/open-sauced/api.opensauced.pizza/commit/e0f537537d2637514a89e1b0c6023c1fac2da158))
+
 ## [2.3.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0-alpha.1) (2024-01-12)
 
 
