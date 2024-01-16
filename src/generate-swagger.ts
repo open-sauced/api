@@ -26,7 +26,7 @@ const generateSwaggerJson = async () => {
   app.enableCors();
   app.enableVersioning({
     type: VersioningType.URI,
-    defaultVersion: String(major("1.8.0", { loose: false })),
+    defaultVersion: String(major("2.0.0", { loose: false })),
   });
 
   const options = new DocumentBuilder();

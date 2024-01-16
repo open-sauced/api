@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -11,7 +11,6 @@ import {
   UserListMostActiveContributorsDto,
 } from "./dtos/most-active-contributors.dto";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
-import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
@@ -203,21 +202,6 @@ export class UserListStatsService {
     return Promise.all(framePromises);
   }
 
-  async findContributionsInTimeframe(
-    options: ContributionsTimeframeDto,
-    listId: string
-  ): Promise<DbContributionStatTimeframe[]> {
-    const range = options.range!;
-    const contributorType = options.contributorType!;
-    const dates = this.getDateFrames(range);
-
-    const framePromises = dates.map(async (frameStartDate) =>
-      this.findContributionsInTimeframeHelper(frameStartDate.toISOString(), range / 7, contributorType, listId)
-    );
-
-    return Promise.all(framePromises);
-  }
-
   getDateFrames(range = 30, denominator = 7): Date[] {
     const currentDate = new Date();
     const frameDuration = range / denominator;
@@ -231,82 +215,6 @@ export class UserListStatsService {
     }
 
     return dates;
-  }
-
-  async findContributionsInTimeframeHelper(
-    startDate: string,
-    range: number,
-    contributorType: string,
-    listId: string
-  ): Promise<DbContributionStatTimeframe> {
-    const subQueryBuilder = this.baseQueryBuilder();
-
-    subQueryBuilder.innerJoin(
-      "users",
-      "users",
-      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
-    );
-
-    switch (contributorType) {
-      case UserListContributorStatsTypeEnum.all:
-        break;
-
-      case UserListContributorStatsTypeEnum.active:
-        this.applyActiveContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-
-      case UserListContributorStatsTypeEnum.new:
-        this.applyNewContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-
-      case UserListContributorStatsTypeEnum.alumni: {
-        this.applyAlumniContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-      }
-
-      default:
-        break;
-    }
-
-    subQueryBuilder
-      .addSelect(
-        `(
-          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
-          FROM "pull_requests"
-          WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
-        )::INTEGER`,
-        "all_commits"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("pull_requests"."id"), 0)
-          FROM "pull_requests"
-          WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."updated_at" > '${startDate}'::TIMESTAMP - INTERVAL '${range} days'
-            AND "pull_requests"."updated_at" <= '${startDate}'::TIMESTAMP
-        )::INTEGER`,
-        "all_prs_created"
-      );
-
-    const queryBuilder = this.userListContributorRepository.manager
-      .createQueryBuilder()
-      .select(`COALESCE(SUM("subQ"."all_commits"), 0)`, "commits")
-      .addSelect(`COALESCE(SUM("subQ"."all_prs_created"), 0)`, "prs_created")
-      .from(`( ${subQueryBuilder.getQuery()} )`, "subQ")
-      .setParameters(subQueryBuilder.getParameters());
-
-    const entity: DbContributionStatTimeframe | undefined = await queryBuilder.getRawOne();
-
-    if (!entity) {
-      throw new NotFoundException();
-    }
-
-    entity.time_start = startDate;
-    entity.time_end = `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`;
-
-    return entity;
   }
 
   async findContributorCategoriesInTimeframeHelper(
