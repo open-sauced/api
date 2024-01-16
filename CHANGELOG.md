@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.2...v2.3.0-beta.3) (2024-01-16)
+
+
+### 🐛 Bug Fixes
+
+* add top repos filter to repo filter service ([#486](https://github.com/open-sauced/api.opensauced.pizza/issues/486)) ([c557229](https://github.com/open-sauced/api.opensauced.pizza/commit/c557229d06a06ddc503fd02740b4e0ef0cb9bd57))
+
 ## [2.3.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2024-01-12)
 
 
