@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsIn, IsInt, IsNumber, IsOptional } from "class-validator";
+import { IsIn, IsInt, IsOptional, IsString } from "class-validator";
 
 export class TopProjectsDto {
   @ApiPropertyOptional({
@@ -15,11 +15,10 @@ export class TopProjectsDto {
   readonly range?: number = 30;
 
   @ApiProperty({
-    description: "Repo ID",
-    type: "integer",
-    example: 234343,
+    description: "Repo full name",
+    type: String,
+    example: "open-sauced/api",
   })
-  @Type(() => Number)
-  @IsNumber()
-  repo_id: number;
+  @IsString()
+  repo_name: string;
 }

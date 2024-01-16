@@ -16,7 +16,6 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
-import { TopProjectsDto } from "./dtos/top-projects.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -33,49 +32,6 @@ export class UserListStatsService {
     const builder = this.userListContributorRepository.createQueryBuilder("user_list_contributors");
 
     return builder;
-  }
-
-  async findListContributorStatsByProject(
-    options: TopProjectsDto,
-    listId: string
-  ): Promise<DbUserListContributorStat[]> {
-    const range = options.range!;
-    const repoId = options.repo_id;
-
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder.innerJoin("users", "users", "user_list_contributors.user_id=users.id");
-
-    queryBuilder
-      .select("users.login", "login")
-      .andWhere("user_list_contributors.list_id = :listId", { listId })
-      .addSelect(
-        `(
-          SELECT COALESCE(SUM("pull_requests"."commits"), 0)
-          FROM "pull_requests"
-          WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."repo_id" = ${repoId}
-            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
-        )::INTEGER`,
-        "commits"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("pull_requests"."id"), 0)
-          FROM "pull_requests"
-          WHERE "pull_requests"."author_login" = "users"."login"
-            AND "pull_requests"."repo_id" = ${repoId}
-            AND now() - INTERVAL '${range} days' <= "pull_requests"."updated_at"
-        )::INTEGER`,
-        "prs_created"
-      );
-
-    // limit to only the top 20 contributors for stats by projects
-    queryBuilder.limit(20);
-
-    const entities: DbUserListContributorStat[] = await queryBuilder.getRawMany();
-
-    return entities;
   }
 
   async findAllListContributorStats(

@@ -94,7 +94,7 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: TopProjectsDto
   ): Promise<DbUserListContributorStat[]> {
-    return this.userListStatsService.findListContributorStatsByProject(options, id);
+    return this.userListEventsStatsService.findTopContributorsByProject(options, id);
   }
 
   @Get(":id/stats/contributions-evolution-by-contributor-type")

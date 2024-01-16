@@ -15,7 +15,7 @@ export class DbUserListContributorStat {
   public login?: string;
 
   @ApiModelProperty({
-    description: "Number of commits associated with a user login",
+    description: "Number of commits for login within the time range",
     example: 0,
     type: "integer",
   })
@@ -27,7 +27,7 @@ export class DbUserListContributorStat {
   commits: number;
 
   @ApiModelProperty({
-    description: "Number of PRs created associated with a user login",
+    description: "Number of PRs created for login within the time range",
     example: 0,
     type: "integer",
   })
@@ -39,7 +39,7 @@ export class DbUserListContributorStat {
   prs_created: number;
 
   @ApiModelProperty({
-    description: "Number of PRs reviewed by a user login",
+    description: "Number of PRs reviewed for login within the time range",
     example: 0,
     type: "integer",
   })
@@ -51,7 +51,7 @@ export class DbUserListContributorStat {
   prs_reviewed: number;
 
   @ApiModelProperty({
-    description: "Number of issues created by a user login",
+    description: "Number of issues created for login within the time range",
     example: 0,
     type: "integer",
   })
@@ -63,7 +63,43 @@ export class DbUserListContributorStat {
   issues_created: number;
 
   @ApiModelProperty({
-    description: "Number of comments associated with a user login",
+    description: "Number of commit comments for login within the time range",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  commit_comments: number;
+
+  @ApiModelProperty({
+    description: "Number of issue comments for login within the time range",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  issue_comments: number;
+
+  @ApiModelProperty({
+    description: "Number of pr review comments for login within the time range",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  pr_review_comments: number;
+
+  @ApiModelProperty({
+    description: "Number of total comments for login within the time range",
     example: 0,
     type: "integer",
   })
@@ -73,4 +109,16 @@ export class DbUserListContributorStat {
     insert: false,
   })
   comments: number;
+
+  @ApiModelProperty({
+    description: "Number of total contributions for a login within the time range",
+    example: 0,
+    type: "integer",
+  })
+  @Column({
+    type: "bigint",
+    select: false,
+    insert: false,
+  })
+  total_contributions: number;
 }

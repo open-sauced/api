@@ -17,6 +17,7 @@ import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
+import { TopProjectsDto } from "./dtos/top-projects.dto";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -45,7 +46,7 @@ export class UserListEventsStatsService {
 
   private eventsUnionCteBuilder(range: number): string {
     const cteBuilder = `
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM push_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND push_ref IN('refs/heads/main', 'refs/heads/master')
@@ -53,7 +54,7 @@ export class UserListEventsStatsService {
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM pull_request_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND pr_action='opened'
@@ -61,7 +62,7 @@ export class UserListEventsStatsService {
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM pull_request_review_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND pr_review_action='created'
@@ -69,7 +70,7 @@ export class UserListEventsStatsService {
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM issues_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND issue_action='opened'
@@ -77,21 +78,21 @@ export class UserListEventsStatsService {
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM commit_comment_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND now() - INTERVAL '${range} days' <= event_time
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM issue_comment_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND now() - INTERVAL '${range} days' <= event_time
 
       UNION ALL
 
-      SELECT event_type, event_time, repo_name
+      SELECT event_type, event_time, repo_name, actor_login
       FROM pull_request_review_comment_github_events
       WHERE LOWER(actor_login) IN (:...users)
       AND now() - INTERVAL '${range} days' <= event_time`;
@@ -437,6 +438,50 @@ export class UserListEventsStatsService {
       .addSelect("COUNT(*)", "total_contributions")
       .from("CTE", "CTE")
       .groupBy("repo_name");
+
+    const entities: DbContributionsProjects[] = await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findTopContributorsByProject(options: TopProjectsDto, listId: string): Promise<DbUserListContributorStat[]> {
+    const range = options.range!;
+    const { repo_name } = options;
+
+    const allUsers = await this.findContributorsByType(listId, range);
+
+    if (allUsers.length === 0) {
+      return [];
+    }
+
+    const cteQuery = this.eventsUnionCteBuilder(range);
+
+    const entityQb = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, "CTE")
+      .setParameters({ users: allUsers })
+      .select("actor_login", "login")
+      .addSelect("COUNT(case when event_type = 'PushEvent' then 1 end)", "commits")
+      .addSelect("COUNT(case when event_type = 'PullRequestEvent' then 1 end)", "prs_created")
+      .addSelect("COUNT(case when event_type = 'PullRequestReviewEvent' then 1 end)", "prs_reviewed")
+      .addSelect("COUNT(case when event_type = 'IssuesEvent' then 1 end)", "issues_created")
+      .addSelect("COUNT(case when event_type = 'CommitCommentEvent' then 1 end)", "commit_comments")
+      .addSelect("COUNT(case when event_type = 'IssueCommentEvent' then 1 end)", "issue_comments")
+      .addSelect("COUNT(case when event_type = 'PullRequestReviewCommentEvent' then 1 end)", "pr_review_comments")
+      .addSelect(
+        `COUNT(case
+          when event_type = 'CommitCommentEvent'
+          or event_type = 'IssueCommentEvent'
+          or event_type = 'PullRequestReviewCommentEvent'
+          then 1 end
+        )`,
+        "comments"
+      )
+      .addSelect("COUNT(*)", "total_contributions")
+      .where(`LOWER(repo_name) = '${repo_name}'`)
+      .from("CTE", "CTE")
+      .groupBy("login")
+      .limit(25);
 
     const entities: DbContributionsProjects[] = await entityQb.getRawMany();
 
