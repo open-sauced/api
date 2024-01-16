@@ -6,6 +6,7 @@ import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 export enum InsightFilterFieldsEnum {
   Recent = "recent",
   Top100 = "top-100-repos",
+  Top = "top-repos",
   MinimumContributors = "minimum-5-contributors",
   MostActive = "most-active",
   MostSpammed = "most-spammed",
