@@ -15,6 +15,8 @@ import { ContributionsPageDto } from "./dtos/contributions-page.dto";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
+import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
+import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -41,10 +43,66 @@ export class UserListEventsStatsService {
     return builder;
   }
 
+  private eventsUnionCteBuilder(range: number): string {
+    const cteBuilder = `
+      SELECT event_type, event_time, repo_name
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND push_ref IN('refs/heads/main', 'refs/heads/master')
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND pr_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND pr_review_action='created'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND issue_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL '${range} days' <= event_time`;
+
+    return cteBuilder;
+  }
+
   async findContributorsByType(
     listId: string,
     range: number,
-    type: UserListContributorStatsTypeEnum
+    type: UserListContributorStatsTypeEnum = UserListContributorStatsTypeEnum.all
   ): Promise<string[]> {
     const now = new Date().toISOString();
 
@@ -308,57 +366,7 @@ export class UserListEventsStatsService {
       return new Array<DbContributionStatTimeframe>();
     }
 
-    const cteQuery = `
-      SELECT event_type, event_time
-      FROM push_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND push_ref IN('refs/heads/main', 'refs/heads/master')
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM pull_request_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND pr_action='opened'
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM pull_request_review_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND pr_review_action='created'
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM issues_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND issue_action='opened'
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM commit_comment_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM issue_comment_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND now() - INTERVAL '${range} days' <= event_time
-
-      UNION ALL
-
-      SELECT event_type, event_time
-      FROM pull_request_review_comment_github_events
-      WHERE LOWER(actor_login) IN (:...users)
-      AND now() - INTERVAL '${range} days' <= event_time`;
+    const cteQuery = this.eventsUnionCteBuilder(range);
 
     const entityQb = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
@@ -387,6 +395,50 @@ export class UserListEventsStatsService {
       .orderBy("bucket", "DESC");
 
     const entities: DbContributionStatTimeframe[] = await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findContributionsByProject(
+    options: ContributionsByProjectDto,
+    listId: string
+  ): Promise<DbContributionsProjects[]> {
+    const range = options.range!;
+
+    const allUsers = await this.findContributorsByType(listId, range);
+
+    if (allUsers.length === 0) {
+      return new Array<DbContributionsProjects>();
+    }
+
+    const cteQuery = this.eventsUnionCteBuilder(range);
+
+    const entityQb = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, "CTE")
+      .setParameters({ users: allUsers })
+      .select("repo_name", "repo_name")
+      .addSelect("COUNT(case when event_type = 'PushEvent' then 1 end)", "commits")
+      .addSelect("COUNT(case when event_type = 'PullRequestEvent' then 1 end)", "prs_created")
+      .addSelect("COUNT(case when event_type = 'PullRequestReviewEvent' then 1 end)", "prs_reviewed")
+      .addSelect("COUNT(case when event_type = 'IssuesEvent' then 1 end)", "issues_created")
+      .addSelect("COUNT(case when event_type = 'CommitCommentEvent' then 1 end)", "commit_comments")
+      .addSelect("COUNT(case when event_type = 'IssueCommentEvent' then 1 end)", "issue_comments")
+      .addSelect("COUNT(case when event_type = 'PullRequestReviewCommentEvent' then 1 end)", "pr_review_comments")
+      .addSelect(
+        `COUNT(case
+          when event_type = 'CommitCommentEvent'
+          or event_type = 'IssueCommentEvent'
+          or event_type = 'PullRequestReviewCommentEvent'
+          then 1 end
+        )`,
+        "comments"
+      )
+      .addSelect("COUNT(*)", "total_contributions")
+      .from("CTE", "CTE")
+      .groupBy("repo_name");
+
+    const entities: DbContributionsProjects[] = await entityQb.getRawMany();
 
     return entities;
   }
