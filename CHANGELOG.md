@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0) (2024-01-17)
+
+
+### 🍕 Features
+
+* "get" for single workspace ([#483](https://github.com/open-sauced/api.opensauced.pizza/issues/483)) ([0343a66](https://github.com/open-sauced/api.opensauced.pizza/commit/0343a66c9df113764936928e039417ee9da437c7))
+* add v2 endpoint for user lists most-active-contributors stats ([#476](https://github.com/open-sauced/api.opensauced.pizza/issues/476)) ([defb784](https://github.com/open-sauced/api.opensauced.pizza/commit/defb784a722de068002606c5dd4741a8868f2bda))
+
+
+### 🐛 Bug Fixes
+
+* add top repos filter to repo filter service ([#486](https://github.com/open-sauced/api.opensauced.pizza/issues/486)) ([c557229](https://github.com/open-sauced/api.opensauced.pizza/commit/c557229d06a06ddc503fd02740b4e0ef0cb9bd57))
+
 ## [2.3.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.2...v2.3.0-beta.3) (2024-01-16)
 
 
