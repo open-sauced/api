@@ -43,6 +43,21 @@ export class WorkspaceController {
     return this.workspaceService.findAllByUserId(pageOptionsDto, userId);
   }
 
+  @Get("/:id")
+  @ApiOperation({
+    operationId: "getWorkspaceByIdForUser",
+    summary: "Gets a workspace for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspace })
+  @ApiNotFoundResponse({ description: "Unable to get user workspace" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  async getWorkspaceByIdForUser(@Param("id") id: string, @UserId() userId: number): Promise<DbWorkspace> {
+    return this.workspaceService.findOneByIdGuarded(id, userId);
+  }
+
   @Post("/")
   @ApiOperation({
     operationId: "createWorkspaceForUser",
