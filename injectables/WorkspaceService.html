@@ -918,7 +918,7 @@ export class WorkspaceService {
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbWorkspace&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.leftJoinAndSelect(&quot;workspaces.members&quot;, &quot;workspace_members&quot;, &quot;workspace_members.user_id &#x3D; :userId&quot;, {
+    queryBuilder.innerJoinAndSelect(&quot;workspaces.members&quot;, &quot;workspace_members&quot;, &quot;workspace_members.user_id &#x3D; :userId&quot;, {
       userId,
     });
 
