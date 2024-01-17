@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.3.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.3.1-beta.1) (2024-01-17)
+
+
+### 🐛 Bug Fixes
+
+* Inner join instead of left join select for getting all workspaces ([#494](https://github.com/open-sauced/api.opensauced.pizza/issues/494)) ([92bc57f](https://github.com/open-sauced/api.opensauced.pizza/commit/92bc57fd62446562ba646854aa79168fdd1798f1))
+
 ## [2.3.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0) (2024-01-17)
 
 
