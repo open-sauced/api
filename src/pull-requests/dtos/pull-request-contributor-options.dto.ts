@@ -22,12 +22,13 @@ export class PullRequestContributorOptionsDto extends PageOptionsDto {
   readonly topic?: string;
 
   @ApiPropertyOptional({
+    description: "A comma separated list of repos to filter on",
     type: "string",
-    example: "open-sauced/insights",
+    example: "open-sauced/app",
   })
   @IsString()
   @IsOptional()
-  readonly repo?: string;
+  readonly repos?: string;
 
   @ApiPropertyOptional()
   @IsString()

@@ -8,7 +8,7 @@ export class PullRequestContributorInsightsDto extends PageOptionsDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
-  readonly repoIds?: string;
+  readonly repos?: string;
 
   @ApiPropertyOptional({
     minimum: 1,
