@@ -10,9 +10,7 @@ import {
   UserListContributorStatsTypeEnum,
   UserListMostActiveContributorsDto,
 } from "./dtos/most-active-contributors.dto";
-import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
-import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from "./dtos/contributions-pagemeta.dto";
 import { ContributionsPageDto } from "./dtos/contributions-page.dto";
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
@@ -141,87 +139,6 @@ export class UserListStatsService {
     const pageMetaDto = new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
 
     return new ContributionsPageDto(entities, pageMetaDto);
-  }
-
-  async findContributorCategoriesByTimeframe(
-    options: ContributionsTimeframeDto,
-    listId: string
-  ): Promise<DbContributorCategoryTimeframe[]> {
-    const denominator = 82;
-    const range = options.range!;
-    const dates = this.getDateFrames(range, denominator);
-
-    const framePromises = dates.map(async (frameStartDate) =>
-      this.findContributorCategoriesInTimeframeHelper(frameStartDate.toISOString(), range / denominator, listId)
-    );
-
-    return Promise.all(framePromises);
-  }
-
-  getDateFrames(range = 30, denominator = 7): Date[] {
-    const currentDate = new Date();
-    const frameDuration = range / denominator;
-    const dates: Date[] = [];
-
-    // eslint-disable-next-line no-loops/no-loops
-    for (let i = 0; i < denominator; i++) {
-      const frameDate = new Date(currentDate.getTime() - (range - i * frameDuration) * 86400000);
-
-      dates.push(frameDate);
-    }
-
-    return dates;
-  }
-
-  async findContributorCategoriesInTimeframeHelper(
-    startDate: string,
-    range: number,
-    listId: string
-  ): Promise<DbContributorCategoryTimeframe> {
-    const activeCountQueryBuilder = this.baseQueryBuilder();
-
-    activeCountQueryBuilder.innerJoin(
-      "users",
-      "users",
-      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
-    );
-
-    this.applyActiveContributorsFilter(activeCountQueryBuilder, startDate, range);
-
-    const activeCount = await activeCountQueryBuilder.getCount();
-
-    const newCountQueryBuilder = this.baseQueryBuilder();
-
-    newCountQueryBuilder.innerJoin(
-      "users",
-      "users",
-      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
-    );
-
-    this.applyNewContributorsFilter(newCountQueryBuilder, startDate, range);
-
-    const newCount = await newCountQueryBuilder.getCount();
-
-    const alumniCountQueryBuilder = this.baseQueryBuilder();
-
-    alumniCountQueryBuilder.innerJoin(
-      "users",
-      "users",
-      `user_list_contributors.user_id=users.id AND user_list_contributors.list_id='${listId}'`
-    );
-
-    this.applyAlumniContributorsFilter(alumniCountQueryBuilder, startDate, range);
-
-    const alumniCount = await alumniCountQueryBuilder.getCount();
-
-    return {
-      time_start: startDate,
-      time_end: `${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}`,
-      active: activeCount,
-      new: newCount,
-      alumni: alumniCount,
-      all: activeCount + newCount + alumniCount,
-    };
   }
 
   async findContributionsByProject(

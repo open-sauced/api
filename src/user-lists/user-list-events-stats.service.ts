@@ -18,6 +18,7 @@ import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
+import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -116,7 +117,7 @@ export class UserListEventsStatsService {
     const allUsers = await userListUsersBuilder.getMany();
 
     if (allUsers.length === 0) {
-      return new Array<string>();
+      return [];
     }
 
     const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username?.toLowerCase()));
@@ -364,7 +365,7 @@ export class UserListEventsStatsService {
     const allUsers = await this.findContributorsByType(listId, range, contribType);
 
     if (allUsers.length === 0) {
-      return new Array<DbContributionStatTimeframe>();
+      return [];
     }
 
     const cteQuery = this.eventsUnionCteBuilder(range);
@@ -409,7 +410,7 @@ export class UserListEventsStatsService {
     const allUsers = await this.findContributorsByType(listId, range);
 
     if (allUsers.length === 0) {
-      return new Array<DbContributionsProjects>();
+      return [];
     }
 
     const cteQuery = this.eventsUnionCteBuilder(range);
@@ -484,6 +485,192 @@ export class UserListEventsStatsService {
       .limit(25);
 
     const entities: DbContributionsProjects[] = await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findContributorCategoriesByTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise<DbContributorCategoryTimeframe[]> {
+    const range = options.range!;
+
+    const allUsers = await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.all);
+
+    if (allUsers.length === 0) {
+      return [];
+    }
+
+    const activeUsers = await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.active);
+    const newUsers = await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.new);
+    const alumniUsers = await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.alumni);
+
+    /*
+     * it's possible that one of the filtered lists will have no returned users:
+     * to guard against doing a blank WHERE IN() statment (which is not valid),
+     * we add an empty username which selects for no users.
+     */
+
+    activeUsers.push("");
+    newUsers.push("");
+    alumniUsers.push("");
+
+    /*
+     * in order to get a sub-table that "time_bucket" can accumulate data from,
+     * this large union query denotes a "contributor_category" for each of the user types
+     * across many different event tables.
+     */
+
+    const cteQuery = `
+      SELECT event_time, 'all_users' as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND push_ref IN('refs/heads/main', 'refs/heads/master')
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND push_ref IN('refs/heads/main', 'refs/heads/master')
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND push_ref IN('refs/heads/main', 'refs/heads/master')
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND push_ref IN('refs/heads/main', 'refs/heads/master')
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'all_users' as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND pr_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND pr_review_action='created'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND pr_review_action='created'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND pr_review_action='created'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'all_users' as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND issue_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND issue_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND issue_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND issue_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'all_users' as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'all_users' as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'all_users' as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'active_users' as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'new_users' as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL '${range} days' <= event_time
+      UNION ALL
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL '${range} days' <= event_time`;
+
+    const entityQb = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, "CTE")
+      .setParameters({ all_users: allUsers })
+      .setParameters({ active_users: activeUsers })
+      .setParameters({ new_users: newUsers })
+      .setParameters({ alumni_users: alumniUsers })
+      .select(`time_bucket('1 day', event_time)`, "bucket")
+      .addSelect("COUNT(case when contributor_category = 'all_users' then 1 end)", "all")
+      .addSelect("COUNT(case when contributor_category = 'active_users' then 1 end)", "active")
+      .addSelect("COUNT(case when contributor_category = 'new_users' then 1 end)", "new")
+      .addSelect("COUNT(case when contributor_category = 'alumni_users' then 1 end)", "alumni")
+      .from("CTE", "CTE")
+      .groupBy("bucket")
+      .orderBy("bucket", "DESC");
+
+    const entities: DbContributorCategoryTimeframe[] = await entityQb.getRawMany();
 
     return entities;
   }

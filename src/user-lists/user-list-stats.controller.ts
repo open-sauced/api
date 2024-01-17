@@ -14,7 +14,6 @@ import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
-import { UserListStatsService } from "./user-list-stat.service";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
@@ -22,6 +21,7 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
 import { UserListEventsStatsService } from "./user-list-events-stats.service";
+import { UserListStatsService } from "./user-list-stat.service";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -110,6 +110,6 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: ContributionsTimeframeDto
   ): Promise<DbContributorCategoryTimeframe[]> {
-    return this.userListStatsService.findContributorCategoriesByTimeframe(options, id);
+    return this.userListEventsStatsService.findContributorCategoriesByTimeframe(options, id);
   }
 }
