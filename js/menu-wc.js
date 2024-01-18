@@ -1330,6 +1330,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/HighlightOptionsDto.html" data-type="entity-link" >HighlightOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/InsightDto.html" data-type="entity-link" >InsightDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/InsightOptionsDto.html" data-type="entity-link" >InsightOptionsDto</a>
                             </li>
                             <li class="link">

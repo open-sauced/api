@@ -110,6 +110,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                    <span class="modifier">Optional</span>
                                 <a href="#repos" >repos</a>
                             </li>
                             <li>
@@ -440,6 +441,7 @@
                     <a name="repos"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
+                            <span class="modifier">Optional</span>
                         <span ><b>repos</b></span>
                         <a href="#repos"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -698,7 +700,7 @@ export class DbInsight extends BaseEntity {
 
   @ApiHideProperty()
   @OneToMany(() &#x3D;&gt; DbInsightRepo, (insightRepo) &#x3D;&gt; insightRepo.insight)
-  public repos: DbInsightRepo[];
+  public repos?: DbInsightRepo[];
 }
 </code></pre>
     </div>

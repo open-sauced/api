@@ -93,6 +93,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findInsightReposById" >findInsightReposById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#removeInsightForUser" >removeInsightForUser</a>
                             </li>
                         </ul>
@@ -141,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/insight/insight.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/insight/insight.controller.ts:66</a></div>
                 </td>
             </tr>
 
@@ -205,7 +209,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findInsightPageById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findInsightPageById(options: <a href="../classes/InsightDto.html" target="_self">InsightDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -219,8 +223,98 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/insight/insight.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/insight/insight.controller.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/InsightDto.html" target="_self" >InsightDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findInsightReposById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findInsightReposById</b></span>
+                        <a href="#findInsightReposById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findInsightReposById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:id/repos&#x27;)<br />@ApiOperation({operationId: &#x27;findInsightReposById&#x27;, summary: &#x27;Finds a insight page repositories by :id&#x27;})<br />@ApiOkResponse({type: DbInsightRepo})<br />@ApiNotFoundResponse({description: &#x27;Insight page not found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Not Authorized to view this Insight&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/insight/insight.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -258,7 +352,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;DbInsightRepo[]&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -297,8 +391,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/insight/insight.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/insight/insight.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -380,13 +474,19 @@ import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { UpdateInsightDto } from &quot;./dtos/update-insight.dto&quot;;
 
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
+import { DbInsightRepo } from &quot;./entities/insight-repo.entity&quot;;
 import { InsightsService } from &quot;./insights.service&quot;;
 import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
+import { InsightRepoService } from &quot;./insight-repo.service&quot;;
+import { InsightDto } from &quot;./dtos/insight.dto&quot;;
 
 @Controller(&quot;insights&quot;)
 @ApiTags(&quot;Insights service&quot;)
 export class InsightController {
-  constructor(private readonly insightsService: InsightsService) {}
+  constructor(
+    private readonly insightsService: InsightsService,
+    private readonly insightReposService: InsightRepoService
+  ) {}
 
   @Get(&quot;/:id&quot;)
   @ApiOperation({
@@ -397,8 +497,21 @@ export class InsightController {
   @ApiNotFoundResponse({ description: &quot;Insight page not found&quot; })
   @ApiUnauthorizedResponse({ description: &quot;Not Authorized to view this Insight&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
-  async findInsightPageById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbInsight&gt; {
-    return this.insightsService.findOneById(id);
+  async findInsightPageById(@Query() options: InsightDto, @Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbInsight&gt; {
+    return this.insightsService.findOneById(id, options.include &#x3D;&#x3D;&#x3D; &quot;all&quot;);
+  }
+
+  @Get(&quot;/:id/repos&quot;)
+  @ApiOperation({
+    operationId: &quot;findInsightReposById&quot;,
+    summary: &quot;Finds a insight page repositories by :id&quot;,
+  })
+  @ApiOkResponse({ type: DbInsightRepo })
+  @ApiNotFoundResponse({ description: &quot;Insight page not found&quot; })
+  @ApiUnauthorizedResponse({ description: &quot;Not Authorized to view this Insight&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
+  async findInsightReposById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbInsightRepo[]&gt; {
+    return this.insightReposService.findReposById(id);
   }
 
   @Get(&quot;/featured&quot;)

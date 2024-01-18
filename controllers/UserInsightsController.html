@@ -525,7 +525,7 @@ export class UserInsightsController {
 
     try {
       // current set of insight repos
-      const currentRepos &#x3D; insight.repos.filter((insightRepo) &#x3D;&gt; !insightRepo.deleted_at);
+      const currentRepos &#x3D; insight.repos?.filter((insightRepo) &#x3D;&gt; !insightRepo.deleted_at) || [];
 
       // remove deleted repos
       const reposToRemove &#x3D; currentRepos.filter(

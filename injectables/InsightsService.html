@@ -224,8 +224,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/insight/insights.service.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/insight/insights.service.ts:88</a></div>
                 </td>
             </tr>
 
@@ -344,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/insight/insights.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/insight/insights.service.ts:109</a></div>
                 </td>
             </tr>
 
@@ -427,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/insight/insights.service.ts:147</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/insight/insights.service.ts:148</a></div>
                 </td>
             </tr>
 
@@ -491,7 +491,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findOneById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, includeAll)</code>
                 </td>
             </tr>
 
@@ -516,6 +516,7 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -529,6 +530,22 @@
                                         No
                                     </td>
 
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>includeAll</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>true</code>
+                                    </td>
 
                                 </tr>
                             </tbody>
@@ -569,8 +586,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/insight/insights.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/insight/insights.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -721,8 +738,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/insight/insights.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/insight/insights.service.ts:105</a></div>
                 </td>
             </tr>
 
@@ -792,8 +809,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/insight/insights.service.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/insight/insights.service.ts:101</a></div>
                 </td>
             </tr>
 
@@ -889,7 +906,7 @@ export class InsightsService {
   }
 
   processPizza(item: DbInsight) {
-    item.repos.forEach(async (url) &#x3D;&gt; {
+    item.repos?.forEach(async (url) &#x3D;&gt; {
       const bakeRepoInfo: BakeRepoDto &#x3D; {
         url: &#x60;https://github.com/${url.full_name}&#x60;,
         wait: false,
@@ -905,14 +922,15 @@ export class InsightsService {
     });
   }
 
-  async findOneById(id: number): Promise&lt;DbInsight&gt; {
+  async findOneById(id: number, includeAll &#x3D; true): Promise&lt;DbInsight&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder
-      .leftJoin(&quot;insight_members&quot;, &quot;insight_members&quot;)
-      .where(&quot;insights.id &#x3D; :id&quot;, { id })
-      .leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;)
-      .leftJoinAndSelect(&#x60;insights.members&#x60;, &#x60;members&#x60;, &#x60;insights.id&#x3D;members.insight_id&#x60;);
+    queryBuilder.leftJoin(&quot;insight_members&quot;, &quot;insight_members&quot;).where(&quot;insights.id &#x3D; :id&quot;, { id });
+
+    if (includeAll) {
+      queryBuilder.leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
+      queryBuilder.leftJoinAndSelect(&#x60;insights.members&#x60;, &#x60;members&#x60;, &#x60;insights.id&#x3D;members.insight_id&#x60;);
+    }
 
     const item: DbInsight | null &#x3D; await queryBuilder.getOne();
 

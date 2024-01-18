@@ -84,6 +84,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findReposById" >findReposById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#removeInsightRepo" >removeInsightRepo</a>
                             </li>
                         </ul>
@@ -251,6 +255,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findReposById"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findReposById</b></span>
+                        <a href="#findReposById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findReposById(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:36</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>insightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="removeInsightRepo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -269,8 +344,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -357,6 +432,10 @@ export class InsightRepoService {
     }
 
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
+  }
+
+  async findReposById(insightId: number) {
+    return this.insightRepoRepository.find({ where: { insight_id: insightId } });
   }
 
   async removeInsightRepo(id: number) {
