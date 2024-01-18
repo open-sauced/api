@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.4.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.1-beta.1...v2.4.0-beta.1) (2024-01-18)
+
+
+### 🍕 Features
+
+* add endpoint to fetch minimal insight and repositories ([#495](https://github.com/open-sauced/api.opensauced.pizza/issues/495)) ([851d0df](https://github.com/open-sauced/api.opensauced.pizza/commit/851d0dfd55d4abf5e1952e65943c9ee57552aeea))
+
 ### [2.3.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.3.1-beta.1) (2024-01-17)
 
 
