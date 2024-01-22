@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsEnum, IsIn, IsInt, IsOptional, IsString } from "class-validator";
 import { InsightFilterFieldsEnum } from "../../insight/dtos/insight-options.dto";
@@ -37,14 +37,15 @@ export class BaseHistogramDto {
   @IsOptional()
   readonly width?: number = 1;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repo name",
     type: "string",
     example: "open-sauced/app",
   })
   @Type(() => String)
   @IsString()
-  repo: string;
+  @IsOptional()
+  repo?: string;
 
   @ApiPropertyOptional({
     type: "string",

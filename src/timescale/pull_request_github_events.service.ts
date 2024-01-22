@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
+import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { PullRequestHistogramDto } from "../histogram/dtos/pull_request";
@@ -196,28 +196,6 @@ export class PullRequestGithubEventsService {
     return itemCount;
   }
 
-  async findAll(pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
-    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
-    const range = pageOptionsDto.range!;
-    const order = pageOptionsDto.orderDirection!;
-
-    /*
-     * because PR events may be "opened" or "closed" many times, this inner CTE query gets similar PRs rows
-     * based on pr_number and repo_name. This essentially gives a full picture of opened/closed PRs
-     * and their current state
-     */
-
-    const cteBuilder = this.pullRequestGithubEventsRepository
-      .createQueryBuilder("pull_request_github_events")
-      .select("*")
-      .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`)
-      .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
-      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`)
-      .orderBy("event_time", order);
-
-    return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
-  }
-
   async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;
@@ -358,6 +336,10 @@ export class PullRequestGithubEventsService {
   }
 
   async genPrHistogram(options: PullRequestHistogramDto): Promise<DbPullRequestGitHubEventsHistogram[]> {
+    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    }
+
     const order = options.orderDirection!;
     const range = options.range!;
     const startDate = GetPrevDateISOString(options.prev_days_start_date);
