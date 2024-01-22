@@ -11,6 +11,8 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
+import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-request-contributor-options.dto";
+import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
 
@@ -432,5 +434,275 @@ export class PullRequestGithubEventsService {
       .orderBy("bucket", order);
 
     return queryBuilder.getRawMany<DbPullRequestGitHubEventsHistogram>();
+  }
+
+  async findAuthorsWithFilters(
+    pageOptionsDto: PullRequestContributorOptionsDto,
+    contribType = "all"
+  ): Promise<PageDto<DbPullRequestContributor>> {
+    const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range = pageOptionsDto.range!;
+    const order = pageOptionsDto.orderDirection!;
+    const repo = pageOptionsDto.repos!.toLowerCase();
+
+    /*
+     * partitions by pr_author_login only and orders by time to get the latest PRs
+     * for the given subset of prs for a repo
+     */
+    const cteBuilder = this.pullRequestGithubEventsRepository
+      .createQueryBuilder("pull_request_github_events")
+      .select(
+        `
+        pull_request_github_events.pr_author_login,
+        pull_request_github_events.pr_author_id,
+        pull_request_github_events.event_time`
+      )
+      .addSelect(
+        `ROW_NUMBER() OVER (PARTITION BY pull_request_github_events.pr_author_login ORDER BY pull_request_github_events.event_time ${order}) AS row_num`
+      )
+      .orderBy("event_time", order);
+
+    switch (contribType) {
+      case "active":
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+          .andWhere(
+            `'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`
+          );
+
+        this.applyActiveContributorsFilter(cteBuilder, repo, startDate, range);
+        break;
+
+      case "new":
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+          .andWhere(
+            `'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`
+          );
+
+        this.applyNewContributorsFilter(cteBuilder, repo, startDate, range);
+        break;
+
+      case "alumni": {
+        /* capture pr authors in previous range window */
+        cteBuilder
+          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+          .andWhere(
+            `'${startDate}'::TIMESTAMP - INTERVAL '${range + range} days' <= "pull_request_github_events"."event_time"`
+          );
+
+        this.applyAlumniContributorsFilter(cteBuilder, repo, startDate, range);
+        break;
+      }
+
+      default:
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+          .andWhere(
+            `'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`
+          );
+        break;
+    }
+
+    /*
+     * apply repo specific filters (topics, top 100, etc.) - this captures a few
+     * pre-defined filters provided by the PullRequestPageOptionsDto.
+     * This will call out to the API connection to get metadata on the repos.
+     */
+    if (pageOptionsDto.filter || pageOptionsDto.topic) {
+      const filtersDto: RepoSearchOptionsDto = {
+        filter: pageOptionsDto.filter,
+        topic: pageOptionsDto.topic,
+        limit: 50,
+        skip: 0,
+        range,
+      };
+
+      const repos = await this.repoService.findAllWithFilters(filtersDto);
+      const repoNames = repos.data.map((repo) => repo.full_name.toLowerCase());
+
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."repo_name") IN (:...repoNames)`, {
+        repoNames,
+      });
+    }
+
+    /* apply user provided repo name filters */
+    if (pageOptionsDto.repos) {
+      cteBuilder.andWhere(`LOWER("pull_request_github_events"."repo_name") IN (:...repoNames)`, {
+        repoNames: pageOptionsDto.repos.toLowerCase().split(","),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (pageOptionsDto.repoIds) {
+      cteBuilder.andWhere(`"pull_request_github_events"."repo_id" IN (:...repoIds)`, {
+        repoIds: pageOptionsDto.repoIds.split(","),
+      });
+    }
+
+    const queryBuilder = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select(
+        `
+        pr_author_login AS author_login,
+        pr_author_id AS user_id,
+        event_time AS updated_at
+      `
+      )
+      .from("CTE", "CTE")
+      .where("row_num = 1")
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const cteCounter = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, "CTE")
+      .setParameters(cteBuilder.getParameters())
+      .select(`COUNT(*) as count`)
+      .from("CTE", "CTE")
+      .where("row_num = 1");
+
+    const cteCounterResult = await cteCounter.getRawOne<{ count: number }>();
+    const itemCount = parseInt(`${cteCounterResult?.count ?? "0"}`, 10);
+
+    const entities = await queryBuilder.getRawMany<DbPullRequestContributor>();
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  applyActiveContributorsFilter(
+    queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>,
+    repos = "",
+    startDate: string,
+    range = 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+          FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+              AND '${startDate}':: TIMESTAMP
+        )`,
+        "current_month_prs",
+        `pull_request_github_events.pr_author_login = current_month_prs.pr_author_login`
+      )
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+            FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${
+          range + range
+        } days'
+              AND '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+        )`,
+        "previous_month_prs",
+        `pull_request_github_events.pr_author_login = current_month_prs.pr_author_login`
+      )
+      .andWhere(`"previous_month_prs"."pr_author_login" IS NOT NULL`)
+      .andWhere(`"current_month_prs"."pr_author_login" IS NOT NULL`);
+  }
+
+  applyNewContributorsFilter(
+    queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>,
+    repos = "",
+    startDate: string,
+    range = 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+          FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+              AND '${startDate}':: TIMESTAMP
+        )`,
+        "current_month_prs",
+        `pull_request_github_events.pr_author_login = current_month_prs.pr_author_login`
+      )
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+            FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${
+          range + range
+        } days'
+              AND '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+        )`,
+        "previous_month_prs",
+        `pull_request_github_events.pr_author_login = previous_month_prs.pr_author_login`
+      )
+      .andWhere(`"previous_month_prs"."pr_author_login" IS NULL`)
+      .andWhere(`"current_month_prs"."pr_author_login" IS NOT NULL`);
+  }
+
+  applyAlumniContributorsFilter(
+    queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>,
+    repos = "",
+    startDate: string,
+    range = 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+          FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+              AND '${startDate}':: TIMESTAMP
+        )`,
+        "current_month_prs",
+        `pull_request_github_events.pr_author_login = current_month_prs.pr_author_login`
+      )
+      .leftJoin(
+        `(
+          SELECT DISTINCT LOWER("pr_author_login") pr_author_login
+            FROM "pull_request_github_events"
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(",")
+              .map((repo) => `'${repo}'`)
+              .join(", ")})
+              AND "pull_request_github_events"."event_time" BETWEEN '${startDate}':: TIMESTAMP - INTERVAL '${
+          range + range
+        } days'
+              AND '${startDate}':: TIMESTAMP - INTERVAL '${range} days'
+        )`,
+        "previous_month_prs",
+        `pull_request_github_events.pr_author_login = previous_month_prs.pr_author_login`
+      )
+      .andWhere(`"previous_month_prs"."pr_author_login" IS NOT NULL`)
+      .andWhere(`"current_month_prs"."pr_author_login" IS NULL`);
   }
 }

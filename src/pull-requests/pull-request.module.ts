@@ -10,7 +10,6 @@ import { DbPRInsight } from "./entities/pull-request-insight.entity";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { PullRequestController } from "./pull-request.controller";
-import { PullRequestService } from "./pull-request.service";
 import { PullRequestDescriptionService } from "./pull-request-description.service";
 import { PullRequestDescriptionController } from "./pull-request-description.controller";
 import { CodeRefactorSuggestionController } from "./code-refactor-suggestion.controller";
@@ -40,7 +39,6 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
     PullRequestReviewsController,
   ],
   providers: [
-    PullRequestService,
     PullRequestInsightsService,
     PullRequestDescriptionService,
     CodeRefactorSuggestionService,
@@ -48,6 +46,6 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
     CodeExplanationService,
     PullRequestReviewService,
   ],
-  exports: [PullRequestService, PullRequestReviewService],
+  exports: [PullRequestReviewService],
 })
 export class PullRequestModule {}
