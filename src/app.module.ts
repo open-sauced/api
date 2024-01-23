@@ -52,7 +52,6 @@ import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
-import { DbPullRequestReview } from "./pull-requests/entities/pull-request-review.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
@@ -136,7 +135,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
             DbCustomer,
             DbSubscription,
             DbPullRequest,
-            DbPullRequestReview,
             DbPRInsight,
             DbUserToUserFollows,
             DbEmoji,
