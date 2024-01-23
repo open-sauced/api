@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-alpha.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.7...v2.3.0-alpha.8) (2024-01-23)
+
+
+### 🍕 Features
+
+* Add a "distincAuthors" field for PR search DTO ([#506](https://github.com/open-sauced/api.opensauced.pizza/issues/506)) ([7e16709](https://github.com/open-sauced/api.opensauced.pizza/commit/7e1670939c955172d436d441734fee67b0907f55))
+* Refactor contributor search ([#507](https://github.com/open-sauced/api.opensauced.pizza/issues/507)) ([200b476](https://github.com/open-sauced/api.opensauced.pizza/commit/200b476e847bb976b0060d2f03db6cdcff972140))
+
+
+### 🐛 Bug Fixes
+
+* Correct contrib-graph-by-type stats ([#508](https://github.com/open-sauced/api.opensauced.pizza/issues/508)) ([6c96072](https://github.com/open-sauced/api.opensauced.pizza/commit/6c960723dde5f4b3eb7b26c61346f02276b37c66))
+
 ## [2.3.0-alpha.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2024-01-23)
 
 
