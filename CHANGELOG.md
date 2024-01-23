@@ -5,6 +5,19 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-alpha.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2024-01-23)
+
+
+### 🐛 Bug Fixes
+
+* Add missing active_prs count for repos ([#503](https://github.com/open-sauced/api.opensauced.pizza/issues/503)) ([a4255c9](https://github.com/open-sauced/api.opensauced.pizza/commit/a4255c96bd122bda114080d0c459357dfe5601d9))
+
+
+### 🍕 Features
+
+* Make "repo" optional in histogram dtos ([#501](https://github.com/open-sauced/api.opensauced.pizza/issues/501)) ([6ba5aaa](https://github.com/open-sauced/api.opensauced.pizza/commit/6ba5aaad8062ab10e4bd935f9ee507995c93f6f4))
+* Removes a broken left join for "contributors" in repo base query builder ([#499](https://github.com/open-sauced/api.opensauced.pizza/issues/499)) ([7e9bfea](https://github.com/open-sauced/api.opensauced.pizza/commit/7e9bfea205eb7c1d3859d33ea932eb6589f8cf45))
+
 ## [2.3.0-alpha.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.5...v2.3.0-alpha.6) (2024-01-22)
 
 
