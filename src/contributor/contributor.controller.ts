@@ -22,6 +22,6 @@ export class ContributorController {
   async searchAllPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorOptionsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
-    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto);
+    return this.pullRequestGithubEventsService.searchAuthors(pageOptionsDto);
   }
 }
