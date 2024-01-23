@@ -527,128 +527,206 @@ export class UserListEventsStatsService {
       WHERE LOWER(actor_login) IN (:...all_users)
       AND push_ref IN('refs/heads/main', 'refs/heads/master')
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM push_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND push_ref IN('refs/heads/main', 'refs/heads/master')
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM push_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND push_ref IN('refs/heads/main', 'refs/heads/master')
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM push_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
       AND push_ref IN('refs/heads/main', 'refs/heads/master')
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'all_users' as contributor_category
       FROM pull_request_github_events
       WHERE LOWER(actor_login) IN (:...all_users)
       AND pr_action='opened'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
+      SELECT event_time, 'active_users' as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND pr_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_time, 'new_users' as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND pr_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_time, 'alumni_users' as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND pr_action='opened'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
+      SELECT event_time, 'all_users' as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND pr_review_action='created'
+      AND now() - INTERVAL '${range} days' <= event_time
+
+      UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM pull_request_review_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND pr_review_action='created'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM pull_request_review_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND pr_review_action='created'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM pull_request_review_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
       AND pr_review_action='created'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'all_users' as contributor_category
       FROM issues_github_events
       WHERE LOWER(actor_login) IN (:...all_users)
       AND issue_action='opened'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM issues_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND issue_action='opened'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM issues_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND issue_action='opened'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM issues_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
       AND issue_action='opened'
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'all_users' as contributor_category
       FROM commit_comment_github_events
       WHERE LOWER(actor_login) IN (:...all_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM commit_comment_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM commit_comment_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM commit_comment_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'all_users' as contributor_category
       FROM issue_comment_github_events
       WHERE LOWER(actor_login) IN (:...all_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM issue_comment_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM issue_comment_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM issue_comment_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'all_users' as contributor_category
       FROM pull_request_review_comment_github_events
       WHERE LOWER(actor_login) IN (:...all_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'active_users' as contributor_category
       FROM pull_request_review_comment_github_events
       WHERE LOWER(actor_login) IN (:...active_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'new_users' as contributor_category
       FROM pull_request_review_comment_github_events
       WHERE LOWER(actor_login) IN (:...new_users)
       AND now() - INTERVAL '${range} days' <= event_time
+
       UNION ALL
+
       SELECT event_time, 'alumni_users' as contributor_category
       FROM pull_request_review_comment_github_events
       WHERE LOWER(actor_login) IN (:...alumni_users)
