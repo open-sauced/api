@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsEnum, IsOptional, IsString } from "class-validator";
+import { IsBooleanString, IsEnum, IsOptional, IsString } from "class-validator";
 
 import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 import { InsightFilterFieldsEnum } from "../../insight/dtos/insight-options.dto";
@@ -78,4 +78,11 @@ export class PullRequestPageOptionsDto extends PageOptionsDto {
   @IsString()
   @IsOptional()
   readonly listId?: string;
+
+  @ApiPropertyOptional({
+    example: "true",
+  })
+  @IsBooleanString()
+  @IsOptional()
+  readonly distinctAuthors?: string = "false";
 }

@@ -226,8 +226,19 @@ export class PullRequestGithubEventsService {
 
     const cteBuilder = this.pullRequestGithubEventsRepository
       .createQueryBuilder("pull_request_github_events")
-      .select("*")
-      .addSelect(`ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`)
+      .select("*");
+
+    if (pageOptionsDto.distinctAuthors) {
+      cteBuilder.addSelect(
+        `ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num`
+      );
+    } else {
+      cteBuilder.addSelect(
+        `ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`
+      );
+    }
+
+    cteBuilder
       .orderBy("event_time", order)
       .where(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
       .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`);
