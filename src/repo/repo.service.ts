@@ -46,7 +46,6 @@ export class RepoService {
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserSubmissions", "submissions"), "submissionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserStargazers", "stargazers"), "stargazersCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserStars", "stars"), "starsCount")
-      .loadRelationCountAndMap("repo.contributionsCount", "repo.contributions")
       .loadRelationCountAndMap("repo.votesCount", "repo.repoToUserVotes")
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
       .loadRelationCountAndMap("repo.stargazersCount", "repo.repoToUserStargazers")
