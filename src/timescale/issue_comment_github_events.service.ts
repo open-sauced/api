@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { IssueCommentsHistogramDto } from "../histogram/dtos/issue_comments";
@@ -18,8 +18,13 @@ export class IssueCommentGithubEventsService {
   }
 
   async genIssueCommentHistogram(options: IssueCommentsHistogramDto): Promise<DbIssueCommentGitHubEventsHistogram[]> {
+    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    }
+
     const order = options.orderDirection!;
     const range = options.range!;
+    const repo = options.repo!;
 
     const queryBuilder = this.baseQueryBuilder();
 
@@ -27,7 +32,7 @@ export class IssueCommentGithubEventsService {
       .select("time_bucket('1 day', event_time)", "bucket")
       .addSelect("count(*)", "issues_comment_count")
       .from("issue_comment_github_events", "issue_comment_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: options.repo.toLowerCase() })
+      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: repo.toLowerCase() })
       .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
       .andWhere(`LOWER(issue_comment_action) = LOWER('created')`)
       .groupBy("bucket")

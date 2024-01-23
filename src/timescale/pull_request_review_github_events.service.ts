@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { FilterListContributorsDto } from "../user-lists/dtos/filter-contributors.dto";
@@ -185,8 +185,13 @@ export class PullRequestReviewGithubEventsService {
   async genPrReviewHistogram(
     options: PullRequestReviewHistogramDto
   ): Promise<DbPullRequestReviewGitHubEventsHistogram[]> {
+    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    }
+
     const order = options.orderDirection!;
     const range = options.range!;
+    const repo = options.repo!;
 
     const queryBuilder = this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 
@@ -194,7 +199,7 @@ export class PullRequestReviewGithubEventsService {
       .select("time_bucket('1 day', event_time)", "bucket")
       .addSelect("count(*)", "prs_count")
       .from("pull_request_review_github_events", "pull_request_review_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: options.repo.toLowerCase() })
+      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: repo.toLowerCase() })
       .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
       .groupBy("bucket")
       .orderBy("bucket", order);
