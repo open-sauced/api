@@ -1,14 +1,13 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsInt, IsOptional, IsString, Max, Min } from "class-validator";
 import { Type } from "class-transformer";
 
 import { PageOptionsDto } from "../../common/dtos/page-options.dto";
 
 export class PullRequestContributorInsightsDto extends PageOptionsDto {
-  @ApiPropertyOptional()
+  @ApiProperty()
   @IsString()
-  @IsOptional()
-  readonly repos?: string;
+  readonly repos: string;
 
   @ApiPropertyOptional({
     minimum: 1,
