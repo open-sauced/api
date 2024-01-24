@@ -16,7 +16,6 @@ import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 @Injectable()
 export class WorkspaceService {
   constructor(
-    @InjectRepository(DbWorkspaceMember, "ApiConnection")
     @InjectRepository(DbWorkspace, "ApiConnection")
     private workspaceRepository: Repository<DbWorkspace>,
     @InjectRepository(DbWorkspaceRepo, "ApiConnection")
@@ -97,9 +96,13 @@ export class WorkspaceService {
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise<PageDto<DbWorkspace>> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.innerJoinAndSelect("workspaces.members", "workspace_members", "workspace_members.user_id = :userId", {
-      userId,
-    });
+    queryBuilder.innerJoinAndSelect("workspaces.members", "workspace_members").where(
+      `
+      "workspaces"."id" IN (
+        SELECT "workspace_id" FROM "workspace_members" WHERE "user_id" = :userId
+      )`,
+      { userId }
+    );
 
     return this.pagerService.applyPagination<DbWorkspace>({
       pageOptionsDto,
