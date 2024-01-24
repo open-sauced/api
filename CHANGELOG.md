@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.4.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2024-01-24)
+
+
+### 🍕 Features
+
+* Workspace creation has "repos" payload ([#512](https://github.com/open-sauced/api.opensauced.pizza/issues/512)) ([a68a7da](https://github.com/open-sauced/api.opensauced.pizza/commit/a68a7da072a2579c0438ea28b7afe7be30422aeb))
+
 ## [2.4.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.1-beta.1...v2.4.0-beta.1) (2024-01-18)
 
 
