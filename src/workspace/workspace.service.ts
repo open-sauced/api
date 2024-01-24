@@ -5,20 +5,24 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
+import { RepoService } from "../repo/repo.service";
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
 import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
 import { canUserManageWorkspace } from "./common/memberAccess";
+import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 
 @Injectable()
 export class WorkspaceService {
   constructor(
     @InjectRepository(DbWorkspaceMember, "ApiConnection")
-    private workspaceMemberRepository: Repository<DbWorkspaceMember>,
     @InjectRepository(DbWorkspace, "ApiConnection")
     private workspaceRepository: Repository<DbWorkspace>,
-    private pagerService: PagerService
+    @InjectRepository(DbWorkspaceRepo, "ApiConnection")
+    private workspaceRepoRepository: Repository<DbWorkspaceRepo>,
+    private pagerService: PagerService,
+    private repoService: RepoService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbWorkspace> {
@@ -104,34 +108,67 @@ export class WorkspaceService {
   }
 
   async createWorkspace(dto: CreateWorkspaceDto, userId: number): Promise<DbWorkspace> {
-    const newWorkspace = this.workspaceRepository.create({
-      name: dto.name,
-      description: dto.description,
-    });
-    const savedWorkspace = await this.workspaceRepository.save(newWorkspace);
-
-    /* set the calling creator as the owner (so there's always at least 1 owner by default)*/
-    const callerIsOwner = this.workspaceMemberRepository.create({
-      user_id: userId,
-      workspace_id: savedWorkspace.id,
-      role: WorkspaceMemberRoleEnum.Owner,
-    });
-
-    await this.workspaceMemberRepository.save(callerIsOwner);
-
-    const promises = dto.members.map(async (member) => {
-      const newMember = this.workspaceMemberRepository.create({
-        user_id: member.id,
-        workspace_id: savedWorkspace.id,
-        role: member.role,
+    return this.workspaceRepository.manager.transaction(async (entityManager) => {
+      const newWorkspace = entityManager.create(DbWorkspace, {
+        name: dto.name,
+        description: dto.description,
       });
 
-      return this.workspaceMemberRepository.save(newMember);
+      const savedWorkspace = await entityManager.save(DbWorkspace, newWorkspace);
+
+      /* set the calling creator as the owner (so there's always at least 1 owner by default)*/
+      const callerIsOwner = entityManager.create(DbWorkspaceMember, {
+        user_id: userId,
+        workspace_id: savedWorkspace.id,
+        role: WorkspaceMemberRoleEnum.Owner,
+      });
+
+      await entityManager.save(DbWorkspaceMember, callerIsOwner);
+
+      const memberPromises = dto.members.map(async (member) => {
+        const newMember = entityManager.create(DbWorkspaceMember, {
+          user_id: member.id,
+          workspace_id: savedWorkspace.id,
+          role: member.role,
+        });
+
+        return entityManager.save(DbWorkspaceMember, newMember);
+      });
+
+      await Promise.all(memberPromises);
+
+      const repoPromises = dto.repos.map(async (dtoRepo) => {
+        const parts = dtoRepo.full_name.split("/");
+
+        if (parts.length !== 2) {
+          throw new NotFoundException("invalid repo input: must be of form 'owner/name'");
+        }
+
+        const repo = await this.repoService.findOneByOwnerAndRepo(parts[0], parts[1]);
+        const existingWorkspaceRepo = await this.workspaceRepoRepository.findOne({
+          where: {
+            workspace_id: savedWorkspace.id,
+            repo_id: repo.id,
+          },
+          withDeleted: true,
+        });
+
+        if (existingWorkspaceRepo) {
+          await entityManager.restore(DbWorkspaceRepo, existingWorkspaceRepo.id);
+        } else {
+          const newWorkspaceRepo = new DbWorkspaceRepo();
+
+          newWorkspaceRepo.workspace = savedWorkspace;
+          newWorkspaceRepo.repo = repo;
+
+          await entityManager.save(DbWorkspaceRepo, newWorkspaceRepo);
+        }
+      });
+
+      await Promise.all(repoPromises);
+
+      return savedWorkspace;
     });
-
-    await Promise.all(promises);
-
-    return savedWorkspace;
   }
 
   async updateWorkspace(id: string, dto: UpdateWorkspaceDto, userId: number): Promise<DbWorkspace> {
