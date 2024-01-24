@@ -129,7 +129,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -155,7 +155,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -181,7 +181,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -204,6 +204,7 @@
 import { Type } from &quot;class-transformer&quot;;
 import { IsArray, IsString } from &quot;class-validator&quot;;
 import { WorkspaceMemberRoleEnum } from &quot;../entities/workspace-member.entity&quot;;
+import { NewWorkspaceRepo } from &quot;./update-workspace-repos.dto&quot;;
 
 export class NewMember {
   id: number;
@@ -236,6 +237,15 @@ export class CreateWorkspaceDto {
   @IsArray()
   @Type(() &#x3D;&gt; NewMember)
   members: { id: number; role: WorkspaceMemberRoleEnum }[];
+
+  @ApiProperty({
+    description: &quot;An array of repo objects to be added to the workspace&quot;,
+    isArray: true,
+    example: [{ full_name: &quot;open-sauced/api&quot; }],
+  })
+  @IsArray()
+  @Type(() &#x3D;&gt; NewWorkspaceRepo)
+  repos: { full_name: string }[];
 }
 </code></pre>
     </div>

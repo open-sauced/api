@@ -91,6 +91,9 @@
                             <li>
                                 <a href="#name" >name</a>
                             </li>
+                            <li>
+                                <a href="#repos" >repos</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -138,7 +141,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -173,7 +176,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -208,7 +211,42 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repos"></a>
+                    <span class="name">
+                        <span ><b>repos</b></span>
+                        <a href="#repos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiProperty({description: &#x27;An array of repo objects to be added to the workspace&#x27;, isArray: true, example: undefined})<br />@IsArray()<br />@Type(undefined)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/workspace/dtos/create-workspace.dto.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -231,6 +269,7 @@
 import { Type } from &quot;class-transformer&quot;;
 import { IsArray, IsString } from &quot;class-validator&quot;;
 import { WorkspaceMemberRoleEnum } from &quot;../entities/workspace-member.entity&quot;;
+import { NewWorkspaceRepo } from &quot;./update-workspace-repos.dto&quot;;
 
 export class NewMember {
   id: number;
@@ -263,6 +302,15 @@ export class CreateWorkspaceDto {
   @IsArray()
   @Type(() &#x3D;&gt; NewMember)
   members: { id: number; role: WorkspaceMemberRoleEnum }[];
+
+  @ApiProperty({
+    description: &quot;An array of repo objects to be added to the workspace&quot;,
+    isArray: true,
+    example: [{ full_name: &quot;open-sauced/api&quot; }],
+  })
+  @IsArray()
+  @Type(() &#x3D;&gt; NewWorkspaceRepo)
+  repos: { full_name: string }[];
 }
 </code></pre>
     </div>

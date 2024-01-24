@@ -1317,7 +1317,7 @@ export class RepoService {
     const item &#x3D; await queryBuilder.getOne();
 
     if (!item) {
-      throw new NotFoundException();
+      throw new NotFoundException(&#x60;Repository not found: ${owner}/${repo}&#x60;);
     }
 
     return item;
