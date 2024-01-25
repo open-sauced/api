@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.3.0-alpha.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.8...v2.3.0-alpha.9) (2024-01-25)
+
+
+### 🐛 Bug Fixes
+
+* Add migration to remove PR reviews table ([bbac517](https://github.com/open-sauced/api.opensauced.pizza/commit/bbac5177d42ed8f0763c15228436cb485787dc18))
+
 ## [2.3.0-alpha.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.7...v2.3.0-alpha.8) (2024-01-23)
 
 
