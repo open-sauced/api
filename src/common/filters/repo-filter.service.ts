@@ -29,7 +29,7 @@ export class RepoFilterService {
 
     if (options.filter === InsightFilterFieldsEnum.Recent) {
       filters.push(["repos.stars >= 1000", {}]);
-    } else if (options.filter === InsightFilterFieldsEnum.Top100) {
+    } else if (options.filter === InsightFilterFieldsEnum.Top100 || options.filter === InsightFilterFieldsEnum.Top) {
       filters.push([
         `
         repos.id IN (

@@ -16,13 +16,19 @@ import { UserId } from "../auth/supabase.user.decorator";
 import { UpdateInsightDto } from "./dtos/update-insight.dto";
 
 import { DbInsight } from "./entities/insight.entity";
+import { DbInsightRepo } from "./entities/insight-repo.entity";
 import { InsightsService } from "./insights.service";
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
+import { InsightRepoService } from "./insight-repo.service";
+import { InsightDto } from "./dtos/insight.dto";
 
 @Controller("insights")
 @ApiTags("Insights service")
 export class InsightController {
-  constructor(private readonly insightsService: InsightsService) {}
+  constructor(
+    private readonly insightsService: InsightsService,
+    private readonly insightReposService: InsightRepoService
+  ) {}
 
   @Get("/:id")
   @ApiOperation({
@@ -33,8 +39,21 @@ export class InsightController {
   @ApiNotFoundResponse({ description: "Insight page not found" })
   @ApiUnauthorizedResponse({ description: "Not Authorized to view this Insight" })
   @ApiParam({ name: "id", type: "integer" })
-  async findInsightPageById(@Param("id", ParseIntPipe) id: number): Promise<DbInsight> {
-    return this.insightsService.findOneById(id);
+  async findInsightPageById(@Query() options: InsightDto, @Param("id", ParseIntPipe) id: number): Promise<DbInsight> {
+    return this.insightsService.findOneById(id, options.include === "all");
+  }
+
+  @Get("/:id/repos")
+  @ApiOperation({
+    operationId: "findInsightReposById",
+    summary: "Finds a insight page repositories by :id",
+  })
+  @ApiOkResponse({ type: DbInsightRepo })
+  @ApiNotFoundResponse({ description: "Insight page not found" })
+  @ApiUnauthorizedResponse({ description: "Not Authorized to view this Insight" })
+  @ApiParam({ name: "id", type: "integer" })
+  async findInsightReposById(@Param("id", ParseIntPipe) id: number): Promise<DbInsightRepo[]> {
+    return this.insightReposService.findReposById(id);
   }
 
   @Get("/featured")

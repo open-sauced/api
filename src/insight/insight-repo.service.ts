@@ -33,6 +33,10 @@ export class InsightRepoService {
     return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
   }
 
+  async findReposById(insightId: number) {
+    return this.insightRepoRepository.find({ where: { insight_id: insightId } });
+  }
+
   async removeInsightRepo(id: number) {
     return this.insightRepoRepository.softDelete(id);
   }

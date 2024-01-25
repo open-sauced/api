@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsArray, IsString } from "class-validator";
 import { WorkspaceMemberRoleEnum } from "../entities/workspace-member.entity";
+import { NewWorkspaceRepo } from "./update-workspace-repos.dto";
 
 export class NewMember {
   id: number;
@@ -34,4 +35,13 @@ export class CreateWorkspaceDto {
   @IsArray()
   @Type(() => NewMember)
   members: { id: number; role: WorkspaceMemberRoleEnum }[];
+
+  @ApiProperty({
+    description: "An array of repo objects to be added to the workspace",
+    isArray: true,
+    example: [{ full_name: "open-sauced/api" }],
+  })
+  @IsArray()
+  @Type(() => NewWorkspaceRepo)
+  repos: { full_name: string }[];
 }

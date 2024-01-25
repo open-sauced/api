@@ -5,77 +5,67 @@
 
 > All notable changes to this project will be documented in this file
 
-## [2.3.0-alpha.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.7...v2.3.0-alpha.8) (2024-01-23)
+## [2.4.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.4.0) (2024-01-25)
 
 
 ### 🍕 Features
 
-* Add a "distincAuthors" field for PR search DTO ([#506](https://github.com/open-sauced/api.opensauced.pizza/issues/506)) ([7e16709](https://github.com/open-sauced/api.opensauced.pizza/commit/7e1670939c955172d436d441734fee67b0907f55))
-* Refactor contributor search ([#507](https://github.com/open-sauced/api.opensauced.pizza/issues/507)) ([200b476](https://github.com/open-sauced/api.opensauced.pizza/commit/200b476e847bb976b0060d2f03db6cdcff972140))
+* add endpoint to fetch minimal insight and repositories ([#495](https://github.com/open-sauced/api.opensauced.pizza/issues/495)) ([851d0df](https://github.com/open-sauced/api.opensauced.pizza/commit/851d0dfd55d4abf5e1952e65943c9ee57552aeea))
+* Workspace creation has "repos" payload ([#512](https://github.com/open-sauced/api.opensauced.pizza/issues/512)) ([a68a7da](https://github.com/open-sauced/api.opensauced.pizza/commit/a68a7da072a2579c0438ea28b7afe7be30422aeb))
 
 
 ### 🐛 Bug Fixes
 
-* Correct contrib-graph-by-type stats ([#508](https://github.com/open-sauced/api.opensauced.pizza/issues/508)) ([6c96072](https://github.com/open-sauced/api.opensauced.pizza/commit/6c960723dde5f4b3eb7b26c61346f02276b37c66))
+* Inner join instead of left join select for getting all workspaces ([#494](https://github.com/open-sauced/api.opensauced.pizza/issues/494)) ([92bc57f](https://github.com/open-sauced/api.opensauced.pizza/commit/92bc57fd62446562ba646854aa79168fdd1798f1))
+* Remove misplaced API injection ([#513](https://github.com/open-sauced/api.opensauced.pizza/issues/513)) ([a0c57b8](https://github.com/open-sauced/api.opensauced.pizza/commit/a0c57b8de553980fa59d55ad2df1f4626ac6f184))
 
-## [2.3.0-alpha.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.6...v2.3.0-alpha.7) (2024-01-23)
+## [2.4.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2024-01-25)
 
 
 ### 🐛 Bug Fixes
 
-* Add missing active_prs count for repos ([#503](https://github.com/open-sauced/api.opensauced.pizza/issues/503)) ([a4255c9](https://github.com/open-sauced/api.opensauced.pizza/commit/a4255c96bd122bda114080d0c459357dfe5601d9))
+* Remove misplaced API injection ([#513](https://github.com/open-sauced/api.opensauced.pizza/issues/513)) ([a0c57b8](https://github.com/open-sauced/api.opensauced.pizza/commit/a0c57b8de553980fa59d55ad2df1f4626ac6f184))
+
+## [2.4.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2024-01-24)
 
 
 ### 🍕 Features
 
-* Make "repo" optional in histogram dtos ([#501](https://github.com/open-sauced/api.opensauced.pizza/issues/501)) ([6ba5aaa](https://github.com/open-sauced/api.opensauced.pizza/commit/6ba5aaad8062ab10e4bd935f9ee507995c93f6f4))
-* Removes a broken left join for "contributors" in repo base query builder ([#499](https://github.com/open-sauced/api.opensauced.pizza/issues/499)) ([7e9bfea](https://github.com/open-sauced/api.opensauced.pizza/commit/7e9bfea205eb7c1d3859d33ea932eb6589f8cf45))
+* Workspace creation has "repos" payload ([#512](https://github.com/open-sauced/api.opensauced.pizza/issues/512)) ([a68a7da](https://github.com/open-sauced/api.opensauced.pizza/commit/a68a7da072a2579c0438ea28b7afe7be30422aeb))
 
-## [2.3.0-alpha.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.5...v2.3.0-alpha.6) (2024-01-22)
-
-
-### 🍕 Features
-
-* v2/contributors endpoints ([#490](https://github.com/open-sauced/api.opensauced.pizza/issues/490)) ([af54e8a](https://github.com/open-sauced/api.opensauced.pizza/commit/af54e8a7f55539e272658701f37c71f788ecd97d))
-
-## [2.3.0-alpha.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.4...v2.3.0-alpha.5) (2024-01-17)
+## [2.4.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.1-beta.1...v2.4.0-beta.1) (2024-01-18)
 
 
 ### 🍕 Features
 
-* /v2/lists/{id}/stats/contributions-evolution-by-contributor-type ([#489](https://github.com/open-sauced/api.opensauced.pizza/issues/489)) ([459e4a6](https://github.com/open-sauced/api.opensauced.pizza/commit/459e4a60a02beb687736d82618126c6b3e08a6a6))
+* add endpoint to fetch minimal insight and repositories ([#495](https://github.com/open-sauced/api.opensauced.pizza/issues/495)) ([851d0df](https://github.com/open-sauced/api.opensauced.pizza/commit/851d0dfd55d4abf5e1952e65943c9ee57552aeea))
 
-## [2.3.0-alpha.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.3...v2.3.0-alpha.4) (2024-01-17)
-
-
-### 🍕 Features
-
-* /v2/lists/{id}/stats/top-project-contributions-by-contributor ([#488](https://github.com/open-sauced/api.opensauced.pizza/issues/488)) ([f1c8105](https://github.com/open-sauced/api.opensauced.pizza/commit/f1c8105804ca9a1a2eb61de313201b444b64f98c))
-
-## [2.3.0-alpha.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.2...v2.3.0-alpha.3) (2024-01-16)
+### [2.3.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.3.1-beta.1) (2024-01-17)
 
 
-### 🍕 Features
+### 🐛 Bug Fixes
 
-* add /v2/lists/{id}/stats/top-project-contributions-by-contributor ([#487](https://github.com/open-sauced/api.opensauced.pizza/issues/487)) ([a83f6f1](https://github.com/open-sauced/api.opensauced.pizza/commit/a83f6f16afd08bf39f5609a27cffe78e89a67110))
+* Inner join instead of left join select for getting all workspaces ([#494](https://github.com/open-sauced/api.opensauced.pizza/issues/494)) ([92bc57f](https://github.com/open-sauced/api.opensauced.pizza/commit/92bc57fd62446562ba646854aa79168fdd1798f1))
 
-## [2.3.0-alpha.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-alpha.1...v2.3.0-alpha.2) (2024-01-16)
-
-
-### 🍕 Features
-
-* /v2/lists/{id}/stats/contributions-evolution-by-type ([#485](https://github.com/open-sauced/api.opensauced.pizza/issues/485)) ([e0f5375](https://github.com/open-sauced/api.opensauced.pizza/commit/e0f537537d2637514a89e1b0c6023c1fac2da158))
-
-## [2.3.0-alpha.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0-alpha.1) (2024-01-12)
+## [2.3.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.2.0...v2.3.0) (2024-01-17)
 
 
 ### 🍕 Features
 
 * "get" for single workspace ([#483](https://github.com/open-sauced/api.opensauced.pizza/issues/483)) ([0343a66](https://github.com/open-sauced/api.opensauced.pizza/commit/0343a66c9df113764936928e039417ee9da437c7))
 * add v2 endpoint for user lists most-active-contributors stats ([#476](https://github.com/open-sauced/api.opensauced.pizza/issues/476)) ([defb784](https://github.com/open-sauced/api.opensauced.pizza/commit/defb784a722de068002606c5dd4741a8868f2bda))
-* Remove hacktoberfest filtering and all references to hacktoberfest ([#481](https://github.com/open-sauced/api.opensauced.pizza/issues/481)) ([25c9fe0](https://github.com/open-sauced/api.opensauced.pizza/commit/25c9fe0d333c0556c45587c92806798fd991c4a0))
-* Removes contributions table and services/controllers ([#482](https://github.com/open-sauced/api.opensauced.pizza/issues/482)) ([befba0a](https://github.com/open-sauced/api.opensauced.pizza/commit/befba0a1412397da7c7dff142b1469962e1c0a34))
-* V2 api endpoints and timescale integration ([#470](https://github.com/open-sauced/api.opensauced.pizza/issues/470)) ([8d88878](https://github.com/open-sauced/api.opensauced.pizza/commit/8d88878045c2b414a596273f267d576ede71dfdc))
+
+
+### 🐛 Bug Fixes
+
+* add top repos filter to repo filter service ([#486](https://github.com/open-sauced/api.opensauced.pizza/issues/486)) ([c557229](https://github.com/open-sauced/api.opensauced.pizza/commit/c557229d06a06ddc503fd02740b4e0ef0cb9bd57))
+
+## [2.3.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.2...v2.3.0-beta.3) (2024-01-16)
+
+
+### 🐛 Bug Fixes
+
+* add top repos filter to repo filter service ([#486](https://github.com/open-sauced/api.opensauced.pizza/issues/486)) ([c557229](https://github.com/open-sauced/api.opensauced.pizza/commit/c557229d06a06ddc503fd02740b4e0ef0cb9bd57))
 
 ## [2.3.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2024-01-12)
 

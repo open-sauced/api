@@ -80,7 +80,7 @@ export class RepoService {
     const item = await queryBuilder.getOne();
 
     if (!item) {
-      throw new NotFoundException();
+      throw new NotFoundException(`Repository not found: ${owner}/${repo}`);
     }
 
     return item;
