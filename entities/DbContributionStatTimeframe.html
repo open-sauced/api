@@ -75,13 +75,25 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#bucket" >bucket</a>
+                            </li>
+                            <li>
                                 <a href="#comments" >comments</a>
+                            </li>
+                            <li>
+                                <a href="#commit_comments" >commit_comments</a>
                             </li>
                             <li>
                                 <a href="#commits" >commits</a>
                             </li>
                             <li>
+                                <a href="#issue_comments" >issue_comments</a>
+                            </li>
+                            <li>
                                 <a href="#issues_created" >issues_created</a>
+                            </li>
+                            <li>
+                                <a href="#pr_review_comments" >pr_review_comments</a>
                             </li>
                             <li>
                                 <a href="#prs_created" >prs_created</a>
@@ -90,10 +102,7 @@
                                 <a href="#prs_reviewed" >prs_reviewed</a>
                             </li>
                             <li>
-                                <a href="#time_end" >time_end</a>
-                            </li>
-                            <li>
-                                <a href="#time_start" >time_start</a>
+                                <a href="#total_contributions" >total_contributions</a>
                             </li>
                         </ul>
                     </td>
@@ -117,6 +126,41 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="bucket"></a>
+                    <span class="name">
+                        <span ><b>bucket</b></span>
+                        <a href="#bucket"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;The ISO timestamp for the given time bucket&#x27;, example: &#x27;2024-01-08T00:00:00.000Z&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="comments"></a>
                     <span class="name">
                         <span ><b>comments</b></span>
@@ -135,13 +179,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of comments associated with a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of total comments within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="commit_comments"></a>
+                    <span class="name">
+                        <span ><b>commit_comments</b></span>
+                        <a href="#commit_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of commit comments within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -170,13 +249,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of commits associated with a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of commits within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:40</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="issue_comments"></a>
+                    <span class="name">
+                        <span ><b>issue_comments</b></span>
+                        <a href="#issue_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issue comments within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -205,13 +319,48 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of issues created by a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of issues within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_review_comments"></a>
+                    <span class="name">
+                        <span ><b>pr_review_comments</b></span>
+                        <a href="#pr_review_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr review comments within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -240,13 +389,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of PRs created associated with a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of PRs created within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -275,13 +424,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of PRs reviewed by a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of PRs reviewed within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -292,16 +441,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="time_end"></a>
+                    <a name="total_contributions"></a>
                     <span class="name">
-                        <span ><b>time_end</b></span>
-                        <a href="#time_end"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>total_contributions</b></span>
+                        <a href="#total_contributions"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -310,48 +459,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The ISO timestamp for the end of the time frame&#x27;, example: &#x27;2023-08-26T23:55:49.204Z&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of total contributions for a user login&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:28</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="time_start"></a>
-                    <span class="name">
-                        <span ><b>time_start</b></span>
-                        <a href="#time_start"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @ApiModelProperty({description: &#x27;The ISO timestamp for the start of the time frame&#x27;, example: &#x27;2023-08-26T23:55:49.204Z&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/user-lists/entities/contributions-timeframe.entity.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -369,8 +483,8 @@ import { Column, Entity } from &quot;typeorm&quot;;
 @Entity({ name: &quot;user_list_contributors&quot; })
 export class DbContributionStatTimeframe {
   @ApiModelProperty({
-    description: &quot;The ISO timestamp for the start of the time frame&quot;,
-    example: &quot;2023-08-26T23:55:49.204Z&quot;,
+    description: &quot;The ISO timestamp for the given time bucket&quot;,
+    example: &quot;2024-01-08T00:00:00.000Z&quot;,
     type: &quot;string&quot;,
   })
   @Column({
@@ -378,22 +492,10 @@ export class DbContributionStatTimeframe {
     select: false,
     insert: false,
   })
-  time_start: string;
+  bucket: string;
 
   @ApiModelProperty({
-    description: &quot;The ISO timestamp for the end of the time frame&quot;,
-    example: &quot;2023-08-26T23:55:49.204Z&quot;,
-    type: &quot;string&quot;,
-  })
-  @Column({
-    type: &quot;string&quot;,
-    select: false,
-    insert: false,
-  })
-  time_end: string;
-
-  @ApiModelProperty({
-    description: &quot;Number of commits associated with a user login&quot;,
+    description: &quot;Number of commits within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -405,7 +507,7 @@ export class DbContributionStatTimeframe {
   commits: number;
 
   @ApiModelProperty({
-    description: &quot;Number of PRs created associated with a user login&quot;,
+    description: &quot;Number of PRs created within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -417,7 +519,7 @@ export class DbContributionStatTimeframe {
   prs_created: number;
 
   @ApiModelProperty({
-    description: &quot;Number of PRs reviewed by a user login&quot;,
+    description: &quot;Number of PRs reviewed within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -429,7 +531,7 @@ export class DbContributionStatTimeframe {
   prs_reviewed: number;
 
   @ApiModelProperty({
-    description: &quot;Number of issues created by a user login&quot;,
+    description: &quot;Number of issues within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -441,7 +543,43 @@ export class DbContributionStatTimeframe {
   issues_created: number;
 
   @ApiModelProperty({
-    description: &quot;Number of comments associated with a user login&quot;,
+    description: &quot;Number of commit comments within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  commit_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issue comments within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  issue_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr review comments within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  pr_review_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of total comments within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -451,6 +589,18 @@ export class DbContributionStatTimeframe {
     insert: false,
   })
   comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of total contributions for a user login&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  total_contributions: number;
 }
 </code></pre>
     </div>

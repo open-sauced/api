@@ -138,7 +138,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -150,14 +150,10 @@ import {
   UserListContributorStatsTypeEnum,
   UserListMostActiveContributorsDto,
 } from &quot;./dtos/most-active-contributors.dto&quot;;
-import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
-import { DbContributionStatTimeframe } from &quot;./entities/contributions-timeframe.entity&quot;;
 import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
-import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from &quot;./dtos/contributions-pagemeta.dto&quot;;
 import { ContributionsPageDto } from &quot;./dtos/contributions-page.dto&quot;;
 import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
-import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -174,49 +170,6 @@ export class UserListStatsService {
     const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
 
     return builder;
-  }
-
-  async findListContributorStatsByProject(
-    options: TopProjectsDto,
-    listId: string
-  ): Promise&lt;DbUserListContributorStat[]&gt; {
-    const range &#x3D; options.range!;
-    const repoId &#x3D; options.repo_id;
-
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    queryBuilder.innerJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;);
-
-    queryBuilder
-      .select(&quot;users.login&quot;, &quot;login&quot;)
-      .andWhere(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId })
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
-          FROM &quot;pull_requests&quot;
-          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
-            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &quot;commits&quot;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot;
-          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;repo_id&quot; &#x3D; ${repoId}
-            AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &quot;prs_created&quot;
-      );
-
-    // limit to only the top 20 contributors for stats by projects
-    queryBuilder.limit(20);
-
-    const entities: DbUserListContributorStat[] &#x3D; await queryBuilder.getRawMany();
-
-    return entities;
   }
 
   async findAllListContributorStats(
@@ -326,178 +279,6 @@ export class UserListStatsService {
     const pageMetaDto &#x3D; new ContributionsPageMetaDto({ itemCount, pageOptionsDto }, allContributionsCount);
 
     return new ContributionsPageDto(entities, pageMetaDto);
-  }
-
-  async findContributorCategoriesByTimeframe(
-    options: ContributionsTimeframeDto,
-    listId: string
-  ): Promise&lt;DbContributorCategoryTimeframe[]&gt; {
-    const denominator &#x3D; 82;
-    const range &#x3D; options.range!;
-    const dates &#x3D; this.getDateFrames(range, denominator);
-
-    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
-      this.findContributorCategoriesInTimeframeHelper(frameStartDate.toISOString(), range / denominator, listId)
-    );
-
-    return Promise.all(framePromises);
-  }
-
-  async findContributionsInTimeframe(
-    options: ContributionsTimeframeDto,
-    listId: string
-  ): Promise&lt;DbContributionStatTimeframe[]&gt; {
-    const range &#x3D; options.range!;
-    const contributorType &#x3D; options.contributorType!;
-    const dates &#x3D; this.getDateFrames(range);
-
-    const framePromises &#x3D; dates.map(async (frameStartDate) &#x3D;&gt;
-      this.findContributionsInTimeframeHelper(frameStartDate.toISOString(), range / 7, contributorType, listId)
-    );
-
-    return Promise.all(framePromises);
-  }
-
-  getDateFrames(range &#x3D; 30, denominator &#x3D; 7): Date[] {
-    const currentDate &#x3D; new Date();
-    const frameDuration &#x3D; range / denominator;
-    const dates: Date[] &#x3D; [];
-
-    // eslint-disable-next-line no-loops/no-loops
-    for (let i &#x3D; 0; i &lt; denominator; i++) {
-      const frameDate &#x3D; new Date(currentDate.getTime() - (range - i * frameDuration) * 86400000);
-
-      dates.push(frameDate);
-    }
-
-    return dates;
-  }
-
-  async findContributionsInTimeframeHelper(
-    startDate: string,
-    range: number,
-    contributorType: string,
-    listId: string
-  ): Promise&lt;DbContributionStatTimeframe&gt; {
-    const subQueryBuilder &#x3D; this.baseQueryBuilder();
-
-    subQueryBuilder.innerJoin(
-      &quot;users&quot;,
-      &quot;users&quot;,
-      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
-    );
-
-    switch (contributorType) {
-      case UserListContributorStatsTypeEnum.all:
-        break;
-
-      case UserListContributorStatsTypeEnum.active:
-        this.applyActiveContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-
-      case UserListContributorStatsTypeEnum.new:
-        this.applyNewContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-
-      case UserListContributorStatsTypeEnum.alumni: {
-        this.applyAlumniContributorsFilter(subQueryBuilder, startDate, range);
-        break;
-      }
-
-      default:
-        break;
-    }
-
-    subQueryBuilder
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(SUM(&quot;pull_requests&quot;.&quot;commits&quot;), 0)
-          FROM &quot;pull_requests&quot;
-          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::TIMESTAMP
-        )::INTEGER&#x60;,
-        &quot;all_commits&quot;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot;
-          WHERE &quot;pull_requests&quot;.&quot;author_login&quot; &#x3D; &quot;users&quot;.&quot;login&quot;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &gt; &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
-            AND &quot;pull_requests&quot;.&quot;updated_at&quot; &lt;&#x3D; &#x27;${startDate}&#x27;::TIMESTAMP
-        )::INTEGER&#x60;,
-        &quot;all_prs_created&quot;
-      );
-
-    const queryBuilder &#x3D; this.userListContributorRepository.manager
-      .createQueryBuilder()
-      .select(&#x60;COALESCE(SUM(&quot;subQ&quot;.&quot;all_commits&quot;), 0)&#x60;, &quot;commits&quot;)
-      .addSelect(&#x60;COALESCE(SUM(&quot;subQ&quot;.&quot;all_prs_created&quot;), 0)&#x60;, &quot;prs_created&quot;)
-      .from(&#x60;( ${subQueryBuilder.getQuery()} )&#x60;, &quot;subQ&quot;)
-      .setParameters(subQueryBuilder.getParameters());
-
-    const entity: DbContributionStatTimeframe | undefined &#x3D; await queryBuilder.getRawOne();
-
-    if (!entity) {
-      throw new NotFoundException();
-    }
-
-    entity.time_start &#x3D; startDate;
-    entity.time_end &#x3D; &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;;
-
-    return entity;
-  }
-
-  async findContributorCategoriesInTimeframeHelper(
-    startDate: string,
-    range: number,
-    listId: string
-  ): Promise&lt;DbContributorCategoryTimeframe&gt; {
-    const activeCountQueryBuilder &#x3D; this.baseQueryBuilder();
-
-    activeCountQueryBuilder.innerJoin(
-      &quot;users&quot;,
-      &quot;users&quot;,
-      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
-    );
-
-    this.applyActiveContributorsFilter(activeCountQueryBuilder, startDate, range);
-
-    const activeCount &#x3D; await activeCountQueryBuilder.getCount();
-
-    const newCountQueryBuilder &#x3D; this.baseQueryBuilder();
-
-    newCountQueryBuilder.innerJoin(
-      &quot;users&quot;,
-      &quot;users&quot;,
-      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
-    );
-
-    this.applyNewContributorsFilter(newCountQueryBuilder, startDate, range);
-
-    const newCount &#x3D; await newCountQueryBuilder.getCount();
-
-    const alumniCountQueryBuilder &#x3D; this.baseQueryBuilder();
-
-    alumniCountQueryBuilder.innerJoin(
-      &quot;users&quot;,
-      &quot;users&quot;,
-      &#x60;user_list_contributors.user_id&#x3D;users.id AND user_list_contributors.list_id&#x3D;&#x27;${listId}&#x27;&#x60;
-    );
-
-    this.applyAlumniContributorsFilter(alumniCountQueryBuilder, startDate, range);
-
-    const alumniCount &#x3D; await alumniCountQueryBuilder.getCount();
-
-    return {
-      time_start: startDate,
-      time_end: &#x60;${new Date(new Date(startDate).getTime() + range * 86400000).toISOString()}&#x60;,
-      active: activeCount,
-      new: newCount,
-      alumni: alumniCount,
-      all: activeCount + newCount + alumniCount,
-    };
   }
 
   async findContributionsByProject(

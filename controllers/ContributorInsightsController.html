@@ -139,7 +139,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/churn&#x27;)<br />@ApiOperation({operationId: &#x27;findAllChurnPullRequestContributors&#x27;, summary: &#x27;Gets all recent churned contributors for the last 30 days based on repo IDs&#x27;})<br />@ApiPaginatedResponse(DbPullRequestContributor)<br />@ApiOkResponse({type: DbPullRequestContributor})<br /></code>
+                    <code>@Get(&#x27;/alumni&#x27;)<br />@ApiOperation({operationId: &#x27;findAllChurnPullRequestContributors&#x27;, summary: &#x27;Gets all recent churned contributors for the last 30 days based on repo IDs&#x27;})<br />@ApiPaginatedResponse(DbPullRequestContributor)<br />@ApiOkResponse({type: DbPullRequestContributor})<br /></code>
                 </td>
             </tr>
 
@@ -435,16 +435,16 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
+import { PullRequestContributorInsightsDto } from &quot;../pull-requests/dtos/pull-request-contributor-insights.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { PullRequestService } from &quot;../pull-requests/pull-request.service&quot;;
 import { DbPullRequestContributor } from &quot;../pull-requests/dtos/pull-request-contributor.dto&quot;;
-import { PullRequestContributorInsightsDto } from &quot;../pull-requests/dtos/pull-request-contributor-insights.dto&quot;;
+import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
 
 @Controller(&quot;contributors/insights&quot;)
 @ApiTags(&quot;Contributors service&quot;)
 export class ContributorInsightsController {
-  constructor(private readonly pullRequestService: PullRequestService) {}
+  constructor(private readonly pullRequestGithubEventsService: PullRequestGithubEventsService) {}
 
   @Get(&quot;/new&quot;)
   @ApiOperation({
@@ -456,7 +456,7 @@ export class ContributorInsightsController {
   async newPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
-    return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, &quot;new&quot;);
   }
 
   @Get(&quot;/recent&quot;)
@@ -469,10 +469,10 @@ export class ContributorInsightsController {
   async findAllRecentPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
-    return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto);
   }
 
-  @Get(&quot;/churn&quot;)
+  @Get(&quot;/alumni&quot;)
   @ApiOperation({
     operationId: &quot;findAllChurnPullRequestContributors&quot;,
     summary: &quot;Gets all recent churned contributors for the last 30 days based on repo IDs&quot;,
@@ -482,7 +482,7 @@ export class ContributorInsightsController {
   async findAllChurnPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
-    return this.pullRequestService.findAllChurnContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, &quot;alumni&quot;);
   }
 
   @Get(&quot;/repeat&quot;)
@@ -495,7 +495,7 @@ export class ContributorInsightsController {
   async findAllRepeatPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
-    return this.pullRequestService.findAllRepeatContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, &quot;active&quot;);
   }
 }
 </code></pre>

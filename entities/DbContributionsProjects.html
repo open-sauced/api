@@ -75,16 +75,34 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#contributions" >contributions</a>
+                                <a href="#comments" >comments</a>
                             </li>
                             <li>
-                                <a href="#org_id" >org_id</a>
+                                <a href="#commit_comments" >commit_comments</a>
                             </li>
                             <li>
-                                <a href="#project_id" >project_id</a>
+                                <a href="#commits" >commits</a>
                             </li>
                             <li>
-                                <a href="#repo_id" >repo_id</a>
+                                <a href="#issue_comments" >issue_comments</a>
+                            </li>
+                            <li>
+                                <a href="#issues_created" >issues_created</a>
+                            </li>
+                            <li>
+                                <a href="#pr_review_comments" >pr_review_comments</a>
+                            </li>
+                            <li>
+                                <a href="#prs_created" >prs_created</a>
+                            </li>
+                            <li>
+                                <a href="#prs_reviewed" >prs_reviewed</a>
+                            </li>
+                            <li>
+                                <a href="#repo_name" >repo_name</a>
+                            </li>
+                            <li>
+                                <a href="#total_contributions" >total_contributions</a>
                             </li>
                         </ul>
                     </td>
@@ -108,10 +126,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="contributions"></a>
+                    <a name="comments"></a>
                     <span class="name">
-                        <span ><b>contributions</b></span>
-                        <a href="#contributions"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>comments</b></span>
+                        <a href="#comments"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -126,13 +144,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The number of contributions associated with a org/repo&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of total comments for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -143,16 +161,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="org_id"></a>
+                    <a name="commit_comments"></a>
                     <span class="name">
-                        <span ><b>org_id</b></span>
-                        <a href="#org_id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>commit_comments</b></span>
+                        <a href="#commit_comments"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -161,13 +179,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The org name of the repo&#x27;, example: &#x27;open-sauced&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of commit comments for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -178,16 +196,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="project_id"></a>
+                    <a name="commits"></a>
                     <span class="name">
-                        <span ><b>project_id</b></span>
-                        <a href="#project_id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>commits</b></span>
+                        <a href="#commits"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -196,7 +214,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The project name of the repo&#x27;, example: &#x27;api&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of commits within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
@@ -213,10 +231,10 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="repo_id"></a>
+                    <a name="issue_comments"></a>
                     <span class="name">
-                        <span ><b>repo_id</b></span>
-                        <a href="#repo_id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>issue_comments</b></span>
+                        <a href="#issue_comments"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -231,13 +249,223 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;The ID of the associated repo in the OpenSauced API context&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of issue comments for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="issues_created"></a>
+                    <span class="name">
+                        <span ><b>issues_created</b></span>
+                        <a href="#issues_created"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_review_comments"></a>
+                    <span class="name">
+                        <span ><b>pr_review_comments</b></span>
+                        <a href="#pr_review_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr review comments for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prs_created"></a>
+                    <span class="name">
+                        <span ><b>prs_created</b></span>
+                        <a href="#prs_created"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of PRs created for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prs_reviewed"></a>
+                    <span class="name">
+                        <span ><b>prs_reviewed</b></span>
+                        <a href="#prs_reviewed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of PRs reviewed for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="repo_name"></a>
+                    <span class="name">
+                        <span ><b>repo_name</b></span>
+                        <a href="#repo_name"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;The org/repo name&#x27;, example: &#x27;open-sauced/api&#x27;, type: &#x27;string&#x27;})<br />@Column({type: &#x27;string&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="total_contributions"></a>
+                    <span class="name">
+                        <span ><b>total_contributions</b></span>
+                        <a href="#total_contributions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of total contributions for the project within the time range&#x27;, example: 0, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;bigint&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/user-lists/entities/contributions-projects.entity.ts:124</a></div>
                         </td>
                     </tr>
 
@@ -255,8 +483,8 @@ import { Column, Entity } from &quot;typeorm&quot;;
 @Entity({ name: &quot;user_list_contributors&quot; })
 export class DbContributionsProjects {
   @ApiModelProperty({
-    description: &quot;The org name of the repo&quot;,
-    example: &quot;open-sauced&quot;,
+    description: &quot;The org/repo name&quot;,
+    example: &quot;open-sauced/api&quot;,
     type: &quot;string&quot;,
   })
   @Column({
@@ -264,22 +492,10 @@ export class DbContributionsProjects {
     select: false,
     insert: false,
   })
-  org_id: string;
+  repo_name: string;
 
   @ApiModelProperty({
-    description: &quot;The project name of the repo&quot;,
-    example: &quot;api&quot;,
-    type: &quot;string&quot;,
-  })
-  @Column({
-    type: &quot;string&quot;,
-    select: false,
-    insert: false,
-  })
-  project_id: string;
-
-  @ApiModelProperty({
-    description: &quot;The ID of the associated repo in the OpenSauced API context&quot;,
+    description: &quot;Number of commits within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -288,10 +504,10 @@ export class DbContributionsProjects {
     select: false,
     insert: false,
   })
-  repo_id: number;
+  commits: number;
 
   @ApiModelProperty({
-    description: &quot;The number of contributions associated with a org/repo&quot;,
+    description: &quot;Number of PRs created for the project within the time range&quot;,
     example: 0,
     type: &quot;integer&quot;,
   })
@@ -300,7 +516,91 @@ export class DbContributionsProjects {
     select: false,
     insert: false,
   })
-  contributions: number;
+  prs_created: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of PRs reviewed for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  prs_reviewed: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  issues_created: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of commit comments for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  commit_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issue comments for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  issue_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr review comments for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  pr_review_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of total comments for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of total contributions for the project within the time range&quot;,
+    example: 0,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;bigint&quot;,
+    select: false,
+    insert: false,
+  })
+  total_contributions: number;
 }
 </code></pre>
     </div>

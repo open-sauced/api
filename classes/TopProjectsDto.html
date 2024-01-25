@@ -88,7 +88,7 @@
                                 <a href="#range" >range</a>
                             </li>
                             <li>
-                                <a href="#repo_id" >repo_id</a>
+                                <a href="#repo_name" >repo_name</a>
                             </li>
                         </ul>
                     </td>
@@ -155,16 +155,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="repo_id"></a>
+                    <a name="repo_name"></a>
                     <span class="name">
-                        <span ><b>repo_id</b></span>
-                        <a href="#repo_id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>repo_name</b></span>
+                        <a href="#repo_name"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -173,13 +173,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Repo ID&#x27;, type: &#x27;integer&#x27;, example: 234343})<br />@Type(undefined)<br />@IsNumber()<br />
+                            @ApiProperty({description: &#x27;Repo full name&#x27;, type: String, example: &#x27;open-sauced/api&#x27;})<br />@IsString()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/user-lists/dtos/top-projects.dto.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/user-lists/dtos/top-projects.dto.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -200,7 +200,7 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
 import { Type } from &quot;class-transformer&quot;;
-import { IsIn, IsInt, IsNumber, IsOptional } from &quot;class-validator&quot;;
+import { IsIn, IsInt, IsOptional, IsString } from &quot;class-validator&quot;;
 
 export class TopProjectsDto {
   @ApiPropertyOptional({
@@ -215,13 +215,12 @@ export class TopProjectsDto {
   readonly range?: number &#x3D; 30;
 
   @ApiProperty({
-    description: &quot;Repo ID&quot;,
-    type: &quot;integer&quot;,
-    example: 234343,
+    description: &quot;Repo full name&quot;,
+    type: String,
+    example: &quot;open-sauced/api&quot;,
   })
-  @Type(() &#x3D;&gt; Number)
-  @IsNumber()
-  repo_id: number;
+  @IsString()
+  repo_name: string;
 }
 </code></pre>
     </div>

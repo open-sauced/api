@@ -85,23 +85,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getPullRequestInsights" >getPullRequestInsights</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#getPullRequestReviews" >getPullRequestReviews</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#listAllPullRequests" >listAllPullRequests</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#searchAllPullRequestEvents" >searchAllPullRequestEvents</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#searchAllPullRequests" >searchAllPullRequests</a>
                             </li>
                         </ul>
                     </td>
@@ -120,240 +104,6 @@
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getPullRequestInsights"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getPullRequestInsights</b></span>
-                        <a href="#getPullRequestInsights"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getPullRequestInsights(pageOptionsDto: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/insights&#x27;)<br />@ApiOperation({operationId: &#x27;getPullRequestInsights&#x27;, summary: &#x27;Find pull request insights over the last 2 months&#x27;})<br />@ApiOkResponse({type: undefined})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:70</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/FilterOptionsDto.html" target="_self" >FilterOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../entitys/DbPRInsight.html" target="_self" >Promise&lt;DbPRInsight[]&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getPullRequestReviews"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>getPullRequestReviews</b></span>
-                        <a href="#getPullRequestReviews"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getPullRequestReviews(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/:id/reviews&#x27;)<br />@ApiOperation({operationId: &#x27;getPullRequestReviews&#x27;, summary: &#x27;Find all pull request reviews by pull request ID&#x27;})<br />@ApiOkResponse({type: undefined})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:83</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;DbPullRequestReview[]&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="listAllPullRequests"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>listAllPullRequests</b></span>
-                        <a href="#listAllPullRequests"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>listAllPullRequests(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;listAllPullRequests&#x27;, summary: &#x27;Finds all pull requests and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequest)<br />@ApiOkResponse({type: DbPullRequest})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:35</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequest&gt;&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -377,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Version(&#x27;2&#x27;)<br />@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequestEvents&#x27;, summary: &#x27;Searches pull request events using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequestGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestGitHubEvents})<br /></code>
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequestEvents&#x27;, summary: &#x27;Searches pull request events using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequestGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestGitHubEvents})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -432,138 +182,24 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="searchAllPullRequests"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>searchAllPullRequests</b></span>
-                        <a href="#searchAllPullRequests"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>searchAllPullRequests(pageOptionsDto: <a href="../classes/PullRequestPageOptionsDto.html" target="_self">PullRequestPageOptionsDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequests&#x27;, summary: &#x27;Searches pull requests using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequest)<br />@ApiOkResponse({type: DbPullRequest})<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/pull-requests/pull-request.controller.ts:46</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>pageOptionsDto</td>
-                                    <td>
-                                                <code><a href="../classes/PullRequestPageOptionsDto.html" target="_self" >PullRequestPageOptionsDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequest&gt;&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query, Version } from &quot;@nestjs/common&quot;;
-import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query } from &quot;@nestjs/common&quot;;
+import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
-import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { FilterOptionsDto } from &quot;../common/dtos/filter-options.dto&quot;;
 import { DbPullRequestGitHubEvents } from &quot;../timescale/entities/pull_request_github_event&quot;;
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
-import { DbPullRequest } from &quot;./entities/pull-request.entity&quot;;
-import { PullRequestService } from &quot;./pull-request.service&quot;;
 import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options.dto&quot;;
-import { PullRequestInsightsService } from &quot;./pull-request-insights.service&quot;;
-import { DbPRInsight } from &quot;./entities/pull-request-insight.entity&quot;;
-import { DbPullRequestReview } from &quot;./entities/pull-request-review.entity&quot;;
-import { PullRequestReviewService } from &quot;./pull-request-review.service&quot;;
 
 @Controller(&quot;prs&quot;)
 @ApiTags(&quot;Pull Requests service&quot;)
 export class PullRequestController {
-  constructor(
-    private readonly pullRequestService: PullRequestService,
-    private readonly pullRequestEventsService: PullRequestGithubEventsService,
-    private readonly pullRequestsInsightService: PullRequestInsightsService,
-    private readonly pullRequestReviewService: PullRequestReviewService
-  ) {}
+  constructor(private readonly pullRequestEventsService: PullRequestGithubEventsService) {}
 
-  @Get(&quot;/list&quot;)
-  @ApiOperation({
-    operationId: &quot;listAllPullRequests&quot;,
-    summary: &quot;Finds all pull requests and paginates them&quot;,
-  })
-  @ApiPaginatedResponse(DbPullRequest)
-  @ApiOkResponse({ type: DbPullRequest })
-  async listAllPullRequests(@Query() pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
-    return this.pullRequestService.findAll(pageOptionsDto);
-  }
-
-  @Get(&quot;/search&quot;)
-  @ApiOperation({
-    operationId: &quot;searchAllPullRequests&quot;,
-    summary: &quot;Searches pull requests using filters and paginates them&quot;,
-  })
-  @ApiPaginatedResponse(DbPullRequest)
-  @ApiOkResponse({ type: DbPullRequest })
-  async searchAllPullRequests(@Query() pageOptionsDto: PullRequestPageOptionsDto): Promise&lt;PageDto&lt;DbPullRequest&gt;&gt; {
-    return this.pullRequestService.findAllWithFilters(pageOptionsDto);
-  }
-
-  @Version(&quot;2&quot;)
   @Get(&quot;/search&quot;)
   @ApiOperation({
     operationId: &quot;searchAllPullRequestEvents&quot;,
@@ -575,29 +211,6 @@ export class PullRequestController {
     @Query() pageOptionsDto: PullRequestPageOptionsDto
   ): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
     return this.pullRequestEventsService.findAllWithFilters(pageOptionsDto);
-  }
-
-  @Get(&quot;/insights&quot;)
-  @ApiOperation({
-    operationId: &quot;getPullRequestInsights&quot;,
-    summary: &quot;Find pull request insights over the last 2 months&quot;,
-  })
-  @ApiOkResponse({ type: [DbPRInsight] })
-  async getPullRequestInsights(@Query() pageOptionsDto: FilterOptionsDto): Promise&lt;DbPRInsight[]&gt; {
-    return Promise.all(
-      [30, 60].map(async (interval) &#x3D;&gt; this.pullRequestsInsightService.getInsight(interval, pageOptionsDto))
-    );
-  }
-
-  @Get(&quot;/:id/reviews&quot;)
-  @ApiOperation({
-    operationId: &quot;getPullRequestReviews&quot;,
-    summary: &quot;Find all pull request reviews by pull request ID&quot;,
-  })
-  @ApiOkResponse({ type: [DbPullRequestReview] })
-  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  async getPullRequestReviews(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbPullRequestReview[]&gt; {
-    return this.pullRequestReviewService.findAllReviewsByPrId(id);
   }
 }
 </code></pre>

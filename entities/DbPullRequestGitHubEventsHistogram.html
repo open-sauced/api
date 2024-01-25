@@ -76,11 +76,43 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#accepted_prs" >accepted_prs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#active_prs" >active_prs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#bucket" >bucket</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#closed_prs" >closed_prs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#draft_prs" >draft_prs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#interval" >interval</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#open_prs" >open_prs</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#pr_count" >pr_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_velocity" >pr_velocity</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#spam_prs" >spam_prs</a>
                             </li>
                         </ul>
                     </td>
@@ -104,6 +136,88 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="accepted_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>accepted_prs</b></span>
+                        <a href="#accepted_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of accepted/merged Prs in bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="active_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>active_prs</b></span>
+                        <a href="#active_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of active, unmerged Prs in bucket&#x27;, example: 2, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="bucket"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
@@ -123,13 +237,172 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Timestamp representing histogram bucket day&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@Column({type: &#x27;timestamp without time zone&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Timestamp representing histogram bucket day&#x27;, example: &#x27;2022-08-28 22:04:29.000000&#x27;})<br />@Type(undefined)<br />@IsDate()<br />@Column({type: &#x27;timestamp without time zone&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closed_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>closed_prs</b></span>
+                        <a href="#closed_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of closed, unmerged Prs in bucket&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="draft_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>draft_prs</b></span>
+                        <a href="#draft_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of drafted, unmerged Prs in bucket&#x27;, example: 2, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="interval"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>interval</b></span>
+                        <a href="#interval"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;The width in days of the individual time bucket&#x27;, example: 30})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="open_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>open_prs</b></span>
+                        <a href="#open_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of open, unmerged Prs in bucket&#x27;, example: 5, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:74</a></div>
                         </td>
                     </tr>
 
@@ -156,16 +429,103 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of Prs created in day bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of Prs created in day bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_velocity"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_velocity</b></span>
+                        <a href="#pr_velocity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;The average number of days to merge a PR over the time period&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spam_prs"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>spam_prs</b></span>
+                        <a href="#spam_prs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of Prs marked as spam within bucket&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/timescale/entities/pull_request_github_events_histogram.ts:130</a></div>
                         </td>
                     </tr>
 
@@ -178,6 +538,8 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiModelProperty } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
+import { Type } from &quot;class-transformer&quot;;
+import { IsDate, IsInt } from &quot;class-validator&quot;;
 import { Entity, Column } from &quot;typeorm&quot;;
 
 @Entity({ name: &quot;pull_request_github_events&quot; })
@@ -186,6 +548,8 @@ export class DbPullRequestGitHubEventsHistogram {
     description: &quot;Timestamp representing histogram bucket day&quot;,
     example: &quot;2022-08-28 22:04:29.000000&quot;,
   })
+  @Type(() &#x3D;&gt; Date)
+  @IsDate()
   @Column({
     type: &quot;timestamp without time zone&quot;,
     select: false,
@@ -194,16 +558,129 @@ export class DbPullRequestGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: &quot;Number of Prs created in day bucket&quot;,
-    example: 4,
-    type: &quot;integer&quot;,
+    description: &quot;The width in days of the individual time bucket&quot;,
+    example: 30,
   })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
   @Column({
     type: &quot;integer&quot;,
     select: false,
     insert: false,
   })
-  public pr_count: number;
+  public interval: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of Prs created in day bucket&quot;,
+    example: 4,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_count &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of accepted/merged Prs in bucket&quot;,
+    example: 4,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public accepted_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of open, unmerged Prs in bucket&quot;,
+    example: 5,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public open_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of closed, unmerged Prs in bucket&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public closed_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of drafted, unmerged Prs in bucket&quot;,
+    example: 2,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public draft_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of active, unmerged Prs in bucket&quot;,
+    example: 2,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public active_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;Number of Prs marked as spam within bucket&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public spam_prs &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;The average number of days to merge a PR over the time period&quot;,
+    example: 4,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_velocity &#x3D; 0;
 }
 </code></pre>
     </div>

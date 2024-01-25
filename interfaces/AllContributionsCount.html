@@ -153,6 +153,12 @@ import {
 import { ContributionPageMetaDto as ContributionsPageMetaDto } from &quot;./dtos/contributions-pagemeta.dto&quot;;
 import { ContributionsPageDto } from &quot;./dtos/contributions-page.dto&quot;;
 import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
+import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
+import { DbContributionStatTimeframe } from &quot;./entities/contributions-timeframe.entity&quot;;
+import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
+import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
+import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
+import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-timeframe.entity&quot;;
 
 interface AllContributionsCount {
   all_contributions: number;
@@ -177,6 +183,133 @@ export class UserListEventsStatsService {
     const builder &#x3D; this.userListContributorRepository.createQueryBuilder(&quot;user_list_contributors&quot;);
 
     return builder;
+  }
+
+  private eventsUnionCteBuilder(range: number): string {
+    const cteBuilder &#x3D; &#x60;
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND push_ref IN(&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND pr_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND pr_review_action&#x3D;&#x27;created&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND issue_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_type, event_time, repo_name, actor_login
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;;
+
+    return cteBuilder;
+  }
+
+  async findContributorsByType(
+    listId: string,
+    range: number,
+    type: UserListContributorStatsTypeEnum &#x3D; UserListContributorStatsTypeEnum.all
+  ): Promise&lt;string[]&gt; {
+    const now &#x3D; new Date().toISOString();
+
+    const userListUsersBuilder &#x3D; this.userListUsersQueryBuilder();
+
+    userListUsersBuilder
+      .leftJoin(&quot;users&quot;, &quot;users&quot;, &quot;user_list_contributors.user_id&#x3D;users.id&quot;)
+      .where(&quot;user_list_contributors.list_id &#x3D; :listId&quot;, { listId });
+
+    const allUsers &#x3D; await userListUsersBuilder.getMany();
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const users &#x3D; allUsers.map((user) &#x3D;&gt; (user.login ? user.login.toLowerCase() : user.username?.toLowerCase()));
+
+    const userListQueryBuilder &#x3D;
+      this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;;
+
+    userListQueryBuilder.select(&quot;DISTINCT users.login&quot;, &quot;login&quot;);
+
+    userListQueryBuilder.from(
+      (qb) &#x3D;&gt;
+        qb
+          .select(&quot;LOWER(actor_login)&quot;, &quot;login&quot;)
+          .distinct()
+          .from(DbPullRequestGitHubEvents, &quot;pull_request_github_events&quot;)
+          .where(&quot;LOWER(actor_login) IN (:...users)&quot;, { users }),
+      &quot;users&quot;
+    );
+
+    switch (type) {
+      case UserListContributorStatsTypeEnum.all:
+        break;
+
+      case UserListContributorStatsTypeEnum.active:
+        this.applyActiveContributorsFilter(userListQueryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.new:
+        this.applyNewContributorsFilter(userListQueryBuilder, now, range);
+        break;
+
+      case UserListContributorStatsTypeEnum.alumni: {
+        this.applyAlumniContributorsFilter(userListQueryBuilder, now, range);
+        break;
+      }
+
+      default:
+        break;
+    }
+
+    userListQueryBuilder.setParameters({ users });
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(userListQueryBuilder, &quot;CTE&quot;)
+      .setParameters(userListQueryBuilder.getParameters())
+      .select(&quot;login&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;);
+
+    const entities &#x3D; await entityQb.getRawMany&lt;{ login: string }&gt;();
+
+    return entities.map((result) &#x3D;&gt; result.login);
   }
 
   async findAllListContributorStats(
@@ -211,7 +344,7 @@ export class UserListEventsStatsService {
     userListQueryBuilder
       .addSelect(
         &#x60;(SELECT COALESCE(sum(push_num_commits), 0)
-          FROM push_github_events 
+          FROM push_github_events
           WHERE LOWER(actor_login)&#x3D;users.login
           AND push_ref IN (&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
           AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
@@ -219,7 +352,7 @@ export class UserListEventsStatsService {
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_github_events 
+        FROM pull_request_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND pr_action&#x3D;&#x27;opened&#x27;
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
@@ -227,7 +360,7 @@ export class UserListEventsStatsService {
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_review_github_events 
+        FROM pull_request_review_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND pr_review_action&#x3D;&#x27;created&#x27;
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
@@ -235,7 +368,7 @@ export class UserListEventsStatsService {
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM issues_github_events 
+        FROM issues_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND issue_action&#x3D;&#x27;opened&#x27;
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
@@ -243,21 +376,21 @@ export class UserListEventsStatsService {
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM commit_comment_github_events 
+        FROM commit_comment_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
         &quot;commit_comments&quot;
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM issue_comment_github_events 
+        FROM issue_comment_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
         &quot;issue_comments&quot;
       )
       .addSelect(
         &#x60;(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_review_comment_github_events 
+        FROM pull_request_review_comment_github_events
         WHERE LOWER(actor_login)&#x3D;users.login
         AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time)::INTEGER&#x60;,
         &quot;pr_review_comments&quot;
@@ -362,6 +495,404 @@ export class UserListEventsStatsService {
     return new ContributionsPageDto(entities, pageMetaDto);
   }
 
+  async findContributionsInTimeFrame(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributionStatTimeframe[]&gt; {
+    const range &#x3D; options.range!;
+    const contribType &#x3D; options.contributorType!;
+
+    const allUsers &#x3D; await this.findContributorsByType(listId, range, contribType);
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const cteQuery &#x3D; this.eventsUnionCteBuilder(range);
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, &quot;CTE&quot;)
+      .setParameters({ users: allUsers })
+      .select(&#x60;time_bucket(&#x27;1 day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PushEvent&#x27; then 1 end)&quot;, &quot;commits&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestEvent&#x27; then 1 end)&quot;, &quot;prs_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewEvent&#x27; then 1 end)&quot;, &quot;prs_reviewed&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssuesEvent&#x27; then 1 end)&quot;, &quot;issues_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;CommitCommentEvent&#x27; then 1 end)&quot;, &quot;commit_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssueCommentEvent&#x27; then 1 end)&quot;, &quot;issue_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27; then 1 end)&quot;, &quot;pr_review_comments&quot;)
+      .addSelect(
+        &#x60;COUNT(case
+          when event_type &#x3D; &#x27;CommitCommentEvent&#x27;
+          or event_type &#x3D; &#x27;IssueCommentEvent&#x27;
+          or event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27;
+          then 1 end
+        )&#x60;,
+        &quot;comments&quot;
+      )
+      .addSelect(&quot;COUNT(*)&quot;, &quot;total_contributions&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .groupBy(&quot;bucket&quot;)
+      .orderBy(&quot;bucket&quot;, &quot;DESC&quot;);
+
+    const entities: DbContributionStatTimeframe[] &#x3D; await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findContributionsByProject(
+    options: ContributionsByProjectDto,
+    listId: string
+  ): Promise&lt;DbContributionsProjects[]&gt; {
+    const range &#x3D; options.range!;
+
+    const allUsers &#x3D; await this.findContributorsByType(listId, range);
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const cteQuery &#x3D; this.eventsUnionCteBuilder(range);
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, &quot;CTE&quot;)
+      .setParameters({ users: allUsers })
+      .select(&quot;repo_name&quot;, &quot;repo_name&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PushEvent&#x27; then 1 end)&quot;, &quot;commits&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestEvent&#x27; then 1 end)&quot;, &quot;prs_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewEvent&#x27; then 1 end)&quot;, &quot;prs_reviewed&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssuesEvent&#x27; then 1 end)&quot;, &quot;issues_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;CommitCommentEvent&#x27; then 1 end)&quot;, &quot;commit_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssueCommentEvent&#x27; then 1 end)&quot;, &quot;issue_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27; then 1 end)&quot;, &quot;pr_review_comments&quot;)
+      .addSelect(
+        &#x60;COUNT(case
+          when event_type &#x3D; &#x27;CommitCommentEvent&#x27;
+          or event_type &#x3D; &#x27;IssueCommentEvent&#x27;
+          or event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27;
+          then 1 end
+        )&#x60;,
+        &quot;comments&quot;
+      )
+      .addSelect(&quot;COUNT(*)&quot;, &quot;total_contributions&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .groupBy(&quot;repo_name&quot;);
+
+    const entities: DbContributionsProjects[] &#x3D; await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findTopContributorsByProject(options: TopProjectsDto, listId: string): Promise&lt;DbUserListContributorStat[]&gt; {
+    const range &#x3D; options.range!;
+    const { repo_name } &#x3D; options;
+
+    const allUsers &#x3D; await this.findContributorsByType(listId, range);
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const cteQuery &#x3D; this.eventsUnionCteBuilder(range);
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, &quot;CTE&quot;)
+      .setParameters({ users: allUsers })
+      .select(&quot;actor_login&quot;, &quot;login&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PushEvent&#x27; then 1 end)&quot;, &quot;commits&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestEvent&#x27; then 1 end)&quot;, &quot;prs_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewEvent&#x27; then 1 end)&quot;, &quot;prs_reviewed&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssuesEvent&#x27; then 1 end)&quot;, &quot;issues_created&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;CommitCommentEvent&#x27; then 1 end)&quot;, &quot;commit_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;IssueCommentEvent&#x27; then 1 end)&quot;, &quot;issue_comments&quot;)
+      .addSelect(&quot;COUNT(case when event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27; then 1 end)&quot;, &quot;pr_review_comments&quot;)
+      .addSelect(
+        &#x60;COUNT(case
+          when event_type &#x3D; &#x27;CommitCommentEvent&#x27;
+          or event_type &#x3D; &#x27;IssueCommentEvent&#x27;
+          or event_type &#x3D; &#x27;PullRequestReviewCommentEvent&#x27;
+          then 1 end
+        )&#x60;,
+        &quot;comments&quot;
+      )
+      .addSelect(&quot;COUNT(*)&quot;, &quot;total_contributions&quot;)
+      .where(&#x60;LOWER(repo_name) &#x3D; &#x27;${repo_name}&#x27;&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .groupBy(&quot;login&quot;)
+      .limit(25);
+
+    const entities: DbContributionsProjects[] &#x3D; await entityQb.getRawMany();
+
+    return entities;
+  }
+
+  async findContributorCategoriesByTimeframe(
+    options: ContributionsTimeframeDto,
+    listId: string
+  ): Promise&lt;DbContributorCategoryTimeframe[]&gt; {
+    const range &#x3D; options.range!;
+
+    const allUsers &#x3D; await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.all);
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
+
+    const activeUsers &#x3D; await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.active);
+    const newUsers &#x3D; await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.new);
+    const alumniUsers &#x3D; await this.findContributorsByType(listId, range, UserListContributorStatsTypeEnum.alumni);
+
+    /*
+     * it&#x27;s possible that one of the filtered lists will have no returned users:
+     * to guard against doing a blank WHERE IN() statment (which is not valid),
+     * we add an empty username which selects for no users.
+     */
+
+    activeUsers.push(&quot;&quot;);
+    newUsers.push(&quot;&quot;);
+    alumniUsers.push(&quot;&quot;);
+
+    /*
+     * in order to get a sub-table that &quot;time_bucket&quot; can accumulate data from,
+     * this large union query denotes a &quot;contributor_category&quot; for each of the user types
+     * across many different event tables.
+     */
+
+    const cteQuery &#x3D; &#x60;
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND push_ref IN(&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND push_ref IN(&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND push_ref IN(&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM push_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND push_ref IN(&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND pr_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND pr_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND pr_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM pull_request_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND pr_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND pr_review_action&#x3D;&#x27;created&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND pr_review_action&#x3D;&#x27;created&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND pr_review_action&#x3D;&#x27;created&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM pull_request_review_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND pr_review_action&#x3D;&#x27;created&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND issue_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND issue_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND issue_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM issues_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND issue_action&#x3D;&#x27;opened&#x27;
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM commit_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM issue_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;all_users&#x27; as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...all_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;active_users&#x27; as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...active_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;new_users&#x27; as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...new_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time
+
+      UNION ALL
+
+      SELECT event_time, &#x27;alumni_users&#x27; as contributor_category
+      FROM pull_request_review_comment_github_events
+      WHERE LOWER(actor_login) IN (:...alumni_users)
+      AND now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;;
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteQuery, &quot;CTE&quot;)
+      .setParameters({ all_users: allUsers })
+      .setParameters({ active_users: activeUsers })
+      .setParameters({ new_users: newUsers })
+      .setParameters({ alumni_users: alumniUsers })
+      .select(&#x60;time_bucket(&#x27;1 day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
+      .addSelect(&quot;COUNT(case when contributor_category &#x3D; &#x27;all_users&#x27; then 1 end)&quot;, &quot;all&quot;)
+      .addSelect(&quot;COUNT(case when contributor_category &#x3D; &#x27;active_users&#x27; then 1 end)&quot;, &quot;active&quot;)
+      .addSelect(&quot;COUNT(case when contributor_category &#x3D; &#x27;new_users&#x27; then 1 end)&quot;, &quot;new&quot;)
+      .addSelect(&quot;COUNT(case when contributor_category &#x3D; &#x27;alumni_users&#x27; then 1 end)&quot;, &quot;alumni&quot;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .groupBy(&quot;bucket&quot;)
+      .orderBy(&quot;bucket&quot;, &quot;DESC&quot;);
+
+    const entities: DbContributorCategoryTimeframe[] &#x3D; await entityQb.getRawMany();
+
+    return entities;
+  }
+
   private applyActiveContributorsFilter(
     queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
     startDate: string,
@@ -370,25 +901,25 @@ export class UserListEventsStatsService {
     queryBuilder
       .leftJoin(
         &#x60;(
-        SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
-        FROM &quot;pull_request_github_events&quot;
-        WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
-          AND &#x27;${startDate}&#x27;::TIMESTAMP
-          AND LOWER(actor_login) IN (:...users)
-      )&#x60;,
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+          FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
+              AND LOWER(actor_login) IN (:...users)
+        )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )
       .leftJoin(
         &#x60;(
-        SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
-        FROM &quot;pull_request_github_events&quot;
-        WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${
           range + range
         } days&#x27;
-          AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
-          AND LOWER(actor_login) IN (:...users)
-      )&#x60;,
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND LOWER(actor_login) IN (:...users)
+        )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )
@@ -404,23 +935,24 @@ export class UserListEventsStatsService {
     queryBuilder
       .leftJoin(
         &#x60;(
-            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
             FROM &quot;pull_request_github_events&quot;
             WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN NOW() - INTERVAL &#x27;${range} days&#x27;
-              AND &#x27;${startDate}&#x27;::TIMESTAMP
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
               AND LOWER(actor_login) IN (:...users)
-          )&#x60;,
+
+        )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )
       .leftJoin(
         &#x60;(
-            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
             FROM &quot;pull_request_github_events&quot;
             WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN NOW() - INTERVAL &#x27;${range + range} days&#x27;
-              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
               AND LOWER(actor_login) IN (:...users)
-          )&#x60;,
+        )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )
@@ -436,25 +968,25 @@ export class UserListEventsStatsService {
     queryBuilder
       .leftJoin(
         &#x60;(
-            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
             FROM &quot;pull_request_github_events&quot;
-            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
-              AND &#x27;${startDate}&#x27;::TIMESTAMP
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
               AND LOWER(actor_login) IN (:...users)
-          )&#x60;,
+        )&#x60;,
         &quot;current_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;current_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )
       .leftJoin(
         &#x60;(
-            SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
+          SELECT DISTINCT LOWER(&quot;actor_login&quot;) actor_login
             FROM &quot;pull_request_github_events&quot;
-            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${
+            WHERE &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${
           range + range
         } days&#x27;
-              AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
               AND LOWER(actor_login) IN (:...users)
-          )&#x60;,
+        )&#x60;,
         &quot;previous_month_prs&quot;,
         &#x60;&quot;users&quot;.&quot;login&quot; &#x3D; &quot;previous_month_prs&quot;.&quot;actor_login&quot;&#x60;
       )

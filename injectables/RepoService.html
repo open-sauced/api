@@ -110,10 +110,6 @@
                                 <a href="#findRecommendations" >findRecommendations</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#hacktoberfestfilterquerybuilder" >hacktoberfestfilterquerybuilder</a>
-                            </li>
-                            <li>
                                 <a href="#subQueryCount" >subQueryCount</a>
                             </li>
                         </ul>
@@ -134,7 +130,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(repoRepository: <a href="../entitys/DbRepo.html" target="_self">Repository&lt;DbRepo&gt;</a>, filterService: <a href="../injectables/RepoFilterService.html" target="_self">RepoFilterService</a>, configService: ConfigService)</code>
+<code>constructor(repoRepository: <a href="../entitys/DbRepo.html" target="_self">Repository&lt;DbRepo&gt;</a>, filterService: <a href="../injectables/RepoFilterService.html" target="_self">RepoFilterService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -181,10 +177,10 @@
                                                     
                                                 </tr>
                                                 <tr>
-                                                        <td>configService</td>
+                                                        <td>pullRequestGithubEventsService</td>
                                                   
                                                         <td>
-                                                                    <code>ConfigService</code>
+                                                                        <code><a href="../injectables/PullRequestGithubEventsService.html" target="_self" >PullRequestGithubEventsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -221,15 +217,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>baseFilterQueryBuilder(startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>baseFilterQueryBuilder()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/repo/repo.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/repo/repo.service.ts:57</a></div>
                 </td>
             </tr>
 
@@ -237,60 +233,9 @@
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Default value</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>startDate</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>&quot;NOW()&quot;</code>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>range</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>30</code>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -316,8 +261,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/repo/repo.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/repo/repo.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -355,8 +300,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="313"
-                            class="link-to-prism">src/repo/repo.service.ts:313</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/repo/repo.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -450,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="347"
-                            class="link-to-prism">src/repo/repo.service.ts:347</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/repo/repo.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -521,8 +466,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="285"
-                            class="link-to-prism">src/repo/repo.service.ts:285</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/repo/repo.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -592,8 +537,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="299"
-                            class="link-to-prism">src/repo/repo.service.ts:299</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/repo/repo.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -675,8 +620,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="448"
-                            class="link-to-prism">src/repo/repo.service.ts:448</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="227"
+                            class="link-to-prism">src/repo/repo.service.ts:227</a></div>
                 </td>
             </tr>
 
@@ -758,8 +703,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="418"
-                            class="link-to-prism">src/repo/repo.service.ts:418</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/repo/repo.service.ts:197</a></div>
                 </td>
             </tr>
 
@@ -811,81 +756,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="hacktoberfestfilterquerybuilder"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>hacktoberfestfilterquerybuilder</b></span>
-                        <a href="#hacktoberfestfilterquerybuilder"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>hacktoberfestfilterquerybuilder(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/repo/repo.service.ts:157</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Default value</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>range</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>30</code>
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="subQueryCount"></a>
                     <span class="name">
                         <span ><b>subQueryCount</b></span>
@@ -902,8 +772,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/repo/repo.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/repo/repo.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -1011,11 +881,10 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NotFoundException, forwardRef } from &quot;@nestjs/common&quot;;
 import { ObjectLiteral, Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
-import { ConfigService } from &quot;@nestjs/config&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
@@ -1023,6 +892,7 @@ import { InsightFilterFieldsEnum } from &quot;../insight/dtos/insight-options.dt
 import { RepoFilterService } from &quot;../common/filters/repo-filter.service&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { RepoSearchOptionsDto } from &quot;./dtos/repo-search-options.dto&quot;;
@@ -1033,7 +903,8 @@ export class RepoService {
     @InjectRepository(DbRepo, &quot;ApiConnection&quot;)
     private repoRepository: Repository&lt;DbRepo&gt;,
     private filterService: RepoFilterService,
-    private configService: ConfigService
+    @Inject(forwardRef(() &#x3D;&gt; PullRequestGithubEventsService))
+    private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 
   subQueryCount&lt;T extends ObjectLiteral&gt;(
@@ -1054,20 +925,10 @@ export class RepoService {
   baseQueryBuilder() {
     const builder &#x3D; this.repoRepository
       .createQueryBuilder(&quot;repo&quot;)
-
-      /*
-       * .select([&#x27;repo.id&#x27;])
-       * .leftJoinAndSelect(&quot;repo.user&quot;, &quot;user&quot;)
-       * .leftJoinAndSelect(DbRepoToUserStars, &quot;stars&quot;)
-       * .leftJoinAndMapMany(&quot;repo.contributions&quot;, DbContribution, &quot;contributions&quot;, &quot;contributions.repo_id &#x3D; repo.id&quot;)
-       */
-
-      .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbContribution&quot;, &quot;contributions&quot;), &quot;contributionsCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserVotes&quot;, &quot;votes&quot;), &quot;votesCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserSubmissions&quot;, &quot;submissions&quot;), &quot;submissionsCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStargazers&quot;, &quot;stargazers&quot;), &quot;stargazersCount&quot;)
       .addSelect((qb) &#x3D;&gt; this.subQueryCount(qb, &quot;DbRepoToUserStars&quot;, &quot;stars&quot;), &quot;starsCount&quot;)
-      .loadRelationCountAndMap(&quot;repo.contributionsCount&quot;, &quot;repo.contributions&quot;)
       .loadRelationCountAndMap(&quot;repo.votesCount&quot;, &quot;repo.repoToUserVotes&quot;)
       .loadRelationCountAndMap(&quot;repo.submissionsCount&quot;, &quot;repo.repoToUserSubmissions&quot;)
       .loadRelationCountAndMap(&quot;repo.stargazersCount&quot;, &quot;repo.repoToUserStargazers&quot;)
@@ -1076,223 +937,8 @@ export class RepoService {
     return builder;
   }
 
-  private baseFilterQueryBuilder(startDate &#x3D; &quot;NOW()&quot;, range &#x3D; 30) {
-    return this.repoRepository
-      .createQueryBuilder(&quot;repos&quot;)
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;open_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;open_pull_requests&quot;
-          WHERE
-            LOWER(&quot;open_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;open&#x27;
-            AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &quot;repos_open_prs_count&quot;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;closed_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;closed_pull_requests&quot;
-          WHERE
-            LOWER(&quot;closed_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
-            AND &quot;closed_pull_requests&quot;.&quot;merged&quot; &#x3D; false
-            AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_closed_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;merged_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;merged_pull_requests&quot;
-          WHERE
-            (LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;merged&#x27;
-            OR &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true)
-            AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_merged_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;draft_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;draft_pull_requests&quot;
-          WHERE
-            &quot;draft_pull_requests&quot;.&quot;draft&quot; &#x3D; true
-            AND &quot;draft_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_draft_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;spam_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
-          WHERE
-            &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
-            AND &quot;spam_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_spam_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(AVG(&quot;pull_requests_velocity&quot;.&quot;closed_at&quot;::DATE-&quot;pull_requests_velocity&quot;.&quot;created_at&quot;::DATE), 0)
-          FROM &quot;pull_requests&quot; &quot;pull_requests_velocity&quot;
-          WHERE
-            &quot;pull_requests_velocity&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &quot;pull_requests_velocity&quot;.&quot;closed_at&quot; &gt; &quot;pull_requests_velocity&quot;.&quot;created_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_pr_velocity_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;active_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;active_pull_requests&quot;
-          WHERE
-            &quot;active_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
-            AND &quot;active_pull_requests&quot;.state !&#x3D; &#x27;closed&#x27;
-        )::INTEGER&#x60;,
-        &#x60;repo_active_prs_count&#x60;
-      );
-  }
-
-  private hacktoberfestfilterquerybuilder(range &#x3D; 30) {
-    const hacktoberfestYear: string &#x3D; this.configService.get(&quot;hacktoberfest.year&quot;)!;
-
-    return this.repoRepository
-      .createQueryBuilder(&quot;repos&quot;)
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;open_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;open_pull_requests&quot;
-          WHERE
-            LOWER(&quot;open_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;open&#x27;
-            AND &quot;open_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;open_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &quot;repos_open_prs_count&quot;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;closed_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;closed_pull_requests&quot;
-          WHERE
-            LOWER(&quot;closed_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;closed&#x27;
-            AND &quot;closed_pull_requests&quot;.&quot;merged&quot; &#x3D; false
-            AND &quot;closed_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;closed_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_closed_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;merged_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;merged_pull_requests&quot;
-          WHERE
-            (LOWER(&quot;merged_pull_requests&quot;.&quot;state&quot;) &#x3D; &#x27;merged&#x27;
-            OR &quot;merged_pull_requests&quot;.&quot;merged&quot; &#x3D; true)
-            AND &quot;merged_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;merged_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_merged_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;draft_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;draft_pull_requests&quot;
-          WHERE
-            &quot;draft_pull_requests&quot;.&quot;draft&quot; &#x3D; true
-            AND &quot;draft_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;draft_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_draft_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;spam_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
-          WHERE
-            &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
-            AND &quot;spam_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_spam_prs_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(AVG(&quot;pull_requests_velocity&quot;.&quot;closed_at&quot;::DATE-&quot;pull_requests_velocity&quot;.&quot;created_at&quot;::DATE), 0)
-          FROM &quot;pull_requests&quot; &quot;pull_requests_velocity&quot;
-          WHERE
-            &quot;pull_requests_velocity&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND &quot;pull_requests_velocity&quot;.&quot;closed_at&quot; &gt; &quot;pull_requests_velocity&quot;.&quot;created_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_requests_velocity&quot;.&quot;updated_at&quot;
-        )::INTEGER&#x60;,
-        &#x60;repos_pr_velocity_count&#x60;
-      )
-      .addSelect(
-        &#x60;(
-          SELECT COALESCE(COUNT(&quot;active_pull_requests&quot;.&quot;id&quot;), 0)
-          FROM &quot;pull_requests&quot; &quot;active_pull_requests&quot;
-          WHERE
-            &quot;active_pull_requests&quot;.&quot;repo_id&quot; &#x3D; &quot;repos&quot;.&quot;id&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
-            AND to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;active_pull_requests&quot;.&quot;updated_at&quot;
-            AND &quot;active_pull_requests&quot;.state !&#x3D; &#x27;closed&#x27;
-        )::INTEGER&#x60;,
-        &#x60;repo_active_prs_count&#x60;
-      );
+  private baseFilterQueryBuilder() {
+    return this.repoRepository.createQueryBuilder(&quot;repos&quot;);
   }
 
   async findOneById(id: number): Promise&lt;DbRepo&gt; {
@@ -1360,18 +1006,10 @@ export class RepoService {
   async findAllWithFilters(pageOptionsDto: RepoSearchOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     const orderField &#x3D; pageOptionsDto.orderBy ?? &quot;stars&quot;;
     const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const prevDaysStartDate &#x3D; pageOptionsDto.prev_days_start_date!;
     const range &#x3D; pageOptionsDto.range!;
 
-    let queryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case &quot;hacktoberfest&quot;:
-        queryBuilder &#x3D; this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        queryBuilder &#x3D; this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
+    const queryBuilder &#x3D; this.baseFilterQueryBuilder();
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
@@ -1386,18 +1024,7 @@ export class RepoService {
       queryBuilder.orderBy(&#x60;&quot;repos&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;);
     }
 
-    let countQueryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case &quot;hacktoberfest&quot;:
-        countQueryBuilder &#x3D; this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        countQueryBuilder &#x3D; this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
-
-    countQueryBuilder.select(&quot;repos.id&quot;, &quot;repos_id&quot;);
+    const countQueryBuilder &#x3D; this.baseFilterQueryBuilder().select(&quot;repos.id&quot;, &quot;repos_id&quot;);
 
     const countFilters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
@@ -1425,7 +1052,29 @@ export class RepoService {
     const entities &#x3D; await queryBuilder.getMany();
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
-    return new PageDto(entities, pageMetaDto);
+    // get PR stats for each repo found through filtering
+    const promises &#x3D; entities.map(async (entity) &#x3D;&gt; {
+      const prStats &#x3D; await this.pullRequestGithubEventsService.findPrStatsByRepo(
+        entity.full_name,
+        range,
+        prevDaysStartDate
+      );
+
+      return {
+        ...entity,
+        pr_active_count: prStats.active_prs,
+        open_prs_count: prStats.open_prs,
+        merged_prs_count: prStats.accepted_prs,
+        spam_prs_count: prStats.spam_prs,
+        draft_prs_count: prStats.draft_prs,
+        closed_prs_count: prStats.closed_prs,
+        pr_velocity_count: prStats.pr_velocity,
+      } as DbRepo;
+    });
+
+    const updatedEntities &#x3D; await Promise.all(promises);
+
+    return new PageDto(updatedEntities, pageMetaDto);
   }
 
   async findRecommendations(interests: string[]): Promise&lt;Record&lt;string, DbRepo[]&gt;&gt; {

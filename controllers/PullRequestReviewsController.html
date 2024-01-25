@@ -127,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Version(&#x27;2&#x27;)<br />@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequestsReviews&#x27;, summary: &#x27;Searches pull requests reviews using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequestReviewGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestReviewGitHubEvents})<br /></code>
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;searchAllPullRequestsReviews&#x27;, summary: &#x27;Searches pull requests reviews using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbPullRequestReviewGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestReviewGitHubEvents})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/pull-requests/pull-request-review.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/pull-requests/pull-request-review.controller.ts:22</a></div>
                 </td>
             </tr>
 
@@ -186,7 +186,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query, Version } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
@@ -200,7 +200,6 @@ import { PullRequestPageOptionsDto } from &quot;./dtos/pull-request-page-options
 export class PullRequestReviewsController {
   constructor(private readonly pullRequestReviewService: PullRequestReviewGithubEventsService) {}
 
-  @Version(&quot;2&quot;)
   @Get(&quot;/search&quot;)
   @ApiOperation({
     operationId: &quot;searchAllPullRequestsReviews&quot;,

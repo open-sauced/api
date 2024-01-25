@@ -79,11 +79,33 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#applyActiveContributorsFilter" >applyActiveContributorsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#applyAlumniContributorsFilter" >applyAlumniContributorsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#applyNewContributorsFilter" >applyNewContributorsFilter</a>
+                            </li>
+                            <li>
+                                <a href="#basePrAuthorCteBuilder" >basePrAuthorCteBuilder</a>
+                            </li>
+                            <li>
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
+                            </li>
+                            <li>
+                                <a href="#baseRepoCteBuilder" >baseRepoCteBuilder</a>
+                            </li>
+                            <li>
+                                <a href="#counterBaseQueryBuilder" >counterBaseQueryBuilder</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#execCommonTableExpression" >execCommonTableExpression</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#execVelocityCommonTableExpression" >execVelocityCommonTableExpression</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -95,13 +117,31 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAuthorsWithFilters" >findAuthorsWithFilters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findCountByPrAuthor" >findCountByPrAuthor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findPrStatsByRepo" >findPrStatsByRepo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findVelocityByPrAuthor" >findVelocityByPrAuthor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findVelocityByRepoName" >findVelocityByRepoName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#genPrHistogram" >genPrHistogram</a>
                             </li>
                             <li>
-                                <a href="#hacktoberfestPrFilterBuilderEnd" >hacktoberfestPrFilterBuilderEnd</a>
-                            </li>
-                            <li>
-                                <a href="#hacktoberfestPrFilterBuilderStart" >hacktoberfestPrFilterBuilderStart</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#searchAuthors" >searchAuthors</a>
                             </li>
                         </ul>
                     </td>
@@ -121,12 +161,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, configService: ConfigService, repoService: <a href="../injectables/RepoService.html" target="_self">RepoService</a>, userListService: <a href="../injectables/UserListService.html" target="_self">UserListService</a>)</code>
+<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, repoService: <a href="../injectables/RepoService.html" target="_self">RepoService</a>, userListService: <a href="../injectables/UserListService.html" target="_self">UserListService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/timescale/pull_request_github_events.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/timescale/pull_request_github_events.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -148,18 +188,6 @@
                                                   
                                                         <td>
                                                                     <code>Repository&lt;DbPullRequestGitHubEvents&gt;</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>configService</td>
-                                                  
-                                                        <td>
-                                                                    <code>ConfigService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -209,6 +237,447 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="applyActiveContributorsFilter"></a>
+                    <span class="name">
+                        <span ><b>applyActiveContributorsFilter</b></span>
+                        <a href="#applyActiveContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyActiveContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, repos: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="643"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:643</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>repos</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&quot;&quot;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyAlumniContributorsFilter"></a>
+                    <span class="name">
+                        <span ><b>applyAlumniContributorsFilter</b></span>
+                        <a href="#applyAlumniContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyAlumniContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, repos: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="729"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:729</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>repos</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&quot;&quot;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyNewContributorsFilter"></a>
+                    <span class="name">
+                        <span ><b>applyNewContributorsFilter</b></span>
+                        <a href="#applyNewContributorsFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyNewContributorsFilter(queryBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>, repos: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="686"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:686</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>repos</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&quot;&quot;</code>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>30</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="basePrAuthorCteBuilder"></a>
+                    <span class="name">
+                        <span ><b>basePrAuthorCteBuilder</b></span>
+                        <a href="#basePrAuthorCteBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>basePrAuthorCteBuilder(author: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDays: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>author</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDays</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="baseQueryBuilder"></a>
                     <span class="name">
                         <span ><b>baseQueryBuilder</b></span>
@@ -225,8 +694,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -237,6 +706,180 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseRepoCteBuilder"></a>
+                    <span class="name">
+                        <span ><b>baseRepoCteBuilder</b></span>
+                        <a href="#baseRepoCteBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>baseRepoCteBuilder(repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDays: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDays</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="counterBaseQueryBuilder"></a>
+                    <span class="name">
+                        <span ><b>counterBaseQueryBuilder</b></span>
+                        <a href="#counterBaseQueryBuilder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>counterBaseQueryBuilder(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDay: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="167"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:167</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDay</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -264,8 +907,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -329,6 +972,77 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="execVelocityCommonTableExpression"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>execVelocityCommonTableExpression</b></span>
+                        <a href="#execVelocityCommonTableExpression"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>execVelocityCommonTableExpression(cteBuilder: SelectQueryBuilder<DbPullRequestGitHubEvents>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>cteBuilder</td>
+                                    <td>
+                                            <code>SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findAllByPrAuthor"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -347,8 +1061,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:200</a></div>
                 </td>
             </tr>
 
@@ -430,8 +1144,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:223</a></div>
                 </td>
             </tr>
 
@@ -483,6 +1197,475 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAuthorsWithFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAuthorsWithFilters</b></span>
+                        <a href="#findAuthorsWithFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAuthorsWithFilters(pageOptionsDto: <a href="../classes/PullRequestContributorInsightsDto.html" target="_self">PullRequestContributorInsightsDto</a>, contribType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="531"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:531</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Default value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestContributorInsightsDto.html" target="_self" >PullRequestContributorInsightsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>contribType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+                                    <td>
+                                        <code>&quot;all&quot;</code>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findCountByPrAuthor"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findCountByPrAuthor</b></span>
+                        <a href="#findCountByPrAuthor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findCountByPrAuthor(author: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDaysStartDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:178</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>author</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDaysStartDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findPrStatsByRepo"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findPrStatsByRepo</b></span>
+                        <a href="#findPrStatsByRepo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findPrStatsByRepo(repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDaysStartDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="317"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:317</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDaysStartDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbPullRequestGitHubEventsHistogram&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findVelocityByPrAuthor"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findVelocityByPrAuthor</b></span>
+                        <a href="#findVelocityByPrAuthor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findVelocityByPrAuthor(author: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDaysStartDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:155</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>author</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDaysStartDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findVelocityByRepoName"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findVelocityByRepoName</b></span>
+                        <a href="#findVelocityByRepoName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findVelocityByRepoName(repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, prevDaysStartDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:161</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prevDaysStartDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="genPrHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -501,8 +1684,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="240"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:240</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="350"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:350</a></div>
                 </td>
             </tr>
 
@@ -554,24 +1737,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="hacktoberfestPrFilterBuilderEnd"></a>
+                    <a name="searchAuthors"></a>
                     <span class="name">
-                        <span ><b>hacktoberfestPrFilterBuilderEnd</b></span>
-                        <a href="#hacktoberfestPrFilterBuilderEnd"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>searchAuthors</b></span>
+                        <a href="#searchAuthors"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>hacktoberfestPrFilterBuilderEnd(range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchAuthors(pageOptionsDto: <a href="../classes/PullRequestContributorOptionsDto.html" target="_self">PullRequestContributorOptionsDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="433"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:433</a></div>
                 </td>
             </tr>
 
@@ -588,23 +1773,19 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>range</td>
+                                    <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                <code><a href="../classes/PullRequestContributorOptionsDto.html" target="_self" >PullRequestContributorOptionsDto</a></code>
                                     </td>
 
                                     <td>
                                         No
                                     </td>
 
-                                    <td>
-                                        <code>30</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -613,48 +1794,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequest.html" target="_self" >Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
                         
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="hacktoberfestPrFilterBuilderStart"></a>
-                    <span class="name">
-                        <span ><b>hacktoberfestPrFilterBuilderStart</b></span>
-                        <a href="#hacktoberfestPrFilterBuilderStart"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>hacktoberfestPrFilterBuilderStart()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:95</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
                     </div>
                 </td>
             </tr>
@@ -666,10 +1810,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
-import { ConfigService } from &quot;@nestjs/config&quot;;
 import { PullRequestHistogramDto } from &quot;../histogram/dtos/pull_request&quot;;
 import { FilterListContributorsDto } from &quot;../user-lists/dtos/filter-contributors.dto&quot;;
 import { RepoService } from &quot;../repo/repo.service&quot;;
@@ -680,6 +1823,9 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { UserListService } from &quot;../user-lists/user-list.service&quot;;
+import { PullRequestContributorOptionsDto } from &quot;../pull-requests/dtos/pull-request-contributor-options.dto&quot;;
+import { DbPullRequestContributor } from &quot;../pull-requests/dtos/pull-request-contributor.dto&quot;;
+import { PullRequestContributorInsightsDto } from &quot;../pull-requests/dtos/pull-request-contributor-insights.dto&quot;;
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 import { DbPullRequestGitHubEventsHistogram } from &quot;./entities/pull_request_github_events_histogram&quot;;
 
@@ -688,7 +1834,7 @@ export class PullRequestGithubEventsService {
   constructor(
     @InjectRepository(DbPullRequestGitHubEvents, &quot;TimescaleConnection&quot;)
     private pullRequestGithubEventsRepository: Repository&lt;DbPullRequestGitHubEvents&gt;,
-    private readonly configService: ConfigService,
+    @Inject(forwardRef(() &#x3D;&gt; RepoService))
     private readonly repoService: RepoService,
     private readonly userListService: UserListService
   ) {}
@@ -697,6 +1843,42 @@ export class PullRequestGithubEventsService {
     const builder &#x3D; this.pullRequestGithubEventsRepository.createQueryBuilder(&quot;pull_request_github_events&quot;);
 
     return builder;
+  }
+
+  /*
+   * this CTE gets all pull requests for a given author in a given time window.
+   * the prs are partitioned by the most recent event (since there may be multiple
+   * events for any given pr): this way, the most up to date pr events can be used with &quot;row_num &#x3D; 1&quot;
+   */
+  basePrAuthorCteBuilder(author: string, range: number, prevDays: number) {
+    const startDate &#x3D; GetPrevDateISOString(prevDays);
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;*&quot;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time DESC) AS row_num&#x60;)
+      .where(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, { author: author.toLowerCase() })
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
+
+    return cteBuilder;
+  }
+
+  /*
+   * this CTE gets all pull requests for a given repo in a given time window.
+   * the prs are partitioned by the most recent event (since there may be multiple
+   * events for any given pr): this way, the most up to date pr events can be used with &quot;row_num &#x3D; 1&quot;
+   */
+  baseRepoCteBuilder(repo: string, range: number, prevDays: number) {
+    const startDate &#x3D; GetPrevDateISOString(prevDays);
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;*&quot;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time DESC) AS row_num&#x60;)
+      .where(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) &#x3D; LOWER(:repo_name)&#x60;, { repo_name: repo.toLowerCase() })
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
+
+    return cteBuilder;
   }
 
   /*
@@ -760,29 +1942,71 @@ export class PullRequestGithubEventsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  hacktoberfestPrFilterBuilderStart() {
-    const hacktoberfestYear: string &#x3D; this.configService.get(&quot;hacktoberfest.year&quot;)!;
-
+  async execVelocityCommonTableExpression(cteBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;): Promise&lt;number&gt; {
     /*
-     * take the date range starting from the last day of October.
-     * this is inclusive of previous years where the current pull_requests have &quot;newer&quot; updates
+     * use a CTE aggregator to get most recent merged PR events
+     * and aggregate the velocity over a period of time by:
+     * average(merged date - opened date)
      */
-    return &#x60;to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27; &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;;
+
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&#x60;COALESCE(AVG(pr_merged_at::DATE - pr_created_at::DATE), 0)::INTEGER AS velocity&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;)
+      .andWhere(&#x60;pr_is_merged &#x3D; true&#x60;);
+
+    const counterResult &#x3D; await queryBuilder.getRawOne&lt;{ velocity: number }&gt;();
+    const avgVelocity &#x3D; parseInt(&#x60;${counterResult?.velocity ?? &quot;0&quot;}&#x60;, 10);
+
+    return avgVelocity;
   }
 
-  hacktoberfestPrFilterBuilderEnd(range &#x3D; 30) {
-    const hacktoberfestYear: string &#x3D; this.configService.get(&quot;hacktoberfest.year&quot;)!;
+  async findVelocityByPrAuthor(author: string, range: number, prevDaysStartDate: number): Promise&lt;number&gt; {
+    const cteBuilder &#x3D; this.basePrAuthorCteBuilder(author, range, prevDaysStartDate);
 
+    return this.execVelocityCommonTableExpression(cteBuilder);
+  }
+
+  async findVelocityByRepoName(repo: string, range: number, prevDaysStartDate: number): Promise&lt;number&gt; {
+    const cteBuilder &#x3D; this.baseRepoCteBuilder(repo, range, prevDaysStartDate);
+
+    return this.execVelocityCommonTableExpression(cteBuilder);
+  }
+
+  counterBaseQueryBuilder(range: number, prevDay: number) {
+    const startDate &#x3D; GetPrevDateISOString(prevDay);
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;COUNT(DISTINCT pr_number)&quot;, &quot;count&quot;)
+      .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
+
+    return queryBuilder;
+  }
+
+  async findCountByPrAuthor(author: string, range: number, prevDaysStartDate: number): Promise&lt;number&gt; {
     /*
-     * take the date range starting from the last day of October.
-     * so Oct 31st minus 30 days would be the full hacktoberfest month date range
+     * because PR events may be &quot;opened&quot; or &quot;closed&quot; many times, this inner CTE query gets similar PRs rows
+     * based on pr_number for a sole pr author.
+     * This essentially gives a full picture of all PRs in a timeframe for a given the author
+     * across all repos they&#x27;ve contributed to regardless of their state.
+     * since getting the whole count over a time period doesn&#x27;t need to get the most &quot;up to date&quot; event
+     * we can just do a count over a whole timerange instead of the cte workflow.
      */
-    return &#x60;to_date(&#x27;${hacktoberfestYear}&#x27;, &#x27;YYYY&#x27;)
-                + INTERVAL &#x27;10 months&#x27;
-                - INTERVAL &#x27;1 day&#x27;
-                - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;;
+
+    const queryBuilder &#x3D; this.counterBaseQueryBuilder(range, prevDaysStartDate);
+
+    queryBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, {
+      author: author.toLowerCase(),
+    });
+
+    const counterResult &#x3D; await queryBuilder.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${counterResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    return itemCount;
   }
 
   async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise&lt;PageDto&lt;DbPullRequestGitHubEvents&gt;&gt; {
@@ -815,25 +2039,22 @@ export class PullRequestGithubEventsService {
 
     const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
       .createQueryBuilder(&quot;pull_request_github_events&quot;)
-      .select(&quot;*&quot;)
-      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;)
-      .orderBy(&quot;event_time&quot;, order);
+      .select(&quot;*&quot;);
 
-    /* filter for hacktoberfest PRs */
-    switch (pageOptionsDto.topic) {
-      case &quot;hacktoberfest&quot;:
-        cteBuilder
-          .where(this.hacktoberfestPrFilterBuilderStart())
-          .andWhere(this.hacktoberfestPrFilterBuilderEnd(range));
-        break;
-      default:
-        cteBuilder
-          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
-          .andWhere(
-            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
-          );
-        break;
+    if (pageOptionsDto.distinctAuthors) {
+      cteBuilder.addSelect(
+        &#x60;ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
+      );
+    } else {
+      cteBuilder.addSelect(
+        &#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
+      );
     }
+
+    cteBuilder
+      .orderBy(&quot;event_time&quot;, order)
+      .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
 
     /* filter on PR author / contributor */
     if (pageOptionsDto.contributor) {
@@ -905,25 +2126,459 @@ export class PullRequestGithubEventsService {
     return this.execCommonTableExpression(pageOptionsDto, cteBuilder);
   }
 
+  async findPrStatsByRepo(
+    repo: string,
+    range: number,
+    prevDaysStartDate: number
+  ): Promise&lt;DbPullRequestGitHubEventsHistogram&gt; {
+    const cteBuilder &#x3D; this.baseRepoCteBuilder(repo, range, prevDaysStartDate);
+
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .addSelect(&quot;count(*)&quot;, &quot;prs_count&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;closed&#x27; AND pr_is_merged &#x3D; true THEN 1 END)&quot;, &quot;accepted_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;opened&#x27; AND pr_is_draft &#x3D; false THEN 1 END)&quot;, &quot;open_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;closed&#x27; AND pr_is_merged &#x3D; false THEN 1 END)&quot;, &quot;closed_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;opened&#x27; AND pr_is_draft &#x3D; true THEN 1 END)&quot;, &quot;draft_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;opened&#x27; THEN 1 END)&quot;, &quot;active_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN pr_active_lock_reason &#x3D; &#x27;spam&#x27; THEN 1 END)&quot;, &quot;spam_prs&quot;)
+      .addSelect(
+        &#x60;COALESCE(AVG(CASE WHEN pr_is_merged &#x3D; true THEN pr_merged_at::DATE - pr_created_at::DATE END), 0)::INTEGER AS pr_velocity&#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;);
+
+    const result: DbPullRequestGitHubEventsHistogram | undefined &#x3D; await queryBuilder.getRawOne();
+
+    if (!result) {
+      throw new NotFoundException();
+    }
+
+    return result;
+  }
+
   async genPrHistogram(options: PullRequestHistogramDto): Promise&lt;DbPullRequestGitHubEventsHistogram[]&gt; {
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    }
+
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
+    const width &#x3D; options.width!;
 
-    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager.createQueryBuilder();
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(&quot;*&quot;)
+      .addSelect(&#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;)
+      .orderBy(&quot;event_time&quot;, order)
+      .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
 
-    queryBuilder
-      .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+    /* filter on PR author / contributor */
+    if (options.contributor) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;pr_author_login&quot;) &#x3D; LOWER(:author)&#x60;, {
+        author: options.contributor,
+      });
+    }
+
+    /*
+     * apply repo specific filters (topics, top 100, etc.) - this captures a few
+     * pre-defined filters provided by the PullRequestPageOptionsDto.
+     * This will call out to the API connection to get metadata on the repos.
+     */
+    if (options.filter || options.topic) {
+      const filtersDto: RepoSearchOptionsDto &#x3D; {
+        filter: options.filter,
+        topic: options.topic,
+        limit: 50,
+        skip: 0,
+        range,
+      };
+
+      const repos &#x3D; await this.repoService.findAllWithFilters(filtersDto);
+      const repoNames &#x3D; repos.data.map((repo) &#x3D;&gt; repo.full_name.toLowerCase());
+
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames,
+      });
+    }
+
+    /* apply user provided repo name filters */
+    if (options.repo) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames: options.repo.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (options.repoIds) {
+      cteBuilder.andWhere(&#x60;&quot;pull_request_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;, {
+        repoIds: options.repoIds.split(&quot;,&quot;),
+      });
+    }
+
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&#x60;time_bucket(&#x27;${width} day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
       .addSelect(&quot;count(*)&quot;, &quot;prs_count&quot;)
-      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: options.repo.toLowerCase() })
-      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
-      .andWhere(&#x60;LOWER(pr_action) &#x3D; LOWER(&#x27;opened&#x27;)&#x60;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;closed&#x27; AND pr_is_merged &#x3D; true THEN 1 END)&quot;, &quot;accepted_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;closed&#x27; AND pr_is_merged &#x3D; false THEN 1 END)&quot;, &quot;closed_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;opened&#x27; AND pr_is_draft &#x3D; true THEN 1 END)&quot;, &quot;draft_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_action) &#x3D; &#x27;opened&#x27; THEN 1 END)&quot;, &quot;active_prs&quot;)
+      .addSelect(&quot;count(CASE WHEN pr_active_lock_reason &#x3D; &#x27;spam&#x27; THEN 1 END)&quot;, &quot;spam_prs&quot;)
+      .addSelect(
+        &#x60;COALESCE(AVG(CASE WHEN pr_is_merged &#x3D; true THEN pr_merged_at::DATE - pr_created_at::DATE END), 0)::INTEGER AS pr_velocity&#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
 
-    const rawResults &#x3D; await queryBuilder.getRawMany();
+    return queryBuilder.getRawMany&lt;DbPullRequestGitHubEventsHistogram&gt;();
+  }
 
-    return rawResults as DbPullRequestGitHubEventsHistogram[];
+  async searchAuthors(pageOptionsDto: PullRequestContributorOptionsDto): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    if (!pageOptionsDto.repos &amp;&amp; !pageOptionsDto.repoIds &amp;&amp; !pageOptionsDto.topic &amp;&amp; !pageOptionsDto.filter) {
+      throw new BadRequestException(&quot;must provide repo, repoIds, topic, filter&quot;);
+    }
+
+    const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range &#x3D; pageOptionsDto.range!;
+    const order &#x3D; pageOptionsDto.orderDirection!;
+
+    /*
+     * partitions by pr_author_login only and orders by time to get the latest PRs
+     * for the given subset of prs for a repo
+     */
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(
+        &#x60;
+        pull_request_github_events.pr_author_login,
+        pull_request_github_events.pr_author_id,
+        pull_request_github_events.event_time&#x60;
+      )
+      .addSelect(
+        &#x60;ROW_NUMBER() OVER (PARTITION BY pull_request_github_events.pr_author_login ORDER BY pull_request_github_events.event_time ${order}) AS row_num&#x60;
+      )
+      .orderBy(&quot;event_time&quot;, order)
+      .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;);
+
+    /*
+     * apply repo specific filters (topics, top 100, etc.) - this captures a few
+     * pre-defined filters provided by the PullRequestPageOptionsDto.
+     * This will call out to the API connection to get metadata on the repos.
+     */
+    if (pageOptionsDto.filter || pageOptionsDto.topic) {
+      const filtersDto: RepoSearchOptionsDto &#x3D; {
+        filter: pageOptionsDto.filter,
+        topic: pageOptionsDto.topic,
+        limit: 50,
+        skip: 0,
+        range,
+      };
+
+      const repos &#x3D; await this.repoService.findAllWithFilters(filtersDto);
+      const repoNames &#x3D; repos.data.map((repo) &#x3D;&gt; repo.full_name.toLowerCase());
+
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames,
+      });
+    }
+
+    /* apply user provided repo name filters */
+    if (pageOptionsDto.repos) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames: pageOptionsDto.repos.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (pageOptionsDto.repoIds) {
+      cteBuilder.andWhere(&#x60;&quot;pull_request_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;, {
+        repoIds: pageOptionsDto.repoIds.split(&quot;,&quot;),
+      });
+    }
+
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(
+        &#x60;
+        pr_author_login AS author_login,
+        pr_author_id AS user_id,
+        event_time AS updated_at
+      &#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const cteCounter &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&#x60;COUNT(*) as count&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;);
+
+    const cteCounterResult &#x3D; await cteCounter.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${cteCounterResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    const entities &#x3D; await queryBuilder.getRawMany&lt;DbPullRequestContributor&gt;();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAuthorsWithFilters(
+    pageOptionsDto: PullRequestContributorInsightsDto,
+    contribType &#x3D; &quot;all&quot;
+  ): Promise&lt;PageDto&lt;DbPullRequestContributor&gt;&gt; {
+    const startDate &#x3D; GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const range &#x3D; pageOptionsDto.range!;
+    const order &#x3D; pageOptionsDto.orderDirection!;
+    const repos &#x3D; pageOptionsDto.repos.toLowerCase();
+
+    /*
+     * partitions by pr_author_login only and orders by time to get the latest PRs
+     * for the given subset of prs for a repo
+     */
+    const cteBuilder &#x3D; this.pullRequestGithubEventsRepository
+      .createQueryBuilder(&quot;pull_request_github_events&quot;)
+      .select(
+        &#x60;
+        pull_request_github_events.pr_author_login,
+        pull_request_github_events.pr_author_id,
+        pull_request_github_events.event_time&#x60;
+      )
+      .addSelect(
+        &#x60;ROW_NUMBER() OVER (PARTITION BY pull_request_github_events.pr_author_login ORDER BY pull_request_github_events.event_time ${order}) AS row_num&#x60;
+      )
+      .orderBy(&quot;event_time&quot;, order);
+
+    switch (contribType) {
+      case &quot;active&quot;:
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+          .andWhere(
+            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
+          );
+
+        this.applyActiveContributorsFilter(cteBuilder, repos, startDate, range);
+        break;
+
+      case &quot;new&quot;:
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+          .andWhere(
+            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
+          );
+
+        this.applyNewContributorsFilter(cteBuilder, repos, startDate, range);
+        break;
+
+      case &quot;alumni&quot;: {
+        /* capture pr authors in previous range window */
+        cteBuilder
+          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+          .andWhere(
+            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range + range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
+          );
+
+        this.applyAlumniContributorsFilter(cteBuilder, repos, startDate, range);
+        break;
+      }
+
+      default:
+        /* capture pr authors in current range window */
+        cteBuilder
+          .where(&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;)
+          .andWhere(
+            &#x60;&#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_github_events&quot;.&quot;event_time&quot;&#x60;
+          );
+        break;
+    }
+
+    /* apply user provided repo name filters */
+    if (pageOptionsDto.repos) {
+      cteBuilder.andWhere(&#x60;LOWER(&quot;pull_request_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;, {
+        repoNames: pageOptionsDto.repos.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    const queryBuilder &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(
+        &#x60;
+        pr_author_login AS author_login,
+        pr_author_id AS user_id,
+        event_time AS updated_at
+      &#x60;
+      )
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
+
+    const cteCounter &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(cteBuilder, &quot;CTE&quot;)
+      .setParameters(cteBuilder.getParameters())
+      .select(&#x60;COUNT(*) as count&#x60;)
+      .from(&quot;CTE&quot;, &quot;CTE&quot;)
+      .where(&quot;row_num &#x3D; 1&quot;);
+
+    const cteCounterResult &#x3D; await cteCounter.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${cteCounterResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    const entities &#x3D; await queryBuilder.getRawMany&lt;DbPullRequestContributor&gt;();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  applyActiveContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    repos &#x3D; &quot;&quot;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+          FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
+        )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; current_month_prs.pr_author_login&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${
+          range + range
+        } days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+        )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; current_month_prs.pr_author_login&#x60;
+      )
+      .andWhere(&#x60;&quot;previous_month_prs&quot;.&quot;pr_author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;pr_author_login&quot; IS NOT NULL&#x60;);
+  }
+
+  applyNewContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    repos &#x3D; &quot;&quot;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+          FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
+        )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; current_month_prs.pr_author_login&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${
+          range + range
+        } days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+        )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; previous_month_prs.pr_author_login&#x60;
+      )
+      .andWhere(&#x60;&quot;previous_month_prs&quot;.&quot;pr_author_login&quot; IS NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;pr_author_login&quot; IS NOT NULL&#x60;);
+  }
+
+  applyAlumniContributorsFilter(
+    queryBuilder: SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;,
+    repos &#x3D; &quot;&quot;,
+    startDate: string,
+    range &#x3D; 30
+  ) {
+    queryBuilder
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+          FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP
+        )&#x60;,
+        &quot;current_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; current_month_prs.pr_author_login&#x60;
+      )
+      .leftJoin(
+        &#x60;(
+          SELECT DISTINCT LOWER(&quot;pr_author_login&quot;) pr_author_login
+            FROM &quot;pull_request_github_events&quot;
+            WHERE LOWER(repo_name) IN (${repos
+              .toLowerCase()
+              .split(&quot;,&quot;)
+              .map((repo) &#x3D;&gt; &#x60;&#x27;${repo}&#x27;&#x60;)
+              .join(&quot;, &quot;)})
+              AND &quot;pull_request_github_events&quot;.&quot;event_time&quot; BETWEEN &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${
+          range + range
+        } days&#x27;
+              AND &#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27;
+        )&#x60;,
+        &quot;previous_month_prs&quot;,
+        &#x60;pull_request_github_events.pr_author_login &#x3D; previous_month_prs.pr_author_login&#x60;
+      )
+      .andWhere(&#x60;&quot;previous_month_prs&quot;.&quot;pr_author_login&quot; IS NOT NULL&#x60;)
+      .andWhere(&#x60;&quot;current_month_prs&quot;.&quot;pr_author_login&quot; IS NULL&#x60;);
   }
 }
 </code></pre>

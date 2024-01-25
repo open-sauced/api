@@ -451,7 +451,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { FilterListContributorsDto } from &quot;../user-lists/dtos/filter-contributors.dto&quot;;
@@ -638,8 +638,13 @@ export class PullRequestReviewGithubEventsService {
   async genPrReviewHistogram(
     options: PullRequestReviewHistogramDto
   ): Promise&lt;DbPullRequestReviewGitHubEventsHistogram[]&gt; {
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    }
+
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
+    const repo &#x3D; options.repo!;
 
     const queryBuilder &#x3D; this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 
@@ -647,7 +652,7 @@ export class PullRequestReviewGithubEventsService {
       .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
       .addSelect(&quot;count(*)&quot;, &quot;prs_count&quot;)
       .from(&quot;pull_request_review_github_events&quot;, &quot;pull_request_review_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: options.repo.toLowerCase() })
+      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: repo.toLowerCase() })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
