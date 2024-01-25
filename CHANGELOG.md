@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.4.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.4.0) (2024-01-25)
+
+
+### 🍕 Features
+
+* add endpoint to fetch minimal insight and repositories ([#495](https://github.com/open-sauced/api.opensauced.pizza/issues/495)) ([851d0df](https://github.com/open-sauced/api.opensauced.pizza/commit/851d0dfd55d4abf5e1952e65943c9ee57552aeea))
+* Workspace creation has "repos" payload ([#512](https://github.com/open-sauced/api.opensauced.pizza/issues/512)) ([a68a7da](https://github.com/open-sauced/api.opensauced.pizza/commit/a68a7da072a2579c0438ea28b7afe7be30422aeb))
+
+
+### 🐛 Bug Fixes
+
+* Inner join instead of left join select for getting all workspaces ([#494](https://github.com/open-sauced/api.opensauced.pizza/issues/494)) ([92bc57f](https://github.com/open-sauced/api.opensauced.pizza/commit/92bc57fd62446562ba646854aa79168fdd1798f1))
+* Remove misplaced API injection ([#513](https://github.com/open-sauced/api.opensauced.pizza/issues/513)) ([a0c57b8](https://github.com/open-sauced/api.opensauced.pizza/commit/a0c57b8de553980fa59d55ad2df1f4626ac6f184))
+
 ## [2.4.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2024-01-25)
 
 
