@@ -231,8 +231,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/workspace/workspace.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/workspace/workspace.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -270,8 +270,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/workspace/workspace.service.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/workspace/workspace.service.ts:113</a></div>
                 </td>
             </tr>
 
@@ -353,8 +353,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="199"
-                            class="link-to-prism">src/workspace/workspace.service.ts:199</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/workspace/workspace.service.ts:202</a></div>
                 </td>
             </tr>
 
@@ -436,8 +436,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/workspace/workspace.service.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/workspace/workspace.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -519,8 +519,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/workspace/workspace.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/workspace/workspace.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -590,8 +590,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="76"
-                            class="link-to-prism">src/workspace/workspace.service.ts:76</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/workspace/workspace.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -673,8 +673,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/workspace/workspace.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/workspace/workspace.service.ts:49</a></div>
                 </td>
             </tr>
 
@@ -756,8 +756,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/workspace/workspace.service.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/workspace/workspace.service.ts:177</a></div>
                 </td>
             </tr>
 
@@ -853,7 +853,6 @@ import { DbWorkspaceRepo } from &quot;./entities/workspace-repos.entity&quot;;
 @Injectable()
 export class WorkspaceService {
   constructor(
-    @InjectRepository(DbWorkspaceMember, &quot;ApiConnection&quot;)
     @InjectRepository(DbWorkspace, &quot;ApiConnection&quot;)
     private workspaceRepository: Repository&lt;DbWorkspace&gt;,
     @InjectRepository(DbWorkspaceRepo, &quot;ApiConnection&quot;)
@@ -934,9 +933,13 @@ export class WorkspaceService {
   async findAllByUserId(pageOptionsDto: PageOptionsDto, userId: number): Promise&lt;PageDto&lt;DbWorkspace&gt;&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.innerJoinAndSelect(&quot;workspaces.members&quot;, &quot;workspace_members&quot;, &quot;workspace_members.user_id &#x3D; :userId&quot;, {
-      userId,
-    });
+    queryBuilder.innerJoinAndSelect(&quot;workspaces.members&quot;, &quot;workspace_members&quot;).where(
+      &#x60;
+      &quot;workspaces&quot;.&quot;id&quot; IN (
+        SELECT &quot;workspace_id&quot; FROM &quot;workspace_members&quot; WHERE &quot;user_id&quot; &#x3D; :userId
+      )&#x60;,
+      { userId }
+    );
 
     return this.pagerService.applyPagination&lt;DbWorkspace&gt;({
       pageOptionsDto,
