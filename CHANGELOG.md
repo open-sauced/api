@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.4.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.2...v2.4.0-beta.3) (2024-01-25)
+
+
+### 🐛 Bug Fixes
+
+* Remove misplaced API injection ([#513](https://github.com/open-sauced/api.opensauced.pizza/issues/513)) ([a0c57b8](https://github.com/open-sauced/api.opensauced.pizza/commit/a0c57b8de553980fa59d55ad2df1f4626ac6f184))
+
 ## [2.4.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0-beta.1...v2.4.0-beta.2) (2024-01-24)
 
 
