@@ -28,7 +28,7 @@ export class InsightsService {
   }
 
   processPizza(item: DbInsight) {
-    item.repos.forEach(async (url) => {
+    item.repos?.forEach(async (url) => {
       const bakeRepoInfo: BakeRepoDto = {
         url: `https://github.com/${url.full_name}`,
         wait: false,
@@ -44,14 +44,15 @@ export class InsightsService {
     });
   }
 
-  async findOneById(id: number): Promise<DbInsight> {
+  async findOneById(id: number, includeAll = true): Promise<DbInsight> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder
-      .leftJoin("insight_members", "insight_members")
-      .where("insights.id = :id", { id })
-      .leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`)
-      .leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`);
+    queryBuilder.leftJoin("insight_members", "insight_members").where("insights.id = :id", { id });
+
+    if (includeAll) {
+      queryBuilder.leftJoinAndSelect(`insights.repos`, `insight_repos`, `insights.id=insight_repos.insight_id`);
+      queryBuilder.leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`);
+    }
 
     const item: DbInsight | null = await queryBuilder.getOne();
 

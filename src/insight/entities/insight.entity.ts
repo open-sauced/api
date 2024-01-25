@@ -113,5 +113,5 @@ export class DbInsight extends BaseEntity {
 
   @ApiHideProperty()
   @OneToMany(() => DbInsightRepo, (insightRepo) => insightRepo.insight)
-  public repos: DbInsightRepo[];
+  public repos?: DbInsightRepo[];
 }
