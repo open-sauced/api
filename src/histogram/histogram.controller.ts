@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Version } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { DbIssueGitHubEventsHistogram } from "../timescale/entities/issue_github_events_histogram";
@@ -36,7 +36,6 @@ export class HistogramController {
     private readonly watchGitHubEventsService: WatchGithubEventsService
   ) {}
 
-  @Version("2")
   @Get("/stars")
   @ApiOperation({
     operationId: "starsHistogram",
@@ -47,7 +46,6 @@ export class HistogramController {
     return this.watchGitHubEventsService.genStarsHistogram(options);
   }
 
-  @Version("2")
   @Get("/pushes")
   @ApiOperation({
     operationId: "pushesHistogram",
@@ -58,7 +56,6 @@ export class HistogramController {
     return this.pushGitHubEventsService.genPushHistogram(options);
   }
 
-  @Version("2")
   @Get("/forks")
   @ApiOperation({
     operationId: "forksHistogram",
@@ -69,7 +66,6 @@ export class HistogramController {
     return this.forkGitHubEventsService.genForkHistogram(options);
   }
 
-  @Version("2")
   @Get("/issue-comments")
   @ApiOperation({
     operationId: "issueCommentsHistogram",
@@ -82,7 +78,6 @@ export class HistogramController {
     return this.issueCommentGitHubEventsService.genIssueCommentHistogram(options);
   }
 
-  @Version("2")
   @Get("/issues")
   @ApiOperation({
     operationId: "issuesHistogram",
@@ -93,7 +88,6 @@ export class HistogramController {
     return this.issueGitHubEventsService.genIssueHistogram(options);
   }
 
-  @Version("2")
   @Get("/pull-requests")
   @ApiOperation({
     operationId: "prsHistogram",
@@ -104,7 +98,6 @@ export class HistogramController {
     return this.pullRequestGitHubEventsService.genPrHistogram(options);
   }
 
-  @Version("2")
   @Get("/pull-request-reviews")
   @ApiOperation({
     operationId: "prReviewsHistogram",

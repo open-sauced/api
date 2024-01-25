@@ -1,16 +1,16 @@
 import { Controller, Get, Query } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
+import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
-import { PullRequestService } from "../pull-requests/pull-request.service";
 import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
-import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
+import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 
 @Controller("contributors/insights")
 @ApiTags("Contributors service")
 export class ContributorInsightsController {
-  constructor(private readonly pullRequestService: PullRequestService) {}
+  constructor(private readonly pullRequestGithubEventsService: PullRequestGithubEventsService) {}
 
   @Get("/new")
   @ApiOperation({
@@ -22,7 +22,7 @@ export class ContributorInsightsController {
   async newPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
-    return this.pullRequestService.findNewContributorsInTimeRange(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, "new");
   }
 
   @Get("/recent")
@@ -35,10 +35,10 @@ export class ContributorInsightsController {
   async findAllRecentPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
-    return this.pullRequestService.findAllRecentContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto);
   }
 
-  @Get("/churn")
+  @Get("/alumni")
   @ApiOperation({
     operationId: "findAllChurnPullRequestContributors",
     summary: "Gets all recent churned contributors for the last 30 days based on repo IDs",
@@ -48,7 +48,7 @@ export class ContributorInsightsController {
   async findAllChurnPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
-    return this.pullRequestService.findAllChurnContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, "alumni");
   }
 
   @Get("/repeat")
@@ -61,6 +61,6 @@ export class ContributorInsightsController {
   async findAllRepeatPullRequestContributors(
     @Query() pageOptionsDto: PullRequestContributorInsightsDto
   ): Promise<PageDto<DbPullRequestContributor>> {
-    return this.pullRequestService.findAllRepeatContributors(pageOptionsDto);
+    return this.pullRequestGithubEventsService.findAuthorsWithFilters(pageOptionsDto, "active");
   }
 }

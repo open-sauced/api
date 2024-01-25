@@ -1,8 +1,7 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
 import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
-import { ConfigService } from "@nestjs/config";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
@@ -10,6 +9,7 @@ import { InsightFilterFieldsEnum } from "../insight/dtos/insight-options.dto";
 import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
+import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
@@ -20,7 +20,8 @@ export class RepoService {
     @InjectRepository(DbRepo, "ApiConnection")
     private repoRepository: Repository<DbRepo>,
     private filterService: RepoFilterService,
-    private configService: ConfigService
+    @Inject(forwardRef(() => PullRequestGithubEventsService))
+    private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 
   subQueryCount<T extends ObjectLiteral>(
@@ -41,20 +42,10 @@ export class RepoService {
   baseQueryBuilder() {
     const builder = this.repoRepository
       .createQueryBuilder("repo")
-
-      /*
-       * .select(['repo.id'])
-       * .leftJoinAndSelect("repo.user", "user")
-       * .leftJoinAndSelect(DbRepoToUserStars, "stars")
-       * .leftJoinAndMapMany("repo.contributions", DbContribution, "contributions", "contributions.repo_id = repo.id")
-       */
-
-      .addSelect((qb) => this.subQueryCount(qb, "DbContribution", "contributions"), "contributionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserVotes", "votes"), "votesCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserSubmissions", "submissions"), "submissionsCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserStargazers", "stargazers"), "stargazersCount")
       .addSelect((qb) => this.subQueryCount(qb, "DbRepoToUserStars", "stars"), "starsCount")
-      .loadRelationCountAndMap("repo.contributionsCount", "repo.contributions")
       .loadRelationCountAndMap("repo.votesCount", "repo.repoToUserVotes")
       .loadRelationCountAndMap("repo.submissionsCount", "repo.repoToUserSubmissions")
       .loadRelationCountAndMap("repo.stargazersCount", "repo.repoToUserStargazers")
@@ -63,223 +54,8 @@ export class RepoService {
     return builder;
   }
 
-  private baseFilterQueryBuilder(startDate = "NOW()", range = 30) {
-    return this.repoRepository
-      .createQueryBuilder("repos")
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("open_pull_requests"."id"), 0)
-          FROM "pull_requests" "open_pull_requests"
-          WHERE
-            LOWER("open_pull_requests"."state") = 'open'
-            AND "open_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "open_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
-        )::INTEGER`,
-        "repos_open_prs_count"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("closed_pull_requests"."id"), 0)
-          FROM "pull_requests" "closed_pull_requests"
-          WHERE
-            LOWER("closed_pull_requests"."state") = 'closed'
-            AND "closed_pull_requests"."merged" = false
-            AND "closed_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "closed_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_closed_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("merged_pull_requests"."id"), 0)
-          FROM "pull_requests" "merged_pull_requests"
-          WHERE
-            (LOWER("merged_pull_requests"."state") = 'merged'
-            OR "merged_pull_requests"."merged" = true)
-            AND "merged_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "merged_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_merged_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("draft_pull_requests"."id"), 0)
-          FROM "pull_requests" "draft_pull_requests"
-          WHERE
-            "draft_pull_requests"."draft" = true
-            AND "draft_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "draft_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_draft_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("spam_pull_requests"."id"), 0)
-          FROM "pull_requests" "spam_pull_requests"
-          WHERE
-            'spam' = ANY("spam_pull_requests"."label_names")
-            AND "spam_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "spam_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_spam_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(AVG("pull_requests_velocity"."closed_at"::DATE-"pull_requests_velocity"."created_at"::DATE), 0)
-          FROM "pull_requests" "pull_requests_velocity"
-          WHERE
-            "pull_requests_velocity"."repo_id" = "repos"."id"
-            AND "pull_requests_velocity"."closed_at" > "pull_requests_velocity"."created_at"
-            AND '${startDate}'::TIMESTAMP >= "pull_requests_velocity"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
-        )::INTEGER`,
-        `repos_pr_velocity_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("active_pull_requests"."id"), 0)
-          FROM "pull_requests" "active_pull_requests"
-          WHERE
-            "active_pull_requests"."repo_id" = "repos"."id"
-            AND '${startDate}'::TIMESTAMP >= "active_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
-            AND "active_pull_requests".state != 'closed'
-        )::INTEGER`,
-        `repo_active_prs_count`
-      );
-  }
-
-  private hacktoberfestfilterquerybuilder(range = 30) {
-    const hacktoberfestYear: string = this.configService.get("hacktoberfest.year")!;
-
-    return this.repoRepository
-      .createQueryBuilder("repos")
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("open_pull_requests"."id"), 0)
-          FROM "pull_requests" "open_pull_requests"
-          WHERE
-            LOWER("open_pull_requests"."state") = 'open'
-            AND "open_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "open_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "open_pull_requests"."updated_at"
-        )::INTEGER`,
-        "repos_open_prs_count"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("closed_pull_requests"."id"), 0)
-          FROM "pull_requests" "closed_pull_requests"
-          WHERE
-            LOWER("closed_pull_requests"."state") = 'closed'
-            AND "closed_pull_requests"."merged" = false
-            AND "closed_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "closed_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "closed_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_closed_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("merged_pull_requests"."id"), 0)
-          FROM "pull_requests" "merged_pull_requests"
-          WHERE
-            (LOWER("merged_pull_requests"."state") = 'merged'
-            OR "merged_pull_requests"."merged" = true)
-            AND "merged_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "merged_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "merged_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_merged_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("draft_pull_requests"."id"), 0)
-          FROM "pull_requests" "draft_pull_requests"
-          WHERE
-            "draft_pull_requests"."draft" = true
-            AND "draft_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "draft_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "draft_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_draft_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("spam_pull_requests"."id"), 0)
-          FROM "pull_requests" "spam_pull_requests"
-          WHERE
-            'spam' = ANY("spam_pull_requests"."label_names")
-            AND "spam_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "spam_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
-        )::INTEGER`,
-        `repos_spam_prs_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(AVG("pull_requests_velocity"."closed_at"::DATE-"pull_requests_velocity"."created_at"::DATE), 0)
-          FROM "pull_requests" "pull_requests_velocity"
-          WHERE
-            "pull_requests_velocity"."repo_id" = "repos"."id"
-            AND "pull_requests_velocity"."closed_at" > "pull_requests_velocity"."created_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "pull_requests_velocity"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "pull_requests_velocity"."updated_at"
-        )::INTEGER`,
-        `repos_pr_velocity_count`
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(COUNT("active_pull_requests"."id"), 0)
-          FROM "pull_requests" "active_pull_requests"
-          WHERE
-            "active_pull_requests"."repo_id" = "repos"."id"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day' >= "active_pull_requests"."updated_at"
-            AND to_date('${hacktoberfestYear}', 'YYYY')
-                + INTERVAL '10 months'
-                - INTERVAL '1 day'
-                - INTERVAL '${range} days' <= "active_pull_requests"."updated_at"
-            AND "active_pull_requests".state != 'closed'
-        )::INTEGER`,
-        `repo_active_prs_count`
-      );
+  private baseFilterQueryBuilder() {
+    return this.repoRepository.createQueryBuilder("repos");
   }
 
   async findOneById(id: number): Promise<DbRepo> {
@@ -347,18 +123,10 @@ export class RepoService {
   async findAllWithFilters(pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
     const orderField = pageOptionsDto.orderBy ?? "stars";
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
+    const prevDaysStartDate = pageOptionsDto.prev_days_start_date!;
     const range = pageOptionsDto.range!;
 
-    let queryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        queryBuilder = this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        queryBuilder = this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
+    const queryBuilder = this.baseFilterQueryBuilder();
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
@@ -373,18 +141,7 @@ export class RepoService {
       queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
-    let countQueryBuilder;
-
-    switch (pageOptionsDto.topic) {
-      case "hacktoberfest":
-        countQueryBuilder = this.hacktoberfestfilterquerybuilder(range);
-        break;
-      default:
-        countQueryBuilder = this.baseFilterQueryBuilder(startDate, range);
-        break;
-    }
-
-    countQueryBuilder.select("repos.id", "repos_id");
+    const countQueryBuilder = this.baseFilterQueryBuilder().select("repos.id", "repos_id");
 
     const countFilters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
@@ -412,7 +169,29 @@ export class RepoService {
     const entities = await queryBuilder.getMany();
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
-    return new PageDto(entities, pageMetaDto);
+    // get PR stats for each repo found through filtering
+    const promises = entities.map(async (entity) => {
+      const prStats = await this.pullRequestGithubEventsService.findPrStatsByRepo(
+        entity.full_name,
+        range,
+        prevDaysStartDate
+      );
+
+      return {
+        ...entity,
+        pr_active_count: prStats.active_prs,
+        open_prs_count: prStats.open_prs,
+        merged_prs_count: prStats.accepted_prs,
+        spam_prs_count: prStats.spam_prs,
+        draft_prs_count: prStats.draft_prs,
+        closed_prs_count: prStats.closed_prs,
+        pr_velocity_count: prStats.pr_velocity,
+      } as DbRepo;
+    });
+
+    const updatedEntities = await Promise.all(promises);
+
+    return new PageDto(updatedEntities, pageMetaDto);
   }
 
   async findRecommendations(interests: string[]): Promise<Record<string, DbRepo[]>> {

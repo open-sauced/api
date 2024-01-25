@@ -118,6 +118,7 @@
 
 ### 🍕 Features
 
+* Remove hacktoberfest filtering and all references to hacktoberfest ([#481](https://github.com/open-sauced/api.opensauced.pizza/issues/481)) ([25c9fe0](https://github.com/open-sauced/api.opensauced.pizza/commit/25c9fe0d333c0556c45587c92806798fd991c4a0))
 * Workspace contributors ([#466](https://github.com/open-sauced/api.opensauced.pizza/issues/466)) ([3572882](https://github.com/open-sauced/api.opensauced.pizza/commit/35728829971a331e5eb669a9c59f75da8228bbec))
 * Workspace member management ([#460](https://github.com/open-sauced/api.opensauced.pizza/issues/460)) ([6084564](https://github.com/open-sauced/api.opensauced.pizza/commit/60845648f01125e042c08964db29f47f32161b97))
 * Workspace orgs ([#462](https://github.com/open-sauced/api.opensauced.pizza/issues/462)) ([43b1745](https://github.com/open-sauced/api.opensauced.pizza/commit/43b174546be1cea1e87e239953b64d45a95e6102))

@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { DbRepo } from "../repo/entities/repo.entity";
 import { DbUserList } from "../user-lists/entities/user-list.entity";
@@ -24,7 +24,7 @@ import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_his
 
 @Module({
   imports: [
-    RepoModule,
+    forwardRef(() => RepoModule),
     UserListModule,
     TypeOrmModule.forFeature(
       [
