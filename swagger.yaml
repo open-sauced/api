@@ -1,6 +1,6 @@
 openapi: 3.0.0
 paths:
-  /v1/auth/session:
+  /v2/auth/session:
     get:
       operationId: checkAuthSession
       summary: Get authenticated session information
@@ -17,7 +17,7 @@ paths:
         - Authentication service
       security:
         - bearer: []
-  /v1/auth/onboarding:
+  /v2/auth/onboarding:
     post:
       operationId: postOnboarding
       summary: Updates onboarding information for user
@@ -42,7 +42,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/waitlist:
+  /v2/auth/waitlist:
     post:
       operationId: postWaitlist
       summary: Updates waitlist information for user
@@ -61,7 +61,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/checkout/session:
+  /v2/auth/checkout/session:
     post:
       operationId: postCreateCheckoutSession
       summary: Creates a new checkout session for the user
@@ -80,7 +80,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/profile:
+  /v2/auth/profile:
     patch:
       operationId: updateProfileForUser
       summary: Updates the profile for the authenticated user
@@ -119,7 +119,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/profile/interests:
+  /v2/auth/profile/interests:
     patch:
       operationId: updateInterestsForUserProfile
       summary: Updates the interests for the authenticated user profile
@@ -142,7 +142,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/profile/email:
+  /v2/auth/profile/email:
     patch:
       operationId: updateEmailPreferencesForUserProfile
       summary: Updates the email preferences for the authenticated user profile
@@ -165,7 +165,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  /v1/auth/profile/coupon:
+  /v2/auth/profile/coupon:
     patch:
       operationId: applyCouponForUser
       summary: Applies a coupon for the authenticated user
@@ -188,7 +188,7 @@ paths:
       tags: *a1
       security:
         - bearer: []
-  "/v1/users/{username}":
+  "/v2/users/{username}":
     get:
       operationId: findOneUserByUserame
       summary: Finds a user by :username
@@ -210,9 +210,9 @@ paths:
       tags:
         &a2
         - User service
-  "/v1/users/{username}/prs":
+  "/v2/users/{username}/prs":
     get:
-      operationId: findContributorPullRequests
+      operationId: findContributorPullRequestGitHubEvents
       summary: Finds pull requests by :username
       parameters:
         - name: username
@@ -254,11 +254,6 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: rangeType
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
       responses:
         "200":
           description: Successfully received model list
@@ -271,11 +266,11 @@ paths:
                       data:
                         type: array
                         items:
-                          $ref: "#/components/schemas/DbPullRequest"
+                          $ref: "#/components/schemas/DbPullRequestGitHubEvents"
         "404":
           description: User not found
       tags: *a2
-  "/v1/users/{username}/highlights":
+  "/v2/users/{username}/highlights":
     get:
       operationId: findAllHighlightsByUsername
       summary: Listing all Highlights for a user and paginate them
@@ -335,7 +330,7 @@ paths:
         "404":
           description: Highlights not found
       tags: *a2
-  "/v1/users/{username}/top-repos":
+  "/v2/users/{username}/top-repos":
     get:
       operationId: findAllTopReposByUsername
       summary: Listing all Top Repos for a user and paginate them
@@ -395,7 +390,7 @@ paths:
         "404":
           description: Top repos not found
       tags: *a2
-  "/v1/users/{username}/organizations":
+  "/v2/users/{username}/organizations":
     get:
       operationId: findAllOrgsByUsername
       summary: Listing public orgs for a user and paginate them
@@ -455,7 +450,7 @@ paths:
         "404":
           description: Top repos not found
       tags: *a2
-  /v1/users/top:
+  /v2/users/top:
     get:
       operationId: getTop10Highlights
       summary: List top users
@@ -490,7 +485,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/DbTopUser"
       tags: *a2
-  /v1/users/search:
+  /v2/users/search:
     get:
       operationId: getUsersByFilter
       summary: Search users
@@ -527,7 +522,7 @@ paths:
         "400":
           description: Username is required
       tags: *a2
-  /v1/user/highlights:
+  /v2/user/highlights:
     post:
       operationId: addHighlightForUser
       summary: Adds a new highlight for the authenticated user
@@ -560,7 +555,7 @@ paths:
         - User Highlights service
       security:
         - bearer: []
-  "/v1/user/highlights/{id}":
+  "/v2/user/highlights/{id}":
     get:
       operationId: getUserHighlight
       summary: Retrieves a highlight
@@ -630,7 +625,7 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  "/v1/user/highlights/{id}/reactions":
+  "/v2/user/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightUserReactions
       summary: Retrieves a highlight reactions for the authenticated user
@@ -654,7 +649,7 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  "/v1/user/highlights/{id}/reactions/{emojiId}":
+  "/v2/user/highlights/{id}/reactions/{emojiId}":
     post:
       operationId: addHighlightReactionForUser
       summary: Adds a new highlight reaction for the authenticated user
@@ -711,7 +706,7 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  /v1/user/highlights/following:
+  /v2/user/highlights/following:
     get:
       operationId: getFollowingHighlights
       summary: Fetches highlights for users the authenticated user follows
@@ -757,6 +752,13 @@ paths:
           example: open-sauced/insights
           schema:
             type: string
+        - name: contributor
+          required: false
+          in: query
+          description: Highlight User Filter
+          example: RitaDee
+          schema:
+            type: string
       responses:
         "200":
           description: ""
@@ -767,7 +769,7 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  /v1/user/highlights/following/repos:
+  /v2/user/highlights/following/repos:
     get:
       operationId: getFollowingHighlightRepos
       summary: Fetches highlight repos for users the authenticated user follows
@@ -813,6 +815,13 @@ paths:
           example: open-sauced/insights
           schema:
             type: string
+        - name: contributor
+          required: false
+          in: query
+          description: Highlight User Filter
+          example: RitaDee
+          schema:
+            type: string
       responses:
         "200":
           description: ""
@@ -825,7 +834,7 @@ paths:
       tags: *a3
       security:
         - bearer: []
-  "/v1/users/{username}/follow":
+  "/v2/users/{username}/follow":
     get:
       operationId: getFollowStatusByUsername
       summary: Checks if the authenticated user follows the provided username
@@ -895,7 +904,7 @@ paths:
       tags: *a4
       security:
         - bearer: []
-  "/v1/users/{username}/follows":
+  "/v2/users/{username}/follows":
     put:
       operationId: followUsersByUsernames
       summary: Follows a number of users by username
@@ -916,7 +925,7 @@ paths:
       tags: *a4
       security:
         - bearer: []
-  /v1/user/notifications:
+  /v2/user/notifications:
     get:
       operationId: getUserNotifications
       summary: Retrieves notifications for the authenticated user
@@ -968,7 +977,7 @@ paths:
         - User service
       security:
         - bearer: []
-  /v1/user/collaborations:
+  /v2/user/collaborations:
     get:
       operationId: findAllUserCollaborations
       summary: Listing all collaborations for the authenticated user
@@ -1057,7 +1066,7 @@ paths:
       tags: *a5
       security:
         - bearer: []
-  "/v1/user/collaborations/{id}":
+  "/v2/user/collaborations/{id}":
     patch:
       operationId: updateUserCollaboration
       summary: Updates a user collaboration
@@ -1106,7 +1115,7 @@ paths:
       tags: *a5
       security:
         - bearer: []
-  /v1/user/endorsements/created:
+  /v2/user/endorsements/created:
     get:
       operationId: findAllUserCreatedEndorsements
       summary: Finds all endorsements created by the authenticated user and paginates
@@ -1164,7 +1173,7 @@ paths:
         - Endorsements service
       security:
         - bearer: []
-  /v1/user/endorsements/received:
+  /v2/user/endorsements/received:
     get:
       operationId: findAllUserReceivedEndorsements
       summary: Finds all endorsements received by the authenticated user and paginates
@@ -1220,7 +1229,7 @@ paths:
       tags: *a6
       security:
         - bearer: []
-  /v1/user/recommendations/repos:
+  /v2/user/recommendations/repos:
     get:
       operationId: findUserRepoRecommendations
       summary: Listing recommended repos for the authenticated user
@@ -1243,7 +1252,7 @@ paths:
         - User Recommendations service
       security:
         - bearer: []
-  /v1/user/recommendations/orgs:
+  /v2/user/recommendations/orgs:
     get:
       operationId: findUserOrgsRepoRecommendations
       summary: Listing recommended repos for the authenticated user based on their orgs
@@ -1298,7 +1307,7 @@ paths:
       tags: *a7
       security:
         - bearer: []
-  "/v1/users/{username}/following":
+  "/v2/users/{username}/following":
     get:
       operationId: getFollowingListByUsername
       summary: Get list of following users by the provided username
@@ -1321,65 +1330,10 @@ paths:
           description: User not found
       tags:
         - User service
-  /v1/prs/list:
+  /v2/prs/search:
     get:
-      operationId: listAllPullRequests
-      summary: Finds all pull requests and paginates them
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-        - name: prev_days_start_date
-          required: false
-          in: query
-          description: Number of days in the past to start range block
-          schema:
-            default: 0
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbPullRequest"
-      tags:
-        &a8
-        - Pull Requests service
-  /v1/prs/search:
-    get:
-      operationId: searchAllPullRequests
-      summary: Searches pull requests using filters and paginates them
+      operationId: searchAllPullRequestEvents
+      summary: Searches pull request events using filters and paginates them
       parameters:
         - name: page
           required: false
@@ -1459,6 +1413,13 @@ paths:
           example: uuid-v4
           schema:
             type: string
+        - name: distinctAuthors
+          required: false
+          in: query
+          example: "true"
+          schema:
+            default: "false"
+            type: string
       responses:
         "200":
           description: Successfully received model list
@@ -1471,12 +1432,93 @@ paths:
                       data:
                         type: array
                         items:
-                          $ref: "#/components/schemas/DbPullRequest"
-      tags: *a8
-  /v1/prs/insights:
+                          $ref: "#/components/schemas/DbPullRequestGitHubEvents"
+      tags:
+        - Pull Requests service
+  /v2/prs/description/generate:
+    post:
+      operationId: generatePRDescription
+      summary: Generates a PR description based on the provided information
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeneratePullRequestDescriptionDto"
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Invalid request
+      tags:
+        - Pull Requests service
+      security:
+        - bearer: []
+  /v2/prs/suggestion/generate:
+    post:
+      operationId: generateCodeRefactor
+      summary: Generates a refactor suggestion based on the provided code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateCodeRefactorSuggestionDto"
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Invalid request
+      tags:
+        - Pull Requests service
+      security:
+        - bearer: []
+  /v2/prs/test/generate:
+    post:
+      operationId: generateCodeTest
+      summary: Generates a test for the provided code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateCodeTestSuggestionDto"
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Invalid request
+      tags:
+        - Pull Requests service
+      security:
+        - bearer: []
+  /v2/prs/explanation/generate:
+    post:
+      operationId: generateCodeExplanation
+      summary: Generates an explanation for the provided code
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GenerateCodeExplanationDto"
+      responses:
+        "201":
+          description: ""
+        "400":
+          description: Invalid request
+      tags:
+        - Pull Requests service
+      security:
+        - bearer: []
+  /v2/prs/reviews/search:
     get:
-      operationId: getPullRequestInsights
-      summary: Find pull request insights over the last 2 months
+      operationId: searchAllPullRequestsReviews
+      summary: Searches pull requests reviews using filters and paginates them
       parameters:
         - name: page
           required: false
@@ -1512,6 +1554,11 @@ paths:
           schema:
             default: 0
             type: integer
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/PullRequestOrderFieldsEnum"
         - name: filter
           required: false
           in: query
@@ -1520,8 +1567,8 @@ paths:
         - name: topic
           required: false
           in: query
+          example: javascript
           schema:
-            default: ""
             type: string
         - name: repo
           required: false
@@ -1534,117 +1581,46 @@ paths:
           in: query
           schema:
             type: string
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/DbPRInsight"
-      tags: *a8
-  "/v1/prs/{id}/reviews":
-    get:
-      operationId: getPullRequestReviews
-      summary: Find all pull request reviews by pull request ID
-      parameters:
-        - name: id
-          required: true
-          in: path
+        - name: status
+          required: false
+          in: query
           schema:
+            $ref: "#/components/schemas/PullRequestStatusEnum"
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: listId
+          required: false
+          in: query
+          example: uuid-v4
+          schema:
+            type: string
+        - name: distinctAuthors
+          required: false
+          in: query
+          example: "true"
+          schema:
+            default: "false"
             type: string
       responses:
         "200":
-          description: ""
+          description: Successfully received model list
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/DbPullRequestReview"
-      tags: *a8
-  /v1/prs/description/generate:
-    post:
-      operationId: generatePRDescription
-      summary: Generates a PR description based on the provided information
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GeneratePullRequestDescriptionDto"
-      responses:
-        "201":
-          description: ""
-        "400":
-          description: Invalid request
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbPullRequestReviewGitHubEvents"
       tags:
-        - Pull Requests service
-      security:
-        - bearer: []
-  /v1/prs/suggestion/generate:
-    post:
-      operationId: generateCodeRefactor
-      summary: Generates a refactor suggestion based on the provided code
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GenerateCodeRefactorSuggestionDto"
-      responses:
-        "201":
-          description: ""
-        "400":
-          description: Invalid request
-      tags:
-        - Pull Requests service
-      security:
-        - bearer: []
-  /v1/prs/test/generate:
-    post:
-      operationId: generateCodeTest
-      summary: Generates a test for the provided code
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GenerateCodeTestSuggestionDto"
-      responses:
-        "201":
-          description: ""
-        "400":
-          description: Invalid request
-      tags:
-        - Pull Requests service
-      security:
-        - bearer: []
-  /v1/prs/explanation/generate:
-    post:
-      operationId: generateCodeExplanation
-      summary: Generates an explanation for the provided code
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GenerateCodeExplanationDto"
-      responses:
-        "201":
-          description: ""
-        "400":
-          description: Invalid request
-      tags:
-        - Pull Requests service
-      security:
-        - bearer: []
-  "/v1/repos/{id}":
+        - Pull Requests Reviews service
+  "/v2/repos/{id}":
     get:
       operationId: findOneById
       summary: Finds a repo by :id
@@ -1664,9 +1640,9 @@ paths:
         "404":
           description: Repository not found
       tags:
-        &a9
+        &a8
         - Repository service
-  "/v1/repos/{owner}/{repo}":
+  "/v2/repos/{owner}/{repo}":
     get:
       operationId: findOneByOwnerAndRepo
       summary: Finds a repo by :owner and :repo
@@ -1690,8 +1666,8 @@ paths:
                 $ref: "#/components/schemas/DbRepo"
         "404":
           description: Repository not found
-      tags: *a9
-  /v1/repos/list:
+      tags: *a8
+  /v2/repos/list:
     get:
       operationId: findAll
       summary: Finds all repos and paginates them
@@ -1748,8 +1724,8 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
-      tags: *a9
-  /v1/repos/search:
+      tags: *a8
+  /v2/repos/search:
     get:
       operationId: findAllReposWithFilters
       summary: Finds all repos using filters and paginates them
@@ -1827,8 +1803,777 @@ paths:
                         type: array
                         items:
                           $ref: "#/components/schemas/DbRepo"
+      tags: *a8
+  /v2/lists:
+    get:
+      operationId: getListsForUser
+      summary: Gets lists for the authenticated user
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user lists
+      tags:
+        &a9
+        - User Lists service
+      security:
+        - bearer: []
+    post:
+      operationId: addListForUser
+      summary: Adds a new list for the authenticated user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserListDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to add user list
       tags: *a9
-  /v1/health/service:
+      security:
+        - bearer: []
+  /v2/lists/featured:
+    get:
+      operationId: getFeaturedLists
+      summary: Gets public featured lists
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+      tags: *a9
+  "/v2/lists/{id}":
+    get:
+      operationId: getUserList
+      summary: Retrieves an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list
+      tags: *a9
+    patch:
+      operationId: updateListForUser
+      summary: Updates the list for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserListDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserList"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to update user list
+      tags: *a9
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteListForUser
+      summary: Deletes the list for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete user list
+      tags: *a9
+      security:
+        - bearer: []
+  /v2/lists/contributors:
+    get:
+      operationId: getContributors
+      summary: Retrieves paginated contributors
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: location
+          required: false
+          in: query
+          example:
+            - Denver, Colorado
+            - Germany
+          schema:
+            type: array
+            items:
+              type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: timezone
+          required: false
+          in: query
+          example:
+            - Mountain Standard Time
+            - UTC
+          schema:
+            type: array
+            items:
+              type: string
+        - name: pr_velocity
+          required: false
+          in: query
+          example: 2
+          description: Less than or equal to the average number of days to merge a PR over
+            the last 30 days
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUser"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributors
+      tags: *a9
+      security:
+        - bearer: []
+  "/v2/lists/{id}/contributors":
+    get:
+      operationId: getUserListContributors
+      summary: Retrieves contributors for an individual user list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: location
+          required: false
+          in: query
+          example:
+            - Denver, Colorado
+            - Germany
+          schema:
+            type: array
+            items:
+              type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: timezone
+          required: false
+          in: query
+          example:
+            - Mountain Standard Time
+            - UTC
+          schema:
+            type: array
+            items:
+              type: string
+        - name: pr_velocity
+          required: false
+          in: query
+          example: 2
+          description: Less than or equal to the average number of days to merge a PR over
+            the last 30 days
+          schema:
+            type: integer
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list contributors
+      tags: *a9
+    post:
+      operationId: postUserListContributors
+      summary: Add new contributors to an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CollaboratorsDto"
+      responses:
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbUserListContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to add to user list contributors
+      tags: *a9
+      security:
+        - bearer: []
+  "/v2/lists/{id}/contributors/{userListContributorId}":
+    delete:
+      operationId: deleteUserListContributor
+      summary: Delete contributor from an individual user list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: userListContributorId
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete user from user list contributors
+      tags: *a9
+      security:
+        - bearer: []
+  "/v2/lists/{id}/contributors/highlights":
+    get:
+      operationId: getUserListContributorHighlights
+      summary: Retrieves highlights for contributors for an individual user list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Highlight Repo Filter
+          example: open-sauced/insights
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          description: Highlight User Filter
+          example: RitaDee
+          schema:
+            type: string
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserHighlight"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list contributor highlights
+      tags: *a9
+  "/v2/lists/{id}/contributors/highlights/tagged-repos":
+    get:
+      operationId: getUserListContributorHighlightedRepos
+      summary: Retrieves highlighted repos for contributors for an individual user list
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserHighlightRepo"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user list contributor highlights
+      tags: *a9
+  /v2/lists/timezones:
+    get:
+      operationId: getTimezones
+      summary: Retrieves all users timezones
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbTimezone"
+        "404":
+          description: Unable to get timezones
+      tags: *a9
+  "/v2/lists/{id}/stats/most-active-contributors":
+    get:
+      operationId: getMostActiveContributorsV2
+      summary: Gets most active contributors for a given list
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsOrderEnum"
+      responses:
+        "200":
+          description: Successfully received model list
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbUserListContributorStat"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get list most active contributors
+      tags:
+        &a10
+        - User Lists service
+  "/v2/lists/{id}/stats/contributions-evolution-by-type":
+    get:
+      operationId: getContributionsByTimeFrame
+      summary: Gets contributions in a given timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributionStatTimeframe"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a10
+  "/v2/lists/{id}/stats/contributions-by-project":
+    get:
+      operationId: getContributionsByProject
+      summary: Gets contributions in a given timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributionsProjects"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions by project
+      tags: *a10
+  "/v2/lists/{id}/stats/top-project-contributions-by-contributor":
+    get:
+      operationId: getContributorContributionsByProject
+      summary: Gets top 20 contributor stats in a list by a given project
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: repo_name
+          required: true
+          in: query
+          description: Repo full name
+          example: open-sauced/api
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbUserListContributorStat"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a10
+  "/v2/lists/{id}/stats/contributions-evolution-by-contributor-type":
+    get:
+      operationId: getContributorsByTimeframe
+      summary: Gets contributions by category within timeframe
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: contributorType
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbContributorCategoryTimeframe"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get contributions
+      tags: *a10
+  /v2/health/service:
     get:
       operationId: healthStatusService
       summary: Check the health of Open Sauced service endpoints
@@ -1847,9 +2592,9 @@ paths:
                   info:
                     type: object
                     example:
-                      &a10
+                      &a11
                       database:
-                        &a11
+                        &a12
                         status: up
                     additionalProperties:
                       type: object
@@ -1872,7 +2617,7 @@ paths:
                     nullable: true
                   details:
                     type: object
-                    example: *a10
+                    example: *a11
                     additionalProperties:
                       type: object
                       properties:
@@ -1892,7 +2637,7 @@ paths:
                     example: error
                   info:
                     type: object
-                    example: *a10
+                    example: *a11
                     additionalProperties:
                       type: object
                       properties:
@@ -1905,7 +2650,7 @@ paths:
                     type: object
                     example:
                       redis:
-                        &a12
+                        &a13
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -1919,8 +2664,8 @@ paths:
                   details:
                     type: object
                     example:
-                      database: *a11
-                      redis: *a12
+                      database: *a12
+                      redis: *a13
                     additionalProperties:
                       type: object
                       properties:
@@ -1929,9 +2674,9 @@ paths:
                       additionalProperties:
                         type: string
       tags:
-        &a16
+        &a17
         - Health check service
-  /v1/health/web:
+  /v2/health/web:
     get:
       operationId: healthStatusWeb
       summary: Check the health of Open Sauced web endpoints
@@ -1950,9 +2695,9 @@ paths:
                   info:
                     type: object
                     example:
-                      &a13
+                      &a14
                       database:
-                        &a14
+                        &a15
                         status: up
                     additionalProperties:
                       type: object
@@ -1975,7 +2720,7 @@ paths:
                     nullable: true
                   details:
                     type: object
-                    example: *a13
+                    example: *a14
                     additionalProperties:
                       type: object
                       properties:
@@ -1995,7 +2740,7 @@ paths:
                     example: error
                   info:
                     type: object
-                    example: *a13
+                    example: *a14
                     additionalProperties:
                       type: object
                       properties:
@@ -2008,7 +2753,7 @@ paths:
                     type: object
                     example:
                       redis:
-                        &a15
+                        &a16
                         status: down
                         message: Could not connect
                     additionalProperties:
@@ -2022,8 +2767,8 @@ paths:
                   details:
                     type: object
                     example:
-                      database: *a14
-                      redis: *a15
+                      database: *a15
+                      redis: *a16
                     additionalProperties:
                       type: object
                       properties:
@@ -2031,8 +2776,8 @@ paths:
                           type: string
                       additionalProperties:
                         type: string
-      tags: *a16
-  /v1/repos/listUserVoted:
+      tags: *a17
+  /v2/repos/listUserVoted:
     get:
       operationId: findAllUserVoted
       summary: Finds all repos voted by authenticated user and paginates them
@@ -2090,12 +2835,12 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a17
+        &a18
         - Repository service guarded
         - Vote service
       security:
         - bearer: []
-  "/v1/repos/{repoId}/vote":
+  "/v2/repos/{repoId}/vote":
     get:
       operationId: findOneByRepoId
       summary: Finds a repo by :repoId and returns if authenticated user has voted for
@@ -2113,10 +2858,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/VotedRepoDto"
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
-  "/v1/repos/{id}/vote":
+  "/v2/repos/{id}/vote":
     put:
       operationId: voteOneById
       summary: Finds a repo by :id and adds a vote
@@ -2137,7 +2882,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already voted for this repo
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
     delete:
@@ -2160,10 +2905,10 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already removed your vote
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
-  "/v1/repos/{owner}/{repo}/vote":
+  "/v2/repos/{owner}/{repo}/vote":
     put:
       operationId: voteOneByOwnerAndRepo
       summary: Finds a repo by :owner and :repo and adds a vote
@@ -2189,7 +2934,7 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already voted for this repo
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
     delete:
@@ -2217,10 +2962,10 @@ paths:
           description: Repo or vote not found
         "409":
           description: You have already removed your vote
-      tags: *a17
+      tags: *a18
       security:
         - bearer: []
-  /v1/repos/listUserStarred:
+  /v2/repos/listUserStarred:
     get:
       operationId: findAllUserStarred
       summary: Finds all repos starred by authenticated user and paginates them
@@ -2278,12 +3023,12 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a18
+        &a19
         - Repository service guarded
         - Star service
       security:
         - bearer: []
-  "/v1/repos/{id}/star":
+  "/v2/repos/{id}/star":
     put:
       operationId: starOneById
       summary: Finds a repo by :id and adds a star
@@ -2304,7 +3049,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already starred this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
     delete:
@@ -2327,10 +3072,10 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already removed your star
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
-  "/v1/repos/{owner}/{repo}/star":
+  "/v2/repos/{owner}/{repo}/star":
     put:
       operationId: starOneByOwnerAndRepo
       summary: Finds a repo by :owner and :repo and adds a star
@@ -2356,7 +3101,7 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already starred this repo
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
     delete:
@@ -2384,10 +3129,10 @@ paths:
           description: Repo or star not found
         "409":
           description: You have already removed your star
-      tags: *a18
+      tags: *a19
       security:
         - bearer: []
-  /v1/repos/listUserStargazed:
+  /v2/repos/listUserStargazed:
     get:
       operationId: findAllUserStargazed
       summary: Finds all repos followed by authenticated user and paginates them
@@ -2445,12 +3190,12 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a19
+        &a20
         - Repository service guarded
         - Stargaze service
       security:
         - bearer: []
-  "/v1/repos/{id}/stargaze":
+  "/v2/repos/{id}/stargaze":
     put:
       operationId: stargazeOneById
       summary: Finds a repo by :id and follows
@@ -2471,7 +3216,7 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already followed this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
     delete:
@@ -2494,10 +3239,10 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already unfollowed this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
-  "/v1/repos/{owner}/{repo}/stargaze":
+  "/v2/repos/{owner}/{repo}/stargaze":
     put:
       operationId: stargazeOneByOwnerAndRepo
       summary: Finds a repo by :owner and :repo and follows
@@ -2523,7 +3268,7 @@ paths:
           description: Repo or follow not found
         "409":
           description: You have already followed this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
     delete:
@@ -2551,10 +3296,10 @@ paths:
           description: Repo or stargaze not found
         "409":
           description: You have already unfollowed this repo
-      tags: *a19
+      tags: *a20
       security:
         - bearer: []
-  /v1/repos/listUserSubmitted:
+  /v2/repos/listUserSubmitted:
     get:
       operationId: findAllUserSubmitted
       summary: Finds all repos submitted by authenticated user and paginates them
@@ -2612,12 +3357,12 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbRepo"
       tags:
-        &a20
+        &a21
         - Repository service guarded
         - Submit service
       security:
         - bearer: []
-  "/v1/repos/{id}/submit":
+  "/v2/repos/{id}/submit":
     put:
       operationId: submitOneById
       summary: Finds a repo by :id and adds a submission
@@ -2638,7 +3383,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already submitted this repo
-      tags: *a20
+      tags: *a21
       security:
         - bearer: []
     delete:
@@ -2661,10 +3406,10 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already removed your submission
-      tags: *a20
+      tags: *a21
       security:
         - bearer: []
-  "/v1/repos/{owner}/{repo}/submit":
+  "/v2/repos/{owner}/{repo}/submit":
     put:
       operationId: submitOneByOwnerAndRepo
       summary: Finds a repo by :owner and :repo and adds a submission
@@ -2690,7 +3435,7 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already submitted this repo
-      tags: *a20
+      tags: *a21
       security:
         - bearer: []
     delete:
@@ -2718,236 +3463,22 @@ paths:
           description: Repo or submission not found
         "409":
           description: You have already removed your submission
-      tags: *a20
+      tags: *a21
       security:
         - bearer: []
-  "/v1/repos/{id}/contributions":
-    get:
-      operationId: findAllByRepoId
-      summary: Find a repo by :id listing all contributions and paginating them
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: integer
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-        - name: prev_days_start_date
-          required: false
-          in: query
-          description: Number of days in the past to start range block
-          schema:
-            default: 0
-            type: integer
-        - name: orderBy
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/RepoOrderFieldsEnum"
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbContribution"
-        "404":
-          description: Repo not found
-      tags:
-        &a21
-        - Repository service
-        - Contribution service
-  "/v1/repos/{owner}/{repo}/contributions":
-    get:
-      operationId: findAllByOwnerAndRepo
-      summary: Finds a repo by :owner and :repo listing all contributions and
-        paginating them
-      parameters:
-        - name: owner
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: repo
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            default: 30
-            type: integer
-        - name: prev_days_start_date
-          required: false
-          in: query
-          description: Number of days in the past to start range block
-          schema:
-            default: 0
-            type: integer
-        - name: orderBy
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/RepoOrderFieldsEnum"
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbContribution"
-        "404":
-          description: Repo not found
-      tags: *a21
-  "/v1/repos/{owner}/{repo}/contributions/contributors":
-    get:
-      operationId: findAllContributorsByRepoId
-      summary: Finds a repo by :owner and :repo listing all contributions by their
-        user login
-      parameters:
-        - name: owner
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: repo
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: prev_days_start_date
-          required: false
-          in: query
-          description: Previous number of days to go back to start date range
-          schema:
-            type: integer
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/DbRepoLoginContributions"
-        "404":
-          description: Repo not found
-      tags: *a21
-  "/v1/repos/{owner}/{repo}/{login}/contributions":
-    get:
-      operationId: findAllByOwnerRepoAndContributorLogin
-      summary: Finds a repo by :owner and :repo listing all contributions for a given
-        :login and paginating them
-      parameters:
-        - name: owner
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: repo
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: login
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: prev_days_start_date
-          required: false
-          in: query
-          description: Previous number of days to go back to start date range
-          schema:
-            type: integer
-        - name: range
-          required: false
-          in: query
-          description: Range in days
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbRepoLoginContributions"
-        "404":
-          description: Repo not found
-      tags: *a21
-  "/v1/insights/{id}":
+  "/v2/insights/{id}":
     get:
       operationId: findInsightPageById
       summary: Finds a insight page by :id
       parameters:
+        - name: include
+          required: false
+          in: query
+          description: Include all data
+          example: all
+          schema:
+            default: all
+            type: string
         - name: id
           required: true
           in: path
@@ -2996,7 +3527,78 @@ paths:
       tags: *a22
       security:
         - bearer: []
-  /v1/user/insights:
+  "/v2/insights/{id}/repos":
+    get:
+      operationId: findInsightReposById
+      summary: Finds a insight page repositories by :id
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbInsightRepo"
+        "401":
+          description: Not Authorized to view this Insight
+        "404":
+          description: Insight page not found
+      tags: *a22
+  /v2/insights/featured:
+    get:
+      operationId: findFeaturedInsights
+      summary: Finds featured insights
+      parameters:
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbInsight"
+        "400":
+          description: Invalid request
+      tags: *a22
+  /v2/user/insights:
     get:
       operationId: findAllInsightsByUserId
       summary: Listing all insights for a user and paginate them
@@ -3085,7 +3687,7 @@ paths:
       tags: *a23
       security:
         - bearer: []
-  "/v1/user/insights/{id}":
+  "/v2/user/insights/{id}":
     patch:
       operationId: updateInsightForUser
       summary: Updates an insight page for the authenticated user
@@ -3117,7 +3719,7 @@ paths:
       tags: *a23
       security:
         - bearer: []
-  "/v1/user/insights/{id}/members":
+  "/v2/user/insights/{id}/members":
     get:
       operationId: findAllInsightMembers
       summary: Listing all members for an insight and paginate them
@@ -3216,7 +3818,7 @@ paths:
       tags: *a24
       security:
         - bearer: []
-  "/v1/user/insights/{id}/members/{memberId}":
+  "/v2/user/insights/{id}/members/{memberId}":
     patch:
       operationId: updateInsightMember
       summary: Updates an insight member information
@@ -3281,7 +3883,7 @@ paths:
       tags: *a24
       security:
         - bearer: []
-  /v1/bake:
+  /v2/bake:
     post:
       operationId: Bake a repository with the pizza oven microservice
       summary: postToPizzaOvenService
@@ -3302,7 +3904,7 @@ paths:
       tags:
         &a25
         - Pizza oven service
-  "/v1/bake/repos/{id}":
+  "/v2/bake/repos/{id}":
     get:
       operationId: findBakedRepoById
       summary: Finds a baked repo by :id
@@ -3322,7 +3924,7 @@ paths:
         "404":
           description: Baked repository not found
       tags: *a25
-  /v1/bake/repos/list:
+  /v2/bake/repos/list:
     get:
       operationId: listAllBakedRepos
       summary: Finds all baked repos and paginates them
@@ -3375,7 +3977,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbBakedRepo"
       tags: *a25
-  "/v1/bake/commit-authors/{id}":
+  "/v2/bake/commit-authors/{id}":
     get:
       operationId: findCommitAuthorById
       summary: Finds a commit author by :id
@@ -3395,7 +3997,7 @@ paths:
         "404":
           description: Commit author not found
       tags: *a25
-  /v1/bake/commit-authors/list:
+  /v2/bake/commit-authors/list:
     get:
       operationId: listAllCommitAuthors
       summary: Finds all commit authors and paginates them
@@ -3448,7 +4050,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbCommitAuthors"
       tags: *a25
-  "/v1/bake/commits/{id}":
+  "/v2/bake/commits/{id}":
     get:
       operationId: findCommitById
       summary: Finds a commit by :id
@@ -3468,7 +4070,7 @@ paths:
         "404":
           description: Commit not found
       tags: *a25
-  "/v1/bake/commits/list/repo/{id}":
+  "/v2/bake/commits/list/repo/{id}":
     get:
       operationId: listAllCommitsByBakedRepoId
       summary: Finds all commits by baked repo :id and paginates them
@@ -3526,7 +4128,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbCommits"
       tags: *a25
-  "/v1/bake/commits/list/commit-author/{id}":
+  "/v2/bake/commits/list/commit-author/{id}":
     get:
       operationId: listAllCommitsByCommitAuthorId
       summary: Finds all commits by commit author :id and paginates them
@@ -3584,7 +4186,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbCommits"
       tags: *a25
-  /v1/issues/summary/generate:
+  /v2/issues/summary/generate:
     post:
       operationId: generateIssueSummary
       summary: Generate a summary for an issue
@@ -3604,7 +4206,7 @@ paths:
         - Issue summary service
       security:
         - bearer: []
-  /v1/blogs/summary/generate:
+  /v2/blogs/summary/generate:
     post:
       operationId: generateBlogSummary
       summary: Generate a summary for a markdown supported blog
@@ -3624,7 +4226,7 @@ paths:
         - Blog summary service
       security:
         - bearer: []
-  /v1/stripe/webhooks:
+  /v2/stripe/webhooks:
     post:
       operationId: handleStripeWebhook
       parameters: []
@@ -3635,7 +4237,7 @@ paths:
           description: ""
       tags:
         - Stripe service
-  /v1/highlights/list:
+  /v2/highlights/list:
     get:
       operationId: findAllHighlights
       summary: Finds all highlights and paginates them
@@ -3681,6 +4283,13 @@ paths:
           example: open-sauced/insights
           schema:
             type: string
+        - name: contributor
+          required: false
+          in: query
+          description: Highlight User Filter
+          example: RitaDee
+          schema:
+            type: string
       responses:
         "200":
           description: Successfully received model list
@@ -3697,7 +4306,7 @@ paths:
       tags:
         &a26
         - Highlights service
-  /v1/highlights/featured:
+  /v2/highlights/featured:
     get:
       operationId: findAllFeaturedHighlights
       summary: Finds all featured highlights and paginates them
@@ -3743,6 +4352,13 @@ paths:
           example: open-sauced/insights
           schema:
             type: string
+        - name: contributor
+          required: false
+          in: query
+          description: Highlight User Filter
+          example: RitaDee
+          schema:
+            type: string
       responses:
         "200":
           description: Successfully received model list
@@ -3757,7 +4373,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
       tags: *a26
-  "/v1/highlights/{id}/featured":
+  "/v2/highlights/{id}/featured":
     post:
       operationId: addAFeaturedHighlight
       summary: Add a highlight to the featured list
@@ -3810,7 +4426,7 @@ paths:
       tags: *a26
       security:
         - bearer: []
-  /v1/highlights/repos/list:
+  /v2/highlights/repos/list:
     get:
       operationId: findAllHighlightRepos
       summary: Finds all highlight repos and paginates them
@@ -3863,7 +4479,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbUserHighlightRepo"
       tags: *a26
-  "/v1/highlights/{id}/reactions":
+  "/v2/highlights/{id}/reactions":
     get:
       operationId: getAllHighlightReactions
       summary: Retrieves total reactions for a highlight
@@ -3885,7 +4501,7 @@ paths:
         "404":
           description: Unable to get user highlight reactions
       tags: *a26
-  /v1/highlights/top:
+  /v2/highlights/top:
     get:
       operationId: findTopHighlights
       summary: Finds top highlights for the day range and paginates them
@@ -3938,7 +4554,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbUserHighlight"
       tags: *a26
-  /v1/emojis:
+  /v2/emojis:
     get:
       operationId: findAllEmojis
       summary: Listing all emojis and paginates them
@@ -3994,7 +4610,7 @@ paths:
           description: Emojis not found
       tags:
         - Emojis service
-  /v1/endorsements:
+  /v2/endorsements:
     post:
       operationId: createEndorsement
       summary: Creates a new endorsement record
@@ -4078,7 +4694,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
       tags: *a27
-  "/v1/endorsements/repos/{repoOwnerOrUser}":
+  "/v2/endorsements/repos/{repoOwnerOrUser}":
     get:
       operationId: findAllByRepoOwnerOrUsername
       summary: Finds all endorsements by repo org or username and paginates them
@@ -4136,7 +4752,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
       tags: *a27
-  "/v1/endorsements/repos/{owner}/{repo}":
+  "/v2/endorsements/repos/{owner}/{repo}":
     get:
       operationId: findAllEndorsementsByRepo
       summary: Finds all endorsements by repo owner or username and paginates them
@@ -4199,7 +4815,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
       tags: *a27
-  "/v1/endorsements/{id}":
+  "/v2/endorsements/{id}":
     get:
       operationId: findEndorsementById
       summary: Retrieves the endorsement based on ID
@@ -4252,7 +4868,7 @@ paths:
         "404":
           description: Endorsement not found
       tags: *a27
-  "/v1/endorsements/user/{username}/created":
+  "/v2/endorsements/user/{username}/created":
     get:
       operationId: findAllUserCreatedEndorsementsByUsername
       summary: Finds all endorsements received by the user and paginates them
@@ -4310,7 +4926,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
       tags: *a27
-  "/v1/endorsements/user/{username}/received":
+  "/v2/endorsements/user/{username}/received":
     get:
       operationId: findAllUserReceivedEndorsementsByUsername
       summary: Finds all endorsements received by the user and paginates them
@@ -4368,7 +4984,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbEndorsement"
       tags: *a27
-  /v1/contributors/search:
+  /v2/contributors/search:
     get:
       operationId: searchAllPullRequestContributors
       summary: Searches contributors from pull requests using filters and paginates them
@@ -4418,10 +5034,11 @@ paths:
           example: javascript
           schema:
             type: string
-        - name: repo
+        - name: repos
           required: false
           in: query
-          example: open-sauced/insights
+          description: A comma separated list of repos to filter on
+          example: open-sauced/app
           schema:
             type: string
         - name: repoIds
@@ -4444,7 +5061,7 @@ paths:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags:
         - Contributors service
-  /v1/contributors/insights/new:
+  /v2/contributors/insights/new:
     get:
       operationId: newPullRequestContributors
       summary: Gets new contributors given a date range for repo IDs
@@ -4483,8 +5100,8 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: repoIds
-          required: false
+        - name: repos
+          required: true
           in: query
           schema:
             type: string
@@ -4504,7 +5121,7 @@ paths:
       tags:
         &a28
         - Contributors service
-  /v1/contributors/insights/recent:
+  /v2/contributors/insights/recent:
     get:
       operationId: findAllRecentPullRequestContributors
       summary: Gets all recent contributors for the last 30 days based on repo IDs
@@ -4543,8 +5160,8 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: repoIds
-          required: false
+        - name: repos
+          required: true
           in: query
           schema:
             type: string
@@ -4562,7 +5179,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags: *a28
-  /v1/contributors/insights/churn:
+  /v2/contributors/insights/alumni:
     get:
       operationId: findAllChurnPullRequestContributors
       summary: Gets all recent churned contributors for the last 30 days based on repo
@@ -4602,8 +5219,8 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: repoIds
-          required: false
+        - name: repos
+          required: true
           in: query
           schema:
             type: string
@@ -4621,7 +5238,7 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags: *a28
-  /v1/contributors/insights/repeat:
+  /v2/contributors/insights/repeat:
     get:
       operationId: findAllRepeatPullRequestContributors
       summary: Gets all recent repeat contributors for the last 30 days based on repo
@@ -4661,8 +5278,8 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: repoIds
-          required: false
+        - name: repos
+          required: true
           in: query
           schema:
             type: string
@@ -4680,10 +5297,10 @@ paths:
                         items:
                           $ref: "#/components/schemas/DbPullRequestContributor"
       tags: *a28
-  /v1/lists:
+  /v2/workspaces:
     get:
-      operationId: getListsForUser
-      summary: Gets lists for the authenticated user
+      operationId: getWorkspaceForUser
+      summary: Gets workspaces for the authenticated user
       parameters:
         - name: page
           required: false
@@ -4725,50 +5342,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserList"
+                $ref: "#/components/schemas/DbWorkspace"
         "400":
           description: Invalid request
         "404":
-          description: Unable to get user lists
+          description: Unable to get user workspaces
       tags:
         &a29
-        - User Lists service
+        - Workspaces service
       security:
         - bearer: []
     post:
-      operationId: addListForUser
-      summary: Adds a new list for the authenticated user
+      operationId: createWorkspaceForUser
+      summary: Create a new workspace for the authenticated user
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateUserListDto"
+              $ref: "#/components/schemas/CreateWorkspaceDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserList"
+                $ref: "#/components/schemas/DbWorkspace"
         "201":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserList"
+                $ref: "#/components/schemas/DbWorkspace"
         "400":
           description: Invalid request
-        "404":
-          description: Unable to add user list
       tags: *a29
       security:
         - bearer: []
-  "/v1/lists/{id}":
+  "/v2/workspaces/{id}":
     get:
-      operationId: getUserList
-      summary: Retrieves an individual user list
+      operationId: getWorkspaceByIdForUser
+      summary: Gets a workspace for the authenticated user
       parameters:
         - name: id
           required: true
@@ -4781,15 +5396,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserList"
+                $ref: "#/components/schemas/DbWorkspace"
         "400":
           description: Invalid request
         "404":
-          description: Unable to get user list
+          description: Unable to get user workspace
       tags: *a29
+      security:
+        - bearer: []
     patch:
-      operationId: updateListForUser
-      summary: Updates the list for the authenticated user
+      operationId: updateWorkspaceForUser
+      summary: Updates a workspace for the authenticated user
       parameters:
         - name: id
           required: true
@@ -4801,24 +5418,24 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateUserListDto"
+              $ref: "#/components/schemas/UpdateWorkspaceDto"
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserList"
-        "400":
-          description: Invalid request
+                $ref: "#/components/schemas/DbWorkspace"
         "404":
-          description: Unable to update user list
+          description: Unable to update workspace
+        "422":
+          description: Unable to process workspace
       tags: *a29
       security:
         - bearer: []
     delete:
-      operationId: deleteListForUser
-      summary: Deletes the list for the authenticated user
+      operationId: deleteWorkspaceForUser
+      summary: Deletes a workspace for the authenticated user
       parameters:
         - name: id
           required: true
@@ -4831,164 +5448,73 @@ paths:
         "400":
           description: Invalid request
         "404":
-          description: Unable to delete user list
+          description: Unable to delete workspace
       tags: *a29
       security:
         - bearer: []
-  /v1/lists/contributors:
+  "/v2/workspaces/{id}/members":
     get:
-      operationId: getContributors
-      summary: Retrieves paginated contributors
+      operationId: getWorkspaceMembersForUser
+      summary: Gets workspace members for the authenticated user
       parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: location
-          required: false
-          in: query
-          example:
-            - Denver, Colorado
-            - Germany
-          schema:
-            type: array
-            items:
-              type: string
-        - name: contributor
-          required: false
-          in: query
-          example: bdougie
-          schema:
-            type: string
-        - name: timezone
-          required: false
-          in: query
-          example:
-            - Mountain Standard Time
-            - UTC
-          schema:
-            type: array
-            items:
-              type: string
-        - name: pr_velocity
-          required: false
-          in: query
-          example: 2
-          description: Less than or equal to the average number of days to merge a PR over
-            the last 30 days
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: Successfully received model list
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbUser"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get contributors
-      tags: *a29
-      security:
-        - bearer: []
-  "/v1/lists/{id}/contributors":
-    get:
-      operationId: getUserListContributors
-      summary: Retrieves contributors for an individual user list
-      parameters:
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: location
-          required: false
-          in: query
-          example:
-            - Denver, Colorado
-            - Germany
-          schema:
-            type: array
-            items:
-              type: string
-        - name: contributor
-          required: false
-          in: query
-          example: bdougie
-          schema:
-            type: string
-        - name: timezone
-          required: false
-          in: query
-          example:
-            - Mountain Standard Time
-            - UTC
-          schema:
-            type: array
-            items:
-              type: string
-        - name: pr_velocity
-          required: false
-          in: query
-          example: 2
-          description: Less than or equal to the average number of days to merge a PR over
-            the last 30 days
-          schema:
-            type: integer
         - name: id
           required: true
           in: path
           schema:
             type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
       responses:
         "200":
-          description: Successfully received model list
+          description: ""
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbUserListContributor"
+                $ref: "#/components/schemas/DbWorkspaceMember"
         "400":
           description: Invalid request
         "404":
-          description: Unable to get user list contributors
-      tags: *a29
+          description: Unable to get user workspace members
+      tags:
+        &a30
+        - Workspace members service
+      security:
+        - bearer: []
     post:
-      operationId: postUserListContributors
-      summary: Add new contributors to an individual user list
+      operationId: updateWorkspaceMembersForUser
+      summary: Updates workspace members for the authenticated user
       parameters:
         - name: id
           required: true
@@ -5000,93 +5526,767 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CollaboratorsDto"
+              $ref: "#/components/schemas/UpdateWorkspaceMembersDto"
       responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceMember"
         "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to update workspace members
+        "422":
+          description: Unable to process workspace members
+      tags: *a30
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteWorkspaceMembersForUser
+      summary: Deletes workspace members for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWorkspaceMembersDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace members
+      tags: *a30
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/members/{memberId}":
+    patch:
+      operationId: updateOneWorkspaceMemberForUser
+      summary: Updates a workspace member for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: memberId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkspaceMemberDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceMember"
+        "404":
+          description: Unable to update workspace member
+        "422":
+          description: Unable to process workspace member
+      tags: *a30
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteOneWorkspaceMemberForUser
+      summary: Delete a workspace member for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: memberId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace member
+      tags: *a30
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/orgs":
+    get:
+      operationId: getWorkspaceOrgsForUser
+      summary: Gets workspace orgs for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceOrg"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user workspace orgs
+      tags:
+        &a31
+        - Workspace orgs service
+      security:
+        - bearer: []
+    post:
+      operationId: addWorkspaceOrgsForUser
+      summary: Adds workspace orgs for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkspaceOrgsDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceOrg"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to add workspace orgs
+        "422":
+          description: Unable to add workspace orgs
+      tags: *a31
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteWorkspaceOrgsForUser
+      summary: Deletes workspace orgs for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWorkspaceOrgsDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace orgs
+      tags: *a31
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/orgs/{orgUserId}":
+    post:
+      operationId: addOneWorkspaceOrgForUser
+      summary: Adds one workspace org for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: orgUserId
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceOrg"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to add workspace org
+        "422":
+          description: Unable to add workspace org
+      tags: *a31
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteOneWorkspaceOrgForUser
+      summary: Deletes a workspace org for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: orgUserId
+          required: true
+          in: path
+          schema:
+            type: number
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace orgs
+      tags: *a31
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/repos":
+    get:
+      operationId: getWorkspaceReposForUser
+      summary: Gets workspace repos for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceRepo"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user workspace repos
+      tags:
+        &a32
+        - Workspace repos service
+      security:
+        - bearer: []
+    post:
+      operationId: addWorkspaceReposForUser
+      summary: Adds workspace repos for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkspaceReposDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceRepo"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to add workspace repos
+        "422":
+          description: Unable to process workspace repos
+      tags: *a32
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteWorkspaceReposForUser
+      summary: Deletes workspace repos for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWorkspaceReposDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace repos
+      tags: *a32
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/repos/{owner}/{repo}":
+    post:
+      operationId: addOneWorkspaceRepoForUser
+      summary: Adds workspace repos for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceRepo"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to add workspace repos
+        "422":
+          description: Unable to process workspace repos
+      tags: *a32
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteOneWorkspaceRepoForUser
+      summary: Delete a workspace repos for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace repo
+      tags: *a32
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/contributors":
+    get:
+      operationId: getWorkspaceContributorsForUser
+      summary: Gets workspace contributors for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceContributor"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user workspace contributors
+      tags:
+        &a33
+        - Workspace contributors service
+      security:
+        - bearer: []
+    post:
+      operationId: addWorkspaceContributorsForUser
+      summary: Updates workspace contributor for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkspaceContributorsDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceContributor"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to update workspace contributors
+        "422":
+          description: Unable to process workspace contributors
+      tags: *a33
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteWorkspaceContributorsForUser
+      summary: Deletes workspace contributors for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteWorkspaceContributorsDto"
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace contributors
+      tags: *a33
+      security:
+        - bearer: []
+  "/v2/workspaces/{id}/contributors/{contributorId}":
+    post:
+      operationId: addOneWorkspaceContributorForUser
+      summary: Updates a workspace contributor for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: contributorId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceContributor"
+        "201":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "404":
+          description: Unable to update workspace contributor
+        "422":
+          description: Unable to process workspace contributor
+      tags: *a33
+      security:
+        - bearer: []
+    delete:
+      operationId: deleteOneWorkspaceContributorForUser
+      summary: Delete a workspace contributors for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: contributorId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspace"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to delete workspace contributor
+      tags: *a33
+      security:
+        - bearer: []
+  /v2/histogram/stars:
+    get:
+      operationId: starsHistogram
+      summary: Generates a stars histogram based on 1 day time buckets
+      parameters:
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
+      responses:
+        "200":
           description: ""
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/DbUserListContributor"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to add to user list contributors
-      tags: *a29
-      security:
-        - bearer: []
-  "/v1/lists/{id}/contributors/{userListContributorId}":
-    delete:
-      operationId: deleteUserListContributor
-      summary: Delete contributor from an individual user list
-      parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: userListContributorId
-          required: true
-          in: path
-          schema:
-            type: integer
-      responses:
-        "200":
-          description: ""
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to delete user from user list contributors
-      tags: *a29
-      security:
-        - bearer: []
-  /v1/lists/timezones:
+                  $ref: "#/components/schemas/DbWatchGitHubEventsHistogram"
+      tags:
+        &a34
+        - Histogram generation service
+  /v2/histogram/pushes:
     get:
-      operationId: getTimezones
-      summary: Retrieves all users timezones
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DbTimezone"
-        "404":
-          description: Unable to get timezones
-      tags: *a29
-  "/v1/lists/{id}/stats/most-active-contributors":
-    get:
-      operationId: getMostActiveContributors
-      summary: Gets most active contributors for a given list
+      operationId: pushesHistogram
+      summary: Generates a pushes histogram based on 1 day time buckets
       parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
-        - name: page
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            default: 1
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          schema:
-            minimum: 1
-            maximum: 1000
-            default: 10
-            type: integer
-        - name: orderDirection
-          required: false
-          in: query
-          schema:
-            $ref: "#/components/schemas/OrderDirectionEnum"
         - name: range
           required: false
           in: query
@@ -5101,46 +6301,62 @@ paths:
           schema:
             default: 0
             type: integer
-        - name: contributorType
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
           required: false
           in: query
           schema:
-            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
-        - name: orderBy
+            type: string
+        - name: orderDirection
           required: false
           in: query
           schema:
-            $ref: "#/components/schemas/UserListContributorStatsOrderEnum"
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
       responses:
         "200":
-          description: Successfully received model list
+          description: ""
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/PageDto"
-                  - properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: "#/components/schemas/DbUserListContributorStat"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get list most active contributors
-      tags:
-        &a30
-        - User Lists service
-  "/v1/lists/{id}/stats/contributions-evolution-by-type":
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPushGitHubEventsHistogram"
+      tags: *a34
+  /v2/histogram/forks:
     get:
-      operationId: getContributionsByTimeFrame
-      summary: Gets contributions in a given timeframe
+      operationId: forksHistogram
+      summary: Generates a forks histogram based on 1 day time buckets
       parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
         - name: range
           required: false
           in: query
@@ -5148,33 +6364,69 @@ paths:
           schema:
             default: 30
             type: integer
-        - name: contributorType
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
           required: false
           in: query
           schema:
-            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbContributionStatTimeframe"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get contributions
-      tags: *a30
-  "/v1/lists/{id}/stats/contributions-by-project":
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPushGitHubEventsHistogram"
+      tags: *a34
+  /v2/histogram/issue-comments:
     get:
-      operationId: getContributionsByProject
-      summary: Gets contributions in a given timeframe
+      operationId: issueCommentsHistogram
+      summary: Generates a issue comments created histogram based on 1 day time buckets
       parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
         - name: range
           required: false
           in: query
@@ -5182,28 +6434,69 @@ paths:
           schema:
             default: 30
             type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbContributionsProjects"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get contributions by project
-      tags: *a30
-  "/v1/lists/{id}/stats/top-project-contributions-by-contributor":
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPushGitHubEventsHistogram"
+      tags: *a34
+  /v2/histogram/issues:
     get:
-      operationId: getContributorContributionsByProject
-      summary: Gets top 20 contributor stats in a list by a given project
+      operationId: issuesHistogram
+      summary: Generates a issues created histogram based on 1 day time buckets
       parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
         - name: range
           required: false
           in: query
@@ -5211,35 +6504,69 @@ paths:
           schema:
             default: 30
             type: integer
-        - name: repo_id
-          required: true
+        - name: prev_days_start_date
+          required: false
           in: query
-          description: Repo ID
-          example: 234343
+          description: Number of days in the past to start range block
           schema:
+            default: 0
             type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbUserListContributorStat"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get contributions
-      tags: *a30
-  "/v1/lists/{id}/stats/contributions-evolution-by-contributor-type":
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPushGitHubEventsHistogram"
+      tags: *a34
+  /v2/histogram/pull-requests:
     get:
-      operationId: getContributorsByTimeframe
-      summary: Gets contributions by category within timeframe
+      operationId: prsHistogram
+      summary: Generates a pull request created histogram based on 1 day time buckets
       parameters:
-        - name: id
-          required: true
-          in: path
-          schema:
-            type: string
         - name: range
           required: false
           in: query
@@ -5247,23 +6574,134 @@ paths:
           schema:
             default: 30
             type: integer
-        - name: contributorType
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
           required: false
           in: query
           schema:
-            $ref: "#/components/schemas/UserListContributorStatsTypeEnum"
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
       responses:
         "200":
           description: ""
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbContributorCategoryTimeframe"
-        "400":
-          description: Invalid request
-        "404":
-          description: Unable to get contributions
-      tags: *a30
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPullRequestGitHubEventsHistogram"
+      tags: *a34
+  /v2/histogram/pull-request-reviews:
+    get:
+      operationId: prReviewsHistogram
+      summary: Generates a request reviews histogram based on 1 day time buckets
+      parameters:
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+        - name: width
+          required: false
+          in: query
+          description: Day width of histogram buckets
+          schema:
+            default: 1
+            type: integer
+        - name: repo
+          required: false
+          in: query
+          description: Repo name
+          example: open-sauced/app
+          schema:
+            type: string
+        - name: contributor
+          required: false
+          in: query
+          example: bdougie
+          schema:
+            type: string
+        - name: repoIds
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: filter
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/InsightFilterFieldsEnum"
+        - name: topic
+          required: false
+          in: query
+          schema:
+            default: ""
+            type: string
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DbPullRequestGitHubEventsHistogram"
+      tags: *a34
 info:
   title: "@open-sauced/api.opensauced.pizza"
   description: >-
@@ -5339,7 +6777,7 @@ info:
 
 
     ## Additional links
-  version: "1"
+  version: "2"
   contact:
     name: Open Sauced
     url: https://opensauced.pizza
@@ -5575,6 +7013,11 @@ components:
           type: string
           description: Timestamp representing user logging in to open sauced for the first
             time
+          example: 2022-08-28 22:04:29.000000
+        campaign_start_date:
+          format: date-time
+          type: string
+          description: Timestamp representing user email campaign start date
           example: 2022-08-28 22:04:29.000000
         node_id:
           type: string
@@ -5865,158 +7308,128 @@ components:
       required:
         - data
         - meta
-    DbPullRequest:
+    DbPullRequestGitHubEvents:
       type: object
       properties:
-        id:
+        event_id:
           type: integer
-          description: Pull request identifier
+          description: Pull request event identifier
           example: 1045024650
-        number:
+        pr_number:
           type: integer
           description: Pull request number
           example: 612
-        state:
+        pr_state:
           type: string
           description: Pull request state
           example: closed
-        draft:
+        pr_is_draft:
           type: boolean
           description: Pull request is draft
           example: false
-        merged:
+        pr_is_merged:
           type: boolean
           description: Pull request is merged
           example: false
-        mergeable:
-          type: boolean
-          description: Pull request is mergeable
-          example: false
-        rebaseable:
+        pr_mergeable_state:
+          type: string
+          description: Pull request mergeable state
+          example: unknown
+        pr_is_rebaseable:
           type: boolean
           description: Pull request is rebaseable
           example: false
-        title:
+        pr_title:
           type: string
           description: Pull request title
           example: "fix(cli): arg tags value with equal sign"
-        source_label:
+        pr_head_label:
           type: string
           description: Pull request source ref
           example: Th3nn3ss:cli_split_kwargs
-        target_label:
+        pr_base_label:
           type: string
           description: Pull request target ref
           example: aws:main
-        source_branch:
+        pr_head_ref:
           type: string
           description: Pull request source branch
-          example: main
-        target_branch:
+          example: cli_split_kwargs
+        pr_base_ref:
           type: string
           description: Pull request target branch
-          example: cli_split_kwargs
-        labels:
-          type: string
-          description: Pull request labels
-          example: >-
-            [
-                  {
-                    "id": 4456742596,
-                    "url": "https://api.github.com/repos/denoland/fresh/labels/showcase",
-                    "name": "showcase",
-                    "color": "0e8a16",
-                    "default": false,
-                    "node_id": "LA_kwDOFcV7488AAAABCaR-xA",
-                    "description": ""
-                  }
-                ]
-        label_names:
-          description: Pull request label names
-          example: showcase
-          type: array
-          items:
-            type: string
-        author_login:
+          example: main
+        pr_author_login:
           type: string
           description: Pull request author username
           example: Th3nn3ss
-        author_avatar:
-          type: string
-          description: Pull request author avatar
-          example: https://avatars.githubusercontent.com/u/25160953?v=4
-        assignee_login:
-          type: string
-          description: Pull request assignee username
-          example: null
-        assignee_avatar:
-          type: string
-          description: Pull request assignee avatar
-          example: null
-        created_at:
+        pr_created_at:
           format: date-time
           type: string
           description: Timestamp representing pr creation date
           example: 2022-08-28 22:04:29.000000
-        closed_at:
+        pr_closed_at:
           format: date-time
           type: string
           description: Timestamp representing pr close date
           example: 2022-08-28 22:04:29.000000
-        merged_at:
+        pr_merged_at:
           format: date-time
           type: string
           description: Timestamp representing pr merge date
           example: 2022-08-28 22:04:29.000000
-        merged_by_login:
-          type: string
-          description: Pull request merged by username
-          example: bdougie
-        updated_at:
+        pr_updated_at:
           format: date-time
           type: string
           description: Timestamp representing repository last update
           example: 2022-08-28 22:04:29.000000
-        last_updated_at:
-          format: date-time
-          type: string
-          description: Timestamp representing internal last update
-          example: 2022-08-28 22:04:29.000000
-        comments:
+        pr_comments:
           type: integer
           description: PR comments
           example: 0
-        additions:
+        pr_additions:
           type: integer
           description: PR lines added
           example: 10
-        deletions:
+        pr_deletions:
           type: integer
           description: PR lines deleted
           example: 5
-        changed_files:
+        pr_changed_files:
           type: integer
           description: PR files changed
           example: 5
-        full_name:
+        repo_name:
           type: string
           description: Pull request repo full name
           example: open-sauced/insights
-        commits:
+        pr_commits:
           type: integer
           description: Number of commits in the PR
           example: 4
       required:
-        - id
-        - number
-        - state
-        - draft
-        - merged
-        - mergeable
-        - rebaseable
-        - title
-        - author_login
-        - author_avatar
+        - event_id
+        - pr_number
+        - pr_state
+        - pr_is_draft
+        - pr_is_merged
+        - pr_mergeable_state
+        - pr_is_rebaseable
+        - pr_title
+        - pr_head_label
+        - pr_base_label
+        - pr_head_ref
+        - pr_base_ref
+        - pr_author_login
+        - pr_closed_at
+        - pr_merged_at
+        - pr_updated_at
+        - pr_comments
+        - pr_additions
+        - pr_deletions
+        - pr_changed_files
+        - repo_name
+        - pr_commits
     OrderDirectionEnum:
       type: string
       enum:
@@ -6364,8 +7777,6 @@ components:
           type: string
           description: Top User Login
           example: bdougie
-      required:
-        - login
     DbFilteredUser:
       type: object
       properties:
@@ -6514,8 +7925,6 @@ components:
           type: string
           description: Highlight Repo Full Name
           example: open-sauced/insights
-      required:
-        - full_name
     DbUserToUserFollows:
       type: object
       properties:
@@ -6685,6 +8094,7 @@ components:
       enum:
         - recent
         - top-100-repos
+        - top-repos
         - minimum-5-contributors
         - most-active
         - most-spammed
@@ -6693,79 +8103,6 @@ components:
       enum:
         - open
         - closed
-    DbPRInsight:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Repository identifier
-          example: 71359796
-        interval:
-          type: integer
-          description: Selected interval in numerical days, goes back with number, 0 means
-            today
-          example: 1
-          default: 0
-        day:
-          type: string
-          description: Selected interval computed date in human readable format
-          example: 2022-08-28
-          format: date
-        all_prs:
-          type: integer
-          description: "PR Type: all requests count"
-          example: 287
-        accepted_prs:
-          type: integer
-          description: "PR Type: accepted requests count"
-          example: 287
-        spam_prs:
-          type: integer
-          description: "PR Type: spam requests count"
-          example: 287
-      required:
-        - id
-        - interval
-        - day
-        - all_prs
-        - accepted_prs
-        - spam_prs
-    DbPullRequestReview:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Pull request review identifier
-          example: 123456789
-        reviewer_login:
-          type: string
-          description: Pull request reviewer username
-          example: Bdougie
-        created_at:
-          format: date-time
-          type: string
-          description: Timestamp representing pr review creation date
-          example: 2022-08-28 22:04:29.000000
-        published_at:
-          format: date-time
-          type: string
-          description: Timestamp representing pr review published date
-          example: 2022-08-28 22:04:29.000000
-        updated_at:
-          format: date-time
-          type: string
-          description: Timestamp representing pr review update date
-          example: 2022-08-28 22:04:29.000000
-        state:
-          type: string
-          description: Pull request review state
-          example: approved
-        pullRequest:
-          $ref: "#/components/schemas/DbPullRequest"
-      required:
-        - id
-        - reviewer_login
-        - pullRequest
     GeneratePullRequestDescriptionDto:
       type: object
       properties:
@@ -6868,6 +8205,133 @@ components:
         - temperature
         - language
         - code
+    DbPullRequestReviewGitHubEvents:
+      type: object
+      properties:
+        event_id:
+          type: integer
+          description: Pull request event identifier
+          example: 1045024650
+        pr_number:
+          type: integer
+          description: Pull request number
+          example: 612
+        pr_state:
+          type: string
+          description: Pull request state
+          example: closed
+        pr_is_draft:
+          type: boolean
+          description: Pull request is draft
+          example: false
+        pr_is_merged:
+          type: boolean
+          description: Pull request is merged
+          example: false
+        pr_mergeable_state:
+          type: string
+          description: Pull request mergeable state
+          example: unknown
+        pr_is_rebaseable:
+          type: boolean
+          description: Pull request is rebaseable
+          example: false
+        pr_title:
+          type: string
+          description: Pull request title
+          example: "fix(cli): arg tags value with equal sign"
+        pr_head_label:
+          type: string
+          description: Pull request source ref
+          example: Th3nn3ss:cli_split_kwargs
+        pr_base_label:
+          type: string
+          description: Pull request target ref
+          example: aws:main
+        pr_head_ref:
+          type: string
+          description: Pull request source branch
+          example: cli_split_kwargs
+        pr_base_ref:
+          type: string
+          description: Pull request target branch
+          example: main
+        pr_author_login:
+          type: string
+          description: Pull request author username
+          example: Th3nn3ss
+        pr_created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr creation date
+          example: 2022-08-28 22:04:29.000000
+        pr_closed_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr close date
+          example: 2022-08-28 22:04:29.000000
+        pr_merged_at:
+          format: date-time
+          type: string
+          description: Timestamp representing pr merge date
+          example: 2022-08-28 22:04:29.000000
+        pr_updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing repository last update
+          example: 2022-08-28 22:04:29.000000
+        pr_comments:
+          type: integer
+          description: PR comments
+          example: 0
+        pr_additions:
+          type: integer
+          description: PR lines added
+          example: 10
+        pr_deletions:
+          type: integer
+          description: PR lines deleted
+          example: 5
+        pr_changed_files:
+          type: integer
+          description: PR files changed
+          example: 5
+        repo_name:
+          type: string
+          description: Pull request repo full name
+          example: open-sauced/insights
+        pr_commits:
+          type: integer
+          description: Number of commits in the PR
+          example: 4
+        pr_review_body:
+          type: string
+          description: Pull request review body
+          example: LGTM
+      required:
+        - event_id
+        - pr_number
+        - pr_state
+        - pr_is_draft
+        - pr_is_merged
+        - pr_mergeable_state
+        - pr_is_rebaseable
+        - pr_title
+        - pr_head_label
+        - pr_base_label
+        - pr_head_ref
+        - pr_base_ref
+        - pr_author_login
+        - pr_closed_at
+        - pr_merged_at
+        - pr_updated_at
+        - pr_comments
+        - pr_additions
+        - pr_deletions
+        - pr_changed_files
+        - repo_name
+        - pr_commits
+        - pr_review_body
     RepoOrderFieldsEnum:
       type: string
       enum:
@@ -6883,6 +8347,338 @@ components:
         - submissionsCount
         - stargazersCount
         - starsCount
+    DbUserList:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User List identifier
+          example: uuid-v4
+        user_id:
+          type: integer
+          description: User ID
+          example: 237133
+        name:
+          type: string
+          description: List Name
+          example: JavaScript Developers
+        is_public:
+          type: boolean
+          description: Flag indicating insight visibility
+          example: false
+        is_featured:
+          type: boolean
+          description: Flag indicating featured list
+          example: false
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - user_id
+        - name
+        - is_public
+        - is_featured
+    CreateUserListDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: List Name
+          example: My List
+        is_public:
+          type: boolean
+          description: List Visibility
+          example: false
+        contributors:
+          description: An array of contributor objects
+          example:
+            - id: 12345
+              login: sauceduser
+          type: array
+          items:
+            type: array
+      required:
+        - name
+        - is_public
+        - contributors
+    DbUserListContributor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: User list contributor identifier
+          example: uuid-v4
+        user_id:
+          type: integer
+          description: User identifier
+          example: 237133
+        list_id:
+          type: string
+          description: List identifier
+          example: uuid-v4
+        username:
+          type: string
+          description: List user source username
+          example: sauceduser
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing top repo first index
+          example: 2016-10-19 13:24:51.000000
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
+      required:
+        - id
+        - user_id
+        - list_id
+    CollaboratorsDto:
+      type: object
+      properties:
+        contributors:
+          description: An array of contributor user IDs
+          example:
+            - 42211
+            - 81233
+          type: array
+          items:
+            type: integer
+      required:
+        - contributors
+    DbTimezone:
+      type: object
+      properties:
+        timezone:
+          type: string
+          description: Timezone string
+          example: America/Los_Angeles
+      required:
+        - timezone
+    DbUserListContributorStat:
+      type: object
+      properties:
+        login:
+          type: string
+          description: User list collaborator's login
+          example: bdougie
+        commits:
+          type: integer
+          description: Number of commits for login within the time range
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created for login within the time range
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed for login within the time range
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created for login within the time range
+          example: 0
+        commit_comments:
+          type: integer
+          description: Number of commit comments for login within the time range
+          example: 0
+        issue_comments:
+          type: integer
+          description: Number of issue comments for login within the time range
+          example: 0
+        pr_review_comments:
+          type: integer
+          description: Number of pr review comments for login within the time range
+          example: 0
+        comments:
+          type: integer
+          description: Number of total comments for login within the time range
+          example: 0
+        total_contributions:
+          type: integer
+          description: Number of total contributions for a login within the time range
+          example: 0
+      required:
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - commit_comments
+        - issue_comments
+        - pr_review_comments
+        - comments
+        - total_contributions
+    UserListContributorStatsTypeEnum:
+      type: string
+      enum:
+        - all
+        - active
+        - new
+        - alumni
+    UserListContributorStatsOrderEnum:
+      type: string
+      enum:
+        - commits
+        - prs_created
+        - total_contributions
+    DbContributionStatTimeframe:
+      type: object
+      properties:
+        bucket:
+          type: string
+          description: The ISO timestamp for the given time bucket
+          example: 2024-01-08T00:00:00.000Z
+        commits:
+          type: integer
+          description: Number of commits within the time range
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created within the time range
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed within the time range
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues within the time range
+          example: 0
+        commit_comments:
+          type: integer
+          description: Number of commit comments within the time range
+          example: 0
+        issue_comments:
+          type: integer
+          description: Number of issue comments within the time range
+          example: 0
+        pr_review_comments:
+          type: integer
+          description: Number of pr review comments within the time range
+          example: 0
+        comments:
+          type: integer
+          description: Number of total comments within the time range
+          example: 0
+        total_contributions:
+          type: integer
+          description: Number of total contributions for a user login
+          example: 0
+      required:
+        - bucket
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - commit_comments
+        - issue_comments
+        - pr_review_comments
+        - comments
+        - total_contributions
+    DbContributionsProjects:
+      type: object
+      properties:
+        repo_name:
+          type: string
+          description: The org/repo name
+          example: open-sauced/api
+        commits:
+          type: integer
+          description: Number of commits within the time range
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created for the project within the time range
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed for the project within the time range
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues for the project within the time range
+          example: 0
+        commit_comments:
+          type: integer
+          description: Number of commit comments for the project within the time range
+          example: 0
+        issue_comments:
+          type: integer
+          description: Number of issue comments for the project within the time range
+          example: 0
+        pr_review_comments:
+          type: integer
+          description: Number of pr review comments for the project within the time range
+          example: 0
+        comments:
+          type: integer
+          description: Number of total comments for the project within the time range
+          example: 0
+        total_contributions:
+          type: integer
+          description: Number of total contributions for the project within the time range
+          example: 0
+      required:
+        - repo_name
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - commit_comments
+        - issue_comments
+        - pr_review_comments
+        - comments
+        - total_contributions
+    DbContributorCategoryTimeframe:
+      type: object
+      properties:
+        time_start:
+          type: string
+          description: The ISO timestamp for the start of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        time_end:
+          type: string
+          description: The ISO timestamp for the end of the time frame
+          example: 2023-08-26T23:55:49.204Z
+        all:
+          type: integer
+          description: Number of all contributors (active, new, and alumni)
+          example: 0
+        active:
+          type: integer
+          description: Number of contributors who contributed in current time frame and
+            previous time frame
+          example: 0
+        new:
+          type: integer
+          description: Number of contributors who are new to contributing (contributed in
+            current time frame but not the previous time frame)
+          example: 0
+        alumni:
+          type: integer
+          description: Number of contributors who did not contribute in current time frame
+            but did in the previous time frame
+          example: 0
+      required:
+        - time_start
+        - time_end
+        - all
+        - active
+        - new
+        - alumni
     DbRepoToUserVotes:
       type: object
       properties:
@@ -7017,94 +8813,12 @@ components:
         - id
         - user_id
         - repo_id
-    DbContribution:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Contribution identifier
-          example: 12237133
-        repo_id:
-          type: integer
-          description: Repository identifier
-          example: 71359796
-        count:
-          type: integer
-          description: Total number of contributed pull requests
-          example: 15
-        last_merged_at:
-          format: date-time
-          type: string
-          description: Timestamp representing last contribution merge to the default branch
-          example: 2016-10-19 13:24:51.000000
-        created_at:
-          format: date-time
-          type: string
-          description: Timestamp representing contribution creation
-          example: 2016-10-19 13:24:51.000000
-        updated_at:
-          format: date-time
-          type: string
-          description: Timestamp representing contribution last update
-          example: 2022-08-28 22:04:29.000000
-        contributor:
-          type: string
-          description: Contributor unique user name
-          example: 0-vortex
-        url:
-          type: string
-          description: Contribution GitHub origin URL
-          example: https://github.com/open-sauced/hot/pull/320
-      required:
-        - id
-        - repo_id
-        - count
-        - last_merged_at
-        - contributor
-        - url
-    DbRepoLoginContributions:
-      type: object
-      properties:
-        login:
-          type: string
-          description: User list collaborator's login
-          example: bdougie
-        commits:
-          type: integer
-          description: Number of commits associated with a user login
-          example: 0
-        prs_created:
-          type: integer
-          description: Number of PRs created associated with a user login
-          example: 0
-        prs_reviewed:
-          type: integer
-          description: Number of PRs reviewed by a user login
-          example: 0
-        issues_created:
-          type: integer
-          description: Number of issues created by a user login
-          example: 0
-        comments:
-          type: integer
-          description: Number of comments associated with a user login
-          example: 0
-      required:
-        - commits
-        - prs_created
-        - prs_reviewed
-        - issues_created
-        - comments
     DbInsight:
       type: object
       properties:
         id:
           type: integer
           description: Insight identifier
-          example: 237133
-        user_id:
-          type: integer
-          description: User ID
           example: 237133
         name:
           type: string
@@ -7143,12 +8857,45 @@ components:
           example: 2022-10-19 13:24:51.000000
       required:
         - id
-        - user_id
         - name
         - is_public
         - is_favorite
         - is_featured
         - short_code
+    DbInsightRepo:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Insight identifier
+          example: 237133
+        insight_id:
+          type: integer
+          description: Insight ID
+          example: 237133
+        repo_id:
+          type: integer
+          description: Repo ID
+          example: 237133
+        full_name:
+          type: string
+          description: Repo Full Name
+          example: open-sauced/insights
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight repo creation
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing insight repo deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - insight_id
+        - repo_id
+        - full_name
     RepoInfo:
       type: object
       properties:
@@ -7177,7 +8924,7 @@ components:
         repos:
           description: An array of repository information objects
           example:
-            &a31
+            &a35
             - id: 797
               full_name: open-sauced/insights
           type: array
@@ -7200,7 +8947,7 @@ components:
           example: false
         repos:
           description: An array of repository information objects
-          example: *a31
+          example: *a35
           type: array
           items:
             $ref: "#/components/schemas/RepoInfo"
@@ -7504,265 +9251,421 @@ components:
       required:
         - author_login
         - user_id
-    DbUserList:
+    DbWorkspace:
       type: object
       properties:
         id:
           type: string
-          description: User List identifier
-          example: uuid-v4
-        user_id:
-          type: integer
-          description: User ID
-          example: 237133
-        name:
-          type: string
-          description: List Name
-          example: JavaScript Developers
-        is_public:
-          type: boolean
-          description: Flag indicating insight visibility
-          example: false
+          description: Workspace identifier
+          example: abc-123
         created_at:
           format: date-time
           type: string
-          description: Timestamp representing insight creation
+          description: Timestamp representing workspace creation
           example: 2022-10-19 13:24:51.000000
         updated_at:
           format: date-time
           type: string
-          description: Timestamp representing insight last updated
+          description: Timestamp representing workspace last updated
           example: 2022-10-19 13:24:51.000000
         deleted_at:
           format: date-time
           type: string
-          description: Timestamp representing insight deletion
+          description: Timestamp representing workspace deletion
           example: 2022-10-19 13:24:51.000000
+        name:
+          type: string
+          description: Name of workspace
+          example: OpenSauced's workspace
+        description:
+          type: string
+          description: User defined description of the workspace
+          example: A workspace for OpenSauced employees
       required:
         - id
-        - user_id
         - name
-        - is_public
-    CreateUserListDto:
+        - description
+    CreateWorkspaceDto:
       type: object
       properties:
         name:
           type: string
-          description: List Name
-          example: My List
-        is_public:
-          type: boolean
-          description: List Visibility
-          example: false
-        contributors:
-          description: An array of contributor objects
+          description: Workspace name
+          example: My Workspace
+        description:
+          type: string
+          description: Workspace description
+          example: A workspace for my OSS collaborators
+        members:
+          description: An array of new member objects
           example:
             - id: 12345
-              login: sauceduser
+              role: owner
+          type: array
+          items:
+            type: array
+        repos:
+          description: An array of repo objects to be added to the workspace
+          example:
+            - full_name: open-sauced/api
           type: array
           items:
             type: array
       required:
         - name
-        - is_public
-        - contributors
-    DbUserListContributor:
+        - description
+        - members
+        - repos
+    UpdateWorkspaceDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Workspace name
+          example: My Workspace
+        description:
+          type: string
+          description: Workspace description
+          example: A workspace for my OSS collaborators
+      required:
+        - name
+        - description
+    DbWorkspaceMember:
       type: object
       properties:
         id:
           type: string
-          description: User list contributor identifier
-          example: uuid-v4
+          description: Workspace member identifier
+          example: abc-123
         user_id:
           type: integer
-          description: User identifier
+          description: Workspace member user identifier
           example: 237133
-        list_id:
+        workspace_id:
           type: string
-          description: List identifier
-          example: uuid-v4
-        username:
-          type: string
-          description: List user source username
-          example: sauceduser
+          description: Workspace identifier
+          example: abc-123
         created_at:
           format: date-time
           type: string
-          description: Timestamp representing top repo first index
-          example: 2016-10-19 13:24:51.000000
-        login:
+          description: Timestamp representing workspace member creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
           type: string
-          description: User list collaborator's login
-          example: bdougie
+          description: Timestamp representing workspace member last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member deletion
+          example: 2022-10-19 13:24:51.000000
+        role:
+          enum:
+            - owner
+            - editor
+            - viewer
+          type: string
+          description: Role for the workspace member
+          example: owner
       required:
         - id
         - user_id
-        - list_id
-    CollaboratorsDto:
+        - workspace_id
+        - role
+    UpdateWorkspaceMembersDto:
+      type: object
+      properties:
+        members:
+          description: An array of member objects and their associated role
+          example:
+            - id: 12345
+              role: owner
+          type: array
+          items:
+            type: array
+      required:
+        - members
+    WorkspaceMemberRoleEnum:
+      type: string
+      enum:
+        - owner
+        - editor
+        - viewer
+    UpdateWorkspaceMemberDto:
+      type: object
+      properties:
+        role:
+          default: viewer
+          $ref: "#/components/schemas/WorkspaceMemberRoleEnum"
+    DeleteWorkspaceMembersDto:
+      type: object
+      properties:
+        members:
+          description: An array of member objects to delete from the workspace
+          example:
+            - id: 12345
+          type: array
+          items:
+            type: array
+      required:
+        - members
+    DbWorkspaceOrg:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Workspace org identifier
+          example: abc-123
+        org_id:
+          type: integer
+          description: Org identifier
+          example: 237133
+        workspace_id:
+          type: string
+          description: Workspace identifier
+          example: abc-123
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace org creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace org last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace org deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - org_id
+        - workspace_id
+    UpdateWorkspaceOrgsDto:
+      type: object
+      properties:
+        orgs:
+          description: An array of org objects to be added to the workspace
+          example:
+            - id: 12345
+          type: array
+          items:
+            type: array
+      required:
+        - orgs
+    DeleteWorkspaceOrgsDto:
+      type: object
+      properties:
+        orgs:
+          description: An array of org objects to delete from the workspace
+          example:
+            - id: 12345
+          type: array
+          items:
+            type: array
+      required:
+        - orgs
+    DbWorkspaceRepo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Workspace repo identifier
+          example: abc-123
+        repo_id:
+          type: integer
+          description: Repo identifier
+          example: 237133
+        workspace_id:
+          type: string
+          description: Workspace identifier
+          example: abc-123
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - repo_id
+        - workspace_id
+    UpdateWorkspaceReposDto:
+      type: object
+      properties:
+        repos:
+          description: An array of repo objects to be added to the workspace
+          example:
+            - full_name: open-sauced/api
+          type: array
+          items:
+            type: array
+      required:
+        - repos
+    DeleteWorkspaceReposDto:
+      type: object
+      properties:
+        repos:
+          description: An array of repo objects to be added to the workspace
+          example:
+            - full_name: open-sauced/api
+          type: array
+          items:
+            type: array
+      required:
+        - repos
+    DbWorkspaceContributor:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Workspace contributor identifier
+          example: abc-123
+        contributor_id:
+          type: integer
+          description: Contributor identifier
+          example: 237133
+        workspace_id:
+          type: string
+          description: Workspace identifier
+          example: abc-123
+        created_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member creation
+          example: 2022-10-19 13:24:51.000000
+        updated_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member last updated
+          example: 2022-10-19 13:24:51.000000
+        deleted_at:
+          format: date-time
+          type: string
+          description: Timestamp representing workspace member deletion
+          example: 2022-10-19 13:24:51.000000
+      required:
+        - id
+        - contributor_id
+        - workspace_id
+    UpdateWorkspaceContributorsDto:
       type: object
       properties:
         contributors:
-          description: An array of contributor user IDs
+          description: An array of contributor objects to be added to the workspace
           example:
-            - 42211
-            - 81233
+            - id: 12345
           type: array
           items:
-            type: integer
+            type: array
       required:
         - contributors
-    DbTimezone:
+    DeleteWorkspaceContributorsDto:
       type: object
       properties:
-        timezone:
-          type: string
-          description: Timezone string
-          example: America/Los_Angeles
+        contributors:
+          description: An array of contributor objects to delete from the workspace
+          example:
+            - id: 12345
+          type: array
+          items:
+            type: array
       required:
-        - timezone
-    DbUserListContributorStat:
+        - contributors
+    DbWatchGitHubEventsHistogram:
       type: object
       properties:
-        login:
+        bucket:
+          format: date-time
           type: string
-          description: User list collaborator's login
-          example: bdougie
-        commits:
+          description: Timestamp representing histogram bucket day
+          example: 2022-08-28 22:04:29.000000
+        star_count:
           type: integer
-          description: Number of commits associated with a user login
-          example: 0
-        prs_created:
-          type: integer
-          description: Number of PRs created associated with a user login
-          example: 0
-        prs_reviewed:
-          type: integer
-          description: Number of PRs reviewed by a user login
-          example: 0
-        issues_created:
-          type: integer
-          description: Number of issues created by a user login
-          example: 0
-        comments:
-          type: integer
-          description: Number of comments associated with a user login
-          example: 0
+          description: Number of stars in day bucket
+          example: 4
       required:
-        - commits
-        - prs_created
-        - prs_reviewed
-        - issues_created
-        - comments
-    UserListContributorStatsTypeEnum:
-      type: string
-      enum:
-        - all
-        - active
-        - new
-        - alumni
-    UserListContributorStatsOrderEnum:
-      type: string
-      enum:
-        - commits
-        - prs_created
-        - total_contributions
-    DbContributionStatTimeframe:
+        - bucket
+        - star_count
+    DbPushGitHubEventsHistogram:
       type: object
       properties:
-        time_start:
+        bucket:
+          format: date-time
           type: string
-          description: The ISO timestamp for the start of the time frame
-          example: 2023-08-26T23:55:49.204Z
-        time_end:
-          type: string
-          description: The ISO timestamp for the end of the time frame
-          example: 2023-08-26T23:55:49.204Z
-        commits:
+          description: Timestamp representing histogram bucket day
+          example: 2022-08-28 22:04:29.000000
+        pushes_count:
           type: integer
-          description: Number of commits associated with a user login
-          example: 0
-        prs_created:
-          type: integer
-          description: Number of PRs created associated with a user login
-          example: 0
-        prs_reviewed:
-          type: integer
-          description: Number of PRs reviewed by a user login
-          example: 0
-        issues_created:
-          type: integer
-          description: Number of issues created by a user login
-          example: 0
-        comments:
-          type: integer
-          description: Number of comments associated with a user login
-          example: 0
+          description: Number of pushes in day bucket
+          example: 4
       required:
-        - time_start
-        - time_end
-        - commits
-        - prs_created
-        - prs_reviewed
-        - issues_created
-        - comments
-    DbContributionsProjects:
+        - bucket
+        - pushes_count
+    DbPullRequestGitHubEventsHistogram:
       type: object
       properties:
-        org_id:
+        bucket:
+          format: date-time
           type: string
-          description: The org name of the repo
-          example: open-sauced
-        project_id:
-          type: string
-          description: The project name of the repo
-          example: api
-        repo_id:
+          description: Timestamp representing histogram bucket day
+          example: 2022-08-28 22:04:29.000000
+        interval:
+          type: number
+          description: The width in days of the individual time bucket
+          example: 30
+        pr_count:
           type: integer
-          description: The ID of the associated repo in the OpenSauced API context
-          example: 0
-        contributions:
+          description: Number of Prs created in day bucket
+          example: 4
+        accepted_prs:
           type: integer
-          description: The number of contributions associated with a org/repo
-          example: 0
+          description: Number of accepted/merged Prs in bucket
+          example: 4
+        open_prs:
+          type: integer
+          description: Number of open, unmerged Prs in bucket
+          example: 5
+        closed_prs:
+          type: integer
+          description: Number of closed, unmerged Prs in bucket
+          example: 1
+        draft_prs:
+          type: integer
+          description: Number of drafted, unmerged Prs in bucket
+          example: 2
+        active_prs:
+          type: integer
+          description: Number of active, unmerged Prs in bucket
+          example: 2
+        spam_prs:
+          type: integer
+          description: Number of Prs marked as spam within bucket
+          example: 1
+        pr_velocity:
+          type: integer
+          description: The average number of days to merge a PR over the time period
+          example: 4
       required:
-        - org_id
-        - project_id
-        - repo_id
-        - contributions
-    DbContributorCategoryTimeframe:
-      type: object
-      properties:
-        time_start:
-          type: string
-          description: The ISO timestamp for the start of the time frame
-          example: 2023-08-26T23:55:49.204Z
-        time_end:
-          type: string
-          description: The ISO timestamp for the end of the time frame
-          example: 2023-08-26T23:55:49.204Z
-        all:
-          type: integer
-          description: Number of all contributors (active, new, and alumni)
-          example: 0
-        active:
-          type: integer
-          description: Number of contributors who contributed in current time frame and
-            previous time frame
-          example: 0
-        new:
-          type: integer
-          description: Number of contributors who are new to contributing (contributed in
-            current time frame but not the previous time frame)
-          example: 0
-        alumni:
-          type: integer
-          description: Number of contributors who did not contribute in current time frame
-            but did in the previous time frame
-          example: 0
-      required:
-        - time_start
-        - time_end
-        - all
-        - active
-        - new
-        - alumni
+        - bucket
+        - interval
+        - pr_count
+        - accepted_prs
+        - open_prs
+        - closed_prs
+        - draft_prs
+        - active_prs
+        - spam_prs
+        - pr_velocity
