@@ -1,8 +1,8 @@
 import { Controller, Get, Query } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
-import { DbIssueGitHubEventsHistogram } from "../timescale/entities/issue_github_events_histogram";
-import { IssueGithubEventsService } from "../timescale/issue_github_events.service";
+import { DbIssuesGitHubEventsHistogram } from "../timescale/entities/issues_github_events_histogram";
+import { IssuesGithubEventsService } from "../timescale/issues_github_events.service";
 import { PushGithubEventsService } from "../timescale/push_github_events.service";
 import { DbPushGitHubEventsHistogram } from "../timescale/entities/push_github_events_histogram";
 import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
@@ -29,7 +29,7 @@ export class HistogramController {
   constructor(
     private readonly forkGitHubEventsService: ForkGithubEventsService,
     private readonly issueCommentGitHubEventsService: IssueCommentGithubEventsService,
-    private readonly issueGitHubEventsService: IssueGithubEventsService,
+    private readonly issueGitHubEventsService: IssuesGithubEventsService,
     private readonly pullRequestGitHubEventsService: PullRequestGithubEventsService,
     private readonly pullRequestReviewGitHubEventsService: PullRequestReviewGithubEventsService,
     private readonly pushGitHubEventsService: PushGithubEventsService,
@@ -84,7 +84,7 @@ export class HistogramController {
     summary: "Generates a issues created histogram based on 1 day time buckets",
   })
   @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
-  async issuesHistogram(@Query() options: IssueHistogramDto): Promise<DbIssueGitHubEventsHistogram[]> {
+  async issuesHistogram(@Query() options: IssueHistogramDto): Promise<DbIssuesGitHubEventsHistogram[]> {
     return this.issueGitHubEventsService.genIssueHistogram(options);
   }
 

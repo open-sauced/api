@@ -10,6 +10,7 @@ import { RepoFilterService } from "../common/filters/repo-filter.service";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
+import { RepoDevstatsService } from "../timescale/repo-devstats.service";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
@@ -21,7 +22,8 @@ export class RepoService {
     private repoRepository: Repository<DbRepo>,
     private filterService: RepoFilterService,
     @Inject(forwardRef(() => PullRequestGithubEventsService))
-    private pullRequestGithubEventsService: PullRequestGithubEventsService
+    private pullRequestGithubEventsService: PullRequestGithubEventsService,
+    private repoDevstatsService: RepoDevstatsService
   ) {}
 
   subQueryCount<T extends ObjectLiteral>(
@@ -177,6 +179,8 @@ export class RepoService {
         prevDaysStartDate
       );
 
+      const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
+
       return {
         ...entity,
         pr_active_count: prStats.active_prs,
@@ -186,6 +190,7 @@ export class RepoService {
         draft_prs_count: prStats.draft_prs,
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
+        activity_ratio: activityRatio,
       } as DbRepo;
     });
 
