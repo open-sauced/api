@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.5.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0-beta.2...v2.5.0-beta.3) (2024-01-30)
+
+
+### 🍕 Features
+
+* Workspace stats and devstats skeleton ([#523](https://github.com/open-sauced/api.opensauced.pizza/issues/523)) ([7cbdf30](https://github.com/open-sauced/api.opensauced.pizza/commit/7cbdf300faf51bac8d3d67fa4dfdae2baa6e6ec0))
+
 ## [2.5.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0-beta.1...v2.5.0-beta.2) (2024-01-26)
 
 
