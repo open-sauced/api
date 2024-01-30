@@ -559,8 +559,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="281"
-                            class="link-to-prism">src/app.module.ts:281</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="288"
+                            class="link-to-prism">src/app.module.ts:288</a></div>
                 </td>
             </tr>
 
@@ -702,6 +702,8 @@ import { DbWorkspaceInsight } from &quot;./workspace/entities/workspace-insights
 import { WorkspaceModule } from &quot;./workspace/workspace.module&quot;;
 import { HistogramModule } from &quot;./histogram/histogram.module&quot;;
 import { DbWorkspaceContributor } from &quot;./workspace/entities/workspace-contributors.entity&quot;;
+import { DbIssuesGitHubEvents } from &quot;./timescale/entities/issues_github_event&quot;;
+import { DbPushGitHubEvents } from &quot;./timescale/entities/push_github_events&quot;;
 
 @Module({
   imports: [
@@ -791,7 +793,12 @@ import { DbWorkspaceContributor } from &quot;./workspace/entities/workspace-cont
           password: configService.get(&quot;db-timescale.password&quot;),
           database: configService.get(&quot;db-timescale.database&quot;),
           autoLoadEntities: false,
-          entities: [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents],
+          entities: [
+            DbPushGitHubEvents,
+            DbPullRequestGitHubEvents,
+            DbIssuesGitHubEvents,
+            DbPullRequestReviewGitHubEvents,
+          ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware(&quot;OS&quot;),
           ssl: {
