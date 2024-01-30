@@ -19,8 +19,11 @@ import { DbForkGitHubEventsHistogram } from "./entities/fork_github_events_histo
 import { ForkGithubEventsService } from "./fork_github_events.service";
 import { DbIssueCommentGitHubEventsHistogram } from "./entities/issue_comment_github_events_histogram";
 import { IssueCommentGithubEventsService } from "./issue_comment_github_events.service";
-import { IssueGithubEventsService } from "./issue_github_events.service";
-import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_histogram";
+import { IssuesGithubEventsService } from "./issues_github_events.service";
+import { DbIssuesGitHubEventsHistogram } from "./entities/issues_github_events_histogram";
+import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
+import { RepoDevstatsService } from "./repo-devstats.service";
+import { DbPushGitHubEvents } from "./entities/push_github_events";
 
 @Module({
   imports: [
@@ -30,9 +33,11 @@ import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_his
       [
         DbForkGitHubEventsHistogram,
         DbIssueCommentGitHubEventsHistogram,
-        DbIssueGitHubEventsHistogram,
+        DbIssuesGitHubEvents,
+        DbIssuesGitHubEventsHistogram,
         DbPullRequestGitHubEvents,
         DbPullRequestReviewGitHubEvents,
+        DbPushGitHubEvents,
         DbPushGitHubEventsHistogram,
         DbWatchGitHubEventsHistogram,
       ],
@@ -43,19 +48,21 @@ import { DbIssueGitHubEventsHistogram } from "./entities/issue_github_events_his
   providers: [
     ForkGithubEventsService,
     IssueCommentGithubEventsService,
-    IssueGithubEventsService,
+    IssuesGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
     PushGithubEventsService,
+    RepoDevstatsService,
     WatchGithubEventsService,
   ],
   exports: [
     ForkGithubEventsService,
     IssueCommentGithubEventsService,
-    IssueGithubEventsService,
+    IssuesGithubEventsService,
     PullRequestGithubEventsService,
     PullRequestReviewGithubEventsService,
     PushGithubEventsService,
+    RepoDevstatsService,
     WatchGithubEventsService,
   ],
 })

@@ -23,6 +23,9 @@ import { DbRepo } from "../../repo/entities/repo.entity";
 import { RepoFilterService } from "../../common/filters/repo-filter.service";
 import { DbUserListContributor } from "../../user-lists/entities/user-list-contributor.entity";
 import { PagerService } from "../../common/services/pager.service";
+import { RepoDevstatsService } from "../../timescale/repo-devstats.service";
+import { DbIssuesGitHubEvents } from "../../timescale/entities/issues_github_event";
+import { DbPushGitHubEvents } from "../../timescale/entities/push_github_events";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -49,6 +52,7 @@ describe("UserService", () => {
         TierService,
         ConfigService,
         PullRequestGithubEventsService,
+        RepoDevstatsService,
         RepoService,
         UserListService,
         RepoFilterService,
@@ -83,6 +87,14 @@ describe("UserService", () => {
         },
         {
           provide: getRepositoryToken(DbPullRequestGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbIssuesGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbPushGitHubEvents, "TimescaleConnection"),
           useValue: createMockRepository(),
         },
         {

@@ -87,6 +87,8 @@ import { DbWorkspaceInsight } from "./workspace/entities/workspace-insights.enti
 import { WorkspaceModule } from "./workspace/workspace.module";
 import { HistogramModule } from "./histogram/histogram.module";
 import { DbWorkspaceContributor } from "./workspace/entities/workspace-contributors.entity";
+import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
+import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
 
 @Module({
   imports: [
@@ -176,7 +178,12 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
           password: configService.get("db-timescale.password"),
           database: configService.get("db-timescale.database"),
           autoLoadEntities: false,
-          entities: [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents],
+          entities: [
+            DbPushGitHubEvents,
+            DbPullRequestGitHubEvents,
+            DbIssuesGitHubEvents,
+            DbPullRequestReviewGitHubEvents,
+          ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
           ssl: {
