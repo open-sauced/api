@@ -16,7 +16,6 @@ import {
   StripeConfig,
   OpenAIConfig,
   PizzaConfig,
-  HacktoberfestConfig,
   TierConfig,
   DbTimescaleConfig,
 } from "./config";
@@ -24,7 +23,6 @@ import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
 import { DbRepo } from "./repo/entities/repo.entity";
 import { DbUser } from "./user/user.entity";
-import { DbContribution } from "./contribution/contribution.entity";
 import { DbRepoToUserVotes } from "./repo/entities/repo.to.user.votes.entity";
 import { DbRepoToUserStars } from "./repo/entities/repo.to.user.stars.entity";
 import { DbRepoToUserSubmissions } from "./repo/entities/repo.to.user.submissions.entity";
@@ -37,7 +35,6 @@ import { VoteModule } from "./vote/vote.module";
 import { StarModule } from "./star/star.module";
 import { StargazeModule } from "./stargaze/stargaze.module";
 import { SubmitModule } from "./submit/submit.module";
-import { ContributionModule } from "./contribution/contribution.module";
 import { UserModule } from "./user/user.module";
 import { HttpLoggerMiddleware } from "./common/middleware/http-logger.middleware";
 import { DatabaseLoggerMiddleware } from "./common/middleware/database-logger.middleware";
@@ -55,7 +52,6 @@ import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
 import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
-import { DbPullRequestReview } from "./pull-requests/entities/pull-request-review.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
@@ -91,6 +87,8 @@ import { DbWorkspaceInsight } from "./workspace/entities/workspace-insights.enti
 import { WorkspaceModule } from "./workspace/workspace.module";
 import { HistogramModule } from "./histogram/histogram.module";
 import { DbWorkspaceContributor } from "./workspace/entities/workspace-contributors.entity";
+import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
+import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
 
 @Module({
   imports: [
@@ -103,7 +101,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
         StripeConfig,
         OpenAIConfig,
         PizzaConfig,
-        HacktoberfestConfig,
         TierConfig,
         DbTimescaleConfig,
       ],
@@ -130,7 +127,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
             DbUserNotification,
             DbUserCollaboration,
             DbRepo,
-            DbContribution,
             DbRepoToUserVotes,
             DbRepoToUserStars,
             DbRepoToUserSubmissions,
@@ -141,7 +137,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
             DbCustomer,
             DbSubscription,
             DbPullRequest,
-            DbPullRequestReview,
             DbPRInsight,
             DbUserToUserFollows,
             DbEmoji,
@@ -183,7 +178,12 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
           password: configService.get("db-timescale.password"),
           database: configService.get("db-timescale.database"),
           autoLoadEntities: false,
-          entities: [DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents],
+          entities: [
+            DbPushGitHubEvents,
+            DbPullRequestGitHubEvents,
+            DbIssuesGitHubEvents,
+            DbPullRequestReviewGitHubEvents,
+          ],
           synchronize: false,
           logger: new DatabaseLoggerMiddleware("OS"),
           ssl: {
@@ -249,7 +249,6 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
     StarModule,
     StargazeModule,
     SubmitModule,
-    ContributionModule,
     UserModule,
     InsightsModule,
     IssueSummaryModule,

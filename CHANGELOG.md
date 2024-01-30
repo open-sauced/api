@@ -5,6 +5,45 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.5.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0-beta.2...v2.5.0-beta.3) (2024-01-30)
+
+
+### 🍕 Features
+
+* Workspace stats and devstats skeleton ([#523](https://github.com/open-sauced/api.opensauced.pizza/issues/523)) ([7cbdf30](https://github.com/open-sauced/api.opensauced.pizza/commit/7cbdf300faf51bac8d3d67fa4dfdae2baa6e6ec0))
+
+## [2.5.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0-beta.1...v2.5.0-beta.2) (2024-01-26)
+
+
+### 🍕 Features
+
+* V2 API swagger doc ([#518](https://github.com/open-sauced/api.opensauced.pizza/issues/518)) ([5c421b2](https://github.com/open-sauced/api.opensauced.pizza/commit/5c421b2c841be9ab55a74ae573e192195ff093f2))
+
+## [2.5.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.4.0...v2.5.0-beta.1) (2024-01-25)
+
+
+### 🍕 Features
+
+* /v2/lists/{id}/stats/contributions-evolution-by-contributor-type ([#489](https://github.com/open-sauced/api.opensauced.pizza/issues/489)) ([459e4a6](https://github.com/open-sauced/api.opensauced.pizza/commit/459e4a60a02beb687736d82618126c6b3e08a6a6))
+* /v2/lists/{id}/stats/contributions-evolution-by-type ([#485](https://github.com/open-sauced/api.opensauced.pizza/issues/485)) ([e0f5375](https://github.com/open-sauced/api.opensauced.pizza/commit/e0f537537d2637514a89e1b0c6023c1fac2da158))
+* /v2/lists/{id}/stats/top-project-contributions-by-contributor ([#488](https://github.com/open-sauced/api.opensauced.pizza/issues/488)) ([f1c8105](https://github.com/open-sauced/api.opensauced.pizza/commit/f1c8105804ca9a1a2eb61de313201b444b64f98c))
+* add /v2/lists/{id}/stats/top-project-contributions-by-contributor ([#487](https://github.com/open-sauced/api.opensauced.pizza/issues/487)) ([a83f6f1](https://github.com/open-sauced/api.opensauced.pizza/commit/a83f6f16afd08bf39f5609a27cffe78e89a67110))
+* Add a "distincAuthors" field for PR search DTO ([#506](https://github.com/open-sauced/api.opensauced.pizza/issues/506)) ([7e16709](https://github.com/open-sauced/api.opensauced.pizza/commit/7e1670939c955172d436d441734fee67b0907f55))
+* Make "repo" optional in histogram dtos ([#501](https://github.com/open-sauced/api.opensauced.pizza/issues/501)) ([6ba5aaa](https://github.com/open-sauced/api.opensauced.pizza/commit/6ba5aaad8062ab10e4bd935f9ee507995c93f6f4))
+* Refactor contributor search ([#507](https://github.com/open-sauced/api.opensauced.pizza/issues/507)) ([200b476](https://github.com/open-sauced/api.opensauced.pizza/commit/200b476e847bb976b0060d2f03db6cdcff972140))
+* Remove hacktoberfest filtering and all references to hacktoberfest ([#481](https://github.com/open-sauced/api.opensauced.pizza/issues/481)) ([25c9fe0](https://github.com/open-sauced/api.opensauced.pizza/commit/25c9fe0d333c0556c45587c92806798fd991c4a0))
+* Removes a broken left join for "contributors" in repo base query builder ([#499](https://github.com/open-sauced/api.opensauced.pizza/issues/499)) ([7e9bfea](https://github.com/open-sauced/api.opensauced.pizza/commit/7e9bfea205eb7c1d3859d33ea932eb6589f8cf45))
+* Removes contributions table and services/controllers ([#482](https://github.com/open-sauced/api.opensauced.pizza/issues/482)) ([befba0a](https://github.com/open-sauced/api.opensauced.pizza/commit/befba0a1412397da7c7dff142b1469962e1c0a34))
+* V2 api endpoints and timescale integration ([#470](https://github.com/open-sauced/api.opensauced.pizza/issues/470)) ([8d88878](https://github.com/open-sauced/api.opensauced.pizza/commit/8d88878045c2b414a596273f267d576ede71dfdc))
+* v2/contributors endpoints ([#490](https://github.com/open-sauced/api.opensauced.pizza/issues/490)) ([af54e8a](https://github.com/open-sauced/api.opensauced.pizza/commit/af54e8a7f55539e272658701f37c71f788ecd97d))
+
+
+### 🐛 Bug Fixes
+
+* Add migration to remove PR reviews table ([bbac517](https://github.com/open-sauced/api.opensauced.pizza/commit/bbac5177d42ed8f0763c15228436cb485787dc18))
+* Add missing active_prs count for repos ([#503](https://github.com/open-sauced/api.opensauced.pizza/issues/503)) ([a4255c9](https://github.com/open-sauced/api.opensauced.pizza/commit/a4255c96bd122bda114080d0c459357dfe5601d9))
+* Correct contrib-graph-by-type stats ([#508](https://github.com/open-sauced/api.opensauced.pizza/issues/508)) ([6c96072](https://github.com/open-sauced/api.opensauced.pizza/commit/6c960723dde5f4b3eb7b26c61346f02276b37c66))
+
 ## [2.4.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.3.0...v2.4.0) (2024-01-25)
 
 
@@ -118,6 +157,7 @@
 
 ### 🍕 Features
 
+* Remove hacktoberfest filtering and all references to hacktoberfest ([#481](https://github.com/open-sauced/api.opensauced.pizza/issues/481)) ([25c9fe0](https://github.com/open-sauced/api.opensauced.pizza/commit/25c9fe0d333c0556c45587c92806798fd991c4a0))
 * Workspace contributors ([#466](https://github.com/open-sauced/api.opensauced.pizza/issues/466)) ([3572882](https://github.com/open-sauced/api.opensauced.pizza/commit/35728829971a331e5eb669a9c59f75da8228bbec))
 * Workspace member management ([#460](https://github.com/open-sauced/api.opensauced.pizza/issues/460)) ([6084564](https://github.com/open-sauced/api.opensauced.pizza/commit/60845648f01125e042c08964db29f47f32161b97))
 * Workspace orgs ([#462](https://github.com/open-sauced/api.opensauced.pizza/issues/462)) ([43b1745](https://github.com/open-sauced/api.opensauced.pizza/commit/43b174546be1cea1e87e239953b64d45a95e6102))

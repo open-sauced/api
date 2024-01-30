@@ -3,6 +3,7 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
+import { PullRequestGithubEventsService } from "../../timescale/pull_request_github_events.service";
 import { DbUser } from "../user.entity";
 import { UpdateUserDto } from "../dtos/update-user.dto";
 import { UpdateUserProfileInterestsDto } from "../dtos/update-user-interests.dto";
@@ -37,7 +38,8 @@ export class UserService {
     private userCollaborationRepository: Repository<DbUserCollaboration>,
     @InjectRepository(DbUserList, "ApiConnection")
     private userListRepository: Repository<DbUserList>,
-    private tierService: TierService
+    private tierService: TierService,
+    private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -129,6 +131,9 @@ export class UserService {
   }
 
   async findOneByUsername(username: string): Promise<DbUser> {
+    const recentPrCount = await this.pullRequestGithubEventsService.findCountByPrAuthor(username, 30, 0);
+    const userVelocity = await this.pullRequestGithubEventsService.findVelocityByPrAuthor(username, 30, 0);
+
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -161,24 +166,6 @@ export class UserService {
       )
       .addSelect(
         `(
-        SELECT COALESCE(COUNT("pull_requests"."id"), 0)
-        FROM pull_requests
-        WHERE LOWER(author_login) = :username
-        AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-      )::INTEGER`,
-        "users_recent_pull_requests_count"
-      )
-      .addSelect(
-        `(
-          SELECT COALESCE(AVG(("pull_requests"."merged_at"::DATE - "pull_requests"."created_at"::DATE)), 0)
-          FROM "pull_requests"
-          WHERE LOWER("pull_requests"."author_login") = :username
-          AND now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-        )::INTEGER`,
-        `users_recent_pull_request_velocity_count`
-      )
-      .addSelect(
-        `(
           SELECT
             CASE
               WHEN COUNT(DISTINCT full_name) > 0 THEN true
@@ -198,6 +185,9 @@ export class UserService {
     if (!item) {
       throw new NotFoundException();
     }
+
+    item.recent_pull_request_velocity_count = userVelocity;
+    item.recent_pull_requests_count = recentPrCount;
 
     return item;
   }

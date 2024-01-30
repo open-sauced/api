@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, Version } from "@nestjs/common";
+import { Controller, Get, Param, Query } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -14,7 +14,6 @@ import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
 import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
-import { UserListStatsService } from "./user-list-stat.service";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
@@ -22,6 +21,7 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
 import { UserListEventsStatsService } from "./user-list-events-stats.service";
+import { UserListStatsService } from "./user-list-stat.service";
 
 @Controller("lists")
 @ApiTags("User Lists service")
@@ -31,7 +31,6 @@ export class UserListStatsController {
     private readonly userListEventsStatsService: UserListEventsStatsService
   ) {}
 
-  @Version("2")
   @Get(":id/stats/most-active-contributors")
   @ApiOperation({
     operationId: "getMostActiveContributorsV2",
@@ -49,23 +48,6 @@ export class UserListStatsController {
     return this.userListEventsStatsService.findAllListContributorStats(pageOptionsDto, id);
   }
 
-  @Get(":id/stats/most-active-contributors")
-  @ApiOperation({
-    operationId: "getMostActiveContributors",
-    summary: "Gets most active contributors for a given list",
-  })
-  @ApiPaginatedResponse(DbUserListContributorStat)
-  @ApiOkResponse({ type: DbUserListContributorStat })
-  @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
-  @ApiBadRequestResponse({ description: "Invalid request" })
-  @ApiParam({ name: "id", type: "string" })
-  async getMostActiveContributors(
-    @Param("id") id: string,
-    @Query() pageOptionsDto: UserListMostActiveContributorsDto
-  ): Promise<PageDto<DbUserListContributorStat>> {
-    return this.userListStatsService.findAllListContributorStats(pageOptionsDto, id);
-  }
-
   @Get(":id/stats/contributions-evolution-by-type")
   @ApiOperation({
     operationId: "getContributionsByTimeFrame",
@@ -79,7 +61,7 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: ContributionsTimeframeDto
   ): Promise<DbContributionStatTimeframe[]> {
-    return this.userListStatsService.findContributionsInTimeframe(options, id);
+    return this.userListEventsStatsService.findContributionsInTimeFrame(options, id);
   }
 
   @Get(":id/stats/contributions-by-project")
@@ -96,7 +78,7 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: ContributionsByProjectDto
   ): Promise<DbContributionsProjects[]> {
-    return this.userListStatsService.findContributionsByProject(id, options);
+    return this.userListEventsStatsService.findContributionsByProject(options, id);
   }
 
   @Get(":id/stats/top-project-contributions-by-contributor/")
@@ -112,7 +94,7 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: TopProjectsDto
   ): Promise<DbUserListContributorStat[]> {
-    return this.userListStatsService.findListContributorStatsByProject(options, id);
+    return this.userListEventsStatsService.findTopContributorsByProject(options, id);
   }
 
   @Get(":id/stats/contributions-evolution-by-contributor-type")
@@ -128,6 +110,6 @@ export class UserListStatsController {
     @Param("id") id: string,
     @Query() options: ContributionsTimeframeDto
   ): Promise<DbContributorCategoryTimeframe[]> {
-    return this.userListStatsService.findContributorCategoriesByTimeframe(options, id);
+    return this.userListEventsStatsService.findContributorCategoriesByTimeframe(options, id);
   }
 }

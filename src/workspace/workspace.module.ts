@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { TimescaleModule } from "../timescale/timescale.module";
 import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { WorkspaceService } from "./workspace.service";
@@ -19,11 +20,14 @@ import { WorkspaceReposService } from "./workspace-repos.service";
 import { WorkspaceContributorController } from "./workspace-contributors.controller";
 import { WorkspaceContributorsService } from "./workspace-contributors.service";
 import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
+import { WorkspaceStatsService } from "./workspace-stats.service";
+import { WorkspaceStatsController } from "./workspace-stats.controller";
 
 @Module({
   imports: [
     UserModule,
     ApiServicesModule,
+    TimescaleModule,
     TypeOrmModule.forFeature(
       [DbWorkspace, DbWorkspaceMember, DbWorkspaceOrg, DbWorkspaceRepo, DbWorkspaceInsight, DbWorkspaceContributor],
       "ApiConnection"
@@ -33,6 +37,7 @@ import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity
     WorkspaceController,
     WorkspaceMemberController,
     WorkspaceOrgController,
+    WorkspaceStatsController,
     WorkspaceRepoController,
     WorkspaceContributorController,
   ],
@@ -40,6 +45,7 @@ import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity
     WorkspaceService,
     WorkspaceMembersService,
     WorkspaceOrgsService,
+    WorkspaceStatsService,
     WorkspaceReposService,
     WorkspaceContributorsService,
   ],
@@ -48,6 +54,7 @@ import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity
     WorkspaceMembersService,
     WorkspaceOrgsService,
     WorkspaceReposService,
+    WorkspaceStatsService,
     WorkspaceContributorsService,
   ],
 })

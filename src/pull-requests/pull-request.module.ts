@@ -10,7 +10,6 @@ import { DbPRInsight } from "./entities/pull-request-insight.entity";
 import { DbPullRequest } from "./entities/pull-request.entity";
 import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { PullRequestController } from "./pull-request.controller";
-import { PullRequestService } from "./pull-request.service";
 import { PullRequestDescriptionService } from "./pull-request-description.service";
 import { PullRequestDescriptionController } from "./pull-request-description.controller";
 import { CodeRefactorSuggestionController } from "./code-refactor-suggestion.controller";
@@ -19,14 +18,12 @@ import { CodeTestSuggestionController } from "./code-test.suggestion.controller"
 import { CodeExplanationService } from "./code-explanation.service";
 import { CodeExplanationController } from "./code-explanation.controller";
 import { CodeTestSuggestionService } from "./code-test-suggestion.service";
-import { PullRequestReviewService } from "./pull-request-review.service";
-import { DbPullRequestReview } from "./entities/pull-request-review.entity";
 import { PullRequestReviewsController } from "./pull-request-review.controller";
 
 @Module({
   imports: [
     TimescaleModule,
-    TypeOrmModule.forFeature([DbPullRequest, DbPRInsight, DbPullRequestReview], "ApiConnection"),
+    TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"),
     TypeOrmModule.forFeature([DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents], "TimescaleConnection"),
     RepoFilterModule,
     OpenAiModule,
@@ -40,14 +37,11 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
     PullRequestReviewsController,
   ],
   providers: [
-    PullRequestService,
     PullRequestInsightsService,
     PullRequestDescriptionService,
     CodeRefactorSuggestionService,
     CodeTestSuggestionService,
     CodeExplanationService,
-    PullRequestReviewService,
   ],
-  exports: [PullRequestService, PullRequestReviewService],
 })
 export class PullRequestModule {}

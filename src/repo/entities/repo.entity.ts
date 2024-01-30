@@ -17,7 +17,6 @@ import {
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { DbUser } from "../../user/user.entity";
-import { DbContribution } from "../../contribution/contribution.entity";
 import { DbUserTopRepo } from "../../user/entities/user-top-repo.entity";
 import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
 import { DbRepoToUserVotes } from "./repo.to.user.votes.entity";
@@ -450,10 +449,6 @@ export class DbRepo extends BaseEntity {
   public workspaces: DbWorkspaceRepo[];
 
   @ApiHideProperty()
-  @OneToMany(() => DbContribution, (contribution) => contribution.repo)
-  public contributions: DbContribution[];
-
-  @ApiHideProperty()
   @OneToMany(() => DbRepoToUserVotes, (repoToUserVotes) => repoToUserVotes.repo)
   public repoToUserVotes: DbRepoToUserVotes[];
 
@@ -557,4 +552,16 @@ export class DbRepo extends BaseEntity {
     insert: false,
   })
   public pr_active_count?: number;
+
+  @ApiModelProperty({
+    description: "Number of commits and comments over the number of unique contributors in time range",
+    example: 8.82,
+    type: "float",
+  })
+  @Column({
+    type: "float",
+    select: false,
+    insert: false,
+  })
+  public activity_ratio?: number;
 }
