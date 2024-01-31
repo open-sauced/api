@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0...v2.5.1) (2024-01-31)
+
+
+### 🐛 Bug Fixes
+
+* Removes activity ratio from repo entity ([#526](https://github.com/open-sauced/api.opensauced.pizza/issues/526)) ([1fdff1e](https://github.com/open-sauced/api.opensauced.pizza/commit/1fdff1e2b615940ecf58b41fcad545aabc7de43f))
+
 ### [2.5.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0...v2.5.1-beta.1) (2024-01-31)
 
 
