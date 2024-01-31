@@ -632,8 +632,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/repo/repo.service.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/repo/repo.service.ts:229</a></div>
                 </td>
             </tr>
 
@@ -715,8 +715,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/repo/repo.service.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/repo/repo.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -1074,8 +1074,6 @@ export class RepoService {
         prevDaysStartDate
       );
 
-      const activityRatio &#x3D; await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
-
       return {
         ...entity,
         pr_active_count: prStats.active_prs,
@@ -1085,7 +1083,6 @@ export class RepoService {
         draft_prs_count: prStats.draft_prs,
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
-        activity_ratio: activityRatio,
       } as DbRepo;
     });
 
