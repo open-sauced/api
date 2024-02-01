@@ -116,7 +116,13 @@ export class UserListEventsStatsService {
       return [];
     }
 
-    const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username?.toLowerCase()));
+    const users = allUsers
+      .map((user) => (user.username ? user.username.toLowerCase() : ""))
+      .filter((user) => user !== "");
+
+    if (users.length === 0) {
+      return [];
+    }
 
     const userListQueryBuilder =
       this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder<DbPullRequestGitHubEvents>;
@@ -189,7 +195,16 @@ export class UserListEventsStatsService {
       );
     }
 
-    const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username));
+    const users = allUsers
+      .map((user) => (user.username ? user.username.toLowerCase() : ""))
+      .filter((user) => user !== "");
+
+    if (users.length === 0) {
+      return new ContributionsPageDto(
+        new Array<DbUserListContributorStat>(),
+        new ContributionsPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
 
     const usersCte = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
