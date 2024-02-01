@@ -72,15 +72,4 @@ export class DbUserListContributor {
     referencedColumnName: "id",
   })
   public user_list_contributor!: DbUser;
-
-  @ApiModelProperty({
-    description: "User list collaborator's login",
-    example: "bdougie",
-  })
-  @Column({
-    type: "text",
-    select: false,
-    insert: false,
-  })
-  public login?: string;
 }
