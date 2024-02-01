@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.1...v2.5.2) (2024-02-01)
+
+
+### 🐛 Bug Fixes
+
+* Removes inefficient subqueries in most-active user list checks ([#529](https://github.com/open-sauced/api.opensauced.pizza/issues/529)) ([aaec43a](https://github.com/open-sauced/api.opensauced.pizza/commit/aaec43a5c4d284e35e15c3ac39aaed03abd01081))
+
 ### [2.5.2-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.1...v2.5.2-beta.1) (2024-02-01)
 
 
