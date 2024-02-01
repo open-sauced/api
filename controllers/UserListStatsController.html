@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:56</a></div>
                 </td>
             </tr>
 
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -509,8 +509,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -597,15 +597,11 @@ import { DbContributorCategoryTimeframe } from &quot;./entities/contributors-tim
 import { ContributionsByProjectDto } from &quot;./dtos/contributions-by-project.dto&quot;;
 import { TopProjectsDto } from &quot;./dtos/top-projects.dto&quot;;
 import { UserListEventsStatsService } from &quot;./user-list-events-stats.service&quot;;
-import { UserListStatsService } from &quot;./user-list-stat.service&quot;;
 
 @Controller(&quot;lists&quot;)
 @ApiTags(&quot;User Lists service&quot;)
 export class UserListStatsController {
-  constructor(
-    private readonly userListStatsService: UserListStatsService,
-    private readonly userListEventsStatsService: UserListEventsStatsService
-  ) {}
+  constructor(private readonly userListEventsStatsService: UserListEventsStatsService) {}
 
   @Get(&quot;:id/stats/most-active-contributors&quot;)
   @ApiOperation({

@@ -1479,9 +1479,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="interfaces/AllContributionsCount.html" data-type="entity-link" >AllContributionsCount</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/AllContributionsCount-1.html" data-type="entity-link" >AllContributionsCount</a>
-                            </li>
-                            <li class="link">
                                 <a href="interfaces/ChatResponse.html" data-type="entity-link" >ChatResponse</a>
                             </li>
                             <li class="link">
