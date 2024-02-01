@@ -1,6 +1,6 @@
 {
   "name": "@open-sauced/api",
-  "version": "2.5.1",
+  "version": "2.5.2-beta.1",
   "keywords": [],
   "description": "API dot Open Sauced is NestJS and SupaBase powered OAS3 backend designed to remove client complexity and provide a structured graph of all @open-sauced integrations",
   "author": "TED Vortex <ted.vortex@gmail.com>",
