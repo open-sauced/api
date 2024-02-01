@@ -5,11 +5,12 @@
 
 > All notable changes to this project will be documented in this file
 
-### [2.5.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.1-beta.1...v2.5.1-beta.2) (2024-02-01)
+### [2.5.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0...v2.5.1) (2024-01-31)
 
 
 ### 🐛 Bug Fixes
 
+* Removes activity ratio from repo entity ([#526](https://github.com/open-sauced/api.opensauced.pizza/issues/526)) ([1fdff1e](https://github.com/open-sauced/api.opensauced.pizza/commit/1fdff1e2b615940ecf58b41fcad545aabc7de43f))
 * Removes inefficient subqueries in most-active user list checks ([#529](https://github.com/open-sauced/api.opensauced.pizza/issues/529)) ([aaec43a](https://github.com/open-sauced/api.opensauced.pizza/commit/aaec43a5c4d284e35e15c3ac39aaed03abd01081))
 
 ### [2.5.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.0...v2.5.1-beta.1) (2024-01-31)
