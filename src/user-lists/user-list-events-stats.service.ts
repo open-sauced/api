@@ -20,10 +20,6 @@ import { DbContributionsProjects } from "./entities/contributions-projects.entit
 import { TopProjectsDto } from "./dtos/top-projects.dto";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 
-interface AllContributionsCount {
-  all_contributions: number;
-}
-
 @Injectable()
 export class UserListEventsStatsService {
   constructor(
@@ -177,7 +173,6 @@ export class UserListEventsStatsService {
     listId: string
   ): Promise<PageDto<DbUserListContributorStat>> {
     const range = pageOptionsDto.range!;
-    const now = new Date().toISOString();
 
     const userListUsersBuilder = this.userListUsersQueryBuilder();
 
@@ -196,92 +191,135 @@ export class UserListEventsStatsService {
 
     const users = allUsers.map((user) => (user.login ? user.login.toLowerCase() : user.username));
 
-    const userListQueryBuilder =
-      this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder<DbPullRequestGitHubEvents>;
+    const usersCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("DISTINCT LOWER(actor_login) as login")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .groupBy(`login`);
 
-    userListQueryBuilder.select("DISTINCT users.login", "login");
+    const commitsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(sum(push_num_commits), 0) AS commits")
+      .from("push_github_events", "push_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere("push_ref IN ('refs/heads/main', 'refs/heads/master')")
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
 
-    userListQueryBuilder
-      .addSelect(
-        `(SELECT COALESCE(sum(push_num_commits), 0)
-          FROM push_github_events
-          WHERE LOWER(actor_login)=users.login
-          AND push_ref IN ('refs/heads/main', 'refs/heads/master')
-          AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "commits"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND pr_action='opened'
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "prs_created"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_review_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND pr_review_action='created'
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "prs_reviewed"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM issues_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND issue_action='opened'
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "issues_created"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM commit_comment_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "commit_comments"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM issue_comment_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "issue_comments"
-      )
-      .addSelect(
-        `(SELECT COALESCE(count(event_id), 0)
-        FROM pull_request_review_comment_github_events
-        WHERE LOWER(actor_login)=users.login
-        AND now() - INTERVAL '${range} days' <= event_time)::INTEGER`,
-        "pr_review_comments"
-      );
+    const prsCreatedCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS prs_created")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere("pr_action = 'opened'")
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
 
-    userListQueryBuilder.from(
-      (qb) =>
-        qb
-          .select("LOWER(actor_login)", "login")
-          .distinct()
-          .from(DbPullRequestGitHubEvents, "pull_request_github_events")
-          .where("LOWER(actor_login) IN (:...users)", { users }),
-      "users"
-    );
+    const prsReviewedCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS prs_reviewed")
+      .from("pull_request_review_github_events", "pull_request_review_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere("pr_review_action = 'created'")
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
 
-    userListQueryBuilder.setParameters({ users });
+    const issuesCreatedCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS issues_created")
+      .from("issues_github_events", "issues_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere("issue_action = 'opened'")
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
+
+    const commitCommentsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS commit_comments")
+      .from("commit_comment_github_events", "commit_comment_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
+
+    const issueCommentsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS issue_comments")
+      .from("issue_comment_github_events", "issue_comment_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
+
+    const prReviewCommentsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("LOWER(actor_login)", "actor_login")
+      .addSelect("COALESCE(COUNT(*), 0) AS pr_review_comments")
+      .from("pull_request_review_comment_github_events", "pull_request_review_comment_github_events")
+      .where(`LOWER(actor_login) IN (:...users)`, { users })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("LOWER(actor_login)");
 
     switch (pageOptionsDto.contributorType) {
       case UserListContributorStatsTypeEnum.all:
         break;
 
       case UserListContributorStatsTypeEnum.active:
-        this.applyActiveContributorsFilter(userListQueryBuilder, now, range);
+        /*
+         * pr authors who have contributed in the last 2 date ranges (i.e., for a 30 day,
+         * 1 month date range, we should look back 60 days) are considered "active"
+         */
+        usersCte
+          .andWhere(`event_time >= now() - INTERVAL '${range * 2} days'`)
+          .having(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range} days'
+            AND now() THEN 1 END) > 0`
+          )
+          .andHaving(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range * 2} days'
+             AND now() - INTERVAL '${range} days' THEN 1 END) > 0`
+          );
         break;
 
       case UserListContributorStatsTypeEnum.new:
-        this.applyNewContributorsFilter(userListQueryBuilder, now, range);
+        /*
+         * pr authors who have contributed in the current date range
+         * but not the previous date range (i.e., for a 30 day range, users who have
+         * contributed in the last 30 days but not 30-60 days ago) would be considered "new"
+         */
+        usersCte
+          .andWhere(`event_time >= now() - INTERVAL '${range * 2} days'`)
+          .having(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range} days'
+            AND now() THEN 1 END) > 0`
+          )
+          .andHaving(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range * 2} days'
+             AND now() - INTERVAL '${range} days' THEN 1 END) = 0`
+          );
         break;
 
       case UserListContributorStatsTypeEnum.alumni: {
-        this.applyAlumniContributorsFilter(userListQueryBuilder, now, range);
+        /*
+         * pr authors who have not contributed in the current date range
+         * but have in the previous date range (i.e., for a 30 day range, users who have not
+         * contributed in the last 30 days but have 30-60 days ago) would be considered "alumni"
+         */
+        usersCte
+          .andWhere(`event_time >= now() - INTERVAL '${range * 2} days'`)
+          .having(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range} days'
+            AND now() THEN 1 END) = 0`
+          )
+          .andHaving(
+            `COUNT(CASE WHEN event_time BETWEEN now() - INTERVAL '${range * 2} days'
+             AND now() - INTERVAL '${range} days' THEN 1 END) > 0`
+          );
         break;
       }
 
@@ -291,21 +329,45 @@ export class UserListEventsStatsService {
 
     const entityQb = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
-      .addCommonTableExpression(userListQueryBuilder, "CTE")
-      .setParameters(userListQueryBuilder.getParameters())
-      .select("login")
-      .addSelect("commits")
-      .addSelect("prs_created")
-      .addSelect("prs_reviewed")
-      .addSelect("issues_created")
-      .addSelect("commit_comments")
-      .addSelect("issue_comments")
-      .addSelect("pr_review_comments")
-      .addSelect(`("commit_comments" + "issue_comments" + "pr_review_comments") AS "comments"`)
+      .addCommonTableExpression(usersCte, "users")
+      .setParameters(usersCte.getParameters())
+      .addCommonTableExpression(commitsCte, "commits_agg")
+      .setParameters(commitsCte.getParameters())
+      .addCommonTableExpression(prsCreatedCte, "prs_created_agg")
+      .setParameters(prsCreatedCte.getParameters())
+      .addCommonTableExpression(prsReviewedCte, "prs_reviewed_agg")
+      .setParameters(prsReviewedCte.getParameters())
+      .addCommonTableExpression(issuesCreatedCte, "issues_created_agg")
+      .setParameters(issuesCreatedCte.getParameters())
+      .addCommonTableExpression(commitCommentsCte, "commit_comments_agg")
+      .setParameters(commitCommentsCte.getParameters())
+      .addCommonTableExpression(issueCommentsCte, "issue_comments_agg")
+      .setParameters(issueCommentsCte.getParameters())
+      .addCommonTableExpression(prReviewCommentsCte, "pr_review_comments_agg")
+      .setParameters(prReviewCommentsCte.getParameters())
+      .select("users.login")
+      .addSelect("COALESCE(commits_agg.commits, 0)::INTEGER AS commits")
+      .addSelect("COALESCE(prs_created_agg.prs_created, 0)::INTEGER AS prs_created")
+      .addSelect("COALESCE(prs_reviewed_agg.prs_reviewed, 0)::INTEGER AS prs_reviewed")
+      .addSelect("COALESCE(issues_created_agg.issues_created, 0)::INTEGER AS issues_created")
+      .addSelect("COALESCE(commit_comments_agg.commit_comments, 0)::INTEGER AS commit_comments")
       .addSelect(
-        `("commits" + "prs_created" + "prs_reviewed" + "issues_created" + "commit_comments" + "issue_comments" + "pr_review_comments") AS "total_contributions"`
+        `
+          COALESCE(commits, 0)::INTEGER +
+          COALESCE(prs_created, 0)::INTEGER +
+          COALESCE(prs_reviewed, 0)::INTEGER +
+          COALESCE(issues_created, 0)::INTEGER +
+          COALESCE(commit_comments, 0)::INTEGER AS total_contributions
+      `
       )
-      .from("CTE", "CTE")
+      .from("users", "users")
+      .leftJoin("commits_agg", "commits_agg", "users.login = commits_agg.actor_login")
+      .leftJoin("prs_created_agg", "prs_created_agg", "users.login = prs_created_agg.actor_login")
+      .leftJoin("prs_reviewed_agg", "prs_reviewed_agg", "users.login = prs_reviewed_agg.actor_login")
+      .leftJoin("issues_created_agg", "issues_created_agg", "users.login = issues_created_agg.actor_login")
+      .leftJoin("commit_comments_agg", "commit_comments_agg", "users.login = commit_comments_agg.actor_login")
+      .leftJoin("issue_comments_agg", "issue_comments_agg", "commits_agg.actor_login = issue_comments_agg.actor_login")
+      .leftJoin("pr_review_comments_agg", "pr_review_comments_agg", "users.login = pr_review_comments_agg.actor_login")
       .offset(pageOptionsDto.skip)
       .limit(pageOptionsDto.limit);
 
@@ -326,31 +388,15 @@ export class UserListEventsStatsService {
         break;
     }
 
-    const allCountQb = this.pullRequestGithubEventsRepository.manager
-      .createQueryBuilder()
-      .addCommonTableExpression(userListQueryBuilder, "CTE")
-      .setParameters(userListQueryBuilder.getParameters())
-      .select(
-        `SUM("commits" + "prs_created" + "prs_reviewed" + "issues_created" + "commit_comments" + "issue_comments" + "pr_review_comments") OVER () AS "all_contributions"`
-      )
-      .from("CTE", "CTE");
-
     const entities: DbUserListContributorStat[] = await entityQb.getRawMany();
-    const allContributionsResult: AllContributionsCount | undefined = await allCountQb.getRawOne();
 
-    if (!allContributionsResult) {
-      return new ContributionsPageDto(
-        new Array<DbUserListContributorStat>(),
-        new ContributionsPageMetaDto({ itemCount: entities.length, pageOptionsDto }, 0)
-      );
-    }
+    let totalCount = 0;
 
-    const allContributionsCount = allContributionsResult.all_contributions;
+    entities.forEach((entity) => {
+      totalCount += entity.total_contributions;
+    });
 
-    const pageMetaDto = new ContributionsPageMetaDto(
-      { itemCount: entities.length, pageOptionsDto },
-      allContributionsCount
-    );
+    const pageMetaDto = new ContributionsPageMetaDto({ itemCount: entities.length, pageOptionsDto }, totalCount);
 
     return new ContributionsPageDto(entities, pageMetaDto);
   }
