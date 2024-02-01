@@ -18,13 +18,13 @@
 <title>cluster_EndorsementModule_providers</title>
 <polygon fill="none" stroke="black" points="378,-40.8 378,-92.8 576,-92.8 576,-40.8 378,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_EndorsementModule_exports</title>
-<polygon fill="none" stroke="black" points="159,-170.8 159,-222.8 311,-222.8 311,-170.8 159,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_EndorsementModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 370,-92.8 370,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_EndorsementModule_exports</title>
+<polygon fill="none" stroke="black" points="159,-170.8 159,-222.8 311,-222.8 311,-170.8 159,-170.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">

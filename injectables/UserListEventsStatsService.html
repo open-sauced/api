@@ -225,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="802"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:802</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="817"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:817</a></div>
                 </td>
             </tr>
 
@@ -328,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="869"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:869</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="884"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:884</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="836"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:836</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="851"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:851</a></div>
                 </td>
             </tr>
 
@@ -642,8 +642,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:171</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:177</a></div>
                 </td>
             </tr>
 
@@ -725,8 +725,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="450"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:450</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="465"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:465</a></div>
                 </td>
             </tr>
 
@@ -808,8 +808,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="404"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:404</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="419"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:419</a></div>
                 </td>
             </tr>
 
@@ -891,8 +891,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="538"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:538</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="553"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:553</a></div>
                 </td>
             </tr>
 
@@ -1077,8 +1077,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="494"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:494</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="509"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:509</a></div>
                 </td>
             </tr>
 
@@ -1301,7 +1301,13 @@ export class UserListEventsStatsService {
       return [];
     }
 
-    const users &#x3D; allUsers.map((user) &#x3D;&gt; (user.login ? user.login.toLowerCase() : user.username?.toLowerCase()));
+    const users &#x3D; allUsers
+      .map((user) &#x3D;&gt; (user.username ? user.username.toLowerCase() : &quot;&quot;))
+      .filter((user) &#x3D;&gt; user !&#x3D;&#x3D; &quot;&quot;);
+
+    if (users.length &#x3D;&#x3D;&#x3D; 0) {
+      return [];
+    }
 
     const userListQueryBuilder &#x3D;
       this.pullRequestGithubEventsRepository.manager.createQueryBuilder() as SelectQueryBuilder&lt;DbPullRequestGitHubEvents&gt;;
@@ -1374,7 +1380,16 @@ export class UserListEventsStatsService {
       );
     }
 
-    const users &#x3D; allUsers.map((user) &#x3D;&gt; (user.login ? user.login.toLowerCase() : user.username));
+    const users &#x3D; allUsers
+      .map((user) &#x3D;&gt; (user.username ? user.username.toLowerCase() : &quot;&quot;))
+      .filter((user) &#x3D;&gt; user !&#x3D;&#x3D; &quot;&quot;);
+
+    if (users.length &#x3D;&#x3D;&#x3D; 0) {
+      return new ContributionsPageDto(
+        new Array&lt;DbUserListContributorStat&gt;(),
+        new ContributionsPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
 
     const usersCte &#x3D; this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()

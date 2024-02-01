@@ -14,13 +14,13 @@
 <title>cluster_StarModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 266,-230.8 266,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_StarModule_exports</title>
-<polygon fill="none" stroke="black" points="92,-170.8 92,-222.8 192,-222.8 192,-170.8 92,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_StarModule_imports</title>
 <polygon fill="none" stroke="black" points="152,-40.8 152,-92.8 258,-92.8 258,-40.8 152,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_StarModule_exports</title>
+<polygon fill="none" stroke="black" points="92,-170.8 92,-222.8 192,-222.8 192,-170.8 92,-170.8"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_StarModule_providers</title>
