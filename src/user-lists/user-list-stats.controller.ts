@@ -21,15 +21,11 @@ import { DbContributorCategoryTimeframe } from "./entities/contributors-timefram
 import { ContributionsByProjectDto } from "./dtos/contributions-by-project.dto";
 import { TopProjectsDto } from "./dtos/top-projects.dto";
 import { UserListEventsStatsService } from "./user-list-events-stats.service";
-import { UserListStatsService } from "./user-list-stat.service";
 
 @Controller("lists")
 @ApiTags("User Lists service")
 export class UserListStatsController {
-  constructor(
-    private readonly userListStatsService: UserListStatsService,
-    private readonly userListEventsStatsService: UserListEventsStatsService
-  ) {}
+  constructor(private readonly userListEventsStatsService: UserListEventsStatsService) {}
 
   @Get(":id/stats/most-active-contributors")
   @ApiOperation({
