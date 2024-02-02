@@ -1718,11 +1718,17 @@ paths:
             type: integer
       responses:
         "200":
-          description: ""
+          description: Successfully received model list
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/DbRepoContributor"
+                allOf:
+                  - $ref: "#/components/schemas/PageDto"
+                  - properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: "#/components/schemas/DbRepoContributor"
         "404":
           description: Repository not found
       tags: *a8

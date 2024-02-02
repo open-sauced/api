@@ -43,6 +43,7 @@ export class RepoController {
     operationId: "findContributorsByOwnerAndRepo",
     summary: "Finds a repo by :owner and :repo and gets the contributors",
   })
+  @ApiPaginatedResponse(DbRepoContributor)
   @ApiOkResponse({ type: DbRepoContributor })
   @ApiNotFoundResponse({ description: "Repository not found" })
   async findContributorsByOwnerAndRepo(
