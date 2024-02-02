@@ -21,7 +21,6 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
-import { TierService } from "../../tier/tier.service";
 
 @Injectable()
 export class UserService {
@@ -38,7 +37,6 @@ export class UserService {
     private userCollaborationRepository: Repository<DbUserCollaboration>,
     @InjectRepository(DbUserList, "ApiConnection")
     private userListRepository: Repository<DbUserList>,
-    private tierService: TierService,
     private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 
@@ -255,12 +253,6 @@ export class UserService {
         });
       }
 
-      await this.tierService.checkAddOrg(id, {
-        email: email as string,
-        name: name as string,
-        login: user_name as string,
-      });
-
       return user;
     } catch (e) {
       // create new user
@@ -274,12 +266,6 @@ export class UserService {
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
         campaign_start_date: confirmed_at ? new Date(confirmed_at) : new Date(),
-      });
-
-      await this.tierService.checkAddOrg(id, {
-        email: email as string,
-        name: name as string,
-        login: user_name as string,
       });
 
       return newUser;

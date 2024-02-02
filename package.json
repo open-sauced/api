@@ -78,7 +78,6 @@
     "rxjs": "^7.8.1",
     "semver": "^7.5.0",
     "stripe": "^11.17.0",
-    "tier": "^5.10.0",
     "typeorm": "^0.3.15",
     "typeorm-transactional-cls-hooked": "^0.1.21",
     "yaml": "^1.10.2"
