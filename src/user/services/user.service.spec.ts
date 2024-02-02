@@ -14,7 +14,6 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
-import { TierService } from "../../tier/tier.service";
 import { PullRequestGithubEventsService } from "../../timescale/pull_request_github_events.service";
 import { DbPullRequestGitHubEvents } from "../../timescale/entities/pull_request_github_event";
 import { RepoService } from "../../repo/repo.service";
@@ -40,7 +39,6 @@ const createMockRepository = <T extends ObjectLiteral = any>(): MockRepository<T
 
 describe("UserService", () => {
   let userService: UserService;
-  let tierService: TierService;
   let prEventService: PullRequestGithubEventsService;
   let dbUserRepositoryMock: MockRepository;
   let dbUserHighlightReactionRepositoryMock: MockRepository;
@@ -49,7 +47,6 @@ describe("UserService", () => {
     const module = await Test.createTestingModule({
       providers: [
         UserService,
-        TierService,
         ConfigService,
         PullRequestGithubEventsService,
         RepoDevstatsService,
@@ -113,10 +110,6 @@ describe("UserService", () => {
     }).compile();
 
     userService = module.get<UserService>(UserService);
-    tierService = module.get<TierService>(TierService);
-    tierService.checkAddOrg = jest.fn(async () => {
-      // do nothing
-    });
 
     // mocks out asynchronous timescale calls used within the user service
     prEventService = module.get<PullRequestGithubEventsService>(PullRequestGithubEventsService);
