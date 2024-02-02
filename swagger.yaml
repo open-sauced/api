@@ -1667,6 +1667,65 @@ paths:
         "404":
           description: Repository not found
       tags: *a8
+  "/v2/repos/{owner}/{repo}/contributors":
+    get:
+      operationId: findContributorsByOwnerAndRepo
+      summary: Finds a repo by :owner and :repo and gets the contributors
+      parameters:
+        - name: owner
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: repo
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            default: 1
+            type: integer
+        - name: limit
+          required: false
+          in: query
+          schema:
+            minimum: 1
+            maximum: 1000
+            default: 10
+            type: integer
+        - name: orderDirection
+          required: false
+          in: query
+          schema:
+            $ref: "#/components/schemas/OrderDirectionEnum"
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbRepoContributor"
+        "404":
+          description: Repository not found
+      tags: *a8
   /v2/repos/list:
     get:
       operationId: findAll
@@ -5826,6 +5885,45 @@ paths:
       tags: *a31
       security:
         - bearer: []
+  "/v2/workspaces/{id}/stats":
+    get:
+      operationId: getWorkspaceStatsForUser
+      summary: Gets workspace stats for the authenticated user
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: range
+          required: false
+          in: query
+          description: Range in days
+          schema:
+            default: 30
+            type: integer
+        - name: prev_days_start_date
+          required: false
+          in: query
+          description: Number of days in the past to start range block
+          schema:
+            default: 0
+            type: integer
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DbWorkspaceStats"
+        "400":
+          description: Invalid request
+        "404":
+          description: Unable to get user workspace stats
+      tags:
+        - Workspaces stats service
+      security:
+        - bearer: []
   "/v2/workspaces/{id}/repos":
     get:
       operationId: getWorkspaceReposForUser
@@ -8332,6 +8430,61 @@ components:
         - repo_name
         - pr_commits
         - pr_review_body
+    DbRepoContributor:
+      type: object
+      properties:
+        login:
+          type: string
+          description: Repo contributor login
+          example: bdougie
+        commits:
+          type: integer
+          description: Number of commits for login in repo within the time range
+          example: 0
+        prs_created:
+          type: integer
+          description: Number of PRs created for login in repo within the time range
+          example: 0
+        prs_reviewed:
+          type: integer
+          description: Number of PRs reviewed for login in repo within the time range
+          example: 0
+        issues_created:
+          type: integer
+          description: Number of issues created for login in repo within the time range
+          example: 0
+        commit_comments:
+          type: integer
+          description: Number of commit comments for login in repo within the time range
+          example: 0
+        issue_comments:
+          type: integer
+          description: Number of issue comments for login in repo within the time range
+          example: 0
+        pr_review_comments:
+          type: integer
+          description: Number of pr review comments for login in repo within the time range
+          example: 0
+        comments:
+          type: integer
+          description: Number of total comments for login in repo within the time range
+          example: 0
+        total_contributions:
+          type: integer
+          description: Number of total contributions for a login in repo within the time
+            range
+          example: 0
+      required:
+        - login
+        - commits
+        - prs_created
+        - prs_reviewed
+        - issues_created
+        - commit_comments
+        - issue_comments
+        - pr_review_comments
+        - comments
+        - total_contributions
     RepoOrderFieldsEnum:
       type: string
       enum:
@@ -8438,10 +8591,6 @@ components:
           type: string
           description: Timestamp representing top repo first index
           example: 2016-10-19 13:24:51.000000
-        login:
-          type: string
-          description: User list collaborator's login
-          example: bdougie
       required:
         - id
         - user_id
@@ -9468,6 +9617,91 @@ components:
             type: array
       required:
         - orgs
+    DbWorkspacePrStats:
+      type: object
+      properties:
+        opened:
+          type: integer
+          default: 0
+          description: Number of PRs opened in a time range
+          example: 4
+        merged:
+          type: integer
+          default: 0
+          description: Number of PRs closed in a time range
+          example: 1
+        velocity:
+          type: integer
+          default: 0
+          description: Repository average open/close time for PRs
+          example: 2
+      required:
+        - opened
+        - merged
+        - velocity
+    DbWorkspaceIssueStats:
+      type: object
+      properties:
+        opened:
+          type: integer
+          default: 0
+          description: Number of issues opened in a time range
+          example: 4
+        closed:
+          type: integer
+          default: 0
+          description: Number of issues closed in a time range
+          example: 1
+        velocity:
+          type: integer
+          default: 0
+          description: Repository average open/close time for issues
+          example: 2
+      required:
+        - opened
+        - closed
+        - velocity
+    DbWorkspaceRepoStats:
+      type: object
+      properties:
+        stars:
+          type: integer
+          default: 0
+          description: Number of stars for workspace repos
+          example: 1234
+        forks:
+          type: integer
+          default: 0
+          description: Number of forks for repos
+          example: 987
+        health:
+          type: integer
+          default: 0
+          description: Repository average health
+          example: 9
+      required:
+        - stars
+        - forks
+        - health
+    DbWorkspaceStats:
+      type: object
+      properties:
+        pull_requests:
+          description: Pull Request stats for workspace repos
+          allOf:
+            - $ref: "#/components/schemas/DbWorkspacePrStats"
+        issues:
+          description: Issue stats for workspace repos
+          allOf:
+            - $ref: "#/components/schemas/DbWorkspaceIssueStats"
+        repos:
+          description: Repo stats for workspace repos
+          allOf:
+            - $ref: "#/components/schemas/DbWorkspaceRepoStats"
+      required:
+        - pull_requests
+        - issues
+        - repos
     DbWorkspaceRepo:
       type: object
       properties:

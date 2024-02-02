@@ -2,15 +2,18 @@ import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { RepoDevstatsService } from "../timescale/repo-devstats.service";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoService } from "./repo.service";
 import { RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
+import { DbRepoContributor } from "./entities/repo_contributors.entity";
 
 @Controller("repos")
 @ApiTags("Repository service")
 export class RepoController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor(private readonly repoService: RepoService, private readonly repoDevstatsService: RepoDevstatsService) {}
 
   @Get("/:id")
   @ApiOperation({
@@ -33,6 +36,21 @@ export class RepoController {
   @ApiNotFoundResponse({ description: "Repository not found" })
   async findOneByOwnerAndRepo(@Param("owner") owner: string, @Param("repo") repo: string): Promise<DbRepo> {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
+  }
+
+  @Get("/:owner/:repo/contributors")
+  @ApiOperation({
+    operationId: "findContributorsByOwnerAndRepo",
+    summary: "Finds a repo by :owner and :repo and gets the contributors",
+  })
+  @ApiOkResponse({ type: DbRepoContributor })
+  @ApiNotFoundResponse({ description: "Repository not found" })
+  async findContributorsByOwnerAndRepo(
+    @Param("owner") owner: string,
+    @Param("repo") repo: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise<PageDto<DbRepoContributor>> {
+    return this.repoDevstatsService.findRepoContributorStats(owner, repo, pageOptionsDto);
   }
 
   @Get("/list")
