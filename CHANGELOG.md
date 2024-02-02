@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.4-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.3...v2.5.4-beta.1) (2024-02-02)
+
+
+### 🐛 Bug Fixes
+
+* remove tier.run integration ([#536](https://github.com/open-sauced/api.opensauced.pizza/issues/536)) ([406d76c](https://github.com/open-sauced/api.opensauced.pizza/commit/406d76c9e9b9498b81917dd11dcd78a22c1749f3))
+
 ### [2.5.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.2...v2.5.3) (2024-02-01)
 
 
