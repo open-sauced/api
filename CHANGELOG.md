@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.4-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.1...v2.5.4-beta.2) (2024-02-02)
+
+
+### 🐛 Bug Fixes
+
+* Re-introduces repo contributor stats endpoint ([#537](https://github.com/open-sauced/api.opensauced.pizza/issues/537)) ([34a7336](https://github.com/open-sauced/api.opensauced.pizza/commit/34a73364fd85b9db718ba2a4413b993270d812cd))
+
 ### [2.5.4-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.3...v2.5.4-beta.1) (2024-02-02)
 
 
