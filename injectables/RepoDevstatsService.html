@@ -102,6 +102,10 @@
                                 <a href="#calculateRepoActivityRatio" >calculateRepoActivityRatio</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findRepoContributorStats" >findRepoContributorStats</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#winsorizeAndNormalizeRatio" >winsorizeAndNormalizeRatio</a>
                             </li>
@@ -128,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/timescale/repo-devstats.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/repo-devstats.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -217,8 +221,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/timescale/repo-devstats.service.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -282,6 +286,101 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findRepoContributorStats"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findRepoContributorStats</b></span>
+                        <a href="#findRepoContributorStats"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findRepoContributorStats(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:122</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>owner</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;PageDto&lt;DbRepoContributor&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="winsorizeAndNormalizeRatio"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -300,8 +399,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/timescale/repo-devstats.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -375,7 +474,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/timescale/repo-devstats.service.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/timescale/repo-devstats.service.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -402,7 +501,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/timescale/repo-devstats.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/timescale/repo-devstats.service.ts:34</a></div>
                         </td>
                     </tr>
 
@@ -415,11 +514,15 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import * as math from &quot;mathjs&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { avgRepoActivityRatioSample } from &quot;../common/calculations/avg-repo-activity-ratio-sample&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
+import { DbRepoContributor } from &quot;../repo/entities/repo_contributors.entity&quot;;
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 import { DbIssuesGitHubEvents } from &quot;./entities/issues_github_event&quot;;
 import { DbPushGitHubEvents } from &quot;./entities/push_github_events&quot;;
@@ -525,6 +628,185 @@ export class RepoDevstatsService {
     const parsedResult &#x3D; parseFloat(&#x60;${result?.avg_calculated_activity ?? &quot;0&quot;}&#x60;);
 
     return this.winsorizeAndNormalizeRatio(parsedResult);
+  }
+
+  /*
+   * this method is very similar to finding user list contributor stats but instead
+   * filters on owner/repo for a given github repo name. It also derives the
+   * users from distinct pull request contributors to that given repo in the given date range
+   */
+  async findRepoContributorStats(
+    owner: string,
+    repo: string,
+    pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbRepoContributor&gt;&gt; {
+    if (!owner) {
+      throw new BadRequestException(&quot;owner must be a valid github owner&quot;);
+    }
+
+    if (!repo) {
+      throw new BadRequestException(&quot;repo must be a valid github repo&quot;);
+    }
+
+    const repoName &#x3D; &#x60;${owner}/${repo}&#x60;.toLowerCase();
+    const range &#x3D; pageOptionsDto.range!;
+
+    const usersQuery &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;DISTINCT LOWER(actor_login) as login&quot;)
+      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
+      .where(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .groupBy(&#x60;login&#x60;);
+
+    const allUsers &#x3D; await usersQuery.getRawMany&lt;{ login: string }&gt;();
+
+    if (allUsers.length &#x3D;&#x3D;&#x3D; 0) {
+      return new PageDto(new Array&lt;DbRepoContributor&gt;(), new PageMetaDto({ itemCount: 0, pageOptionsDto }));
+    }
+
+    const users &#x3D; allUsers.map((user) &#x3D;&gt; (user.login ? user.login.toLowerCase() : &quot;&quot;)).filter((user) &#x3D;&gt; user !&#x3D;&#x3D; &quot;&quot;);
+
+    if (users.length &#x3D;&#x3D;&#x3D; 0) {
+      return new PageDto(new Array&lt;DbRepoContributor&gt;(), new PageMetaDto({ itemCount: 0, pageOptionsDto }));
+    }
+
+    const usersCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;DISTINCT LOWER(actor_login) as login&quot;)
+      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&#x60;login&#x60;);
+
+    const commitsCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(sum(push_num_commits), 0) AS commits&quot;)
+      .from(&quot;push_github_events&quot;, &quot;push_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&quot;push_ref IN (&#x27;refs/heads/main&#x27;, &#x27;refs/heads/master&#x27;)&quot;)
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const prsCreatedCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS prs_created&quot;)
+      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&quot;pr_action &#x3D; &#x27;opened&#x27;&quot;)
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const prsReviewedCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS prs_reviewed&quot;)
+      .from(&quot;pull_request_review_github_events&quot;, &quot;pull_request_review_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&quot;pr_review_action &#x3D; &#x27;created&#x27;&quot;)
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const issuesCreatedCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS issues_created&quot;)
+      .from(&quot;issues_github_events&quot;, &quot;issues_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&quot;issue_action &#x3D; &#x27;opened&#x27;&quot;)
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const commitCommentsCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS commit_comments&quot;)
+      .from(&quot;commit_comment_github_events&quot;, &quot;commit_comment_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const issueCommentsCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS issue_comments&quot;)
+      .from(&quot;issue_comment_github_events&quot;, &quot;issue_comment_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const prReviewCommentsCte &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;LOWER(actor_login)&quot;, &quot;actor_login&quot;)
+      .addSelect(&quot;COALESCE(COUNT(*), 0) AS pr_review_comments&quot;)
+      .from(&quot;pull_request_review_comment_github_events&quot;, &quot;pull_request_review_comment_github_events&quot;)
+      .where(&#x60;LOWER(actor_login) IN (:...users)&#x60;, { users })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .andWhere(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .groupBy(&quot;LOWER(actor_login)&quot;);
+
+    const entityQb &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(usersCte, &quot;users&quot;)
+      .setParameters(usersCte.getParameters())
+      .addCommonTableExpression(commitsCte, &quot;commits_agg&quot;)
+      .setParameters(commitsCte.getParameters())
+      .addCommonTableExpression(prsCreatedCte, &quot;prs_created_agg&quot;)
+      .setParameters(prsCreatedCte.getParameters())
+      .addCommonTableExpression(prsReviewedCte, &quot;prs_reviewed_agg&quot;)
+      .setParameters(prsReviewedCte.getParameters())
+      .addCommonTableExpression(issuesCreatedCte, &quot;issues_created_agg&quot;)
+      .setParameters(issuesCreatedCte.getParameters())
+      .addCommonTableExpression(commitCommentsCte, &quot;commit_comments_agg&quot;)
+      .setParameters(commitCommentsCte.getParameters())
+      .addCommonTableExpression(issueCommentsCte, &quot;issue_comments_agg&quot;)
+      .setParameters(issueCommentsCte.getParameters())
+      .addCommonTableExpression(prReviewCommentsCte, &quot;pr_review_comments_agg&quot;)
+      .setParameters(prReviewCommentsCte.getParameters())
+      .select(&quot;users.login&quot;)
+      .addSelect(&quot;COALESCE(commits_agg.commits, 0)::INTEGER AS commits&quot;)
+      .addSelect(&quot;COALESCE(prs_created_agg.prs_created, 0)::INTEGER AS prs_created&quot;)
+      .addSelect(&quot;COALESCE(prs_reviewed_agg.prs_reviewed, 0)::INTEGER AS prs_reviewed&quot;)
+      .addSelect(&quot;COALESCE(issues_created_agg.issues_created, 0)::INTEGER AS issues_created&quot;)
+      .addSelect(&quot;COALESCE(commit_comments_agg.commit_comments, 0)::INTEGER AS commit_comments&quot;)
+      .addSelect(
+        &#x60;
+          COALESCE(commits, 0)::INTEGER +
+          COALESCE(prs_created, 0)::INTEGER +
+          COALESCE(prs_reviewed, 0)::INTEGER +
+          COALESCE(issues_created, 0)::INTEGER +
+          COALESCE(commit_comments, 0)::INTEGER AS total_contributions
+      &#x60;
+      )
+      .from(&quot;users&quot;, &quot;users&quot;)
+      .leftJoin(&quot;commits_agg&quot;, &quot;commits_agg&quot;, &quot;users.login &#x3D; commits_agg.actor_login&quot;)
+      .leftJoin(&quot;prs_created_agg&quot;, &quot;prs_created_agg&quot;, &quot;users.login &#x3D; prs_created_agg.actor_login&quot;)
+      .leftJoin(&quot;prs_reviewed_agg&quot;, &quot;prs_reviewed_agg&quot;, &quot;users.login &#x3D; prs_reviewed_agg.actor_login&quot;)
+      .leftJoin(&quot;issues_created_agg&quot;, &quot;issues_created_agg&quot;, &quot;users.login &#x3D; issues_created_agg.actor_login&quot;)
+      .leftJoin(&quot;commit_comments_agg&quot;, &quot;commit_comments_agg&quot;, &quot;users.login &#x3D; commit_comments_agg.actor_login&quot;)
+      .leftJoin(&quot;issue_comments_agg&quot;, &quot;issue_comments_agg&quot;, &quot;commits_agg.actor_login &#x3D; issue_comments_agg.actor_login&quot;)
+      .leftJoin(&quot;pr_review_comments_agg&quot;, &quot;pr_review_comments_agg&quot;, &quot;users.login &#x3D; pr_review_comments_agg.actor_login&quot;);
+
+    const cteCounter &#x3D; entityQb.clone().select(&#x60;COUNT(*) as count&#x60;);
+
+    const cteCounterResult &#x3D; await cteCounter.getRawOne&lt;{ count: number }&gt;();
+    const itemCount &#x3D; parseInt(&#x60;${cteCounterResult?.count ?? &quot;0&quot;}&#x60;, 10);
+
+    entityQb.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
+    const entities: DbRepoContributor[] &#x3D; await entityQb.getRawMany();
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 }
 </code></pre>

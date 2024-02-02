@@ -1062,6 +1062,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbRepo.html" data-type="entity-link" >DbRepo</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbRepoContributor.html" data-type="entity-link" >DbRepoContributor</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbRepoToUserStargazers.html" data-type="entity-link" >DbRepoToUserStargazers</a>
                                 </li>
                                 <li class="link">

@@ -93,6 +93,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findContributorsByOwnerAndRepo" >findContributorsByOwnerAndRepo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOneById" >findOneById</a>
                             </li>
                             <li>
@@ -145,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/repo/repo.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/repo/repo.controller.ts:63</a></div>
                 </td>
             </tr>
 
@@ -223,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/repo/repo.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/repo/repo.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -276,6 +280,108 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findContributorsByOwnerAndRepo"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributorsByOwnerAndRepo</b></span>
+                        <a href="#findContributorsByOwnerAndRepo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributorsByOwnerAndRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:owner/:repo/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorsByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and gets the contributors&#x27;})<br />@ApiOkResponse({type: DbRepoContributor})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/repo/repo.controller.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>owner</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;PageDto&lt;DbRepoContributor&gt;&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findOneById"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -301,8 +407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">src/repo/repo.controller.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/repo/repo.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -379,8 +485,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/repo/repo.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/repo/repo.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -448,15 +554,18 @@
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { RepoDevstatsService } from &quot;../timescale/repo-devstats.service&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { RepoService } from &quot;./repo.service&quot;;
 import { RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 import { RepoSearchOptionsDto } from &quot;./dtos/repo-search-options.dto&quot;;
+import { DbRepoContributor } from &quot;./entities/repo_contributors.entity&quot;;
 
 @Controller(&quot;repos&quot;)
 @ApiTags(&quot;Repository service&quot;)
 export class RepoController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor(private readonly repoService: RepoService, private readonly repoDevstatsService: RepoDevstatsService) {}
 
   @Get(&quot;/:id&quot;)
   @ApiOperation({
@@ -479,6 +588,21 @@ export class RepoController {
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   async findOneByOwnerAndRepo(@Param(&quot;owner&quot;) owner: string, @Param(&quot;repo&quot;) repo: string): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
+  }
+
+  @Get(&quot;/:owner/:repo/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;findContributorsByOwnerAndRepo&quot;,
+    summary: &quot;Finds a repo by :owner and :repo and gets the contributors&quot;,
+  })
+  @ApiOkResponse({ type: DbRepoContributor })
+  @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
+  async findContributorsByOwnerAndRepo(
+    @Param(&quot;owner&quot;) owner: string,
+    @Param(&quot;repo&quot;) repo: string,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbRepoContributor&gt;&gt; {
+    return this.repoDevstatsService.findRepoContributorStats(owner, repo, pageOptionsDto);
   }
 
   @Get(&quot;/list&quot;)
