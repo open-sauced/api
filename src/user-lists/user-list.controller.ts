@@ -204,7 +204,7 @@ export class UserListController {
   @ApiNotFoundResponse({ description: "Unable to delete user from user list contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  @ApiParam({ name: "userListContributorId", type: "integer" })
+  @ApiParam({ name: "userListContributorId", type: "string" })
   async deleteUserListContributors(
     @Param("id") id: string,
     @Param("userListContributorId") userListContributorId: string

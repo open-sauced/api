@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -134,6 +134,20 @@ export class UserListService {
 
     if (existingContributor) {
       return existingContributor;
+    }
+
+    if (!username) {
+      const user = await this.userRepository.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!user) {
+        throw new BadRequestException(`user with id ${userId} not found`);
+      }
+
+      username = user.login;
     }
 
     const newUserListContributor = this.userListContributorRepository.create({
