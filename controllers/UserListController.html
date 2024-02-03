@@ -355,7 +355,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteUserListContributor&#x27;, summary: &#x27;Delete contributor from an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;integer&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:id/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteUserListContributor&#x27;, summary: &#x27;Delete contributor from an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -1464,7 +1464,7 @@ export class UserListController {
   @ApiNotFoundResponse({ description: &quot;Unable to delete user from user list contributors&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  @ApiParam({ name: &quot;userListContributorId&quot;, type: &quot;integer&quot; })
+  @ApiParam({ name: &quot;userListContributorId&quot;, type: &quot;string&quot; })
   async deleteUserListContributors(
     @Param(&quot;id&quot;) id: string,
     @Param(&quot;userListContributorId&quot;) userListContributorId: string

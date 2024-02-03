@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="167"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:167</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="181"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:181</a></div>
                 </td>
             </tr>
 
@@ -639,8 +639,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:162</a></div>
                 </td>
             </tr>
 
@@ -876,8 +876,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:171</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:185</a></div>
                 </td>
             </tr>
 
@@ -947,8 +947,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="219"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:219</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="233"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:233</a></div>
                 </td>
             </tr>
 
@@ -1030,8 +1030,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="290"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:290</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:304</a></div>
                 </td>
             </tr>
 
@@ -1113,8 +1113,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="242"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:242</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="256"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:256</a></div>
                 </td>
             </tr>
 
@@ -1362,8 +1362,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="328"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:328</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="342"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:342</a></div>
                 </td>
             </tr>
 
@@ -1401,8 +1401,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:177</a></div>
                 </td>
             </tr>
 
@@ -1468,7 +1468,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -1604,6 +1604,20 @@ export class UserListService {
 
     if (existingContributor) {
       return existingContributor;
+    }
+
+    if (!username) {
+      const user &#x3D; await this.userRepository.findOne({
+        where: {
+          id: userId,
+        },
+      });
+
+      if (!user) {
+        throw new BadRequestException(&#x60;user with id ${userId} not found&#x60;);
+      }
+
+      username &#x3D; user.login;
     }
 
     const newUserListContributor &#x3D; this.userListContributorRepository.create({
