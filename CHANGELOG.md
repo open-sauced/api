@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.4-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.3...v2.5.4-beta.4) (2024-02-03)
+
+
+### 🐛 Bug Fixes
+
+* Update missing paginated response for repos/owner/repo/contributors ([#540](https://github.com/open-sauced/api.opensauced.pizza/issues/540)) ([192fe99](https://github.com/open-sauced/api.opensauced.pizza/commit/192fe99f45ab37a3ff5e50822ac1ea0819c2c206))
+
 ### [2.5.4-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.2...v2.5.4-beta.3) (2024-02-03)
 
 
