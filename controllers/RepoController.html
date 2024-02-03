@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/repo/repo.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/repo/repo.controller.ts:64</a></div>
                 </td>
             </tr>
 
@@ -227,8 +227,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/repo/repo.controller.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/repo/repo.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -299,14 +299,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorsByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and gets the contributors&#x27;})<br />@ApiOkResponse({type: DbRepoContributor})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorsByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and gets the contributors&#x27;})<br />@ApiPaginatedResponse(DbRepoContributor)<br />@ApiOkResponse({type: DbRepoContributor})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/repo/repo.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/repo/repo.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -595,6 +595,7 @@ export class RepoController {
     operationId: &quot;findContributorsByOwnerAndRepo&quot;,
     summary: &quot;Finds a repo by :owner and :repo and gets the contributors&quot;,
   })
+  @ApiPaginatedResponse(DbRepoContributor)
   @ApiOkResponse({ type: DbRepoContributor })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   async findContributorsByOwnerAndRepo(
