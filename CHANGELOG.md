@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.4-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.2...v2.5.4-beta.3) (2024-02-03)
+
+
+### 🐛 Bug Fixes
+
+* get usernames for contributors posting to user list ([#539](https://github.com/open-sauced/api.opensauced.pizza/issues/539)) ([1bbfb9d](https://github.com/open-sauced/api.opensauced.pizza/commit/1bbfb9da6c0455817471ee90556249327557f20b))
+
 ### [2.5.4-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.1...v2.5.4-beta.2) (2024-02-02)
 
 
