@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { ConfigService } from "@nestjs/config";
 
 import { DbCoupon } from "./entities/coupon.entity";
 
@@ -8,7 +9,8 @@ import { DbCoupon } from "./entities/coupon.entity";
 export class CouponService {
   constructor(
     @InjectRepository(DbCoupon, "ApiConnection")
-    private couponRepository: Repository<DbCoupon>
+    private couponRepository: Repository<DbCoupon>,
+    private configService: ConfigService
   ) {}
 
   baseQueryBuilder() {
@@ -33,5 +35,25 @@ export class CouponService {
 
   async deleteCoupon(code: string) {
     return this.couponRepository.softDelete(code);
+  }
+
+  async checkDeveloperPack(token: string) {
+    try {
+      const response = await fetch(this.configService.get<string>("github.developerPackApi")!, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data: { student: boolean } = (await response.json()) as { student: boolean };
+
+        return data.student;
+      }
+
+      return false;
+    } catch (e) {
+      return false;
+    }
   }
 }
