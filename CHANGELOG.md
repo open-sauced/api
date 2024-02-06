@@ -5,6 +5,41 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.5.4-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.4...v2.5.4-beta.5) (2024-02-05)
+
+
+### 🐛 Bug Fixes
+
+* add login to user list contributor data ([#538](https://github.com/open-sauced/api.opensauced.pizza/issues/538)) ([2715a51](https://github.com/open-sauced/api.opensauced.pizza/commit/2715a51697c0bd8e9e0b3fac13d0d458732d49db))
+
+### [2.5.4-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.3...v2.5.4-beta.4) (2024-02-03)
+
+
+### 🐛 Bug Fixes
+
+* Update missing paginated response for repos/owner/repo/contributors ([#540](https://github.com/open-sauced/api.opensauced.pizza/issues/540)) ([192fe99](https://github.com/open-sauced/api.opensauced.pizza/commit/192fe99f45ab37a3ff5e50822ac1ea0819c2c206))
+
+### [2.5.4-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.2...v2.5.4-beta.3) (2024-02-03)
+
+
+### 🐛 Bug Fixes
+
+* get usernames for contributors posting to user list ([#539](https://github.com/open-sauced/api.opensauced.pizza/issues/539)) ([1bbfb9d](https://github.com/open-sauced/api.opensauced.pizza/commit/1bbfb9da6c0455817471ee90556249327557f20b))
+
+### [2.5.4-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4-beta.1...v2.5.4-beta.2) (2024-02-02)
+
+
+### 🐛 Bug Fixes
+
+* Re-introduces repo contributor stats endpoint ([#537](https://github.com/open-sauced/api.opensauced.pizza/issues/537)) ([34a7336](https://github.com/open-sauced/api.opensauced.pizza/commit/34a73364fd85b9db718ba2a4413b993270d812cd))
+
+### [2.5.4-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.3...v2.5.4-beta.1) (2024-02-02)
+
+
+### 🐛 Bug Fixes
+
+* remove tier.run integration ([#536](https://github.com/open-sauced/api.opensauced.pizza/issues/536)) ([406d76c](https://github.com/open-sauced/api.opensauced.pizza/commit/406d76c9e9b9498b81917dd11dcd78a22c1749f3))
+
 ### [2.5.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.2...v2.5.3) (2024-02-01)
 
 

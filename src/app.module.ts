@@ -16,7 +16,6 @@ import {
   StripeConfig,
   OpenAIConfig,
   PizzaConfig,
-  TierConfig,
   DbTimescaleConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
@@ -101,7 +100,6 @@ import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
         StripeConfig,
         OpenAIConfig,
         PizzaConfig,
-        TierConfig,
         DbTimescaleConfig,
       ],
       isGlobal: true,
