@@ -75,7 +75,7 @@ export class RepoService {
   async findOneByOwnerAndRepo(owner: string, repo: string): Promise<DbRepo> {
     const queryBuilder = this.baseQueryBuilder();
 
-    queryBuilder.where("repo.full_name = :name", { name: `${owner}/${repo}` });
+    queryBuilder.where("LOWER(repo.full_name) = :name", { name: `${owner}/${repo}`.toLowerCase() });
 
     const item = await queryBuilder.getOne();
 
