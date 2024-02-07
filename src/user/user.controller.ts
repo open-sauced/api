@@ -32,7 +32,7 @@ export class UserController {
 
   @Get("/:username")
   @ApiOperation({
-    operationId: "findOneUserByUserame",
+    operationId: "findOneUserByUsername",
     summary: "Finds a user by :username",
   })
   @ApiOkResponse({ type: DbUser })

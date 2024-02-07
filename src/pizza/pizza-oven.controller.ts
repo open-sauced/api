@@ -32,8 +32,8 @@ export class PizzaOvenController {
 
   @Post("/")
   @ApiOperation({
-    operationId: "Bake a repository with the pizza oven microservice",
-    summary: "postToPizzaOvenService",
+    operationId: "postToPizzaOvenService",
+    summary: "Bake a repository with the pizza oven microservice",
   })
   @ApiAcceptedResponse()
   @ApiBadRequestResponse({ description: "Invalid request" })
