@@ -958,7 +958,7 @@ export class RepoService {
   async findOneByOwnerAndRepo(owner: string, repo: string): Promise&lt;DbRepo&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
-    queryBuilder.where(&quot;repo.full_name &#x3D; :name&quot;, { name: &#x60;${owner}/${repo}&#x60; });
+    queryBuilder.where(&quot;LOWER(repo.full_name) &#x3D; :name&quot;, { name: &#x60;${owner}/${repo}&#x60;.toLowerCase() });
 
     const item &#x3D; await queryBuilder.getOne();
 
