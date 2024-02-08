@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ConfigService } from "@nestjs/config";
@@ -7,6 +7,8 @@ import { DbCoupon } from "./entities/coupon.entity";
 
 @Injectable()
 export class CouponService {
+  private logger = new Logger("CouponService");
+
   constructor(
     @InjectRepository(DbCoupon, "ApiConnection")
     private couponRepository: Repository<DbCoupon>,
@@ -51,8 +53,12 @@ export class CouponService {
         return data.student;
       }
 
+      this.logger.error(`Error checking developer pack: ${response.status} ${response.statusText}`);
       return false;
-    } catch (e) {
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new InternalServerErrorException(`Error checking developer pack ${e.message}`);
+      }
       return false;
     }
   }
