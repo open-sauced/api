@@ -1,14 +1,18 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, InternalServerErrorException, Logger, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
+import { ConfigService } from "@nestjs/config";
 
 import { DbCoupon } from "./entities/coupon.entity";
 
 @Injectable()
 export class CouponService {
+  private logger = new Logger("CouponService");
+
   constructor(
     @InjectRepository(DbCoupon, "ApiConnection")
-    private couponRepository: Repository<DbCoupon>
+    private couponRepository: Repository<DbCoupon>,
+    private configService: ConfigService
   ) {}
 
   baseQueryBuilder() {
@@ -33,5 +37,29 @@ export class CouponService {
 
   async deleteCoupon(code: string) {
     return this.couponRepository.softDelete(code);
+  }
+
+  async checkDeveloperPack(token: string) {
+    try {
+      const response = await fetch(this.configService.get<string>("github.developerPackApi")!, {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        const data: { student: boolean } = (await response.json()) as { student: boolean };
+
+        return data.student;
+      }
+
+      this.logger.error(`Error checking developer pack: ${response.status} ${response.statusText}`);
+      return false;
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new InternalServerErrorException(`Error checking developer pack ${e.message}`);
+      }
+      return false;
+    }
   }
 }

@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.6.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.5-beta.1...v2.6.0-beta.1) (2024-02-08)
+
+
+### 🍕 Features
+
+* add API endpoint to verify developer package eligibility ([#548](https://github.com/open-sauced/api.opensauced.pizza/issues/548)) ([ec21a65](https://github.com/open-sauced/api.opensauced.pizza/commit/ec21a650dd40ff131a26f9fbf1b2fd4b8392cafa))
+
+### [2.5.5-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4...v2.5.5-beta.1) (2024-02-07)
+
+
+### 🐛 Bug Fixes
+
+* normalize repo full_name when querying for individual repo ([#547](https://github.com/open-sauced/api.opensauced.pizza/issues/547)) ([561219c](https://github.com/open-sauced/api.opensauced.pizza/commit/561219c712f7d9493b8d5013a081e475b94d841a))
+
 ### [2.5.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.3...v2.5.4) (2024-02-06)
 
 
