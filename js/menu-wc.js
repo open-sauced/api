@@ -1150,6 +1150,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
+                                <a href="classes/ApplyDeveloperPackDto.html" data-type="entity-link" >ApplyDeveloperPackDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ApplyUserCouponDto.html" data-type="entity-link" >ApplyUserCouponDto</a>
                             </li>
                             <li class="link">

@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#addDeveloperPackForUser" >addDeveloperPackForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#applyCouponForUser" >applyCouponForUser</a>
                             </li>
                             <li>
@@ -140,6 +144,96 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="addDeveloperPackForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addDeveloperPackForUser</b></span>
+                        <a href="#addDeveloperPackForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addDeveloperPackForUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, developerPackUserDto: <a href="../classes/ApplyDeveloperPackDto.html" target="_self">ApplyDeveloperPackDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/profile/developer-pack&#x27;)<br />@ApiOperation({operationId: &#x27;addDeveloperPackForUser&#x27;, summary: &#x27;Verifies a developer pack for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiBadRequestResponse({description: &#x27;Unable to verify developer pack for the user profile&#x27;})<br />@ApiBody({type: ApplyDeveloperPackDto})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="259"
+                            class="link-to-prism">src/auth/auth.controller.ts:259</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>developerPackUserDto</td>
+                                    <td>
+                                                <code><a href="../classes/ApplyDeveloperPackDto.html" target="_self" >ApplyDeveloperPackDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="applyCouponForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -165,8 +259,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/auth/auth.controller.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/auth/auth.controller.ts:241</a></div>
                 </td>
             </tr>
 
@@ -255,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="250"
-                            class="link-to-prism">src/auth/auth.controller.ts:250</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/auth/auth.controller.ts:282</a></div>
                 </td>
             </tr>
 
@@ -333,8 +427,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/auth/auth.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/auth/auth.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -411,8 +505,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/auth/auth.controller.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/auth/auth.controller.ts:158</a></div>
                 </td>
             </tr>
 
@@ -489,8 +583,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/auth/auth.controller.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="127"
+                            class="link-to-prism">src/auth/auth.controller.ts:127</a></div>
                 </td>
             </tr>
 
@@ -579,8 +673,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/auth/auth.controller.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/auth/auth.controller.ts:145</a></div>
                 </td>
             </tr>
 
@@ -657,8 +751,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="213"
-                            class="link-to-prism">src/auth/auth.controller.ts:213</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="222"
+                            class="link-to-prism">src/auth/auth.controller.ts:222</a></div>
                 </td>
             </tr>
 
@@ -747,8 +841,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="194"
-                            class="link-to-prism">src/auth/auth.controller.ts:194</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/auth/auth.controller.ts:203</a></div>
                 </td>
             </tr>
 
@@ -837,8 +931,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="180"
-                            class="link-to-prism">src/auth/auth.controller.ts:180</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="189"
+                            class="link-to-prism">src/auth/auth.controller.ts:189</a></div>
                 </td>
             </tr>
 
@@ -903,7 +997,15 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
-import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from &quot;@nestjs/swagger&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
 import { UserService } from &quot;../user/services/user.service&quot;;
 import { StripeService } from &quot;../stripe/stripe.service&quot;;
@@ -913,6 +1015,7 @@ import { UpdateUserDto } from &quot;../user/dtos/update-user.dto&quot;;
 import { UpdateUserEmailPreferencesDto } from &quot;../user/dtos/update-user-email-prefs.dto&quot;;
 import { UpdateUserProfileInterestsDto } from &quot;../user/dtos/update-user-interests.dto&quot;;
 import { ApplyUserCouponDto } from &quot;../user/dtos/apply-user-coupon.dto&quot;;
+import { ApplyDeveloperPackDto } from &quot;../user/dtos/apply-developer-pack.dto&quot;;
 import { CouponService } from &quot;../coupon/coupon.service&quot;;
 import { SupabaseAuthDto } from &quot;./dtos/supabase-auth-response.dto&quot;;
 import { User, UserId } from &quot;./supabase.user.decorator&quot;;
@@ -1140,6 +1243,29 @@ export class AuthController {
     await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
+  }
+
+  @Patch(&quot;/profile/developer-pack&quot;)
+  @ApiOperation({
+    operationId: &quot;addDeveloperPackForUser&quot;,
+    summary: &quot;Verifies a developer pack for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiBadRequestResponse({ description: &quot;Unable to verify developer pack for the user profile&quot; })
+  @ApiBody({ type: ApplyDeveloperPackDto })
+  async addDeveloperPackForUser(
+    @UserId() userId: number,
+    @Body() developerPackUserDto: ApplyDeveloperPackDto
+  ): Promise&lt;{ eligible: boolean }&gt; {
+    // check for eligibility
+    const isVerified &#x3D; await this.couponService.checkDeveloperPack(developerPackUserDto.token);
+
+    if (isVerified) {
+      await this.userService.applyCoupon(userId, &quot;DEVELOPER_PACK&quot;);
+    }
+
+    return { eligible: isVerified };
   }
 
   @Delete(&quot;/profile&quot;)

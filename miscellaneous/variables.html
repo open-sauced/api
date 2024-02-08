@@ -100,6 +100,9 @@
                             <a href="#GetPrevDateISOString" title="src/common/util/datetimes.ts" ><b>GetPrevDateISOString</b>&nbsp;&nbsp;&nbsp;(src/.../datetimes.ts)</a>
                         </li>
                         <li>
+                            <a href="#GitHubConfig" title="src/config/github.config.ts" ><b>GitHubConfig</b>&nbsp;&nbsp;&nbsp;(src/.../github.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#OpenAIConfig" title="src/config/openai.config.ts" ><b>OpenAIConfig</b>&nbsp;&nbsp;&nbsp;(src/.../openai.config.ts)</a>
                         </li>
                         <li>
@@ -3556,6 +3559,31 @@
                     <td class="col-md-4">
                         <i>Default value : </i><code>(prev_start_date &#x3D; 0): string &#x3D;&gt;
   new Date(Date.now() - prev_start_date * 24 * 60 * 60 * 1000).toISOString()</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/github.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GitHubConfig"></a>
+                    <span class="name">
+                        <span ><b>GitHubConfig</b></span>
+                        <a href="#GitHubConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;github&quot;, () &#x3D;&gt; ({
+  developerPackApi: String(process.env.DEVELOPER_PACK_API ?? &quot;&quot;),
+}))</code>
                     </td>
                 </tr>
 
