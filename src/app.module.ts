@@ -17,6 +17,7 @@ import {
   OpenAIConfig,
   PizzaConfig,
   DbTimescaleConfig,
+  GitHubConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -101,6 +102,7 @@ import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
         OpenAIConfig,
         PizzaConfig,
         DbTimescaleConfig,
+        GitHubConfig,
       ],
       isGlobal: true,
     }),

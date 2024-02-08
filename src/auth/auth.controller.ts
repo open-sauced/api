@@ -1,5 +1,13 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiBody, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from "@nestjs/swagger";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
 import { UserService } from "../user/services/user.service";
 import { StripeService } from "../stripe/stripe.service";
@@ -9,6 +17,7 @@ import { UpdateUserDto } from "../user/dtos/update-user.dto";
 import { UpdateUserEmailPreferencesDto } from "../user/dtos/update-user-email-prefs.dto";
 import { UpdateUserProfileInterestsDto } from "../user/dtos/update-user-interests.dto";
 import { ApplyUserCouponDto } from "../user/dtos/apply-user-coupon.dto";
+import { ApplyDeveloperPackDto } from "../user/dtos/apply-developer-pack.dto";
 import { CouponService } from "../coupon/coupon.service";
 import { SupabaseAuthDto } from "./dtos/supabase-auth-response.dto";
 import { User, UserId } from "./supabase.user.decorator";
@@ -236,6 +245,29 @@ export class AuthController {
     await this.userService.applyCoupon(userId, applyUserCouponDto.couponCode);
 
     return this.userService.findOneById(userId);
+  }
+
+  @Patch("/profile/developer-pack")
+  @ApiOperation({
+    operationId: "addDeveloperPackForUser",
+    summary: "Verifies a developer pack for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiBadRequestResponse({ description: "Unable to verify developer pack for the user profile" })
+  @ApiBody({ type: ApplyDeveloperPackDto })
+  async addDeveloperPackForUser(
+    @UserId() userId: number,
+    @Body() developerPackUserDto: ApplyDeveloperPackDto
+  ): Promise<{ eligible: boolean }> {
+    // check for eligibility
+    const isVerified = await this.couponService.checkDeveloperPack(developerPackUserDto.token);
+
+    if (isVerified) {
+      await this.userService.applyCoupon(userId, "DEVELOPER_PACK");
+    }
+
+    return { eligible: isVerified };
   }
 
   @Delete("/profile")
