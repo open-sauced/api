@@ -191,6 +191,7 @@ export class RepoService {
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
         activity_ratio: activityRatio,
+        health: activityRatio,
       } as DbRepo;
     });
 

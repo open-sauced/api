@@ -564,4 +564,16 @@ export class DbRepo extends BaseEntity {
     insert: false,
   })
   public activity_ratio?: number;
+
+  @ApiModelProperty({
+    description: "Health is an aggregate, overview calculation of how a repo is generally doing",
+    example: 1.23,
+    type: "float",
+  })
+  @Column({
+    type: "float",
+    select: false,
+    insert: false,
+  })
+  public health?: number;
 }
