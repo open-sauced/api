@@ -177,6 +177,8 @@ export class RepoService {
         prevDaysStartDate
       );
 
+      const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
+
       return {
         ...entity,
         pr_active_count: prStats.active_prs,
@@ -186,6 +188,7 @@ export class RepoService {
         draft_prs_count: prStats.draft_prs,
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
+        activity_ratio: activityRatio,
       } as DbRepo;
     });
 
