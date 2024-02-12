@@ -539,7 +539,7 @@ export class RepoDevstatsService {
   ) {
     // defines quantile boundaries (ignore lower 5% and upper 95% percentiles)
     const lowerQ &#x3D; 0.05;
-    const upperQ &#x3D; 0.95;
+    const upperQ &#x3D; 0.75;
 
     // calculate quantile values using the constant sampled activity ratios
     this.lowerBound &#x3D; math.quantileSeq(avgRepoActivityRatioSample, lowerQ) as number;

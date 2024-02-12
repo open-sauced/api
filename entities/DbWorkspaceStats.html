@@ -129,7 +129,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:136</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -164,7 +164,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="140" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:140</a></div>
                         </td>
                     </tr>
 
@@ -199,7 +199,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:145</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/workspace/entities/workspace-stats.entity.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -316,7 +316,20 @@ class DbWorkspaceRepoStats {
   forks &#x3D; 0;
 
   @ApiModelProperty({
-    description: &quot;Repository average health&quot;,
+    description:
+      &quot;Number of commits and comments over the number of unique contributors in time range for entire workspace&quot;,
+    example: 9,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  activity_ratio &#x3D; 0;
+
+  @ApiModelProperty({
+    description: &quot;An aggregate, overview calculation of how all repos in a workspace are generally doing&quot;,
     example: 9,
     type: &quot;integer&quot;,
   })
