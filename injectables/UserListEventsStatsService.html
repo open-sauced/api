@@ -225,8 +225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="817"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:817</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="825"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:825</a></div>
                 </td>
             </tr>
 
@@ -328,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="884"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:884</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="892"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:892</a></div>
                 </td>
             </tr>
 
@@ -431,8 +431,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="851"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:851</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="859"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:859</a></div>
                 </td>
             </tr>
 
@@ -725,8 +725,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="465"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:465</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="473"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:473</a></div>
                 </td>
             </tr>
 
@@ -808,8 +808,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="419"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:419</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="427"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:427</a></div>
                 </td>
             </tr>
 
@@ -891,8 +891,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="553"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:553</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="561"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:561</a></div>
                 </td>
             </tr>
 
@@ -1077,8 +1077,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="509"
-                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:509</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="517"
+                            class="link-to-prism">src/user-lists/user-list-events-stats.service.ts:517</a></div>
                 </td>
             </tr>
 
@@ -1467,6 +1467,7 @@ export class UserListEventsStatsService {
 
     switch (pageOptionsDto.contributorType) {
       case UserListContributorStatsTypeEnum.all:
+        usersCte.andWhere(&#x60;event_time &gt;&#x3D; now() - INTERVAL &#x27;${range} days&#x27;&#x60;);
         break;
 
       case UserListContributorStatsTypeEnum.active:
@@ -1524,6 +1525,7 @@ export class UserListEventsStatsService {
       }
 
       default:
+        usersCte.andWhere(&#x60;event_time &gt;&#x3D; now() - INTERVAL &#x27;${range} days&#x27;&#x60;);
         break;
     }
 
@@ -1567,9 +1569,7 @@ export class UserListEventsStatsService {
       .leftJoin(&quot;issues_created_agg&quot;, &quot;issues_created_agg&quot;, &quot;users.login &#x3D; issues_created_agg.actor_login&quot;)
       .leftJoin(&quot;commit_comments_agg&quot;, &quot;commit_comments_agg&quot;, &quot;users.login &#x3D; commit_comments_agg.actor_login&quot;)
       .leftJoin(&quot;issue_comments_agg&quot;, &quot;issue_comments_agg&quot;, &quot;commits_agg.actor_login &#x3D; issue_comments_agg.actor_login&quot;)
-      .leftJoin(&quot;pr_review_comments_agg&quot;, &quot;pr_review_comments_agg&quot;, &quot;users.login &#x3D; pr_review_comments_agg.actor_login&quot;)
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .leftJoin(&quot;pr_review_comments_agg&quot;, &quot;pr_review_comments_agg&quot;, &quot;users.login &#x3D; pr_review_comments_agg.actor_login&quot;);
 
     switch (pageOptionsDto.orderBy) {
       case UserListContributorStatsOrderEnum.commits:
@@ -1588,6 +1588,11 @@ export class UserListEventsStatsService {
         break;
     }
 
+    const cteCounter &#x3D; entityQb.clone();
+    const cteCounterResult &#x3D; await cteCounter.getRawMany();
+
+    entityQb.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
     const entities: DbUserListContributorStat[] &#x3D; await entityQb.getRawMany();
 
     let totalCount &#x3D; 0;
@@ -1596,7 +1601,10 @@ export class UserListEventsStatsService {
       totalCount +&#x3D; entity.total_contributions;
     });
 
-    const pageMetaDto &#x3D; new ContributionsPageMetaDto({ itemCount: entities.length, pageOptionsDto }, totalCount);
+    const pageMetaDto &#x3D; new ContributionsPageMetaDto(
+      { itemCount: cteCounterResult.length, pageOptionsDto },
+      totalCount
+    );
 
     return new ContributionsPageDto(entities, pageMetaDto);
   }
