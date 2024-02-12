@@ -282,6 +282,7 @@ export class UserListEventsStatsService {
 
     switch (pageOptionsDto.contributorType) {
       case UserListContributorStatsTypeEnum.all:
+        usersCte.andWhere(`event_time >= now() - INTERVAL '${range} days'`);
         break;
 
       case UserListContributorStatsTypeEnum.active:
@@ -339,6 +340,7 @@ export class UserListEventsStatsService {
       }
 
       default:
+        usersCte.andWhere(`event_time >= now() - INTERVAL '${range} days'`);
         break;
     }
 
@@ -382,9 +384,7 @@ export class UserListEventsStatsService {
       .leftJoin("issues_created_agg", "issues_created_agg", "users.login = issues_created_agg.actor_login")
       .leftJoin("commit_comments_agg", "commit_comments_agg", "users.login = commit_comments_agg.actor_login")
       .leftJoin("issue_comments_agg", "issue_comments_agg", "commits_agg.actor_login = issue_comments_agg.actor_login")
-      .leftJoin("pr_review_comments_agg", "pr_review_comments_agg", "users.login = pr_review_comments_agg.actor_login")
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .leftJoin("pr_review_comments_agg", "pr_review_comments_agg", "users.login = pr_review_comments_agg.actor_login");
 
     switch (pageOptionsDto.orderBy) {
       case UserListContributorStatsOrderEnum.commits:
@@ -403,6 +403,11 @@ export class UserListEventsStatsService {
         break;
     }
 
+    const cteCounter = entityQb.clone();
+    const cteCounterResult = await cteCounter.getRawMany();
+
+    entityQb.offset(pageOptionsDto.skip).limit(pageOptionsDto.limit);
+
     const entities: DbUserListContributorStat[] = await entityQb.getRawMany();
 
     let totalCount = 0;
@@ -411,7 +416,10 @@ export class UserListEventsStatsService {
       totalCount += entity.total_contributions;
     });
 
-    const pageMetaDto = new ContributionsPageMetaDto({ itemCount: entities.length, pageOptionsDto }, totalCount);
+    const pageMetaDto = new ContributionsPageMetaDto(
+      { itemCount: cteCounterResult.length, pageOptionsDto },
+      totalCount
+    );
 
     return new ContributionsPageDto(entities, pageMetaDto);
   }

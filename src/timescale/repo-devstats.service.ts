@@ -161,6 +161,7 @@ export class RepoDevstatsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where(`LOWER(actor_login) IN (:...users)`, { users })
       .andWhere("LOWER(repo_name) = LOWER(:repoName)", { repoName })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy(`login`);
 
     const commitsCte = this.pullRequestGithubEventsRepository.manager
