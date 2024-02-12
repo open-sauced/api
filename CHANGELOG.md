@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.7.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.6.0...v2.7.0-beta.1) (2024-02-12)
+
+
+### 🍕 Features
+
+* Add activity ratio back  ([#553](https://github.com/open-sauced/api.opensauced.pizza/issues/553)) ([a66af8f](https://github.com/open-sauced/api.opensauced.pizza/commit/a66af8f93cea12bffa7eb4eabbcee35f19ac8905))
+
 ## [2.6.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4...v2.6.0) (2024-02-08)
 
 
