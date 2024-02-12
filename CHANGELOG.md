@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.7.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.1...v2.7.0-beta.2) (2024-02-12)
+
+
+### 🍕 Features
+
+* Set a time range on user CTE queries to prevent full table scans ([#555](https://github.com/open-sauced/api.opensauced.pizza/issues/555)) ([dc0fae3](https://github.com/open-sauced/api.opensauced.pizza/commit/dc0fae317c855b0df079c8faeec1f7ae64b9dcee))
+
 ## [2.7.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.6.0...v2.7.0-beta.1) (2024-02-12)
 
 
