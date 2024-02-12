@@ -103,7 +103,20 @@ class DbWorkspaceRepoStats {
   forks = 0;
 
   @ApiModelProperty({
-    description: "Repository average health",
+    description:
+      "Number of commits and comments over the number of unique contributors in time range for entire workspace",
+    example: 9,
+    type: "integer",
+  })
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  activity_ratio = 0;
+
+  @ApiModelProperty({
+    description: "An aggregate, overview calculation of how all repos in a workspace are generally doing",
     example: 9,
     type: "integer",
   })

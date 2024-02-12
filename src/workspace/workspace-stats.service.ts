@@ -96,14 +96,17 @@ export class WorkspaceStatsService {
 
       result.repos.forks += entity.repo.forks;
       result.repos.stars += entity.repo.stars;
-      result.repos.health += activityRatio;
+      result.repos.activity_ratio += activityRatio;
     });
 
     await Promise.all(promises);
 
     result.pull_requests.velocity /= entities.length;
     result.issues.velocity /= entities.length;
-    result.repos.health /= entities.length;
+    result.repos.activity_ratio /= entities.length;
+
+    // activity ratio is currently the only stat that is used to inform health
+    result.repos.health = result.repos.activity_ratio;
 
     return result;
   }
