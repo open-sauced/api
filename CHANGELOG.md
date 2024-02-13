@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.7.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.3...v2.7.0-beta.4) (2024-02-13)
+
+
+### 🍕 Features
+
+* Delete workspace contributors by login ([#560](https://github.com/open-sauced/api.opensauced.pizza/issues/560)) ([2deb880](https://github.com/open-sauced/api.opensauced.pizza/commit/2deb880ffdc22e8cd91c69210f5f6f3fbf34d48c))
+
 ## [2.7.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.2...v2.7.0-beta.3) (2024-02-13)
 
 
