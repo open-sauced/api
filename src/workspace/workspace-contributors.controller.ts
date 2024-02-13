@@ -124,7 +124,7 @@ export class WorkspaceContributorController {
     return this.workspaceContributorService.deleteWorkspaceContributors(deleteWorkspaceContributorsDto, id, userId);
   }
 
-  @Delete("/:contributorId")
+  @Delete("id/:contributorId")
   @ApiOperation({
     operationId: "deleteOneWorkspaceContributorForUser",
     summary: "Delete a workspace contributors for the authenticated user",
@@ -140,6 +140,25 @@ export class WorkspaceContributorController {
     @Param("contributorId") contributorId: number,
     @UserId() userId: number
   ) {
-    return this.workspaceContributorService.deleteOneWorkspaceContributor(id, contributorId, userId);
+    return this.workspaceContributorService.deleteOneWorkspaceContributor(id, userId, contributorId);
+  }
+
+  @Delete("login/:contributorLogin")
+  @ApiOperation({
+    operationId: "deleteOneWorkspaceContributorByLoginForUser",
+    summary: "Delete a workspace contributor by their login for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: "Unable to delete workspace contributor" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiParam({ name: "id", type: "string" })
+  @ApiParam({ name: "contributorLogin", type: "string" })
+  async deleteOneWorkspaceContributorByLoginForUser(
+    @Param("id") id: string,
+    @Param("contributorLogin") contributorLogin: string,
+    @UserId() userId: number
+  ) {
+    return this.workspaceContributorService.deleteOneWorkspaceContributor(id, userId, undefined, contributorLogin);
   }
 }

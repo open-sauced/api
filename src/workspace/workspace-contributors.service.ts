@@ -102,7 +102,7 @@ export class WorkspaceContributorsService {
     const existingContributor = await this.workspaceContributorRepository.findOne({
       where: {
         workspace_id: id,
-        contributor_id: contributorId,
+        contributor_id: user.id,
       },
       withDeleted: true,
     });
@@ -184,7 +184,17 @@ export class WorkspaceContributorsService {
     return this.workspaceService.findOneById(id);
   }
 
-  async deleteOneWorkspaceContributor(id: string, contributorId: number, userId: number) {
+  async deleteOneWorkspaceContributor(id: string, userId: number, contributorId?: number, contributorLogin?: string) {
+    let user;
+
+    if (contributorId) {
+      user = await this.userService.findOneById(contributorId);
+    } else if (contributorLogin) {
+      user = await this.userService.findOneByUsername(contributorLogin);
+    } else {
+      throw new BadRequestException("either user id or login must be provided");
+    }
+
     const workspace = await this.workspaceService.findOneById(id);
 
     /*
@@ -203,7 +213,7 @@ export class WorkspaceContributorsService {
     const existingContributor = await this.workspaceContributorRepository.findOne({
       where: {
         workspace_id: id,
-        contributor_id: contributorId,
+        contributor_id: user.id,
       },
     });
 
@@ -233,10 +243,20 @@ export class WorkspaceContributorsService {
     }
 
     const promises = dto.contributors.map(async (contributor) => {
+      let user;
+
+      if (contributor.id) {
+        user = await this.userService.findOneById(contributor.id);
+      } else if (contributor.login) {
+        user = await this.userService.findOneByUsername(contributor.login);
+      } else {
+        throw new BadRequestException("either user id or login must be provided");
+      }
+
       const existingContributor = await this.workspaceContributorRepository.findOne({
         where: {
           workspace_id: id,
-          contributor_id: contributor.id,
+          contributor_id: user.id,
         },
       });
 
@@ -251,11 +271,21 @@ export class WorkspaceContributorsService {
       await Promise.all(promises);
     } catch (error) {
       dto.contributors.forEach(async (contributor) => {
+        let user;
+
+        if (contributor.id) {
+          user = await this.userService.findOneById(contributor.id);
+        } else if (contributor.login) {
+          user = await this.userService.findOneByUsername(contributor.login);
+        } else {
+          throw new BadRequestException("either user id or login must be provided");
+        }
+
         // restore the contributors who may have been soft deleted
         const existingContributor = await this.workspaceContributorRepository.findOne({
           where: {
             workspace_id: id,
-            contributor_id: contributor.id,
+            contributor_id: user.id,
           },
           withDeleted: true,
         });
