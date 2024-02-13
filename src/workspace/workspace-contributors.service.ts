@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -68,7 +68,22 @@ export class WorkspaceContributorsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async addOneWorkspaceContributor(id: string, contributorId: number, userId: number): Promise<DbWorkspace> {
+  async addOneWorkspaceContributor(
+    id: string,
+    userId: number,
+    contributorId?: number,
+    contributorLogin?: string
+  ): Promise<DbWorkspace> {
+    let user;
+
+    if (contributorId) {
+      user = await this.userService.findOneById(contributorId);
+    } else if (contributorLogin) {
+      user = await this.userService.findOneByUsername(contributorLogin);
+    } else {
+      throw new BadRequestException("either user id or login must be provided");
+    }
+
     const workspace = await this.workspaceService.findOneById(id);
 
     /*
@@ -95,8 +110,6 @@ export class WorkspaceContributorsService {
     if (existingContributor) {
       await this.workspaceContributorRepository.restore(existingContributor.id);
     } else {
-      const user = await this.userService.findOneById(contributorId);
-
       if (user.type.toLowerCase() === "organization") {
         throw new NotFoundException("not a contributor");
       }
@@ -133,10 +146,20 @@ export class WorkspaceContributorsService {
     }
 
     const promises = dto.contributors.map(async (contributor) => {
+      let user;
+
+      if (contributor.id) {
+        user = await this.userService.findOneById(contributor.id);
+      } else if (contributor.login) {
+        user = await this.userService.findOneByUsername(contributor.login);
+      } else {
+        throw new BadRequestException("either user id or login must be provided");
+      }
+
       const existingContributor = await this.workspaceContributorRepository.findOne({
         where: {
           workspace_id: id,
-          contributor_id: contributor.id,
+          contributor_id: user.id,
         },
         withDeleted: true,
       });
@@ -144,8 +167,6 @@ export class WorkspaceContributorsService {
       if (existingContributor) {
         await this.workspaceContributorRepository.restore(existingContributor.id);
       } else {
-        const user = await this.userService.findOneById(contributor.id);
-
         if (user.type.toLowerCase() === "organization") {
           throw new NotFoundException("not an contributor");
         }

@@ -65,7 +65,7 @@ export class WorkspaceContributorController {
     return this.workspaceContributorService.addWorkspaceContributors(updateWorkspaceContributorsDto, id, userId);
   }
 
-  @Post("/:contributorId")
+  @Post("id/:contributorId")
   @ApiOperation({
     operationId: "addOneWorkspaceContributorForUser",
     summary: "Updates a workspace contributor for the authenticated user",
@@ -82,7 +82,27 @@ export class WorkspaceContributorController {
     @Param("contributorId") contributorId: number,
     @UserId() userId: number
   ): Promise<DbWorkspace> {
-    return this.workspaceContributorService.addOneWorkspaceContributor(id, contributorId, userId);
+    return this.workspaceContributorService.addOneWorkspaceContributor(id, userId, contributorId);
+  }
+
+  @Post("login/:contributorLogin")
+  @ApiOperation({
+    operationId: "addOneWorkspaceContributorByLoginForUser",
+    summary: "Updates a workspace contributor for the authenticated user by the contributor login",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceContributor })
+  @ApiNotFoundResponse({ description: "Unable to update workspace contributor" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to process workspace contributor" })
+  @ApiParam({ name: "id", type: "string" })
+  @ApiParam({ name: "contributorLogin", type: "string" })
+  async addOneWorkspaceContributorByLoginForUser(
+    @Param("id") id: string,
+    @Param("contributorLogin") contributorLogin: string,
+    @UserId() userId: number
+  ): Promise<DbWorkspace> {
+    return this.workspaceContributorService.addOneWorkspaceContributor(id, userId, undefined, contributorLogin);
   }
 
   @Delete()
@@ -114,7 +134,7 @@ export class WorkspaceContributorController {
   @ApiNotFoundResponse({ description: "Unable to delete workspace contributor" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  @ApiParam({ name: "contributorId", type: "string" })
+  @ApiParam({ name: "contributorId", type: "number" })
   async deleteOneWorkspaceContributorForUser(
     @Param("id") id: string,
     @Param("contributorId") contributorId: number,
