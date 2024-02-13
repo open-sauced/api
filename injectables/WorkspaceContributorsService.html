@@ -445,7 +445,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>deleteOneWorkspaceContributor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, contributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>deleteOneWorkspaceContributor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorLogin?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -486,7 +486,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>contributorId</td>
+                                    <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -498,13 +498,25 @@
 
                                 </tr>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>contributorId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorLogin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -547,8 +559,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="219"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:219</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:229</a></div>
                 </td>
             </tr>
 
@@ -825,7 +837,7 @@ export class WorkspaceContributorsService {
     const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
       where: {
         workspace_id: id,
-        contributor_id: contributorId,
+        contributor_id: user.id,
       },
       withDeleted: true,
     });
@@ -907,7 +919,17 @@ export class WorkspaceContributorsService {
     return this.workspaceService.findOneById(id);
   }
 
-  async deleteOneWorkspaceContributor(id: string, contributorId: number, userId: number) {
+  async deleteOneWorkspaceContributor(id: string, userId: number, contributorId?: number, contributorLogin?: string) {
+    let user;
+
+    if (contributorId) {
+      user &#x3D; await this.userService.findOneById(contributorId);
+    } else if (contributorLogin) {
+      user &#x3D; await this.userService.findOneByUsername(contributorLogin);
+    } else {
+      throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+    }
+
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
     /*
@@ -926,7 +948,7 @@ export class WorkspaceContributorsService {
     const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
       where: {
         workspace_id: id,
-        contributor_id: contributorId,
+        contributor_id: user.id,
       },
     });
 
@@ -956,10 +978,20 @@ export class WorkspaceContributorsService {
     }
 
     const promises &#x3D; dto.contributors.map(async (contributor) &#x3D;&gt; {
+      let user;
+
+      if (contributor.id) {
+        user &#x3D; await this.userService.findOneById(contributor.id);
+      } else if (contributor.login) {
+        user &#x3D; await this.userService.findOneByUsername(contributor.login);
+      } else {
+        throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+      }
+
       const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
         where: {
           workspace_id: id,
-          contributor_id: contributor.id,
+          contributor_id: user.id,
         },
       });
 
@@ -974,11 +1006,21 @@ export class WorkspaceContributorsService {
       await Promise.all(promises);
     } catch (error) {
       dto.contributors.forEach(async (contributor) &#x3D;&gt; {
+        let user;
+
+        if (contributor.id) {
+          user &#x3D; await this.userService.findOneById(contributor.id);
+        } else if (contributor.login) {
+          user &#x3D; await this.userService.findOneByUsername(contributor.login);
+        } else {
+          throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+        }
+
         // restore the contributors who may have been soft deleted
         const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
           where: {
             workspace_id: id,
-            contributor_id: contributor.id,
+            contributor_id: user.id,
           },
           withDeleted: true,
         });

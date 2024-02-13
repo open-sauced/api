@@ -126,7 +126,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;An array of contributor objects to delete from the workspace&#x27;, isArray: true, example: undefined})<br />@IsArray()<br />@Type(undefined)<br />
+                            @ApiProperty({description: &#x27;An array of contributor objects to delete from the workspace. Either id or login is required&#x27;, isArray: true, example: undefined})<br />@IsArray()<br />@Type(undefined)<br />
                         </code>
                     </td>
                 </tr>
@@ -158,13 +158,13 @@ import { NewWorkspaceContributor } from &quot;./update-workspace-contributors.dt
 
 export class DeleteWorkspaceContributorsDto {
   @ApiProperty({
-    description: &quot;An array of contributor objects to delete from the workspace&quot;,
+    description: &quot;An array of contributor objects to delete from the workspace. Either id or login is required&quot;,
     isArray: true,
-    example: [{ id: 12345 }],
+    example: [{ id: 12345, login: &quot;jpmcb&quot; }],
   })
   @IsArray()
   @Type(() &#x3D;&gt; NewWorkspaceContributor)
-  contributors: { id: number }[];
+  contributors: { id?: number; login?: string }[];
 }
 </code></pre>
     </div>
