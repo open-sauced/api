@@ -23,7 +23,7 @@ export class RepoDevstatsService {
   ) {
     // defines quantile boundaries (ignore lower 5% and upper 95% percentiles)
     const lowerQ = 0.05;
-    const upperQ = 0.95;
+    const upperQ = 0.75;
 
     // calculate quantile values using the constant sampled activity ratios
     this.lowerBound = math.quantileSeq(avgRepoActivityRatioSample, lowerQ) as number;
@@ -161,6 +161,7 @@ export class RepoDevstatsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where(`LOWER(actor_login) IN (:...users)`, { users })
       .andWhere("LOWER(repo_name) = LOWER(:repoName)", { repoName })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy(`login`);
 
     const commitsCte = this.pullRequestGithubEventsRepository.manager

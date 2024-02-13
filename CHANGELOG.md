@@ -5,6 +5,34 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.7.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.3...v2.7.0-beta.4) (2024-02-13)
+
+
+### 🍕 Features
+
+* Delete workspace contributors by login ([#560](https://github.com/open-sauced/api.opensauced.pizza/issues/560)) ([2deb880](https://github.com/open-sauced/api.opensauced.pizza/commit/2deb880ffdc22e8cd91c69210f5f6f3fbf34d48c))
+
+## [2.7.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.2...v2.7.0-beta.3) (2024-02-13)
+
+
+### 🍕 Features
+
+* Allow for workspace contributors to be added by login ([#559](https://github.com/open-sauced/api.opensauced.pizza/issues/559)) ([7bf5cab](https://github.com/open-sauced/api.opensauced.pizza/commit/7bf5cabcb437f83b8fc84e71eafc542672b43c53))
+
+## [2.7.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0-beta.1...v2.7.0-beta.2) (2024-02-12)
+
+
+### 🍕 Features
+
+* Set a time range on user CTE queries to prevent full table scans ([#555](https://github.com/open-sauced/api.opensauced.pizza/issues/555)) ([dc0fae3](https://github.com/open-sauced/api.opensauced.pizza/commit/dc0fae317c855b0df079c8faeec1f7ae64b9dcee))
+
+## [2.7.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.6.0...v2.7.0-beta.1) (2024-02-12)
+
+
+### 🍕 Features
+
+* Add activity ratio back  ([#553](https://github.com/open-sauced/api.opensauced.pizza/issues/553)) ([a66af8f](https://github.com/open-sauced/api.opensauced.pizza/commit/a66af8f93cea12bffa7eb4eabbcee35f19ac8905))
+
 ## [2.6.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.5.4...v2.6.0) (2024-02-08)
 
 
