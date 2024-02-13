@@ -206,7 +206,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addOneWorkspaceContributor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, contributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>addOneWorkspaceContributor(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorLogin?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -247,7 +247,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>contributorId</td>
+                                    <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
@@ -259,13 +259,25 @@
 
                                 </tr>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>contributorId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
-                                        No
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorLogin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -308,8 +320,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:128</a></div>
                 </td>
             </tr>
 
@@ -440,8 +452,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="166"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:166</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="187"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:187</a></div>
                 </td>
             </tr>
 
@@ -535,8 +547,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="219"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:219</a></div>
                 </td>
             </tr>
 
@@ -709,7 +721,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -779,7 +791,22 @@ export class WorkspaceContributorsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async addOneWorkspaceContributor(id: string, contributorId: number, userId: number): Promise&lt;DbWorkspace&gt; {
+  async addOneWorkspaceContributor(
+    id: string,
+    userId: number,
+    contributorId?: number,
+    contributorLogin?: string
+  ): Promise&lt;DbWorkspace&gt; {
+    let user;
+
+    if (contributorId) {
+      user &#x3D; await this.userService.findOneById(contributorId);
+    } else if (contributorLogin) {
+      user &#x3D; await this.userService.findOneByUsername(contributorLogin);
+    } else {
+      throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+    }
+
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
     /*
@@ -806,8 +833,6 @@ export class WorkspaceContributorsService {
     if (existingContributor) {
       await this.workspaceContributorRepository.restore(existingContributor.id);
     } else {
-      const user &#x3D; await this.userService.findOneById(contributorId);
-
       if (user.type.toLowerCase() &#x3D;&#x3D;&#x3D; &quot;organization&quot;) {
         throw new NotFoundException(&quot;not a contributor&quot;);
       }
@@ -844,10 +869,20 @@ export class WorkspaceContributorsService {
     }
 
     const promises &#x3D; dto.contributors.map(async (contributor) &#x3D;&gt; {
+      let user;
+
+      if (contributor.id) {
+        user &#x3D; await this.userService.findOneById(contributor.id);
+      } else if (contributor.login) {
+        user &#x3D; await this.userService.findOneByUsername(contributor.login);
+      } else {
+        throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+      }
+
       const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
         where: {
           workspace_id: id,
-          contributor_id: contributor.id,
+          contributor_id: user.id,
         },
         withDeleted: true,
       });
@@ -855,8 +890,6 @@ export class WorkspaceContributorsService {
       if (existingContributor) {
         await this.workspaceContributorRepository.restore(existingContributor.id);
       } else {
-        const user &#x3D; await this.userService.findOneById(contributor.id);
-
         if (user.type.toLowerCase() &#x3D;&#x3D;&#x3D; &quot;organization&quot;) {
           throw new NotFoundException(&quot;not an contributor&quot;);
         }

@@ -154,11 +154,11 @@ export class UpdateWorkspaceContributorsDto {
   @ApiProperty({
     description: &quot;An array of contributor objects to be added to the workspace&quot;,
     isArray: true,
-    example: [{ id: 12345 }],
+    example: [{ id: 12345, login: &quot;jpmcb&quot; }],
   })
   @IsArray()
   @Type(() &#x3D;&gt; NewWorkspaceContributor)
-  contributors: { id: number }[];
+  contributors: { id?: number; login?: string }[];
 }
 </code></pre>
     </div>

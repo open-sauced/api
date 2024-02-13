@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#addOneWorkspaceContributorByLoginForUser" >addOneWorkspaceContributorByLoginForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addOneWorkspaceContributorForUser" >addOneWorkspaceContributorForUser</a>
                             </li>
                             <li>
@@ -124,6 +128,108 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="addOneWorkspaceContributorByLoginForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>addOneWorkspaceContributorByLoginForUser</b></span>
+                        <a href="#addOneWorkspaceContributorByLoginForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addOneWorkspaceContributorByLoginForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, contributorLogin: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;login/:contributorLogin&#x27;)<br />@ApiOperation({operationId: &#x27;addOneWorkspaceContributorByLoginForUser&#x27;, summary: &#x27;Updates a workspace contributor for the authenticated user by the contributor login&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace contributor&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace contributor&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorLogin&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorLogin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbWorkspace.html" target="_self" >Promise&lt;DbWorkspace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="addOneWorkspaceContributorForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -143,7 +249,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;addOneWorkspaceContributorForUser&#x27;, summary: &#x27;Updates a workspace contributor for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace contributor&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace contributor&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Post(&#x27;id/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;addOneWorkspaceContributorForUser&#x27;, summary: &#x27;Updates a workspace contributor for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace contributor&#x27;})<br />@ApiUnprocessableEntityResponse({description: &#x27;Unable to process workspace contributor&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -347,14 +453,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteOneWorkspaceContributorForUser&#x27;, summary: &#x27;Delete a workspace contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete workspace contributor&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Delete(&#x27;/:contributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteOneWorkspaceContributorForUser&#x27;, summary: &#x27;Delete a workspace contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete workspace contributor&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;contributorId&#x27;, type: &#x27;number&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:138</a></div>
                 </td>
             </tr>
 
@@ -455,8 +561,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:99</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/workspace/workspace-contributors.controller.ts:119</a></div>
                 </td>
             </tr>
 
@@ -701,7 +807,7 @@ export class WorkspaceContributorController {
     return this.workspaceContributorService.addWorkspaceContributors(updateWorkspaceContributorsDto, id, userId);
   }
 
-  @Post(&quot;/:contributorId&quot;)
+  @Post(&quot;id/:contributorId&quot;)
   @ApiOperation({
     operationId: &quot;addOneWorkspaceContributorForUser&quot;,
     summary: &quot;Updates a workspace contributor for the authenticated user&quot;,
@@ -718,7 +824,27 @@ export class WorkspaceContributorController {
     @Param(&quot;contributorId&quot;) contributorId: number,
     @UserId() userId: number
   ): Promise&lt;DbWorkspace&gt; {
-    return this.workspaceContributorService.addOneWorkspaceContributor(id, contributorId, userId);
+    return this.workspaceContributorService.addOneWorkspaceContributor(id, userId, contributorId);
+  }
+
+  @Post(&quot;login/:contributorLogin&quot;)
+  @ApiOperation({
+    operationId: &quot;addOneWorkspaceContributorByLoginForUser&quot;,
+    summary: &quot;Updates a workspace contributor for the authenticated user by the contributor login&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceContributor })
+  @ApiNotFoundResponse({ description: &quot;Unable to update workspace contributor&quot; })
+  @ApiUnprocessableEntityResponse({ description: &quot;Unable to process workspace contributor&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;contributorLogin&quot;, type: &quot;string&quot; })
+  async addOneWorkspaceContributorByLoginForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;contributorLogin&quot;) contributorLogin: string,
+    @UserId() userId: number
+  ): Promise&lt;DbWorkspace&gt; {
+    return this.workspaceContributorService.addOneWorkspaceContributor(id, userId, undefined, contributorLogin);
   }
 
   @Delete()
@@ -750,7 +876,7 @@ export class WorkspaceContributorController {
   @ApiNotFoundResponse({ description: &quot;Unable to delete workspace contributor&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  @ApiParam({ name: &quot;contributorId&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;contributorId&quot;, type: &quot;number&quot; })
   async deleteOneWorkspaceContributorForUser(
     @Param(&quot;id&quot;) id: string,
     @Param(&quot;contributorId&quot;) contributorId: number,
