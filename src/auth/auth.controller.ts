@@ -77,6 +77,7 @@ export class AuthController {
         notification_count,
         coupon_code,
         insights_count,
+        personal_workspace_id,
       } = await this.userService.checkAddUser(user);
 
       userProfile = {
@@ -97,6 +98,7 @@ export class AuthController {
         notification_count,
         coupon_code,
         insights_count,
+        personal_workspace_id,
       };
     } catch (e) {
       // leave user profile as-is
