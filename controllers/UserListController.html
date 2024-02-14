@@ -1447,8 +1447,8 @@ export class UserListController {
     @Body() updateCollaboratorsDto: CollaboratorsDto,
     @Param(&quot;id&quot;) id: string
   ): Promise&lt;DbUserListContributor[]&gt; {
-    const contributors &#x3D; updateCollaboratorsDto.contributors.map(async (contributorId) &#x3D;&gt;
-      this.userListService.addUserListContributor(id, contributorId)
+    const contributors &#x3D; updateCollaboratorsDto.contributors.map(async (contributor) &#x3D;&gt;
+      this.userListService.addUserListContributor(id, contributor.id, contributor.login)
     );
 
     return Promise.all(contributors);
