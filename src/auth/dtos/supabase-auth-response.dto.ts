@@ -148,9 +148,9 @@ export class SupabaseAuthDto {
   })
   readonly coupon_code?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Personal Workspace ID",
     example: "some-id-1234",
   })
-  readonly personal_workspace_id: string;
+  readonly personal_workspace_id?: string;
 }
