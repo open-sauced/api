@@ -21,5 +21,5 @@ export PGUSERNAME=${PGUSERNAME:-doadmin}
 ROOT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && cd ../ && pwd )
 
 for file in ${ROOT_DIR}/migrations/*; do
-  psql -U "${PGUSERNAME}" -d "${DBNAME}" -f "${file}"
+  psql -U "${PGUSERNAME}" -d "${PGDBNAME}" -f "${file}"
 done

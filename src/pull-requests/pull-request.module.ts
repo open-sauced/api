@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { RepoFilterModule } from "../common/filters/repo-filter.module";
@@ -22,7 +22,7 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
 
 @Module({
   imports: [
-    TimescaleModule,
+    forwardRef(() => TimescaleModule),
     TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"),
     TypeOrmModule.forFeature([DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents], "TimescaleConnection"),
     RepoFilterModule,

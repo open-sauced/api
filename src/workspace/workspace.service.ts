@@ -6,6 +6,7 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
 import { RepoService } from "../repo/repo.service";
+import { DbUser } from "../user/user.entity";
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
@@ -20,6 +21,8 @@ export class WorkspaceService {
     private workspaceRepository: Repository<DbWorkspace>,
     @InjectRepository(DbWorkspaceRepo, "ApiConnection")
     private workspaceRepoRepository: Repository<DbWorkspaceRepo>,
+    @InjectRepository(DbUser, "ApiConnection")
+    private userRepository: Repository<DbUser>,
     private pagerService: PagerService,
     private repoService: RepoService
   ) {}
@@ -83,6 +86,33 @@ export class WorkspaceService {
         { userId }
       )
       .where("workspaces.id = :id", { id });
+
+    const item: DbWorkspace | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    return item;
+  }
+
+  async findPersonalWorkspaceByUserId(userId: number): Promise<DbWorkspace> {
+    const workspaceIdQb = this.userRepository
+      .createQueryBuilder()
+      .select("personal_workspace_id")
+      .where("id = :userId", { userId });
+
+    const workspaceId = await workspaceIdQb.getRawOne<{ personal_workspace_id: string }>();
+
+    if (!workspaceId || !workspaceId.personal_workspace_id) {
+      throw new NotFoundException();
+    }
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(`workspaces.members`, `workspace_members`, `workspaces.id=workspace_members.workspace_id`)
+      .where("workspaces.id = :id", { id: workspaceId.personal_workspace_id });
 
     const item: DbWorkspace | null = await queryBuilder.getOne();
 

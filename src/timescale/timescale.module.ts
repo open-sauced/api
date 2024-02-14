@@ -28,7 +28,7 @@ import { DbPushGitHubEvents } from "./entities/push_github_events";
 @Module({
   imports: [
     forwardRef(() => RepoModule),
-    UserListModule,
+    forwardRef(() => UserListModule),
     TypeOrmModule.forFeature(
       [
         DbForkGitHubEventsHistogram,

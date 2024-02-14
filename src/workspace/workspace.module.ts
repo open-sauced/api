@@ -1,9 +1,13 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { InsightsModule } from "../insight/insights.module";
 import { TimescaleModule } from "../timescale/timescale.module";
 import { UserModule } from "../user/user.module";
 import { ApiServicesModule } from "../common/services/api-services.module";
+import { DbUser } from "../user/user.entity";
+import { UserListModule } from "../user-lists/user-list.module";
+import { DbUserList } from "../user-lists/entities/user-list.entity";
 import { WorkspaceService } from "./workspace.service";
 import { WorkspaceController } from "./workspace.controller";
 import { DbWorkspace } from "./entities/workspace.entity";
@@ -22,14 +26,31 @@ import { WorkspaceContributorsService } from "./workspace-contributors.service";
 import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
 import { WorkspaceStatsService } from "./workspace-stats.service";
 import { WorkspaceStatsController } from "./workspace-stats.controller";
+import { WorkspaceInsightsController } from "./workspace-insights.controller";
+import { WorkspaceInsightsService } from "./workspace-insights.service";
+import { WorkspaceUserListsController } from "./workspace-user-lists.controller";
+import { WorkspaceUserListsService } from "./workspace-user-lists.service";
+import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
 
 @Module({
   imports: [
-    UserModule,
+    forwardRef(() => UserModule),
+    forwardRef(() => InsightsModule),
+    forwardRef(() => TimescaleModule),
+    forwardRef(() => UserListModule),
     ApiServicesModule,
-    TimescaleModule,
     TypeOrmModule.forFeature(
-      [DbWorkspace, DbWorkspaceMember, DbWorkspaceOrg, DbWorkspaceRepo, DbWorkspaceInsight, DbWorkspaceContributor],
+      [
+        DbUser,
+        DbWorkspace,
+        DbWorkspaceMember,
+        DbWorkspaceOrg,
+        DbWorkspaceRepo,
+        DbWorkspaceInsight,
+        DbWorkspaceContributor,
+        DbWorkspaceUserLists,
+        DbUserList,
+      ],
       "ApiConnection"
     ),
   ],
@@ -40,6 +61,8 @@ import { WorkspaceStatsController } from "./workspace-stats.controller";
     WorkspaceStatsController,
     WorkspaceRepoController,
     WorkspaceContributorController,
+    WorkspaceInsightsController,
+    WorkspaceUserListsController,
   ],
   providers: [
     WorkspaceService,
@@ -48,6 +71,8 @@ import { WorkspaceStatsController } from "./workspace-stats.controller";
     WorkspaceStatsService,
     WorkspaceReposService,
     WorkspaceContributorsService,
+    WorkspaceInsightsService,
+    WorkspaceUserListsService,
   ],
   exports: [
     WorkspaceService,
@@ -56,6 +81,8 @@ import { WorkspaceStatsController } from "./workspace-stats.controller";
     WorkspaceReposService,
     WorkspaceStatsService,
     WorkspaceContributorsService,
+    WorkspaceInsightsService,
+    WorkspaceUserListsService,
   ],
 })
 export class WorkspaceModule {}

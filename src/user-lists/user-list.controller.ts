@@ -72,7 +72,8 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateUserListDto })
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise<DbUserList> {
-    const newList = await this.userListService.addUserList(userId, createUserListDto);
+    // use and empty workspace ID to force the user list being added to the users personal workspace
+    const newList = await this.userListService.addUserList(userId, createUserListDto, "");
 
     const listContributors = createUserListDto.contributors.map(async (contributor) =>
       this.userListService.addUserListContributor(newList.id, contributor.id, contributor.login)

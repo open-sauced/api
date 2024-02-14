@@ -25,6 +25,11 @@ import { PagerService } from "../../common/services/pager.service";
 import { RepoDevstatsService } from "../../timescale/repo-devstats.service";
 import { DbIssuesGitHubEvents } from "../../timescale/entities/issues_github_event";
 import { DbPushGitHubEvents } from "../../timescale/entities/push_github_events";
+import { DbWorkspace } from "../../workspace/entities/workspace.entity";
+import { DbWorkspaceMember } from "../../workspace/entities/workspace-member.entity";
+import { DbWorkspaceUserLists } from "../../workspace/entities/workspace-user-list.entity";
+import { WorkspaceService } from "../../workspace/workspace.service";
+import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -41,6 +46,7 @@ describe("UserService", () => {
   let userService: UserService;
   let prEventService: PullRequestGithubEventsService;
   let dbUserRepositoryMock: MockRepository;
+  let dbWorkspaceRepositoryMock: MockRepository;
   let dbUserHighlightReactionRepositoryMock: MockRepository;
 
   beforeEach(async () => {
@@ -54,6 +60,7 @@ describe("UserService", () => {
         UserListService,
         RepoFilterService,
         PagerService,
+        WorkspaceService,
         {
           provide: getRepositoryToken(DbUser, "ApiConnection"),
           useValue: createMockRepository(),
@@ -106,6 +113,22 @@ describe("UserService", () => {
           provide: getRepositoryToken(DbUserHighlight, "ApiConnection"),
           useValue: createMockRepository(),
         },
+        {
+          provide: getRepositoryToken(DbWorkspace, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbWorkspaceMember, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbWorkspaceUserLists, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbWorkspaceRepo, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
       ],
     }).compile();
 
@@ -123,6 +146,7 @@ describe("UserService", () => {
     });
 
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
+    dbWorkspaceRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbWorkspace, "ApiConnection"));
     dbUserHighlightReactionRepositoryMock = module.get<MockRepository>(
       getRepositoryToken(DbUserHighlightReaction, "ApiConnection")
     );
@@ -290,6 +314,14 @@ describe("UserService", () => {
     });
 
     it("should create a new user if not found and mark him as open sauced user", async () => {
+      const newWorkspace = {
+        id: "abc-123",
+        name: "Personal workspace",
+        description: "A personal workspace",
+      };
+
+      dbWorkspaceRepositoryMock.save?.mockReturnValue(newWorkspace);
+
       (createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null)),
         dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
       await userService.checkAddUser(supabaseUser);
@@ -310,6 +342,7 @@ describe("UserService", () => {
         updated_at: new Date(supabaseUser.identities[0].updated_at),
         connected_at: new Date(supabaseUser.confirmed_at),
         campaign_start_date: new Date(supabaseUser.confirmed_at),
+        personal_workspace_id: "abc-123",
       };
 
       dbUserRepositoryMock.save?.mockReturnValue(newUser);

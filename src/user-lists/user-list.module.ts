@@ -1,11 +1,13 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { DbWorkspaceUserLists } from "../workspace/entities/workspace-user-list.entity";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
 import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { WorkspaceModule } from "../workspace/workspace.module";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
@@ -19,6 +21,7 @@ import { UserListEventsStatsService } from "./user-list-events-stats.service";
 @Module({
   imports: [
     ApiServicesModule,
+    forwardRef(() => WorkspaceModule),
     TypeOrmModule.forFeature(
       [
         DbUser,
@@ -29,6 +32,7 @@ import { UserListEventsStatsService } from "./user-list-events-stats.service";
         DbUserListContributorStat,
         DbContributionStatTimeframe,
         DbContributorCategoryTimeframe,
+        DbWorkspaceUserLists,
       ],
       "ApiConnection"
     ),
