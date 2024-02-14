@@ -161,12 +161,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, userListContributorRepository: <a href="../classes/Contributor.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>, userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>)</code>
+<code>constructor(userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, userListContributorRepository: <a href="../classes/Contributor.html" target="_self">Repository&lt;DbUserListContributor&gt;</a>, userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, workspaceUserListsRepository: <a href="../s/User.html" target="_self">Repository&lt;DbWorkspaceUserLists&gt;</a>, pagerService: <a href="../injectables/PagerService.html" target="_self">PagerService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/user-lists/user-list.service.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/user-lists/user-list.service.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -232,10 +232,34 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>workspaceUserListsRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbWorkspaceUserLists&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>pagerService</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/PagerService.html" target="_self" >PagerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -272,15 +296,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addUserList(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, list: <a href="../classes/CreateUserListDto.html" target="_self">CreateUserListDto</a>)</code>
+                    <code>addUserList(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, list: <a href="../classes/CreateUserListDto.html" target="_self">CreateUserListDto</a>, workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -316,6 +340,18 @@
                                     <td>list</td>
                                     <td>
                                                 <code><a href="../classes/CreateUserListDto.html" target="_self" >CreateUserListDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>workspaceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -362,8 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:145</a></div>
                 </td>
             </tr>
 
@@ -455,8 +491,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -492,8 +528,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -529,8 +565,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -568,8 +604,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -639,8 +675,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="162"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:162</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:180</a></div>
                 </td>
             </tr>
 
@@ -722,8 +758,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:95</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -805,8 +841,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -876,8 +912,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="185"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:185</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:215</a></div>
                 </td>
             </tr>
 
@@ -947,8 +983,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="233"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:233</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="263"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:263</a></div>
                 </td>
             </tr>
 
@@ -1030,8 +1066,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="304"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:304</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="334"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:334</a></div>
                 </td>
             </tr>
 
@@ -1113,8 +1149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="256"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:256</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="286"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:286</a></div>
                 </td>
             </tr>
 
@@ -1196,8 +1232,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -1279,8 +1315,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -1362,8 +1398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="342"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:342</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="372"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:372</a></div>
                 </td>
             </tr>
 
@@ -1401,8 +1437,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/user-lists/user-list.service.ts:177</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/user-lists/user-list.service.ts:195</a></div>
                 </td>
             </tr>
 
@@ -1482,6 +1518,8 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
 import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { WorkspaceService } from &quot;../workspace/workspace.service&quot;;
+import { DbWorkspaceUserLists } from &quot;../workspace/entities/workspace-user-list.entity&quot;;
 import { CreateUserListDto } from &quot;./dtos/create-user-list.dto&quot;;
 import { DbUserList } from &quot;./entities/user-list.entity&quot;;
 import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
@@ -1499,7 +1537,10 @@ export class UserListService {
     private userHighlightRepository: Repository&lt;DbUserHighlight&gt;,
     @InjectRepository(DbUser, &quot;ApiConnection&quot;)
     private userRepository: Repository&lt;DbUser&gt;,
-    private pagerService: PagerService
+    @InjectRepository(DbWorkspaceUserLists, &quot;ApiConnection&quot;)
+    private workspaceUserListsRepository: Repository&lt;DbWorkspaceUserLists&gt;,
+    private pagerService: PagerService,
+    private workspaceService: WorkspaceService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUserList&gt; {
@@ -1584,14 +1625,27 @@ export class UserListService {
     });
   }
 
-  async addUserList(userId: number, list: CreateUserListDto) {
-    const newUserList &#x3D; this.userListRepository.create({
+  async addUserList(userId: number, list: CreateUserListDto, workspaceId: string) {
+    let existingWorkspace;
+
+    if (workspaceId &#x3D;&#x3D;&#x3D; &quot;&quot;) {
+      existingWorkspace &#x3D; await this.workspaceService.findPersonalWorkspaceByUserId(userId);
+    } else {
+      existingWorkspace &#x3D; await this.workspaceService.findOneById(workspaceId);
+    }
+
+    const newUserList &#x3D; await this.userListRepository.save({
       user_id: userId,
       name: list.name,
       is_public: list.is_public,
     });
 
-    return this.userListRepository.save(newUserList);
+    await this.workspaceUserListsRepository.save({
+      user_list_id: newUserList.id,
+      workspace_id: existingWorkspace.id,
+    });
+
+    return newUserList;
   }
 
   async addUserListContributor(listId: string, userId: number, username?: string) {
@@ -1649,6 +1703,18 @@ export class UserListService {
   }
 
   async deleteUserList(listId: string) {
+    const workspaceUserList &#x3D; await this.workspaceUserListsRepository.findOne({
+      where: {
+        user_list_id: listId,
+      },
+      withDeleted: false,
+    });
+
+    if (!workspaceUserList) {
+      throw new NotFoundException(&quot;could not find workspace user list link for given insight&quot;);
+    }
+
+    await this.workspaceUserListsRepository.softDelete(workspaceUserList.id);
     return this.userListRepository.softDelete(listId);
   }
 

@@ -559,8 +559,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="288"
-                            class="link-to-prism">src/app.module.ts:288</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/app.module.ts:290</a></div>
                 </td>
             </tr>
 
@@ -704,6 +704,7 @@ import { HistogramModule } from &quot;./histogram/histogram.module&quot;;
 import { DbWorkspaceContributor } from &quot;./workspace/entities/workspace-contributors.entity&quot;;
 import { DbIssuesGitHubEvents } from &quot;./timescale/entities/issues_github_event&quot;;
 import { DbPushGitHubEvents } from &quot;./timescale/entities/push_github_events&quot;;
+import { DbWorkspaceUserLists } from &quot;./workspace/entities/workspace-user-list.entity&quot;;
 
 @Module({
   imports: [
@@ -769,6 +770,7 @@ import { DbPushGitHubEvents } from &quot;./timescale/entities/push_github_events
             DbWorkspaceOrg,
             DbWorkspaceRepo,
             DbWorkspaceInsight,
+            DbWorkspaceUserLists,
             DbWorkspaceContributor,
           ],
           synchronize: false,

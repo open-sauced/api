@@ -130,12 +130,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(insightRepository: <a href="../entitys/DbInsight.html" target="_self">Repository&lt;DbInsight&gt;</a>, insightMemberRepository: Repository<DbInsightMember>, pizzaOvenService: <a href="../injectables/PizzaOvenService.html" target="_self">PizzaOvenService</a>)</code>
+<code>constructor(insightRepository: <a href="../entitys/DbInsight.html" target="_self">Repository&lt;DbInsight&gt;</a>, insightMemberRepository: Repository<DbInsightMember>, workspaceInsightRepository: Repository<DbWorkspaceInsight>, pizzaOvenService: <a href="../injectables/PizzaOvenService.html" target="_self">PizzaOvenService</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/insight/insights.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/insight/insights.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -177,10 +177,34 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>workspaceInsightRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DbWorkspaceInsight&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>pizzaOvenService</td>
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/PizzaOvenService.html" target="_self" >PizzaOvenService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>workspaceService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -217,15 +241,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsight(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, insight: <a href="../entitys/DbInsight.html" target="_self">Partial&lt;DbInsight&gt;</a>)</code>
+                    <code>addInsight(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, insight: <a href="../entitys/DbInsight.html" target="_self">Partial&lt;DbInsight&gt;</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/insight/insights.service.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/insight/insights.service.ts:93</a></div>
                 </td>
             </tr>
 
@@ -249,6 +273,18 @@
                                     <td>userId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>workspaceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -305,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/insight/insights.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/insight/insights.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -344,8 +380,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/insight/insights.service.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/insight/insights.service.ts:139</a></div>
                 </td>
             </tr>
 
@@ -427,8 +463,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/insight/insights.service.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/insight/insights.service.ts:178</a></div>
                 </td>
             </tr>
 
@@ -498,8 +534,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/insight/insights.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/insight/insights.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -586,8 +622,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/insight/insights.service.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/insight/insights.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -667,8 +703,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/insight/insights.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/insight/insights.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -738,8 +774,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/insight/insights.service.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/insight/insights.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -809,8 +845,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/insight/insights.service.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/insight/insights.service.ts:119</a></div>
                 </td>
             </tr>
 
@@ -885,6 +921,8 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 
 import { PizzaOvenService } from &quot;../pizza/pizza-oven.service&quot;;
 import { BakeRepoDto } from &quot;../pizza/dtos/baked-repo.dto&quot;;
+import { DbWorkspaceInsight } from &quot;../workspace/entities/workspace-insights.entity&quot;;
+import { WorkspaceService } from &quot;../workspace/workspace.service&quot;;
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
 import { InsightPageOptionsDto } from &quot;./dtos/insight-page-options.dto&quot;;
 import { DbInsightMember } from &quot;./entities/insight-member.entity&quot;;
@@ -896,7 +934,10 @@ export class InsightsService {
     private insightRepository: Repository&lt;DbInsight&gt;,
     @InjectRepository(DbInsightMember, &quot;ApiConnection&quot;)
     private insightMemberRepository: Repository&lt;DbInsightMember&gt;,
-    private pizzaOvenService: PizzaOvenService
+    @InjectRepository(DbWorkspaceInsight, &quot;ApiConnection&quot;)
+    private workspaceInsightRepository: Repository&lt;DbWorkspaceInsight&gt;,
+    private pizzaOvenService: PizzaOvenService,
+    private workspaceService: WorkspaceService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbInsight&gt; {
@@ -963,8 +1004,21 @@ export class InsightsService {
     return item;
   }
 
-  async addInsight(userId: number, insight: Partial&lt;DbInsight&gt;) {
+  async addInsight(userId: number, workspaceId: string, insight: Partial&lt;DbInsight&gt;) {
+    let existingWorkspace;
+
+    if (workspaceId &#x3D;&#x3D;&#x3D; &quot;&quot;) {
+      existingWorkspace &#x3D; await this.workspaceService.findPersonalWorkspaceByUserId(userId);
+    } else {
+      existingWorkspace &#x3D; await this.workspaceService.findOneById(workspaceId);
+    }
+
     const newInsight &#x3D; await this.insightRepository.save(insight);
+
+    await this.workspaceInsightRepository.save({
+      insight_id: newInsight.id,
+      workspace_id: existingWorkspace.id,
+    });
 
     /* creators of insight pages are automatically an admin for them */
     await this.insightMemberRepository.save({
@@ -981,6 +1035,18 @@ export class InsightsService {
   }
 
   async removeInsight(id: number) {
+    const workspaceInsight &#x3D; await this.workspaceInsightRepository.findOne({
+      where: {
+        insight_id: id,
+      },
+      withDeleted: false,
+    });
+
+    if (!workspaceInsight) {
+      throw new NotFoundException(&quot;could not find workspace insight link for given insight&quot;);
+    }
+
+    await this.workspaceInsightRepository.softDelete(workspaceInsight.id);
     return this.insightRepository.softDelete(id);
   }
 

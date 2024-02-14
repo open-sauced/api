@@ -260,7 +260,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@ManyToOne(undefined, insight &#x3D;&gt; insight.workspaces, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;user_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, insight &#x3D;&gt; insight.workspaces, {onDelete: &#x27;CASCADE&#x27;})<br />@JoinColumn({name: &#x27;insight_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -369,7 +369,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiHideProperty()<br />@ManyToOne(undefined, workspace &#x3D;&gt; workspace.members)<br />@JoinColumn({name: &#x27;workspace_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
+                            @ApiHideProperty()<br />@ManyToOne(undefined, workspace &#x3D;&gt; workspace.insights)<br />@JoinColumn({name: &#x27;workspace_id&#x27;, referencedColumnName: &#x27;id&#x27;})<br />
                         </code>
                     </td>
                 </tr>
@@ -502,13 +502,13 @@ export class DbWorkspaceInsight extends BaseEntity {
   @ApiHideProperty()
   @ManyToOne(() &#x3D;&gt; DbInsight, (insight) &#x3D;&gt; insight.workspaces, { onDelete: &quot;CASCADE&quot; })
   @JoinColumn({
-    name: &quot;user_id&quot;,
+    name: &quot;insight_id&quot;,
     referencedColumnName: &quot;id&quot;,
   })
   public insight: DbInsight;
 
   @ApiHideProperty()
-  @ManyToOne(() &#x3D;&gt; DbWorkspace, (workspace) &#x3D;&gt; workspace.members)
+  @ManyToOne(() &#x3D;&gt; DbWorkspace, (workspace) &#x3D;&gt; workspace.insights)
   @JoinColumn({
     name: &quot;workspace_id&quot;,
     referencedColumnName: &quot;id&quot;,

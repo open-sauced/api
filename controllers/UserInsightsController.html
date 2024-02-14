@@ -321,8 +321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/insight/user-insight.controller.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/insight/user-insight.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -479,7 +479,8 @@ export class UserInsightsController {
       throw new BadRequestException();
     }
 
-    const newInsight &#x3D; await this.insightsService.addInsight(userId, {
+    // use an empty workspace ID to force this being added to the users personal workspace
+    const newInsight &#x3D; await this.insightsService.addInsight(userId, &quot;&quot;, {
       name: createInsightDto.name,
       is_public: createInsightDto.is_public,
     });

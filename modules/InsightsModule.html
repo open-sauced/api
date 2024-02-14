@@ -56,10 +56,6 @@
 <title>cluster_InsightsModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 986,-230.8 986,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_InsightsModule_exports</title>
-<polygon fill="none" stroke="black" points="430,-170.8 430,-222.8 700,-222.8 700,-170.8 430,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_InsightsModule_imports</title>
 <polygon fill="none" stroke="black" points="592,-40.8 592,-92.8 978,-92.8 978,-40.8 592,-40.8"/>
@@ -67,6 +63,10 @@
 <g id="clust6" class="cluster">
 <title>cluster_InsightsModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 584,-92.8 584,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_InsightsModule_exports</title>
+<polygon fill="none" stroke="black" points="430,-170.8 430,-222.8 700,-222.8 700,-170.8 430,-170.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">
@@ -274,12 +274,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module, forwardRef } from &quot;@nestjs/common&quot;;
 import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 
 import { UserModule } from &quot;../user/user.module&quot;;
 import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
 import { PizzaOvenModule } from &quot;../pizza/pizza-oven.module&quot;;
+import { WorkspaceModule } from &quot;../workspace/workspace.module&quot;;
+import { DbWorkspaceInsight } from &quot;../workspace/entities/workspace-insights.entity&quot;;
 import { DbInsight } from &quot;./entities/insight.entity&quot;;
 import { DbInsightRepo } from &quot;./entities/insight-repo.entity&quot;;
 import { DbInsightMember } from &quot;./entities/insight-member.entity&quot;;
@@ -293,10 +295,11 @@ import { InsightMemberService } from &quot;./insight-member.service&quot;;
 @Module({
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
   imports: [
-    TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember], &quot;ApiConnection&quot;),
+    TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember, DbWorkspaceInsight], &quot;ApiConnection&quot;),
     UserModule,
     ApiServicesModule,
     PizzaOvenModule,
+    forwardRef(() &#x3D;&gt; WorkspaceModule),
   ],
   providers: [InsightsService, InsightRepoService, InsightMemberService],
   exports: [InsightsService, InsightRepoService],
