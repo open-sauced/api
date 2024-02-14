@@ -21,6 +21,8 @@ import { DbUserHighlight } from "../entities/user-highlight.entity";
 import { DbInsight } from "../../insight/entities/insight.entity";
 import { DbUserCollaboration } from "../entities/user-collaboration.entity";
 import { DbUserList } from "../../user-lists/entities/user-list.entity";
+import { DbWorkspace } from "../../workspace/entities/workspace.entity";
+import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "../../workspace/entities/workspace-member.entity";
 
 @Injectable()
 export class UserService {
@@ -37,6 +39,10 @@ export class UserService {
     private userCollaborationRepository: Repository<DbUserCollaboration>,
     @InjectRepository(DbUserList, "ApiConnection")
     private userListRepository: Repository<DbUserList>,
+    @InjectRepository(DbWorkspace, "ApiConnection")
+    private workspaceRepository: Repository<DbWorkspace>,
+    @InjectRepository(DbWorkspaceMember, "ApiConnection")
+    private workspaceMemberRepository: Repository<DbWorkspaceMember>,
     private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 
@@ -255,6 +261,12 @@ export class UserService {
 
       return user;
     } catch (e) {
+      // create new workspace for user
+      const newWorkspace = await this.workspaceRepository.save({
+        name: "Personal workspace",
+        description: "A personal workspace",
+      });
+
       // create new user
       const newUser = await this.userRepository.save({
         id,
@@ -266,6 +278,13 @@ export class UserService {
         updated_at: new Date(github.updated_at ?? github.created_at),
         connected_at: confirmed_at ? new Date(confirmed_at) : new Date(),
         campaign_start_date: confirmed_at ? new Date(confirmed_at) : new Date(),
+        personal_workspace_id: newWorkspace.id,
+      });
+
+      await this.workspaceMemberRepository.save({
+        role: WorkspaceMemberRoleEnum.Owner,
+        workspace: newWorkspace,
+        member: newUser,
       });
 
       return newUser;

@@ -89,6 +89,7 @@ import { HistogramModule } from "./histogram/histogram.module";
 import { DbWorkspaceContributor } from "./workspace/entities/workspace-contributors.entity";
 import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
 import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
+import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.entity";
 
 @Module({
   imports: [
@@ -154,6 +155,7 @@ import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
             DbWorkspaceOrg,
             DbWorkspaceRepo,
             DbWorkspaceInsight,
+            DbWorkspaceUserLists,
             DbWorkspaceContributor,
           ],
           synchronize: false,
