@@ -4,6 +4,7 @@ import { Type } from "class-transformer";
 
 export class NewWorkspaceContributor {
   id: number;
+  login: string;
 }
 
 export class UpdateWorkspaceContributorsDto {

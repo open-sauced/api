@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
@@ -43,6 +43,7 @@ export class UserService {
     private workspaceRepository: Repository<DbWorkspace>,
     @InjectRepository(DbWorkspaceMember, "ApiConnection")
     private workspaceMemberRepository: Repository<DbWorkspaceMember>,
+    @Inject(forwardRef(() => PullRequestGithubEventsService))
     private pullRequestGithubEventsService: PullRequestGithubEventsService
   ) {}
 

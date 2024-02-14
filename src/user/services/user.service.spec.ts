@@ -30,6 +30,7 @@ import { DbWorkspaceMember } from "../../workspace/entities/workspace-member.ent
 import { DbWorkspaceUserLists } from "../../workspace/entities/workspace-user-list.entity";
 import { WorkspaceService } from "../../workspace/workspace.service";
 import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
+import { DbWorkspaceContributor } from "../../workspace/entities/workspace-contributors.entity";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -127,6 +128,10 @@ describe("UserService", () => {
         },
         {
           provide: getRepositoryToken(DbWorkspaceRepo, "ApiConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbWorkspaceContributor, "ApiConnection"),
           useValue: createMockRepository(),
         },
       ],

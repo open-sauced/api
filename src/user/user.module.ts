@@ -44,6 +44,7 @@ import { UserPersonalWorkspaceController } from "./user-personal-workspace.contr
 
 @Module({
   imports: [
+    forwardRef(() => TimescaleModule),
     forwardRef(() => WorkspaceModule),
     PullRequestModule,
     TypeOrmModule.forFeature(
@@ -68,7 +69,6 @@ import { UserPersonalWorkspaceController } from "./user-personal-workspace.contr
     TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
     forwardRef(() => RepoModule),
     ApiServicesModule,
-    forwardRef(() => TimescaleModule),
   ],
   controllers: [
     UserController,
