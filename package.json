@@ -64,6 +64,8 @@
     "@nestjs/swagger": "^6.3.0",
     "@nestjs/terminus": "^9.2.2",
     "@nestjs/typeorm": "^9.0.1",
+    "@octokit/rest": "^20.0.2",
+    "@octokit/types": "github:octokit/types.ts",
     "@supabase/supabase-js": "^1.35.6",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",

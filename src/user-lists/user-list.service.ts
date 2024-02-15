@@ -1,4 +1,11 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+  forwardRef,
+} from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -14,6 +21,7 @@ import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { WorkspaceService } from "../workspace/workspace.service";
 import { DbWorkspaceUserLists } from "../workspace/entities/workspace-user-list.entity";
+import { UserService } from "../user/services/user.service";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
@@ -34,7 +42,9 @@ export class UserListService {
     @InjectRepository(DbWorkspaceUserLists, "ApiConnection")
     private workspaceUserListsRepository: Repository<DbWorkspaceUserLists>,
     private pagerService: PagerService,
-    private workspaceService: WorkspaceService
+    @Inject(forwardRef(() => WorkspaceService))
+    private workspaceService: WorkspaceService,
+    private userService: UserService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUserList> {
@@ -119,7 +129,7 @@ export class UserListService {
     });
   }
 
-  async addUserList(userId: number, list: CreateUserListDto, workspaceId: string) {
+  async addUserList(userId: number, list: CreateUserListDto, workspaceId: string): Promise<DbUserList> {
     let existingWorkspace;
 
     if (workspaceId === "") {
@@ -142,7 +152,11 @@ export class UserListService {
     return newUserList;
   }
 
-  async addUserListContributor(listId: string, userId: number, username?: string) {
+  async addUserListContributor(listId: string, userId?: number, username?: string) {
+    if (!userId && !username) {
+      throw new BadRequestException("either user id or login username must be provided");
+    }
+
     const existingContributor = await this.userListContributorRepository.findOne({
       where: {
         list_id: listId,
@@ -154,24 +168,12 @@ export class UserListService {
       return existingContributor;
     }
 
-    if (!username) {
-      const user = await this.userRepository.findOne({
-        where: {
-          id: userId,
-        },
-      });
-
-      if (!user) {
-        throw new BadRequestException(`user with id ${userId} not found`);
-      }
-
-      username = user.login;
-    }
+    const user = await this.userService.tryFindUserOrMakeStub(userId, username);
 
     const newUserListContributor = this.userListContributorRepository.create({
       list_id: listId,
-      user_id: userId,
-      username,
+      user_id: user.id,
+      username: user.login,
     });
 
     return this.userListContributorRepository.save(newUserListContributor);
