@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2024-02-15)
+
+
+### 🐛 Bug Fixes
+
+* added the missing personal_workspace_id property to the SupabaseAuthDto ([#567](https://github.com/open-sauced/api.opensauced.pizza/issues/567)) ([db9a726](https://github.com/open-sauced/api.opensauced.pizza/commit/db9a72623063cfbd7f80f4eec61c0572bb4240fe))
+
 ## [2.8.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.1-beta.1...v2.8.0-beta.1) (2024-02-14)
 
 
