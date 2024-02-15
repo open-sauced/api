@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#acceptUsageTerms" >acceptUsageTerms</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#addDeveloperPackForUser" >addDeveloperPackForUser</a>
                             </li>
                             <li>
@@ -140,6 +144,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acceptUsageTerms"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>acceptUsageTerms</b></span>
+                        <a href="#acceptUsageTerms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>acceptUsageTerms(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/profile/accept-usage-terms&#x27;)<br />@ApiOperation({operationId: &#x27;acceptUsageTerms&#x27;, summary: &#x27;Accepts the usage terms and conditions for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to accept usage terms for the user&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="297"
+                            class="link-to-prism">src/auth/auth.controller.ts:297</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -1281,6 +1363,21 @@ export class AuthController {
   @ApiNotFoundResponse({ description: &quot;Unable to delete user account&quot; })
   async deleteUserAccount(@UserId() userId: number): Promise&lt;DbUser&gt; {
     return this.userService.deleteUser(userId);
+  }
+
+  @Patch(&quot;/profile/accept-usage-terms&quot;)
+  @ApiOperation({
+    operationId: &quot;acceptUsageTerms&quot;,
+    summary: &quot;Accepts the usage terms and conditions for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to accept usage terms for the user&quot; })
+  async acceptUsageTerms(@UserId() userId: number): Promise&lt;DbUser&gt; {
+    await this.userService.acceptTerms(userId);
+
+    return this.userService.findOneById(userId);
   }
 }
 </code></pre>
