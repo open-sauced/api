@@ -352,6 +352,16 @@ export class UserService {
     }
   }
 
+  async acceptTerms(id: number) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { accepted_usage_terms: true });
+    } catch (e) {
+      throw new NotFoundException("Unable to update accepting usage terms and conditions");
+    }
+  }
+
   async updateInterests(id: number, user: UpdateUserProfileInterestsDto) {
     return this.userRepository.update(id, { interests: user.interests.join(",") });
   }

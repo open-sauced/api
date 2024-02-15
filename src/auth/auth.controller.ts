@@ -284,4 +284,19 @@ export class AuthController {
   async deleteUserAccount(@UserId() userId: number): Promise<DbUser> {
     return this.userService.deleteUser(userId);
   }
+
+  @Patch("/profile/accept-usage-terms")
+  @ApiOperation({
+    operationId: "acceptUsageTerms",
+    summary: "Accepts the usage terms and conditions for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: "Unable to accept usage terms for the user" })
+  async acceptUsageTerms(@UserId() userId: number): Promise<DbUser> {
+    await this.userService.acceptTerms(userId);
+
+    return this.userService.findOneById(userId);
+  }
 }
