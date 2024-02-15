@@ -1,6 +1,7 @@
-import { Module } from "@nestjs/common";
+import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
+import { WorkspaceModule } from "../workspace/workspace.module";
 import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { TimescaleModule } from "../timescale/timescale.module";
 import { PullRequestModule } from "../pull-requests/pull-request.module";
@@ -14,6 +15,8 @@ import { DbEndorsement } from "../endorsement/entities/endorsement.entity";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUserList } from "../user-lists/entities/user-list.entity";
 import { DbInsight } from "../insight/entities/insight.entity";
+import { DbWorkspace } from "../workspace/entities/workspace.entity";
+import { DbWorkspaceMember } from "../workspace/entities/workspace-member.entity";
 import { DbUser } from "./user.entity";
 import { UserService } from "./services/user.service";
 import { UserController } from "./user.controller";
@@ -37,9 +40,13 @@ import { UserRecommendationController } from "./user-recommendation.controller";
 import { DbUserOrganization } from "./entities/user-organization.entity";
 import { UserFollowingController } from "./user-following.controller";
 import { UserOrganizationService } from "./user-organization.service";
+import { UserPersonalWorkspaceController } from "./user-personal-workspace.controller";
 
 @Module({
   imports: [
+    forwardRef(() => TimescaleModule),
+    forwardRef(() => WorkspaceModule),
+    PullRequestModule,
     TypeOrmModule.forFeature(
       [
         DbUser,
@@ -54,14 +61,14 @@ import { UserOrganizationService } from "./user-organization.service";
         DbUserOrganization,
         DbInsight,
         DbUserList,
+        DbWorkspace,
+        DbWorkspaceMember,
       ],
       "ApiConnection"
     ),
     TypeOrmModule.forFeature([DbPullRequestGitHubEvents], "TimescaleConnection"),
-    PullRequestModule,
-    RepoModule,
+    forwardRef(() => RepoModule),
     ApiServicesModule,
-    TimescaleModule,
   ],
   controllers: [
     UserController,
@@ -72,6 +79,7 @@ import { UserOrganizationService } from "./user-organization.service";
     UserEndorsementController,
     UserRecommendationController,
     UserFollowingController,
+    UserPersonalWorkspaceController,
   ],
   providers: [
     UserService,

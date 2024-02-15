@@ -7,6 +7,8 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 
 import { PizzaOvenService } from "../pizza/pizza-oven.service";
 import { BakeRepoDto } from "../pizza/dtos/baked-repo.dto";
+import { DbWorkspaceInsight } from "../workspace/entities/workspace-insights.entity";
+import { WorkspaceService } from "../workspace/workspace.service";
 import { DbInsight } from "./entities/insight.entity";
 import { InsightPageOptionsDto } from "./dtos/insight-page-options.dto";
 import { DbInsightMember } from "./entities/insight-member.entity";
@@ -18,7 +20,10 @@ export class InsightsService {
     private insightRepository: Repository<DbInsight>,
     @InjectRepository(DbInsightMember, "ApiConnection")
     private insightMemberRepository: Repository<DbInsightMember>,
-    private pizzaOvenService: PizzaOvenService
+    @InjectRepository(DbWorkspaceInsight, "ApiConnection")
+    private workspaceInsightRepository: Repository<DbWorkspaceInsight>,
+    private pizzaOvenService: PizzaOvenService,
+    private workspaceService: WorkspaceService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbInsight> {
@@ -85,8 +90,21 @@ export class InsightsService {
     return item;
   }
 
-  async addInsight(userId: number, insight: Partial<DbInsight>) {
+  async addInsight(userId: number, workspaceId: string, insight: Partial<DbInsight>) {
+    let existingWorkspace;
+
+    if (workspaceId === "") {
+      existingWorkspace = await this.workspaceService.findPersonalWorkspaceByUserId(userId);
+    } else {
+      existingWorkspace = await this.workspaceService.findOneById(workspaceId);
+    }
+
     const newInsight = await this.insightRepository.save(insight);
+
+    await this.workspaceInsightRepository.save({
+      insight_id: newInsight.id,
+      workspace_id: existingWorkspace.id,
+    });
 
     /* creators of insight pages are automatically an admin for them */
     await this.insightMemberRepository.save({
@@ -103,6 +121,18 @@ export class InsightsService {
   }
 
   async removeInsight(id: number) {
+    const workspaceInsight = await this.workspaceInsightRepository.findOne({
+      where: {
+        insight_id: id,
+      },
+      withDeleted: false,
+    });
+
+    if (!workspaceInsight) {
+      throw new NotFoundException("could not find workspace insight link for given insight");
+    }
+
+    await this.workspaceInsightRepository.softDelete(workspaceInsight.id);
     return this.insightRepository.softDelete(id);
   }
 

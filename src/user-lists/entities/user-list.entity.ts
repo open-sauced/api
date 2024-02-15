@@ -9,6 +9,7 @@ import {
   DeleteDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToOne,
 } from "typeorm";
 
 import {
@@ -18,6 +19,7 @@ import {
 import { ApiHideProperty } from "@nestjs/swagger";
 
 import { DbUser } from "../../user/user.entity";
+import { DbWorkspaceUserLists } from "../../workspace/entities/workspace-user-list.entity";
 
 @Entity({ name: "user_lists" })
 export class DbUserList extends BaseEntity {
@@ -101,4 +103,8 @@ export class DbUserList extends BaseEntity {
     referencedColumnName: "id",
   })
   public list_user!: DbUser;
+
+  @ApiHideProperty()
+  @OneToOne(() => DbWorkspaceUserLists, (workspaceUserLists) => workspaceUserLists.user_list, { onDelete: "CASCADE" })
+  public workspaces: DbWorkspaceUserLists[];
 }

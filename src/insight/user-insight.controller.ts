@@ -79,7 +79,8 @@ export class UserInsightsController {
       throw new BadRequestException();
     }
 
-    const newInsight = await this.insightsService.addInsight(userId, {
+    // use an empty workspace ID to force this being added to the users personal workspace
+    const newInsight = await this.insightsService.addInsight(userId, "", {
       name: createInsightDto.name,
       is_public: createInsightDto.is_public,
     });

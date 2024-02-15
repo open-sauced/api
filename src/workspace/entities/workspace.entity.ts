@@ -19,6 +19,7 @@ import { DbWorkspaceMember } from "./workspace-member.entity";
 import { DbWorkspaceOrg } from "./workspace-org.entity";
 import { DbWorkspaceRepo } from "./workspace-repos.entity";
 import { DbWorkspaceInsight } from "./workspace-insights.entity";
+import { DbWorkspaceUserLists } from "./workspace-user-list.entity";
 
 @Entity({ name: "workspaces" })
 export class DbWorkspace extends BaseEntity {
@@ -95,4 +96,8 @@ export class DbWorkspace extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbWorkspaceInsight, (workspaceInsight) => workspaceInsight.workspace, { onDelete: "CASCADE" })
   public insights: DbWorkspaceInsight[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbWorkspaceUserLists, (workspaceUserList) => workspaceUserList.workspace, { onDelete: "CASCADE" })
+  public user_lists: DbWorkspaceUserLists[];
 }
