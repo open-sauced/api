@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.2...v2.8.0-beta.3) (2024-02-15)
+
+
+### 🍕 Features
+
+* Workspace creation supports contributors ([#568](https://github.com/open-sauced/api.opensauced.pizza/issues/568)) ([641fab6](https://github.com/open-sauced/api.opensauced.pizza/commit/641fab6154cf0a8c4b83fea084265f6c81ec8681))
+
 ## [2.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2024-02-15)
 
 
