@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.7.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0...v2.7.1) (2024-02-15)
+
+
+### 🐛 Bug Fixes
+
+* accept array of id,login when adding list contributors ([#565](https://github.com/open-sauced/api.opensauced.pizza/issues/565)) ([bc5876a](https://github.com/open-sauced/api.opensauced.pizza/commit/bc5876a29f4a550d88f90eadfb4615f62ebbd7c6))
+
 ### [2.7.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0...v2.7.1-beta.1) (2024-02-14)
 
 
