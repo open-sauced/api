@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsArray } from "class-validator";
+import { Contributor } from "./create-user-list.dto";
 
 export class CollaboratorsDto {
   @ApiProperty({
@@ -9,7 +10,7 @@ export class CollaboratorsDto {
     type: "integer",
     example: [42211, 81233],
   })
-  @Type(() => Number)
   @IsArray()
-  contributors: number[];
+  @Type(() => Contributor)
+  contributors: { id: number; login?: string }[];
 }
