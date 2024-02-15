@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.8.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2024-02-15)
+
+
+### 🍕 Features
+
+* add endpoint to accept usage terms for users ([#572](https://github.com/open-sauced/api.opensauced.pizza/issues/572)) ([d1a64e9](https://github.com/open-sauced/api.opensauced.pizza/commit/d1a64e9dcd7d383f410d58afe879bb3ad8b7bd55))
+
 ## [2.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.2...v2.8.0-beta.3) (2024-02-15)
 
 
