@@ -25,7 +25,7 @@ export class CreateInsightDto {
     description: "An array of repository information objects",
     isArray: true,
     type: RepoInfo,
-    example: [{ id: 797, full_name: "open-sauced/insights" }],
+    example: [{ id: 797, fullName: "open-sauced/insights" }],
   })
   @Type(() => RepoInfo)
   @IsArray()

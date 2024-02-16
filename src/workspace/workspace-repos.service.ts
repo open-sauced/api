@@ -84,26 +84,7 @@ export class WorkspaceReposService {
       throw new UnauthorizedException();
     }
 
-    const existingRepo = await this.repoService.findOneByOwnerAndRepo(owner, repo);
-
-    const existingWorkspaceRepo = await this.workspaceRepoRepository.findOne({
-      where: {
-        workspace_id: id,
-        repo_id: existingRepo.id,
-      },
-      withDeleted: true,
-    });
-
-    if (existingWorkspaceRepo) {
-      await this.workspaceRepoRepository.restore(existingWorkspaceRepo.id);
-    } else {
-      const newWorkspaceRepo = new DbWorkspaceRepo();
-
-      newWorkspaceRepo.workspace = workspace;
-      newWorkspaceRepo.repo = existingRepo;
-
-      await this.workspaceRepoRepository.save(newWorkspaceRepo);
-    }
+    await this.executeAddWorkspaceRepo(workspace, owner, repo);
 
     return this.workspaceService.findOneById(id);
   }
@@ -131,29 +112,34 @@ export class WorkspaceReposService {
         throw new NotFoundException("invalid repo input: must be of form 'owner/name'");
       }
 
-      const repo = await this.repoService.findOneByOwnerAndRepo(parts[0], parts[1]);
-      const existingWorkspaceRepo = await this.workspaceRepoRepository.findOne({
-        where: {
-          workspace_id: id,
-          repo_id: repo.id,
-        },
-        withDeleted: true,
-      });
-
-      if (existingWorkspaceRepo) {
-        await this.workspaceRepoRepository.restore(existingWorkspaceRepo.id);
-      } else {
-        const newWorkspaceRepo = new DbWorkspaceRepo();
-
-        newWorkspaceRepo.workspace = workspace;
-        newWorkspaceRepo.repo = repo;
-
-        await this.workspaceRepoRepository.save(newWorkspaceRepo);
-      }
+      await this.executeAddWorkspaceRepo(workspace, parts[0], parts[1]);
     });
 
     await Promise.all(promises);
     return this.workspaceService.findOneById(id);
+  }
+
+  private async executeAddWorkspaceRepo(workspace: DbWorkspace, ownerName: string, repoName: string) {
+    const repo = await this.repoService.tryFindRepoOrMakeStub(undefined, ownerName, repoName);
+
+    const existingWorkspaceRepo = await this.workspaceRepoRepository.findOne({
+      where: {
+        workspace_id: workspace.id,
+        repo_id: repo.id,
+      },
+      withDeleted: true,
+    });
+
+    if (existingWorkspaceRepo) {
+      await this.workspaceRepoRepository.restore(existingWorkspaceRepo.id);
+    } else {
+      const newWorkspaceRepo = new DbWorkspaceRepo();
+
+      newWorkspaceRepo.workspace = workspace;
+      newWorkspaceRepo.repo = repo;
+
+      await this.workspaceRepoRepository.save(newWorkspaceRepo);
+    }
   }
 
   async deleteOneWorkspaceRepo(id: string, owner: string, repo: string, userId: number) {

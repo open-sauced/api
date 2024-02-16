@@ -130,7 +130,7 @@ export class UserInsightsController {
 
       // remove deleted repos
       const reposToRemove = currentRepos.filter(
-        (repo) => !updateInsightDto.repos.find((repoInfo) => `${repoInfo.id}` === `${repo.repo_id}`)
+        (repo) => !updateInsightDto.repos.find((repoInfo) => `${repoInfo.id!}` === `${repo.repo_id}`)
       );
 
       const reposToRemoveRequests = reposToRemove.map(async (insightRepo) =>
@@ -142,7 +142,7 @@ export class UserInsightsController {
       // add new repos
       const currentRepoIds = currentRepos.map((cr) => cr.repo_id);
       const reposToAdd = updateInsightDto.repos.filter(
-        (repoInfo) => !currentRepoIds.find((id) => `${id}` === `${repoInfo.id}`)
+        (repoInfo) => !currentRepoIds.find((id) => `${id}` === `${repoInfo.id!}`)
       );
 
       const repoToAddRequests = reposToAdd.map(async (repo) =>

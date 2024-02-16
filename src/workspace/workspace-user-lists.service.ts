@@ -84,6 +84,12 @@ export class WorkspaceUserListsService {
 
     const newUserList = await this.userListService.addUserList(userId, dto, id);
 
+    const listContributors = dto.contributors.map(async (contributor) =>
+      this.userListService.addUserListContributor(newUserList.id, contributor.id, contributor.login)
+    );
+
+    await Promise.allSettled(listContributors);
+
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder.where("workspace_user_lists.user_list_id = :id", { id: newUserList.id });

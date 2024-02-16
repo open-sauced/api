@@ -268,6 +268,11 @@ describe("UserService", () => {
 
   describe("[checkAddUser]", () => {
     const userId = faker.number.int();
+    const newWorkspace = {
+      id: "abc-123",
+      name: "Personal workspace",
+      description: "A personal workspace",
+    };
     const supabaseUser = {
       id: faker.string.uuid(),
       app_metadata: {
@@ -306,6 +311,7 @@ describe("UserService", () => {
     };
 
     it("should return the user if found and mark him as open sauced user if he was not", async () => {
+      dbWorkspaceRepositoryMock.save?.mockReturnValue(newWorkspace);
       dbUserRepositoryMock.createQueryBuilder?.mockReturnValue(createQueryBuilderMock);
       const result = await userService.checkAddUser(supabaseUser);
 
@@ -319,12 +325,6 @@ describe("UserService", () => {
     });
 
     it("should create a new user if not found and mark him as open sauced user", async () => {
-      const newWorkspace = {
-        id: "abc-123",
-        name: "Personal workspace",
-        description: "A personal workspace",
-      };
-
       dbWorkspaceRepositoryMock.save?.mockReturnValue(newWorkspace);
 
       (createQueryBuilderMock.getOne = jest.fn().mockResolvedValue(null)),
