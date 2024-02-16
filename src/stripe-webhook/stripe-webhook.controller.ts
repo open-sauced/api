@@ -3,6 +3,7 @@ import { BadRequestException, Controller, Logger, Post, RawBodyRequest, Req } fr
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import Stripe from "stripe";
 
+import { WorkspacePayeeService } from "../workspace/workspace-payee.service";
 import { CustomerService } from "../customer/customer.service";
 import { StripeSubscriptionService } from "../subscription/stripe-subscription.service";
 import { StripeService } from "../stripe/stripe.service";
@@ -26,7 +27,8 @@ export class StripeWebhookController {
     private stripeSubscriptionService: StripeSubscriptionService,
     private stripeService: StripeService,
     private configService: ConfigService,
-    private userService: UserService
+    private userService: UserService,
+    private workspacePayeeService: WorkspacePayeeService
   ) {}
 
   private async manageSubscriptionStatusChange(subscriptionId: string, customerId: string) {
@@ -67,6 +69,16 @@ export class StripeWebhookController {
       const userRole = subscription.status === "active" ? 50 : 10;
 
       await this.userService.updateRole(userId, userRole);
+
+      // add a workspace subscription
+      if (subscription.status === "active" && subscription.metadata.workspace_id) {
+        await this.workspacePayeeService.addWorkspacePayee(subscription.metadata.workspace_id, userId);
+      }
+
+      // workspace subscription canceled
+      if (subscription.status === "canceled" && subscription.metadata.workspace_id) {
+        await this.workspacePayeeService.removeWorkspacePayee(subscription.metadata.workspace_id);
+      }
     } catch (e: unknown) {
       this.logger.error(
         `Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}`

@@ -11,9 +11,10 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { UserId } from "../auth/supabase.user.decorator";
+import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { WorkspaceReposService } from "./workspace-repos.service";
@@ -33,13 +34,13 @@ export class WorkspaceRepoController {
     summary: "Gets workspace repos for the authenticated user",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceRepo })
   @ApiNotFoundResponse({ description: "Unable to get user workspace repos" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getWorkspaceReposForUser(
     @Param("id") id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceRepo>> {
     return this.workspaceRepoService.findAllReposByWorkspaceIdForUserId(pageOptionsDto, id, userId);

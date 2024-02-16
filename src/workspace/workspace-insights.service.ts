@@ -10,8 +10,7 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { WorkspaceService } from "./workspace.service";
-import { canUserManageWorkspace } from "./common/memberAccess";
-import { WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
+import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
 
 @Injectable()
@@ -33,7 +32,7 @@ export class WorkspaceInsightsService {
   async findAllInsightsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<PageDto<DbInsight>> {
     const workspace = await this.workspaceService.findOneById(id);
 
@@ -41,14 +40,10 @@ export class WorkspaceInsightsService {
      * viewers, editors, and owners can see insights that belong to a workspace
      */
 
-    const canView = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder = this.workspaceInsightRepository
@@ -74,10 +69,7 @@ export class WorkspaceInsightsService {
      * owners and editors can add workspace insight pages
      */
 
-    const canEdit = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canEdit = canUserEditWorkspace(workspace, userId);
 
     if (!canEdit) {
       throw new UnauthorizedException();
@@ -112,10 +104,7 @@ export class WorkspaceInsightsService {
      * owners and editors can delete the workspace contributors
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete = canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

@@ -11,9 +11,10 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { UserId } from "../auth/supabase.user.decorator";
+import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { WorkspaceContributorsService } from "./workspace-contributors.service";
@@ -33,13 +34,13 @@ export class WorkspaceContributorController {
     summary: "Gets workspace contributors for the authenticated user",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceContributor })
   @ApiNotFoundResponse({ description: "Unable to get user workspace contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getWorkspaceContributorsForUser(
     @Param("id") id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceContributor>> {
     return this.workspaceContributorService.findAllContributorsByWorkspaceIdForUserId(pageOptionsDto, id, userId);

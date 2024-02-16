@@ -11,9 +11,10 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { UserId } from "../auth/supabase.user.decorator";
+import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { WorkspaceOrgsService } from "./workspace-orgs.service";
@@ -33,13 +34,13 @@ export class WorkspaceOrgController {
     summary: "Gets workspace orgs for the authenticated user",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceOrg })
   @ApiNotFoundResponse({ description: "Unable to get user workspace orgs" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getWorkspaceOrgsForUser(
     @Param("id") id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceOrg>> {
     return this.workspaceOrgService.findAllOrgsByWorkspaceIdForUserId(pageOptionsDto, id, userId);
