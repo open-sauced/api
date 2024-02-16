@@ -530,7 +530,7 @@ export class UserInsightsController {
 
       // remove deleted repos
       const reposToRemove &#x3D; currentRepos.filter(
-        (repo) &#x3D;&gt; !updateInsightDto.repos.find((repoInfo) &#x3D;&gt; &#x60;${repoInfo.id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;)
+        (repo) &#x3D;&gt; !updateInsightDto.repos.find((repoInfo) &#x3D;&gt; &#x60;${repoInfo.id!}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;)
       );
 
       const reposToRemoveRequests &#x3D; reposToRemove.map(async (insightRepo) &#x3D;&gt;
@@ -542,7 +542,7 @@ export class UserInsightsController {
       // add new repos
       const currentRepoIds &#x3D; currentRepos.map((cr) &#x3D;&gt; cr.repo_id);
       const reposToAdd &#x3D; updateInsightDto.repos.filter(
-        (repoInfo) &#x3D;&gt; !currentRepoIds.find((id) &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id}&#x60;)
+        (repoInfo) &#x3D;&gt; !currentRepoIds.find((id) &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id!}&#x60;)
       );
 
       const repoToAddRequests &#x3D; reposToAdd.map(async (repo) &#x3D;&gt;

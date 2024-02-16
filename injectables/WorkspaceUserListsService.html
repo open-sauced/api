@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:106</a></div>
                 </td>
             </tr>
 
@@ -608,6 +608,12 @@ export class WorkspaceUserListsService {
     }
 
     const newUserList &#x3D; await this.userListService.addUserList(userId, dto, id);
+
+    const listContributors &#x3D; dto.contributors.map(async (contributor) &#x3D;&gt;
+      this.userListService.addUserListContributor(newUserList.id, contributor.id, contributor.login)
+    );
+
+    await Promise.allSettled(listContributors);
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 

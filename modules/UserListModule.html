@@ -56,13 +56,13 @@
 <title>cluster_UserListModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 593,-230.8 593,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UserListModule_exports</title>
-<polygon fill="none" stroke="black" points="164,-170.8 164,-222.8 483,-222.8 483,-170.8 164,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_UserListModule_imports</title>
 <polygon fill="none" stroke="black" points="441,-40.8 441,-92.8 585,-92.8 585,-40.8 441,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_UserListModule_exports</title>
+<polygon fill="none" stroke="black" points="164,-170.8 164,-222.8 483,-222.8 483,-170.8 164,-170.8"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_UserListModule_providers</title>
@@ -236,6 +236,7 @@ import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entit
 import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { DbPullRequestGitHubEvents } from &quot;../timescale/entities/pull_request_github_event&quot;;
 import { WorkspaceModule } from &quot;../workspace/workspace.module&quot;;
+import { UserModule } from &quot;../user/user.module&quot;;
 import { DbUserListContributor } from &quot;./entities/user-list-contributor.entity&quot;;
 import { DbUserList } from &quot;./entities/user-list.entity&quot;;
 import { UserListService } from &quot;./user-list.service&quot;;
@@ -248,6 +249,7 @@ import { UserListEventsStatsService } from &quot;./user-list-events-stats.servic
 
 @Module({
   imports: [
+    forwardRef(() &#x3D;&gt; UserModule),
     ApiServicesModule,
     forwardRef(() &#x3D;&gt; WorkspaceModule),
     TypeOrmModule.forFeature(

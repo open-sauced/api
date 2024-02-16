@@ -98,6 +98,11 @@
                                 <a href="#deleteWorkspaceContributors" >deleteWorkspaceContributors</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#executeAddWorkspaceContributor" >executeAddWorkspaceContributor</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findAllContributorsByWorkspaceIdForUserId" >findAllContributorsByWorkspaceIdForUserId</a>
                             </li>
@@ -320,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:97</a></div>
                 </td>
             </tr>
 
@@ -452,8 +457,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:187</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:160</a></div>
                 </td>
             </tr>
 
@@ -559,8 +564,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="229"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:229</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:202</a></div>
                 </td>
             </tr>
 
@@ -623,6 +628,102 @@
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="executeAddWorkspaceContributor"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>executeAddWorkspaceContributor</b></span>
+                        <a href="#executeAddWorkspaceContributor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>executeAddWorkspaceContributor(workspace: <a href="../entitys/DbWorkspace.html" target="_self">DbWorkspace</a>, contributorId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, contributorLogin?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:125</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>workspace</td>
+                                    <td>
+                                                <code><a href="../entitys/DbWorkspace.html" target="_self" >DbWorkspace</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>contributorLogin</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -809,16 +910,6 @@ export class WorkspaceContributorsService {
     contributorId?: number,
     contributorLogin?: string
   ): Promise&lt;DbWorkspace&gt; {
-    let user;
-
-    if (contributorId) {
-      user &#x3D; await this.userService.findOneById(contributorId);
-    } else if (contributorLogin) {
-      user &#x3D; await this.userService.findOneByUsername(contributorLogin);
-    } else {
-      throw new BadRequestException(&quot;either user id or login must be provided&quot;);
-    }
-
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
     /*
@@ -834,28 +925,7 @@ export class WorkspaceContributorsService {
       throw new UnauthorizedException();
     }
 
-    const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
-      where: {
-        workspace_id: id,
-        contributor_id: user.id,
-      },
-      withDeleted: true,
-    });
-
-    if (existingContributor) {
-      await this.workspaceContributorRepository.restore(existingContributor.id);
-    } else {
-      if (user.type.toLowerCase() &#x3D;&#x3D;&#x3D; &quot;organization&quot;) {
-        throw new NotFoundException(&quot;not a contributor&quot;);
-      }
-
-      const newContributor &#x3D; new DbWorkspaceContributor();
-
-      newContributor.workspace &#x3D; workspace;
-      newContributor.contributor &#x3D; user;
-
-      await this.workspaceContributorRepository.save(newContributor);
-    }
+    await this.executeAddWorkspaceContributor(workspace, contributorId, contributorLogin);
 
     return this.workspaceService.findOneById(id);
   }
@@ -881,42 +951,46 @@ export class WorkspaceContributorsService {
     }
 
     const promises &#x3D; dto.contributors.map(async (contributor) &#x3D;&gt; {
-      let user;
-
-      if (contributor.id) {
-        user &#x3D; await this.userService.findOneById(contributor.id);
-      } else if (contributor.login) {
-        user &#x3D; await this.userService.findOneByUsername(contributor.login);
-      } else {
-        throw new BadRequestException(&quot;either user id or login must be provided&quot;);
-      }
-
-      const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
-        where: {
-          workspace_id: id,
-          contributor_id: user.id,
-        },
-        withDeleted: true,
-      });
-
-      if (existingContributor) {
-        await this.workspaceContributorRepository.restore(existingContributor.id);
-      } else {
-        if (user.type.toLowerCase() &#x3D;&#x3D;&#x3D; &quot;organization&quot;) {
-          throw new NotFoundException(&quot;not an contributor&quot;);
-        }
-
-        const newContributor &#x3D; new DbWorkspaceContributor();
-
-        newContributor.workspace &#x3D; workspace;
-        newContributor.contributor &#x3D; user;
-
-        await this.workspaceContributorRepository.save(newContributor);
-      }
+      await this.executeAddWorkspaceContributor(workspace, contributor.id, contributor.login);
     });
 
     await Promise.all(promises);
     return this.workspaceService.findOneById(id);
+  }
+
+  private async executeAddWorkspaceContributor(
+    workspace: DbWorkspace,
+    contributorId?: number,
+    contributorLogin?: string
+  ) {
+    if (!contributorId &amp;&amp; !contributorLogin) {
+      throw new BadRequestException(&quot;either user id or login must be provided&quot;);
+    }
+
+    const user &#x3D; await this.userService.tryFindUserOrMakeStub(contributorId, contributorLogin);
+
+    const existingContributor &#x3D; await this.workspaceContributorRepository.findOne({
+      where: {
+        workspace_id: workspace.id,
+        contributor_id: user.id,
+      },
+      withDeleted: true,
+    });
+
+    if (existingContributor) {
+      await this.workspaceContributorRepository.restore(existingContributor.id);
+    } else {
+      if (user.type.toLowerCase() &#x3D;&#x3D;&#x3D; &quot;organization&quot;) {
+        throw new NotFoundException(&quot;not a contributor&quot;);
+      }
+
+      const newContributor &#x3D; new DbWorkspaceContributor();
+
+      newContributor.workspace &#x3D; workspace;
+      newContributor.contributor &#x3D; user;
+
+      await this.workspaceContributorRepository.save(newContributor);
+    }
   }
 
   async deleteOneWorkspaceContributor(id: string, userId: number, contributorId?: number, contributorLogin?: string) {

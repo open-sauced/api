@@ -83,9 +83,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#fullName" >fullName</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#id" >id</a>
                             </li>
                         </ul>
@@ -113,6 +115,7 @@
                 <td class="col-md-4">
                     <a name="fullName"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>fullName</b></span>
                         <a href="#fullName"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -129,13 +132,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Repo Full Name&#x27;, type: String, example: &#x27;open-sauced/insights&#x27;})<br />@IsString()<br />
+                            @ApiPropertyOptional({description: &#x27;Repo Full Name&#x27;, type: String, example: &#x27;open-sauced/insights&#x27;})<br />@IsString()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/repo/dtos/repo-info.dto.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/repo/dtos/repo-info.dto.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -148,6 +151,7 @@
                 <td class="col-md-4">
                     <a name="id"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>id</b></span>
                         <a href="#id"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -164,13 +168,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Repo ID&#x27;, type: &#x27;integer&#x27;, example: 234343})<br />@IsNumber()<br />
+                            @ApiPropertyOptional({description: &#x27;Repo ID&#x27;, type: &#x27;integer&#x27;, example: 234343})<br />@IsNumber()<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/repo/dtos/repo-info.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/repo/dtos/repo-info.dto.ts:12</a></div>
                         </td>
                     </tr>
 
@@ -189,25 +193,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsNumber, IsString } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
+import { IsNumber, IsOptional, IsString } from &quot;class-validator&quot;;
 
 export class RepoInfo {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: &quot;Repo ID&quot;,
     type: &quot;integer&quot;,
     example: 234343,
   })
   @IsNumber()
-  id: number;
+  @IsOptional()
+  id?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: &quot;Repo Full Name&quot;,
     type: String,
     example: &quot;open-sauced/insights&quot;,
   })
   @IsString()
-  fullName: string;
+  @IsOptional()
+  fullName?: string;
 }
 </code></pre>
     </div>

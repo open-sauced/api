@@ -94,6 +94,11 @@
                                 <a href="#checkAddUser" >checkAddUser</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createStubUser" >createStubUser</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#deleteUser" >deleteUser</a>
                             </li>
@@ -123,6 +128,10 @@
                             </li>
                             <li>
                                 <a href="#reactionsQueryBuilder" >reactionsQueryBuilder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#tryFindUserOrMakeStub" >tryFindUserOrMakeStub</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -166,12 +175,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>, userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userInsightsRepository: <a href="../entitys/DbInsight.html" target="_self">Repository&lt;DbInsight&gt;</a>, userCollaborationRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserCollaboration&gt;</a>, userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, workspaceRepository: <a href="../entitys/DbWorkspace.html" target="_self">Repository&lt;DbWorkspace&gt;</a>, workspaceMemberRepository: Repository<DbWorkspaceMember>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/DbUser.html" target="_self">Repository&lt;DbUser&gt;</a>, userHighlightReactionRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlightReaction&gt;</a>, userHighlightRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserHighlight&gt;</a>, userInsightsRepository: <a href="../entitys/DbInsight.html" target="_self">Repository&lt;DbInsight&gt;</a>, userCollaborationRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserCollaboration&gt;</a>, userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, workspaceRepository: <a href="../entitys/DbWorkspace.html" target="_self">Repository&lt;DbWorkspace&gt;</a>, workspaceMemberRepository: Repository<DbWorkspaceMember>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, configService: ConfigService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/user/services/user.service.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/user/services/user.service.ts:30</a></div>
                             </td>
                         </tr>
 
@@ -296,6 +305,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -332,8 +353,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="355"
-                            class="link-to-prism">src/user/services/user.service.ts:355</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="432"
+                            class="link-to-prism">src/user/services/user.service.ts:432</a></div>
                 </td>
             </tr>
 
@@ -403,8 +424,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="377"
-                            class="link-to-prism">src/user/services/user.service.ts:377</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="454"
+                            class="link-to-prism">src/user/services/user.service.ts:454</a></div>
                 </td>
             </tr>
 
@@ -484,8 +505,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/user/services/user.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/services/user.service.ts:53</a></div>
                 </td>
             </tr>
 
@@ -523,8 +544,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="243"
-                            class="link-to-prism">src/user/services/user.service.ts:243</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="246"
+                            class="link-to-prism">src/user/services/user.service.ts:246</a></div>
                 </td>
             </tr>
 
@@ -576,6 +597,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="createStubUser"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createStubUser</b></span>
+                        <a href="#createStubUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createStubUser(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="340"
+                            class="link-to-prism">src/user/services/user.service.ts:340</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="deleteUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -594,8 +687,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="401"
-                            class="link-to-prism">src/user/services/user.service.ts:401</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="478"
+                            class="link-to-prism">src/user/services/user.service.ts:478</a></div>
                 </td>
             </tr>
 
@@ -665,8 +758,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/user/services/user.service.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="203"
+                            class="link-to-prism">src/user/services/user.service.ts:203</a></div>
                 </td>
             </tr>
 
@@ -736,8 +829,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="384"
-                            class="link-to-prism">src/user/services/user.service.ts:384</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="461"
+                            class="link-to-prism">src/user/services/user.service.ts:461</a></div>
                 </td>
             </tr>
 
@@ -807,8 +900,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/user/services/user.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/user/services/user.service.ts:95</a></div>
                 </td>
             </tr>
 
@@ -895,8 +988,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/user/services/user.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/user/services/user.service.ts:141</a></div>
                 </td>
             </tr>
 
@@ -966,8 +1059,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/user/services/user.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/user/services/user.service.ts:65</a></div>
                 </td>
             </tr>
 
@@ -1037,8 +1130,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="220"
-                            class="link-to-prism">src/user/services/user.service.ts:220</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/user/services/user.service.ts:223</a></div>
                 </td>
             </tr>
 
@@ -1106,8 +1199,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/user/services/user.service.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/user/services/user.service.ts:59</a></div>
                 </td>
             </tr>
 
@@ -1118,6 +1211,89 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >SelectQueryBuilder&lt;DbUserHighlightReaction&gt;</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tryFindUserOrMakeStub"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>tryFindUserOrMakeStub</b></span>
+                        <a href="#tryFindUserOrMakeStub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>tryFindUserOrMakeStub(userId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, username?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="311"
+                            class="link-to-prism">src/user/services/user.service.ts:311</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>username</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbUser.html" target="_self" >Promise&lt;DbUser&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -1145,8 +1321,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="369"
-                            class="link-to-prism">src/user/services/user.service.ts:369</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/user/services/user.service.ts:446</a></div>
                 </td>
             </tr>
 
@@ -1228,8 +1404,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="365"
-                            class="link-to-prism">src/user/services/user.service.ts:365</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="442"
+                            class="link-to-prism">src/user/services/user.service.ts:442</a></div>
                 </td>
             </tr>
 
@@ -1311,8 +1487,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="320"
-                            class="link-to-prism">src/user/services/user.service.ts:320</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="397"
+                            class="link-to-prism">src/user/services/user.service.ts:397</a></div>
                 </td>
             </tr>
 
@@ -1394,8 +1570,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="345"
-                            class="link-to-prism">src/user/services/user.service.ts:345</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="422"
+                            class="link-to-prism">src/user/services/user.service.ts:422</a></div>
                 </td>
             </tr>
 
@@ -1477,8 +1653,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="295"
-                            class="link-to-prism">src/user/services/user.service.ts:295</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="372"
+                            class="link-to-prism">src/user/services/user.service.ts:372</a></div>
                 </td>
             </tr>
 
@@ -1560,8 +1736,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="335"
-                            class="link-to-prism">src/user/services/user.service.ts:335</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="412"
+                            class="link-to-prism">src/user/services/user.service.ts:412</a></div>
                 </td>
             </tr>
 
@@ -1620,6 +1796,8 @@ import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { User } from &quot;@supabase/supabase-js&quot;;
 
+import { Octokit } from &quot;@octokit/rest&quot;;
+import { ConfigService } from &quot;@nestjs/config&quot;;
 import { PullRequestGithubEventsService } from &quot;../../timescale/pull_request_github_events.service&quot;;
 import { DbUser } from &quot;../user.entity&quot;;
 import { UpdateUserDto } from &quot;../dtos/update-user.dto&quot;;
@@ -1661,7 +1839,8 @@ export class UserService {
     @InjectRepository(DbWorkspaceMember, &quot;ApiConnection&quot;)
     private workspaceMemberRepository: Repository&lt;DbWorkspaceMember&gt;,
     @Inject(forwardRef(() &#x3D;&gt; PullRequestGithubEventsService))
-    private pullRequestGithubEventsService: PullRequestGithubEventsService
+    private pullRequestGithubEventsService: PullRequestGithubEventsService,
+    private configService: ConfigService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbUser&gt; {
@@ -1870,10 +2049,23 @@ export class UserService {
       const user &#x3D; await this.findOneById(id, true);
 
       if (!user.is_open_sauced_member) {
+        // create new workspace for user
+        const newWorkspace &#x3D; await this.workspaceRepository.save({
+          name: &quot;Personal workspace&quot;,
+          description: &quot;A personal workspace&quot;,
+        });
+
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
           connected_at: new Date(),
           campaign_start_date: new Date(),
+          personal_workspace_id: newWorkspace.id,
+        });
+
+        await this.workspaceMemberRepository.save({
+          role: WorkspaceMemberRoleEnum.Owner,
+          workspace: newWorkspace,
+          member: user,
         });
       }
 
@@ -1907,6 +2099,67 @@ export class UserService {
 
       return newUser;
     }
+  }
+
+  async tryFindUserOrMakeStub(userId?: number, username?: string): Promise&lt;DbUser&gt; {
+    if (!userId &amp;&amp; !username) {
+      throw new BadRequestException(&quot;either user id or username must be provided&quot;);
+    }
+
+    let user;
+
+    try {
+      if (userId) {
+        user &#x3D; await this.findOneById(userId);
+      } else if (username) {
+        user &#x3D; await this.findOneByUsername(username);
+      }
+    } catch (e) {
+      // could not find user being added to workspace in our database. Add it.
+      if (userId) {
+        throw new BadRequestException(&quot;no user by user ID found: must provide user owner/name to create stub user&quot;);
+      } else if (username) {
+        user &#x3D; await this.createStubUser(username);
+      }
+    }
+
+    if (!user) {
+      throw new NotFoundException(&quot;could not find nor create user&quot;);
+    }
+
+    return user;
+  }
+
+  private async createStubUser(username: string): Promise&lt;DbUser&gt; {
+    const ghAuthToken: string &#x3D; this.configService.get(&quot;github.authToken&quot;)!;
+
+    // using octokit and GitHub&#x27;s API, go fetch the user
+    const octokit &#x3D; new Octokit({
+      auth: ghAuthToken,
+    });
+
+    let octoResponse;
+
+    try {
+      octoResponse &#x3D; await octokit.users.getByUsername({ username });
+    } catch (error: unknown) {
+      console.error(error);
+      throw new BadRequestException(&quot;Error fetching user:&quot;, username);
+    }
+
+    /*
+     * create a new, minimum partial user based on GitHub data (primarily, the ID).
+     * Because our first party databases uses the GitHub IDs as primary keys,
+     * we can&#x27;t use an auto generated ID for a stub user.
+     * This stub user will eventually get picked up by the ETL and more data will get backfilled on them.
+     */
+
+    return this.userRepository.save({
+      id: octoResponse.data.id,
+      type: octoResponse.data.type,
+      is_open_sauced_member: false,
+      login: octoResponse.data.login,
+    });
   }
 
   async updateUser(id: number, user: UpdateUserDto) {

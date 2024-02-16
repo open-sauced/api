@@ -108,12 +108,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(insightRepoRepository: Repository<DbInsightRepo>, pizzaOvenService: <a href="../injectables/PizzaOvenService.html" target="_self">PizzaOvenService</a>)</code>
+<code>constructor(insightRepoRepository: Repository<DbInsightRepo>, pizzaOvenService: <a href="../injectables/PizzaOvenService.html" target="_self">PizzaOvenService</a>, repoService: <a href="../injectables/RepoService.html" target="_self">RepoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/insight/insight-repo.service.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/insight/insight-repo.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -154,6 +154,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>repoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RepoService.html" target="_self" >RepoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -183,15 +195,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addInsightRepo(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repo: <a href="../classes/RepoInfo.html" target="_self">RepoInfo</a>)</code>
+                    <code>addInsightRepo(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repoInfo: <a href="../classes/RepoInfo.html" target="_self">RepoInfo</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -224,7 +236,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>repo</td>
+                                    <td>repoInfo</td>
                                     <td>
                                                 <code><a href="../classes/RepoInfo.html" target="_self" >RepoInfo</a></code>
                                     </td>
@@ -273,8 +285,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:63</a></div>
                 </td>
             </tr>
 
@@ -344,8 +356,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/insight/insight-repo.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/insight/insight-repo.service.ts:67</a></div>
                 </td>
             </tr>
 
@@ -399,13 +411,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
 import { RepoInfo } from &quot;../repo/dtos/repo-info.dto&quot;;
 import { PizzaOvenService } from &quot;../pizza/pizza-oven.service&quot;;
 import { BakeRepoDto } from &quot;../pizza/dtos/baked-repo.dto&quot;;
+import { RepoService } from &quot;../repo/repo.service&quot;;
 import { DbInsightRepo } from &quot;./entities/insight-repo.entity&quot;;
 
 @Injectable()
@@ -413,25 +426,51 @@ export class InsightRepoService {
   constructor(
     @InjectRepository(DbInsightRepo, &quot;ApiConnection&quot;)
     private insightRepoRepository: Repository&lt;DbInsightRepo&gt;,
-    private pizzaOvenService: PizzaOvenService
+    private pizzaOvenService: PizzaOvenService,
+    private repoService: RepoService
   ) {}
 
-  async addInsightRepo(insightId: number, repo: RepoInfo) {
-    // when individual insight pages are fetched, go bake their repos to get fresh commit data
-    const bakeRepoInfo: BakeRepoDto &#x3D; {
-      url: &#x60;https://github.com/${repo.fullName}&#x60;,
-      wait: false,
-    };
+  async addInsightRepo(insightId: number, repoInfo: RepoInfo) {
+    if (!repoInfo.id &amp;&amp; !repoInfo.fullName) {
+      throw new BadRequestException(&quot;either repo id or repo full name must be provided&quot;);
+    }
 
-    try {
-      await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
-    } catch (e: unknown) {
-      if (e instanceof Error) {
-        console.error(&#x60;error posting to pizza-oven service for repo ${bakeRepoInfo.url}: ${e.message}&#x60;);
+    // when individual insight pages are fetched, go bake their repos to get fresh commit data
+    if (repoInfo.fullName) {
+      const bakeRepoInfo: BakeRepoDto &#x3D; {
+        url: &#x60;https://github.com/${repoInfo.fullName}&#x60;,
+        wait: false,
+      };
+
+      try {
+        await this.pizzaOvenService.postToPizzaOvenService(bakeRepoInfo);
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          console.error(&#x60;error posting to pizza-oven service for repo ${bakeRepoInfo.url}: ${e.message}&#x60;);
+        }
       }
     }
 
-    return this.insightRepoRepository.save({ insight_id: insightId, repo_id: repo.id, full_name: repo.fullName });
+    let org &#x3D; &quot;&quot;;
+    let name &#x3D; &quot;&quot;;
+
+    if (repoInfo.fullName) {
+      const parts &#x3D; repoInfo.fullName.split(&quot;/&quot;);
+
+      if (parts.length !&#x3D;&#x3D; 2) {
+        throw new BadRequestException(&quot;given repo full name is not valid owner/name repo&quot;);
+      }
+
+      [org, name] &#x3D; parts;
+    }
+
+    const repo &#x3D; await this.repoService.tryFindRepoOrMakeStub(repoInfo.id, org, name);
+
+    return this.insightRepoRepository.save({
+      insight_id: insightId,
+      repo_id: repo.id,
+      full_name: repo.full_name,
+    });
   }
 
   async findReposById(insightId: number) {

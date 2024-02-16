@@ -86,6 +86,11 @@
                                 <a href="#baseQueryBuilder" >baseQueryBuilder</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#createStubRepo" >createStubRepo</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
@@ -112,6 +117,10 @@
                             <li>
                                 <a href="#subQueryCount" >subQueryCount</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#tryFindRepoOrMakeStub" >tryFindRepoOrMakeStub</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -130,12 +139,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(repoRepository: <a href="../entitys/DbRepo.html" target="_self">Repository&lt;DbRepo&gt;</a>, filterService: <a href="../injectables/RepoFilterService.html" target="_self">RepoFilterService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>)</code>
+<code>constructor(repoRepository: <a href="../entitys/DbRepo.html" target="_self">Repository&lt;DbRepo&gt;</a>, filterService: <a href="../injectables/RepoFilterService.html" target="_self">RepoFilterService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>, configService: ConfigService, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/repo/repo.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/repo/repo.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -200,6 +209,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>configService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ConfigService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>userService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UserService.html" target="_self" >UserService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -236,8 +269,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/repo/repo.service.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/repo/repo.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -273,8 +306,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/repo/repo.service.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/repo/repo.service.ts:49</a></div>
                 </td>
             </tr>
 
@@ -285,6 +318,90 @@
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createStubRepo"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>createStubRepo</b></span>
+                        <a href="#createStubRepo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createStubRepo(owner: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">src/repo/repo.service.ts:304</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>owner</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repo</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -312,8 +429,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="91"
-                            class="link-to-prism">src/repo/repo.service.ts:91</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/repo/repo.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -407,8 +524,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/repo/repo.service.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/repo/repo.service.ts:130</a></div>
                 </td>
             </tr>
 
@@ -478,8 +595,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/repo/repo.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/repo/repo.service.ts:68</a></div>
                 </td>
             </tr>
 
@@ -549,8 +666,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/repo/repo.service.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/repo/repo.service.ts:82</a></div>
                 </td>
             </tr>
 
@@ -632,8 +749,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="233"
-                            class="link-to-prism">src/repo/repo.service.ts:233</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="238"
+                            class="link-to-prism">src/repo/repo.service.ts:238</a></div>
                 </td>
             </tr>
 
@@ -715,8 +832,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/repo/repo.service.ts:203</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/repo/repo.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -784,8 +901,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/repo/repo.service.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/repo/repo.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -887,16 +1004,113 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tryFindRepoOrMakeStub"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>tryFindRepoOrMakeStub</b></span>
+                        <a href="#tryFindRepoOrMakeStub"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>tryFindRepoOrMakeStub(repoId?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, repoOwner?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, repoName?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/repo/repo.service.ts:271</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repoOwner</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>repoName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbRepo.html" target="_self" >Promise&lt;DbRepo&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable, NotFoundException, forwardRef } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from &quot;@nestjs/common&quot;;
 import { ObjectLiteral, Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
+import { ConfigService } from &quot;@nestjs/config&quot;;
+import { Octokit } from &quot;@octokit/rest&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
@@ -906,6 +1120,7 @@ import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
 import { RepoDevstatsService } from &quot;../timescale/repo-devstats.service&quot;;
+import { UserService } from &quot;../user/services/user.service&quot;;
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from &quot;./dtos/repo-page-options.dto&quot;;
 import { DbRepo } from &quot;./entities/repo.entity&quot;;
 import { RepoSearchOptionsDto } from &quot;./dtos/repo-search-options.dto&quot;;
@@ -918,7 +1133,9 @@ export class RepoService {
     private filterService: RepoFilterService,
     @Inject(forwardRef(() &#x3D;&gt; PullRequestGithubEventsService))
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
-    private repoDevstatsService: RepoDevstatsService
+    private repoDevstatsService: RepoDevstatsService,
+    private configService: ConfigService,
+    private userService: UserService
   ) {}
 
   subQueryCount&lt;T extends ObjectLiteral&gt;(
@@ -1156,6 +1373,87 @@ export class RepoService {
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async tryFindRepoOrMakeStub(repoId?: number, repoOwner?: string, repoName?: string): Promise&lt;DbRepo&gt; {
+    if (!repoId &amp;&amp; !repoOwner &amp;&amp; !repoName) {
+      throw new BadRequestException(&quot;either repo id or repo owner/name must be provided&quot;);
+    }
+
+    if (!repoId &amp;&amp; (!repoOwner || !repoName)) {
+      throw new BadRequestException(&quot;must include repo owner and repo name&quot;);
+    }
+
+    let repo;
+
+    try {
+      if (repoId) {
+        repo &#x3D; await this.findOneById(repoId);
+      } else if (repoOwner &amp;&amp; repoName) {
+        repo &#x3D; await this.findOneByOwnerAndRepo(repoOwner, repoName);
+      }
+    } catch (e) {
+      // could not find repo being added to workspace in our database. Add it.
+      if (repoId) {
+        throw new BadRequestException(&quot;no repo by repo ID found: must provide repo owner/name to create stub user&quot;);
+      } else if (repoOwner &amp;&amp; repoName) {
+        repo &#x3D; await this.createStubRepo(repoOwner, repoName);
+      }
+    }
+
+    if (!repo) {
+      throw new NotFoundException(&quot;could not find nor create repo&quot;);
+    }
+
+    return repo;
+  }
+
+  private async createStubRepo(owner: string, repo: string): Promise&lt;DbRepo&gt; {
+    const ghAuthToken: string &#x3D; this.configService.get(&quot;github.authToken&quot;)!;
+
+    // using octokit and GitHub&#x27;s API, go fetch the user
+    const octokit &#x3D; new Octokit({
+      auth: ghAuthToken,
+    });
+
+    let octoResponse;
+
+    try {
+      octoResponse &#x3D; await octokit.repos.get({
+        owner,
+        repo,
+      });
+    } catch (error: unknown) {
+      console.error(error);
+      throw new BadRequestException(&quot;Error fetching repo:&quot;, &#x60;${owner}/${repo}&#x60;);
+    }
+
+    const parts &#x3D; octoResponse.data.full_name.split(&quot;/&quot;);
+
+    if (parts.length !&#x3D;&#x3D; 2) {
+      throw new NotFoundException(&quot;&quot;);
+    }
+
+    /*
+     * because there is a reference to the &quot;user&quot; (the owner) of a repo
+     * in the repos table, we need to ensure we find or create the user
+     */
+    const user &#x3D; await this.userService.tryFindUserOrMakeStub(undefined, parts[0]);
+
+    /*
+     * create a new, minimum, partial repo based on GitHub data (primarily, the ID).
+     * Because our first party databases for repos uses the GitHub IDs as primary keys,
+     * we can&#x27;t use an auto generated ID for a stub repo.
+     *
+     * This stub repo will eventually get picked up by the ETL and more data will get backfilled.
+     */
+
+    return this.repoRepository.save({
+      id: octoResponse.data.id,
+      user_id: user.id,
+      name: octoResponse.data.name,
+      full_name: octoResponse.data.full_name,
+    });
   }
 }
 </code></pre>
