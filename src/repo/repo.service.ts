@@ -1,7 +1,9 @@
-import { Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
+import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
 import { ObjectLiteral, Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { ConfigService } from "@nestjs/config";
+import { Octokit } from "@octokit/rest";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
@@ -11,6 +13,7 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { RepoDevstatsService } from "../timescale/repo-devstats.service";
+import { UserService } from "../user/services/user.service";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
@@ -23,7 +26,9 @@ export class RepoService {
     private filterService: RepoFilterService,
     @Inject(forwardRef(() => PullRequestGithubEventsService))
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
-    private repoDevstatsService: RepoDevstatsService
+    private repoDevstatsService: RepoDevstatsService,
+    private configService: ConfigService,
+    private userService: UserService
   ) {}
 
   subQueryCount<T extends ObjectLiteral>(
@@ -261,5 +266,86 @@ export class RepoService {
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async tryFindRepoOrMakeStub(repoId?: number, repoOwner?: string, repoName?: string): Promise<DbRepo> {
+    if (!repoId && !repoOwner && !repoName) {
+      throw new BadRequestException("either repo id or repo owner/name must be provided");
+    }
+
+    if (!repoId && (!repoOwner || !repoName)) {
+      throw new BadRequestException("must include repo owner and repo name");
+    }
+
+    let repo;
+
+    try {
+      if (repoId) {
+        repo = await this.findOneById(repoId);
+      } else if (repoOwner && repoName) {
+        repo = await this.findOneByOwnerAndRepo(repoOwner, repoName);
+      }
+    } catch (e) {
+      // could not find repo being added to workspace in our database. Add it.
+      if (repoId) {
+        throw new BadRequestException("no repo by repo ID found: must provide repo owner/name to create stub user");
+      } else if (repoOwner && repoName) {
+        repo = await this.createStubRepo(repoOwner, repoName);
+      }
+    }
+
+    if (!repo) {
+      throw new NotFoundException("could not find nor create repo");
+    }
+
+    return repo;
+  }
+
+  private async createStubRepo(owner: string, repo: string): Promise<DbRepo> {
+    const ghAuthToken: string = this.configService.get("github.authToken")!;
+
+    // using octokit and GitHub's API, go fetch the user
+    const octokit = new Octokit({
+      auth: ghAuthToken,
+    });
+
+    let octoResponse;
+
+    try {
+      octoResponse = await octokit.repos.get({
+        owner,
+        repo,
+      });
+    } catch (error: unknown) {
+      console.error(error);
+      throw new BadRequestException("Error fetching repo:", `${owner}/${repo}`);
+    }
+
+    const parts = octoResponse.data.full_name.split("/");
+
+    if (parts.length !== 2) {
+      throw new NotFoundException("");
+    }
+
+    /*
+     * because there is a reference to the "user" (the owner) of a repo
+     * in the repos table, we need to ensure we find or create the user
+     */
+    const user = await this.userService.tryFindUserOrMakeStub(undefined, parts[0]);
+
+    /*
+     * create a new, minimum, partial repo based on GitHub data (primarily, the ID).
+     * Because our first party databases for repos uses the GitHub IDs as primary keys,
+     * we can't use an auto generated ID for a stub repo.
+     *
+     * This stub repo will eventually get picked up by the ETL and more data will get backfilled.
+     */
+
+    return this.repoRepository.save({
+      id: octoResponse.data.id,
+      user_id: user.id,
+      name: octoResponse.data.name,
+      full_name: octoResponse.data.full_name,
+    });
   }
 }

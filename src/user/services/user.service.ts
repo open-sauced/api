@@ -3,6 +3,8 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "@supabase/supabase-js";
 
+import { Octokit } from "@octokit/rest";
+import { ConfigService } from "@nestjs/config";
 import { PullRequestGithubEventsService } from "../../timescale/pull_request_github_events.service";
 import { DbUser } from "../user.entity";
 import { UpdateUserDto } from "../dtos/update-user.dto";
@@ -44,7 +46,8 @@ export class UserService {
     @InjectRepository(DbWorkspaceMember, "ApiConnection")
     private workspaceMemberRepository: Repository<DbWorkspaceMember>,
     @Inject(forwardRef(() => PullRequestGithubEventsService))
-    private pullRequestGithubEventsService: PullRequestGithubEventsService
+    private pullRequestGithubEventsService: PullRequestGithubEventsService,
+    private configService: ConfigService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbUser> {
@@ -253,10 +256,23 @@ export class UserService {
       const user = await this.findOneById(id, true);
 
       if (!user.is_open_sauced_member) {
+        // create new workspace for user
+        const newWorkspace = await this.workspaceRepository.save({
+          name: "Personal workspace",
+          description: "A personal workspace",
+        });
+
         await this.userRepository.update(user.id, {
           is_open_sauced_member: true,
           connected_at: new Date(),
           campaign_start_date: new Date(),
+          personal_workspace_id: newWorkspace.id,
+        });
+
+        await this.workspaceMemberRepository.save({
+          role: WorkspaceMemberRoleEnum.Owner,
+          workspace: newWorkspace,
+          member: user,
         });
       }
 
@@ -290,6 +306,67 @@ export class UserService {
 
       return newUser;
     }
+  }
+
+  async tryFindUserOrMakeStub(userId?: number, username?: string): Promise<DbUser> {
+    if (!userId && !username) {
+      throw new BadRequestException("either user id or username must be provided");
+    }
+
+    let user;
+
+    try {
+      if (userId) {
+        user = await this.findOneById(userId);
+      } else if (username) {
+        user = await this.findOneByUsername(username);
+      }
+    } catch (e) {
+      // could not find user being added to workspace in our database. Add it.
+      if (userId) {
+        throw new BadRequestException("no user by user ID found: must provide user owner/name to create stub user");
+      } else if (username) {
+        user = await this.createStubUser(username);
+      }
+    }
+
+    if (!user) {
+      throw new NotFoundException("could not find nor create user");
+    }
+
+    return user;
+  }
+
+  private async createStubUser(username: string): Promise<DbUser> {
+    const ghAuthToken: string = this.configService.get("github.authToken")!;
+
+    // using octokit and GitHub's API, go fetch the user
+    const octokit = new Octokit({
+      auth: ghAuthToken,
+    });
+
+    let octoResponse;
+
+    try {
+      octoResponse = await octokit.users.getByUsername({ username });
+    } catch (error: unknown) {
+      console.error(error);
+      throw new BadRequestException("Error fetching user:", username);
+    }
+
+    /*
+     * create a new, minimum partial user based on GitHub data (primarily, the ID).
+     * Because our first party databases uses the GitHub IDs as primary keys,
+     * we can't use an auto generated ID for a stub user.
+     * This stub user will eventually get picked up by the ETL and more data will get backfilled on them.
+     */
+
+    return this.userRepository.save({
+      id: octoResponse.data.id,
+      type: octoResponse.data.type,
+      is_open_sauced_member: false,
+      login: octoResponse.data.login,
+    });
   }
 
   async updateUser(id: number, user: UpdateUserDto) {
@@ -349,6 +426,16 @@ export class UserService {
       await this.userRepository.update(id, { role });
     } catch (e) {
       throw new NotFoundException("Unable to update user role");
+    }
+  }
+
+  async acceptTerms(id: number) {
+    try {
+      await this.findOneById(id);
+
+      await this.userRepository.update(id, { accepted_usage_terms: true });
+    } catch (e) {
+      throw new NotFoundException("Unable to update accepting usage terms and conditions");
     }
   }
 

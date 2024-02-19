@@ -20,7 +20,7 @@ import { InsightMemberService } from "./insight-member.service";
   controllers: [InsightController, UserInsightsController, UserInsightMemberController],
   imports: [
     TypeOrmModule.forFeature([DbInsight, DbInsightRepo, DbInsightMember, DbWorkspaceInsight], "ApiConnection"),
-    UserModule,
+    forwardRef(() => UserModule),
     ApiServicesModule,
     PizzaOvenModule,
     forwardRef(() => WorkspaceModule),

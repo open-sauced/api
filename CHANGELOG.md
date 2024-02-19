@@ -6,6 +6,20 @@
 > All notable changes to this project will be documented in this file
 
 
+## [2.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2024-02-16)
+
+
+### 🍕 Features
+
+* Add octokit and fetching users/repos for workspaces flows ([#573](https://github.com/open-sauced/api.opensauced.pizza/issues/573)) ([08da47f](https://github.com/open-sauced/api.opensauced.pizza/commit/08da47f0a246f93efbcae5312dc9796bc18645c6))
+
+## [2.8.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2024-02-15)
+
+
+### 🍕 Features
+
+* add endpoint to accept usage terms for users ([#572](https://github.com/open-sauced/api.opensauced.pizza/issues/572)) ([d1a64e9](https://github.com/open-sauced/api.opensauced.pizza/commit/d1a64e9dcd7d383f410d58afe879bb3ad8b7bd55))
+
 ## [2.8.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.2...v2.8.0-beta.3) (2024-02-15)
 
 

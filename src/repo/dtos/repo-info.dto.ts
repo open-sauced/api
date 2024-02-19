@@ -1,20 +1,22 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsString } from "class-validator";
+import { ApiPropertyOptional } from "@nestjs/swagger";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class RepoInfo {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repo ID",
     type: "integer",
     example: 234343,
   })
   @IsNumber()
-  id: number;
+  @IsOptional()
+  id?: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "Repo Full Name",
     type: String,
     example: "open-sauced/insights",
   })
   @IsString()
-  fullName: string;
+  @IsOptional()
+  fullName?: string;
 }
