@@ -5,6 +5,7 @@
 
 > All notable changes to this project will be documented in this file
 
+
 ## [2.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2024-02-16)
 
 
@@ -28,8 +29,8 @@
 
 ## [2.8.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2024-02-15)
 
-
 ### 🐛 Bug Fixes
+
 
 * added the missing personal_workspace_id property to the SupabaseAuthDto ([#567](https://github.com/open-sauced/api.opensauced.pizza/issues/567)) ([db9a726](https://github.com/open-sauced/api.opensauced.pizza/commit/db9a72623063cfbd7f80f4eec61c0572bb4240fe))
 
@@ -39,6 +40,14 @@
 ### 🍕 Features
 
 * Implements personal workspaces ([#558](https://github.com/open-sauced/api.opensauced.pizza/issues/558)) ([d6784fa](https://github.com/open-sauced/api.opensauced.pizza/commit/d6784fa3c1f0af16e7d59347f0d3481d29d96d6c))
+
+### [2.7.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0...v2.7.1) (2024-02-15)
+
+### 🐛 Bug Fixes
+
+
+* accept array of id,login when adding list contributors ([#565](https://github.com/open-sauced/api.opensauced.pizza/issues/565)) ([bc5876a](https://github.com/open-sauced/api.opensauced.pizza/commit/bc5876a29f4a550d88f90eadfb4615f62ebbd7c6))
+
 
 ### [2.7.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.0...v2.7.1-beta.1) (2024-02-14)
 
