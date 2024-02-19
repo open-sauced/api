@@ -1,4 +1,4 @@
-import { Controller, Get, Param, ParseIntPipe, Query } from "@nestjs/common";
+import { Controller, Get, Header, Param, ParseIntPipe, Query } from "@nestjs/common";
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from "@nestjs/swagger";
 import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -23,6 +23,7 @@ export class RepoController {
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
   @ApiParam({ name: "id", type: "integer" })
+  @Header("Cache-Control", "public, max-age=600")
   async findOneById(@Param("id", ParseIntPipe) id: number): Promise<DbRepo> {
     return this.repoService.findOneById(id);
   }
@@ -34,6 +35,7 @@ export class RepoController {
   })
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Repository not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findOneByOwnerAndRepo(@Param("owner") owner: string, @Param("repo") repo: string): Promise<DbRepo> {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
@@ -46,6 +48,7 @@ export class RepoController {
   @ApiPaginatedResponse(DbRepoContributor)
   @ApiOkResponse({ type: DbRepoContributor })
   @ApiNotFoundResponse({ description: "Repository not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findContributorsByOwnerAndRepo(
     @Param("owner") owner: string,
     @Param("repo") repo: string,
@@ -61,6 +64,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
+  @Header("Cache-Control", "public, max-age=600")
   async findAll(@Query() pageOptionsDto: RepoPageOptionsDto): Promise<PageDto<DbRepo>> {
     return this.repoService.findAll(pageOptionsDto);
   }
@@ -72,6 +76,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
+  @Header("Cache-Control", "public, max-age=600")
   async findAllReposWithFilters(@Query() pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
     return this.repoService.findAllWithFilters(pageOptionsDto);
   }
