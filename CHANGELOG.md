@@ -5,6 +5,22 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.8.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.1...v2.8.0) (2024-02-20)
+
+
+### 🐛 Bug Fixes
+
+* added the missing personal_workspace_id property to the SupabaseAuthDto ([#567](https://github.com/open-sauced/api.opensauced.pizza/issues/567)) ([db9a726](https://github.com/open-sauced/api.opensauced.pizza/commit/db9a72623063cfbd7f80f4eec61c0572bb4240fe))
+
+
+### 🍕 Features
+
+* add endpoint to accept usage terms for users ([#572](https://github.com/open-sauced/api.opensauced.pizza/issues/572)) ([d1a64e9](https://github.com/open-sauced/api.opensauced.pizza/commit/d1a64e9dcd7d383f410d58afe879bb3ad8b7bd55))
+* Add http cache headers ([#579](https://github.com/open-sauced/api.opensauced.pizza/issues/579)) ([7af75b8](https://github.com/open-sauced/api.opensauced.pizza/commit/7af75b8217accaaa4b66df8ee8de7335b51bf156))
+* Add octokit and fetching users/repos for workspaces flows ([#573](https://github.com/open-sauced/api.opensauced.pizza/issues/573)) ([08da47f](https://github.com/open-sauced/api.opensauced.pizza/commit/08da47f0a246f93efbcae5312dc9796bc18645c6))
+* Implements personal workspaces ([#558](https://github.com/open-sauced/api.opensauced.pizza/issues/558)) ([d6784fa](https://github.com/open-sauced/api.opensauced.pizza/commit/d6784fa3c1f0af16e7d59347f0d3481d29d96d6c))
+* Workspace creation supports contributors ([#568](https://github.com/open-sauced/api.opensauced.pizza/issues/568)) ([641fab6](https://github.com/open-sauced/api.opensauced.pizza/commit/641fab6154cf0a8c4b83fea084265f6c81ec8681))
+
 ## [2.8.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2024-02-20)
 
 
