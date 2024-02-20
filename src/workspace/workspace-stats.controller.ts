@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, UseGuards } from "@nestjs/common";
+import { Controller, Get, Header, Param, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -32,6 +32,7 @@ export class WorkspaceStatsController {
   @ApiNotFoundResponse({ description: "Unable to get user workspace stats" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
+  @Header("Cache-Control", "private, max-age=600")
   async getWorkspaceStatsForUser(
     @Param("id") id: string,
     @UserId() userId: number,

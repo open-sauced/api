@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -6,12 +6,15 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
 import { RepoService } from "../repo/repo.service";
+import { DbUser } from "../user/user.entity";
+import { UserService } from "../user/services/user.service";
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
 import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
 import { canUserManageWorkspace } from "./common/memberAccess";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
+import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
 
 @Injectable()
 export class WorkspaceService {
@@ -20,8 +23,13 @@ export class WorkspaceService {
     private workspaceRepository: Repository<DbWorkspace>,
     @InjectRepository(DbWorkspaceRepo, "ApiConnection")
     private workspaceRepoRepository: Repository<DbWorkspaceRepo>,
+    @InjectRepository(DbWorkspaceContributor, "ApiConnection")
+    private workspaceContributorRepository: Repository<DbWorkspaceContributor>,
+    @InjectRepository(DbUser, "ApiConnection")
+    private userRepository: Repository<DbUser>,
     private pagerService: PagerService,
-    private repoService: RepoService
+    private repoService: RepoService,
+    private userService: UserService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbWorkspace> {
@@ -83,6 +91,33 @@ export class WorkspaceService {
         { userId }
       )
       .where("workspaces.id = :id", { id });
+
+    const item: DbWorkspace | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    return item;
+  }
+
+  async findPersonalWorkspaceByUserId(userId: number): Promise<DbWorkspace> {
+    const workspaceIdQb = this.userRepository
+      .createQueryBuilder()
+      .select("personal_workspace_id")
+      .where("id = :userId", { userId });
+
+    const workspaceId = await workspaceIdQb.getRawOne<{ personal_workspace_id: string }>();
+
+    if (!workspaceId || !workspaceId.personal_workspace_id) {
+      throw new NotFoundException();
+    }
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(`workspaces.members`, `workspace_members`, `workspaces.id=workspace_members.workspace_id`)
+      .where("workspaces.id = :id", { id: workspaceId.personal_workspace_id });
 
     const item: DbWorkspace | null = await queryBuilder.getOne();
 
@@ -169,6 +204,43 @@ export class WorkspaceService {
       });
 
       await Promise.all(repoPromises);
+
+      const contribPromises = dto.contributors.map(async (contributor) => {
+        let user;
+
+        if (contributor.id) {
+          user = await this.userService.findOneById(contributor.id);
+        } else if (contributor.login) {
+          user = await this.userService.findOneByUsername(contributor.login);
+        } else {
+          throw new BadRequestException("either user id or login must be provided");
+        }
+
+        const existingContributor = await this.workspaceContributorRepository.findOne({
+          where: {
+            workspace_id: savedWorkspace.id,
+            contributor_id: user.id,
+          },
+          withDeleted: true,
+        });
+
+        if (existingContributor) {
+          await entityManager.restore(DbWorkspaceContributor, existingContributor.id);
+        } else {
+          if (user.type.toLowerCase() === "organization") {
+            throw new NotFoundException("not an contributor, is an org");
+          }
+
+          const newContributor = new DbWorkspaceContributor();
+
+          newContributor.workspace = savedWorkspace;
+          newContributor.contributor = user;
+
+          await entityManager.save(DbWorkspaceContributor, newContributor);
+        }
+      });
+
+      await Promise.all(contribPromises);
 
       return savedWorkspace;
     });

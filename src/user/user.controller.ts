@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Header, Param, Query } from "@nestjs/common";
 import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
@@ -49,6 +49,7 @@ export class UserController {
   @ApiPaginatedResponse(DbPullRequestGitHubEvents)
   @ApiOkResponse({ type: DbPullRequestGitHubEvents })
   @ApiNotFoundResponse({ description: "User not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findContributorPullRequestGitHubEvents(
     @Param("username") username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -64,6 +65,7 @@ export class UserController {
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: "Highlights not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findAllHighlightsByUsername(
     @Param("username") username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -81,6 +83,7 @@ export class UserController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: "Top repos not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findAllTopReposByUsername(
     @Param("username") username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -98,6 +101,7 @@ export class UserController {
   @ApiPaginatedResponse(DbUserOrganization)
   @ApiOkResponse({ type: DbUserOrganization })
   @ApiNotFoundResponse({ description: "Top repos not found" })
+  @Header("Cache-Control", "public, max-age=600")
   async findAllOrgsByUsername(
     @Param("username") username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -113,6 +117,7 @@ export class UserController {
     summary: "List top users",
   })
   @ApiOkResponse({ type: DbTopUser })
+  @Header("Cache-Control", "public, max-age=600")
   async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise<PageDto<DbTopUser>> {
     return this.userService.findTopUsers(pageOptionsDto);
   }

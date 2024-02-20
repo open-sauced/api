@@ -74,16 +74,6 @@ export class WorkspaceContributorsService {
     contributorId?: number,
     contributorLogin?: string
   ): Promise<DbWorkspace> {
-    let user;
-
-    if (contributorId) {
-      user = await this.userService.findOneById(contributorId);
-    } else if (contributorLogin) {
-      user = await this.userService.findOneByUsername(contributorLogin);
-    } else {
-      throw new BadRequestException("either user id or login must be provided");
-    }
-
     const workspace = await this.workspaceService.findOneById(id);
 
     /*
@@ -99,28 +89,7 @@ export class WorkspaceContributorsService {
       throw new UnauthorizedException();
     }
 
-    const existingContributor = await this.workspaceContributorRepository.findOne({
-      where: {
-        workspace_id: id,
-        contributor_id: user.id,
-      },
-      withDeleted: true,
-    });
-
-    if (existingContributor) {
-      await this.workspaceContributorRepository.restore(existingContributor.id);
-    } else {
-      if (user.type.toLowerCase() === "organization") {
-        throw new NotFoundException("not a contributor");
-      }
-
-      const newContributor = new DbWorkspaceContributor();
-
-      newContributor.workspace = workspace;
-      newContributor.contributor = user;
-
-      await this.workspaceContributorRepository.save(newContributor);
-    }
+    await this.executeAddWorkspaceContributor(workspace, contributorId, contributorLogin);
 
     return this.workspaceService.findOneById(id);
   }
@@ -146,42 +115,46 @@ export class WorkspaceContributorsService {
     }
 
     const promises = dto.contributors.map(async (contributor) => {
-      let user;
-
-      if (contributor.id) {
-        user = await this.userService.findOneById(contributor.id);
-      } else if (contributor.login) {
-        user = await this.userService.findOneByUsername(contributor.login);
-      } else {
-        throw new BadRequestException("either user id or login must be provided");
-      }
-
-      const existingContributor = await this.workspaceContributorRepository.findOne({
-        where: {
-          workspace_id: id,
-          contributor_id: user.id,
-        },
-        withDeleted: true,
-      });
-
-      if (existingContributor) {
-        await this.workspaceContributorRepository.restore(existingContributor.id);
-      } else {
-        if (user.type.toLowerCase() === "organization") {
-          throw new NotFoundException("not an contributor");
-        }
-
-        const newContributor = new DbWorkspaceContributor();
-
-        newContributor.workspace = workspace;
-        newContributor.contributor = user;
-
-        await this.workspaceContributorRepository.save(newContributor);
-      }
+      await this.executeAddWorkspaceContributor(workspace, contributor.id, contributor.login);
     });
 
     await Promise.all(promises);
     return this.workspaceService.findOneById(id);
+  }
+
+  private async executeAddWorkspaceContributor(
+    workspace: DbWorkspace,
+    contributorId?: number,
+    contributorLogin?: string
+  ) {
+    if (!contributorId && !contributorLogin) {
+      throw new BadRequestException("either user id or login must be provided");
+    }
+
+    const user = await this.userService.tryFindUserOrMakeStub(contributorId, contributorLogin);
+
+    const existingContributor = await this.workspaceContributorRepository.findOne({
+      where: {
+        workspace_id: workspace.id,
+        contributor_id: user.id,
+      },
+      withDeleted: true,
+    });
+
+    if (existingContributor) {
+      await this.workspaceContributorRepository.restore(existingContributor.id);
+    } else {
+      if (user.type.toLowerCase() === "organization") {
+        throw new NotFoundException("not a contributor");
+      }
+
+      const newContributor = new DbWorkspaceContributor();
+
+      newContributor.workspace = workspace;
+      newContributor.contributor = user;
+
+      await this.workspaceContributorRepository.save(newContributor);
+    }
   }
 
   async deleteOneWorkspaceContributor(id: string, userId: number, contributorId?: number, contributorLogin?: string) {

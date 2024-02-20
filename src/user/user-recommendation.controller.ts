@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from "@nestjs/common";
+import { Controller, Get, Header, Query, UseGuards } from "@nestjs/common";
 import { ApiOperation, ApiBearerAuth, ApiTags, ApiOkResponse } from "@nestjs/swagger";
 
 import { SupabaseGuard } from "../auth/supabase.guard";
@@ -24,6 +24,7 @@ export class UserRecommendationController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @UseGuards(SupabaseGuard)
+  @Header("Cache-Control", "private, max-age=600")
   async findUserRepoRecommendations(@UserId() userId: number) {
     const user = await this.userService.findOneById(userId);
     const interests = user.interests?.split(",").filter(Boolean) ?? [];
@@ -40,6 +41,7 @@ export class UserRecommendationController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @UseGuards(SupabaseGuard)
+  @Header("Cache-Control", "private, max-age=600")
   async findUserOrgsRepoRecommendations(@UserId() userId: number, @Query() pageOptionsDto: PageOptionsDto) {
     return this.repoService.findOrgsRecommendations(userId, pageOptionsDto);
   }

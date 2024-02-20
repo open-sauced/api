@@ -3,6 +3,7 @@ import { Type } from "class-transformer";
 import { IsArray, IsString } from "class-validator";
 import { WorkspaceMemberRoleEnum } from "../entities/workspace-member.entity";
 import { NewWorkspaceRepo } from "./update-workspace-repos.dto";
+import { NewWorkspaceContributor } from "./update-workspace-contributors.dto";
 
 export class NewMember {
   id: number;
@@ -44,4 +45,13 @@ export class CreateWorkspaceDto {
   @IsArray()
   @Type(() => NewWorkspaceRepo)
   repos: { full_name: string }[];
+
+  @ApiProperty({
+    description: "An array of contributor objects to be added to the workspace",
+    isArray: true,
+    example: [{ id: 12345, login: "jpmcb" }],
+  })
+  @IsArray()
+  @Type(() => NewWorkspaceContributor)
+  contributors: { id?: number; login?: string }[];
 }

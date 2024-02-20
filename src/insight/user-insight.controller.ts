@@ -79,7 +79,8 @@ export class UserInsightsController {
       throw new BadRequestException();
     }
 
-    const newInsight = await this.insightsService.addInsight(userId, {
+    // use an empty workspace ID to force this being added to the users personal workspace
+    const newInsight = await this.insightsService.addInsight(userId, "", {
       name: createInsightDto.name,
       is_public: createInsightDto.is_public,
     });
@@ -129,7 +130,7 @@ export class UserInsightsController {
 
       // remove deleted repos
       const reposToRemove = currentRepos.filter(
-        (repo) => !updateInsightDto.repos.find((repoInfo) => `${repoInfo.id}` === `${repo.repo_id}`)
+        (repo) => !updateInsightDto.repos.find((repoInfo) => `${repoInfo.id!}` === `${repo.repo_id}`)
       );
 
       const reposToRemoveRequests = reposToRemove.map(async (insightRepo) =>
@@ -141,7 +142,7 @@ export class UserInsightsController {
       // add new repos
       const currentRepoIds = currentRepos.map((cr) => cr.repo_id);
       const reposToAdd = updateInsightDto.repos.filter(
-        (repoInfo) => !currentRepoIds.find((id) => `${id}` === `${repoInfo.id}`)
+        (repoInfo) => !currentRepoIds.find((id) => `${id}` === `${repoInfo.id!}`)
       );
 
       const repoToAddRequests = reposToAdd.map(async (repo) =>

@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Header,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+  ValidationPipe,
+} from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -56,6 +68,7 @@ export class UserListController {
     summary: "Gets public featured lists",
   })
   @ApiOkResponse({ type: DbUserList })
+  @Header("Cache-Control", "public, max-age=600")
   async getFeaturedLists(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserList>> {
     return this.userListService.findAllFeatured(pageOptionsDto);
   }
@@ -72,7 +85,8 @@ export class UserListController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiBody({ type: CreateUserListDto })
   async addListForUser(@Body() createUserListDto: CreateUserListDto, @UserId() userId: number): Promise<DbUserList> {
-    const newList = await this.userListService.addUserList(userId, createUserListDto);
+    // use and empty workspace ID to force the user list being added to the users personal workspace
+    const newList = await this.userListService.addUserList(userId, createUserListDto, "");
 
     const listContributors = createUserListDto.contributors.map(async (contributor) =>
       this.userListService.addUserListContributor(newList.id, contributor.id, contributor.login)

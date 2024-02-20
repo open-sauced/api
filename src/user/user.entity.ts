@@ -570,6 +570,26 @@ export class DbUser extends BaseEntity {
   })
   public is_maintainer: boolean;
 
+  @ApiModelProperty({
+    type: "string",
+    example: "uuid-v4",
+  })
+  @Column({
+    type: "character varying",
+    length: 255,
+  })
+  public personal_workspace_id = "";
+
+  @ApiModelProperty({
+    description: "User accepted usage terms and conditions",
+    example: false,
+  })
+  @Column({
+    type: "boolean",
+    default: false,
+  })
+  readonly accepted_usage_terms?: boolean;
+
   @ApiHideProperty()
   @OneToMany(() => DbInsightMember, (insightMember) => insightMember.member, { cascade: true })
   public insights: DbInsightMember[];

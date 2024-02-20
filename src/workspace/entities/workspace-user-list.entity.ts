@@ -16,13 +16,13 @@ import {
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
-import { DbInsight } from "../../insight/entities/insight.entity";
+import { DbUserList } from "../../user-lists/entities/user-list.entity";
 import { DbWorkspace } from "./workspace.entity";
 
-@Entity({ name: "workspace_insights" })
-export class DbWorkspaceInsight extends BaseEntity {
+@Entity({ name: "workspace_user_lists" })
+export class DbWorkspaceUserLists extends BaseEntity {
   @ApiModelProperty({
-    description: "Workspace insight identifier",
+    description: "Workspace user list identifier",
     example: "abc-123",
   })
   @PrimaryColumn()
@@ -30,12 +30,12 @@ export class DbWorkspaceInsight extends BaseEntity {
   public id!: string;
 
   @ApiModelProperty({
-    description: "Insight identifier",
-    example: 237133,
-    type: "integer",
+    description: "User list UUID identifier",
+    example: "abc-123",
+    type: "string",
   })
   @Column()
-  public insight_id!: number;
+  public user_list_id!: string;
 
   @ApiModelProperty({
     description: "Workspace identifier",
@@ -45,7 +45,7 @@ export class DbWorkspaceInsight extends BaseEntity {
   public workspace_id!: string;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace member creation",
+    description: "Timestamp representing workspace user list creation",
     example: "2022-10-19 13:24:51.000000",
   })
   @CreateDateColumn({
@@ -55,7 +55,7 @@ export class DbWorkspaceInsight extends BaseEntity {
   public created_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace member last updated",
+    description: "Timestamp representing workspace user list last updated",
     example: "2022-10-19 13:24:51.000000",
   })
   @UpdateDateColumn({
@@ -65,7 +65,7 @@ export class DbWorkspaceInsight extends BaseEntity {
   public updated_at?: Date;
 
   @ApiModelPropertyOptional({
-    description: "Timestamp representing workspace member deletion",
+    description: "Timestamp representing workspace user list deletion",
     example: "2022-10-19 13:24:51.000000",
   })
   @DeleteDateColumn({
@@ -75,15 +75,15 @@ export class DbWorkspaceInsight extends BaseEntity {
   public deleted_at?: Date;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbInsight, (insight) => insight.workspaces, { onDelete: "CASCADE" })
+  @ManyToOne(() => DbUserList, (userList) => userList.workspaces, { onDelete: "CASCADE" })
   @JoinColumn({
-    name: "insight_id",
+    name: "user_list_id",
     referencedColumnName: "id",
   })
-  public insight: DbInsight;
+  public user_list: DbUserList;
 
   @ApiHideProperty()
-  @ManyToOne(() => DbWorkspace, (workspace) => workspace.insights)
+  @ManyToOne(() => DbWorkspace, (workspace) => workspace.user_lists)
   @JoinColumn({
     name: "workspace_id",
     referencedColumnName: "id",

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from "@nestjs/common";
+import { Controller, Get, Header, Param, Query } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -37,6 +37,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
+  @Header("Cache-Control", "private, max-age=600")
   async getMostActiveContributorsV2(
     @Param("id") id: string,
     @Query() pageOptionsDto: UserListMostActiveContributorsDto
@@ -53,6 +54,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
+  @Header("Cache-Control", "private, max-age=600")
   async getContributionsByTimeFrame(
     @Param("id") id: string,
     @Query() options: ContributionsTimeframeDto
@@ -70,6 +72,7 @@ export class UserListStatsController {
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   @ApiQuery({ name: "range", type: "integer", required: false })
+  @Header("Cache-Control", "private, max-age=600")
   async getContributionsByProject(
     @Param("id") id: string,
     @Query() options: ContributionsByProjectDto
@@ -86,6 +89,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
+  @Header("Cache-Control", "private, max-age=600")
   async getContributorContributionsByProject(
     @Param("id") id: string,
     @Query() options: TopProjectsDto
@@ -102,6 +106,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
+  @Header("Cache-Control", "private, max-age=600")
   async getContributionsByTimeframe(
     @Param("id") id: string,
     @Query() options: ContributionsTimeframeDto
