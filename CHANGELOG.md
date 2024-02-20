@@ -5,6 +5,12 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.8.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2024-02-20)
+
+
+### 🍕 Features
+
+* Add http cache headers ([#579](https://github.com/open-sauced/api.opensauced.pizza/issues/579)) ([7af75b8](https://github.com/open-sauced/api.opensauced.pizza/commit/7af75b8217accaaa4b66df8ee8de7335b51bf156))
 
 ## [2.8.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2024-02-16)
 
