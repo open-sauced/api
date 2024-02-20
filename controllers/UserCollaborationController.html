@@ -145,8 +145,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:74</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -229,14 +229,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserCollaborations&#x27;, summary: &#x27;Listing all collaborations for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbUserCollaboration)<br />@ApiOkResponse({type: DbUserCollaboration})<br /></code>
+                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;findAllUserCollaborations&#x27;, summary: &#x27;Listing all collaborations for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiPaginatedResponse(DbUserCollaboration)<br />@ApiOkResponse({type: DbUserCollaboration})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:137</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:139</a></div>
                 </td>
             </tr>
 
@@ -415,8 +415,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="110"
-                            class="link-to-prism">src/user/user-collaboration.controller.ts:110</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/user/user-collaboration.controller.ts:112</a></div>
                 </td>
             </tr>
 
@@ -498,6 +498,7 @@
   Controller,
   Delete,
   Get,
+  Header,
   Param,
   Patch,
   Post,
@@ -546,6 +547,7 @@ export class UserCollaborationController {
   @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserCollaboration)
   @ApiOkResponse({ type: DbUserCollaboration })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async findAllUserCollaborations(
     @Query() pageOptionsDto: PageOptionsDto,
     @UserId() userId: number

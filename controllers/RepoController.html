@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                    <code>@Get(&#x27;/list&#x27;)<br />@ApiOperation({operationId: &#x27;findAll&#x27;, summary: &#x27;Finds all repos and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/repo/repo.controller.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/repo/repo.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -221,14 +221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;findAllReposWithFilters&#x27;, summary: &#x27;Finds all repos using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br /></code>
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;findAllReposWithFilters&#x27;, summary: &#x27;Finds all repos using filters and paginates them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/repo/repo.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/repo/repo.controller.ts:80</a></div>
                 </td>
             </tr>
 
@@ -299,14 +299,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorsByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and gets the contributors&#x27;})<br />@ApiPaginatedResponse(DbRepoContributor)<br />@ApiOkResponse({type: DbRepoContributor})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorsByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo and gets the contributors&#x27;})<br />@ApiPaginatedResponse(DbRepoContributor)<br />@ApiOkResponse({type: DbRepoContributor})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/repo/repo.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/repo/repo.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -401,14 +401,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;findOneById&#x27;, summary: &#x27;Finds a repo by :id&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;integer&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/repo/repo.controller.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/repo/repo.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -479,14 +479,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:owner/:repo&#x27;)<br />@ApiOperation({operationId: &#x27;findOneByOwnerAndRepo&#x27;, summary: &#x27;Finds a repo by :owner and :repo&#x27;})<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Repository not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/repo/repo.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/repo/repo.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -550,7 +550,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Header, Param, ParseIntPipe, Query } from &quot;@nestjs/common&quot;;
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiParam, ApiTags } from &quot;@nestjs/swagger&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
@@ -575,6 +575,7 @@ export class RepoController {
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;integer&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findOneById(@Param(&quot;id&quot;, ParseIntPipe) id: number): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneById(id);
   }
@@ -586,6 +587,7 @@ export class RepoController {
   })
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findOneByOwnerAndRepo(@Param(&quot;owner&quot;) owner: string, @Param(&quot;repo&quot;) repo: string): Promise&lt;DbRepo&gt; {
     return this.repoService.findOneByOwnerAndRepo(owner, repo);
   }
@@ -598,6 +600,7 @@ export class RepoController {
   @ApiPaginatedResponse(DbRepoContributor)
   @ApiOkResponse({ type: DbRepoContributor })
   @ApiNotFoundResponse({ description: &quot;Repository not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findContributorsByOwnerAndRepo(
     @Param(&quot;owner&quot;) owner: string,
     @Param(&quot;repo&quot;) repo: string,
@@ -613,6 +616,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findAll(@Query() pageOptionsDto: RepoPageOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAll(pageOptionsDto);
   }
@@ -624,6 +628,7 @@ export class RepoController {
   })
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findAllReposWithFilters(@Query() pageOptionsDto: RepoSearchOptionsDto): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
     return this.repoService.findAllWithFilters(pageOptionsDto);
   }

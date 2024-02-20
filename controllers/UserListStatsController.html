@@ -143,14 +143,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, required: false})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-by-project&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByProject&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionsProjects})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions by project&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiQuery({name: &#x27;range&#x27;, type: &#x27;integer&#x27;, required: false})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -233,14 +233,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-contributor-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorsByTimeframe&#x27;, summary: &#x27;Gets contributions by category within timeframe&#x27;})<br />@ApiOkResponse({type: DbContributorCategoryTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-contributor-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorsByTimeframe&#x27;, summary: &#x27;Gets contributions by category within timeframe&#x27;})<br />@ApiOkResponse({type: DbContributorCategoryTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:110</a></div>
                 </td>
             </tr>
 
@@ -323,14 +323,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByTimeFrame&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionStatTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/contributions-evolution-by-type&#x27;)<br />@ApiOperation({operationId: &#x27;getContributionsByTimeFrame&#x27;, summary: &#x27;Gets contributions in a given timeframe&#x27;})<br />@ApiOkResponse({type: DbContributionStatTimeframe})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -413,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -503,14 +503,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributorsV2&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributorsV2&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/user-lists/user-list-stats.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -574,7 +574,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Header, Param, Query } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -613,6 +613,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get list most active contributors&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getMostActiveContributorsV2(
     @Param(&quot;id&quot;) id: string,
     @Query() pageOptionsDto: UserListMostActiveContributorsDto
@@ -629,6 +630,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getContributionsByTimeFrame(
     @Param(&quot;id&quot;) id: string,
     @Query() options: ContributionsTimeframeDto
@@ -646,6 +648,7 @@ export class UserListStatsController {
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
   @ApiQuery({ name: &quot;range&quot;, type: &quot;integer&quot;, required: false })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getContributionsByProject(
     @Param(&quot;id&quot;) id: string,
     @Query() options: ContributionsByProjectDto
@@ -662,6 +665,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getContributorContributionsByProject(
     @Param(&quot;id&quot;) id: string,
     @Query() options: TopProjectsDto
@@ -678,6 +682,7 @@ export class UserListStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getContributionsByTimeframe(
     @Param(&quot;id&quot;) id: string,
     @Query() options: ContributionsTimeframeDto

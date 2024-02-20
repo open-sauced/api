@@ -131,14 +131,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/orgs&#x27;)<br />@ApiOperation({operationId: &#x27;findUserOrgsRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user based on their orgs&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br /></code>
+                    <code>@Get(&#x27;/orgs&#x27;)<br />@ApiOperation({operationId: &#x27;findUserOrgsRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user based on their orgs&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/user/user-recommendation.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/user/user-recommendation.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -221,14 +221,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/repos&#x27;)<br />@ApiOperation({operationId: &#x27;findUserRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br /></code>
+                    <code>@Get(&#x27;/repos&#x27;)<br />@ApiOperation({operationId: &#x27;findUserRepoRecommendations&#x27;, summary: &#x27;Listing recommended repos for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@UseGuards(SupabaseGuard)<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/user/user-recommendation.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/user/user-recommendation.controller.ts:28</a></div>
                 </td>
             </tr>
 
@@ -280,7 +280,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Header, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiBearerAuth, ApiTags, ApiOkResponse } from &quot;@nestjs/swagger&quot;;
 
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
@@ -306,6 +306,7 @@ export class UserRecommendationController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @UseGuards(SupabaseGuard)
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async findUserRepoRecommendations(@UserId() userId: number) {
     const user &#x3D; await this.userService.findOneById(userId);
     const interests &#x3D; user.interests?.split(&quot;,&quot;).filter(Boolean) ?? [];
@@ -322,6 +323,7 @@ export class UserRecommendationController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @UseGuards(SupabaseGuard)
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async findUserOrgsRepoRecommendations(@UserId() userId: number, @Query() pageOptionsDto: PageOptionsDto) {
     return this.repoService.findOrgsRecommendations(userId, pageOptionsDto);
   }

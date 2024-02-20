@@ -151,14 +151,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:username/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;findAllHighlightsByUsername&#x27;, summary: &#x27;Listing all Highlights for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Highlights not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:username/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;findAllHighlightsByUsername&#x27;, summary: &#x27;Listing all Highlights for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Highlights not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/user/user.controller.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/user/user.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -241,14 +241,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:username/organizations&#x27;)<br />@ApiOperation({operationId: &#x27;findAllOrgsByUsername&#x27;, summary: &#x27;Listing public orgs for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserOrganization)<br />@ApiOkResponse({type: DbUserOrganization})<br />@ApiNotFoundResponse({description: &#x27;Top repos not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:username/organizations&#x27;)<br />@ApiOperation({operationId: &#x27;findAllOrgsByUsername&#x27;, summary: &#x27;Listing public orgs for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbUserOrganization)<br />@ApiOkResponse({type: DbUserOrganization})<br />@ApiNotFoundResponse({description: &#x27;Top repos not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/user/user.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/user/user.controller.ts:105</a></div>
                 </td>
             </tr>
 
@@ -331,14 +331,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:username/top-repos&#x27;)<br />@ApiOperation({operationId: &#x27;findAllTopReposByUsername&#x27;, summary: &#x27;Listing all Top Repos for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Top repos not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:username/top-repos&#x27;)<br />@ApiOperation({operationId: &#x27;findAllTopReposByUsername&#x27;, summary: &#x27;Listing all Top Repos for a user and paginate them&#x27;})<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@ApiNotFoundResponse({description: &#x27;Top repos not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="84"
-                            class="link-to-prism">src/user/user.controller.ts:84</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/user/user.controller.ts:87</a></div>
                 </td>
             </tr>
 
@@ -421,14 +421,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:username/prs&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorPullRequestGitHubEvents&#x27;, summary: &#x27;Finds pull requests by :username&#x27;})<br />@ApiPaginatedResponse(DbPullRequestGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestGitHubEvents})<br />@ApiNotFoundResponse({description: &#x27;User not found&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:username/prs&#x27;)<br />@ApiOperation({operationId: &#x27;findContributorPullRequestGitHubEvents&#x27;, summary: &#x27;Finds pull requests by :username&#x27;})<br />@ApiPaginatedResponse(DbPullRequestGitHubEvents)<br />@ApiOkResponse({type: DbPullRequestGitHubEvents})<br />@ApiNotFoundResponse({description: &#x27;User not found&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/user/user.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/user/user.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -589,14 +589,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/top&#x27;)<br />@ApiOperation({operationId: &#x27;getTop10Highlights&#x27;, summary: &#x27;List top users&#x27;})<br />@ApiOkResponse({type: DbTopUser})<br /></code>
+                    <code>@Get(&#x27;/top&#x27;)<br />@ApiOperation({operationId: &#x27;getTop10Highlights&#x27;, summary: &#x27;List top users&#x27;})<br />@ApiOkResponse({type: DbTopUser})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/user/user.controller.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/user/user.controller.ts:121</a></div>
                 </td>
             </tr>
 
@@ -673,8 +673,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">src/user/user.controller.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/user/user.controller.ts:132</a></div>
                 </td>
             </tr>
 
@@ -726,7 +726,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Header, Param, Query } from &quot;@nestjs/common&quot;;
 import { ApiBadRequestResponse, ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
@@ -777,6 +777,7 @@ export class UserController {
   @ApiPaginatedResponse(DbPullRequestGitHubEvents)
   @ApiOkResponse({ type: DbPullRequestGitHubEvents })
   @ApiNotFoundResponse({ description: &quot;User not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findContributorPullRequestGitHubEvents(
     @Param(&quot;username&quot;) username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -792,6 +793,7 @@ export class UserController {
   @ApiPaginatedResponse(DbUserHighlight)
   @ApiOkResponse({ type: DbUserHighlight })
   @ApiNotFoundResponse({ description: &quot;Highlights not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findAllHighlightsByUsername(
     @Param(&quot;username&quot;) username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -809,6 +811,7 @@ export class UserController {
   @ApiPaginatedResponse(DbRepo)
   @ApiOkResponse({ type: DbRepo })
   @ApiNotFoundResponse({ description: &quot;Top repos not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findAllTopReposByUsername(
     @Param(&quot;username&quot;) username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -826,6 +829,7 @@ export class UserController {
   @ApiPaginatedResponse(DbUserOrganization)
   @ApiOkResponse({ type: DbUserOrganization })
   @ApiNotFoundResponse({ description: &quot;Top repos not found&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async findAllOrgsByUsername(
     @Param(&quot;username&quot;) username: string,
     @Query() pageOptionsDto: PageOptionsDto
@@ -841,6 +845,7 @@ export class UserController {
     summary: &quot;List top users&quot;,
   })
   @ApiOkResponse({ type: DbTopUser })
+  @Header(&quot;Cache-Control&quot;, &quot;public, max-age&#x3D;600&quot;)
   async getTopUsers(@Query() pageOptionsDto: TopUsersDto): Promise&lt;PageDto&lt;DbTopUser&gt;&gt; {
     return this.userService.findTopUsers(pageOptionsDto);
   }

@@ -127,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/stats&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceStatsForUser&#x27;, summary: &#x27;Gets workspace stats for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceStats})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace stats&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;/stats&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceStatsForUser&#x27;, summary: &#x27;Gets workspace stats for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceStats})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace stats&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -210,7 +210,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Param, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Header, Param, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -244,6 +244,7 @@ export class WorkspaceStatsController {
   @ApiNotFoundResponse({ description: &quot;Unable to get user workspace stats&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getWorkspaceStatsForUser(
     @Param(&quot;id&quot;) id: string,
     @UserId() userId: number,
