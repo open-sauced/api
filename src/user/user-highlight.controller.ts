@@ -4,6 +4,7 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
   Param,
   ParseIntPipe,
   Patch,
@@ -66,6 +67,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Unable to get user highlight" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "integer" })
+  @Header("Cache-Control", "public, max-age=600")
   async getUserHighlight(@Param("id", ParseIntPipe) id: number): Promise<DbUserHighlight> {
     return this.userHighlightsService.findOneById(id);
   }
@@ -131,6 +133,7 @@ export class UserHighlightsController {
   @ApiNotFoundResponse({ description: "Unable to get user highlight reactions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "integer" })
+  @Header("Cache-Control", "private, max-age=600")
   async getAllHighlightUserReactions(
     @Param("id", ParseIntPipe) id: number,
     @UserId() userId: number
@@ -196,6 +199,7 @@ export class UserHighlightsController {
   @ApiBearerAuth()
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserHighlight })
+  @Header("Cache-Control", "private, max-age=600")
   async getFollowingHighlights(
     @Query() pageOptionsDto: HighlightOptionsDto,
     @UserId() userId: number
@@ -212,6 +216,7 @@ export class UserHighlightsController {
   @UseGuards(SupabaseGuard)
   @ApiOkResponse({ type: DbUserHighlightRepo })
   @ApiBadRequestResponse({ description: "Invalid request" })
+  @Header("Cache-Control", "private, max-age=600")
   async getFollowingHighlightRepos(
     @Query() pageOptionsDto: HighlightOptionsDto,
     @UserId() userId: number

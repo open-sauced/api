@@ -4,6 +4,7 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
   Param,
   Patch,
   Post,
@@ -52,6 +53,7 @@ export class UserCollaborationController {
   @UseGuards(SupabaseGuard)
   @ApiPaginatedResponse(DbUserCollaboration)
   @ApiOkResponse({ type: DbUserCollaboration })
+  @Header("Cache-Control", "private, max-age=600")
   async findAllUserCollaborations(
     @Query() pageOptionsDto: PageOptionsDto,
     @UserId() userId: number

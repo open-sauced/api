@@ -1,4 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, ValidationPipe } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Header,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+  ValidationPipe,
+} from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -56,6 +68,7 @@ export class UserListController {
     summary: "Gets public featured lists",
   })
   @ApiOkResponse({ type: DbUserList })
+  @Header("Cache-Control", "public, max-age=600")
   async getFeaturedLists(@Query() pageOptionsDto: PageOptionsDto): Promise<PageDto<DbUserList>> {
     return this.userListService.findAllFeatured(pageOptionsDto);
   }
