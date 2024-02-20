@@ -5,6 +5,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { RepoDevstatsService } from "../timescale/repo-devstats.service";
 import { IssuesGithubEventsService } from "../timescale/issues_github_events.service";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
+import { ForkGithubEventsService } from "../timescale/fork_github_events.service";
+import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { WorkspaceService } from "./workspace.service";
 import { canUserManageWorkspace } from "./common/memberAccess";
@@ -20,6 +22,8 @@ export class WorkspaceStatsService {
     private workspaceService: WorkspaceService,
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
     private issueGithubEventsService: IssuesGithubEventsService,
+    private forkGithubEventsService: ForkGithubEventsService,
+    private watchGithubEventsService: WatchGithubEventsService,
     private repoDevstatsService: RepoDevstatsService
   ) {}
 
@@ -94,8 +98,14 @@ export class WorkspaceStatsService {
       // get the repo's activity ratio
       const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.repo.full_name, range);
 
-      result.repos.forks += entity.repo.forks;
-      result.repos.stars += entity.repo.stars;
+      // get forks within time range
+      const forks = await this.forkGithubEventsService.genForkHistogram({ range, repo: entity.repo.full_name });
+
+      // get stars (watch events) within time range
+      const stars = await this.watchGithubEventsService.genStarsHistogram({ range, repo: entity.repo.full_name });
+
+      result.repos.stars += stars.length;
+      result.repos.forks += forks.length;
       result.repos.activity_ratio += activityRatio;
     });
 
