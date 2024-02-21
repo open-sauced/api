@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0...v2.9.0-beta.1) (2024-02-21)
+
+
+### 🍕 Features
+
+* User cannot delete their personal workspace ([#583](https://github.com/open-sauced/api.opensauced.pizza/issues/583)) ([808ae6f](https://github.com/open-sauced/api.opensauced.pizza/commit/808ae6fbe043afc9c8da0ed205c512f47b324c31))
+* workspace stats for time range ([#582](https://github.com/open-sauced/api.opensauced.pizza/issues/582)) ([1fad154](https://github.com/open-sauced/api.opensauced.pizza/commit/1fad1548b4fdb9d36c4e8df4734ecdbc1c4d01cf))
+
 ## [2.8.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.7.1...v2.8.0) (2024-02-20)
 
 
