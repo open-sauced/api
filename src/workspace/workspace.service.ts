@@ -279,6 +279,12 @@ export class WorkspaceService {
       throw new UnauthorizedException();
     }
 
+    const personalWorkspace = await this.findPersonalWorkspaceByUserId(userId);
+
+    if (workspace.id === personalWorkspace.id) {
+      throw new BadRequestException("cannot delete personal workspace");
+    }
+
     return this.workspaceRepository.softDelete(id);
   }
 }
