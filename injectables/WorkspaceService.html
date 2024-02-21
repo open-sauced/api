@@ -1227,6 +1227,12 @@ export class WorkspaceService {
       throw new UnauthorizedException();
     }
 
+    const personalWorkspace &#x3D; await this.findPersonalWorkspaceByUserId(userId);
+
+    if (workspace.id &#x3D;&#x3D;&#x3D; personalWorkspace.id) {
+      throw new BadRequestException(&quot;cannot delete personal workspace&quot;);
+    }
+
     return this.workspaceRepository.softDelete(id);
   }
 }

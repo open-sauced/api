@@ -103,12 +103,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(workspaceRepoRepository: Repository<DbWorkspaceRepo>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, issueGithubEventsService: <a href="../injectables/IssuesGithubEventsService.html" target="_self">IssuesGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>)</code>
+<code>constructor(workspaceRepoRepository: Repository<DbWorkspaceRepo>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, issueGithubEventsService: <a href="../injectables/IssuesGithubEventsService.html" target="_self">IssuesGithubEventsService</a>, forkGithubEventsService: <a href="../injectables/ForkGithubEventsService.html" target="_self">ForkGithubEventsService</a>, watchGithubEventsService: <a href="../injectables/WatchGithubEventsService.html" target="_self">WatchGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/workspace/workspace-stats.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-stats.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -174,6 +174,30 @@
                                                     
                                                 </tr>
                                                 <tr>
+                                                        <td>forkGithubEventsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ForkGithubEventsService.html" target="_self" >ForkGithubEventsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>watchGithubEventsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WatchGithubEventsService.html" target="_self" >WatchGithubEventsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
                                                         <td>repoDevstatsService</td>
                                                   
                                                         <td>
@@ -219,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -258,8 +282,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -344,6 +368,8 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { RepoDevstatsService } from &quot;../timescale/repo-devstats.service&quot;;
 import { IssuesGithubEventsService } from &quot;../timescale/issues_github_events.service&quot;;
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
+import { ForkGithubEventsService } from &quot;../timescale/fork_github_events.service&quot;;
+import { WatchGithubEventsService } from &quot;../timescale/watch_github_events.service&quot;;
 import { DbWorkspaceRepo } from &quot;./entities/workspace-repos.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
@@ -359,6 +385,8 @@ export class WorkspaceStatsService {
     private workspaceService: WorkspaceService,
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
     private issueGithubEventsService: IssuesGithubEventsService,
+    private forkGithubEventsService: ForkGithubEventsService,
+    private watchGithubEventsService: WatchGithubEventsService,
     private repoDevstatsService: RepoDevstatsService
   ) {}
 
@@ -433,8 +461,14 @@ export class WorkspaceStatsService {
       // get the repo&#x27;s activity ratio
       const activityRatio &#x3D; await this.repoDevstatsService.calculateRepoActivityRatio(entity.repo.full_name, range);
 
-      result.repos.forks +&#x3D; entity.repo.forks;
-      result.repos.stars +&#x3D; entity.repo.stars;
+      // get forks within time range
+      const forks &#x3D; await this.forkGithubEventsService.genForkHistogram({ range, repo: entity.repo.full_name });
+
+      // get stars (watch events) within time range
+      const stars &#x3D; await this.watchGithubEventsService.genStarsHistogram({ range, repo: entity.repo.full_name });
+
+      result.repos.stars +&#x3D; stars.length;
+      result.repos.forks +&#x3D; forks.length;
       result.repos.activity_ratio +&#x3D; activityRatio;
     });
 
