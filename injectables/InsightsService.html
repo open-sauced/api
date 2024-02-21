@@ -248,8 +248,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/insight/insights.service.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/insight/insights.service.ts:95</a></div>
                 </td>
             </tr>
 
@@ -380,8 +380,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="139"
-                            class="link-to-prism">src/insight/insights.service.ts:139</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/insight/insights.service.ts:141</a></div>
                 </td>
             </tr>
 
@@ -463,8 +463,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/insight/insights.service.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="180"
+                            class="link-to-prism">src/insight/insights.service.ts:180</a></div>
                 </td>
             </tr>
 
@@ -622,8 +622,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/insight/insights.service.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/insight/insights.service.ts:75</a></div>
                 </td>
             </tr>
 
@@ -774,8 +774,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/insight/insights.service.ts:123</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/insight/insights.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -845,8 +845,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/insight/insights.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/insight/insights.service.ts:121</a></div>
                 </td>
             </tr>
 
@@ -972,6 +972,8 @@ export class InsightsService {
       queryBuilder.leftJoinAndSelect(&#x60;insights.repos&#x60;, &#x60;insight_repos&#x60;, &#x60;insights.id&#x3D;insight_repos.insight_id&#x60;);
       queryBuilder.leftJoinAndSelect(&#x60;insights.members&#x60;, &#x60;members&#x60;, &#x60;insights.id&#x3D;members.insight_id&#x60;);
     }
+
+    queryBuilder.leftJoinAndSelect(&#x60;insights.workspaces&#x60;, &#x60;workspaces&#x60;, &#x60;insights.id&#x3D;workspaces.insight_id&#x60;);
 
     const item: DbInsight | null &#x3D; await queryBuilder.getOne();
 
