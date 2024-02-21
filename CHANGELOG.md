@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.2...v2.9.0-beta.3) (2024-02-21)
+
+
+### 🍕 Features
+
+* add associated workspace to insight and list data ([#584](https://github.com/open-sauced/api.opensauced.pizza/issues/584)) ([62cdb53](https://github.com/open-sauced/api.opensauced.pizza/commit/62cdb53574c7c51237ec8939a41c0a30b0c2a527))
+
 ## [2.9.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.1...v2.9.0-beta.2) (2024-02-21)
 
 
