@@ -92,6 +92,11 @@ export class UserListService {
     queryBuilder
       .innerJoin("users", "users", "user_lists.user_id=users.id")
       .addSelect("users.login", "user_lists_login")
+      .leftJoinAndSelect(
+        `user_lists.workspaces`,
+        `workspace_user_lists`,
+        `user_lists.id=workspace_user_lists.user_list_id`
+      )
       .where("user_lists.id = :id", { id });
 
     const item: DbUserList | null = await queryBuilder.getOne();

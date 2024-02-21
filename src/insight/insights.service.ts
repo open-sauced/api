@@ -59,6 +59,8 @@ export class InsightsService {
       queryBuilder.leftJoinAndSelect(`insights.members`, `members`, `insights.id=members.insight_id`);
     }
 
+    queryBuilder.leftJoinAndSelect(`insights.workspaces`, `workspaces`, `insights.id=workspaces.insight_id`);
+
     const item: DbInsight | null = await queryBuilder.getOne();
 
     if (!item) {
