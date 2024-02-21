@@ -16,6 +16,8 @@ import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-con
 import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
+import { DbRossContributorsHistogram, DbRossIndexHistogram } from "./entities/ross_index_histogram";
+import { sanatizeRepos } from "./common/repos";
 
 @Injectable()
 export class PullRequestGithubEventsService {
@@ -345,6 +347,104 @@ export class PullRequestGithubEventsService {
     }
 
     return result;
+  }
+
+  async findRossIndexByRepos(repos: string[], range: number): Promise<DbRossIndexHistogram[]> {
+    const sanatizedRepos = sanatizeRepos(repos);
+
+    const outsideContribsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(`time_bucket('7 day', event_time)`, "bucket")
+      .addSelect("COALESCE(COUNT(DISTINCT pr_author_login), 0) AS contributors")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("pr_author_association = 'NONE'")
+      .andWhere("pr_is_merged = TRUE")
+      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("bucket");
+
+    const totalContribPrsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(`time_bucket('7 day', event_time)`, "bucket")
+      .addSelect("COALESCE(COUNT(DISTINCT pr_number), 0) AS weekly_prs")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("bucket");
+
+    const entityQb = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(outsideContribsCte, "outside_contributors")
+      .setParameters(outsideContribsCte.getParameters())
+      .addCommonTableExpression(totalContribPrsCte, "total_contributor_prs")
+      .setParameters(totalContribPrsCte.getParameters())
+      .select("oc.bucket", "bucket")
+      .addSelect("COALESCE(oc.contributors::FLOAT / NULLIF(prs.weekly_prs, 0), 0)", "index")
+      .from("outside_contributors", "oc")
+      .leftJoin("total_contributor_prs", "prs", "oc.bucket = prs.bucket")
+      .orderBy("oc.bucket", "DESC");
+
+    return entityQb.getRawMany<DbRossIndexHistogram>();
+  }
+
+  async findRossContributorsByRepos(repos: string[], range: number): Promise<DbRossContributorsHistogram[]> {
+    const sanatizedRepos = sanatizeRepos(repos);
+
+    const outsideContribsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(`time_bucket('7 day', event_time)`, "bucket")
+      .addSelect("COALESCE(COUNT(DISTINCT pr_author_login), 0) AS contributors")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("pr_author_association = 'NONE'")
+      .andWhere("pr_is_merged = TRUE")
+      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("bucket");
+
+    const returningContribsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(`time_bucket('7 day', event_time)`, "bucket")
+      .addSelect("COALESCE(COUNT(DISTINCT pr_author_login), 0) AS contributors")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("pr_author_association = 'CONTRIBUTOR'")
+      .andWhere("pr_is_merged = TRUE")
+      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("bucket");
+
+    const orgContribsCte = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(`time_bucket('7 day', event_time)`, "bucket")
+      .addSelect("COALESCE(COUNT(DISTINCT pr_author_login), 0) AS contributors")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("pr_author_association = 'MEMBER'")
+      .andWhere("pr_is_merged = TRUE")
+      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("bucket");
+
+    const entityQb = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(outsideContribsCte, "outside_contributors")
+      .setParameters(outsideContribsCte.getParameters())
+      .addCommonTableExpression(returningContribsCte, "returning_contributors")
+      .setParameters(returningContribsCte.getParameters())
+      .addCommonTableExpression(orgContribsCte, "org_contributors")
+      .setParameters(orgContribsCte.getParameters())
+      .select("outside_contributors.bucket", "bucket")
+      .addSelect("outside_contributors.contributors", "new")
+      .addSelect("returning_contributors.contributors", "recurring")
+      .addSelect("org_contributors.contributors", "internal")
+      .from("outside_contributors", "outside_contributors")
+      .leftJoin(
+        "returning_contributors",
+        "returning_contributors",
+        "outside_contributors.bucket = returning_contributors.bucket"
+      )
+      .leftJoin("org_contributors", "org_contributors", "outside_contributors.bucket = org_contributors.bucket")
+      .orderBy("outside_contributors.bucket", "DESC");
+
+    return entityQb.getRawMany<DbRossContributorsHistogram>();
   }
 
   async genPrHistogram(options: PullRequestHistogramDto): Promise<DbPullRequestGitHubEventsHistogram[]> {
