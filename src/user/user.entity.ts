@@ -14,6 +14,7 @@ import {
   ApiModelProperty,
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
+import { DbWorkspace } from "../workspace/entities/workspace.entity";
 import { DbInsightMember } from "../insight/entities/insight-member.entity";
 import { DbWorkspaceMember } from "../workspace/entities/workspace-member.entity";
 import { DbRepo } from "../repo/entities/repo.entity";
@@ -659,4 +660,8 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserListContributor, (userLists) => userLists.user_list_contributor)
   public user_list_contributors: DbUserListContributor[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbWorkspace, (workspace) => workspace.payee_user_id)
+  public paid_workspaces: DbWorkspace[];
 }

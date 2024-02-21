@@ -9,8 +9,7 @@ import { UserService } from "../user/services/user.service";
 import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { WorkspaceService } from "./workspace.service";
-import { canUserManageWorkspace } from "./common/memberAccess";
-import { WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
+import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { UpdateWorkspaceContributorsDto } from "./dtos/update-workspace-contributors.dto";
 import { DeleteWorkspaceContributorsDto } from "./dtos/delete-workspace-contributors.dto";
 
@@ -32,7 +31,7 @@ export class WorkspaceContributorsService {
   async findAllContributorsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<PageDto<DbWorkspaceContributor>> {
     const workspace = await this.workspaceService.findOneById(id);
 
@@ -40,14 +39,10 @@ export class WorkspaceContributorsService {
      * viewers, editors, and owners can see what contributors belongs to a workspace
      */
 
-    const canView = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder = this.baseQueryBuilder();
@@ -80,10 +75,7 @@ export class WorkspaceContributorsService {
      * owners and editors can update the workspace contributors
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate = canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -105,10 +97,7 @@ export class WorkspaceContributorsService {
      * owners and editors can update the workspace contributors
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate = canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -174,10 +163,7 @@ export class WorkspaceContributorsService {
      * owners and editors can delete the workspace contributors
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete = canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -206,10 +192,7 @@ export class WorkspaceContributorsService {
      * owners and editors can delete the workspace contributors
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete = canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

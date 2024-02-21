@@ -8,6 +8,7 @@ import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
 import { UserListModule } from "../user-lists/user-list.module";
 import { DbUserList } from "../user-lists/entities/user-list.entity";
+import { AuthModule } from "../auth/auth.module";
 import { WorkspaceService } from "./workspace.service";
 import { WorkspaceController } from "./workspace.controller";
 import { DbWorkspace } from "./entities/workspace.entity";
@@ -31,9 +32,11 @@ import { WorkspaceInsightsService } from "./workspace-insights.service";
 import { WorkspaceUserListsController } from "./workspace-user-lists.controller";
 import { WorkspaceUserListsService } from "./workspace-user-lists.service";
 import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
+import { WorkspacePayeeService } from "./workspace-payee.service";
 
 @Module({
   imports: [
+    forwardRef(() => AuthModule),
     forwardRef(() => UserModule),
     forwardRef(() => InsightsModule),
     forwardRef(() => TimescaleModule),
@@ -73,6 +76,7 @@ import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
     WorkspaceContributorsService,
     WorkspaceInsightsService,
     WorkspaceUserListsService,
+    WorkspacePayeeService,
   ],
   exports: [
     WorkspaceService,
@@ -83,6 +87,7 @@ import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
     WorkspaceContributorsService,
     WorkspaceInsightsService,
     WorkspaceUserListsService,
+    WorkspacePayeeService,
   ],
 })
 export class WorkspaceModule {}

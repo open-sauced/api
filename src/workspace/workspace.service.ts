@@ -12,7 +12,7 @@ import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
 import { UpdateWorkspaceDto } from "./dtos/update-workspace.dto";
-import { canUserManageWorkspace } from "./common/memberAccess";
+import { canUserEditWorkspace, canUserManageWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { DbWorkspaceContributor } from "./entities/workspace-contributors.entity";
 
@@ -54,7 +54,7 @@ export class WorkspaceService {
     return item;
   }
 
-  async findOneByIdGuarded(id: string, userId: number): Promise<DbWorkspace> {
+  async findOneByIdGuarded(id: string, userId: number | undefined): Promise<DbWorkspace> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -67,14 +67,10 @@ export class WorkspaceService {
       throw new NotFoundException();
     }
 
-    const canView = canUserManageWorkspace(item, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(item, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     return item;
@@ -254,13 +250,14 @@ export class WorkspaceService {
      * membership modification is left to owners on different endpoints
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canUpdate = canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
+    }
+
+    if (!dto.is_public && !workspace.payee_user_id) {
+      throw new BadRequestException("workspace has no payee: cannot make private");
     }
 
     await this.workspaceRepository.update(id, {
@@ -273,7 +270,11 @@ export class WorkspaceService {
 
   async deleteWorkspace(id: string, userId: number) {
     const workspace = await this.findOneByIdAndUserId(id, userId);
-    const canDelete = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+
+    /*
+     * only owners can delete an entire workspace
+     */
+    const canDelete = canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

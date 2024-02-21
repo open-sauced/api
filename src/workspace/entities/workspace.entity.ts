@@ -8,6 +8,8 @@ import {
   PrimaryGeneratedColumn,
   DeleteDateColumn,
   OneToMany,
+  JoinColumn,
+  ManyToOne,
 } from "typeorm";
 
 import {
@@ -15,6 +17,7 @@ import {
   ApiModelPropertyOptional,
 } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { ApiHideProperty } from "@nestjs/swagger";
+import { DbUser } from "../../user/user.entity";
 import { DbWorkspaceMember } from "./workspace-member.entity";
 import { DbWorkspaceOrg } from "./workspace-org.entity";
 import { DbWorkspaceRepo } from "./workspace-repos.entity";
@@ -81,6 +84,25 @@ export class DbWorkspace extends BaseEntity {
   })
   public description: string;
 
+  @ApiModelProperty({
+    description: "Flag indicating public workspace visibility",
+    example: true,
+  })
+  @Column({ default: true })
+  public is_public: boolean;
+
+  @ApiModelProperty({
+    description: "User ID of the payee for a paid workspace",
+    example: 12345,
+    type: "number",
+  })
+  @Column({
+    default: null,
+    type: "bigint",
+    select: true,
+  })
+  public payee_user_id: number | null;
+
   @ApiHideProperty()
   @OneToMany(() => DbWorkspaceMember, (workspaceMember) => workspaceMember.workspace, { onDelete: "CASCADE" })
   public members: DbWorkspaceMember[];
@@ -100,4 +122,12 @@ export class DbWorkspace extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbWorkspaceUserLists, (workspaceUserList) => workspaceUserList.workspace, { onDelete: "CASCADE" })
   public user_lists: DbWorkspaceUserLists[];
+
+  @ApiHideProperty()
+  @ManyToOne(() => DbUser, (user) => user.paid_workspaces, { onDelete: "CASCADE" })
+  @JoinColumn({
+    name: "payee_user_id",
+    referencedColumnName: "id",
+  })
+  public payee_user: DbUser;
 }

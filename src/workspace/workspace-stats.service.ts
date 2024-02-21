@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -9,8 +9,7 @@ import { ForkGithubEventsService } from "../timescale/fork_github_events.service
 import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { WorkspaceService } from "./workspace.service";
-import { canUserManageWorkspace } from "./common/memberAccess";
-import { WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
+import { canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceStats } from "./entities/workspace-stats.entity";
 import { WorkspaceStatsOptionsDto } from "./dtos/workspace-stats.dto";
 
@@ -36,7 +35,7 @@ export class WorkspaceStatsService {
   async findStatsByWorkspaceIdForUserId(
     options: WorkspaceStatsOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<DbWorkspaceStats> {
     const range = options.range!;
     const prevDaysStartDate = options.prev_days_start_date!;
@@ -47,14 +46,10 @@ export class WorkspaceStatsService {
      * viewers, editors, and owners can see what repos belongs to a workspace
      */
 
-    const canView = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const result = new DbWorkspaceStats();

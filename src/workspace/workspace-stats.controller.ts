@@ -9,8 +9,8 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
-import { UserId } from "../auth/supabase.user.decorator";
-import { SupabaseGuard } from "../auth/supabase.guard";
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
+import { OptionalUserId } from "../auth/supabase.user.decorator";
 
 import { DbWorkspaceStats } from "./entities/workspace-stats.entity";
 import { WorkspaceStatsService } from "./workspace-stats.service";
@@ -27,7 +27,7 @@ export class WorkspaceStatsController {
     summary: "Gets workspace stats for the authenticated user",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceStats })
   @ApiNotFoundResponse({ description: "Unable to get user workspace stats" })
   @ApiBadRequestResponse({ description: "Invalid request" })
@@ -35,7 +35,7 @@ export class WorkspaceStatsController {
   @Header("Cache-Control", "private, max-age=600")
   async getWorkspaceStatsForUser(
     @Param("id") id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() workspaceStatsOptionsDto: WorkspaceStatsOptionsDto
   ): Promise<DbWorkspaceStats> {
     return this.workspaceStatsService.findStatsByWorkspaceIdForUserId(workspaceStatsOptionsDto, id, userId);
