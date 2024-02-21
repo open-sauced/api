@@ -102,6 +102,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#createCheckoutSession" >createCheckoutSession</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createWorkspacesCheckoutSession" >createWorkspacesCheckoutSession</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -336,6 +340,89 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createWorkspacesCheckoutSession"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createWorkspacesCheckoutSession</b></span>
+                        <a href="#createWorkspacesCheckoutSession"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createWorkspacesCheckoutSession(workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, customer: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/stripe/stripe.service.ts:47</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>workspaceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>customer</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
             <section>
     
@@ -438,6 +525,28 @@ export class StripeService {
       line_items: [
         {
           price: this.configService.get(&quot;stripe.subscriptionPriceID&quot;)!,
+          quantity: 1,
+        },
+      ],
+      mode: &quot;subscription&quot;,
+      success_url: &#x60;${this.configService.get&lt;string&gt;(&quot;stripe.subscriptionSessionCheckoutSuccessURL&quot;)!}&#x60;,
+      cancel_url: &#x60;${this.configService.get&lt;string&gt;(&quot;stripe.subscriptionSessionCancelURL&quot;)!}&#x60;,
+    });
+
+    return { sessionId: session.id };
+  }
+
+  async createWorkspacesCheckoutSession(workspaceId: string, customer: string) {
+    const session &#x3D; await this.stripe.checkout.sessions.create({
+      metadata: {
+        workspace_id: workspaceId,
+      },
+      payment_method_types: [&quot;card&quot;],
+      billing_address_collection: &quot;required&quot;,
+      customer,
+      line_items: [
+        {
+          price: this.configService.get(&quot;stripe.subscriptionWorkspacesPriceID&quot;)!,
           quantity: 1,
         },
       ],

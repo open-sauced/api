@@ -119,7 +119,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getWorkspaceStatsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, workspaceStatsOptionsDto: <a href="../classes/WorkspaceStatsOptionsDto.html" target="_self">WorkspaceStatsOptionsDto</a>)</code>
+                    <code>getWorkspaceStatsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, workspaceStatsOptionsDto: <a href="../classes/WorkspaceStatsOptionsDto.html" target="_self">WorkspaceStatsOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -127,7 +127,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/stats&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceStatsForUser&#x27;, summary: &#x27;Gets workspace stats for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceStats})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace stats&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
+                    <code>@Get(&#x27;/stats&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceStatsForUser&#x27;, summary: &#x27;Gets workspace stats for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceStats})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace stats&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -169,7 +169,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -221,8 +221,8 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
-import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
-import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
+import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
+import { OptionalUserId } from &quot;../auth/supabase.user.decorator&quot;;
 
 import { DbWorkspaceStats } from &quot;./entities/workspace-stats.entity&quot;;
 import { WorkspaceStatsService } from &quot;./workspace-stats.service&quot;;
@@ -239,7 +239,7 @@ export class WorkspaceStatsController {
     summary: &quot;Gets workspace stats for the authenticated user&quot;,
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceStats })
   @ApiNotFoundResponse({ description: &quot;Unable to get user workspace stats&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
@@ -247,7 +247,7 @@ export class WorkspaceStatsController {
   @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getWorkspaceStatsForUser(
     @Param(&quot;id&quot;) id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() workspaceStatsOptionsDto: WorkspaceStatsOptionsDto
   ): Promise&lt;DbWorkspaceStats&gt; {
     return this.workspaceStatsService.findStatsByWorkspaceIdForUserId(workspaceStatsOptionsDto, id, userId);

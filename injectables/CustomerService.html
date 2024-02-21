@@ -93,6 +93,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#findById" >findById</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findByIdOrCreate" >findByIdOrCreate</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -111,12 +115,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(customerRepository: <a href="../entitys/DbCustomer.html" target="_self">Repository&lt;DbCustomer&gt;</a>)</code>
+<code>constructor(customerRepository: <a href="../entitys/DbCustomer.html" target="_self">Repository&lt;DbCustomer&gt;</a>, stripeService: <a href="../injectables/StripeService.html" target="_self">StripeService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/customer/customer.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/customer/customer.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -138,6 +142,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/DbCustomer.html" target="_self" >Repository&lt;DbCustomer&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stripeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StripeService.html" target="_self" >StripeService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -181,8 +197,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/customer/customer.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/customer/customer.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -262,8 +278,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/customer/customer.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/customer/customer.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -301,8 +317,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/customer/customer.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/customer/customer.service.ts:29</a></div>
                 </td>
             </tr>
 
@@ -372,8 +388,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/customer/customer.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/customer/customer.service.ts:21</a></div>
                 </td>
             </tr>
 
@@ -421,6 +437,77 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findByIdOrCreate"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findByIdOrCreate</b></span>
+                        <a href="#findByIdOrCreate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findByIdOrCreate(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/customer/customer.service.ts:37</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -431,13 +518,16 @@
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 
+import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
+import { StripeService } from &quot;../stripe/stripe.service&quot;;
 import { DbCustomer } from &quot;./customer.entity&quot;;
 
 @Injectable()
 export class CustomerService {
   constructor(
     @InjectRepository(DbCustomer, &quot;ApiConnection&quot;)
-    private customerRepository: Repository&lt;DbCustomer&gt;
+    private customerRepository: Repository&lt;DbCustomer&gt;,
+    private stripeService: StripeService
   ) {}
 
   baseQueryBuilder() {
@@ -458,6 +548,27 @@ export class CustomerService {
     queryBuilder.where(&quot;customer.stripe_customer_id&#x3D;:id&quot;, { id });
 
     return queryBuilder.getOne();
+  }
+
+  async findByIdOrCreate(user: SupabaseAuthUser): Promise&lt;string&gt; {
+    const {
+      email,
+      user_metadata: { sub },
+    } &#x3D; user;
+    const id &#x3D; sub as number;
+    const customer &#x3D; await this.findById(id);
+    let customerId: string;
+
+    if (customer) {
+      customerId &#x3D; customer.stripe_customer_id;
+    } else {
+      const stripeCustomer &#x3D; await this.stripeService.addCustomer(id, email);
+      const newCustomer &#x3D; await this.addCustomer(id, stripeCustomer.id);
+
+      customerId &#x3D; newCustomer.stripe_customer_id;
+    }
+
+    return customerId;
   }
 
   async addCustomer(userId: number, stripe_customer_id: string) {

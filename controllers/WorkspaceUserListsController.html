@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -243,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:77</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:78</a></div>
                 </td>
             </tr>
 
@@ -331,7 +331,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getWorkspaceUserListsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <code>getWorkspaceUserListsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -339,14 +339,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({operationId: &#x27;getWorkspaceUserListsForUser&#x27;, summary: &#x27;Gets workspace user lists for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace user lists&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get()<br />@ApiOperation({operationId: &#x27;getWorkspaceUserListsForUser&#x27;, summary: &#x27;Gets workspace user lists for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace user lists&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -381,7 +381,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -435,9 +435,10 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
+import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { OptionalUserId, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { DbUserList } from &quot;../user-lists/entities/user-list.entity&quot;;
 import { CreateUserListDto } from &quot;../user-lists/dtos/create-user-list.dto&quot;;
@@ -455,13 +456,13 @@ export class WorkspaceUserListsController {
     summary: &quot;Gets workspace user lists for the authenticated user&quot;,
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbUserList })
   @ApiNotFoundResponse({ description: &quot;Unable to get user workspace user lists&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async getWorkspaceUserListsForUser(
     @Param(&quot;id&quot;) id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbUserList&gt;&gt; {
     return this.workspaceUserListsService.findAllUserListsByWorkspaceIdForUserId(pageOptionsDto, id, userId);

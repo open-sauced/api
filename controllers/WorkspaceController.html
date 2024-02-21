@@ -149,8 +149,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -239,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:108</a></div>
                 </td>
             </tr>
 
@@ -315,7 +315,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getWorkspaceByIdForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>getWorkspaceByIdForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
@@ -323,14 +323,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceByIdForUser&#x27;, summary: &#x27;Gets a workspace for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbWorkspace})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceByIdForUser&#x27;, summary: &#x27;Gets a workspace for the authenticated user and public workspaces for all users&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbWorkspace})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:58</a></div>
                 </td>
             </tr>
 
@@ -365,7 +365,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -419,8 +419,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -509,8 +509,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/workspace/workspace.controller.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/workspace/workspace.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -601,9 +601,10 @@ import {
 
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { OptionalUserId, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
+import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { CreateWorkspaceDto } from &quot;./dtos/create-workspace.dto&quot;;
@@ -634,15 +635,18 @@ export class WorkspaceController {
   @Get(&quot;/:id&quot;)
   @ApiOperation({
     operationId: &quot;getWorkspaceByIdForUser&quot;,
-    summary: &quot;Gets a workspace for the authenticated user&quot;,
+    summary: &quot;Gets a workspace for the authenticated user and public workspaces for all users&quot;,
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspace })
   @ApiNotFoundResponse({ description: &quot;Unable to get user workspace&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
-  async getWorkspaceByIdForUser(@Param(&quot;id&quot;) id: string, @UserId() userId: number): Promise&lt;DbWorkspace&gt; {
+  async getWorkspaceByIdForUser(
+    @Param(&quot;id&quot;) id: string,
+    @OptionalUserId() userId: number | undefined
+  ): Promise&lt;DbWorkspace&gt; {
     return this.workspaceService.findOneByIdGuarded(id, userId);
   }
 

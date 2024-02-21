@@ -250,8 +250,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:177</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:173</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:212</a></div>
                 </td>
             </tr>
 
@@ -535,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -642,8 +642,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:117</a></div>
                 </td>
             </tr>
 
@@ -729,10 +729,10 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { UserService } from &quot;../user/services/user.service&quot;;
-import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { DbWorkspaceMember } from &quot;./entities/workspace-member.entity&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
+import { canUserEditWorkspace, canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
 import { UpdateWorkspaceMemberDto, UpdateWorkspaceMembersDto } from &quot;./dtos/update-workspace-members.dto&quot;;
 import { DeleteWorkspaceMembersDto } from &quot;./dtos/delete-workspace-member.dto&quot;;
 
@@ -762,11 +762,7 @@ export class WorkspaceMembersService {
      * viewers, editors, and owners can see who belongs to a workspace
      */
 
-    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canView) {
       throw new UnauthorizedException();
@@ -802,7 +798,7 @@ export class WorkspaceMembersService {
      * owners can update the workspace members
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -848,7 +844,7 @@ export class WorkspaceMembersService {
      * owners can update the workspace members
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -904,7 +900,7 @@ export class WorkspaceMembersService {
      * owners can delete the workspace members
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -943,7 +939,7 @@ export class WorkspaceMembersService {
      * owners can delete the workspace members
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

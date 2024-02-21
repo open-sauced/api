@@ -138,8 +138,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:94</a></div>
                 </td>
             </tr>
 
@@ -210,8 +210,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -280,6 +280,7 @@ import { BadRequestException, Controller, Logger, Post, RawBodyRequest, Req } fr
 import { ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 import Stripe from &quot;stripe&quot;;
 
+import { WorkspacePayeeService } from &quot;../workspace/workspace-payee.service&quot;;
 import { CustomerService } from &quot;../customer/customer.service&quot;;
 import { StripeSubscriptionService } from &quot;../subscription/stripe-subscription.service&quot;;
 import { StripeService } from &quot;../stripe/stripe.service&quot;;
@@ -303,7 +304,8 @@ export class StripeWebhookController {
     private stripeSubscriptionService: StripeSubscriptionService,
     private stripeService: StripeService,
     private configService: ConfigService,
-    private userService: UserService
+    private userService: UserService,
+    private workspacePayeeService: WorkspacePayeeService
   ) {}
 
   private async manageSubscriptionStatusChange(subscriptionId: string, customerId: string) {
@@ -344,6 +346,16 @@ export class StripeWebhookController {
       const userRole &#x3D; subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; ? 50 : 10;
 
       await this.userService.updateRole(userId, userRole);
+
+      // add a workspace subscription
+      if (subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; &amp;&amp; subscription.metadata.workspace_id) {
+        await this.workspacePayeeService.addWorkspacePayee(subscription.metadata.workspace_id, userId);
+      }
+
+      // workspace subscription canceled
+      if (subscription.status &#x3D;&#x3D;&#x3D; &quot;canceled&quot; &amp;&amp; subscription.metadata.workspace_id) {
+        await this.workspacePayeeService.removeWorkspacePayee(subscription.metadata.workspace_id);
+      }
     } catch (e: unknown) {
       this.logger.error(
         &#x60;Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}&#x60;

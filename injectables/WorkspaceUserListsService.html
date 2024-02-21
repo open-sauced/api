@@ -111,12 +111,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(workspaceUserListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbWorkspaceUserLists&gt;</a>, userListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbUserList&gt;</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, userListService: <a href="../injectables/UserListService.html" target="_self">UserListService</a>)</code>
+<code>constructor(workspaceUserListRepository: <a href="../s/User.html" target="_self">Repository&lt;DbWorkspaceUserLists&gt;</a>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, userListService: <a href="../injectables/UserListService.html" target="_self">UserListService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/workspace-user-lists.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/workspace/workspace-user-lists.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -138,18 +138,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbWorkspaceUserLists&gt;</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>userListRepository</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../miscellaneous/variables.html#User" target="_self" >Repository&lt;DbUserList&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -217,8 +205,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -310,8 +298,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -349,8 +337,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:96</a></div>
                 </td>
             </tr>
 
@@ -437,15 +425,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllUserListsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllUserListsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:30</a></div>
                 </td>
             </tr>
 
@@ -492,7 +480,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -534,8 +522,7 @@ import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { DbUserList } from &quot;../user-lists/entities/user-list.entity&quot;;
 import { UserListService } from &quot;../user-lists/user-list.service&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
-import { WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { canUserEditWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { DbWorkspaceUserLists } from &quot;./entities/workspace-user-list.entity&quot;;
 
 @Injectable()
@@ -543,8 +530,6 @@ export class WorkspaceUserListsService {
   constructor(
     @InjectRepository(DbWorkspaceUserLists, &quot;ApiConnection&quot;)
     private workspaceUserListRepository: Repository&lt;DbWorkspaceUserLists&gt;,
-    @InjectRepository(DbUserList, &quot;ApiConnection&quot;)
-    private userListRepository: Repository&lt;DbUserList&gt;,
     private workspaceService: WorkspaceService,
     private userListService: UserListService
   ) {}
@@ -558,7 +543,7 @@ export class WorkspaceUserListsService {
   async findAllUserListsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise&lt;PageDto&lt;DbUserList&gt;&gt; {
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
@@ -566,14 +551,10 @@ export class WorkspaceUserListsService {
      * viewers, editors, and owners can see userLists that belong to a workspace
      */
 
-    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder &#x3D; this.workspaceUserListRepository
@@ -598,10 +579,7 @@ export class WorkspaceUserListsService {
      * owners and editors can add workspace userList pages
      */
 
-    const canEdit &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canEdit &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canEdit) {
       throw new UnauthorizedException();
@@ -635,10 +613,7 @@ export class WorkspaceUserListsService {
      * owners and editors can delete the workspace contributors
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

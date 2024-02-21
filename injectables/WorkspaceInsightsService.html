@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-insights.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/workspace-insights.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -217,8 +217,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:65</a></div>
                 </td>
             </tr>
 
@@ -310,8 +310,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -437,15 +437,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllInsightsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllInsightsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -492,7 +492,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -535,8 +535,7 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
-import { WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { canUserEditWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { DbWorkspaceInsight } from &quot;./entities/workspace-insights.entity&quot;;
 
 @Injectable()
@@ -558,7 +557,7 @@ export class WorkspaceInsightsService {
   async findAllInsightsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
@@ -566,14 +565,10 @@ export class WorkspaceInsightsService {
      * viewers, editors, and owners can see insights that belong to a workspace
      */
 
-    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder &#x3D; this.workspaceInsightRepository
@@ -599,10 +594,7 @@ export class WorkspaceInsightsService {
      * owners and editors can add workspace insight pages
      */
 
-    const canEdit &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canEdit &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canEdit) {
       throw new UnauthorizedException();
@@ -637,10 +629,7 @@ export class WorkspaceInsightsService {
      * owners and editors can delete the workspace contributors
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

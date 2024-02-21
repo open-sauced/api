@@ -124,7 +124,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-orgs.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/workspace-orgs.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -213,8 +213,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -308,8 +308,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:108</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:103</a></div>
                 </td>
             </tr>
 
@@ -401,8 +401,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -440,8 +440,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:205</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="200"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:200</a></div>
                 </td>
             </tr>
 
@@ -535,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:147</a></div>
                 </td>
             </tr>
 
@@ -623,15 +623,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllOrgsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllOrgsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -678,7 +678,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -720,8 +720,7 @@ import { UserService } from &quot;../user/services/user.service&quot;;
 import { DbWorkspaceOrg } from &quot;./entities/workspace-org.entity&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
-import { WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { canUserManageWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { UpdateWorkspaceOrgsDto } from &quot;./dtos/update-workspace-orgs.dto&quot;;
 import { DeleteWorkspaceOrgsDto } from &quot;./dtos/delete-workspace-orgs.dto&quot;;
 
@@ -743,7 +742,7 @@ export class WorkspaceOrgsService {
   async findAllOrgsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise&lt;PageDto&lt;DbWorkspaceOrg&gt;&gt; {
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
@@ -751,14 +750,10 @@ export class WorkspaceOrgsService {
      * viewers, editors, and owners can see what orgs belongs to a workspace
      */
 
-    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
@@ -782,7 +777,7 @@ export class WorkspaceOrgsService {
      * owners can update the workspace orgs
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -823,7 +818,7 @@ export class WorkspaceOrgsService {
      * owners can update the workspace orgs
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -867,7 +862,7 @@ export class WorkspaceOrgsService {
      * owners can delete the workspace orgs
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -920,7 +915,7 @@ export class WorkspaceOrgsService {
      * owners can delete the workspace orgs
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete &#x3D; canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

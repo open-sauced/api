@@ -129,7 +129,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-repos.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/workspace-repos.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:66</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -418,8 +418,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -457,8 +457,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:134</a></div>
                 </td>
             </tr>
 
@@ -564,8 +564,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:164</a></div>
                 </td>
             </tr>
 
@@ -660,8 +660,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -748,15 +748,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllReposByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllReposByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -803,7 +803,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -845,8 +845,7 @@ import { RepoService } from &quot;../repo/repo.service&quot;;
 import { DbWorkspaceRepo } from &quot;./entities/workspace-repos.entity&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
-import { WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
+import { canUserEditWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { UpdateWorkspaceReposDto } from &quot;./dtos/update-workspace-repos.dto&quot;;
 import { DeleteWorkspaceReposDto } from &quot;./dtos/delete-workspace-repos.dto&quot;;
 
@@ -868,7 +867,7 @@ export class WorkspaceReposService {
   async findAllReposByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise&lt;PageDto&lt;DbWorkspaceRepo&gt;&gt; {
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
@@ -876,14 +875,10 @@ export class WorkspaceReposService {
      * viewers, editors, and owners can see what repos belongs to a workspace
      */
 
-    const canView &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
@@ -911,10 +906,7 @@ export class WorkspaceReposService {
      * owners and editors can update the workspace repos
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -932,10 +924,7 @@ export class WorkspaceReposService {
      * owners and editors can update the workspace repos
      */
 
-    const canUpdate &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -985,10 +974,7 @@ export class WorkspaceReposService {
      * owners and editors can delete the workspace repos
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -1018,10 +1004,7 @@ export class WorkspaceReposService {
      * owners and editors can delete the workspace repos
      */
 
-    const canDelete &#x3D; canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete &#x3D; canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

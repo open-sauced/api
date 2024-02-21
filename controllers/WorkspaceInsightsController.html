@@ -141,8 +141,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -243,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="78"
-                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:78</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:79</a></div>
                 </td>
             </tr>
 
@@ -331,7 +331,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getWorkspaceInsightsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                    <code>getWorkspaceInsightsForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -339,14 +339,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiOperation({operationId: &#x27;getWorkspaceInsightsForUser&#x27;, summary: &#x27;Gets workspace insights for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace insights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Get()<br />@ApiOperation({operationId: &#x27;getWorkspaceInsightsForUser&#x27;, summary: &#x27;Gets workspace insights for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbInsight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace insights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/workspace/workspace-insights.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -381,7 +381,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -435,10 +435,11 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
+import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
 import { DbInsight } from &quot;../insight/entities/insight.entity&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
-import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
+import { OptionalUserId, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
 import { CreateInsightDto } from &quot;../insight/dtos/create-insight.dto&quot;;
@@ -456,13 +457,13 @@ export class WorkspaceInsightsController {
     summary: &quot;Gets workspace insights for the authenticated user&quot;,
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbInsight })
   @ApiNotFoundResponse({ description: &quot;Unable to get user workspace insights&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   async getWorkspaceInsightsForUser(
     @Param(&quot;id&quot;) id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbInsight&gt;&gt; {
     return this.workspaceInsightsService.findAllInsightsByWorkspaceIdForUserId(pageOptionsDto, id, userId);

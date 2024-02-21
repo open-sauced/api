@@ -14,13 +14,13 @@
 <title>cluster_TimescaleModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 2189,-230.8 2189,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_TimescaleModule_exports</title>
-<polygon fill="none" stroke="black" points="263,-170.8 263,-222.8 1900,-222.8 1900,-170.8 263,-170.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_TimescaleModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 2181,-92.8 2181,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_TimescaleModule_exports</title>
+<polygon fill="none" stroke="black" points="263,-170.8 263,-222.8 1900,-222.8 1900,-170.8 263,-170.8"/>
 </g>
 <!-- ForkGithubEventsService  -->
 <g id="node1" class="node">

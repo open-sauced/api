@@ -14,13 +14,13 @@
 <title>cluster_UserReposModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 356,-230.8 356,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UserReposModule_exports</title>
-<polygon fill="none" stroke="black" points="122,-170.8 122,-222.8 260,-222.8 260,-170.8 122,-170.8"/>
-</g>
 <g id="clust3" class="cluster">
 <title>cluster_UserReposModule_imports</title>
 <polygon fill="none" stroke="black" points="204,-40.8 204,-92.8 348,-92.8 348,-40.8 204,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_UserReposModule_exports</title>
+<polygon fill="none" stroke="black" points="122,-170.8 122,-222.8 260,-222.8 260,-170.8 122,-170.8"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_UserReposModule_providers</title>

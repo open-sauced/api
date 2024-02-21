@@ -70,7 +70,13 @@
                             <a href="#avgRepoActivityRatioSample" title="src/common/calculations/avg-repo-activity-ratio-sample.ts" ><b>avgRepoActivityRatioSample</b>&nbsp;&nbsp;&nbsp;(src/.../avg-repo-activity-ratio-sample.ts)</a>
                         </li>
                         <li>
+                            <a href="#canUserEditWorkspace" title="src/workspace/common/memberAccess.ts" ><b>canUserEditWorkspace</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
+                        </li>
+                        <li>
                             <a href="#canUserManageWorkspace" title="src/workspace/common/memberAccess.ts" ><b>canUserManageWorkspace</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#canUserViewWorkspace" title="src/workspace/common/memberAccess.ts" ><b>canUserViewWorkspace</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
                         </li>
                         <li>
                             <a href="#cliDuration" title="src/common/util/cli-duration.ts" ><b>cliDuration</b>&nbsp;&nbsp;&nbsp;(src/.../cli-duration.ts)</a>
@@ -106,6 +112,9 @@
                             <a href="#OpenAIConfig" title="src/config/openai.config.ts" ><b>OpenAIConfig</b>&nbsp;&nbsp;&nbsp;(src/.../openai.config.ts)</a>
                         </li>
                         <li>
+                            <a href="#OptionalUserId" title="src/auth/supabase.user.decorator.ts" ><b>OptionalUserId</b>&nbsp;&nbsp;&nbsp;(src/.../supabase.user.decorator.ts)</a>
+                        </li>
+                        <li>
                             <a href="#PizzaConfig" title="src/config/pizza.config.ts" ><b>PizzaConfig</b>&nbsp;&nbsp;&nbsp;(src/.../pizza.config.ts)</a>
                         </li>
                         <li>
@@ -128,6 +137,9 @@
                         </li>
                         <li>
                             <a href="#userNotificationTypes" title="src/user/entities/user-notification.constants.ts" ><b>userNotificationTypes</b>&nbsp;&nbsp;&nbsp;(src/.../user-notification.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#workspaceAccessControl" title="src/workspace/common/memberAccess.ts" ><b>workspaceAccessControl</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -3248,6 +3260,27 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="canUserEditWorkspace"></a>
+                    <span class="name">
+                        <span ><b>canUserEditWorkspace</b></span>
+                        <a href="#canUserEditWorkspace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(workspace: DbWorkspace, userId: number): boolean &#x3D;&gt;
+  workspaceAccessControl(workspace, userId, [WorkspaceMemberRoleEnum.Editor, WorkspaceMemberRoleEnum.Owner])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="canUserManageWorkspace"></a>
                     <span class="name">
                         <span ><b>canUserManageWorkspace</b></span>
@@ -3257,11 +3290,66 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
+                        <i>Default value : </i><code>(workspace: DbWorkspace, userId: number): boolean &#x3D;&gt;
+  workspaceAccessControl(workspace, userId, [WorkspaceMemberRoleEnum.Owner])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canUserViewWorkspace"></a>
+                    <span class="name">
+                        <span ><b>canUserViewWorkspace</b></span>
+                        <a href="#canUserViewWorkspace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(workspace: DbWorkspace, userId: number | undefined): boolean &#x3D;&gt; {
+  if (workspace.is_public) {
+    return true;
+  }
+
+  return workspaceAccessControl(workspace, userId, [
+    WorkspaceMemberRoleEnum.Viewer,
+    WorkspaceMemberRoleEnum.Editor,
+    WorkspaceMemberRoleEnum.Owner,
+  ]);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="workspaceAccessControl"></a>
+                    <span class="name">
+                        <span ><b>workspaceAccessControl</b></span>
+                        <a href="#workspaceAccessControl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
                         <i>Default value : </i><code>(
   workspace: DbWorkspace,
-  userId: number,
+  userId: number | undefined,
   accessRoles: WorkspaceMemberRoleEnum[]
 ): boolean &#x3D;&gt; {
+  if (!userId) {
+    return false;
+  }
+
   const membership &#x3D; workspace.members.find((member) &#x3D;&gt; member.user_id &#x3D;&#x3D;&#x3D; userId);
   const canManage &#x3D; membership &amp;&amp; accessRoles.includes(membership.role);
 
@@ -3619,6 +3707,85 @@
         </tbody>
     </table>
 </section>
+    <h3>src/auth/supabase.user.decorator.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OptionalUserId"></a>
+                    <span class="name">
+                        <span ><b>OptionalUserId</b></span>
+                        <a href="#OptionalUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator((_data: unknown, context: ExecutionContext): number | undefined &#x3D;&gt; {
+  const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
+
+  if (!request.user) {
+    return undefined;
+  }
+
+  return parseInt(request.user.user_metadata.sub as string, 10);
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="User"></a>
+                    <span class="name">
+                        <span ><b>User</b></span>
+                        <a href="#User"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator((_data: unknown, context: ExecutionContext) &#x3D;&gt; {
+  const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
+
+  return request.user;
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="UserId"></a>
+                    <span class="name">
+                        <span ><b>UserId</b></span>
+                        <a href="#UserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createParamDecorator((_data: unknown, context: ExecutionContext): number &#x3D;&gt; {
+  const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
+
+  return parseInt(request.user?.user_metadata.sub as string, 10);
+})</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
     <h3>src/config/pizza.config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -3692,6 +3859,7 @@
   secretKey: String(process.env.STRIPE_SECRET_KEY ?? &quot;&quot;),
   webhookSecret: String(process.env.STRIPE_WEBHOOK_SECRET_LIVE ?? process.env.STRIPE_WEBHOOK_SECRET ?? &quot;&quot;),
   subscriptionPriceID: String(process.env.STRIPE_SUBSCRIPTION_PRICE_ID ?? &quot;&quot;),
+  subscriptionWorkspacesPriceID: String(process.env.STRIPE_SUBSCRIPTION_WORKSPACES_PRICE_ID ?? &quot;&quot;),
   subscriptionSessionCheckoutSuccessURL: String(process.env.STRIPE_CHECKOUT_SESSION_SUCCESS_URL ?? &quot;&quot;),
   subscriptionSessionCancelURL: String(process.env.STRIPE_CHECKOUT_SESSION_CANCEL_URL ?? &quot;&quot;),
 }))</code>
@@ -3788,57 +3956,6 @@ code | condition
   t.setSeconds(secs);
   return t;
 }</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/auth/supabase.user.decorator.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="User"></a>
-                    <span class="name">
-                        <span ><b>User</b></span>
-                        <a href="#User"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createParamDecorator((_data: unknown, context: ExecutionContext) &#x3D;&gt; {
-  const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
-
-  return request.user;
-})</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="UserId"></a>
-                    <span class="name">
-                        <span ><b>UserId</b></span>
-                        <a href="#UserId"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>createParamDecorator((_data: unknown, context: ExecutionContext) &#x3D;&gt; {
-  const request &#x3D; context.switchToHttp().getRequest&lt;SupabaseAuthRequest&gt;();
-
-  return parseInt(request.user?.user_metadata.sub as string, 10);
-})</code>
                     </td>
                 </tr>
 

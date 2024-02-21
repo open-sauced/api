@@ -109,6 +109,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#postCreateWorkspacesCheckoutSession" >postCreateWorkspacesCheckoutSession</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#postOnboarding" >postOnboarding</a>
                             </li>
                             <li>
@@ -173,8 +177,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="297"
-                            class="link-to-prism">src/auth/auth.controller.ts:297</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="302"
+                            class="link-to-prism">src/auth/auth.controller.ts:302</a></div>
                 </td>
             </tr>
 
@@ -251,8 +255,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="261"
-                            class="link-to-prism">src/auth/auth.controller.ts:261</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/auth/auth.controller.ts:266</a></div>
                 </td>
             </tr>
 
@@ -341,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="243"
-                            class="link-to-prism">src/auth/auth.controller.ts:243</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/auth/auth.controller.ts:248</a></div>
                 </td>
             </tr>
 
@@ -431,8 +435,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="284"
-                            class="link-to-prism">src/auth/auth.controller.ts:284</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/auth/auth.controller.ts:289</a></div>
                 </td>
             </tr>
 
@@ -509,8 +513,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/auth/auth.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/auth/auth.controller.ts:47</a></div>
                 </td>
             </tr>
 
@@ -587,8 +591,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/auth/auth.controller.ts:160</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/auth/auth.controller.ts:161</a></div>
                 </td>
             </tr>
 
@@ -612,6 +616,96 @@
                                     <td>user</td>
                                     <td>
                                                 <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postCreateWorkspacesCheckoutSession"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postCreateWorkspacesCheckoutSession</b></span>
+                        <a href="#postCreateWorkspacesCheckoutSession"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postCreateWorkspacesCheckoutSession(user: <a href="../s/User.html" target="_self">SupabaseAuthUser</a>, workspaceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/checkout/workspaces/:id/session&#x27;)<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;postCreateCheckoutWorkspacesSession&#x27;, summary: &#x27;Creates a new workspaces checkout session for the user&#x27;})<br />@ApiOkResponse({type: SupabaseAuthDto})<br />@ApiNotFoundResponse({description: &#x27;Unable to create workspaces checkout session&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/auth/auth.controller.ts:177</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>user</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/variables.html#User" target="_self" >SupabaseAuthUser</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>workspaceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -665,8 +759,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/auth/auth.controller.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/auth/auth.controller.ts:130</a></div>
                 </td>
             </tr>
 
@@ -755,8 +849,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/auth/auth.controller.ts:147</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/auth/auth.controller.ts:148</a></div>
                 </td>
             </tr>
 
@@ -833,8 +927,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="224"
-                            class="link-to-prism">src/auth/auth.controller.ts:224</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="229"
+                            class="link-to-prism">src/auth/auth.controller.ts:229</a></div>
                 </td>
             </tr>
 
@@ -923,8 +1017,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/auth/auth.controller.ts:205</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/auth/auth.controller.ts:210</a></div>
                 </td>
             </tr>
 
@@ -1013,8 +1107,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/auth/auth.controller.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/auth/auth.controller.ts:196</a></div>
                 </td>
             </tr>
 
@@ -1078,7 +1172,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -1086,6 +1180,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from &quot;@nestjs/swagger&quot;;
 import { SupabaseAuthUser } from &quot;nestjs-supabase-auth&quot;;
@@ -1238,24 +1333,28 @@ export class AuthController {
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: &quot;Unable to create checkout session&quot; })
   async postCreateCheckoutSession(@User() user: SupabaseAuthUser): Promise&lt;{ sessionId: string }&gt; {
-    const {
-      email,
-      user_metadata: { sub },
-    } &#x3D; user;
-    const id &#x3D; sub as number;
-    const customer &#x3D; await this.customerService.findById(id);
-    let customerId: string;
-
-    if (customer) {
-      customerId &#x3D; customer.stripe_customer_id;
-    } else {
-      const stripeCustomer &#x3D; await this.stripeService.addCustomer(id, email);
-      const newCustomer &#x3D; await this.customerService.addCustomer(id, stripeCustomer.id);
-
-      customerId &#x3D; newCustomer.stripe_customer_id;
-    }
+    const customerId &#x3D; await this.customerService.findByIdOrCreate(user);
 
     return this.stripeService.createCheckoutSession(customerId);
+  }
+
+  @Post(&quot;/checkout/workspaces/:id/session&quot;)
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: &quot;postCreateCheckoutWorkspacesSession&quot;,
+    summary: &quot;Creates a new workspaces checkout session for the user&quot;,
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: &quot;Unable to create workspaces checkout session&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async postCreateWorkspacesCheckoutSession(
+    @User() user: SupabaseAuthUser,
+    @Param(&quot;id&quot;) workspaceId: string
+  ): Promise&lt;{ sessionId: string }&gt; {
+    const customerId &#x3D; await this.customerService.findByIdOrCreate(user);
+
+    return this.stripeService.createWorkspacesCheckoutSession(workspaceId, customerId);
   }
 
   @Patch(&quot;/profile&quot;)
