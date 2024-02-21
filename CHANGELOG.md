@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.1...v2.9.0-beta.2) (2024-02-21)
+
+
+### 🍕 Features
+
+* Supabase passthrough auth and workspace pricing ([#576](https://github.com/open-sauced/api.opensauced.pizza/issues/576)) ([3db88a3](https://github.com/open-sauced/api.opensauced.pizza/commit/3db88a32f140e1a3a93950715dc78da1e0f3711d))
+
 ## [2.9.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0...v2.9.0-beta.1) (2024-02-21)
 
 
