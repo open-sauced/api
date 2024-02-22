@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getWorkspaceRossIndex" >getWorkspaceRossIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getWorkspaceStatsForUser" >getWorkspaceStatsForUser</a>
                             </li>
                         </ul>
@@ -104,6 +108,108 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWorkspaceRossIndex"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getWorkspaceRossIndex</b></span>
+                        <a href="#getWorkspaceRossIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getWorkspaceRossIndex(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, workspaceStatsOptionsDto: <a href="../classes/WorkspaceStatsOptionsDto.html" target="_self">WorkspaceStatsOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/ross&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceRossIndex&#x27;, summary: &#x27;Gets workspace ross index/stats for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbWorkspaceStats})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace ross index&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:57</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>workspaceStatsOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/WorkspaceStatsOptionsDto.html" target="_self" >WorkspaceStatsOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbWorkspaceRossIndex&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -133,8 +239,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -227,6 +333,7 @@ import { OptionalUserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { DbWorkspaceStats } from &quot;./entities/workspace-stats.entity&quot;;
 import { WorkspaceStatsService } from &quot;./workspace-stats.service&quot;;
 import { WorkspaceStatsOptionsDto } from &quot;./dtos/workspace-stats.dto&quot;;
+import { DbWorkspaceRossIndex } from &quot;./entities/workspace-ross.entity&quot;;
 
 @Controller(&quot;workspaces/:id&quot;)
 @ApiTags(&quot;Workspaces stats service&quot;)
@@ -251,6 +358,26 @@ export class WorkspaceStatsController {
     @Query() workspaceStatsOptionsDto: WorkspaceStatsOptionsDto
   ): Promise&lt;DbWorkspaceStats&gt; {
     return this.workspaceStatsService.findStatsByWorkspaceIdForUserId(workspaceStatsOptionsDto, id, userId);
+  }
+
+  @Get(&quot;/ross&quot;)
+  @ApiOperation({
+    operationId: &quot;getWorkspaceRossIndex&quot;,
+    summary: &quot;Gets workspace ross index/stats for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceStats })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user workspace ross index&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
+  async getWorkspaceRossIndex(
+    @Param(&quot;id&quot;) id: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() workspaceStatsOptionsDto: WorkspaceStatsOptionsDto
+  ): Promise&lt;DbWorkspaceRossIndex&gt; {
+    return this.workspaceStatsService.findRossByWorkspaceIdForUserId(workspaceStatsOptionsDto, id, userId);
   }
 }
 </code></pre>

@@ -1098,6 +1098,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbRepoToUserVotes.html" data-type="entity-link" >DbRepoToUserVotes</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbRossContributorsHistogram.html" data-type="entity-link" >DbRossContributorsHistogram</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbRossIndexHistogram.html" data-type="entity-link" >DbRossIndexHistogram</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbSubscription.html" data-type="entity-link" >DbSubscription</a>
                                 </li>
                                 <li class="link">
@@ -1156,6 +1162,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbWorkspaceRepo.html" data-type="entity-link" >DbWorkspaceRepo</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWorkspaceRossIndex.html" data-type="entity-link" >DbWorkspaceRossIndex</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbWorkspaceStats.html" data-type="entity-link" >DbWorkspaceStats</a>
