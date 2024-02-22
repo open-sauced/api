@@ -232,13 +232,17 @@ export class PullRequestGithubEventsService {
       .select("*");
 
     if (pageOptionsDto.distinctAuthors) {
-      cteBuilder.addSelect(
-        `ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num`
-      );
-    } else {
-      cteBuilder.addSelect(
-        `ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`
-      );
+      const distinctAuthors = pageOptionsDto.distinctAuthors === "true" || pageOptionsDto.distinctAuthors === "1";
+
+      if (distinctAuthors) {
+        cteBuilder.addSelect(
+          `ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num`
+        );
+      } else {
+        cteBuilder.addSelect(
+          `ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num`
+        );
+      }
     }
 
     cteBuilder
