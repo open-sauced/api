@@ -138,8 +138,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="96"
+                            class="link-to-prism">src/stripe-webhook/stripe-webhook.controller.ts:96</a></div>
                 </td>
             </tr>
 
@@ -341,20 +341,22 @@ export class StripeWebhookController {
     };
 
     try {
-      await this.stripeSubscriptionService.upsertSubscription(subscriptionData);
+      if (subscription.metadata.workspace_id) {
+        // add a workspace subscription
+        if (subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; &amp;&amp; subscription.metadata.workspace_id) {
+          await this.workspacePayeeService.addWorkspacePayee(subscription.metadata.workspace_id, userId);
+        }
 
-      const userRole &#x3D; subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; ? 50 : 10;
+        // workspace subscription canceled
+        if (subscription.status &#x3D;&#x3D;&#x3D; &quot;canceled&quot; &amp;&amp; subscription.metadata.workspace_id) {
+          await this.workspacePayeeService.removeWorkspacePayee(subscription.metadata.workspace_id);
+        }
+      } else {
+        await this.stripeSubscriptionService.upsertSubscription(subscriptionData);
 
-      await this.userService.updateRole(userId, userRole);
+        const userRole &#x3D; subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; ? 50 : 10;
 
-      // add a workspace subscription
-      if (subscription.status &#x3D;&#x3D;&#x3D; &quot;active&quot; &amp;&amp; subscription.metadata.workspace_id) {
-        await this.workspacePayeeService.addWorkspacePayee(subscription.metadata.workspace_id, userId);
-      }
-
-      // workspace subscription canceled
-      if (subscription.status &#x3D;&#x3D;&#x3D; &quot;canceled&quot; &amp;&amp; subscription.metadata.workspace_id) {
-        await this.workspacePayeeService.removeWorkspacePayee(subscription.metadata.workspace_id);
+        await this.userService.updateRole(userId, userRole);
       }
     } catch (e: unknown) {
       this.logger.error(
@@ -379,26 +381,37 @@ export class StripeWebhookController {
     const event &#x3D; this.stripeService.stripe.webhooks.constructEvent(req.rawBody!, sig, webhookSecret);
 
     if (relevantEvents.has(event.type)) {
-      const subEvents &#x3D; [
-        &quot;customer.subscription.created&quot;,
-        &quot;customer.subscription.updated&quot;,
-        &quot;customer.subscription.deleted&quot;,
-      ];
+      switch (event.type) {
+        case &quot;customer.subscription.created&quot;:
+        case &quot;customer.subscription.updated&quot;:
+        case &quot;customer.subscription.deleted&quot;: {
+          const subscription &#x3D; event.data.object as Stripe.Subscription;
 
-      if (subEvents.includes(event.type)) {
-        const subscription &#x3D; event.data.object as Stripe.Subscription;
-
-        await this.manageSubscriptionStatusChange(subscription.id, subscription.customer as string);
-      } else if (event.type &#x3D;&#x3D;&#x3D; &quot;checkout.session.completed&quot;) {
-        const checkoutSession &#x3D; event.data.object as Stripe.Checkout.Session;
-
-        if (checkoutSession.mode &#x3D;&#x3D;&#x3D; &quot;subscription&quot;) {
-          const subscriptionId &#x3D; checkoutSession.subscription;
-
-          await this.manageSubscriptionStatusChange(subscriptionId as string, checkoutSession.customer as string);
+          await this.manageSubscriptionStatusChange(subscription.id, subscription.customer as string);
+          break;
         }
-      } else {
-        throw new BadRequestException();
+
+        case &quot;checkout.session.completed&quot;: {
+          const checkoutSession &#x3D; event.data.object as Stripe.Checkout.Session;
+
+          if (checkoutSession.mode &#x3D;&#x3D;&#x3D; &quot;subscription&quot;) {
+            const subscriptionId &#x3D; checkoutSession.subscription as string;
+            const customerId &#x3D; checkoutSession.customer as string;
+            const { metadata } &#x3D; checkoutSession;
+
+            // updates the new subscription with any metadata from the stripe checkout session
+            await this.stripeService.stripe.subscriptions.update(subscriptionId, {
+              metadata,
+            });
+
+            await this.manageSubscriptionStatusChange(subscriptionId, customerId);
+          }
+          break;
+        }
+
+        default: {
+          throw new BadRequestException();
+        }
       }
     }
   }
