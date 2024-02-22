@@ -250,8 +250,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="169"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:169</a></div>
                 </td>
             </tr>
 
@@ -345,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="212"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:212</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="208"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:208</a></div>
                 </td>
             </tr>
 
@@ -535,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -642,8 +642,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/workspace/workspace-members.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/workspace/workspace-members.service.ts:113</a></div>
                 </td>
             </tr>
 
@@ -771,11 +771,7 @@ export class WorkspaceMembersService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .leftJoinAndSelect(
-        &quot;workspace_members.member&quot;,
-        &quot;workspace_member_users&quot;,
-        &quot;workspace_members.user_id &#x3D; workspace_member_users.id&quot;
-      )
+      .leftJoinAndSelect(&quot;workspace_members.member&quot;, &quot;users&quot;, &quot;users.id &#x3D; workspace_members.user_id&quot;)
       .where(&quot;workspace_members.workspace_id &#x3D; :id&quot;, { id });
 
     const itemCount &#x3D; await queryBuilder.getCount();
