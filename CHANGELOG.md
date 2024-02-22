@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.5...v2.9.0-beta.6) (2024-02-22)
+
+
+### 🐛 Bug Fixes
+
+* Stripe workspaces subscriptions get metadata from checkout ([#591](https://github.com/open-sauced/api.opensauced.pizza/issues/591)) ([b971e41](https://github.com/open-sauced/api.opensauced.pizza/commit/b971e41e3f19affdfec933c7cbf1d2223a866e8b))
+
 ## [2.9.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.4...v2.9.0-beta.5) (2024-02-22)
 
 
