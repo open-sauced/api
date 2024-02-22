@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.6...v2.9.0-beta.7) (2024-02-22)
+
+
+### 🐛 Bug Fixes
+
+* add user information to workspace members list ([#589](https://github.com/open-sauced/api.opensauced.pizza/issues/589)) ([54e41f8](https://github.com/open-sauced/api.opensauced.pizza/commit/54e41f83a024055a0eb87d8cdfc92afd0a69ef91))
+
 ## [2.9.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.5...v2.9.0-beta.6) (2024-02-22)
 
 
