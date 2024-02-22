@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.3...v2.9.0-beta.4) (2024-02-22)
+
+
+### 🍕 Features
+
+* Implements ross index/contributors for workspace ([#587](https://github.com/open-sauced/api.opensauced.pizza/issues/587)) ([4440062](https://github.com/open-sauced/api.opensauced.pizza/commit/4440062bd1d4d433996abc86fb22aafea8b12242))
+
 ## [2.9.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.2...v2.9.0-beta.3) (2024-02-21)
 
 
