@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.4...v2.9.0-beta.5) (2024-02-22)
+
+
+### 🍕 Features
+
+* Add parsing of boolean strings ([#590](https://github.com/open-sauced/api.opensauced.pizza/issues/590)) ([437b8a2](https://github.com/open-sauced/api.opensauced.pizza/commit/437b8a284b6b715d4e6be8ebda40b2638157bb92))
+
 ## [2.9.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.3...v2.9.0-beta.4) (2024-02-22)
 
 
