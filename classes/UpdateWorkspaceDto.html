@@ -86,6 +86,7 @@
                                 <a href="#description" >description</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#is_public" >is_public</a>
                             </li>
                             <li>
@@ -151,6 +152,7 @@
                 <td class="col-md-4">
                     <a name="is_public"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>is_public</b></span>
                         <a href="#is_public"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -167,13 +169,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;A boolean to make the workspace public: the authenticated user must be a paid customer&#x27;, type: String, example: false})<br />@IsBooleanString()<br />
+                            @ApiPropertyOptional({description: &#x27;A boolean to make the workspace public: the authenticated user must be a paid customer&#x27;, type: String, example: &#x27;true&#x27;})<br />@IsOptional()<br />@IsBooleanString()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/workspace/dtos/update-workspace.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/workspace/dtos/update-workspace.dto.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -227,8 +229,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &quot;@nestjs/swagger&quot;;
-import { IsBooleanString, IsString } from &quot;class-validator&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
+import { IsBooleanString, IsOptional, IsString } from &quot;class-validator&quot;;
 
 export class UpdateWorkspaceDto {
   @ApiProperty({
@@ -247,13 +249,14 @@ export class UpdateWorkspaceDto {
   @IsString()
   description: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: &quot;A boolean to make the workspace public: the authenticated user must be a paid customer&quot;,
     type: String,
-    example: false,
+    example: &quot;true&quot;,
   })
+  @IsOptional()
   @IsBooleanString()
-  is_public: string;
+  is_public?: string;
 }
 </code></pre>
     </div>

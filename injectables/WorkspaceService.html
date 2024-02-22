@@ -393,8 +393,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="271"
-                            class="link-to-prism">src/workspace/workspace.service.ts:271</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/workspace/workspace.service.ts:279</a></div>
                 </td>
             </tr>
 
@@ -1204,8 +1204,16 @@ export class WorkspaceService {
       throw new UnauthorizedException();
     }
 
-    if (!dto.is_public &amp;&amp; !workspace.payee_user_id) {
-      throw new BadRequestException(&quot;workspace has no payee: cannot make private&quot;);
+    if (dto.is_public) {
+      const isPublic &#x3D; dto.is_public &#x3D;&#x3D;&#x3D; &quot;true&quot; || dto.is_public &#x3D;&#x3D;&#x3D; &quot;1&quot;;
+
+      if (!isPublic &amp;&amp; !workspace.payee_user_id) {
+        throw new BadRequestException(&quot;workspace has no payee: cannot make private&quot;);
+      }
+
+      await this.workspaceRepository.update(id, {
+        is_public: isPublic,
+      });
     }
 
     await this.workspaceRepository.update(id, {

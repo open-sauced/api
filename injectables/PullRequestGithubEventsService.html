@@ -261,8 +261,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="743"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:743</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="747"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:747</a></div>
                 </td>
             </tr>
 
@@ -377,8 +377,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="829"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:829</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="833"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:833</a></div>
                 </td>
             </tr>
 
@@ -493,8 +493,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="786"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:786</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="790"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:790</a></div>
                 </td>
             </tr>
 
@@ -1223,8 +1223,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="631"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:631</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="635"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:635</a></div>
                 </td>
             </tr>
 
@@ -1407,8 +1407,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="319"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:319</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="323"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:323</a></div>
                 </td>
             </tr>
 
@@ -1502,8 +1502,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="390"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:390</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="394"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:394</a></div>
                 </td>
             </tr>
 
@@ -1585,8 +1585,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="352"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:352</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="356"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:356</a></div>
                 </td>
             </tr>
 
@@ -1858,8 +1858,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="450"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:450</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="454"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:454</a></div>
                 </td>
             </tr>
 
@@ -1929,8 +1929,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="533"
-                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:533</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="537"
+                            class="link-to-prism">src/timescale/pull_request_github_events.service.ts:537</a></div>
                 </td>
             </tr>
 
@@ -2218,13 +2218,17 @@ export class PullRequestGithubEventsService {
       .select(&quot;*&quot;);
 
     if (pageOptionsDto.distinctAuthors) {
-      cteBuilder.addSelect(
-        &#x60;ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
-      );
-    } else {
-      cteBuilder.addSelect(
-        &#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
-      );
+      const distinctAuthors &#x3D; pageOptionsDto.distinctAuthors &#x3D;&#x3D;&#x3D; &quot;true&quot; || pageOptionsDto.distinctAuthors &#x3D;&#x3D;&#x3D; &quot;1&quot;;
+
+      if (distinctAuthors) {
+        cteBuilder.addSelect(
+          &#x60;ROW_NUMBER() OVER (PARTITION BY pr_author_login, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
+        );
+      } else {
+        cteBuilder.addSelect(
+          &#x60;ROW_NUMBER() OVER (PARTITION BY pr_number, repo_name ORDER BY event_time ${order}) AS row_num&#x60;
+        );
+      }
     }
 
     cteBuilder
