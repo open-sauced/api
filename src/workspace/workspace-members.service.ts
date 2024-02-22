@@ -48,11 +48,7 @@ export class WorkspaceMembersService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .leftJoinAndSelect(
-        "workspace_members.member",
-        "workspace_member_users",
-        "workspace_members.user_id = workspace_member_users.id"
-      )
+      .leftJoinAndSelect("workspace_members.member", "users", "users.id = workspace_members.user_id")
       .where("workspace_members.workspace_id = :id", { id });
 
     const itemCount = await queryBuilder.getCount();
