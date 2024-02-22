@@ -12,6 +12,7 @@ import { WorkspaceService } from "./workspace.service";
 import { canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceStats } from "./entities/workspace-stats.entity";
 import { WorkspaceStatsOptionsDto } from "./dtos/workspace-stats.dto";
+import { DbWorkspaceRossIndex } from "./entities/workspace-ross.entity";
 
 @Injectable()
 export class WorkspaceStatsService {
@@ -112,6 +113,49 @@ export class WorkspaceStatsService {
 
     // activity ratio is currently the only stat that is used to inform health
     result.repos.health = result.repos.activity_ratio;
+
+    return result;
+  }
+
+  async findRossByWorkspaceIdForUserId(
+    options: WorkspaceStatsOptionsDto,
+    id: string,
+    userId: number | undefined
+  ): Promise<DbWorkspaceRossIndex> {
+    const range = options.range!;
+    const workspace = await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see what repos belongs to a workspace
+     */
+
+    const canView = canUserViewWorkspace(workspace, userId);
+
+    if (!canView) {
+      throw new NotFoundException();
+    }
+
+    const result = new DbWorkspaceRossIndex();
+
+    // get the repos
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .leftJoinAndSelect(
+        "workspace_repos.repo",
+        "workspace_repos_repo",
+        "workspace_repos.repo_id = workspace_repos_repo.id"
+      )
+      .where("workspace_repos.workspace_id = :id", { id });
+
+    const entities = await queryBuilder.getMany();
+    const entityRepos = entities.map((entity) => entity.repo.full_name);
+
+    const rossIndex = await this.pullRequestGithubEventsService.findRossIndexByRepos(entityRepos, range);
+    const rossContributors = await this.pullRequestGithubEventsService.findRossContributorsByRepos(entityRepos, range);
+
+    result.ross = rossIndex;
+    result.contributors = rossContributors;
 
     return result;
   }
