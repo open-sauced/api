@@ -256,8 +256,16 @@ export class WorkspaceService {
       throw new UnauthorizedException();
     }
 
-    if (!dto.is_public && !workspace.payee_user_id) {
-      throw new BadRequestException("workspace has no payee: cannot make private");
+    if (dto.is_public) {
+      const isPublic = dto.is_public === "true" || dto.is_public === "1";
+
+      if (!isPublic && !workspace.payee_user_id) {
+        throw new BadRequestException("workspace has no payee: cannot make private");
+      }
+
+      await this.workspaceRepository.update(id, {
+        is_public: isPublic,
+      });
     }
 
     await this.workspaceRepository.update(id, {

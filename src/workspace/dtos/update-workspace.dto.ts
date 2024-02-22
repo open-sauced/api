@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsBooleanString, IsString } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { IsBooleanString, IsOptional, IsString } from "class-validator";
 
 export class UpdateWorkspaceDto {
   @ApiProperty({
@@ -18,11 +18,12 @@ export class UpdateWorkspaceDto {
   @IsString()
   description: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: "A boolean to make the workspace public: the authenticated user must be a paid customer",
     type: String,
-    example: false,
+    example: "true",
   })
+  @IsOptional()
   @IsBooleanString()
-  is_public: string;
+  is_public?: string;
 }
