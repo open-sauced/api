@@ -7,8 +7,17 @@
  *  this is in service of optimizing for "LOWER(repo_name)" queries against timescale
  */
 
-export const sanatizeRepos = (repos: string[]): string[] => {
-  const validRepoRegex = /^[^/]+\/[^/]+$/;
+const validRepoRegex = /^[^/]+\/[^/]+$/;
 
-  return repos.map((repo) => repo.toLowerCase()).filter((repo) => repo && validRepoRegex.test(repo));
-};
+export function sanitizeRepos(input: string[]): string[];
+export function sanitizeRepos(input: string): string;
+
+export function sanitizeRepos(input: string | string[]): string | string[] {
+  if (Array.isArray(input)) {
+    return input.map((repo) => repo.toLowerCase()).filter((repo) => repo && validRepoRegex.test(repo));
+  }
+
+  const lowerCaseInput = input.toLowerCase();
+
+  return validRepoRegex.test(lowerCaseInput) ? lowerCaseInput : "";
+}

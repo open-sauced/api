@@ -2,7 +2,11 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { StarsHistogramDto } from "../histogram/dtos/stars";
-import { DbWatchGitHubEventsHistogram } from "./entities/watch_github_events_histogram";
+import {
+  DbTopWatchGitHubEventsHistogram,
+  DbWatchGitHubEventsHistogram,
+} from "./entities/watch_github_events_histogram";
+import { sanitizeRepos } from "./common/repos";
 
 @Injectable()
 export class WatchGithubEventsService {
@@ -24,7 +28,11 @@ export class WatchGithubEventsService {
 
     const order = options.orderDirection!;
     const range = options.range!;
-    const repo = options.repo!;
+    const repo = sanitizeRepos(options.repo!);
+
+    if (!repo) {
+      throw new BadRequestException();
+    }
 
     const queryBuilder = this.baseQueryBuilder();
 
@@ -32,7 +40,7 @@ export class WatchGithubEventsService {
       .select("time_bucket('1 day', event_time)", "bucket")
       .addSelect("count(*)", "star_count")
       .from("watch_github_events", "watch_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: repo.toLowerCase() })
+      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo })
       .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
       .groupBy("bucket")
       .orderBy("bucket", order);
@@ -40,5 +48,23 @@ export class WatchGithubEventsService {
     const rawResults = await queryBuilder.getRawMany();
 
     return rawResults as DbWatchGitHubEventsHistogram[];
+  }
+
+  async genStarsTopHistogram(): Promise<DbTopWatchGitHubEventsHistogram[]> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select("repo_name")
+      .addSelect("time_bucket('1 day', event_time)", "bucket")
+      .addSelect("count(*)", "star_count")
+      .from("watch_github_events", "watch_github_events")
+      .where(`now() - INTERVAL '1 days' <= "event_time"`)
+      .groupBy("bucket, repo_name")
+      .orderBy("star_count", "DESC")
+      .limit(100);
+
+    const rawResults = await queryBuilder.getRawMany();
+
+    return rawResults as DbTopWatchGitHubEventsHistogram[];
   }
 }
