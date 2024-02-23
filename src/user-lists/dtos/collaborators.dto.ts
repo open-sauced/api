@@ -8,7 +8,7 @@ export class CollaboratorsDto {
     description: "An array of contributor user IDs",
     isArray: true,
     type: "integer",
-    example: [42211, 81233],
+    example: [{ id: 42211 }, { login: "bdougie" }],
   })
   @IsArray()
   @Type(() => Contributor)
