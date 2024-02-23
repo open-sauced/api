@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.8...v2.9.0-beta.9) (2024-02-23)
+
+
+### 🐛 Bug Fixes
+
+* Use correct example in user list contributors DTO ([#598](https://github.com/open-sauced/api.opensauced.pizza/issues/598)) ([5c3f5fd](https://github.com/open-sauced/api.opensauced.pizza/commit/5c3f5fdd937e4adcc82e4520b5248008337e751a))
+
 ## [2.9.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.7...v2.9.0-beta.8) (2024-02-23)
 
 
