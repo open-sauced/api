@@ -302,15 +302,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HistogramModule.html" data-type="entity-link" >HistogramModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-HistogramModule-5885cd8d5e3fa3890e9b3fbba7a5aa5d16a0ca5d3944216d7609b83ce5c1f61ddcb032c234cfae09122c1aedcf6e1434c9e3cb5379440f57b4f50a537eda4a76"' : 'data-target="#xs-controllers-links-module-HistogramModule-5885cd8d5e3fa3890e9b3fbba7a5aa5d16a0ca5d3944216d7609b83ce5c1f61ddcb032c234cfae09122c1aedcf6e1434c9e3cb5379440f57b4f50a537eda4a76"' }>
+                                            'data-target="#controllers-links-module-HistogramModule-76237f1a8b7a2453c0c8241e2527e024a0d2a9b49e0fc15147683f8e8a849c9b2d0cdcdcaf23e1761ab30e3c141b36f857e26668141d79333e6ea2249320f79e"' : 'data-target="#xs-controllers-links-module-HistogramModule-76237f1a8b7a2453c0c8241e2527e024a0d2a9b49e0fc15147683f8e8a849c9b2d0cdcdcaf23e1761ab30e3c141b36f857e26668141d79333e6ea2249320f79e"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HistogramModule-5885cd8d5e3fa3890e9b3fbba7a5aa5d16a0ca5d3944216d7609b83ce5c1f61ddcb032c234cfae09122c1aedcf6e1434c9e3cb5379440f57b4f50a537eda4a76"' :
-                                            'id="xs-controllers-links-module-HistogramModule-5885cd8d5e3fa3890e9b3fbba7a5aa5d16a0ca5d3944216d7609b83ce5c1f61ddcb032c234cfae09122c1aedcf6e1434c9e3cb5379440f57b4f50a537eda4a76"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HistogramModule-76237f1a8b7a2453c0c8241e2527e024a0d2a9b49e0fc15147683f8e8a849c9b2d0cdcdcaf23e1761ab30e3c141b36f857e26668141d79333e6ea2249320f79e"' :
+                                            'id="xs-controllers-links-module-HistogramModule-76237f1a8b7a2453c0c8241e2527e024a0d2a9b49e0fc15147683f8e8a849c9b2d0cdcdcaf23e1761ab30e3c141b36f857e26668141d79333e6ea2249320f79e"' }>
                                             <li class="link">
                                                 <a href="controllers/HistogramController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HistogramController</a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="controllers/TopHistogramController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TopHistogramController</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -1105,6 +1108,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbSubscription.html" data-type="entity-link" >DbSubscription</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbTopWatchGitHubEventsHistogram.html" data-type="entity-link" >DbTopWatchGitHubEventsHistogram</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbUser.html" data-type="entity-link" >DbUser</a>

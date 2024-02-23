@@ -85,6 +85,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#genStarsHistogram" >genStarsHistogram</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#genStarsTopHistogram" >genStarsTopHistogram</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -108,7 +112,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/timescale/watch_github_events.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/timescale/watch_github_events.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -171,8 +175,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:18</a></div>
                 </td>
             </tr>
 
@@ -210,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:24</a></div>
                 </td>
             </tr>
 
@@ -259,6 +263,45 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="genStarsTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>genStarsTopHistogram</b></span>
+                        <a href="#genStarsTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>genStarsTopHistogram()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:53</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopWatchGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -269,7 +312,11 @@
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { StarsHistogramDto } from &quot;../histogram/dtos/stars&quot;;
-import { DbWatchGitHubEventsHistogram } from &quot;./entities/watch_github_events_histogram&quot;;
+import {
+  DbTopWatchGitHubEventsHistogram,
+  DbWatchGitHubEventsHistogram,
+} from &quot;./entities/watch_github_events_histogram&quot;;
+import { sanitizeRepos } from &quot;./common/repos&quot;;
 
 @Injectable()
 export class WatchGithubEventsService {
@@ -291,7 +338,11 @@ export class WatchGithubEventsService {
 
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
-    const repo &#x3D; options.repo!;
+    const repo &#x3D; sanitizeRepos(options.repo!);
+
+    if (!repo) {
+      throw new BadRequestException();
+    }
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
@@ -299,7 +350,7 @@ export class WatchGithubEventsService {
       .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
       .addSelect(&quot;count(*)&quot;, &quot;star_count&quot;)
       .from(&quot;watch_github_events&quot;, &quot;watch_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: repo.toLowerCase() })
+      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
@@ -307,6 +358,24 @@ export class WatchGithubEventsService {
     const rawResults &#x3D; await queryBuilder.getRawMany();
 
     return rawResults as DbWatchGitHubEventsHistogram[];
+  }
+
+  async genStarsTopHistogram(): Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .addSelect(&quot;count(*)&quot;, &quot;star_count&quot;)
+      .from(&quot;watch_github_events&quot;, &quot;watch_github_events&quot;)
+      .where(&#x60;now() - INTERVAL &#x27;1 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;star_count&quot;, &quot;DESC&quot;)
+      .limit(100);
+
+    const rawResults &#x3D; await queryBuilder.getRawMany();
+
+    return rawResults as DbTopWatchGitHubEventsHistogram[];
   }
 }
 </code></pre>

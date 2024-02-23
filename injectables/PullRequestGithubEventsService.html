@@ -2003,7 +2003,7 @@ import { PullRequestContributorInsightsDto } from &quot;../pull-requests/dtos/pu
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 import { DbPullRequestGitHubEventsHistogram } from &quot;./entities/pull_request_github_events_histogram&quot;;
 import { DbRossContributorsHistogram, DbRossIndexHistogram } from &quot;./entities/ross_index_histogram&quot;;
-import { sanatizeRepos } from &quot;./common/repos&quot;;
+import { sanitizeRepos } from &quot;./common/repos&quot;;
 
 @Injectable()
 export class PullRequestGithubEventsService {
@@ -2340,7 +2340,7 @@ export class PullRequestGithubEventsService {
   }
 
   async findRossIndexByRepos(repos: string[], range: number): Promise&lt;DbRossIndexHistogram[]&gt; {
-    const sanatizedRepos &#x3D; sanatizeRepos(repos);
+    const sanitizedRepos &#x3D; sanitizeRepos(repos);
 
     const outsideContribsCte &#x3D; this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
@@ -2349,7 +2349,7 @@ export class PullRequestGithubEventsService {
       .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
       .where(&quot;pr_author_association &#x3D; &#x27;NONE&#x27;&quot;)
       .andWhere(&quot;pr_is_merged &#x3D; TRUE&quot;)
-      .andWhere(&#x60;LOWER(repo_name) IN (:...sanatizedRepos)&#x60;, { sanatizedRepos })
+      .andWhere(&#x60;LOWER(repo_name) IN (:...sanitizedRepos)&#x60;, { sanitizedRepos })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
       .groupBy(&quot;bucket&quot;);
 
@@ -2358,7 +2358,7 @@ export class PullRequestGithubEventsService {
       .select(&#x60;time_bucket(&#x27;7 day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
       .addSelect(&quot;COALESCE(COUNT(DISTINCT pr_number), 0) AS weekly_prs&quot;)
       .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
-      .andWhere(&#x60;LOWER(repo_name) IN (:...sanatizedRepos)&#x60;, { sanatizedRepos })
+      .andWhere(&#x60;LOWER(repo_name) IN (:...sanitizedRepos)&#x60;, { sanitizedRepos })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
       .groupBy(&quot;bucket&quot;);
 
@@ -2378,7 +2378,7 @@ export class PullRequestGithubEventsService {
   }
 
   async findRossContributorsByRepos(repos: string[], range: number): Promise&lt;DbRossContributorsHistogram[]&gt; {
-    const sanatizedRepos &#x3D; sanatizeRepos(repos);
+    const sanitizedRepos &#x3D; sanitizeRepos(repos);
 
     const outsideContribsCte &#x3D; this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
@@ -2387,7 +2387,7 @@ export class PullRequestGithubEventsService {
       .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
       .where(&quot;pr_author_association &#x3D; &#x27;NONE&#x27;&quot;)
       .andWhere(&quot;pr_is_merged &#x3D; TRUE&quot;)
-      .andWhere(&#x60;LOWER(repo_name) IN (:...sanatizedRepos)&#x60;, { sanatizedRepos })
+      .andWhere(&#x60;LOWER(repo_name) IN (:...sanitizedRepos)&#x60;, { sanitizedRepos })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
       .groupBy(&quot;bucket&quot;);
 
@@ -2398,7 +2398,7 @@ export class PullRequestGithubEventsService {
       .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
       .where(&quot;pr_author_association &#x3D; &#x27;CONTRIBUTOR&#x27;&quot;)
       .andWhere(&quot;pr_is_merged &#x3D; TRUE&quot;)
-      .andWhere(&#x60;LOWER(repo_name) IN (:...sanatizedRepos)&#x60;, { sanatizedRepos })
+      .andWhere(&#x60;LOWER(repo_name) IN (:...sanitizedRepos)&#x60;, { sanitizedRepos })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
       .groupBy(&quot;bucket&quot;);
 
@@ -2409,7 +2409,7 @@ export class PullRequestGithubEventsService {
       .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
       .where(&quot;pr_author_association &#x3D; &#x27;MEMBER&#x27;&quot;)
       .andWhere(&quot;pr_is_merged &#x3D; TRUE&quot;)
-      .andWhere(&#x60;LOWER(repo_name) IN (:...sanatizedRepos)&#x60;, { sanatizedRepos })
+      .andWhere(&#x60;LOWER(repo_name) IN (:...sanitizedRepos)&#x60;, { sanitizedRepos })
       .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
       .groupBy(&quot;bucket&quot;);
 

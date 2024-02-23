@@ -121,9 +121,6 @@
                             <a href="#relevantEvents" title="src/stripe-webhook/stripe-webhook.controller.ts" ><b>relevantEvents</b>&nbsp;&nbsp;&nbsp;(src/.../stripe-webhook.controller.ts)</a>
                         </li>
                         <li>
-                            <a href="#sanatizeRepos" title="src/timescale/common/repos.ts" ><b>sanatizeRepos</b>&nbsp;&nbsp;&nbsp;(src/.../repos.ts)</a>
-                        </li>
-                        <li>
                             <a href="#StripeConfig" title="src/config/stripe.config.ts" ><b>StripeConfig</b>&nbsp;&nbsp;&nbsp;(src/.../stripe.config.ts)</a>
                         </li>
                         <li>
@@ -140,6 +137,9 @@
                         </li>
                         <li>
                             <a href="#userNotificationTypes" title="src/user/entities/user-notification.constants.ts" ><b>userNotificationTypes</b>&nbsp;&nbsp;&nbsp;(src/.../user-notification.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#validRepoRegex" title="src/timescale/common/repos.ts" ><b>validRepoRegex</b>&nbsp;&nbsp;&nbsp;(src/.../repos.ts)</a>
                         </li>
                         <li>
                             <a href="#workspaceAccessControl" title="src/workspace/common/memberAccess.ts" ><b>workspaceAccessControl</b>&nbsp;&nbsp;&nbsp;(src/.../memberAccess.ts)</a>
@@ -3843,33 +3843,6 @@
         </tbody>
     </table>
 </section>
-    <h3>src/timescale/common/repos.ts</h3>
-    <section>
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="sanatizeRepos"></a>
-                    <span class="name">
-                        <span ><b>sanatizeRepos</b></span>
-                        <a href="#sanatizeRepos"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>(repos: string[]): string[] &#x3D;&gt; {
-  const validRepoRegex &#x3D; /^[^/]+\/[^/]+$/;
-
-  return repos.map((repo) &#x3D;&gt; repo.toLowerCase()).filter((repo) &#x3D;&gt; repo &amp;&amp; validRepoRegex.test(repo));
-}</code>
-                    </td>
-                </tr>
-
-
-        </tbody>
-    </table>
-</section>
     <h3>src/config/stripe.config.ts</h3>
     <section>
     <h3></h3>    <table class="table table-sm table-bordered">
@@ -4009,6 +3982,29 @@ code | condition
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>[&quot;highlight_reaction&quot;, &quot;highlight_created&quot;, &quot;follow&quot;] as const</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/timescale/common/repos.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validRepoRegex"></a>
+                    <span class="name">
+                        <span ><b>validRepoRegex</b></span>
+                        <a href="#validRepoRegex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>/^[^/]+\/[^/]+$/</code>
                     </td>
                 </tr>
 

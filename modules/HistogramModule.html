@@ -124,6 +124,9 @@
                         <li class="list-group-item">
                             <a href="../controllers/HistogramController.html">HistogramController</a>
                         </li>
+                        <li class="list-group-item">
+                            <a href="../controllers/TopHistogramController.html">TopHistogramController</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
@@ -147,10 +150,11 @@
 
 import { TimescaleModule } from &quot;../timescale/timescale.module&quot;;
 import { HistogramController } from &quot;./histogram.controller&quot;;
+import { TopHistogramController } from &quot;./top.controller&quot;;
 
 @Module({
   imports: [TimescaleModule],
-  controllers: [HistogramController],
+  controllers: [HistogramController, TopHistogramController],
 })
 export class HistogramModule {}
 </code></pre>
