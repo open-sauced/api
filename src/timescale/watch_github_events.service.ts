@@ -67,4 +67,62 @@ export class WatchGithubEventsService {
 
     return rawResults as DbTopWatchGitHubEventsHistogram[];
   }
+
+  async genStarsNewTopHistogram(): Promise<DbTopWatchGitHubEventsHistogram[]> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select("repo_name")
+      .addSelect("time_bucket('1 day', event_time)", "bucket")
+      .addSelect("count(*)", "star_count")
+      .from("watch_github_events", "watch_github_events")
+      .where(`now() - INTERVAL '1 days' <= "event_time"`)
+      .groupBy("bucket, repo_name")
+      .orderBy("star_count", "DESC")
+      .limit(500);
+
+    const rawResults = await queryBuilder.getRawMany<DbTopWatchGitHubEventsHistogram>();
+
+    /*
+     * this performs two additional queries on each of the top repos found
+     * to check if they have either been recently made public or recently created.
+     * because the public/created tables contain many millions of rows within
+     * short time periods, joining or using a subquery to filter the raw results
+     * is not performant.
+     */
+    const onlyNewResults = await Promise.all(
+      rawResults.map(async (result) => {
+        const recentlyPublicQueryBuilder = this.baseQueryBuilder();
+
+        recentlyPublicQueryBuilder
+          .select("repo_name")
+          .from("public_github_events", "public_github_events")
+          .where(`now() - INTERVAL '30 days' <= "event_time"`)
+          .andWhere("LOWER(repo_name) = :repo_name", { repo_name: result.repo_name });
+
+        const recentlyPublicResult = await recentlyPublicQueryBuilder.getRawMany();
+
+        const recentlyCreatedQueryBuilder = this.baseQueryBuilder();
+
+        recentlyCreatedQueryBuilder
+          .select("repo_name")
+          .from("create_github_events", "create_github_events")
+          .where(`now() - INTERVAL '30 days' <= "event_time"`)
+          .andWhere("LOWER(repo_name) = :repo_name", { repo_name: result.repo_name })
+          .andWhere("create_ref_type = 'repository'");
+
+        const recentlyCreatedResult = await recentlyCreatedQueryBuilder.getRawMany();
+
+        if (recentlyPublicResult.length === 0 && recentlyCreatedResult.length === 0) {
+          return null;
+        }
+
+        return result;
+      })
+    );
+
+    const filteredResults = onlyNewResults.filter((result) => result !== null);
+
+    return filteredResults.slice(0, 100) as DbTopWatchGitHubEventsHistogram[];
+  }
 }

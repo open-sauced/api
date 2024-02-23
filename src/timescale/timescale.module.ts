@@ -24,6 +24,7 @@ import { DbIssuesGitHubEventsHistogram } from "./entities/issues_github_events_h
 import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
 import { RepoDevstatsService } from "./repo-devstats.service";
 import { DbPushGitHubEvents } from "./entities/push_github_events";
+import { DbPullRequestReviewCommentGitHubEventsHistogram } from "./entities/pull_request_review_comment_events_histogram.entity";
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { DbPushGitHubEvents } from "./entities/push_github_events";
         DbPushGitHubEvents,
         DbPushGitHubEventsHistogram,
         DbWatchGitHubEventsHistogram,
+        DbPullRequestReviewCommentGitHubEventsHistogram,
       ],
       "TimescaleConnection"
     ),
