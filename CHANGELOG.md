@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.9...v2.9.0-beta.10) (2024-02-23)
+
+
+### 🍕 Features
+
+* Implements top new starred repos, forks, and comments ([#597](https://github.com/open-sauced/api.opensauced.pizza/issues/597)) ([b0501f6](https://github.com/open-sauced/api.opensauced.pizza/commit/b0501f648113ddeca4e124f54f4e6ee8512ffa2e))
+
 ## [2.9.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.8...v2.9.0-beta.9) (2024-02-23)
 
 
