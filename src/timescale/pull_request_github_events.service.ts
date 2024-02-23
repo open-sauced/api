@@ -17,7 +17,7 @@ import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-re
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
 import { DbRossContributorsHistogram, DbRossIndexHistogram } from "./entities/ross_index_histogram";
-import { sanatizeRepos } from "./common/repos";
+import { sanitizeRepos } from "./common/repos";
 
 @Injectable()
 export class PullRequestGithubEventsService {
@@ -354,7 +354,7 @@ export class PullRequestGithubEventsService {
   }
 
   async findRossIndexByRepos(repos: string[], range: number): Promise<DbRossIndexHistogram[]> {
-    const sanatizedRepos = sanatizeRepos(repos);
+    const sanitizedRepos = sanitizeRepos(repos);
 
     const outsideContribsCte = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
@@ -363,7 +363,7 @@ export class PullRequestGithubEventsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where("pr_author_association = 'NONE'")
       .andWhere("pr_is_merged = TRUE")
-      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`LOWER(repo_name) IN (:...sanitizedRepos)`, { sanitizedRepos })
       .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy("bucket");
 
@@ -372,7 +372,7 @@ export class PullRequestGithubEventsService {
       .select(`time_bucket('7 day', event_time)`, "bucket")
       .addSelect("COALESCE(COUNT(DISTINCT pr_number), 0) AS weekly_prs")
       .from("pull_request_github_events", "pull_request_github_events")
-      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`LOWER(repo_name) IN (:...sanitizedRepos)`, { sanitizedRepos })
       .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy("bucket");
 
@@ -392,7 +392,7 @@ export class PullRequestGithubEventsService {
   }
 
   async findRossContributorsByRepos(repos: string[], range: number): Promise<DbRossContributorsHistogram[]> {
-    const sanatizedRepos = sanatizeRepos(repos);
+    const sanitizedRepos = sanitizeRepos(repos);
 
     const outsideContribsCte = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
@@ -401,7 +401,7 @@ export class PullRequestGithubEventsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where("pr_author_association = 'NONE'")
       .andWhere("pr_is_merged = TRUE")
-      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`LOWER(repo_name) IN (:...sanitizedRepos)`, { sanitizedRepos })
       .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy("bucket");
 
@@ -412,7 +412,7 @@ export class PullRequestGithubEventsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where("pr_author_association = 'CONTRIBUTOR'")
       .andWhere("pr_is_merged = TRUE")
-      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`LOWER(repo_name) IN (:...sanitizedRepos)`, { sanitizedRepos })
       .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy("bucket");
 
@@ -423,7 +423,7 @@ export class PullRequestGithubEventsService {
       .from("pull_request_github_events", "pull_request_github_events")
       .where("pr_author_association = 'MEMBER'")
       .andWhere("pr_is_merged = TRUE")
-      .andWhere(`LOWER(repo_name) IN (:...sanatizedRepos)`, { sanatizedRepos })
+      .andWhere(`LOWER(repo_name) IN (:...sanitizedRepos)`, { sanitizedRepos })
       .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
       .groupBy("bucket");
 
