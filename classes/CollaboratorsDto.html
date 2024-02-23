@@ -161,7 +161,7 @@ export class CollaboratorsDto {
     description: &quot;An array of contributor user IDs&quot;,
     isArray: true,
     type: &quot;integer&quot;,
-    example: [42211, 81233],
+    example: [{ id: 42211 }, { login: &quot;bdougie&quot; }],
   })
   @IsArray()
   @Type(() &#x3D;&gt; Contributor)
