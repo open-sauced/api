@@ -85,7 +85,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#commentsTopHistogram" >commentsTopHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#forksTopHistogram" >forksTopHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#starsTopHistogram" >starsTopHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#starsTopNewHistogram" >starsTopNewHistogram</a>
                             </li>
                         </ul>
                     </td>
@@ -104,6 +116,98 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="commentsTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>commentsTopHistogram</b></span>
+                        <a href="#commentsTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>commentsTopHistogram()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/comments&#x27;)<br />@ApiOperation({operationId: &#x27;commentsTopHistogram&#x27;, summary: &#x27;Generates a top comments histogram based on 1 day time buckets for all data&#x27;})<br />@ApiOkResponse({type: DbTopCommentGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/histogram/top.controller.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopCommentGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopCommentGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="forksTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>forksTopHistogram</b></span>
+                        <a href="#forksTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>forksTopHistogram()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/forks&#x27;)<br />@ApiOperation({operationId: &#x27;forksTopHistogram&#x27;, summary: &#x27;Generates a top forks histogram based on 1 day time buckets for all data&#x27;})<br />@ApiOkResponse({type: DbTopWatchGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/histogram/top.controller.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopForkGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopForkGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -127,14 +231,60 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/stars&#x27;)<br />@ApiOperation({operationId: &#x27;starsTopHistogram&#x27;, summary: &#x27;Generates a stars histogram based on 1 day time buckets for all data&#x27;})<br />@ApiOkResponse({type: DbTopWatchGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/stars&#x27;)<br />@ApiOperation({operationId: &#x27;starsTopHistogram&#x27;, summary: &#x27;Generates a top stars histogram based on 1 day time buckets for all data&#x27;})<br />@ApiOkResponse({type: DbTopWatchGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/histogram/top.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/histogram/top.controller.ts:26</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopWatchGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="starsTopNewHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>starsTopNewHistogram</b></span>
+                        <a href="#starsTopNewHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>starsTopNewHistogram()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/stars/new&#x27;)<br />@ApiOperation({operationId: &#x27;starsTopNewHistogram&#x27;, summary: &#x27;Generates a top new stars histogram based on 1 day time buckets for all data&#x27;})<br />@ApiOkResponse({type: DbTopWatchGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/histogram/top.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -159,20 +309,58 @@ import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;
 
 import { WatchGithubEventsService } from &quot;../timescale/watch_github_events.service&quot;;
 import { DbTopWatchGitHubEventsHistogram } from &quot;../timescale/entities/watch_github_events_histogram&quot;;
+import { DbTopForkGitHubEventsHistogram } from &quot;../timescale/entities/fork_github_events_histogram&quot;;
+import { ForkGithubEventsService } from &quot;../timescale/fork_github_events.service&quot;;
+import { DbTopCommentGitHubEventsHistogram } from &quot;../timescale/entities/issue_comment_github_events_histogram&quot;;
+import { IssueCommentGithubEventsService } from &quot;../timescale/issue_comment_github_events.service&quot;;
 
 @Controller(&quot;histogram/top&quot;)
 @ApiTags(&quot;Top histogram generation service&quot;)
 export class TopHistogramController {
-  constructor(private readonly watchGitHubEventsService: WatchGithubEventsService) {}
+  constructor(
+    private readonly watchGitHubEventsService: WatchGithubEventsService,
+    private readonly forkGitHubEventsService: ForkGithubEventsService,
+    private readonly issueCommentGitHubEventsService: IssueCommentGithubEventsService
+  ) {}
 
   @Get(&quot;/stars&quot;)
   @ApiOperation({
     operationId: &quot;starsTopHistogram&quot;,
-    summary: &quot;Generates a stars histogram based on 1 day time buckets for all data&quot;,
+    summary: &quot;Generates a top stars histogram based on 1 day time buckets for all data&quot;,
   })
   @ApiOkResponse({ type: DbTopWatchGitHubEventsHistogram, isArray: true })
   async starsTopHistogram(): Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt; {
     return this.watchGitHubEventsService.genStarsTopHistogram();
+  }
+
+  @Get(&quot;/stars/new&quot;)
+  @ApiOperation({
+    operationId: &quot;starsTopNewHistogram&quot;,
+    summary: &quot;Generates a top new stars histogram based on 1 day time buckets for all data&quot;,
+  })
+  @ApiOkResponse({ type: DbTopWatchGitHubEventsHistogram, isArray: true })
+  async starsTopNewHistogram(): Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt; {
+    return this.watchGitHubEventsService.genStarsNewTopHistogram();
+  }
+
+  @Get(&quot;/forks&quot;)
+  @ApiOperation({
+    operationId: &quot;forksTopHistogram&quot;,
+    summary: &quot;Generates a top forks histogram based on 1 day time buckets for all data&quot;,
+  })
+  @ApiOkResponse({ type: DbTopWatchGitHubEventsHistogram, isArray: true })
+  async forksTopHistogram(): Promise&lt;DbTopForkGitHubEventsHistogram[]&gt; {
+    return this.forkGitHubEventsService.genForkTopHistogram();
+  }
+
+  @Get(&quot;/comments&quot;)
+  @ApiOperation({
+    operationId: &quot;commentsTopHistogram&quot;,
+    summary: &quot;Generates a top comments histogram based on 1 day time buckets for all data&quot;,
+  })
+  @ApiOkResponse({ type: DbTopCommentGitHubEventsHistogram, isArray: true })
+  async commentsTopHistogram(): Promise&lt;DbTopCommentGitHubEventsHistogram[]&gt; {
+    return this.issueCommentGitHubEventsService.genCommentTopHistogram();
   }
 }
 </code></pre>

@@ -83,6 +83,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#genCommentTopHistogram" >genCommentTopHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#genIssueCommentHistogram" >genIssueCommentHistogram</a>
                             </li>
                         </ul>
@@ -103,12 +107,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(issueCommentGitHubEventsHistogramRepository: <a href="../entitys/DbIssueCommentGitHubEventsHistogram.html" target="_self">Repository&lt;DbIssueCommentGitHubEventsHistogram&gt;</a>)</code>
+<code>constructor(issueCommentGitHubEventsHistogramRepository: <a href="../entitys/DbIssueCommentGitHubEventsHistogram.html" target="_self">Repository&lt;DbIssueCommentGitHubEventsHistogram&gt;</a>, pullRequestReviewCommentGitHubEventsHistogramRepository: Repository<DbPullRequestReviewCommentGitHubEventsHistogram>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -130,6 +134,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/DbIssueCommentGitHubEventsHistogram.html" target="_self" >Repository&lt;DbIssueCommentGitHubEventsHistogram&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>pullRequestReviewCommentGitHubEventsHistogramRepository</td>
+                                                  
+                                                        <td>
+                                                                    <code>Repository&lt;DbPullRequestReviewCommentGitHubEventsHistogram&gt;</code>
                                                         </td>
                                                   
                                                     <td>
@@ -171,8 +187,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -182,6 +198,45 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="genCommentTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>genCommentTopHistogram</b></span>
+                        <a href="#genCommentTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>genCommentTopHistogram()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopCommentGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopCommentGitHubEventsHistogram[]&gt;</a></code>
 
                     </div>
                 </td>
@@ -210,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -269,13 +324,19 @@
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { IssueCommentsHistogramDto } from &quot;../histogram/dtos/issue_comments&quot;;
-import { DbIssueCommentGitHubEventsHistogram } from &quot;./entities/issue_comment_github_events_histogram&quot;;
+import {
+  DbIssueCommentGitHubEventsHistogram,
+  DbTopCommentGitHubEventsHistogram,
+} from &quot;./entities/issue_comment_github_events_histogram&quot;;
+import { DbPullRequestReviewCommentGitHubEventsHistogram } from &quot;./entities/pull_request_review_comment_events_histogram.entity&quot;;
 
 @Injectable()
 export class IssueCommentGithubEventsService {
   constructor(
     @InjectRepository(DbIssueCommentGitHubEventsHistogram, &quot;TimescaleConnection&quot;)
-    private issueCommentGitHubEventsHistogramRepository: Repository&lt;DbIssueCommentGitHubEventsHistogram&gt;
+    private issueCommentGitHubEventsHistogramRepository: Repository&lt;DbIssueCommentGitHubEventsHistogram&gt;,
+    @InjectRepository(DbPullRequestReviewCommentGitHubEventsHistogram, &quot;TimescaleConnection&quot;)
+    private pullRequestReviewCommentGitHubEventsHistogramRepository: Repository&lt;DbPullRequestReviewCommentGitHubEventsHistogram&gt;
   ) {}
 
   baseQueryBuilder() {
@@ -308,6 +369,55 @@ export class IssueCommentGithubEventsService {
     const rawResults &#x3D; await queryBuilder.getRawMany();
 
     return rawResults as DbIssueCommentGitHubEventsHistogram[];
+  }
+
+  async genCommentTopHistogram(): Promise&lt;DbTopCommentGitHubEventsHistogram[]&gt; {
+    const issueCommentsCte &#x3D; this.issueCommentGitHubEventsHistogramRepository.manager
+      .createQueryBuilder()
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .addSelect(&quot;count(*)&quot;, &quot;comment_count&quot;)
+      .from(&quot;issue_comment_github_events&quot;, &quot;issue_comment_github_events&quot;)
+      .where(&#x60;now() - INTERVAL &#x27;1 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;comment_count&quot;, &quot;DESC&quot;)
+      .limit(100);
+
+    const prReviewCommentsCte &#x3D; this.pullRequestReviewCommentGitHubEventsHistogramRepository.manager
+      .createQueryBuilder()
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .addSelect(&quot;count(*)&quot;, &quot;comment_count&quot;)
+      .from(&quot;pull_request_review_comment_github_events&quot;, &quot;pull_request_review_comment_github_events&quot;)
+      .where(&#x60;now() - INTERVAL &#x27;1 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;comment_count&quot;, &quot;DESC&quot;)
+      .limit(100);
+
+    const combinedComments &#x3D; &#x60;
+      SELECT * FROM issue_comments_cte
+      UNION ALL
+      SELECT * FROM pr_review_comments_cte
+    &#x60;;
+
+    const queryBuilder &#x3D; this.issueCommentGitHubEventsHistogramRepository.manager
+      .createQueryBuilder()
+      .addCommonTableExpression(issueCommentsCte, &quot;issue_comments_cte&quot;)
+      .setParameters(issueCommentsCte.getParameters())
+      .addCommonTableExpression(prReviewCommentsCte, &quot;pr_review_comments_cte&quot;)
+      .setParameters(prReviewCommentsCte.getParameters())
+      .addCommonTableExpression(combinedComments, &quot;combined_comments_cte&quot;)
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;bucket&quot;)
+      .addSelect(&quot;CAST(SUM(comment_count) AS INTEGER)&quot;, &quot;comment_count&quot;)
+      .from(&quot;combined_comments_cte&quot;, &quot;combined_comments_cte&quot;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;comment_count&quot;, &quot;DESC&quot;)
+      .limit(100);
+
+    const rawResults &#x3D; await queryBuilder.getRawMany();
+
+    return rawResults as DbTopCommentGitHubEventsHistogram[];
   }
 }
 </code></pre>

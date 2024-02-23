@@ -87,6 +87,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#genStarsNewTopHistogram" >genStarsNewTopHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#genStarsTopHistogram" >genStarsTopHistogram</a>
                             </li>
                         </ul>
@@ -267,6 +271,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="genStarsNewTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>genStarsNewTopHistogram</b></span>
+                        <a href="#genStarsNewTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>genStarsNewTopHistogram()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:71</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopWatchGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="genStarsTopHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -376,6 +419,64 @@ export class WatchGithubEventsService {
     const rawResults &#x3D; await queryBuilder.getRawMany();
 
     return rawResults as DbTopWatchGitHubEventsHistogram[];
+  }
+
+  async genStarsNewTopHistogram(): Promise&lt;DbTopWatchGitHubEventsHistogram[]&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .addSelect(&quot;count(*)&quot;, &quot;star_count&quot;)
+      .from(&quot;watch_github_events&quot;, &quot;watch_github_events&quot;)
+      .where(&#x60;now() - INTERVAL &#x27;1 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;star_count&quot;, &quot;DESC&quot;)
+      .limit(500);
+
+    const rawResults &#x3D; await queryBuilder.getRawMany&lt;DbTopWatchGitHubEventsHistogram&gt;();
+
+    /*
+     * this performs two additional queries on each of the top repos found
+     * to check if they have either been recently made public or recently created.
+     * because the public/created tables contain many millions of rows within
+     * short time periods, joining or using a subquery to filter the raw results
+     * is not performant.
+     */
+    const onlyNewResults &#x3D; await Promise.all(
+      rawResults.map(async (result) &#x3D;&gt; {
+        const recentlyPublicQueryBuilder &#x3D; this.baseQueryBuilder();
+
+        recentlyPublicQueryBuilder
+          .select(&quot;repo_name&quot;)
+          .from(&quot;public_github_events&quot;, &quot;public_github_events&quot;)
+          .where(&#x60;now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+          .andWhere(&quot;LOWER(repo_name) &#x3D; :repo_name&quot;, { repo_name: result.repo_name });
+
+        const recentlyPublicResult &#x3D; await recentlyPublicQueryBuilder.getRawMany();
+
+        const recentlyCreatedQueryBuilder &#x3D; this.baseQueryBuilder();
+
+        recentlyCreatedQueryBuilder
+          .select(&quot;repo_name&quot;)
+          .from(&quot;create_github_events&quot;, &quot;create_github_events&quot;)
+          .where(&#x60;now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+          .andWhere(&quot;LOWER(repo_name) &#x3D; :repo_name&quot;, { repo_name: result.repo_name })
+          .andWhere(&quot;create_ref_type &#x3D; &#x27;repository&#x27;&quot;);
+
+        const recentlyCreatedResult &#x3D; await recentlyCreatedQueryBuilder.getRawMany();
+
+        if (recentlyPublicResult.length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; recentlyCreatedResult.length &#x3D;&#x3D;&#x3D; 0) {
+          return null;
+        }
+
+        return result;
+      })
+    );
+
+    const filteredResults &#x3D; onlyNewResults.filter((result) &#x3D;&gt; result !&#x3D;&#x3D; null);
+
+    return filteredResults.slice(0, 100) as DbTopWatchGitHubEventsHistogram[];
   }
 }
 </code></pre>

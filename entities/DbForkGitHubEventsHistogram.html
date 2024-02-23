@@ -205,6 +205,43 @@ export class DbForkGitHubEventsHistogram {
   })
   public forks_count: number;
 }
+
+@Entity({ name: &quot;fork_github_events&quot; })
+export class DbTopForkGitHubEventsHistogram {
+  @ApiModelProperty({
+    description: &quot;Timestamp representing histogram bucket day&quot;,
+    example: &quot;2022-08-28 22:04:29.000000&quot;,
+  })
+  @Column({
+    type: &quot;timestamp without time zone&quot;,
+    select: false,
+    insert: false,
+  })
+  public bucket: Date;
+
+  @ApiModelProperty({
+    description: &quot;Number of forks in day bucket&quot;,
+    example: 4,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public fork_count: number;
+
+  @ApiModelProperty({
+    description: &quot;Name of repo&quot;,
+    example: &quot;open-sauced/api&quot;,
+  })
+  @Column({
+    type: &quot;text&quot;,
+    select: false,
+    insert: false,
+  })
+  public repo_name: string;
+}
 </code></pre>
     </div>
 </div>

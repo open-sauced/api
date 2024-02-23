@@ -85,6 +85,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#genForkHistogram" >genForkHistogram</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#genForkTopHistogram" >genForkTopHistogram</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -259,6 +263,45 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="genForkTopHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>genForkTopHistogram</b></span>
+                        <a href="#genForkTopHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>genForkTopHistogram()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbTopForkGitHubEventsHistogram.html" target="_self" >Promise&lt;DbTopForkGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -269,7 +312,7 @@
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { ForksHistogramDto } from &quot;../histogram/dtos/forks&quot;;
-import { DbForkGitHubEventsHistogram } from &quot;./entities/fork_github_events_histogram&quot;;
+import { DbForkGitHubEventsHistogram, DbTopForkGitHubEventsHistogram } from &quot;./entities/fork_github_events_histogram&quot;;
 
 @Injectable()
 export class ForkGithubEventsService {
@@ -307,6 +350,24 @@ export class ForkGithubEventsService {
     const rawResults &#x3D; await queryBuilder.getRawMany();
 
     return rawResults as DbForkGitHubEventsHistogram[];
+  }
+
+  async genForkTopHistogram(): Promise&lt;DbTopForkGitHubEventsHistogram[]&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder
+      .select(&quot;repo_name&quot;)
+      .addSelect(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .addSelect(&quot;count(*)&quot;, &quot;fork_count&quot;)
+      .from(&quot;fork_github_events&quot;, &quot;fork_github_events&quot;)
+      .where(&#x60;now() - INTERVAL &#x27;1 days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .groupBy(&quot;bucket, repo_name&quot;)
+      .orderBy(&quot;fork_count&quot;, &quot;DESC&quot;)
+      .limit(100);
+
+    const rawResults &#x3D; await queryBuilder.getRawMany();
+
+    return rawResults as DbTopForkGitHubEventsHistogram[];
   }
 }
 </code></pre>

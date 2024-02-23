@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Entities</li>
-  <li >DbIssueCommentGitHubEventsHistogram</li>
+  <li >DbPullRequestReviewCommentGitHubEventsHistogram</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/timescale/entities/issue_comment_github_events_histogram.ts</code>
+            <code>src/timescale/entities/pull_request_review_comment_events_histogram.entity.ts</code>
         </p>
 
 
@@ -80,7 +80,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#issue_comments_count" >issue_comments_count</a>
+                                <a href="#pr_review_comments_count" >pr_review_comments_count</a>
                             </li>
                         </ul>
                     </td>
@@ -129,7 +129,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/pull_request_review_comment_events_histogram.entity.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -140,11 +140,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="issue_comments_count"></a>
+                    <a name="pr_review_comments_count"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>issue_comments_count</b></span>
-                        <a href="#issue_comments_count"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>pr_review_comments_count</b></span>
+                        <a href="#pr_review_comments_count"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -159,13 +159,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of issue comments created in day bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of Pr reviews comments in day bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/timescale/entities/pull_request_review_comment_events_histogram.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -180,8 +180,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiModelProperty } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { Entity, Column } from &quot;typeorm&quot;;
 
-@Entity({ name: &quot;issue_comment_github_events&quot; })
-export class DbIssueCommentGitHubEventsHistogram {
+@Entity({ name: &quot;pull_request_review_comment_github_events&quot; })
+export class DbPullRequestReviewCommentGitHubEventsHistogram {
   @ApiModelProperty({
     description: &quot;Timestamp representing histogram bucket day&quot;,
     example: &quot;2022-08-28 22:04:29.000000&quot;,
@@ -194,7 +194,7 @@ export class DbIssueCommentGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: &quot;Number of issue comments created in day bucket&quot;,
+    description: &quot;Number of Pr reviews comments in day bucket&quot;,
     example: 4,
     type: &quot;integer&quot;,
   })
@@ -203,44 +203,7 @@ export class DbIssueCommentGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public issue_comments_count: number;
-}
-
-@Entity({ name: &quot;issue_comment_github_events&quot; })
-export class DbTopCommentGitHubEventsHistogram {
-  @ApiModelProperty({
-    description: &quot;Timestamp representing histogram bucket day&quot;,
-    example: &quot;2022-08-28 22:04:29.000000&quot;,
-  })
-  @Column({
-    type: &quot;timestamp without time zone&quot;,
-    select: false,
-    insert: false,
-  })
-  public bucket: Date;
-
-  @ApiModelProperty({
-    description: &quot;Number of forks in day bucket&quot;,
-    example: 4,
-    type: &quot;integer&quot;,
-  })
-  @Column({
-    type: &quot;integer&quot;,
-    select: false,
-    insert: false,
-  })
-  public comment_count: number;
-
-  @ApiModelProperty({
-    description: &quot;Name of repo&quot;,
-    example: &quot;open-sauced/api&quot;,
-  })
-  @Column({
-    type: &quot;text&quot;,
-    select: false,
-    insert: false,
-  })
-  public repo_name: string;
+  public pr_review_comments_count: number;
 }
 </code></pre>
     </div>
@@ -286,7 +249,7 @@ export class DbTopCommentGitHubEventsHistogram {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'entity';
-            var COMPODOC_CURRENT_PAGE_URL = 'DbIssueCommentGitHubEventsHistogram.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'DbPullRequestReviewCommentGitHubEventsHistogram.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
