@@ -9,18 +9,19 @@ import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { WorkspaceModule } from "../workspace/workspace.module";
 import { UserModule } from "../user/user.module";
+import { TimescaleModule } from "../timescale/timescale.module";
 import { DbUserListContributor } from "./entities/user-list-contributor.entity";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
 import { UserListController } from "./user-list.controller";
 import { UserListStatsController } from "./user-list-stats.controller";
-import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { DbContributorCategoryTimeframe } from "./entities/contributors-timeframe.entity";
 import { UserListEventsStatsService } from "./user-list-events-stats.service";
 
 @Module({
   imports: [
+    forwardRef(() => TimescaleModule),
     forwardRef(() => UserModule),
     ApiServicesModule,
     forwardRef(() => WorkspaceModule),
@@ -31,7 +32,6 @@ import { UserListEventsStatsService } from "./user-list-events-stats.service";
         DbUserHighlight,
         DbPullRequest,
         DbUserListContributor,
-        DbUserListContributorStat,
         DbContributionStatTimeframe,
         DbContributorCategoryTimeframe,
         DbWorkspaceUserLists,

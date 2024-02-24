@@ -7,12 +7,19 @@ import { IssuesGithubEventsService } from "../timescale/issues_github_events.ser
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { ForkGithubEventsService } from "../timescale/fork_github_events.service";
 import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
+import { ContributionsPageDto } from "../timescale/dtos/contrib-page.dto";
+import { DbContributorStat } from "../timescale/entities/contributor_devstat.entity";
+import { ContributionPageMetaDto } from "../timescale/dtos/contrib-page-meta.dto";
+import { MostActiveContributorsDto } from "../timescale/dtos/most-active-contrib.dto";
+import { PageDto } from "../common/dtos/page.dto";
+import { ContributorDevstatsService } from "../timescale/contrib-stats.service";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { WorkspaceService } from "./workspace.service";
 import { canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceStats } from "./entities/workspace-stats.entity";
 import { WorkspaceStatsOptionsDto } from "./dtos/workspace-stats.dto";
 import { DbWorkspaceRossIndex } from "./entities/workspace-ross.entity";
+import { WorkspaceContributorsService } from "./workspace-contributors.service";
 
 @Injectable()
 export class WorkspaceStatsService {
@@ -20,11 +27,13 @@ export class WorkspaceStatsService {
     @InjectRepository(DbWorkspaceRepo, "ApiConnection")
     private workspaceRepoRepository: Repository<DbWorkspaceRepo>,
     private workspaceService: WorkspaceService,
+    private worksapceContributorsService: WorkspaceContributorsService,
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
     private issueGithubEventsService: IssuesGithubEventsService,
     private forkGithubEventsService: ForkGithubEventsService,
     private watchGithubEventsService: WatchGithubEventsService,
-    private repoDevstatsService: RepoDevstatsService
+    private repoDevstatsService: RepoDevstatsService,
+    private contributorDevstatService: ContributorDevstatsService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder<DbWorkspaceRepo> {
@@ -158,5 +167,45 @@ export class WorkspaceStatsService {
     result.contributors = rossContributors;
 
     return result;
+  }
+
+  async findContributorStatsByWorkspaceIdForUserId(
+    pageOptionsDto: MostActiveContributorsDto,
+    id: string,
+    userId: number | undefined
+  ): Promise<PageDto<DbContributorStat>> {
+    const workspace = await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see what repos belongs to a workspace
+     */
+
+    const canView = canUserViewWorkspace(workspace, userId);
+
+    if (!canView) {
+      throw new NotFoundException();
+    }
+
+    const allContributors = await this.worksapceContributorsService.findAllContributors(id);
+
+    if (allContributors.length === 0) {
+      return new ContributionsPageDto(
+        new Array<DbContributorStat>(),
+        new ContributionPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
+    const contributors = allContributors
+      .map((c) => (c.contributor.login ? c.contributor.login.toLowerCase() : ""))
+      .filter((c) => c !== "");
+
+    if (contributors.length === 0) {
+      return new ContributionsPageDto(
+        new Array<DbContributorStat>(),
+        new ContributionPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
+    return this.contributorDevstatService.findAllContributorStats(pageOptionsDto, contributors);
   }
 }
