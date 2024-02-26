@@ -518,7 +518,7 @@ export class StripeService {
 
   async createCheckoutSession(customer: string) {
     const session &#x3D; await this.stripe.checkout.sessions.create({
-      payment_method_types: [&quot;card&quot;],
+      payment_method_types: [&quot;us_bank_account&quot;, &quot;card&quot;],
       billing_address_collection: &quot;required&quot;,
       allow_promotion_codes: true,
       customer,
@@ -538,10 +538,10 @@ export class StripeService {
 
   async createWorkspacesCheckoutSession(workspaceId: string, customer: string) {
     const session &#x3D; await this.stripe.checkout.sessions.create({
+      payment_method_types: [&quot;us_bank_account&quot;, &quot;card&quot;],
       metadata: {
         workspace_id: workspaceId,
       },
-      payment_method_types: [&quot;card&quot;],
       billing_address_collection: &quot;required&quot;,
       customer,
       line_items: [
