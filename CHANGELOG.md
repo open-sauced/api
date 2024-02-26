@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.11](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.10...v2.9.0-beta.11) (2024-02-26)
+
+
+### 🍕 Features
+
+* Stripe payments accept ACH ([#595](https://github.com/open-sauced/api.opensauced.pizza/issues/595)) ([149a988](https://github.com/open-sauced/api.opensauced.pizza/commit/149a988316de4d4b9d19896ceef898c459abd3db))
+
 ## [2.9.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.9...v2.9.0-beta.10) (2024-02-23)
 
 
