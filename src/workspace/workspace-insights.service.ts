@@ -62,6 +62,41 @@ export class WorkspaceInsightsService {
     return new PageDto(entities, pageMetaDto);
   }
 
+  async findOneInsightByWorkspaceIdForUserId(
+    id: string,
+    insightId: number,
+    userId: number | undefined
+  ): Promise<DbInsight> {
+    const workspace = await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see insights that belong to a workspace
+     */
+
+    const canView = canUserViewWorkspace(workspace, userId);
+
+    if (!canView) {
+      throw new NotFoundException();
+    }
+
+    const queryBuilder = this.workspaceInsightRepository
+      .createQueryBuilder("workspace_insights")
+      .leftJoinAndSelect("workspace_insights.insight", "workspace_insights_insight")
+      .leftJoinAndSelect("workspace_insights_insight.repos", "workspace_insights_insight_repos")
+      .leftJoinAndSelect("workspace_insights_insight.members", "workspace_insights_insight_members")
+      .leftJoinAndSelect("workspace_insights_insight.workspaces", "workspace_insights_insight_workspaces")
+      .where("workspace_insights.workspace_id = :id", { id })
+      .andWhere("workspace_insights.insight_id = :insightId", { insightId });
+
+    const item = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException();
+    }
+
+    return item.insight;
+  }
+
   async addWorkspaceInsight(dto: CreateInsightDto, id: string, userId: number): Promise<DbWorkspaceInsight> {
     const workspace = await this.workspaceService.findOneById(id);
 

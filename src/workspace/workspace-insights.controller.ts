@@ -65,6 +65,24 @@ export class WorkspaceInsightsController {
     return this.workspaceInsightsService.addWorkspaceInsight(createWorkspaceInsightDto, id, userId);
   }
 
+  @Get("/:insightId")
+  @ApiOperation({
+    operationId: "getOneWorkspaceInsightForUser",
+    summary: "Gets one workspace insight for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiOkResponse({ type: DbInsight })
+  @ApiNotFoundResponse({ description: "Unable to get user workspace insight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  async getOneWorkspaceInsightForUser(
+    @Param("id") id: string,
+    @Param("insightId") insightId: number,
+    @OptionalUserId() userId: number | undefined
+  ): Promise<DbInsight> {
+    return this.workspaceInsightsService.findOneInsightByWorkspaceIdForUserId(id, insightId, userId);
+  }
+
   @Delete("/:insightId")
   @ApiOperation({
     operationId: "deleteWorkspaceInsightForUser",
