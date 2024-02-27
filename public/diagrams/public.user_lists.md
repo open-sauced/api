@@ -4,16 +4,16 @@
 
 ## Columns
 
-| Name        | Type                        | Default            | Nullable | Children                                                          | Parents                         | Comment |
-| ----------- | --------------------------- | ------------------ | -------- | ----------------------------------------------------------------- | ------------------------------- | ------- |
-| id          | uuid                        | uuid_generate_v4() | false    | [public.user_list_contributors](public.user_list_contributors.md) |                                 |         |
-| user_id     | bigint                      |                    | false    |                                                                   | [public.users](public.users.md) |         |
-| created_at  | timestamp without time zone | now()              | false    |                                                                   |                                 |         |
-| updated_at  | timestamp without time zone | now()              | false    |                                                                   |                                 |         |
-| deleted_at  | timestamp without time zone |                    | true     |                                                                   |                                 |         |
-| name        | varchar(255)                |                    | false    |                                                                   |                                 |         |
-| is_public   | boolean                     | false              | false    |                                                                   |                                 |         |
-| is_featured | boolean                     | false              | false    |                                                                   |                                 |         |
+| Name        | Type                        | Default            | Nullable | Children                                                                                                                        | Parents                         | Comment |
+| ----------- | --------------------------- | ------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ------- |
+| id          | uuid                        | uuid_generate_v4() | false    | [public.user_list_contributors](public.user_list_contributors.md) [public.workspace_user_lists](public.workspace_user_lists.md) |                                 |         |
+| user_id     | bigint                      |                    | false    |                                                                                                                                 | [public.users](public.users.md) |         |
+| created_at  | timestamp without time zone | now()              | false    |                                                                                                                                 |                                 |         |
+| updated_at  | timestamp without time zone | now()              | false    |                                                                                                                                 |                                 |         |
+| deleted_at  | timestamp without time zone |                    | true     |                                                                                                                                 |                                 |         |
+| name        | varchar(255)                |                    | false    |                                                                                                                                 |                                 |         |
+| is_public   | boolean                     | false              | false    |                                                                                                                                 |                                 |         |
+| is_featured | boolean                     | false              | false    |                                                                                                                                 |                                 |         |
 
 ## Constraints
 

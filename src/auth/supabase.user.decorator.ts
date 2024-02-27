@@ -9,8 +9,18 @@ export const User = createParamDecorator((_data: unknown, context: ExecutionCont
   return request.user;
 });
 
-export const UserId = createParamDecorator((_data: unknown, context: ExecutionContext) => {
+export const UserId = createParamDecorator((_data: unknown, context: ExecutionContext): number => {
   const request = context.switchToHttp().getRequest<SupabaseAuthRequest>();
 
   return parseInt(request.user?.user_metadata.sub as string, 10);
+});
+
+export const OptionalUserId = createParamDecorator((_data: unknown, context: ExecutionContext): number | undefined => {
+  const request = context.switchToHttp().getRequest<SupabaseAuthRequest>();
+
+  if (!request.user) {
+    return undefined;
+  }
+
+  return parseInt(request.user.user_metadata.sub as string, 10);
 });

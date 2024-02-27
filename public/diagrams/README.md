@@ -8,8 +8,8 @@
 
 | Name                                                                      | Columns | Comment | Type       |
 | ------------------------------------------------------------------------- | ------- | ------- | ---------- |
-| [public.users](public.users.md)                                           | 45      |         | BASE TABLE |
-| [public.repos](public.repos.md)                                           | 44      |         | BASE TABLE |
+| [public.users](public.users.md)                                           | 48      |         | BASE TABLE |
+| [public.repos](public.repos.md)                                           | 45      |         | BASE TABLE |
 | [public.contributions](public.contributions.md)                           | 9       |         | BASE TABLE |
 | [public.users_to_repos_stars](public.users_to_repos_stars.md)             | 6       |         | BASE TABLE |
 | [public.users_to_repos_votes](public.users_to_repos_votes.md)             | 6       |         | BASE TABLE |
@@ -46,6 +46,7 @@
 | [public.workspace_repos](public.workspace_repos.md)                       | 6       |         | BASE TABLE |
 | [public.workspace_insights](public.workspace_insights.md)                 | 6       |         | BASE TABLE |
 | [public.workspace_contributors](public.workspace_contributors.md)         | 6       |         | BASE TABLE |
+| [public.workspace_user_lists](public.workspace_user_lists.md)             | 6       |         | BASE TABLE |
 
 ## Relations
 

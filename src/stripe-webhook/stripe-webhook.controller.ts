@@ -3,6 +3,7 @@ import { BadRequestException, Controller, Logger, Post, RawBodyRequest, Req } fr
 import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import Stripe from "stripe";
 
+import { WorkspacePayeeService } from "../workspace/workspace-payee.service";
 import { CustomerService } from "../customer/customer.service";
 import { StripeSubscriptionService } from "../subscription/stripe-subscription.service";
 import { StripeService } from "../stripe/stripe.service";
@@ -26,7 +27,8 @@ export class StripeWebhookController {
     private stripeSubscriptionService: StripeSubscriptionService,
     private stripeService: StripeService,
     private configService: ConfigService,
-    private userService: UserService
+    private userService: UserService,
+    private workspacePayeeService: WorkspacePayeeService
   ) {}
 
   private async manageSubscriptionStatusChange(subscriptionId: string, customerId: string) {
@@ -62,11 +64,23 @@ export class StripeWebhookController {
     };
 
     try {
-      await this.stripeSubscriptionService.upsertSubscription(subscriptionData);
+      if (subscription.metadata.workspace_id) {
+        // add a workspace subscription
+        if (subscription.status === "active" && subscription.metadata.workspace_id) {
+          await this.workspacePayeeService.addWorkspacePayee(subscription.metadata.workspace_id, userId);
+        }
 
-      const userRole = subscription.status === "active" ? 50 : 10;
+        // workspace subscription canceled
+        if (subscription.status === "canceled" && subscription.metadata.workspace_id) {
+          await this.workspacePayeeService.removeWorkspacePayee(subscription.metadata.workspace_id);
+        }
+      } else {
+        await this.stripeSubscriptionService.upsertSubscription(subscriptionData);
 
-      await this.userService.updateRole(userId, userRole);
+        const userRole = subscription.status === "active" ? 50 : 10;
+
+        await this.userService.updateRole(userId, userRole);
+      }
     } catch (e: unknown) {
       this.logger.error(
         `Error inserting/updating subscription [${subscription.id}] for user [${userId}]: ${(e as Error).toString()}`
@@ -90,26 +104,37 @@ export class StripeWebhookController {
     const event = this.stripeService.stripe.webhooks.constructEvent(req.rawBody!, sig, webhookSecret);
 
     if (relevantEvents.has(event.type)) {
-      const subEvents = [
-        "customer.subscription.created",
-        "customer.subscription.updated",
-        "customer.subscription.deleted",
-      ];
+      switch (event.type) {
+        case "customer.subscription.created":
+        case "customer.subscription.updated":
+        case "customer.subscription.deleted": {
+          const subscription = event.data.object as Stripe.Subscription;
 
-      if (subEvents.includes(event.type)) {
-        const subscription = event.data.object as Stripe.Subscription;
-
-        await this.manageSubscriptionStatusChange(subscription.id, subscription.customer as string);
-      } else if (event.type === "checkout.session.completed") {
-        const checkoutSession = event.data.object as Stripe.Checkout.Session;
-
-        if (checkoutSession.mode === "subscription") {
-          const subscriptionId = checkoutSession.subscription;
-
-          await this.manageSubscriptionStatusChange(subscriptionId as string, checkoutSession.customer as string);
+          await this.manageSubscriptionStatusChange(subscription.id, subscription.customer as string);
+          break;
         }
-      } else {
-        throw new BadRequestException();
+
+        case "checkout.session.completed": {
+          const checkoutSession = event.data.object as Stripe.Checkout.Session;
+
+          if (checkoutSession.mode === "subscription") {
+            const subscriptionId = checkoutSession.subscription as string;
+            const customerId = checkoutSession.customer as string;
+            const { metadata } = checkoutSession;
+
+            // updates the new subscription with any metadata from the stripe checkout session
+            await this.stripeService.stripe.subscriptions.update(subscriptionId, {
+              metadata,
+            });
+
+            await this.manageSubscriptionStatusChange(subscriptionId, customerId);
+          }
+          break;
+        }
+
+        default: {
+          throw new BadRequestException();
+        }
       }
     }
   }

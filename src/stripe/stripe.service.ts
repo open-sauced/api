@@ -26,13 +26,35 @@ export class StripeService {
 
   async createCheckoutSession(customer: string) {
     const session = await this.stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+      payment_method_types: ["us_bank_account", "card"],
       billing_address_collection: "required",
       allow_promotion_codes: true,
       customer,
       line_items: [
         {
           price: this.configService.get("stripe.subscriptionPriceID")!,
+          quantity: 1,
+        },
+      ],
+      mode: "subscription",
+      success_url: `${this.configService.get<string>("stripe.subscriptionSessionCheckoutSuccessURL")!}`,
+      cancel_url: `${this.configService.get<string>("stripe.subscriptionSessionCancelURL")!}`,
+    });
+
+    return { sessionId: session.id };
+  }
+
+  async createWorkspacesCheckoutSession(workspaceId: string, customer: string) {
+    const session = await this.stripe.checkout.sessions.create({
+      payment_method_types: ["us_bank_account", "card"],
+      metadata: {
+        workspace_id: workspaceId,
+      },
+      billing_address_collection: "required",
+      customer,
+      line_items: [
+        {
+          price: this.configService.get("stripe.subscriptionWorkspacesPriceID")!,
           quantity: 1,
         },
       ],

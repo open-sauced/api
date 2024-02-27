@@ -9,8 +9,7 @@ import { RepoService } from "../repo/repo.service";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { WorkspaceService } from "./workspace.service";
-import { canUserManageWorkspace } from "./common/memberAccess";
-import { WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
+import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { UpdateWorkspaceReposDto } from "./dtos/update-workspace-repos.dto";
 import { DeleteWorkspaceReposDto } from "./dtos/delete-workspace-repos.dto";
 
@@ -32,7 +31,7 @@ export class WorkspaceReposService {
   async findAllReposByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<PageDto<DbWorkspaceRepo>> {
     const workspace = await this.workspaceService.findOneById(id);
 
@@ -40,14 +39,10 @@ export class WorkspaceReposService {
      * viewers, editors, and owners can see what repos belongs to a workspace
      */
 
-    const canView = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder = this.baseQueryBuilder();
@@ -75,10 +70,7 @@ export class WorkspaceReposService {
      * owners and editors can update the workspace repos
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate = canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -96,10 +88,7 @@ export class WorkspaceReposService {
      * owners and editors can update the workspace repos
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canUpdate = canUserEditWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -149,10 +138,7 @@ export class WorkspaceReposService {
      * owners and editors can delete the workspace repos
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete = canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -182,10 +168,7 @@ export class WorkspaceReposService {
      * owners and editors can delete the workspace repos
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Owner,
-      WorkspaceMemberRoleEnum.Editor,
-    ]);
+    const canDelete = canUserEditWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

@@ -9,8 +9,7 @@ import { UserService } from "../user/services/user.service";
 import { DbWorkspaceOrg } from "./entities/workspace-org.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { WorkspaceService } from "./workspace.service";
-import { canUserManageWorkspace } from "./common/memberAccess";
-import { WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
+import { canUserManageWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { UpdateWorkspaceOrgsDto } from "./dtos/update-workspace-orgs.dto";
 import { DeleteWorkspaceOrgsDto } from "./dtos/delete-workspace-orgs.dto";
 
@@ -32,7 +31,7 @@ export class WorkspaceOrgsService {
   async findAllOrgsByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<PageDto<DbWorkspaceOrg>> {
     const workspace = await this.workspaceService.findOneById(id);
 
@@ -40,14 +39,10 @@ export class WorkspaceOrgsService {
      * viewers, editors, and owners can see what orgs belongs to a workspace
      */
 
-    const canView = canUserManageWorkspace(workspace, userId, [
-      WorkspaceMemberRoleEnum.Viewer,
-      WorkspaceMemberRoleEnum.Editor,
-      WorkspaceMemberRoleEnum.Owner,
-    ]);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
-      throw new UnauthorizedException();
+      throw new NotFoundException();
     }
 
     const queryBuilder = this.baseQueryBuilder();
@@ -71,7 +66,7 @@ export class WorkspaceOrgsService {
      * owners can update the workspace orgs
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate = canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -112,7 +107,7 @@ export class WorkspaceOrgsService {
      * owners can update the workspace orgs
      */
 
-    const canUpdate = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canUpdate = canUserManageWorkspace(workspace, userId);
 
     if (!canUpdate) {
       throw new UnauthorizedException();
@@ -156,7 +151,7 @@ export class WorkspaceOrgsService {
      * owners can delete the workspace orgs
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete = canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();
@@ -209,7 +204,7 @@ export class WorkspaceOrgsService {
      * owners can delete the workspace orgs
      */
 
-    const canDelete = canUserManageWorkspace(workspace, userId, [WorkspaceMemberRoleEnum.Owner]);
+    const canDelete = canUserManageWorkspace(workspace, userId);
 
     if (!canDelete) {
       throw new UnauthorizedException();

@@ -13,9 +13,10 @@ import {
 
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { UserId } from "../auth/supabase.user.decorator";
+import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
 import { WorkspaceService } from "./workspace.service";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
@@ -46,15 +47,18 @@ export class WorkspaceController {
   @Get("/:id")
   @ApiOperation({
     operationId: "getWorkspaceByIdForUser",
-    summary: "Gets a workspace for the authenticated user",
+    summary: "Gets a workspace for the authenticated user and public workspaces for all users",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspace })
   @ApiNotFoundResponse({ description: "Unable to get user workspace" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
-  async getWorkspaceByIdForUser(@Param("id") id: string, @UserId() userId: number): Promise<DbWorkspace> {
+  async getWorkspaceByIdForUser(
+    @Param("id") id: string,
+    @OptionalUserId() userId: number | undefined
+  ): Promise<DbWorkspace> {
     return this.workspaceService.findOneByIdGuarded(id, userId);
   }
 

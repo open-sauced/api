@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ForksHistogramDto } from "../histogram/dtos/forks";
-import { DbForkGitHubEventsHistogram } from "./entities/fork_github_events_histogram";
+import { DbForkGitHubEventsHistogram, DbTopForkGitHubEventsHistogram } from "./entities/fork_github_events_histogram";
 
 @Injectable()
 export class ForkGithubEventsService {
@@ -40,5 +40,23 @@ export class ForkGithubEventsService {
     const rawResults = await queryBuilder.getRawMany();
 
     return rawResults as DbForkGitHubEventsHistogram[];
+  }
+
+  async genForkTopHistogram(): Promise<DbTopForkGitHubEventsHistogram[]> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select("repo_name")
+      .addSelect("time_bucket('1 day', event_time)", "bucket")
+      .addSelect("count(*)", "fork_count")
+      .from("fork_github_events", "fork_github_events")
+      .where(`now() - INTERVAL '1 days' <= "event_time"`)
+      .groupBy("bucket, repo_name")
+      .orderBy("fork_count", "DESC")
+      .limit(100);
+
+    const rawResults = await queryBuilder.getRawMany();
+
+    return rawResults as DbTopForkGitHubEventsHistogram[];
   }
 }

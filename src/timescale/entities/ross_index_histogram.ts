@@ -1,8 +1,8 @@
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
-import { Entity, Column } from "typeorm";
+import { Column, Entity } from "typeorm";
 
-@Entity({ name: "issue_comment_github_events" })
-export class DbIssueCommentGitHubEventsHistogram {
+@Entity("workspaces")
+export class DbRossIndexHistogram {
   @ApiModelProperty({
     description: "Timestamp representing histogram bucket day",
     example: "2022-08-28 22:04:29.000000",
@@ -15,7 +15,7 @@ export class DbIssueCommentGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: "Number of issue comments created in day bucket",
+    description: "Ross index for given time period",
     example: 4,
     type: "integer",
   })
@@ -24,11 +24,11 @@ export class DbIssueCommentGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public issue_comments_count: number;
+  public index: number;
 }
 
-@Entity({ name: "issue_comment_github_events" })
-export class DbTopCommentGitHubEventsHistogram {
+@Entity("workspaces")
+export class DbRossContributorsHistogram {
   @ApiModelProperty({
     description: "Timestamp representing histogram bucket day",
     example: "2022-08-28 22:04:29.000000",
@@ -41,7 +41,8 @@ export class DbTopCommentGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: "Number of forks in day bucket",
+    description:
+      "Number of new contributors within time range. These are contributors whose affiliation to a repo is 'NONE'.",
     example: 4,
     type: "integer",
   })
@@ -50,16 +51,31 @@ export class DbTopCommentGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public comment_count: number;
+  public new: number;
 
   @ApiModelProperty({
-    description: "Name of repo",
-    example: "open-sauced/api",
+    description:
+      "Number of returning contributors within time range. These are contributors whose affiliation to a repo is 'CONTRIBUTOR'.",
+    example: 4,
+    type: "integer",
   })
   @Column({
-    type: "text",
+    type: "integer",
     select: false,
     insert: false,
   })
-  public repo_name: string;
+  public returning: number;
+
+  @ApiModelProperty({
+    description:
+      "Number of internal contributors within time range. These are contributors whose affiliation to a repo is 'MEMBER' - i.e., org members.",
+    example: 4,
+    type: "integer",
+  })
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public internal: number;
 }

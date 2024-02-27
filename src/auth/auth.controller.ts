@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, UseGuards } from "@nestjs/common";
 import {
   ApiBadRequestResponse,
   ApiBearerAuth,
@@ -6,6 +6,7 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiTags,
 } from "@nestjs/swagger";
 import { SupabaseAuthUser } from "nestjs-supabase-auth";
@@ -158,24 +159,28 @@ export class AuthController {
   @ApiOkResponse({ type: SupabaseAuthDto })
   @ApiNotFoundResponse({ description: "Unable to create checkout session" })
   async postCreateCheckoutSession(@User() user: SupabaseAuthUser): Promise<{ sessionId: string }> {
-    const {
-      email,
-      user_metadata: { sub },
-    } = user;
-    const id = sub as number;
-    const customer = await this.customerService.findById(id);
-    let customerId: string;
-
-    if (customer) {
-      customerId = customer.stripe_customer_id;
-    } else {
-      const stripeCustomer = await this.stripeService.addCustomer(id, email);
-      const newCustomer = await this.customerService.addCustomer(id, stripeCustomer.id);
-
-      customerId = newCustomer.stripe_customer_id;
-    }
+    const customerId = await this.customerService.findByIdOrCreate(user);
 
     return this.stripeService.createCheckoutSession(customerId);
+  }
+
+  @Post("/checkout/workspaces/:id/session")
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOperation({
+    operationId: "postCreateCheckoutWorkspacesSession",
+    summary: "Creates a new workspaces checkout session for the user",
+  })
+  @ApiOkResponse({ type: SupabaseAuthDto })
+  @ApiNotFoundResponse({ description: "Unable to create workspaces checkout session" })
+  @ApiParam({ name: "id", type: "string" })
+  async postCreateWorkspacesCheckoutSession(
+    @User() user: SupabaseAuthUser,
+    @Param("id") workspaceId: string
+  ): Promise<{ sessionId: string }> {
+    const customerId = await this.customerService.findByIdOrCreate(user);
+
+    return this.stripeService.createWorkspacesCheckoutSession(workspaceId, customerId);
   }
 
   @Patch("/profile")
