@@ -5,6 +5,30 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.8.0...v2.9.0) (2024-02-27)
+
+
+### 🐛 Bug Fixes
+
+* add user information to workspace members list ([#589](https://github.com/open-sauced/api.opensauced.pizza/issues/589)) ([54e41f8](https://github.com/open-sauced/api.opensauced.pizza/commit/54e41f83a024055a0eb87d8cdfc92afd0a69ef91))
+* Stripe workspaces subscriptions get metadata from checkout ([#591](https://github.com/open-sauced/api.opensauced.pizza/issues/591)) ([b971e41](https://github.com/open-sauced/api.opensauced.pizza/commit/b971e41e3f19affdfec933c7cbf1d2223a866e8b))
+* Use correct example in user list contributors DTO ([#598](https://github.com/open-sauced/api.opensauced.pizza/issues/598)) ([5c3f5fd](https://github.com/open-sauced/api.opensauced.pizza/commit/5c3f5fdd937e4adcc82e4520b5248008337e751a))
+
+
+### 🍕 Features
+
+* add associated workspace to insight and list data ([#584](https://github.com/open-sauced/api.opensauced.pizza/issues/584)) ([62cdb53](https://github.com/open-sauced/api.opensauced.pizza/commit/62cdb53574c7c51237ec8939a41c0a30b0c2a527))
+* Add getting a workspace insight by ID ([#602](https://github.com/open-sauced/api.opensauced.pizza/issues/602)) ([c2503a6](https://github.com/open-sauced/api.opensauced.pizza/commit/c2503a6bdb3edecd959f6ce6b2bd87d011f5f6dc))
+* Add parsing of boolean strings ([#590](https://github.com/open-sauced/api.opensauced.pizza/issues/590)) ([437b8a2](https://github.com/open-sauced/api.opensauced.pizza/commit/437b8a284b6b715d4e6be8ebda40b2638157bb92))
+* Implements ross index/contributors for workspace ([#587](https://github.com/open-sauced/api.opensauced.pizza/issues/587)) ([4440062](https://github.com/open-sauced/api.opensauced.pizza/commit/4440062bd1d4d433996abc86fb22aafea8b12242))
+* Implements top new starred repos, forks, and comments ([#597](https://github.com/open-sauced/api.opensauced.pizza/issues/597)) ([b0501f6](https://github.com/open-sauced/api.opensauced.pizza/commit/b0501f648113ddeca4e124f54f4e6ee8512ffa2e))
+* Proof-of-concept - top watch events in last 1 day ([#593](https://github.com/open-sauced/api.opensauced.pizza/issues/593)) ([96b09e0](https://github.com/open-sauced/api.opensauced.pizza/commit/96b09e095849f17d90fc757b53441ed00ab78c2a))
+* Stripe payments accept ACH ([#595](https://github.com/open-sauced/api.opensauced.pizza/issues/595)) ([149a988](https://github.com/open-sauced/api.opensauced.pizza/commit/149a988316de4d4b9d19896ceef898c459abd3db))
+* Supabase passthrough auth and workspace pricing ([#576](https://github.com/open-sauced/api.opensauced.pizza/issues/576)) ([3db88a3](https://github.com/open-sauced/api.opensauced.pizza/commit/3db88a32f140e1a3a93950715dc78da1e0f3711d))
+* User cannot delete their personal workspace ([#583](https://github.com/open-sauced/api.opensauced.pizza/issues/583)) ([808ae6f](https://github.com/open-sauced/api.opensauced.pizza/commit/808ae6fbe043afc9c8da0ed205c512f47b324c31))
+* workspace creation calls "tryFindRepoOrMakeStub" ([#604](https://github.com/open-sauced/api.opensauced.pizza/issues/604)) ([63a1cee](https://github.com/open-sauced/api.opensauced.pizza/commit/63a1cee88480476a13ebd74d2b4fa6fa10ac18a6))
+* workspace stats for time range ([#582](https://github.com/open-sauced/api.opensauced.pizza/issues/582)) ([1fad154](https://github.com/open-sauced/api.opensauced.pizza/commit/1fad1548b4fdb9d36c4e8df4734ecdbc1c4d01cf))
+
 ## [2.9.0-beta.13](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.12...v2.9.0-beta.13) (2024-02-27)
 
 
