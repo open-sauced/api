@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.9.0-beta.13](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.12...v2.9.0-beta.13) (2024-02-27)
+
+
+### 🍕 Features
+
+* workspace creation calls "tryFindRepoOrMakeStub" ([#604](https://github.com/open-sauced/api.opensauced.pizza/issues/604)) ([63a1cee](https://github.com/open-sauced/api.opensauced.pizza/commit/63a1cee88480476a13ebd74d2b4fa6fa10ac18a6))
+
 ## [2.9.0-beta.12](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0-beta.11...v2.9.0-beta.12) (2024-02-27)
 
 
