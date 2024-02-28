@@ -83,6 +83,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findContributorStatsByWorkspaceIdForUserId" >findContributorStatsByWorkspaceIdForUserId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findRossByWorkspaceIdForUserId" >findRossByWorkspaceIdForUserId</a>
                             </li>
                             <li>
@@ -107,12 +111,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(workspaceRepoRepository: Repository<DbWorkspaceRepo>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, issueGithubEventsService: <a href="../injectables/IssuesGithubEventsService.html" target="_self">IssuesGithubEventsService</a>, forkGithubEventsService: <a href="../injectables/ForkGithubEventsService.html" target="_self">ForkGithubEventsService</a>, watchGithubEventsService: <a href="../injectables/WatchGithubEventsService.html" target="_self">WatchGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>)</code>
+<code>constructor(workspaceRepoRepository: Repository<DbWorkspaceRepo>, workspaceService: <a href="../injectables/WorkspaceService.html" target="_self">WorkspaceService</a>, worksapceContributorsService: <a href="../injectables/WorkspaceContributorsService.html" target="_self">WorkspaceContributorsService</a>, pullRequestGithubEventsService: <a href="../injectables/PullRequestGithubEventsService.html" target="_self">PullRequestGithubEventsService</a>, issueGithubEventsService: <a href="../injectables/IssuesGithubEventsService.html" target="_self">IssuesGithubEventsService</a>, forkGithubEventsService: <a href="../injectables/ForkGithubEventsService.html" target="_self">ForkGithubEventsService</a>, watchGithubEventsService: <a href="../injectables/WatchGithubEventsService.html" target="_self">WatchGithubEventsService</a>, repoDevstatsService: <a href="../injectables/RepoDevstatsService.html" target="_self">RepoDevstatsService</a>, contributorDevstatService: <a href="../injectables/ContributorDevstatsService.html" target="_self">ContributorDevstatsService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-stats.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/workspace/workspace-stats.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -146,6 +150,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../injectables/WorkspaceService.html" target="_self" >WorkspaceService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>worksapceContributorsService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/WorkspaceContributorsService.html" target="_self" >WorkspaceContributorsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -213,6 +229,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>contributorDevstatService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ContributorDevstatsService.html" target="_self" >ContributorDevstatsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -247,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -259,6 +287,101 @@
                     <div class="io-description">
                         <b>Returns : </b>    <code>SelectQueryBuilder&lt;DbWorkspaceRepo&gt;</code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findContributorStatsByWorkspaceIdForUserId"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findContributorStatsByWorkspaceIdForUserId</b></span>
+                        <a href="#findContributorStatsByWorkspaceIdForUserId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findContributorStatsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/MostActiveContributorsDto.html" target="_self">MostActiveContributorsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:172</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/MostActiveContributorsDto.html" target="_self" >MostActiveContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbContributorStat.html" target="_self" >Promise&lt;PageDto&lt;DbContributorStat&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -286,8 +409,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:120</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:129</a></div>
                 </td>
             </tr>
 
@@ -381,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:45</a></div>
                 </td>
             </tr>
 
@@ -469,12 +592,19 @@ import { IssuesGithubEventsService } from &quot;../timescale/issues_github_event
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
 import { ForkGithubEventsService } from &quot;../timescale/fork_github_events.service&quot;;
 import { WatchGithubEventsService } from &quot;../timescale/watch_github_events.service&quot;;
+import { ContributionsPageDto } from &quot;../timescale/dtos/contrib-page.dto&quot;;
+import { DbContributorStat } from &quot;../timescale/entities/contributor_devstat.entity&quot;;
+import { ContributionPageMetaDto } from &quot;../timescale/dtos/contrib-page-meta.dto&quot;;
+import { MostActiveContributorsDto } from &quot;../timescale/dtos/most-active-contrib.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
+import { ContributorDevstatsService } from &quot;../timescale/contrib-stats.service&quot;;
 import { DbWorkspaceRepo } from &quot;./entities/workspace-repos.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { DbWorkspaceStats } from &quot;./entities/workspace-stats.entity&quot;;
 import { WorkspaceStatsOptionsDto } from &quot;./dtos/workspace-stats.dto&quot;;
 import { DbWorkspaceRossIndex } from &quot;./entities/workspace-ross.entity&quot;;
+import { WorkspaceContributorsService } from &quot;./workspace-contributors.service&quot;;
 
 @Injectable()
 export class WorkspaceStatsService {
@@ -482,11 +612,13 @@ export class WorkspaceStatsService {
     @InjectRepository(DbWorkspaceRepo, &quot;ApiConnection&quot;)
     private workspaceRepoRepository: Repository&lt;DbWorkspaceRepo&gt;,
     private workspaceService: WorkspaceService,
+    private worksapceContributorsService: WorkspaceContributorsService,
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
     private issueGithubEventsService: IssuesGithubEventsService,
     private forkGithubEventsService: ForkGithubEventsService,
     private watchGithubEventsService: WatchGithubEventsService,
-    private repoDevstatsService: RepoDevstatsService
+    private repoDevstatsService: RepoDevstatsService,
+    private contributorDevstatService: ContributorDevstatsService
   ) {}
 
   baseQueryBuilder(): SelectQueryBuilder&lt;DbWorkspaceRepo&gt; {
@@ -620,6 +752,46 @@ export class WorkspaceStatsService {
     result.contributors &#x3D; rossContributors;
 
     return result;
+  }
+
+  async findContributorStatsByWorkspaceIdForUserId(
+    pageOptionsDto: MostActiveContributorsDto,
+    id: string,
+    userId: number | undefined
+  ): Promise&lt;PageDto&lt;DbContributorStat&gt;&gt; {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see what repos belongs to a workspace
+     */
+
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
+
+    if (!canView) {
+      throw new NotFoundException();
+    }
+
+    const allContributors &#x3D; await this.worksapceContributorsService.findAllContributors(id);
+
+    if (allContributors.length &#x3D;&#x3D;&#x3D; 0) {
+      return new ContributionsPageDto(
+        new Array&lt;DbContributorStat&gt;(),
+        new ContributionPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
+    const contributors &#x3D; allContributors
+      .map((c) &#x3D;&gt; (c.contributor.login ? c.contributor.login.toLowerCase() : &quot;&quot;))
+      .filter((c) &#x3D;&gt; c !&#x3D;&#x3D; &quot;&quot;);
+
+    if (contributors.length &#x3D;&#x3D;&#x3D; 0) {
+      return new ContributionsPageDto(
+        new Array&lt;DbContributorStat&gt;(),
+        new ContributionPageMetaDto({ itemCount: 0, pageOptionsDto }, 0)
+      );
+    }
+
+    return this.contributorDevstatService.findAllContributorStats(pageOptionsDto, contributors);
   }
 }
 </code></pre>

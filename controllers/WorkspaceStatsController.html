@@ -85,6 +85,10 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getWorkspaceMostActiveContributors" >getWorkspaceMostActiveContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getWorkspaceRossIndex" >getWorkspaceRossIndex</a>
                             </li>
                             <li>
@@ -108,6 +112,108 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWorkspaceMostActiveContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getWorkspaceMostActiveContributors</b></span>
+                        <a href="#getWorkspaceMostActiveContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getWorkspaceMostActiveContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, mostActiveContributorsDto: <a href="../classes/MostActiveContributorsDto.html" target="_self">MostActiveContributorsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceMostActiveContributors&#x27;, summary: &#x27;Gets workspace most active contributors for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user workspace most-active-contributors index&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:80</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>mostActiveContributorsDto</td>
+                                    <td>
+                                                <code><a href="../classes/MostActiveContributorsDto.html" target="_self" >MostActiveContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbContributorStat.html" target="_self" >Promise&lt;PageDto&lt;DbContributorStat&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -137,8 +243,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -239,8 +345,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/workspace/workspace-stats.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -330,6 +436,9 @@ import {
 import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
 import { OptionalUserId } from &quot;../auth/supabase.user.decorator&quot;;
 
+import { DbContributorStat } from &quot;../timescale/entities/contributor_devstat.entity&quot;;
+import { MostActiveContributorsDto } from &quot;../timescale/dtos/most-active-contrib.dto&quot;;
+import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { DbWorkspaceStats } from &quot;./entities/workspace-stats.entity&quot;;
 import { WorkspaceStatsService } from &quot;./workspace-stats.service&quot;;
 import { WorkspaceStatsOptionsDto } from &quot;./dtos/workspace-stats.dto&quot;;
@@ -378,6 +487,26 @@ export class WorkspaceStatsController {
     @Query() workspaceStatsOptionsDto: WorkspaceStatsOptionsDto
   ): Promise&lt;DbWorkspaceRossIndex&gt; {
     return this.workspaceStatsService.findRossByWorkspaceIdForUserId(workspaceStatsOptionsDto, id, userId);
+  }
+
+  @Get(&quot;/most-active-contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;getWorkspaceMostActiveContributors&quot;,
+    summary: &quot;Gets workspace most active contributors for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiOkResponse({ type: DbContributorStat })
+  @ApiNotFoundResponse({ description: &quot;Unable to get user workspace most-active-contributors index&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
+  async getWorkspaceMostActiveContributors(
+    @Param(&quot;id&quot;) id: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() mostActiveContributorsDto: MostActiveContributorsDto
+  ): Promise&lt;PageDto&lt;DbContributorStat&gt;&gt; {
+    return this.workspaceStatsService.findContributorStatsByWorkspaceIdForUserId(mostActiveContributorsDto, id, userId);
   }
 }
 </code></pre>

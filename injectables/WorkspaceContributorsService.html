@@ -104,7 +104,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#findAllContributorsByWorkspaceIdForUserId" >findAllContributorsByWorkspaceIdForUserId</a>
+                                <a href="#findAllContributors" >findAllContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAllContributorsGuarded" >findAllContributorsGuarded</a>
                             </li>
                         </ul>
                     </td>
@@ -218,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:66</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -325,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:92</a></div>
                 </td>
             </tr>
 
@@ -457,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:152</a></div>
                 </td>
             </tr>
 
@@ -564,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="188"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:188</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:191</a></div>
                 </td>
             </tr>
 
@@ -660,8 +664,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="114"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:114</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:117</a></div>
                 </td>
             </tr>
 
@@ -737,18 +741,89 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAllContributorsByWorkspaceIdForUserId"></a>
+                    <a name="findAllContributors"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>findAllContributorsByWorkspaceIdForUserId</b></span>
-                        <a href="#findAllContributorsByWorkspaceIdForUserId"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAllContributors</b></span>
+                        <a href="#findAllContributors"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllContributorsByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
+                    <code>findAllContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >Promise&lt;DbWorkspaceContributor[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findAllContributorsGuarded"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllContributorsGuarded</b></span>
+                        <a href="#findAllContributorsGuarded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllContributorsGuarded(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
@@ -864,7 +939,7 @@ export class WorkspaceContributorsService {
     return builder;
   }
 
-  async findAllContributorsByWorkspaceIdForUserId(
+  async findAllContributorsGuarded(
     pageOptionsDto: PageOptionsDto,
     id: string,
     userId: number | undefined
@@ -881,6 +956,14 @@ export class WorkspaceContributorsService {
       throw new NotFoundException();
     }
 
+    const entities &#x3D; await this.findAllContributors(id);
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount: entities.length, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllContributors(id: string): Promise&lt;DbWorkspaceContributor[]&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -891,12 +974,7 @@ export class WorkspaceContributorsService {
       )
       .where(&quot;workspace_contributors.workspace_id &#x3D; :id&quot;, { id });
 
-    const itemCount &#x3D; await queryBuilder.getCount();
-    const entities &#x3D; await queryBuilder.getMany();
-
-    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return queryBuilder.getMany();
   }
 
   async addOneWorkspaceContributor(

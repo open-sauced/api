@@ -18,13 +18,13 @@
 <title>cluster_PizzaOvenModule_imports</title>
 <polygon fill="none" stroke="black" points="596,-40.8 596,-92.8 740,-92.8 740,-40.8 596,-40.8"/>
 </g>
-<g id="clust6" class="cluster">
-<title>cluster_PizzaOvenModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 588,-92.8 588,-40.8 16,-40.8"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_PizzaOvenModule_exports</title>
 <polygon fill="none" stroke="black" points="175,-170.8 175,-222.8 614,-222.8 614,-170.8 175,-170.8"/>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_PizzaOvenModule_providers</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 588,-92.8 588,-40.8 16,-40.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">

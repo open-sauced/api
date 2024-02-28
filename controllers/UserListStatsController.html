@@ -413,7 +413,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
+                    <code>@Get(&#x27;:id/stats/top-project-contributions-by-contributor/&#x27;)<br />@ApiOperation({operationId: &#x27;getContributorContributionsByProject&#x27;, summary: &#x27;Gets top 20 contributor stats in a list by a given project&#x27;})<br />@ApiOkResponse({type: DbContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get contributions&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -470,7 +470,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >Promise&lt;DbUserListContributorStat[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >Promise&lt;DbContributorStat[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -495,7 +495,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getMostActiveContributorsV2(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/UserListMostActiveContributorsDto.html" target="_self">UserListMostActiveContributorsDto</a>)</code>
+                    <code>getMostActiveContributorsV2(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pageOptionsDto: <a href="../classes/MostActiveContributorsDto.html" target="_self">MostActiveContributorsDto</a>)</code>
                 </td>
             </tr>
 
@@ -503,7 +503,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributorsV2&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributorStat)<br />@ApiOkResponse({type: DbUserListContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
+                    <code>@Get(&#x27;:id/stats/most-active-contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getMostActiveContributorsV2&#x27;, summary: &#x27;Gets most active contributors for a given list&#x27;})<br />@ApiPaginatedResponse(DbContributorStat)<br />@ApiOkResponse({type: DbContributorStat})<br />@ApiNotFoundResponse({description: &#x27;Unable to get list most active contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;private, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -545,7 +545,7 @@
                                 <tr>
                                     <td>pageOptionsDto</td>
                                     <td>
-                                                <code><a href="../classes/UserListMostActiveContributorsDto.html" target="_self" >UserListMostActiveContributorsDto</a></code>
+                                                <code><a href="../classes/MostActiveContributorsDto.html" target="_self" >MostActiveContributorsDto</a></code>
                                     </td>
 
                                     <td>
@@ -560,7 +560,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../entitys/DbContributorStat.html" target="_self" >Promise&lt;PageDto&lt;DbContributorStat&gt;&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -588,8 +588,8 @@ import {
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 
 import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
-import { UserListMostActiveContributorsDto } from &quot;./dtos/most-active-contributors.dto&quot;;
-import { DbUserListContributorStat } from &quot;./entities/user-list-contributor-stats.entity&quot;;
+import { DbContributorStat } from &quot;../timescale/entities/contributor_devstat.entity&quot;;
+import { MostActiveContributorsDto } from &quot;../timescale/dtos/most-active-contrib.dto&quot;;
 import { DbContributionStatTimeframe } from &quot;./entities/contributions-timeframe.entity&quot;;
 import { ContributionsTimeframeDto } from &quot;./dtos/contributions-timeframe.dto&quot;;
 import { DbContributionsProjects } from &quot;./entities/contributions-projects.entity&quot;;
@@ -608,16 +608,16 @@ export class UserListStatsController {
     operationId: &quot;getMostActiveContributorsV2&quot;,
     summary: &quot;Gets most active contributors for a given list&quot;,
   })
-  @ApiPaginatedResponse(DbUserListContributorStat)
-  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiPaginatedResponse(DbContributorStat)
+  @ApiOkResponse({ type: DbContributorStat })
   @ApiNotFoundResponse({ description: &quot;Unable to get list most active contributors&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
   @Header(&quot;Cache-Control&quot;, &quot;private, max-age&#x3D;600&quot;)
   async getMostActiveContributorsV2(
     @Param(&quot;id&quot;) id: string,
-    @Query() pageOptionsDto: UserListMostActiveContributorsDto
-  ): Promise&lt;PageDto&lt;DbUserListContributorStat&gt;&gt; {
+    @Query() pageOptionsDto: MostActiveContributorsDto
+  ): Promise&lt;PageDto&lt;DbContributorStat&gt;&gt; {
     return this.userListEventsStatsService.findAllListContributorStats(pageOptionsDto, id);
   }
 
@@ -661,7 +661,7 @@ export class UserListStatsController {
     operationId: &quot;getContributorContributionsByProject&quot;,
     summary: &quot;Gets top 20 contributor stats in a list by a given project&quot;,
   })
-  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiOkResponse({ type: DbContributorStat })
   @ApiNotFoundResponse({ description: &quot;Unable to get contributions&quot; })
   @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
   @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
@@ -669,7 +669,7 @@ export class UserListStatsController {
   async getContributorContributionsByProject(
     @Param(&quot;id&quot;) id: string,
     @Query() options: TopProjectsDto
-  ): Promise&lt;DbUserListContributorStat[]&gt; {
+  ): Promise&lt;DbContributorStat[]&gt; {
     return this.userListEventsStatsService.findTopContributorsByProject(options, id);
   }
 
