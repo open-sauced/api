@@ -40,7 +40,7 @@
 | [public.user_list_contributors](public.user_list_contributors.md)         | 6       |         | BASE TABLE |
 | [public.coupons](public.coupons.md)                                       | 3       |         | BASE TABLE |
 | [public.pull_request_reviews](public.pull_request_reviews.md)             | 7       |         | BASE TABLE |
-| [public.workspaces](public.workspaces.md)                                 | 6       |         | BASE TABLE |
+| [public.workspaces](public.workspaces.md)                                 | 8       |         | BASE TABLE |
 | [public.workspace_members](public.workspace_members.md)                   | 7       |         | BASE TABLE |
 | [public.workspace_orgs](public.workspace_orgs.md)                         | 6       |         | BASE TABLE |
 | [public.workspace_repos](public.workspace_repos.md)                       | 6       |         | BASE TABLE |
