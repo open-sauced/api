@@ -2,7 +2,7 @@ import { IsEnum, IsIn, IsInt, IsOptional } from "class-validator";
 
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { UserListContributorStatsTypeEnum } from "./most-active-contributors.dto";
+import { ContributorStatsTypeEnum } from "../../timescale/dtos/most-active-contrib.dto";
 
 export class ContributionsTimeframeDto {
   @ApiPropertyOptional({
@@ -17,11 +17,11 @@ export class ContributionsTimeframeDto {
   readonly range?: number = 30;
 
   @ApiPropertyOptional({
-    enum: UserListContributorStatsTypeEnum,
-    enumName: "UserListContributorStatsTypeEnum",
-    default: UserListContributorStatsTypeEnum.all,
+    enum: ContributorStatsTypeEnum,
+    enumName: "ContributorStatsTypeEnum",
+    default: ContributorStatsTypeEnum.all,
   })
-  @IsEnum(UserListContributorStatsTypeEnum)
+  @IsEnum(ContributorStatsTypeEnum)
   @IsOptional()
-  contributorType?: UserListContributorStatsTypeEnum = UserListContributorStatsTypeEnum.all;
+  contributorType?: ContributorStatsTypeEnum = ContributorStatsTypeEnum.all;
 }

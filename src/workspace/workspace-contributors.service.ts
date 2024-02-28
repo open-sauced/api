@@ -28,7 +28,7 @@ export class WorkspaceContributorsService {
     return builder;
   }
 
-  async findAllContributorsByWorkspaceIdForUserId(
+  async findAllContributorsGuarded(
     pageOptionsDto: PageOptionsDto,
     id: string,
     userId: number | undefined
@@ -45,6 +45,14 @@ export class WorkspaceContributorsService {
       throw new NotFoundException();
     }
 
+    const entities = await this.findAllContributors(id);
+
+    const pageMetaDto = new PageMetaDto({ itemCount: entities.length, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllContributors(id: string): Promise<DbWorkspaceContributor[]> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -55,12 +63,7 @@ export class WorkspaceContributorsService {
       )
       .where("workspace_contributors.workspace_id = :id", { id });
 
-    const itemCount = await queryBuilder.getCount();
-    const entities = await queryBuilder.getMany();
-
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-
-    return new PageDto(entities, pageMetaDto);
+    return queryBuilder.getMany();
   }
 
   async addOneWorkspaceContributor(
