@@ -43,7 +43,7 @@ export class WorkspaceContributorController {
     @OptionalUserId() userId: number | undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceContributor>> {
-    return this.workspaceContributorService.findAllContributorsByWorkspaceIdForUserId(pageOptionsDto, id, userId);
+    return this.workspaceContributorService.findAllContributorsGuarded(pageOptionsDto, id, userId);
   }
 
   @Post()

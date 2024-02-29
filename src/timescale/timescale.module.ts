@@ -25,6 +25,8 @@ import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
 import { RepoDevstatsService } from "./repo-devstats.service";
 import { DbPushGitHubEvents } from "./entities/push_github_events";
 import { DbPullRequestReviewCommentGitHubEventsHistogram } from "./entities/pull_request_review_comment_events_histogram.entity";
+import { ContributorDevstatsService } from "./contrib-stats.service";
+import { DbContributorStat } from "./entities/contributor_devstat.entity";
 
 @Module({
   imports: [
@@ -42,6 +44,7 @@ import { DbPullRequestReviewCommentGitHubEventsHistogram } from "./entities/pull
         DbPushGitHubEventsHistogram,
         DbWatchGitHubEventsHistogram,
         DbPullRequestReviewCommentGitHubEventsHistogram,
+        DbContributorStat,
       ],
       "TimescaleConnection"
     ),
@@ -56,6 +59,7 @@ import { DbPullRequestReviewCommentGitHubEventsHistogram } from "./entities/pull
     PushGithubEventsService,
     RepoDevstatsService,
     WatchGithubEventsService,
+    ContributorDevstatsService,
   ],
   exports: [
     ForkGithubEventsService,
@@ -66,6 +70,7 @@ import { DbPullRequestReviewCommentGitHubEventsHistogram } from "./entities/pull
     PushGithubEventsService,
     RepoDevstatsService,
     WatchGithubEventsService,
+    ContributorDevstatsService,
   ],
 })
 export class TimescaleModule {}

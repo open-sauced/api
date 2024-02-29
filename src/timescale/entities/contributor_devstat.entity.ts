@@ -1,10 +1,10 @@
 import { Column, Entity } from "typeorm";
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 
-@Entity({ name: "user_list_contributors" })
-export class DbUserListContributorStat {
+@Entity({ name: "pull_request_github_events" })
+export class DbContributorStat {
   @ApiModelProperty({
-    description: "User list collaborator's login",
+    description: "User's login",
     example: "bdougie",
   })
   @Column({

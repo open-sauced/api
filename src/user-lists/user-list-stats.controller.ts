@@ -12,8 +12,8 @@ import {
 import { PageDto } from "../common/dtos/page.dto";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
-import { UserListMostActiveContributorsDto } from "./dtos/most-active-contributors.dto";
-import { DbUserListContributorStat } from "./entities/user-list-contributor-stats.entity";
+import { DbContributorStat } from "../timescale/entities/contributor_devstat.entity";
+import { MostActiveContributorsDto } from "../timescale/dtos/most-active-contrib.dto";
 import { DbContributionStatTimeframe } from "./entities/contributions-timeframe.entity";
 import { ContributionsTimeframeDto } from "./dtos/contributions-timeframe.dto";
 import { DbContributionsProjects } from "./entities/contributions-projects.entity";
@@ -32,16 +32,16 @@ export class UserListStatsController {
     operationId: "getMostActiveContributorsV2",
     summary: "Gets most active contributors for a given list",
   })
-  @ApiPaginatedResponse(DbUserListContributorStat)
-  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiPaginatedResponse(DbContributorStat)
+  @ApiOkResponse({ type: DbContributorStat })
   @ApiNotFoundResponse({ description: "Unable to get list most active contributors" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
   @Header("Cache-Control", "private, max-age=600")
   async getMostActiveContributorsV2(
     @Param("id") id: string,
-    @Query() pageOptionsDto: UserListMostActiveContributorsDto
-  ): Promise<PageDto<DbUserListContributorStat>> {
+    @Query() pageOptionsDto: MostActiveContributorsDto
+  ): Promise<PageDto<DbContributorStat>> {
     return this.userListEventsStatsService.findAllListContributorStats(pageOptionsDto, id);
   }
 
@@ -85,7 +85,7 @@ export class UserListStatsController {
     operationId: "getContributorContributionsByProject",
     summary: "Gets top 20 contributor stats in a list by a given project",
   })
-  @ApiOkResponse({ type: DbUserListContributorStat })
+  @ApiOkResponse({ type: DbContributorStat })
   @ApiNotFoundResponse({ description: "Unable to get contributions" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   @ApiParam({ name: "id", type: "string" })
@@ -93,7 +93,7 @@ export class UserListStatsController {
   async getContributorContributionsByProject(
     @Param("id") id: string,
     @Query() options: TopProjectsDto
-  ): Promise<DbUserListContributorStat[]> {
+  ): Promise<DbContributorStat[]> {
     return this.userListEventsStatsService.findTopContributorsByProject(options, id);
   }
 
