@@ -258,8 +258,8 @@ export class UserService {
       if (!user.is_open_sauced_member) {
         // create new workspace for user
         const newWorkspace = await this.workspaceRepository.save({
-          name: "Personal workspace",
-          description: "A personal workspace",
+          name: "Your workspace",
+          description: "Your personal workspace",
         });
 
         await this.userRepository.update(user.id, {
@@ -280,8 +280,8 @@ export class UserService {
     } catch (e) {
       // create new workspace for user
       const newWorkspace = await this.workspaceRepository.save({
-        name: "Personal workspace",
-        description: "A personal workspace",
+        name: "Your workspace",
+        description: "Your personal workspace",
       });
 
       // create new user
