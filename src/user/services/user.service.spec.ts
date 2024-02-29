@@ -270,8 +270,8 @@ describe("UserService", () => {
     const userId = faker.number.int();
     const newWorkspace = {
       id: "abc-123",
-      name: "Personal workspace",
-      description: "A personal workspace",
+      name: "Your workspace",
+      description: "Your personal workspace",
     };
     const supabaseUser = {
       id: faker.string.uuid(),
