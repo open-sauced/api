@@ -127,7 +127,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findPersonalWorkspaceByUsername&#x27;, summary: &#x27;Gets the personal workspace for the given authenticated user&#x27;})<br />@ApiPaginatedResponse(DbWorkspace)<br />@ApiOkResponse({type: DbWorkspace})<br />@ApiNotFoundResponse({description: &#x27;Personal workspace not found&#x27;})<br /></code>
+                    <code>@Get()<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOperation({operationId: &#x27;findPersonalWorkspaceByUsername&#x27;, summary: &#x27;Gets the personal workspace for the given authenticated user&#x27;})<br />@ApiPaginatedResponse(DbWorkspace)<br />@ApiOkResponse({type: DbWorkspace})<br />@ApiNotFoundResponse({description: &#x27;workspace not found&#x27;})<br /></code>
                 </td>
             </tr>
 
@@ -210,7 +210,7 @@ export class UserPersonalWorkspaceController {
   })
   @ApiPaginatedResponse(DbWorkspace)
   @ApiOkResponse({ type: DbWorkspace })
-  @ApiNotFoundResponse({ description: &quot;Personal workspace not found&quot; })
+  @ApiNotFoundResponse({ description: &quot;workspace not found&quot; })
   async findPersonalWorkspaceByUsername(@UserId() userId: number): Promise&lt;DbWorkspace&gt; {
     const user &#x3D; await this.userService.findOneById(userId);
 
