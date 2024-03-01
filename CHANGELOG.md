@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.10.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0...v2.10.0) (2024-02-29)
+
+
+### 🍕 Features
+
+* Most active workspace contribs ([#600](https://github.com/open-sauced/api.opensauced.pizza/issues/600)) ([8573c88](https://github.com/open-sauced/api.opensauced.pizza/commit/8573c881622872801c99978222151a830e45663b))
+* Rename "Personal workspace" to "Your workspace" ([#609](https://github.com/open-sauced/api.opensauced.pizza/issues/609)) ([c5a1eba](https://github.com/open-sauced/api.opensauced.pizza/commit/c5a1eba3101ff586d722749952148664881126f0))
+
 ## [2.10.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.10.0-beta.1...v2.10.0-beta.2) (2024-02-29)
 
 
