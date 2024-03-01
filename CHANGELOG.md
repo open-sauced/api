@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.11.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.10.0...v2.11.0-beta.1) (2024-03-01)
+
+
+### 🍕 Features
+
+* Ability to move workspace insights ([#613](https://github.com/open-sauced/api.opensauced.pizza/issues/613)) ([226ea95](https://github.com/open-sauced/api.opensauced.pizza/commit/226ea95a119b28491f4dd7fa7c058199e9d6935a))
+
 ## [2.10.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.9.0...v2.10.0) (2024-02-29)
 
 
