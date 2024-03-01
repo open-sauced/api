@@ -12,6 +12,7 @@ import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { WorkspaceService } from "./workspace.service";
 import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
+import { MoveWorkspaceInsightDto } from "./dtos/move-workspace-insight.dto";
 
 @Injectable()
 export class WorkspaceInsightsService {
@@ -127,6 +128,58 @@ export class WorkspaceInsightsService {
 
     if (!item) {
       throw new NotFoundException("newly created workspace was not found");
+    }
+
+    return item;
+  }
+
+  async moveWorkspaceInsight(
+    dto: MoveWorkspaceInsightDto,
+    homeWorkspaceId: string,
+    newWorkspaceId: string,
+    userId: number
+  ): Promise<DbWorkspaceInsight> {
+    /*
+     * owners and editors can move workspace insight pages they are members of.
+     * note: the given user must be an owner / editor of BOTH workspaces to move it.
+     */
+
+    const homeWorkspace = await this.workspaceService.findOneById(homeWorkspaceId);
+    const canEditHomeWorkspace = canUserEditWorkspace(homeWorkspace, userId);
+
+    if (!canEditHomeWorkspace) {
+      throw new UnauthorizedException();
+    }
+
+    const workspaceInsight = await this.workspaceInsightRepository.findOne({
+      where: {
+        insight_id: dto.id,
+      },
+    });
+
+    if (!workspaceInsight) {
+      throw new NotFoundException(`workspace insight with insight id ${dto.id} not found`);
+    }
+
+    const newWorkspace = await this.workspaceService.findOneById(newWorkspaceId);
+    const canEditNewWorkspace = canUserEditWorkspace(newWorkspace, userId);
+
+    if (!canEditNewWorkspace) {
+      throw new UnauthorizedException();
+    }
+
+    await this.workspaceInsightRepository.update(workspaceInsight.id, {
+      workspace: newWorkspace,
+    });
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("workspace_insights.insight_id = :id", { id: dto.id });
+
+    const item: DbWorkspaceInsight | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException("newly moved workspace insight was not found");
     }
 
     return item;

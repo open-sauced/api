@@ -21,6 +21,7 @@ import { SupabaseGuard } from "../auth/supabase.guard";
 import { CreateInsightDto } from "../insight/dtos/create-insight.dto";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
 import { WorkspaceInsightsService } from "./workspace-insights.service";
+import { MoveWorkspaceInsightDto } from "./dtos/move-workspace-insight.dto";
 
 @Controller("workspaces/:id/insights")
 @ApiTags("Workspace insights service")
@@ -63,6 +64,28 @@ export class WorkspaceInsightsController {
     @UserId() userId: number
   ): Promise<DbWorkspaceInsight> {
     return this.workspaceInsightsService.addWorkspaceInsight(createWorkspaceInsightDto, id, userId);
+  }
+
+  @Post("/:newWorkspaceId")
+  @ApiOperation({
+    operationId: "moveWorkspaceInsightForUser",
+    summary: "Moves a workspace insight page for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceInsight })
+  @ApiNotFoundResponse({ description: "Unable to move workspace insight page" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to move workspace insight" })
+  @ApiBody({ type: MoveWorkspaceInsightDto })
+  @ApiParam({ name: "id", type: "string" })
+  @ApiParam({ name: "newWorkspaceId", type: "string" })
+  async moveWorkspaceInsightForUser(
+    @Param("id") id: string,
+    @Param("newWorkspaceId") newWorkspaceId: string,
+    @Body() moveWorkspaceInsightDto: MoveWorkspaceInsightDto,
+    @UserId() userId: number
+  ): Promise<DbWorkspaceInsight> {
+    return this.workspaceInsightsService.moveWorkspaceInsight(moveWorkspaceInsightDto, id, newWorkspaceId, userId);
   }
 
   @Get("/:insightId")
