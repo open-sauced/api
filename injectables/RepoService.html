@@ -346,8 +346,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="304"
-                            class="link-to-prism">src/repo/repo.service.ts:304</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/repo/repo.service.ts:306</a></div>
                 </td>
             </tr>
 
@@ -1395,7 +1395,9 @@ export class RepoService {
     } catch (e) {
       // could not find repo being added to workspace in our database. Add it.
       if (repoId) {
-        throw new BadRequestException(&quot;no repo by repo ID found: must provide repo owner/name to create stub user&quot;);
+        throw new BadRequestException(
+          &#x60;no repo by repo ID ${repoId} found in DB: must provide repo owner/name to create stub user from GitHub&#x60;
+        );
       } else if (repoOwner &amp;&amp; repoName) {
         repo &#x3D; await this.createStubRepo(repoOwner, repoName);
       }
