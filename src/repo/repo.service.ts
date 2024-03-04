@@ -288,7 +288,9 @@ export class RepoService {
     } catch (e) {
       // could not find repo being added to workspace in our database. Add it.
       if (repoId) {
-        throw new BadRequestException("no repo by repo ID found: must provide repo owner/name to create stub user");
+        throw new BadRequestException(
+          `no repo by repo ID ${repoId} found in DB: must provide repo owner/name to create stub user from GitHub`
+        );
       } else if (repoOwner && repoName) {
         repo = await this.createStubRepo(repoOwner, repoName);
       }
