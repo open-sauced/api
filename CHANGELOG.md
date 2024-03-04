@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.11.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2024-03-04)
+
+
+### 🍕 Features
+
+* Allow for promo-codes in pro workspaces ([#615](https://github.com/open-sauced/api.opensauced.pizza/issues/615)) ([116c9b1](https://github.com/open-sauced/api.opensauced.pizza/commit/116c9b1c3c55d5727811bca010dc1fccad2aa898))
+
 ## [2.11.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.10.0...v2.11.0-beta.1) (2024-03-01)
 
 
