@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.11.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.2...v2.11.0-beta.3) (2024-03-04)
+
+
+### 🐛 Bug Fixes
+
+* Add repo ID for missing repo in error message ([#617](https://github.com/open-sauced/api.opensauced.pizza/issues/617)) ([bb48f2d](https://github.com/open-sauced/api.opensauced.pizza/commit/bb48f2da8e5ff14c3a2945fc9c36740e8e4feb4b))
+
 ## [2.11.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.1...v2.11.0-beta.2) (2024-03-04)
 
 
