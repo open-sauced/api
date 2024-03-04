@@ -51,6 +51,7 @@ export class StripeService {
         workspace_id: workspaceId,
       },
       billing_address_collection: "required",
+      allow_promotion_codes: true,
       customer,
       line_items: [
         {
