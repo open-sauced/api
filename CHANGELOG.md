@@ -5,6 +5,20 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.11.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.10.0...v2.11.0) (2024-03-05)
+
+
+### 🐛 Bug Fixes
+
+* Add repo ID for missing repo in error message ([#617](https://github.com/open-sauced/api.opensauced.pizza/issues/617)) ([bb48f2d](https://github.com/open-sauced/api.opensauced.pizza/commit/bb48f2da8e5ff14c3a2945fc9c36740e8e4feb4b))
+
+
+### 🍕 Features
+
+* Ability to move workspace insights ([#613](https://github.com/open-sauced/api.opensauced.pizza/issues/613)) ([226ea95](https://github.com/open-sauced/api.opensauced.pizza/commit/226ea95a119b28491f4dd7fa7c058199e9d6935a))
+* Add workspace stat filtering by repo name ([#616](https://github.com/open-sauced/api.opensauced.pizza/issues/616)) ([5d66226](https://github.com/open-sauced/api.opensauced.pizza/commit/5d6622626d75ce39d601ae97701123fff1153a5a))
+* Allow for promo-codes in pro workspaces ([#615](https://github.com/open-sauced/api.opensauced.pizza/issues/615)) ([116c9b1](https://github.com/open-sauced/api.opensauced.pizza/commit/116c9b1c3c55d5727811bca010dc1fccad2aa898))
+
 ## [2.11.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.3...v2.11.0-beta.4) (2024-03-05)
 
 
