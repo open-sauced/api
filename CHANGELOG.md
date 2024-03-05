@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.11.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.3...v2.11.0-beta.4) (2024-03-05)
+
+
+### 🍕 Features
+
+* Add workspace stat filtering by repo name ([#616](https://github.com/open-sauced/api.opensauced.pizza/issues/616)) ([5d66226](https://github.com/open-sauced/api.opensauced.pizza/commit/5d6622626d75ce39d601ae97701123fff1153a5a))
+
 ## [2.11.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0-beta.2...v2.11.0-beta.3) (2024-03-04)
 
 
