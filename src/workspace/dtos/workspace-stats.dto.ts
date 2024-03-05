@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsIn, IsInt, IsOptional } from "class-validator";
+import { IsArray, IsIn, IsInt, IsOptional } from "class-validator";
 
 export class WorkspaceStatsOptionsDto {
   @ApiPropertyOptional({
@@ -24,4 +24,14 @@ export class WorkspaceStatsOptionsDto {
   @IsInt()
   @IsOptional()
   readonly prev_days_start_date?: number = 0;
+
+  @ApiPropertyOptional({
+    description: "An array of repo names to filter for",
+    isArray: true,
+    example: ["open-sauced/api", "open-sauced/app"],
+  })
+  @IsArray()
+  @IsOptional()
+  @Type(() => String)
+  repos?: string[];
 }
