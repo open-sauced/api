@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/workspace/workspace-stats.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/workspace/workspace-stats.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -275,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -314,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="172"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:172</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="179"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:179</a></div>
                 </td>
             </tr>
 
@@ -409,8 +409,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="129"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:129</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:136</a></div>
                 </td>
             </tr>
 
@@ -504,8 +504,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -587,6 +587,7 @@
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
+import { sanitizeRepos } from &quot;../timescale/common/repos&quot;;
 import { RepoDevstatsService } from &quot;../timescale/repo-devstats.service&quot;;
 import { IssuesGithubEventsService } from &quot;../timescale/issues_github_events.service&quot;;
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
@@ -659,6 +660,12 @@ export class WorkspaceStatsService {
         &quot;workspace_repos.repo_id &#x3D; workspace_repos_repo.id&quot;
       )
       .where(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
+
+    if (options.repos) {
+      const sanitizedRepos &#x3D; sanitizeRepos(options.repos);
+
+      queryBuilder.andWhere(&quot;LOWER(workspace_repos_repo.full_name) IN (:...sanitizedRepos)&quot;, { sanitizedRepos });
+    }
 
     const entities &#x3D; await queryBuilder.getMany();
 
