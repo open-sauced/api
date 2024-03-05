@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
+import { sanitizeRepos } from "../timescale/common/repos";
 import { RepoDevstatsService } from "../timescale/repo-devstats.service";
 import { IssuesGithubEventsService } from "../timescale/issues_github_events.service";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
@@ -74,6 +75,12 @@ export class WorkspaceStatsService {
         "workspace_repos.repo_id = workspace_repos_repo.id"
       )
       .where("workspace_repos.workspace_id = :id", { id });
+
+    if (options.repos) {
+      const sanitizedRepos = sanitizeRepos(options.repos);
+
+      queryBuilder.andWhere("LOWER(workspace_repos_repo.full_name) IN (:...sanitizedRepos)", { sanitizedRepos });
+    }
 
     const entities = await queryBuilder.getMany();
 
