@@ -6,6 +6,8 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { RepoService } from "../repo/repo.service";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoSearchOptionsDto } from "../repo/dtos/repo-search-options.dto";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { WorkspaceService } from "./workspace.service";
@@ -61,6 +63,26 @@ export class WorkspaceReposService {
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
+  }
+
+  async findAllReposByFilterInWorkspace(
+    pageOptionsDto: RepoSearchOptionsDto,
+    id: string,
+    userId: number | undefined
+  ): Promise<PageDto<DbRepo>> {
+    const workspace = await this.workspaceService.findOneById(id);
+
+    /*
+     * viewers, editors, and owners can see what repos belongs to a workspace
+     */
+
+    const canView = canUserViewWorkspace(workspace, userId);
+
+    if (!canView) {
+      throw new NotFoundException();
+    }
+
+    return this.repoService.findAllWithFiltersInWorkspace(pageOptionsDto, id);
   }
 
   async addOneWorkspaceRepo(id: string, owner: string, repo: string, userId: number): Promise<DbWorkspace> {
