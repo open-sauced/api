@@ -101,6 +101,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findAllWorkspaceReposWithFilters" >findAllWorkspaceReposWithFilters</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getWorkspaceReposForUser" >getWorkspaceReposForUser</a>
                             </li>
                         </ul>
@@ -149,8 +153,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:103</a></div>
                 </td>
             </tr>
 
@@ -263,8 +267,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -365,8 +369,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:143</a></div>
                 </td>
             </tr>
 
@@ -479,8 +483,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:123</a></div>
                 </td>
             </tr>
 
@@ -556,6 +560,108 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAllWorkspaceReposWithFilters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>findAllWorkspaceReposWithFilters</b></span>
+                        <a href="#findAllWorkspaceReposWithFilters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAllWorkspaceReposWithFilters(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/RepoSearchOptionsDto.html" target="_self">RepoSearchOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/search&#x27;)<br />@ApiOperation({operationId: &#x27;findAllWorkspaceReposWithFilters&#x27;, summary: &#x27;Finds all workspace repos using filters and paginates them&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiPaginatedResponse(DbRepo)<br />@ApiOkResponse({type: DbRepo})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:62</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/RepoSearchOptionsDto.html" target="_self" >RepoSearchOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getWorkspaceReposForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -581,8 +687,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/workspace/workspace-repos.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -677,6 +783,9 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { OptionalUserId, UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { DbRepo } from &quot;../repo/entities/repo.entity&quot;;
+import { RepoSearchOptionsDto } from &quot;../repo/dtos/repo-search-options.dto&quot;;
 import { WorkspaceReposService } from &quot;./workspace-repos.service&quot;;
 import { DbWorkspaceRepo } from &quot;./entities/workspace-repos.entity&quot;;
 import { UpdateWorkspaceReposDto } from &quot;./dtos/update-workspace-repos.dto&quot;;
@@ -704,6 +813,24 @@ export class WorkspaceRepoController {
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbWorkspaceRepo&gt;&gt; {
     return this.workspaceRepoService.findAllReposByWorkspaceIdForUserId(pageOptionsDto, id, userId);
+  }
+
+  @Get(&quot;/search&quot;)
+  @ApiOperation({
+    operationId: &quot;findAllWorkspaceReposWithFilters&quot;,
+    summary: &quot;Finds all workspace repos using filters and paginates them&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  async findAllWorkspaceReposWithFilters(
+    @Param(&quot;id&quot;) id: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() pageOptionsDto: RepoSearchOptionsDto
+  ): Promise&lt;PageDto&lt;DbRepo&gt;&gt; {
+    return this.workspaceRepoService.findAllReposByFilterInWorkspace(pageOptionsDto, id, userId);
   }
 
   @Post()

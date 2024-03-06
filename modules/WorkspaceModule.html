@@ -465,6 +465,7 @@ import { DbUser } from &quot;../user/user.entity&quot;;
 import { UserListModule } from &quot;../user-lists/user-list.module&quot;;
 import { DbUserList } from &quot;../user-lists/entities/user-list.entity&quot;;
 import { AuthModule } from &quot;../auth/auth.module&quot;;
+import { RepoModule } from &quot;../repo/repo.module&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { WorkspaceController } from &quot;./workspace.controller&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
@@ -497,6 +498,7 @@ import { WorkspacePayeeService } from &quot;./workspace-payee.service&quot;;
     forwardRef(() &#x3D;&gt; InsightsModule),
     forwardRef(() &#x3D;&gt; TimescaleModule),
     forwardRef(() &#x3D;&gt; UserListModule),
+    forwardRef(() &#x3D;&gt; RepoModule),
     ApiServicesModule,
     TypeOrmModule.forFeature(
       [

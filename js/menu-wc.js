@@ -925,13 +925,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/WorkspaceModule.html" data-type="entity-link" >WorkspaceModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' }>
+                                            'data-target="#controllers-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' : 'data-target="#xs-controllers-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' :
-                                            'id="xs-controllers-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' :
+                                            'id="xs-controllers-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' }>
                                             <li class="link">
                                                 <a href="controllers/WorkspaceContributorController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceContributorController</a>
                                             </li>
@@ -960,13 +960,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' }>
+                                        'data-target="#injectables-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' : 'data-target="#xs-injectables-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' :
-                                        'id="xs-injectables-links-module-WorkspaceModule-e2beb5b722c8caab0bdfd651e65d12af897ffcd8afe575dd92394b0dd2e4dbe17908866e0e5d47589cd6439e58dac5f1f0f6f29b95666fe6ee7e2cf9ffd89abd"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' :
+                                        'id="xs-injectables-links-module-WorkspaceModule-2bf5d0b5b248ee8afbc796ed434494503d0c58669a4e2679ead001ce33c30313ee73417d18afc8968bca3b3e8ef89c26e1511e7b4cf44e29e503dcba49caca9f"' }>
                                         <li class="link">
                                             <a href="injectables/WorkspaceContributorsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >WorkspaceContributorsService</a>
                                         </li>
