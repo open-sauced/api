@@ -9,6 +9,7 @@ import { DbUser } from "../user/user.entity";
 import { UserListModule } from "../user-lists/user-list.module";
 import { DbUserList } from "../user-lists/entities/user-list.entity";
 import { AuthModule } from "../auth/auth.module";
+import { RepoModule } from "../repo/repo.module";
 import { WorkspaceService } from "./workspace.service";
 import { WorkspaceController } from "./workspace.controller";
 import { DbWorkspace } from "./entities/workspace.entity";
@@ -41,6 +42,7 @@ import { WorkspacePayeeService } from "./workspace-payee.service";
     forwardRef(() => InsightsModule),
     forwardRef(() => TimescaleModule),
     forwardRef(() => UserListModule),
+    forwardRef(() => RepoModule),
     ApiServicesModule,
     TypeOrmModule.forFeature(
       [
