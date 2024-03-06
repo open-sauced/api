@@ -325,12 +325,10 @@ export class PullRequestGithubEventsService {
     range: number,
     prevDaysStartDate: number
   ): Promise<DbPullRequestGitHubEventsHistogram> {
-    const cteBuilder = this.baseRepoCteBuilder(repo, range, prevDaysStartDate);
+    const startDate = GetPrevDateISOString(prevDaysStartDate);
 
     const queryBuilder = this.pullRequestGithubEventsRepository.manager
       .createQueryBuilder()
-      .addCommonTableExpression(cteBuilder, "CTE")
-      .setParameters(cteBuilder.getParameters())
       .addSelect("count(*)", "prs_count")
       .addSelect("count(CASE WHEN LOWER(pr_action) = 'closed' AND pr_is_merged = true THEN 1 END)", "accepted_prs")
       .addSelect("count(CASE WHEN LOWER(pr_action) = 'opened' AND pr_is_draft = false THEN 1 END)", "open_prs")
@@ -341,8 +339,10 @@ export class PullRequestGithubEventsService {
       .addSelect(
         `COALESCE(AVG(CASE WHEN pr_is_merged = true THEN pr_merged_at::DATE - pr_created_at::DATE END), 0)::INTEGER AS pr_velocity`
       )
-      .from("CTE", "CTE")
-      .where("row_num = 1");
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where(`LOWER("pull_request_github_events"."repo_name") = LOWER(:repo_name)`, { repo_name: repo.toLowerCase() })
+      .andWhere(`'${startDate}'::TIMESTAMP >= "pull_request_github_events"."event_time"`)
+      .andWhere(`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "pull_request_github_events"."event_time"`);
 
     const result: DbPullRequestGitHubEventsHistogram | undefined = await queryBuilder.getRawOne();
 
