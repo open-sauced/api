@@ -50,12 +50,14 @@ export class WorkspaceReposService {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
+      .withDeleted()
       .leftJoinAndSelect(
         "workspace_repos.repo",
         "workspace_repos_repo",
         "workspace_repos.repo_id = workspace_repos_repo.id"
       )
-      .where("workspace_repos.workspace_id = :id", { id });
+      .where("workspace_repos.deleted_at IS NULL")
+      .andWhere("workspace_repos.workspace_id = :id", { id });
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
