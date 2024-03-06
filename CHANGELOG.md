@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.1...v2.12.0-beta.2) (2024-03-06)
+
+
+### 🐛 Bug Fixes
+
+* PR stats now get all pr events, not just most recent ([#626](https://github.com/open-sauced/api.opensauced.pizza/issues/626)) ([7a6d3ee](https://github.com/open-sauced/api.opensauced.pizza/commit/7a6d3ee0ac7ba016f47c945ebc287d5ad7c8bb43))
+
 ## [2.12.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0...v2.12.0-beta.1) (2024-03-06)
 
 
