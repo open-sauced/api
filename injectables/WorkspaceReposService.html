@@ -222,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="106"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:106</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="108"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:108</a></div>
                 </td>
             </tr>
 
@@ -461,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="156"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:156</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:158</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:188</a></div>
                 </td>
             </tr>
 
@@ -664,8 +664,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:133</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:135</a></div>
                 </td>
             </tr>
 
@@ -759,8 +759,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/workspace/workspace-repos.service.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/workspace/workspace-repos.service.ts:70</a></div>
                 </td>
             </tr>
 
@@ -985,12 +985,14 @@ export class WorkspaceReposService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .withDeleted()
       .leftJoinAndSelect(
         &quot;workspace_repos.repo&quot;,
         &quot;workspace_repos_repo&quot;,
         &quot;workspace_repos.repo_id &#x3D; workspace_repos_repo.id&quot;
       )
-      .where(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
+      .where(&quot;workspace_repos.deleted_at IS NULL&quot;)
+      .andWhere(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();

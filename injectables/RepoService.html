@@ -1419,7 +1419,7 @@ export class RepoService {
     const prevDaysStartDate &#x3D; pageOptionsDto.prev_days_start_date!;
     const range &#x3D; pageOptionsDto.range!;
 
-    const queryBuilder &#x3D; this.baseFilterQueryBuilder();
+    const queryBuilder &#x3D; this.baseFilterQueryBuilder().withDeleted().addSelect(&quot;repos.deleted_at&quot;);
 
     const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 

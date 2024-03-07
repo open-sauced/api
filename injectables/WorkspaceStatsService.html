@@ -314,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="179"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:179</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:183</a></div>
                 </td>
             </tr>
 
@@ -409,8 +409,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="138"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:138</a></div>
                 </td>
             </tr>
 
@@ -654,12 +654,14 @@ export class WorkspaceStatsService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .withDeleted()
       .leftJoinAndSelect(
         &quot;workspace_repos.repo&quot;,
         &quot;workspace_repos_repo&quot;,
         &quot;workspace_repos.repo_id &#x3D; workspace_repos_repo.id&quot;
       )
-      .where(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
+      .where(&quot;workspace_repos.deleted_at IS NULL&quot;)
+      .andWhere(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
 
     if (options.repos) {
       const sanitizedRepos &#x3D; sanitizeRepos(options.repos);
@@ -742,12 +744,14 @@ export class WorkspaceStatsService {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
+      .withDeleted()
       .leftJoinAndSelect(
         &quot;workspace_repos.repo&quot;,
         &quot;workspace_repos_repo&quot;,
         &quot;workspace_repos.repo_id &#x3D; workspace_repos_repo.id&quot;
       )
-      .where(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
+      .where(&quot;workspace_repos.deleted_at IS NULL&quot;)
+      .andWhere(&quot;workspace_repos.workspace_id &#x3D; :id&quot;, { id });
 
     const entities &#x3D; await queryBuilder.getMany();
     const entityRepos &#x3D; entities.map((entity) &#x3D;&gt; entity.repo.full_name);
