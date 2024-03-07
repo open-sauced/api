@@ -136,7 +136,7 @@ export class RepoService {
     const prevDaysStartDate = pageOptionsDto.prev_days_start_date!;
     const range = pageOptionsDto.range!;
 
-    const queryBuilder = this.baseFilterQueryBuilder();
+    const queryBuilder = this.baseFilterQueryBuilder().withDeleted().addSelect("repos.deleted_at");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
