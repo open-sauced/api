@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.2...v2.12.0-beta.3) (2024-03-07)
+
+
+### 🐛 Bug Fixes
+
+* Left join deleted repos in workspace-repos ([#628](https://github.com/open-sauced/api.opensauced.pizza/issues/628)) ([c39611a](https://github.com/open-sauced/api.opensauced.pizza/commit/c39611aa3c865d3e66b0842a0ceee55ab98bc324))
+
 ## [2.12.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.1...v2.12.0-beta.2) (2024-03-06)
 
 
