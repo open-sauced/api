@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.6...v2.12.0-beta.7) (2024-03-08)
+
+
+### 🐛 Bug Fixes
+
+* Allow for stubbing out repos with repo ID and org/name ([#633](https://github.com/open-sauced/api.opensauced.pizza/issues/633)) ([1231861](https://github.com/open-sauced/api.opensauced.pizza/commit/123186168fa364d90b8818fbc1ac512d25bcf7c8))
+
 ## [2.12.0-beta.6](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.5...v2.12.0-beta.6) (2024-03-08)
 
 
