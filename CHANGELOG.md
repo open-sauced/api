@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.3...v2.12.0-beta.4) (2024-03-08)
+
+
+### 🍕 Features
+
+* Allow for workspace member access GET of all users ([#631](https://github.com/open-sauced/api.opensauced.pizza/issues/631)) ([f71ccc1](https://github.com/open-sauced/api.opensauced.pizza/commit/f71ccc1ad3eeaa64c5b72f83b35d0306353fe632))
+
 ## [2.12.0-beta.3](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.2...v2.12.0-beta.3) (2024-03-07)
 
 
