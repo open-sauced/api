@@ -11,9 +11,10 @@ import {
   ApiBody,
 } from "@nestjs/swagger";
 
+import { PassthroughSupabaseGuard } from "../auth/passthrough-supabase.guard";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
-import { UserId } from "../auth/supabase.user.decorator";
+import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { DbWorkspaceMember } from "./entities/workspace-member.entity";
@@ -33,13 +34,13 @@ export class WorkspaceMemberController {
     summary: "Gets workspace members for the authenticated user",
   })
   @ApiBearerAuth()
-  @UseGuards(SupabaseGuard)
+  @UseGuards(PassthroughSupabaseGuard)
   @ApiOkResponse({ type: DbWorkspaceMember })
   @ApiNotFoundResponse({ description: "Unable to get user workspace members" })
   @ApiBadRequestResponse({ description: "Invalid request" })
   async getWorkspaceMembersForUser(
     @Param("id") id: string,
-    @UserId() userId: number,
+    @OptionalUserId() userId: undefined,
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceMember>> {
     return this.workspaceMemberService.findAllMembersByWorkspaceIdForUserId(pageOptionsDto, id, userId);
