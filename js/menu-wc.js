@@ -1363,6 +1363,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/MoveWorkspaceInsightDto.html" data-type="entity-link" >MoveWorkspaceInsightDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/MoveWorkspaceUserListDto.html" data-type="entity-link" >MoveWorkspaceUserListDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/NewMember.html" data-type="entity-link" >NewMember</a>
                             </li>
                             <li class="link">
