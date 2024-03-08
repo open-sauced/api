@@ -355,8 +355,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="316"
-                            class="link-to-prism">src/repo/repo.service.ts:316</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="312"
+                            class="link-to-prism">src/repo/repo.service.ts:312</a></div>
                 </td>
             </tr>
 
@@ -1562,12 +1562,8 @@ export class RepoService {
   }
 
   async tryFindRepoOrMakeStub(repoId?: number, repoOwner?: string, repoName?: string): Promise&lt;DbRepo&gt; {
-    if (!repoId &amp;&amp; !repoOwner &amp;&amp; !repoName) {
-      throw new BadRequestException(&quot;either repo id or repo owner/name must be provided&quot;);
-    }
-
     if (!repoId &amp;&amp; (!repoOwner || !repoName)) {
-      throw new BadRequestException(&quot;must include repo owner and repo name&quot;);
+      throw new BadRequestException(&quot;must provide repo ID or repo owner/name&quot;);
     }
 
     let repo;
@@ -1580,9 +1576,9 @@ export class RepoService {
       }
     } catch (e) {
       // could not find repo being added to workspace in our database. Add it.
-      if (repoId) {
+      if (repoId &amp;&amp; !repoOwner &amp;&amp; !repoName) {
         throw new BadRequestException(
-          &#x60;no repo by repo ID ${repoId} found in DB: must provide repo owner/name to create stub user from GitHub&#x60;
+          &#x60;no repo by repo ID ${repoId} found in DB: must also provide repo owner/name to create stub user from GitHub&#x60;
         );
       } else if (repoOwner &amp;&amp; repoName) {
         repo &#x3D; await this.createStubRepo(repoOwner, repoName);
