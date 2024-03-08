@@ -433,7 +433,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllMembersByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>findAllMembersByWorkspaceIdForUserId(pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
                 </td>
             </tr>
 
@@ -488,7 +488,7 @@
                                 <tr>
                                     <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            <code>number | undefined</code>
                                     </td>
 
                                     <td>
@@ -732,7 +732,7 @@ import { UserService } from &quot;../user/services/user.service&quot;;
 import { DbWorkspaceMember } from &quot;./entities/workspace-member.entity&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
-import { canUserEditWorkspace, canUserManageWorkspace } from &quot;./common/memberAccess&quot;;
+import { canUserManageWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { UpdateWorkspaceMemberDto, UpdateWorkspaceMembersDto } from &quot;./dtos/update-workspace-members.dto&quot;;
 import { DeleteWorkspaceMembersDto } from &quot;./dtos/delete-workspace-member.dto&quot;;
 
@@ -754,7 +754,7 @@ export class WorkspaceMembersService {
   async findAllMembersByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise&lt;PageDto&lt;DbWorkspaceMember&gt;&gt; {
     const workspace &#x3D; await this.workspaceService.findOneById(id);
 
@@ -762,7 +762,7 @@ export class WorkspaceMembersService {
      * viewers, editors, and owners can see who belongs to a workspace
      */
 
-    const canView &#x3D; canUserEditWorkspace(workspace, userId);
+    const canView &#x3D; canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
       throw new UnauthorizedException();
