@@ -38,8 +38,8 @@ export class InsightRepoService {
       }
     }
 
-    let org = "";
-    let name = "";
+    let org;
+    let name;
 
     if (repoInfo.fullName) {
       const parts = repoInfo.fullName.split("/");

@@ -279,12 +279,8 @@ export class RepoService {
   }
 
   async tryFindRepoOrMakeStub(repoId?: number, repoOwner?: string, repoName?: string): Promise<DbRepo> {
-    if (!repoId && !repoOwner && !repoName) {
-      throw new BadRequestException("either repo id or repo owner/name must be provided");
-    }
-
     if (!repoId && (!repoOwner || !repoName)) {
-      throw new BadRequestException("must include repo owner and repo name");
+      throw new BadRequestException("must provide repo ID or repo owner/name");
     }
 
     let repo;
@@ -297,9 +293,9 @@ export class RepoService {
       }
     } catch (e) {
       // could not find repo being added to workspace in our database. Add it.
-      if (repoId) {
+      if (repoId && !repoOwner && !repoName) {
         throw new BadRequestException(
-          `no repo by repo ID ${repoId} found in DB: must provide repo owner/name to create stub user from GitHub`
+          `no repo by repo ID ${repoId} found in DB: must also provide repo owner/name to create stub user from GitHub`
         );
       } else if (repoOwner && repoName) {
         repo = await this.createStubRepo(repoOwner, repoName);
