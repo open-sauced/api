@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.5](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.4...v2.12.0-beta.5) (2024-03-08)
+
+
+### 🍕 Features
+
+* Implements moving a workspace user list ([#632](https://github.com/open-sauced/api.opensauced.pizza/issues/632)) ([000ab4d](https://github.com/open-sauced/api.opensauced.pizza/commit/000ab4dfce3f2ada1288aee29b44d5709286d1ee))
+
 ## [2.12.0-beta.4](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.3...v2.12.0-beta.4) (2024-03-08)
 
 
