@@ -166,6 +166,7 @@ export class UserListService {
       where: {
         list_id: listId,
         user_id: userId,
+        username,
       },
     });
 
