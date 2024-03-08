@@ -209,8 +209,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -341,8 +341,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:150</a></div>
                 </td>
             </tr>
 
@@ -531,8 +531,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/workspace/workspace-user-lists.service.ts:98</a></div>
                 </td>
             </tr>
 
@@ -672,7 +672,8 @@ export class WorkspaceUserListsService {
     const queryBuilder &#x3D; this.workspaceUserListRepository
       .createQueryBuilder(&quot;workspace_user_lists&quot;)
       .leftJoinAndSelect(&quot;workspace_user_lists.user_list&quot;, &quot;workspace_user_lists_user_list&quot;)
-      .where(&quot;workspace_user_lists.workspace_id &#x3D; :id&quot;, { id });
+      .where(&quot;workspace_user_lists.workspace_id &#x3D; :id&quot;, { id })
+      .orderBy(&quot;workspace_user_lists_user_list.updated_at&quot;, &quot;DESC&quot;);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities: DbUserList[] &#x3D; await queryBuilder
