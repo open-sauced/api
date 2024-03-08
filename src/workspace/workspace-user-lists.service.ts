@@ -11,6 +11,7 @@ import { UserListService } from "../user-lists/user-list.service";
 import { WorkspaceService } from "./workspace.service";
 import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
+import { MoveWorkspaceUserListDto } from "./dtos/move-workspace-list.dto";
 
 @Injectable()
 export class WorkspaceUserListsService {
@@ -88,6 +89,58 @@ export class WorkspaceUserListsService {
 
     if (!item) {
       throw new NotFoundException("newly created workspace was not found");
+    }
+
+    return item;
+  }
+
+  async moveWorkspaceUserList(
+    dto: MoveWorkspaceUserListDto,
+    homeWorkspaceId: string,
+    newWorkspaceId: string,
+    userId: number
+  ): Promise<DbWorkspaceUserLists> {
+    /*
+     * owners and editors can move workspace user list they are members of.
+     * note: the given user must be an owner / editor of BOTH workspaces to move it.
+     */
+
+    const homeWorkspace = await this.workspaceService.findOneById(homeWorkspaceId);
+    const canEditHomeWorkspace = canUserEditWorkspace(homeWorkspace, userId);
+
+    if (!canEditHomeWorkspace) {
+      throw new UnauthorizedException();
+    }
+
+    const workspaceUserList = await this.workspaceUserListRepository.findOne({
+      where: {
+        user_list_id: dto.id,
+      },
+    });
+
+    if (!workspaceUserList) {
+      throw new NotFoundException(`workspace user list with user list id ${dto.id} not found`);
+    }
+
+    const newWorkspace = await this.workspaceService.findOneById(newWorkspaceId);
+    const canEditNewWorkspace = canUserEditWorkspace(newWorkspace, userId);
+
+    if (!canEditNewWorkspace) {
+      throw new UnauthorizedException();
+    }
+
+    await this.workspaceUserListRepository.update(workspaceUserList.id, {
+      workspace: newWorkspace,
+    });
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("workspace_user_lists.user_list_id = :id", { id: dto.id });
+
+    const item: DbWorkspaceUserLists | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException("newly moved workspace user list was not found");
     }
 
     return item;

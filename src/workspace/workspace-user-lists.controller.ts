@@ -20,6 +20,7 @@ import { DbUserList } from "../user-lists/entities/user-list.entity";
 import { CreateUserListDto } from "../user-lists/dtos/create-user-list.dto";
 import { WorkspaceUserListsService } from "./workspace-user-lists.service";
 import { DbWorkspaceUserLists } from "./entities/workspace-user-list.entity";
+import { MoveWorkspaceUserListDto } from "./dtos/move-workspace-list.dto";
 
 @Controller("workspaces/:id/userLists")
 @ApiTags("Workspace user lists service")
@@ -62,6 +63,28 @@ export class WorkspaceUserListsController {
     @UserId() userId: number
   ): Promise<DbWorkspaceUserLists> {
     return this.workspaceUserListsService.addWorkspaceUserList(createWorkspaceUserListDto, id, userId);
+  }
+
+  @Post("/:newWorkspaceId")
+  @ApiOperation({
+    operationId: "moveWorkspaceUserListForUser",
+    summary: "Moves a workspace user list for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbWorkspaceUserLists })
+  @ApiNotFoundResponse({ description: "Unable to move workspace user list" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to move workspace user list" })
+  @ApiBody({ type: MoveWorkspaceUserListDto })
+  @ApiParam({ name: "id", type: "string" })
+  @ApiParam({ name: "newWorkspaceId", type: "string" })
+  async moveWorkspaceUserListForUser(
+    @Param("id") id: string,
+    @Param("newWorkspaceId") newWorkspaceId: string,
+    @Body() moveWorkspaceUserListDto: MoveWorkspaceUserListDto,
+    @UserId() userId: number
+  ): Promise<DbWorkspaceUserLists> {
+    return this.workspaceUserListsService.moveWorkspaceUserList(moveWorkspaceUserListDto, id, newWorkspaceId, userId);
   }
 
   @Delete("/:userListId")
