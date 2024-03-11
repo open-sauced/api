@@ -313,7 +313,7 @@ export class WorkspaceUserListsService {
       name: dto.name,
     });
 
-    return this.userListService.findOneById(userList.id, userId);
+    return this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
   }
 
   async deleteWorkspaceUserList(id: string, userListId: string, userId: number) {
