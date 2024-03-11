@@ -234,8 +234,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="119"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:119</a></div>
                 </td>
             </tr>
 
@@ -366,8 +366,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:239</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="241"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:241</a></div>
                 </td>
             </tr>
 
@@ -628,8 +628,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="82"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:82</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -723,8 +723,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:144</a></div>
                 </td>
             </tr>
 
@@ -830,8 +830,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="184"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:184</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="186"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:186</a></div>
                 </td>
             </tr>
 
@@ -990,7 +990,9 @@ export class WorkspaceInsightsService {
       .leftJoinAndSelect(&quot;workspace_insights.insight&quot;, &quot;workspace_insights_insight&quot;)
       .leftJoinAndSelect(&quot;workspace_insights_insight.repos&quot;, &quot;workspace_insights_insight_repos&quot;)
       .where(&quot;workspace_insights.workspace_id &#x3D; :id&quot;, { id })
-      .orderBy(&quot;workspace_insights_insight.updated_at&quot;, &quot;DESC&quot;);
+      .orderBy(&quot;workspace_insights_insight.updated_at&quot;, &quot;DESC&quot;)
+      .offset(pageOptionsDto.skip)
+      .limit(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities: DbInsight[] &#x3D; await queryBuilder
