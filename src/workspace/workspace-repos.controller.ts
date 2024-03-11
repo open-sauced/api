@@ -17,6 +17,9 @@ import { PageDto } from "../common/dtos/page.dto";
 import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
+import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
+import { DbRepo } from "../repo/entities/repo.entity";
+import { RepoSearchOptionsDto } from "../repo/dtos/repo-search-options.dto";
 import { WorkspaceReposService } from "./workspace-repos.service";
 import { DbWorkspaceRepo } from "./entities/workspace-repos.entity";
 import { UpdateWorkspaceReposDto } from "./dtos/update-workspace-repos.dto";
@@ -44,6 +47,24 @@ export class WorkspaceRepoController {
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise<PageDto<DbWorkspaceRepo>> {
     return this.workspaceRepoService.findAllReposByWorkspaceIdForUserId(pageOptionsDto, id, userId);
+  }
+
+  @Get("/search")
+  @ApiOperation({
+    operationId: "findAllWorkspaceReposWithFilters",
+    summary: "Finds all workspace repos using filters and paginates them",
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiPaginatedResponse(DbRepo)
+  @ApiOkResponse({ type: DbRepo })
+  @ApiParam({ name: "id", type: "string" })
+  async findAllWorkspaceReposWithFilters(
+    @Param("id") id: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() pageOptionsDto: RepoSearchOptionsDto
+  ): Promise<PageDto<DbRepo>> {
+    return this.workspaceRepoService.findAllReposByFilterInWorkspace(pageOptionsDto, id, userId);
   }
 
   @Post()

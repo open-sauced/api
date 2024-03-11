@@ -9,7 +9,7 @@ import { UserService } from "../user/services/user.service";
 import { DbWorkspaceMember } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { WorkspaceService } from "./workspace.service";
-import { canUserEditWorkspace, canUserManageWorkspace } from "./common/memberAccess";
+import { canUserManageWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { UpdateWorkspaceMemberDto, UpdateWorkspaceMembersDto } from "./dtos/update-workspace-members.dto";
 import { DeleteWorkspaceMembersDto } from "./dtos/delete-workspace-member.dto";
 
@@ -31,7 +31,7 @@ export class WorkspaceMembersService {
   async findAllMembersByWorkspaceIdForUserId(
     pageOptionsDto: PageOptionsDto,
     id: string,
-    userId: number
+    userId: number | undefined
   ): Promise<PageDto<DbWorkspaceMember>> {
     const workspace = await this.workspaceService.findOneById(id);
 
@@ -39,7 +39,7 @@ export class WorkspaceMembersService {
      * viewers, editors, and owners can see who belongs to a workspace
      */
 
-    const canView = canUserEditWorkspace(workspace, userId);
+    const canView = canUserViewWorkspace(workspace, userId);
 
     if (!canView) {
       throw new UnauthorizedException();

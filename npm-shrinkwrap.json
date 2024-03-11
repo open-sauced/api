@@ -1,12 +1,12 @@
 {
   "name": "@open-sauced/api",
-  "version": "2.11.0",
+  "version": "2.12.0-beta.10",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@open-sauced/api",
-      "version": "2.11.0",
+      "version": "2.12.0-beta.10",
       "license": "MIT",
       "dependencies": {
         "@fastify/express": "^2.3.0",

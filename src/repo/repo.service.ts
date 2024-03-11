@@ -127,45 +127,44 @@ export class RepoService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllWithFilters(pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
+  private async findAllWithFiltersScaffolding(
+    pageOptionsDto: RepoSearchOptionsDto,
+    workspaceId: string | undefined
+  ): Promise<PageDto<DbRepo>> {
     const orderField = pageOptionsDto.orderBy ?? "stars";
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const prevDaysStartDate = pageOptionsDto.prev_days_start_date!;
     const range = pageOptionsDto.range!;
 
-    const queryBuilder = this.baseFilterQueryBuilder();
+    const queryBuilder = this.baseFilterQueryBuilder().withDeleted().addSelect("repos.deleted_at");
 
     const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
 
-    if (!pageOptionsDto.repoIds && !pageOptionsDto.repo) {
+    if (!pageOptionsDto.repoIds && !pageOptionsDto.repo && !workspaceId) {
       filters.push([`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`, { range }]);
       filters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
     }
 
     this.filterService.applyQueryBuilderFilters(queryBuilder, filters);
 
+    if (workspaceId) {
+      queryBuilder
+        .innerJoin("workspace_repos", "workspace_repos", "workspace_repos.repo_id = repos.id")
+        .andWhere("workspace_repos.workspace_id = :workspaceId", { workspaceId });
+    }
+
     if (pageOptionsDto.filter === InsightFilterFieldsEnum.Recent) {
       queryBuilder.orderBy(`"repos"."updated_at"`, "DESC");
     }
 
-    const countQueryBuilder = this.baseFilterQueryBuilder().select("repos.id", "repos_id");
-
-    const countFilters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
-
-    if (!pageOptionsDto.repoIds) {
-      countFilters.push([`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`, { range }]);
-      countFilters.push([`'${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "repos"."updated_at"`, { range }]);
-    }
-
-    this.filterService.applyQueryBuilderFilters(countQueryBuilder, countFilters);
-
-    const subQuery = this.repoRepository.manager
+    const cteCounter = this.repoRepository.manager
       .createQueryBuilder()
-      .from(`(${countQueryBuilder.getQuery()})`, "subquery_for_count")
-      .setParameters(countQueryBuilder.getParameters())
-      .select("count(repos_id)");
+      .addCommonTableExpression(queryBuilder, "CTE")
+      .setParameters(queryBuilder.getParameters())
+      .select(`COUNT(*) as count`)
+      .from("CTE", "CTE");
 
-    const countQueryResult = await subQuery.getRawOne<{ count: number }>();
+    const countQueryResult = await cteCounter.getRawOne<{ count: number }>();
     const itemCount = parseInt(`${countQueryResult?.count ?? "0"}`, 10);
 
     queryBuilder
@@ -203,6 +202,17 @@ export class RepoService {
     const updatedEntities = await Promise.all(promises);
 
     return new PageDto(updatedEntities, pageMetaDto);
+  }
+
+  async findAllWithFilters(pageOptionsDto: RepoSearchOptionsDto): Promise<PageDto<DbRepo>> {
+    return this.findAllWithFiltersScaffolding(pageOptionsDto, undefined);
+  }
+
+  async findAllWithFiltersInWorkspace(
+    pageOptionsDto: RepoSearchOptionsDto,
+    workspaceId: string
+  ): Promise<PageDto<DbRepo>> {
+    return this.findAllWithFiltersScaffolding(pageOptionsDto, workspaceId);
   }
 
   async findRecommendations(interests: string[]): Promise<Record<string, DbRepo[]>> {
@@ -269,12 +279,8 @@ export class RepoService {
   }
 
   async tryFindRepoOrMakeStub(repoId?: number, repoOwner?: string, repoName?: string): Promise<DbRepo> {
-    if (!repoId && !repoOwner && !repoName) {
-      throw new BadRequestException("either repo id or repo owner/name must be provided");
-    }
-
     if (!repoId && (!repoOwner || !repoName)) {
-      throw new BadRequestException("must include repo owner and repo name");
+      throw new BadRequestException("must provide repo ID or repo owner/name");
     }
 
     let repo;
@@ -287,9 +293,9 @@ export class RepoService {
       }
     } catch (e) {
       // could not find repo being added to workspace in our database. Add it.
-      if (repoId) {
+      if (repoId && !repoOwner && !repoName) {
         throw new BadRequestException(
-          `no repo by repo ID ${repoId} found in DB: must provide repo owner/name to create stub user from GitHub`
+          `no repo by repo ID ${repoId} found in DB: must also provide repo owner/name to create stub user from GitHub`
         );
       } else if (repoOwner && repoName) {
         repo = await this.createStubRepo(repoOwner, repoName);
