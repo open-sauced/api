@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.7...v2.12.0-beta.8) (2024-03-11)
+
+
+### 🐛 Bug Fixes
+
+* Refactors access control for workspace insight pages ([#635](https://github.com/open-sauced/api.opensauced.pizza/issues/635)) ([5d48b2a](https://github.com/open-sauced/api.opensauced.pizza/commit/5d48b2ab122a87b8a652d83a4d68d1655e3c6a9c))
+
 ## [2.12.0-beta.7](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.6...v2.12.0-beta.7) (2024-03-08)
 
 
