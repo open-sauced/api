@@ -24,6 +24,7 @@ import {
   ApiParam,
 } from "@nestjs/swagger";
 
+import { Deprecated } from "../common/decorators/deprecated.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 import { UserId } from "../auth/supabase.user.decorator";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
@@ -92,6 +93,7 @@ export class UserInsightsController {
     return newInsight;
   }
 
+  @Deprecated("deprecated: use workspaces/insights routes")
   @Patch("/:id")
   @ApiOperation({
     operationId: "updateInsightForUser",

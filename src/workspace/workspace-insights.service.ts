@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException, UnprocessableEntityException } from "@nestjs/common";
 import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
@@ -9,6 +9,7 @@ import { InsightRepoService } from "../insight/insight-repo.service";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
+import { UpdateInsightDto } from "../insight/dtos/update-insight.dto";
 import { WorkspaceService } from "./workspace.service";
 import { canUserEditWorkspace, canUserViewWorkspace } from "./common/memberAccess";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
@@ -28,6 +29,20 @@ export class WorkspaceInsightsService {
     const builder = this.workspaceInsightRepository.createQueryBuilder("workspace_insights");
 
     return builder;
+  }
+
+  private async findOneByInsightId(insightId: number): Promise<DbWorkspaceInsight> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder.where("workspace_insights.insight_id = :id", { id: insightId });
+
+    const item: DbWorkspaceInsight | null = await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException("newly created workspace was not found");
+    }
+
+    return item;
   }
 
   async findAllInsightsByWorkspaceIdForUserId(
@@ -121,17 +136,7 @@ export class WorkspaceInsightsService {
       await this.insightRepoService.addInsightRepo(newInsight.id, repo);
     });
 
-    const queryBuilder = this.baseQueryBuilder();
-
-    queryBuilder.where("workspace_insights.insight_id = :id", { id: newInsight.id });
-
-    const item: DbWorkspaceInsight | null = await queryBuilder.getOne();
-
-    if (!item) {
-      throw new NotFoundException("newly created workspace was not found");
-    }
-
-    return item;
+    return this.findOneByInsightId(newInsight.id);
   }
 
   async moveWorkspaceInsight(
@@ -173,17 +178,62 @@ export class WorkspaceInsightsService {
       workspace: newWorkspace,
     });
 
-    const queryBuilder = this.baseQueryBuilder();
+    return this.findOneByInsightId(dto.id);
+  }
 
-    queryBuilder.where("workspace_insights.insight_id = :id", { id: dto.id });
+  async patchWorkspaceInsight(
+    dto: UpdateInsightDto,
+    id: string,
+    insightId: number,
+    userId: number
+  ): Promise<DbInsight> {
+    const workspace = await this.workspaceService.findOneById(id);
 
-    const item: DbWorkspaceInsight | null = await queryBuilder.getOne();
+    /*
+     * owners and editors can add workspace insight pages
+     */
 
-    if (!item) {
-      throw new NotFoundException("newly moved workspace insight was not found");
+    const canEdit = canUserEditWorkspace(workspace, userId);
+
+    if (!canEdit) {
+      throw new UnauthorizedException();
     }
 
-    return item;
+    const insight = await this.insightsService.findOneById(insightId);
+
+    await this.insightsService.updateInsight(insightId, {
+      name: dto.name,
+    });
+
+    try {
+      // current set of insight repos
+      const currentRepos = insight.repos?.filter((insightRepo) => !insightRepo.deleted_at) || [];
+
+      // remove deleted repos
+      const reposToRemove = currentRepos.filter(
+        (repo) => !dto.repos.find((repoInfo) => `${repoInfo.id!}` === `${repo.repo_id}`)
+      );
+
+      const reposToRemoveRequests = reposToRemove.map(async (insightRepo) =>
+        this.insightRepoService.removeInsightRepo(insightRepo.id)
+      );
+
+      await Promise.all(reposToRemoveRequests);
+
+      // add new repos
+      const currentRepoIds = currentRepos.map((cr) => cr.repo_id);
+      const reposToAdd = dto.repos.filter((repoInfo) => !currentRepoIds.find((id) => `${id}` === `${repoInfo.id!}`));
+
+      const repoToAddRequests = reposToAdd.map(async (repo) =>
+        this.insightRepoService.addInsightRepo(insight.id, repo)
+      );
+
+      await Promise.all(repoToAddRequests);
+    } catch (e) {
+      throw new UnprocessableEntityException();
+    }
+
+    return this.insightsService.findOneById(insight.id);
   }
 
   async deleteWorkspaceInsight(id: string, insightId: number, userId: number) {

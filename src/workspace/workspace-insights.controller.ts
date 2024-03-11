@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import {
   ApiOperation,
   ApiOkResponse,
@@ -19,6 +19,7 @@ import { OptionalUserId, UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { CreateInsightDto } from "../insight/dtos/create-insight.dto";
+import { UpdateInsightDto } from "../insight/dtos/update-insight.dto";
 import { DbWorkspaceInsight } from "./entities/workspace-insights.entity";
 import { WorkspaceInsightsService } from "./workspace-insights.service";
 import { MoveWorkspaceInsightDto } from "./dtos/move-workspace-insight.dto";
@@ -104,6 +105,28 @@ export class WorkspaceInsightsController {
     @OptionalUserId() userId: number | undefined
   ): Promise<DbInsight> {
     return this.workspaceInsightsService.findOneInsightByWorkspaceIdForUserId(id, insightId, userId);
+  }
+
+  @Patch("/:insightId")
+  @ApiOperation({
+    operationId: "updateWorkspaceInsightForUser",
+    summary: "Updates a workspace insight page for the authenticated user",
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbInsight })
+  @ApiNotFoundResponse({ description: "Unable to update workspace insight" })
+  @ApiBadRequestResponse({ description: "Invalid request" })
+  @ApiUnprocessableEntityResponse({ description: "Unable to update workspace insight repos" })
+  @ApiBody({ type: UpdateInsightDto })
+  @ApiParam({ name: "id", type: "string" })
+  async updateWorkspaceInsightForUser(
+    @Param("id") id: string,
+    @Param("insightId") insightId: number,
+    @Body() createWorkspaceInsightDto: CreateInsightDto,
+    @UserId() userId: number
+  ): Promise<DbInsight> {
+    return this.workspaceInsightsService.patchWorkspaceInsight(createWorkspaceInsightDto, id, insightId, userId);
   }
 
   @Delete("/:insightId")

@@ -32,6 +32,7 @@ import { UserId } from "../auth/supabase.user.decorator";
 import { SupabaseGuard } from "../auth/supabase.guard";
 
 import { HighlightOptionsDto } from "../highlight/dtos/highlight-options.dto";
+import { Deprecated } from "../common/decorators/deprecated.decorator";
 import { CreateUserListDto } from "./dtos/create-user-list.dto";
 import { DbUserList } from "./entities/user-list.entity";
 import { UserListService } from "./user-list.service";
@@ -45,6 +46,7 @@ import { DbTimezone } from "./entities/timezones.entity";
 export class UserListController {
   constructor(private readonly userListService: UserListService) {}
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/")
   @ApiOperation({
     operationId: "getListsForUser",
@@ -62,6 +64,7 @@ export class UserListController {
     return this.userListService.findAllByUserId(pageOptionsDto, userId);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/featured")
   @ApiOperation({
     operationId: "getFeaturedLists",
@@ -73,6 +76,7 @@ export class UserListController {
     return this.userListService.findAllFeatured(pageOptionsDto);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Post("/")
   @ApiOperation({
     operationId: "addListForUser",
@@ -97,6 +101,7 @@ export class UserListController {
     return newList;
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/:id")
   @ApiOperation({
     operationId: "getUserList",
@@ -110,6 +115,7 @@ export class UserListController {
     return this.userListService.findPublicOneById(id);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Patch("/:id")
   @ApiOperation({
     operationId: "updateListForUser",
@@ -137,6 +143,7 @@ export class UserListController {
     return this.userListService.findOneById(list.id, userId);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Delete("/:id")
   @ApiOperation({
     operationId: "deleteListForUser",
@@ -170,6 +177,7 @@ export class UserListController {
     return this.userListService.findContributorsByFilter(pageOptionsDto);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/:id/contributors")
   @ApiOperation({
     operationId: "getUserListContributors",
@@ -187,6 +195,7 @@ export class UserListController {
     return this.userListService.findContributorsByListId(pageOptionsDto, id);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Post("/:id/contributors")
   @ApiOperation({
     operationId: "postUserListContributors",
@@ -208,6 +217,7 @@ export class UserListController {
     return Promise.all(contributors);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Delete("/:id/contributors/:userListContributorId")
   @ApiOperation({
     operationId: "deleteUserListContributor",
@@ -226,6 +236,7 @@ export class UserListController {
     await this.userListService.deleteUserListContributor(id, userListContributorId);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/:id/contributors/highlights")
   @ApiOperation({
     operationId: "getUserListContributorHighlights",
@@ -243,6 +254,7 @@ export class UserListController {
     return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
   }
 
+  @Deprecated("deprecated: use v2/workspace/{id}/userLists endpoints")
   @Get("/:id/contributors/highlights/tagged-repos")
   @ApiOperation({
     operationId: "getUserListContributorHighlightedRepos",
