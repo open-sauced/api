@@ -93,11 +93,39 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#deleteUserListContributors" >deleteUserListContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getOneWorkspaceUserListForUser" >getOneWorkspaceUserListForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getUserListContributorHighlightedRepos" >getUserListContributorHighlightedRepos</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getWorkspaceUserListContributorHighlights" >getWorkspaceUserListContributorHighlights</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getWorkspaceUserListContributors" >getWorkspaceUserListContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getWorkspaceUserListsForUser" >getWorkspaceUserListsForUser</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#moveWorkspaceUserListForUser" >moveWorkspaceUserListForUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#postWorkspaceUserListContributors" >postWorkspaceUserListContributors</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateWorkspaceUserListForUser" >updateWorkspaceUserListForUser</a>
                             </li>
                         </ul>
                     </td>
@@ -145,8 +173,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:88</a></div>
                 </td>
             </tr>
 
@@ -247,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="151"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:151</a></div>
                 </td>
             </tr>
 
@@ -324,6 +352,564 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="deleteUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteUserListContributors</b></span>
+                        <a href="#deleteUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteUserListContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListContributorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Delete(&#x27;/:userListId/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteWorkspaceUserListContributor&#x27;, summary: &#x27;Delete contributor from a workspace user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from workspace user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="272"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:272</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListContributorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getOneWorkspaceUserListForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getOneWorkspaceUserListForUser</b></span>
+                        <a href="#getOneWorkspaceUserListForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getOneWorkspaceUserListForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:userListId&#x27;)<br />@ApiOperation({operationId: &#x27;getOneWorkspaceUserListForUser&#x27;, summary: &#x27;Retrieves a workspace user list&#x27;})<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get workspace user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserList&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserListContributorHighlightedRepos"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getUserListContributorHighlightedRepos</b></span>
+                        <a href="#getUserListContributorHighlightedRepos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getUserListContributorHighlightedRepos(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/PageOptionsDto.html" target="_self">PageOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:userListId/contributors/highlights/tagged-repos&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceUserListContributorHighlightedRepos&#x27;, summary: &#x27;Retrieves highlighted repos for contributors for a workspace user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiPaginatedResponse(DbUserHighlightRepo)<br />@ApiOkResponse({type: DbUserHighlightRepo})<br />@ApiNotFoundResponse({description: &#x27;Unable to get workspace user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:221</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/PageOptionsDto.html" target="_self" >PageOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWorkspaceUserListContributorHighlights"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getWorkspaceUserListContributorHighlights</b></span>
+                        <a href="#getWorkspaceUserListContributorHighlights"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getWorkspaceUserListContributorHighlights(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/HighlightOptionsDto.html" target="_self">HighlightOptionsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:userListId/contributors/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceUserListContributorHighlights&#x27;, summary: &#x27;Retrieves highlights for contributors for a workspace user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get workspace user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="194"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:194</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/HighlightOptionsDto.html" target="_self" >HighlightOptionsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/PageDto.html" target="_self" >Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getWorkspaceUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>getWorkspaceUserListContributors</b></span>
+                        <a href="#getWorkspaceUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getWorkspaceUserListContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: number | undefined, pageOptionsDto: <a href="../classes/FilterListContributorsDto.html" target="_self">FilterListContributorsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/:userListId/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getWorkspaceUserListContributors&#x27;, summary: &#x27;Retrieves paginated contributors for workspace user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(PassthroughSupabaseGuard)<br />@ApiPaginatedResponse(DbUser)<br />@ApiOkResponse({type: DbUser})<br />@ApiNotFoundResponse({description: &#x27;Unable to get workspace user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:172</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>number | undefined</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>pageOptionsDto</td>
+                                    <td>
+                                                <code><a href="../classes/FilterListContributorsDto.html" target="_self" >FilterListContributorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getWorkspaceUserListsForUser"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -349,8 +935,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -451,8 +1037,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:109</a></div>
                 </td>
             </tr>
 
@@ -536,11 +1122,239 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postWorkspaceUserListContributors"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>postWorkspaceUserListContributors</b></span>
+                        <a href="#postWorkspaceUserListContributors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>postWorkspaceUserListContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userListId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateCollaboratorsDto: <a href="../classes/CollaboratorsDto.html" target="_self">CollaboratorsDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;/:userListId/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;postWorkspaceUserListContributors&#x27;, summary: &#x27;Add new contributors to a workspace user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to add contributors to the workspace&#x27;s user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="246"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:246</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userListId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateCollaboratorsDto</td>
+                                    <td>
+                                                <code><a href="../classes/CollaboratorsDto.html" target="_self" >CollaboratorsDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Contributor.html" target="_self" >Promise&lt;DbUserListContributor[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateWorkspaceUserListForUser"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateWorkspaceUserListForUser</b></span>
+                        <a href="#updateWorkspaceUserListForUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateWorkspaceUserListForUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, listId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateListDto: <a href="../classes/UpdateUserListDto.html" target="_self">UpdateUserListDto</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Patch(&#x27;/:listId&#x27;)<br />@ApiOperation({operationId: &#x27;updateWorkspaceUserListForUser&#x27;, summary: &#x27;Updates a workspace user list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to update workspace user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: UpdateUserListDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;listId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/workspace/workspace-user-lists.controller.ts:131</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>listId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>updateListDto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateUserListDto.html" target="_self" >UpdateUserListDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#User" target="_self" >Promise&lt;DbUserList&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards } from &quot;@nestjs/common&quot;;
 import {
   ApiOperation,
   ApiOkResponse,
@@ -553,6 +1367,10 @@ import {
   ApiParam,
 } from &quot;@nestjs/swagger&quot;;
 
+import { CollaboratorsDto } from &quot;../user-lists/dtos/collaborators.dto&quot;;
+import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
+import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { DbUserHighlightRepo } from &quot;../highlight/entities/user-highlight-repo.entity&quot;;
 import { PassthroughSupabaseGuard } from &quot;../auth/passthrough-supabase.guard&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
@@ -560,9 +1378,14 @@ import { OptionalUserId, UserId } from &quot;../auth/supabase.user.decorator&quo
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 import { DbUserList } from &quot;../user-lists/entities/user-list.entity&quot;;
 import { CreateUserListDto } from &quot;../user-lists/dtos/create-user-list.dto&quot;;
-import { WorkspaceUserListsService } from &quot;./workspace-user-lists.service&quot;;
-import { DbWorkspaceUserLists } from &quot;./entities/workspace-user-list.entity&quot;;
+import { UpdateUserListDto } from &quot;../user-lists/dtos/update-user-list.dto&quot;;
+import { ApiPaginatedResponse } from &quot;../common/decorators/api-paginated-response.decorator&quot;;
+import { DbUser } from &quot;../user/user.entity&quot;;
+import { FilterListContributorsDto } from &quot;../user-lists/dtos/filter-contributors.dto&quot;;
+import { DbUserListContributor } from &quot;../user-lists/entities/user-list-contributor.entity&quot;;
 import { MoveWorkspaceUserListDto } from &quot;./dtos/move-workspace-list.dto&quot;;
+import { DbWorkspaceUserLists } from &quot;./entities/workspace-user-list.entity&quot;;
+import { WorkspaceUserListsService } from &quot;./workspace-user-lists.service&quot;;
 
 @Controller(&quot;workspaces/:id/userLists&quot;)
 @ApiTags(&quot;Workspace user lists service&quot;)
@@ -585,6 +1408,25 @@ export class WorkspaceUserListsController {
     @Query() pageOptionsDto: PageOptionsDto
   ): Promise&lt;PageDto&lt;DbUserList&gt;&gt; {
     return this.workspaceUserListsService.findAllUserListsByWorkspaceIdForUserId(pageOptionsDto, id, userId);
+  }
+
+  @Get(&quot;/:userListId&quot;)
+  @ApiOperation({
+    operationId: &quot;getOneWorkspaceUserListForUser&quot;,
+    summary: &quot;Retrieves a workspace user list&quot;,
+  })
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiOkResponse({ type: DbUserList })
+  @ApiNotFoundResponse({ description: &quot;Unable to get workspace user list&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  async getOneWorkspaceUserListForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @OptionalUserId() userId: number | undefined
+  ): Promise&lt;DbUserList&gt; {
+    return this.workspaceUserListsService.findOneUserListByWorkspaceeIdForUserId(id, userListId, userId);
   }
 
   @Post()
@@ -629,6 +1471,28 @@ export class WorkspaceUserListsController {
     return this.workspaceUserListsService.moveWorkspaceUserList(moveWorkspaceUserListDto, id, newWorkspaceId, userId);
   }
 
+  @Patch(&quot;/:listId&quot;)
+  @ApiOperation({
+    operationId: &quot;updateWorkspaceUserListForUser&quot;,
+    summary: &quot;Updates a workspace user list for the authenticated user&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiOkResponse({ type: DbUserList })
+  @ApiNotFoundResponse({ description: &quot;Unable to update workspace user list&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiBody({ type: UpdateUserListDto })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;listId&quot;, type: &quot;string&quot; })
+  async updateWorkspaceUserListForUser(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;listId&quot;) listId: string,
+    @Body() updateListDto: UpdateUserListDto,
+    @UserId() userId: number
+  ): Promise&lt;DbUserList&gt; {
+    return this.workspaceUserListsService.updateWorkspaceUserList(updateListDto, id, listId, userId);
+  }
+
   @Delete(&quot;/:userListId&quot;)
   @ApiOperation({
     operationId: &quot;deleteWorkspaceUserListForUser&quot;,
@@ -646,6 +1510,133 @@ export class WorkspaceUserListsController {
     @UserId() userId: number
   ) {
     return this.workspaceUserListsService.deleteWorkspaceUserList(id, userListId, userId);
+  }
+
+  @Get(&quot;/:userListId/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;getWorkspaceUserListContributors&quot;,
+    summary: &quot;Retrieves paginated contributors for workspace user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiPaginatedResponse(DbUser)
+  @ApiOkResponse({ type: DbUser })
+  @ApiNotFoundResponse({ description: &quot;Unable to get workspace user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  async getWorkspaceUserListContributors(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() pageOptionsDto: FilterListContributorsDto
+  ): Promise&lt;PageDto&lt;DbUserListContributor&gt;&gt; {
+    return this.workspaceUserListsService.findWorkspaceUserListContributors(pageOptionsDto, id, userListId, userId);
+  }
+
+  @Get(&quot;/:userListId/contributors/highlights&quot;)
+  @ApiOperation({
+    operationId: &quot;getWorkspaceUserListContributorHighlights&quot;,
+    summary: &quot;Retrieves highlights for contributors for a workspace user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiPaginatedResponse(DbUserHighlight)
+  @ApiOkResponse({ type: DbUserHighlight })
+  @ApiNotFoundResponse({ description: &quot;Unable to get workspace user list contributor highlights&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  async getWorkspaceUserListContributorHighlights(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() pageOptionsDto: HighlightOptionsDto
+  ): Promise&lt;PageDto&lt;DbUserHighlight&gt;&gt; {
+    return this.workspaceUserListsService.findWorkspaceUserListContributorHightlights(
+      pageOptionsDto,
+      id,
+      userListId,
+      userId
+    );
+  }
+
+  @Get(&quot;/:userListId/contributors/highlights/tagged-repos&quot;)
+  @ApiOperation({
+    operationId: &quot;getWorkspaceUserListContributorHighlightedRepos&quot;,
+    summary: &quot;Retrieves highlighted repos for contributors for a workspace user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(PassthroughSupabaseGuard)
+  @ApiPaginatedResponse(DbUserHighlightRepo)
+  @ApiOkResponse({ type: DbUserHighlightRepo })
+  @ApiNotFoundResponse({ description: &quot;Unable to get workspace user list contributor highlights&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  async getUserListContributorHighlightedRepos(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @OptionalUserId() userId: number | undefined,
+    @Query() pageOptionsDto: PageOptionsDto
+  ): Promise&lt;PageDto&lt;DbUserHighlightRepo&gt;&gt; {
+    return this.workspaceUserListsService.findWorkspaceUserListContributorHightlightedRepos(
+      pageOptionsDto,
+      id,
+      userListId,
+      userId
+    );
+  }
+
+  @Post(&quot;/:userListId/contributors&quot;)
+  @ApiOperation({
+    operationId: &quot;postWorkspaceUserListContributors&quot;,
+    summary: &quot;Add new contributors to a workspace user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to add contributors to the workspace&#x27;s user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  async postWorkspaceUserListContributors(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @UserId() userId: number,
+    @Body() updateCollaboratorsDto: CollaboratorsDto
+  ): Promise&lt;DbUserListContributor[]&gt; {
+    return this.workspaceUserListsService.addWorkspaceUserListContributors(
+      updateCollaboratorsDto,
+      id,
+      userListId,
+      userId
+    );
+  }
+
+  @Delete(&quot;/:userListId/contributors/:userListContributorId&quot;)
+  @ApiOperation({
+    operationId: &quot;deleteWorkspaceUserListContributor&quot;,
+    summary: &quot;Delete contributor from a workspace user list&quot;,
+  })
+  @ApiBearerAuth()
+  @UseGuards(SupabaseGuard)
+  @ApiNotFoundResponse({ description: &quot;Unable to delete user from workspace user list contributors&quot; })
+  @ApiBadRequestResponse({ description: &quot;Invalid request&quot; })
+  @ApiParam({ name: &quot;id&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListId&quot;, type: &quot;string&quot; })
+  @ApiParam({ name: &quot;userListContributorId&quot;, type: &quot;string&quot; })
+  async deleteUserListContributors(
+    @Param(&quot;id&quot;) id: string,
+    @Param(&quot;userListId&quot;) userListId: string,
+    @Param(&quot;userListContributorId&quot;) userListContributorId: string,
+    @UserId() userId: number
+  ): Promise&lt;void&gt; {
+    await this.workspaceUserListsService.deleteWorkspaceUserListContributor(
+      id,
+      userListId,
+      userListContributorId,
+      userId
+    );
   }
 }
 </code></pre>

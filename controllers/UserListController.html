@@ -175,14 +175,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addListForUser&#x27;, summary: &#x27;Adds a new list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserListDto})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Post(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;addListForUser&#x27;, summary: &#x27;Adds a new list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to add user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserListDto})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="91"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:91</a></div>
                 </td>
             </tr>
 
@@ -265,14 +265,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;deleteListForUser&#x27;, summary: &#x27;Deletes the list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Delete(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;deleteListForUser&#x27;, summary: &#x27;Deletes the list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="150"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:150</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:157</a></div>
                 </td>
             </tr>
 
@@ -355,14 +355,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;/:id/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteUserListContributor&#x27;, summary: &#x27;Delete contributor from an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Delete(&#x27;/:id/contributors/:userListContributorId&#x27;)<br />@ApiOperation({operationId: &#x27;deleteUserListContributor&#x27;, summary: &#x27;Delete contributor from an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to delete user from user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiParam({name: &#x27;userListContributorId&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="222"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:222</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:232</a></div>
                 </td>
             </tr>
 
@@ -451,8 +451,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="167"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:167</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="174"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:174</a></div>
                 </td>
             </tr>
 
@@ -523,14 +523,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/featured&#x27;)<br />@ApiOperation({operationId: &#x27;getFeaturedLists&#x27;, summary: &#x27;Gets public featured lists&#x27;})<br />@ApiOkResponse({type: DbUserList})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/featured&#x27;)<br />@ApiOperation({operationId: &#x27;getFeaturedLists&#x27;, summary: &#x27;Gets public featured lists&#x27;})<br />@ApiOkResponse({type: DbUserList})<br />@Header(&#x27;Cache-Control&#x27;, &#x27;public, max-age&#x3D;600&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -601,14 +601,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;getListsForUser&#x27;, summary: &#x27;Gets lists for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user lists&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/&#x27;)<br />@ApiOperation({operationId: &#x27;getListsForUser&#x27;, summary: &#x27;Gets lists for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user lists&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:60</a></div>
                 </td>
             </tr>
 
@@ -697,8 +697,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="270"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:270</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:282</a></div>
                 </td>
             </tr>
 
@@ -737,14 +737,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getUserList&#x27;, summary: &#x27;Retrieves an individual user list&#x27;})<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;getUserList&#x27;, summary: &#x27;Retrieves an individual user list&#x27;})<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:109</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:114</a></div>
                 </td>
             </tr>
 
@@ -815,14 +815,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/contributors/highlights/tagged-repos&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributorHighlightedRepos&#x27;, summary: &#x27;Retrieves highlighted repos for contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserHighlightRepo)<br />@ApiOkResponse({type: DbUserHighlightRepo})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/:id/contributors/highlights/tagged-repos&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributorHighlightedRepos&#x27;, summary: &#x27;Retrieves highlighted repos for contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserHighlightRepo)<br />@ApiOkResponse({type: DbUserHighlightRepo})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="256"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:256</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:268</a></div>
                 </td>
             </tr>
 
@@ -905,14 +905,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/contributors/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributorHighlights&#x27;, summary: &#x27;Retrieves highlights for contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/:id/contributors/highlights&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributorHighlights&#x27;, summary: &#x27;Retrieves highlights for contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserHighlight)<br />@ApiOkResponse({type: DbUserHighlight})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributor highlights&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="239"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:239</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:250</a></div>
                 </td>
             </tr>
 
@@ -995,14 +995,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributors&#x27;, summary: &#x27;Retrieves contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributor)<br />@ApiOkResponse({type: DbUserListContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Get(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;getUserListContributors&#x27;, summary: &#x27;Retrieves contributors for an individual user list&#x27;})<br />@ApiPaginatedResponse(DbUserListContributor)<br />@ApiOkResponse({type: DbUserListContributor})<br />@ApiNotFoundResponse({description: &#x27;Unable to get user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="191"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:191</a></div>
                 </td>
             </tr>
 
@@ -1085,14 +1085,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;postUserListContributors&#x27;, summary: &#x27;Add new contributors to an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to add to user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Post(&#x27;/:id/contributors&#x27;)<br />@ApiOperation({operationId: &#x27;postUserListContributors&#x27;, summary: &#x27;Add new contributors to an individual user list&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiNotFoundResponse({description: &#x27;Unable to add to user list contributors&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:209</a></div>
                 </td>
             </tr>
 
@@ -1175,14 +1175,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateListForUser&#x27;, summary: &#x27;Updates the list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserListDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
+                    <code>@Deprecated(&#x27;deprecated: use v2/workspace/{id}/userLists endpoints&#x27;)<br />@Patch(&#x27;/:id&#x27;)<br />@ApiOperation({operationId: &#x27;updateListForUser&#x27;, summary: &#x27;Updates the list for the authenticated user&#x27;})<br />@ApiBearerAuth()<br />@UseGuards(SupabaseGuard)<br />@ApiOkResponse({type: DbUserList})<br />@ApiNotFoundResponse({description: &#x27;Unable to update user list&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Invalid request&#x27;})<br />@ApiBody({type: CreateUserListDto})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/user-lists/user-list.controller.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="131"
+                            class="link-to-prism">src/user-lists/user-list.controller.ts:131</a></div>
                 </td>
             </tr>
 
@@ -1292,6 +1292,7 @@ import { UserId } from &quot;../auth/supabase.user.decorator&quot;;
 import { SupabaseGuard } from &quot;../auth/supabase.guard&quot;;
 
 import { HighlightOptionsDto } from &quot;../highlight/dtos/highlight-options.dto&quot;;
+import { Deprecated } from &quot;../common/decorators/deprecated.decorator&quot;;
 import { CreateUserListDto } from &quot;./dtos/create-user-list.dto&quot;;
 import { DbUserList } from &quot;./entities/user-list.entity&quot;;
 import { UserListService } from &quot;./user-list.service&quot;;
@@ -1305,6 +1306,7 @@ import { DbTimezone } from &quot;./entities/timezones.entity&quot;;
 export class UserListController {
   constructor(private readonly userListService: UserListService) {}
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/&quot;)
   @ApiOperation({
     operationId: &quot;getListsForUser&quot;,
@@ -1322,6 +1324,7 @@ export class UserListController {
     return this.userListService.findAllByUserId(pageOptionsDto, userId);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/featured&quot;)
   @ApiOperation({
     operationId: &quot;getFeaturedLists&quot;,
@@ -1333,6 +1336,7 @@ export class UserListController {
     return this.userListService.findAllFeatured(pageOptionsDto);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Post(&quot;/&quot;)
   @ApiOperation({
     operationId: &quot;addListForUser&quot;,
@@ -1357,6 +1361,7 @@ export class UserListController {
     return newList;
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/:id&quot;)
   @ApiOperation({
     operationId: &quot;getUserList&quot;,
@@ -1370,6 +1375,7 @@ export class UserListController {
     return this.userListService.findPublicOneById(id);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Patch(&quot;/:id&quot;)
   @ApiOperation({
     operationId: &quot;updateListForUser&quot;,
@@ -1397,6 +1403,7 @@ export class UserListController {
     return this.userListService.findOneById(list.id, userId);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Delete(&quot;/:id&quot;)
   @ApiOperation({
     operationId: &quot;deleteListForUser&quot;,
@@ -1430,6 +1437,7 @@ export class UserListController {
     return this.userListService.findContributorsByFilter(pageOptionsDto);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/:id/contributors&quot;)
   @ApiOperation({
     operationId: &quot;getUserListContributors&quot;,
@@ -1447,6 +1455,7 @@ export class UserListController {
     return this.userListService.findContributorsByListId(pageOptionsDto, id);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Post(&quot;/:id/contributors&quot;)
   @ApiOperation({
     operationId: &quot;postUserListContributors&quot;,
@@ -1468,6 +1477,7 @@ export class UserListController {
     return Promise.all(contributors);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Delete(&quot;/:id/contributors/:userListContributorId&quot;)
   @ApiOperation({
     operationId: &quot;deleteUserListContributor&quot;,
@@ -1486,6 +1496,7 @@ export class UserListController {
     await this.userListService.deleteUserListContributor(id, userListContributorId);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/:id/contributors/highlights&quot;)
   @ApiOperation({
     operationId: &quot;getUserListContributorHighlights&quot;,
@@ -1503,6 +1514,7 @@ export class UserListController {
     return this.userListService.findListContributorsHighlights(pageOptionsDto, id);
   }
 
+  @Deprecated(&quot;deprecated: use v2/workspace/{id}/userLists endpoints&quot;)
   @Get(&quot;/:id/contributors/highlights/tagged-repos&quot;)
   @ApiOperation({
     operationId: &quot;getUserListContributorHighlightedRepos&quot;,

@@ -94,12 +94,21 @@
                                 <a href="#findAllInsightsByWorkspaceIdForUserId" >findAllInsightsByWorkspaceIdForUserId</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneByInsightId" >findOneByInsightId</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Async</span>
                                 <a href="#findOneInsightByWorkspaceIdForUserId" >findOneInsightByWorkspaceIdForUserId</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#moveWorkspaceInsight" >moveWorkspaceInsight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#patchWorkspaceInsight" >patchWorkspaceInsight</a>
                             </li>
                         </ul>
                     </td>
@@ -124,7 +133,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/workspace/workspace-insights.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/workspace/workspace-insights.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -225,8 +234,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:117</a></div>
                 </td>
             </tr>
 
@@ -318,8 +327,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -357,8 +366,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:239</a></div>
                 </td>
             </tr>
 
@@ -452,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:48</a></div>
                 </td>
             </tr>
 
@@ -529,6 +538,78 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findOneByInsightId"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>findOneByInsightId</b></span>
+                        <a href="#findOneByInsightId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByInsightId(insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>insightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;DbWorkspaceInsight&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="findOneInsightByWorkspaceIdForUserId"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -547,8 +628,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:82</a></div>
                 </td>
             </tr>
 
@@ -642,8 +723,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/workspace/workspace-insights.service.ts:137</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="142"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:142</a></div>
                 </td>
             </tr>
 
@@ -727,13 +808,120 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="patchWorkspaceInsight"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>patchWorkspaceInsight</b></span>
+                        <a href="#patchWorkspaceInsight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>patchWorkspaceInsight(dto: <a href="../classes/UpdateInsightDto.html" target="_self">UpdateInsightDto</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, insightId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/workspace/workspace-insights.service.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dto</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateInsightDto.html" target="_self" >UpdateInsightDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>insightId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbInsight.html" target="_self" >Promise&lt;DbInsight&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, UnauthorizedException } from &quot;@nestjs/common&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException, UnauthorizedException, UnprocessableEntityException } from &quot;@nestjs/common&quot;;
 import { Repository, SelectQueryBuilder } from &quot;typeorm&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 
@@ -744,6 +932,7 @@ import { InsightRepoService } from &quot;../insight/insight-repo.service&quot;;
 import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { PageOptionsDto } from &quot;../common/dtos/page-options.dto&quot;;
+import { UpdateInsightDto } from &quot;../insight/dtos/update-insight.dto&quot;;
 import { WorkspaceService } from &quot;./workspace.service&quot;;
 import { canUserEditWorkspace, canUserViewWorkspace } from &quot;./common/memberAccess&quot;;
 import { DbWorkspaceInsight } from &quot;./entities/workspace-insights.entity&quot;;
@@ -763,6 +952,20 @@ export class WorkspaceInsightsService {
     const builder &#x3D; this.workspaceInsightRepository.createQueryBuilder(&quot;workspace_insights&quot;);
 
     return builder;
+  }
+
+  private async findOneByInsightId(insightId: number): Promise&lt;DbWorkspaceInsight&gt; {
+    const queryBuilder &#x3D; this.baseQueryBuilder();
+
+    queryBuilder.where(&quot;workspace_insights.insight_id &#x3D; :id&quot;, { id: insightId });
+
+    const item: DbWorkspaceInsight | null &#x3D; await queryBuilder.getOne();
+
+    if (!item) {
+      throw new NotFoundException(&quot;newly created workspace was not found&quot;);
+    }
+
+    return item;
   }
 
   async findAllInsightsByWorkspaceIdForUserId(
@@ -856,17 +1059,7 @@ export class WorkspaceInsightsService {
       await this.insightRepoService.addInsightRepo(newInsight.id, repo);
     });
 
-    const queryBuilder &#x3D; this.baseQueryBuilder();
-
-    queryBuilder.where(&quot;workspace_insights.insight_id &#x3D; :id&quot;, { id: newInsight.id });
-
-    const item: DbWorkspaceInsight | null &#x3D; await queryBuilder.getOne();
-
-    if (!item) {
-      throw new NotFoundException(&quot;newly created workspace was not found&quot;);
-    }
-
-    return item;
+    return this.findOneByInsightId(newInsight.id);
   }
 
   async moveWorkspaceInsight(
@@ -908,17 +1101,62 @@ export class WorkspaceInsightsService {
       workspace: newWorkspace,
     });
 
-    const queryBuilder &#x3D; this.baseQueryBuilder();
+    return this.findOneByInsightId(dto.id);
+  }
 
-    queryBuilder.where(&quot;workspace_insights.insight_id &#x3D; :id&quot;, { id: dto.id });
+  async patchWorkspaceInsight(
+    dto: UpdateInsightDto,
+    id: string,
+    insightId: number,
+    userId: number
+  ): Promise&lt;DbInsight&gt; {
+    const workspace &#x3D; await this.workspaceService.findOneById(id);
 
-    const item: DbWorkspaceInsight | null &#x3D; await queryBuilder.getOne();
+    /*
+     * owners and editors can add workspace insight pages
+     */
 
-    if (!item) {
-      throw new NotFoundException(&quot;newly moved workspace insight was not found&quot;);
+    const canEdit &#x3D; canUserEditWorkspace(workspace, userId);
+
+    if (!canEdit) {
+      throw new UnauthorizedException();
     }
 
-    return item;
+    const insight &#x3D; await this.insightsService.findOneById(insightId);
+
+    await this.insightsService.updateInsight(insightId, {
+      name: dto.name,
+    });
+
+    try {
+      // current set of insight repos
+      const currentRepos &#x3D; insight.repos?.filter((insightRepo) &#x3D;&gt; !insightRepo.deleted_at) || [];
+
+      // remove deleted repos
+      const reposToRemove &#x3D; currentRepos.filter(
+        (repo) &#x3D;&gt; !dto.repos.find((repoInfo) &#x3D;&gt; &#x60;${repoInfo.id!}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repo.repo_id}&#x60;)
+      );
+
+      const reposToRemoveRequests &#x3D; reposToRemove.map(async (insightRepo) &#x3D;&gt;
+        this.insightRepoService.removeInsightRepo(insightRepo.id)
+      );
+
+      await Promise.all(reposToRemoveRequests);
+
+      // add new repos
+      const currentRepoIds &#x3D; currentRepos.map((cr) &#x3D;&gt; cr.repo_id);
+      const reposToAdd &#x3D; dto.repos.filter((repoInfo) &#x3D;&gt; !currentRepoIds.find((id) &#x3D;&gt; &#x60;${id}&#x60; &#x3D;&#x3D;&#x3D; &#x60;${repoInfo.id!}&#x60;));
+
+      const repoToAddRequests &#x3D; reposToAdd.map(async (repo) &#x3D;&gt;
+        this.insightRepoService.addInsightRepo(insight.id, repo)
+      );
+
+      await Promise.all(repoToAddRequests);
+    } catch (e) {
+      throw new UnprocessableEntityException();
+    }
+
+    return this.insightsService.findOneById(insight.id);
   }
 
   async deleteWorkspaceInsight(id: string, insightId: number, userId: number) {
