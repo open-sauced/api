@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.8...v2.12.0-beta.9) (2024-03-11)
+
+
+### 🐛 Bug Fixes
+
+* use workspace-repo service for findonebyid ([#636](https://github.com/open-sauced/api.opensauced.pizza/issues/636)) ([22f0573](https://github.com/open-sauced/api.opensauced.pizza/commit/22f0573b24ff6380d98d2c32540bdf3fc63f8352))
+
 ## [2.12.0-beta.8](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.7...v2.12.0-beta.8) (2024-03-11)
 
 
