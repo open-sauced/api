@@ -5,6 +5,14 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.9...v2.12.0-beta.10) (2024-03-11)
+
+
+### 🐛 Bug Fixes
+
+* apply pagination to repository/contributor insights lists ([#638](https://github.com/open-sauced/api.opensauced.pizza/issues/638)) ([90be966](https://github.com/open-sauced/api.opensauced.pizza/commit/90be966b252b3559b6fd2c1085670d65e94b0eaa))
+* Removes usage of list-service findonebyid ([#637](https://github.com/open-sauced/api.opensauced.pizza/issues/637)) ([a938d65](https://github.com/open-sauced/api.opensauced.pizza/commit/a938d6559f6b8397c3cee0502252bdb36d2728d7))
+
 ## [2.12.0-beta.9](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.8...v2.12.0-beta.9) (2024-03-11)
 
 
