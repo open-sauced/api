@@ -69,7 +69,7 @@ export class WorkspaceUserListsService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  private async findOneUserListByWorkspaceIdForUserIdUnguarded(id: string, userListId: string): Promise<DbUserList> {
+  private async findOneUserListByWorkspaceIdListIdUnguarded(id: string, userListId: string): Promise<DbUserList> {
     const userList: DbUserList | undefined = await this.baseQueryBuilder()
       .leftJoinAndSelect("workspace_user_lists.user_list", "workspace_user_lists_user_list")
       .leftJoinAndSelect(
@@ -106,7 +106,7 @@ export class WorkspaceUserListsService {
       throw new NotFoundException();
     }
 
-    return this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    return this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
   }
 
   async findWorkspaceUserListContributors(
@@ -127,7 +127,7 @@ export class WorkspaceUserListsService {
       throw new NotFoundException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     return this.userListService.findContributorsByListId(pageOptionsDto, userList.id);
   }
@@ -150,7 +150,7 @@ export class WorkspaceUserListsService {
       throw new NotFoundException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     return this.userListService.findListContributorsHighlights(pageOptionsDto, userList.id);
   }
@@ -173,7 +173,7 @@ export class WorkspaceUserListsService {
       throw new NotFoundException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     return this.userListService.findListContributorsHighlightedRepos(pageOptionsDto, userList.id);
   }
@@ -230,7 +230,7 @@ export class WorkspaceUserListsService {
       throw new UnauthorizedException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     const contributors = dto.contributors.map(async (contributor) =>
       this.userListService.addUserListContributor(userList.id, contributor.id, contributor.login)
@@ -309,13 +309,13 @@ export class WorkspaceUserListsService {
       throw new UnauthorizedException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     await this.userListService.updateUserList(userList.id, {
       name: dto.name,
     });
 
-    return this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    return this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
   }
 
   async deleteWorkspaceUserList(id: string, userListId: string, userId: number) {
@@ -331,7 +331,7 @@ export class WorkspaceUserListsService {
       throw new UnauthorizedException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     await this.userListService.deleteUserList(userList.id);
   }
@@ -354,7 +354,7 @@ export class WorkspaceUserListsService {
       throw new UnauthorizedException();
     }
 
-    const userList = await this.findOneUserListByWorkspaceIdForUserIdUnguarded(id, userListId);
+    const userList = await this.findOneUserListByWorkspaceIdListIdUnguarded(id, userListId);
 
     await this.userListService.deleteUserListContributor(userList.id, userListContributorId);
   }
