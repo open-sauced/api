@@ -5,6 +5,27 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.12.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0...v2.12.0) (2024-03-11)
+
+
+### 🍕 Features
+
+* Allow for workspace member access GET of all users ([#631](https://github.com/open-sauced/api.opensauced.pizza/issues/631)) ([f71ccc1](https://github.com/open-sauced/api.opensauced.pizza/commit/f71ccc1ad3eeaa64c5b72f83b35d0306353fe632))
+* Implements moving a workspace user list ([#632](https://github.com/open-sauced/api.opensauced.pizza/issues/632)) ([000ab4d](https://github.com/open-sauced/api.opensauced.pizza/commit/000ab4dfce3f2ada1288aee29b44d5709286d1ee))
+* Workspace repo search with filters ([#620](https://github.com/open-sauced/api.opensauced.pizza/issues/620)) ([c1a418c](https://github.com/open-sauced/api.opensauced.pizza/commit/c1a418cd5556bfedcd42d2893e2956008e21fd7f))
+
+
+### 🐛 Bug Fixes
+
+* Allow for stubbing out repos with repo ID and org/name ([#633](https://github.com/open-sauced/api.opensauced.pizza/issues/633)) ([1231861](https://github.com/open-sauced/api.opensauced.pizza/commit/123186168fa364d90b8818fbc1ac512d25bcf7c8))
+* apply pagination to repository/contributor insights lists ([#638](https://github.com/open-sauced/api.opensauced.pizza/issues/638)) ([90be966](https://github.com/open-sauced/api.opensauced.pizza/commit/90be966b252b3559b6fd2c1085670d65e94b0eaa))
+* Left join deleted repos in workspace-repos ([#628](https://github.com/open-sauced/api.opensauced.pizza/issues/628)) ([c39611a](https://github.com/open-sauced/api.opensauced.pizza/commit/c39611aa3c865d3e66b0842a0ceee55ab98bc324))
+* PR stats now get all pr events, not just most recent ([#626](https://github.com/open-sauced/api.opensauced.pizza/issues/626)) ([7a6d3ee](https://github.com/open-sauced/api.opensauced.pizza/commit/7a6d3ee0ac7ba016f47c945ebc287d5ad7c8bb43))
+* Refactors access control for workspace insight pages ([#635](https://github.com/open-sauced/api.opensauced.pizza/issues/635)) ([5d48b2a](https://github.com/open-sauced/api.opensauced.pizza/commit/5d48b2ab122a87b8a652d83a4d68d1655e3c6a9c))
+* Removes usage of list-service findonebyid ([#637](https://github.com/open-sauced/api.opensauced.pizza/issues/637)) ([a938d65](https://github.com/open-sauced/api.opensauced.pizza/commit/a938d6559f6b8397c3cee0502252bdb36d2728d7))
+* Repo / contributor insights in workspace are ordered by when they were updated last ([#630](https://github.com/open-sauced/api.opensauced.pizza/issues/630)) ([ec2d2f9](https://github.com/open-sauced/api.opensauced.pizza/commit/ec2d2f9e74cbd506f28c6041f62bee34379257a1))
+* use workspace-repo service for findonebyid ([#636](https://github.com/open-sauced/api.opensauced.pizza/issues/636)) ([22f0573](https://github.com/open-sauced/api.opensauced.pizza/commit/22f0573b24ff6380d98d2c32540bdf3fc63f8352))
+
 ## [2.12.0-beta.10](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0-beta.9...v2.12.0-beta.10) (2024-03-11)
 
 
