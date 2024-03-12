@@ -56,8 +56,8 @@ export class WorkspaceUserListsService {
       .leftJoinAndSelect("workspace_user_lists.user_list", "workspace_user_lists_user_list")
       .where("workspace_user_lists.workspace_id = :id", { id })
       .orderBy("workspace_user_lists_user_list.updated_at", "DESC")
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities: DbUserList[] = await queryBuilder
