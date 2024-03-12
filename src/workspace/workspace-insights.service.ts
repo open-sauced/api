@@ -68,8 +68,8 @@ export class WorkspaceInsightsService {
       .leftJoinAndSelect("workspace_insights_insight.repos", "workspace_insights_insight_repos")
       .where("workspace_insights.workspace_id = :id", { id })
       .orderBy("workspace_insights_insight.updated_at", "DESC")
-      .offset(pageOptionsDto.skip)
-      .limit(pageOptionsDto.limit);
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities: DbInsight[] = await queryBuilder

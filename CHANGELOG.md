@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.12.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.0...v2.12.1-beta.1) (2024-03-12)
+
+
+### 🐛 Bug Fixes
+
+* use skip/take for pagination with nested data for insights ([#642](https://github.com/open-sauced/api.opensauced.pizza/issues/642)) ([99eaa47](https://github.com/open-sauced/api.opensauced.pizza/commit/99eaa4799df9797a1a5f833868ef45bcad192a2a))
+
 ## [2.12.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.11.0...v2.12.0) (2024-03-11)
 
 
