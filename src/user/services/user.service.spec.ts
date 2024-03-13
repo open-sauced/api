@@ -31,6 +31,8 @@ import { DbWorkspaceUserLists } from "../../workspace/entities/workspace-user-li
 import { WorkspaceService } from "../../workspace/workspace.service";
 import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity";
 import { DbWorkspaceContributor } from "../../workspace/entities/workspace-contributors.entity";
+import { DbWatchGitHubEvents } from "../../timescale/entities/watch_github_events";
+import { DbForkGitHubEvents } from "../../timescale/entities/fork_github_events";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -103,7 +105,11 @@ describe("UserService", () => {
           useValue: createMockRepository(),
         },
         {
-          provide: getRepositoryToken(DbUserList, "ApiConnection"),
+          provide: getRepositoryToken(DbWatchGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbForkGitHubEvents, "TimescaleConnection"),
           useValue: createMockRepository(),
         },
         {

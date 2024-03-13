@@ -184,6 +184,7 @@ export class RepoService {
       );
 
       const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
+      const confidence = await this.repoDevstatsService.calculateContributorConfidence(entity.full_name, range);
 
       return {
         ...entity,
@@ -195,6 +196,7 @@ export class RepoService {
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
         activity_ratio: activityRatio,
+        contributor_confidence: confidence,
         health: activityRatio,
       } as DbRepo;
     });
