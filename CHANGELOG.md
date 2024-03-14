@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.13.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.1...v2.13.0) (2024-03-14)
+
+
+### 🍕 Features
+
+* Migration to remove hacktoberfest coupons ([#647](https://github.com/open-sauced/api.opensauced.pizza/issues/647)) ([003975a](https://github.com/open-sauced/api.opensauced.pizza/commit/003975a6e2de005fe4fd1d71987ddcc4974d025c))
+
 ## [2.13.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.1...v2.13.0-beta.1) (2024-03-13)
 
 
