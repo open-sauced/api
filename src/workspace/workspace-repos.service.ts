@@ -57,7 +57,9 @@ export class WorkspaceReposService {
         "workspace_repos.repo_id = workspace_repos_repo.id"
       )
       .where("workspace_repos.deleted_at IS NULL")
-      .andWhere("workspace_repos.workspace_id = :id", { id });
+      .andWhere("workspace_repos.workspace_id = :id", { id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();

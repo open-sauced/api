@@ -45,14 +45,14 @@ export class WorkspaceContributorsService {
       throw new NotFoundException();
     }
 
-    const entities = await this.findAllContributors(id);
+    const entities = await this.findAllContributors(id, pageOptionsDto.skip, pageOptionsDto.limit);
 
     const pageMetaDto = new PageMetaDto({ itemCount: entities.length, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllContributors(id: string): Promise<DbWorkspaceContributor[]> {
+  async findAllContributors(id: string, skip?: number, limit?: number): Promise<DbWorkspaceContributor[]> {
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
@@ -62,6 +62,14 @@ export class WorkspaceContributorsService {
         "workspace_contributors.contributor_id = workspace_contributors_contributor.id"
       )
       .where("workspace_contributors.workspace_id = :id", { id });
+
+    if (skip) {
+      queryBuilder.skip(skip);
+    }
+
+    if (limit) {
+      queryBuilder.take(limit);
+    }
 
     return queryBuilder.getMany();
   }
