@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.13.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.1-beta.1...v2.13.1-beta.2) (2024-03-15)
+
+
+### 🐛 Bug Fixes
+
+* Tease out buckets of data for workspace stats ([#655](https://github.com/open-sauced/api.opensauced.pizza/issues/655)) ([dbad78e](https://github.com/open-sauced/api.opensauced.pizza/commit/dbad78e4e5e0d24c1baf58ddebefa922dd2f8704))
+
 ### [2.13.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.0...v2.13.1-beta.1) (2024-03-15)
 
 
