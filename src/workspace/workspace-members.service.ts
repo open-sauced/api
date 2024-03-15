@@ -49,7 +49,9 @@ export class WorkspaceMembersService {
 
     queryBuilder
       .leftJoinAndSelect("workspace_members.member", "users", "users.id = workspace_members.user_id")
-      .where("workspace_members.workspace_id = :id", { id });
+      .where("workspace_members.workspace_id = :id", { id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();
