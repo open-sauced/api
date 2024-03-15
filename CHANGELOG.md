@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+### [2.13.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.0...v2.13.1-beta.1) (2024-03-15)
+
+
+### 🐛 Bug Fixes
+
+* Makes pagination work for get workspaces routes ([#654](https://github.com/open-sauced/api.opensauced.pizza/issues/654)) ([0f3c476](https://github.com/open-sauced/api.opensauced.pizza/commit/0f3c476a4277bc9c219aeec3ef7b7814f85d6c1b))
+
 ## [2.13.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.1...v2.13.0) (2024-03-14)
 
 
