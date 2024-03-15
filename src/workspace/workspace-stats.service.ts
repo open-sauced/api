@@ -112,15 +112,17 @@ export class WorkspaceStatsService {
       // get the repo's activity ratio
       const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.repo.full_name, range);
 
+      result.repos.activity_ratio += activityRatio;
+
       // get forks within time range
       const forks = await this.forkGithubEventsService.genForkHistogram({ range, repo: entity.repo.full_name });
+
+      forks.forEach((bucket) => (result.repos.forks += bucket.forks_count));
 
       // get stars (watch events) within time range
       const stars = await this.watchGithubEventsService.genStarsHistogram({ range, repo: entity.repo.full_name });
 
-      result.repos.stars += stars.length;
-      result.repos.forks += forks.length;
-      result.repos.activity_ratio += activityRatio;
+      stars.forEach((bucket) => (result.repos.stars += bucket.star_count));
     });
 
     await Promise.all(promises);
