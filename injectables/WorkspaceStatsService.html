@@ -314,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:185</a></div>
                 </td>
             </tr>
 
@@ -409,8 +409,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/workspace/workspace-stats.service.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/workspace/workspace-stats.service.ts:140</a></div>
                 </td>
             </tr>
 
@@ -697,15 +697,17 @@ export class WorkspaceStatsService {
       // get the repo&#x27;s activity ratio
       const activityRatio &#x3D; await this.repoDevstatsService.calculateRepoActivityRatio(entity.repo.full_name, range);
 
+      result.repos.activity_ratio +&#x3D; activityRatio;
+
       // get forks within time range
       const forks &#x3D; await this.forkGithubEventsService.genForkHistogram({ range, repo: entity.repo.full_name });
+
+      forks.forEach((bucket) &#x3D;&gt; (result.repos.forks +&#x3D; bucket.forks_count));
 
       // get stars (watch events) within time range
       const stars &#x3D; await this.watchGithubEventsService.genStarsHistogram({ range, repo: entity.repo.full_name });
 
-      result.repos.stars +&#x3D; stars.length;
-      result.repos.forks +&#x3D; forks.length;
-      result.repos.activity_ratio +&#x3D; activityRatio;
+      stars.forEach((bucket) &#x3D;&gt; (result.repos.stars +&#x3D; bucket.star_count));
     });
 
     await Promise.all(promises);
