@@ -136,7 +136,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/workspace/workspace.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/workspace/workspace.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -271,8 +271,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/workspace/workspace.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/workspace/workspace.service.ts:36</a></div>
                 </td>
             </tr>
 
@@ -310,8 +310,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">src/workspace/workspace.service.ts:144</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/workspace/workspace.service.ts:148</a></div>
                 </td>
             </tr>
 
@@ -393,8 +393,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="279"
-                            class="link-to-prism">src/workspace/workspace.service.ts:279</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/workspace/workspace.service.ts:283</a></div>
                 </td>
             </tr>
 
@@ -476,8 +476,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="127"
-                            class="link-to-prism">src/workspace/workspace.service.ts:127</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/workspace/workspace.service.ts:128</a></div>
                 </td>
             </tr>
 
@@ -559,8 +559,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/workspace/workspace.service.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/workspace/workspace.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -630,8 +630,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/workspace/workspace.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/workspace/workspace.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -713,8 +713,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/workspace/workspace.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/workspace/workspace.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -796,8 +796,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="100"
-                            class="link-to-prism">src/workspace/workspace.service.ts:100</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/workspace/workspace.service.ts:101</a></div>
                 </td>
             </tr>
 
@@ -867,8 +867,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="245"
-                            class="link-to-prism">src/workspace/workspace.service.ts:245</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="249"
+                            class="link-to-prism">src/workspace/workspace.service.ts:249</a></div>
                 </td>
             </tr>
 
@@ -956,6 +956,7 @@ import { PagerService } from &quot;../common/services/pager.service&quot;;
 import { RepoService } from &quot;../repo/repo.service&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
 import { UserService } from &quot;../user/services/user.service&quot;;
+import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from &quot;./entities/workspace-member.entity&quot;;
 import { DbWorkspace } from &quot;./entities/workspace.entity&quot;;
 import { CreateWorkspaceDto } from &quot;./dtos/create-workspace.dto&quot;;
@@ -1083,10 +1084,13 @@ export class WorkspaceService {
       { userId }
     );
 
-    return this.pagerService.applyPagination&lt;DbWorkspace&gt;({
-      pageOptionsDto,
-      queryBuilder,
-    });
+    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
+
+    const [itemCount, entities] &#x3D; await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
+
+    const pageMetaDto &#x3D; new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async createWorkspace(dto: CreateWorkspaceDto, userId: number): Promise&lt;DbWorkspace&gt; {

@@ -222,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:77</a></div>
                 </td>
             </tr>
 
@@ -329,8 +329,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -461,8 +461,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:152</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="160"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:160</a></div>
                 </td>
             </tr>
 
@@ -568,8 +568,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="191"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:191</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:199</a></div>
                 </td>
             </tr>
 
@@ -664,8 +664,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/workspace/workspace-contributors.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -752,7 +752,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAllContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findAllContributors(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, skip?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, limit?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -788,6 +788,30 @@
 
                                     <td>
                                         No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>skip</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -956,14 +980,14 @@ export class WorkspaceContributorsService {
       throw new NotFoundException();
     }
 
-    const entities &#x3D; await this.findAllContributors(id);
+    const entities &#x3D; await this.findAllContributors(id, pageOptionsDto.skip, pageOptionsDto.limit);
 
     const pageMetaDto &#x3D; new PageMetaDto({ itemCount: entities.length, pageOptionsDto });
 
     return new PageDto(entities, pageMetaDto);
   }
 
-  async findAllContributors(id: string): Promise&lt;DbWorkspaceContributor[]&gt; {
+  async findAllContributors(id: string, skip?: number, limit?: number): Promise&lt;DbWorkspaceContributor[]&gt; {
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
@@ -973,6 +997,14 @@ export class WorkspaceContributorsService {
         &quot;workspace_contributors.contributor_id &#x3D; workspace_contributors_contributor.id&quot;
       )
       .where(&quot;workspace_contributors.workspace_id &#x3D; :id&quot;, { id });
+
+    if (skip) {
+      queryBuilder.skip(skip);
+    }
+
+    if (limit) {
+      queryBuilder.take(limit);
+    }
 
     return queryBuilder.getMany();
   }

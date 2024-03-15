@@ -213,8 +213,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -308,8 +308,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:105</a></div>
                 </td>
             </tr>
 
@@ -440,8 +440,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="200"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:200</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:202</a></div>
                 </td>
             </tr>
 
@@ -535,8 +535,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:147</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/workspace/workspace-orgs.service.ts:149</a></div>
                 </td>
             </tr>
 
@@ -760,7 +760,9 @@ export class WorkspaceOrgsService {
 
     queryBuilder
       .leftJoinAndSelect(&quot;workspace_orgs.org&quot;, &quot;workspace_orgs_org&quot;, &quot;workspace_orgs.org_id &#x3D; workspace_orgs_org.id&quot;)
-      .where(&quot;workspace_orgs.workspace_id &#x3D; :id&quot;, { id });
+      .where(&quot;workspace_orgs.workspace_id &#x3D; :id&quot;, { id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount &#x3D; await queryBuilder.getCount();
     const entities &#x3D; await queryBuilder.getMany();
