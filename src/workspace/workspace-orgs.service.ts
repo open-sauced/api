@@ -49,7 +49,9 @@ export class WorkspaceOrgsService {
 
     queryBuilder
       .leftJoinAndSelect("workspace_orgs.org", "workspace_orgs_org", "workspace_orgs.org_id = workspace_orgs_org.id")
-      .where("workspace_orgs.workspace_id = :id", { id });
+      .where("workspace_orgs.workspace_id = :id", { id })
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.limit);
 
     const itemCount = await queryBuilder.getCount();
     const entities = await queryBuilder.getMany();

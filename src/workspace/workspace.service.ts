@@ -8,6 +8,7 @@ import { PagerService } from "../common/services/pager.service";
 import { RepoService } from "../repo/repo.service";
 import { DbUser } from "../user/user.entity";
 import { UserService } from "../user/services/user.service";
+import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbWorkspaceMember, WorkspaceMemberRoleEnum } from "./entities/workspace-member.entity";
 import { DbWorkspace } from "./entities/workspace.entity";
 import { CreateWorkspaceDto } from "./dtos/create-workspace.dto";
@@ -135,10 +136,13 @@ export class WorkspaceService {
       { userId }
     );
 
-    return this.pagerService.applyPagination<DbWorkspace>({
-      pageOptionsDto,
-      queryBuilder,
-    });
+    queryBuilder.skip(pageOptionsDto.skip).take(pageOptionsDto.limit);
+
+    const [itemCount, entities] = await Promise.all([queryBuilder.getCount(), queryBuilder.getMany()]);
+
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+
+    return new PageDto(entities, pageMetaDto);
   }
 
   async createWorkspace(dto: CreateWorkspaceDto, userId: number): Promise<DbWorkspace> {

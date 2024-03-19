@@ -5,6 +5,27 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.14.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.1-beta.2...v2.14.0-beta.1) (2024-03-19)
+
+
+### 🍕 Features
+
+* Implements POC contributor confidence ([#649](https://github.com/open-sauced/api.opensauced.pizza/issues/649)) ([0253980](https://github.com/open-sauced/api.opensauced.pizza/commit/0253980ff2249a3c94c0d9df284d05451765eb7d))
+
+### [2.13.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.1-beta.1...v2.13.1-beta.2) (2024-03-15)
+
+
+### 🐛 Bug Fixes
+
+* Tease out buckets of data for workspace stats ([#655](https://github.com/open-sauced/api.opensauced.pizza/issues/655)) ([dbad78e](https://github.com/open-sauced/api.opensauced.pizza/commit/dbad78e4e5e0d24c1baf58ddebefa922dd2f8704))
+
+### [2.13.1-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.0...v2.13.1-beta.1) (2024-03-15)
+
+
+### 🐛 Bug Fixes
+
+* Makes pagination work for get workspaces routes ([#654](https://github.com/open-sauced/api.opensauced.pizza/issues/654)) ([0f3c476](https://github.com/open-sauced/api.opensauced.pizza/commit/0f3c476a4277bc9c219aeec3ef7b7814f85d6c1b))
+
 ## [2.13.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.12.1...v2.13.0) (2024-03-14)
 
 
