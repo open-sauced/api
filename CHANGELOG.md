@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.14.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.1-beta.2...v2.14.0-beta.1) (2024-03-19)
+
+
+### 🍕 Features
+
+* Implements POC contributor confidence ([#649](https://github.com/open-sauced/api.opensauced.pizza/issues/649)) ([0253980](https://github.com/open-sauced/api.opensauced.pizza/commit/0253980ff2249a3c94c0d9df284d05451765eb7d))
+
 ### [2.13.1-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.1-beta.1...v2.13.1-beta.2) (2024-03-15)
 
 
