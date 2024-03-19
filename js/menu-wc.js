@@ -720,13 +720,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/TimescaleModule.html" data-type="entity-link" >TimescaleModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-TimescaleModule-1666f95f3e20f73bf184aae9d8c1bf5a133280a73b25698ec5c1fde965a5af0590f1f15f6752498672e0f0bfb6f20df7f364443514823785b7fad302c5668de9"' : 'data-target="#xs-injectables-links-module-TimescaleModule-1666f95f3e20f73bf184aae9d8c1bf5a133280a73b25698ec5c1fde965a5af0590f1f15f6752498672e0f0bfb6f20df7f364443514823785b7fad302c5668de9"' }>
+                                        'data-target="#injectables-links-module-TimescaleModule-5de00d59ec037dd384e4e3d3719420d02824f2ec8c0a084ca46d65eca9abad7082ff87781fb1c1f7d8465de15a59344f44989460b5d4c8ef06e6901bb20493cb"' : 'data-target="#xs-injectables-links-module-TimescaleModule-5de00d59ec037dd384e4e3d3719420d02824f2ec8c0a084ca46d65eca9abad7082ff87781fb1c1f7d8465de15a59344f44989460b5d4c8ef06e6901bb20493cb"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-TimescaleModule-1666f95f3e20f73bf184aae9d8c1bf5a133280a73b25698ec5c1fde965a5af0590f1f15f6752498672e0f0bfb6f20df7f364443514823785b7fad302c5668de9"' :
-                                        'id="xs-injectables-links-module-TimescaleModule-1666f95f3e20f73bf184aae9d8c1bf5a133280a73b25698ec5c1fde965a5af0590f1f15f6752498672e0f0bfb6f20df7f364443514823785b7fad302c5668de9"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-TimescaleModule-5de00d59ec037dd384e4e3d3719420d02824f2ec8c0a084ca46d65eca9abad7082ff87781fb1c1f7d8465de15a59344f44989460b5d4c8ef06e6901bb20493cb"' :
+                                        'id="xs-injectables-links-module-TimescaleModule-5de00d59ec037dd384e4e3d3719420d02824f2ec8c0a084ca46d65eca9abad7082ff87781fb1c1f7d8465de15a59344f44989460b5d4c8ef06e6901bb20493cb"' }>
                                         <li class="link">
                                             <a href="injectables/ContributorDevstatsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContributorDevstatsService</a>
                                         </li>
@@ -1041,6 +1041,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="entities/DbEndorsement.html" data-type="entity-link" >DbEndorsement</a>
                                 </li>
                                 <li class="link">
+                                    <a href="entities/DbForkGitHubEvents.html" data-type="entity-link" >DbForkGitHubEvents</a>
+                                </li>
+                                <li class="link">
                                     <a href="entities/DbForkGitHubEventsHistogram.html" data-type="entity-link" >DbForkGitHubEventsHistogram</a>
                                 </li>
                                 <li class="link">
@@ -1159,6 +1162,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbUserToUserFollows.html" data-type="entity-link" >DbUserToUserFollows</a>
+                                </li>
+                                <li class="link">
+                                    <a href="entities/DbWatchGitHubEvents.html" data-type="entity-link" >DbWatchGitHubEvents</a>
                                 </li>
                                 <li class="link">
                                     <a href="entities/DbWatchGitHubEventsHistogram.html" data-type="entity-link" >DbWatchGitHubEventsHistogram</a>

@@ -99,7 +99,21 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#calculateContributorConfidence" >calculateContributorConfidence</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#calculateForkerConfidence" >calculateForkerConfidence</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#calculateRepoActivityRatio" >calculateRepoActivityRatio</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#calculateStarGazerConfidence" >calculateStarGazerConfidence</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -127,12 +141,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, issuesGithubEventsRepository: <a href="../entitys/DbIssuesGitHubEvents.html" target="_self">Repository&lt;DbIssuesGitHubEvents&gt;</a>, pushGithubEventsRepository: <a href="../entitys/DbPushGitHubEvents.html" target="_self">Repository&lt;DbPushGitHubEvents&gt;</a>)</code>
+<code>constructor(pullRequestGithubEventsRepository: Repository<DbPullRequestGitHubEvents>, issuesGithubEventsRepository: <a href="../entitys/DbIssuesGitHubEvents.html" target="_self">Repository&lt;DbIssuesGitHubEvents&gt;</a>, pushGithubEventsRepository: <a href="../entitys/DbPushGitHubEvents.html" target="_self">Repository&lt;DbPushGitHubEvents&gt;</a>, watchGitHubEventsRepository: <a href="../entitys/DbWatchGitHubEvents.html" target="_self">Repository&lt;DbWatchGitHubEvents&gt;</a>, forkGitHubEventsRepository: <a href="../entitys/DbForkGitHubEvents.html" target="_self">Repository&lt;DbForkGitHubEvents&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/repo-devstats.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/timescale/repo-devstats.service.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -185,6 +199,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>watchGitHubEventsRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/DbWatchGitHubEvents.html" target="_self" >Repository&lt;DbWatchGitHubEvents&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>forkGitHubEventsRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/DbForkGitHubEvents.html" target="_self" >Repository&lt;DbForkGitHubEvents&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -199,6 +237,173 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calculateContributorConfidence"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>calculateContributorConfidence</b></span>
+                        <a href="#calculateContributorConfidence"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>calculateContributorConfidence(repoName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:243</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calculateForkerConfidence"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>calculateForkerConfidence</b></span>
+                        <a href="#calculateForkerConfidence"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>calculateForkerConfidence(repoName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -221,8 +426,92 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/timescale/repo-devstats.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>repoName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>range</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="calculateStarGazerConfidence"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>calculateStarGazerConfidence</b></span>
+                        <a href="#calculateStarGazerConfidence"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>calculateStarGazerConfidence(repoName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -304,8 +593,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/timescale/repo-devstats.service.ts:122</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="255"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:255</a></div>
                 </td>
             </tr>
 
@@ -399,8 +688,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/timescale/repo-devstats.service.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/timescale/repo-devstats.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -474,7 +763,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/timescale/repo-devstats.service.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/timescale/repo-devstats.service.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -501,7 +790,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/timescale/repo-devstats.service.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/timescale/repo-devstats.service.ts:40</a></div>
                         </td>
                     </tr>
 
@@ -526,6 +815,8 @@ import { DbRepoContributor } from &quot;../repo/entities/repo_contributors.entit
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 import { DbIssuesGitHubEvents } from &quot;./entities/issues_github_event&quot;;
 import { DbPushGitHubEvents } from &quot;./entities/push_github_events&quot;;
+import { DbWatchGitHubEvents } from &quot;./entities/watch_github_events&quot;;
+import { DbForkGitHubEvents } from &quot;./entities/fork_github_events&quot;;
 
 @Injectable()
 export class RepoDevstatsService {
@@ -535,7 +826,11 @@ export class RepoDevstatsService {
     @InjectRepository(DbIssuesGitHubEvents, &quot;TimescaleConnection&quot;)
     private issuesGithubEventsRepository: Repository&lt;DbIssuesGitHubEvents&gt;,
     @InjectRepository(DbPushGitHubEvents, &quot;TimescaleConnection&quot;)
-    private pushGithubEventsRepository: Repository&lt;DbPushGitHubEvents&gt;
+    private pushGithubEventsRepository: Repository&lt;DbPushGitHubEvents&gt;,
+    @InjectRepository(DbWatchGitHubEvents, &quot;TimescaleConnection&quot;)
+    private watchGitHubEventsRepository: Repository&lt;DbWatchGitHubEvents&gt;,
+    @InjectRepository(DbForkGitHubEvents, &quot;TimescaleConnection&quot;)
+    private forkGitHubEventsRepository: Repository&lt;DbForkGitHubEvents&gt;
   ) {
     // defines quantile boundaries (ignore lower 5% and upper 95% percentiles)
     const lowerQ &#x3D; 0.05;
@@ -628,6 +923,133 @@ export class RepoDevstatsService {
     const parsedResult &#x3D; parseFloat(&#x60;${result?.avg_calculated_activity ?? &quot;0&quot;}&#x60;);
 
     return this.winsorizeAndNormalizeRatio(parsedResult);
+  }
+
+  private async calculateStarGazerConfidence(repoName: string, range: number): Promise&lt;number&gt; {
+    let result &#x3D; 0;
+
+    // gets relevant star gazers for the repo
+    const starGazersQuery &#x3D; this.watchGitHubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;DISTINCT LOWER(actor_login) as login&quot;)
+      .from(&quot;watch_github_events&quot;, &quot;watch_github_events&quot;)
+      .where(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;);
+
+    const allStarGazers &#x3D; await starGazersQuery.getRawMany&lt;{ login: string }&gt;();
+
+    if (allStarGazers.length &#x3D;&#x3D;&#x3D; 0) {
+      return result;
+    }
+
+    const starGazers &#x3D; allStarGazers
+      .map((starGazer) &#x3D;&gt; (starGazer.login ? starGazer.login.toLowerCase() : &quot;&quot;))
+      .filter((starGazer) &#x3D;&gt; starGazer !&#x3D;&#x3D; &quot;&quot;);
+
+    if (starGazers.length &#x3D;&#x3D;&#x3D; 0) {
+      return result;
+    }
+
+    const starGazersContributingReposQuery &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;count(DISTINCT repo_name) as contributing_repos&quot;)
+      .addSelect(&quot;pr_author_login&quot;)
+      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
+      .where(&quot;LOWER(pr_author_login) IN (:...logins)&quot;, { logins: starGazers })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .groupBy(&quot;pr_author_login&quot;);
+
+    const starGazersContributingReposCount &#x3D; await starGazersContributingReposQuery.getRawMany&lt;{
+      contributing_repos: number;
+      pr_author_login: string;
+    }&gt;();
+
+    starGazersContributingReposCount.forEach((repoCount) &#x3D;&gt; {
+      if (repoCount.contributing_repos &gt; 1) {
+        result +&#x3D; 0.1;
+      }
+    });
+
+    return result / starGazers.length;
+  }
+
+  private async calculateForkerConfidence(repoName: string, range: number): Promise&lt;number&gt; {
+    let result &#x3D; 0;
+
+    // gets relevant forkers for the repo over range of days
+    const forkerQuery &#x3D; this.forkGitHubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;DISTINCT LOWER(actor_login) as login&quot;)
+      .from(&quot;fork_github_events&quot;, &quot;fork_github_events&quot;)
+      .where(&quot;LOWER(repo_name) &#x3D; LOWER(:repoName)&quot;, { repoName })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;);
+
+    const allForkers &#x3D; await forkerQuery.getRawMany&lt;{ login: string }&gt;();
+
+    if (allForkers.length &#x3D;&#x3D;&#x3D; 0) {
+      return result;
+    }
+
+    const forkers &#x3D; allForkers
+      .map((forker) &#x3D;&gt; (forker.login ? forker.login.toLowerCase() : &quot;&quot;))
+      .filter((forker) &#x3D;&gt; forker !&#x3D;&#x3D; &quot;&quot;);
+
+    if (forkers.length &#x3D;&#x3D;&#x3D; 0) {
+      return result;
+    }
+
+    const forkerContributingReposQuery &#x3D; this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select(&quot;count(DISTINCT repo_name) as contributing_repos&quot;)
+      .addSelect(&quot;pr_author_login&quot;)
+      .from(&quot;pull_request_github_events&quot;, &quot;pull_request_github_events&quot;)
+      .where(&quot;LOWER(pr_author_login) IN (:...logins)&quot;, { logins: forkers })
+      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; event_time&#x60;)
+      .groupBy(&quot;pr_author_login&quot;);
+
+    const forkerContributingReposCount &#x3D; await forkerContributingReposQuery.getRawMany&lt;{
+      contributing_repos: number;
+      pr_author_login: string;
+    }&gt;();
+
+    forkerContributingReposCount.forEach((repoCount) &#x3D;&gt; {
+      if (repoCount.contributing_repos &gt; 1) {
+        // forking is weighted slightly higher than simply watching a repo
+        result +&#x3D; 0.5;
+      }
+    });
+
+    return result / forkers.length;
+  }
+
+  /*
+   * this is a proof of concept metric called the &quot;Contributor Confidence&quot;.
+   *
+   * the confidence score is a percentage metric that determines if certain activity on a
+   * repository (staring, forking, etc.) may result in a meaningful contribution. This can be
+   * used to determine how likely &quot;fly by&quot; contributors who&#x27;ve contributed meaningfully elsewhere
+   * within a given time range, are to contribute meaningfully back to the project in question
+   *
+   * Currently the algorithm exists as:
+   * --------------------------------------------------------------------------
+   *
+   * For all stargazers over the time range:
+   *   Check if those users have more than one contribution to 2 or more projects:
+   *     Add 0.1 to score
+   *
+   * For all forkers over the time range:
+   *   Check if those users have more than one contribution to 2 or more projects:
+   *     Add 0.5 to score (forks weight slightly higher)
+   *
+   * Finally, calculate:
+   *   score / (# stargazers + forkers) within time range
+   *     &#x3D; confidence score as a percentage
+   */
+  async calculateContributorConfidence(repoName: string, range: number): Promise&lt;number&gt; {
+    const forkerConfidence &#x3D; await this.calculateForkerConfidence(repoName, range);
+    const starGazerConfidence &#x3D; await this.calculateStarGazerConfidence(repoName, range);
+
+    return (forkerConfidence + starGazerConfidence) / 2;
   }
 
   /*

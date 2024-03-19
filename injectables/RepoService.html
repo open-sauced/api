@@ -355,8 +355,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="312"
-                            class="link-to-prism">src/repo/repo.service.ts:312</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="314"
+                            class="link-to-prism">src/repo/repo.service.ts:314</a></div>
                 </td>
             </tr>
 
@@ -533,8 +533,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="207"
-                            class="link-to-prism">src/repo/repo.service.ts:207</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/repo/repo.service.ts:209</a></div>
                 </td>
             </tr>
 
@@ -604,8 +604,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="211"
-                            class="link-to-prism">src/repo/repo.service.ts:211</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="213"
+                            class="link-to-prism">src/repo/repo.service.ts:213</a></div>
                 </td>
             </tr>
 
@@ -925,8 +925,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="248"
-                            class="link-to-prism">src/repo/repo.service.ts:248</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/repo/repo.service.ts:250</a></div>
                 </td>
             </tr>
 
@@ -1008,8 +1008,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/repo/repo.service.ts:218</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/repo/repo.service.ts:220</a></div>
                 </td>
             </tr>
 
@@ -1202,8 +1202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="281"
-                            class="link-to-prism">src/repo/repo.service.ts:281</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/repo/repo.service.ts:283</a></div>
                 </td>
             </tr>
 
@@ -1467,6 +1467,7 @@ export class RepoService {
       );
 
       const activityRatio &#x3D; await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
+      const confidence &#x3D; await this.repoDevstatsService.calculateContributorConfidence(entity.full_name, range);
 
       return {
         ...entity,
@@ -1478,6 +1479,7 @@ export class RepoService {
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
         activity_ratio: activityRatio,
+        contributor_confidence: confidence,
         health: activityRatio,
       } as DbRepo;
     });

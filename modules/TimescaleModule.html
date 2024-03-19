@@ -412,11 +412,9 @@ import { PullRequestGithubEventsService } from &quot;./pull_request_github_event
 import { PullRequestReviewGithubEventsService } from &quot;./pull_request_review_github_events.service&quot;;
 import { DbPullRequestGitHubEvents } from &quot;./entities/pull_request_github_event&quot;;
 import { DbPullRequestReviewGitHubEvents } from &quot;./entities/pull_request_review_github_event&quot;;
-import { DbWatchGitHubEventsHistogram } from &quot;./entities/watch_github_events_histogram&quot;;
 import { WatchGithubEventsService } from &quot;./watch_github_events.service&quot;;
 import { DbPushGitHubEventsHistogram } from &quot;./entities/push_github_events_histogram&quot;;
 import { PushGithubEventsService } from &quot;./push_github_events.service&quot;;
-import { DbForkGitHubEventsHistogram } from &quot;./entities/fork_github_events_histogram&quot;;
 import { ForkGithubEventsService } from &quot;./fork_github_events.service&quot;;
 import { DbIssueCommentGitHubEventsHistogram } from &quot;./entities/issue_comment_github_events_histogram&quot;;
 import { IssueCommentGithubEventsService } from &quot;./issue_comment_github_events.service&quot;;
@@ -428,6 +426,10 @@ import { DbPushGitHubEvents } from &quot;./entities/push_github_events&quot;;
 import { DbPullRequestReviewCommentGitHubEventsHistogram } from &quot;./entities/pull_request_review_comment_events_histogram.entity&quot;;
 import { ContributorDevstatsService } from &quot;./contrib-stats.service&quot;;
 import { DbContributorStat } from &quot;./entities/contributor_devstat.entity&quot;;
+import { DbForkGitHubEvents } from &quot;./entities/fork_github_events&quot;;
+import { DbForkGitHubEventsHistogram } from &quot;./entities/fork_github_events_histogram&quot;;
+import { DbWatchGitHubEvents } from &quot;./entities/watch_github_events&quot;;
+import { DbWatchGitHubEventsHistogram } from &quot;./entities/watch_github_events_histogram&quot;;
 
 @Module({
   imports: [
@@ -435,17 +437,19 @@ import { DbContributorStat } from &quot;./entities/contributor_devstat.entity&qu
     forwardRef(() &#x3D;&gt; UserListModule),
     TypeOrmModule.forFeature(
       [
+        DbContributorStat,
+        DbForkGitHubEvents,
         DbForkGitHubEventsHistogram,
         DbIssueCommentGitHubEventsHistogram,
         DbIssuesGitHubEvents,
         DbIssuesGitHubEventsHistogram,
         DbPullRequestGitHubEvents,
+        DbPullRequestReviewCommentGitHubEventsHistogram,
         DbPullRequestReviewGitHubEvents,
         DbPushGitHubEvents,
         DbPushGitHubEventsHistogram,
+        DbWatchGitHubEvents,
         DbWatchGitHubEventsHistogram,
-        DbPullRequestReviewCommentGitHubEventsHistogram,
-        DbContributorStat,
       ],
       &quot;TimescaleConnection&quot;
     ),
