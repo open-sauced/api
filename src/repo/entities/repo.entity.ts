@@ -566,6 +566,18 @@ export class DbRepo extends BaseEntity {
   public activity_ratio?: number;
 
   @ApiModelProperty({
+    description: "Likelyhood of stars/forks turning into contributions",
+    example: 0.34,
+    type: "float",
+  })
+  @Column({
+    type: "float",
+    select: false,
+    insert: false,
+  })
+  public contributor_confidence?: number;
+
+  @ApiModelProperty({
     description: "Health is an aggregate, overview calculation of how a repo is generally doing",
     example: 1.23,
     type: "float",

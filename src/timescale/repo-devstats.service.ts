@@ -10,6 +10,8 @@ import { DbRepoContributor } from "../repo/entities/repo_contributors.entity";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
 import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
 import { DbPushGitHubEvents } from "./entities/push_github_events";
+import { DbWatchGitHubEvents } from "./entities/watch_github_events";
+import { DbForkGitHubEvents } from "./entities/fork_github_events";
 
 @Injectable()
 export class RepoDevstatsService {
@@ -19,7 +21,11 @@ export class RepoDevstatsService {
     @InjectRepository(DbIssuesGitHubEvents, "TimescaleConnection")
     private issuesGithubEventsRepository: Repository<DbIssuesGitHubEvents>,
     @InjectRepository(DbPushGitHubEvents, "TimescaleConnection")
-    private pushGithubEventsRepository: Repository<DbPushGitHubEvents>
+    private pushGithubEventsRepository: Repository<DbPushGitHubEvents>,
+    @InjectRepository(DbWatchGitHubEvents, "TimescaleConnection")
+    private watchGitHubEventsRepository: Repository<DbWatchGitHubEvents>,
+    @InjectRepository(DbForkGitHubEvents, "TimescaleConnection")
+    private forkGitHubEventsRepository: Repository<DbForkGitHubEvents>
   ) {
     // defines quantile boundaries (ignore lower 5% and upper 95% percentiles)
     const lowerQ = 0.05;
@@ -112,6 +118,133 @@ export class RepoDevstatsService {
     const parsedResult = parseFloat(`${result?.avg_calculated_activity ?? "0"}`);
 
     return this.winsorizeAndNormalizeRatio(parsedResult);
+  }
+
+  private async calculateStarGazerConfidence(repoName: string, range: number): Promise<number> {
+    let result = 0;
+
+    // gets relevant star gazers for the repo
+    const starGazersQuery = this.watchGitHubEventsRepository.manager
+      .createQueryBuilder()
+      .select("DISTINCT LOWER(actor_login) as login")
+      .from("watch_github_events", "watch_github_events")
+      .where("LOWER(repo_name) = LOWER(:repoName)", { repoName })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`);
+
+    const allStarGazers = await starGazersQuery.getRawMany<{ login: string }>();
+
+    if (allStarGazers.length === 0) {
+      return result;
+    }
+
+    const starGazers = allStarGazers
+      .map((starGazer) => (starGazer.login ? starGazer.login.toLowerCase() : ""))
+      .filter((starGazer) => starGazer !== "");
+
+    if (starGazers.length === 0) {
+      return result;
+    }
+
+    const starGazersContributingReposQuery = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("count(DISTINCT repo_name) as contributing_repos")
+      .addSelect("pr_author_login")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("LOWER(pr_author_login) IN (:...logins)", { logins: starGazers })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("pr_author_login");
+
+    const starGazersContributingReposCount = await starGazersContributingReposQuery.getRawMany<{
+      contributing_repos: number;
+      pr_author_login: string;
+    }>();
+
+    starGazersContributingReposCount.forEach((repoCount) => {
+      if (repoCount.contributing_repos > 1) {
+        result += 0.1;
+      }
+    });
+
+    return result / starGazers.length;
+  }
+
+  private async calculateForkerConfidence(repoName: string, range: number): Promise<number> {
+    let result = 0;
+
+    // gets relevant forkers for the repo over range of days
+    const forkerQuery = this.forkGitHubEventsRepository.manager
+      .createQueryBuilder()
+      .select("DISTINCT LOWER(actor_login) as login")
+      .from("fork_github_events", "fork_github_events")
+      .where("LOWER(repo_name) = LOWER(:repoName)", { repoName })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`);
+
+    const allForkers = await forkerQuery.getRawMany<{ login: string }>();
+
+    if (allForkers.length === 0) {
+      return result;
+    }
+
+    const forkers = allForkers
+      .map((forker) => (forker.login ? forker.login.toLowerCase() : ""))
+      .filter((forker) => forker !== "");
+
+    if (forkers.length === 0) {
+      return result;
+    }
+
+    const forkerContributingReposQuery = this.pullRequestGithubEventsRepository.manager
+      .createQueryBuilder()
+      .select("count(DISTINCT repo_name) as contributing_repos")
+      .addSelect("pr_author_login")
+      .from("pull_request_github_events", "pull_request_github_events")
+      .where("LOWER(pr_author_login) IN (:...logins)", { logins: forkers })
+      .andWhere(`now() - INTERVAL '${range} days' <= event_time`)
+      .groupBy("pr_author_login");
+
+    const forkerContributingReposCount = await forkerContributingReposQuery.getRawMany<{
+      contributing_repos: number;
+      pr_author_login: string;
+    }>();
+
+    forkerContributingReposCount.forEach((repoCount) => {
+      if (repoCount.contributing_repos > 1) {
+        // forking is weighted slightly higher than simply watching a repo
+        result += 0.5;
+      }
+    });
+
+    return result / forkers.length;
+  }
+
+  /*
+   * this is a proof of concept metric called the "Contributor Confidence".
+   *
+   * the confidence score is a percentage metric that determines if certain activity on a
+   * repository (staring, forking, etc.) may result in a meaningful contribution. This can be
+   * used to determine how likely "fly by" contributors who've contributed meaningfully elsewhere
+   * within a given time range, are to contribute meaningfully back to the project in question
+   *
+   * Currently the algorithm exists as:
+   * --------------------------------------------------------------------------
+   *
+   * For all stargazers over the time range:
+   *   Check if those users have more than one contribution to 2 or more projects:
+   *     Add 0.1 to score
+   *
+   * For all forkers over the time range:
+   *   Check if those users have more than one contribution to 2 or more projects:
+   *     Add 0.5 to score (forks weight slightly higher)
+   *
+   * Finally, calculate:
+   *   score / (# stargazers + forkers) within time range
+   *     = confidence score as a percentage
+   */
+  async calculateContributorConfidence(repoName: string, range: number): Promise<number> {
+    const forkerConfidence = await this.calculateForkerConfidence(repoName, range);
+    const starGazerConfidence = await this.calculateStarGazerConfidence(repoName, range);
+
+    return (forkerConfidence + starGazerConfidence) / 2;
   }
 
   /*
