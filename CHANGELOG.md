@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.15.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.14.0...v2.15.0-beta.1) (2024-03-20)
+
+
+### 🍕 Features
+
+* add endpoint to shorten opensauced.pizza URLs ([#672](https://github.com/open-sauced/api.opensauced.pizza/issues/672)) ([f8d385c](https://github.com/open-sauced/api.opensauced.pizza/commit/f8d385c71e7beab1cf9822be5e68221b09392cf4))
+
 ## [2.14.0](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.13.0...v2.14.0) (2024-03-19)
 
 
