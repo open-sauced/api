@@ -7,3 +7,4 @@ export * from "./openai.config";
 export * from "./pizza.config";
 export * from "./timescale.config";
 export * from "./github.config";
+export * from "./dub.config";

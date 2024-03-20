@@ -18,6 +18,7 @@ import {
   PizzaConfig,
   DbTimescaleConfig,
   GitHubConfig,
+  DubConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -90,6 +91,7 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
 import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
 import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
 import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.entity";
+import { UrlModule } from "./url/url.module";
 
 @Module({
   imports: [
@@ -104,6 +106,7 @@ import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.e
         PizzaConfig,
         DbTimescaleConfig,
         GitHubConfig,
+        DubConfig,
       ],
       isGlobal: true,
     }),
@@ -272,6 +275,7 @@ import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.e
     TimescaleModule,
     WorkspaceModule,
     HistogramModule,
+    UrlModule,
   ],
   providers: [],
 })
