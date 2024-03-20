@@ -3,10 +3,10 @@ import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class UrlShortenerService {
-  private readonly dubApiHost = this.configService.get<string>("dub.apiHost");
-  private readonly dubApiKey = this.configService.get<string>("dub.apiKey");
-  private readonly workspaceId = this.configService.get<string>("dub.workspaceId");
-  private readonly domain = this.configService.get<string>("dub.domain");
+  private readonly dubApiHost = this.configService.get<string>("dub.apiHost")!;
+  private readonly dubApiKey = this.configService.get<string>("dub.apiKey")!;
+  private readonly workspaceId = this.configService.get<string>("dub.workspaceId")!;
+  private readonly domain = this.configService.get<string>("dub.domain")!;
 
   constructor(private configService: ConfigService) {}
 
@@ -37,8 +37,10 @@ export class UrlShortenerService {
 
         return this.createShortLink(url);
       }
-    } catch (e) {
-      throw new BadRequestException(`Unable to shorten URL ${e}`);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        throw new BadRequestException(`Unable to shorten URL ${e.message}`);
+      }
     }
   }
 

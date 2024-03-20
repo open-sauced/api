@@ -20,9 +20,10 @@ describe("UrlShortenerService", () => {
 
   it("should throw an error for an invalid URL", async () => {
     let error;
+
     try {
       await service.shortenUrl("https://opensauces.pizza");
-    } catch (e) {
+    } catch (e: unknown) {
       error = e;
       console.log(e);
     }
