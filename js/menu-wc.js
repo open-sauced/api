@@ -758,6 +758,37 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/UrlModule.html" data-type="entity-link" >UrlModule</a>
+                                    <li class="chapter inner">
+                                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                            'data-target="#controllers-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' : 'data-target="#xs-controllers-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' }>
+                                            <span class="icon ion-md-swap"></span>
+                                            <span>Controllers</span>
+                                            <span class="icon ion-ios-arrow-down"></span>
+                                        </div>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' :
+                                            'id="xs-controllers-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' }>
+                                            <li class="link">
+                                                <a href="controllers/UrlShortenerController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UrlShortenerController</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' : 'data-target="#xs-injectables-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' :
+                                        'id="xs-injectables-links-module-UrlModule-4981db5c739946cb31da926885998adb24000d7f89ae340d7d05c1aa26095b97f29465136f30f12e7069ebe914edaf2164d0c1bb5433db0a389298fcfd49c10d"' }>
+                                        <li class="link">
+                                            <a href="injectables/UrlShortenerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UrlShortenerService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/UserListModule.html" data-type="entity-link" >UserListModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -1420,6 +1451,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/RepoSearchOptionsDto.html" data-type="entity-link" >RepoSearchOptionsDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ShortURL.html" data-type="entity-link" >ShortURL</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/StarsHistogramDto.html" data-type="entity-link" >StarsHistogramDto</a>
                             </li>
                             <li class="link">
@@ -1472,6 +1506,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateWorkspaceReposDto.html" data-type="entity-link" >UpdateWorkspaceReposDto</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UrlShortenerDto.html" data-type="entity-link" >UrlShortenerDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UserOnboardingDto.html" data-type="entity-link" >UserOnboardingDto</a>

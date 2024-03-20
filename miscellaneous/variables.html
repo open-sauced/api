@@ -94,6 +94,9 @@
                             <a href="#DEPRECATED" title="src/common/decorators/deprecated.decorator.ts" ><b>DEPRECATED</b>&nbsp;&nbsp;&nbsp;(src/.../deprecated.decorator.ts)</a>
                         </li>
                         <li>
+                            <a href="#DubConfig" title="src/config/dub.config.ts" ><b>DubConfig</b>&nbsp;&nbsp;&nbsp;(src/.../dub.config.ts)</a>
+                        </li>
+                        <li>
                             <a href="#EndpointConfig" title="src/config/endpoint.config.ts" ><b>EndpointConfig</b>&nbsp;&nbsp;&nbsp;(src/.../endpoint.config.ts)</a>
                         </li>
                         <li>
@@ -3510,6 +3513,34 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>&quot;DEPRECATED&quot;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/dub.config.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DubConfig"></a>
+                    <span class="name">
+                        <span ><b>DubConfig</b></span>
+                        <a href="#DubConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>registerAs(&quot;dub&quot;, () &#x3D;&gt; ({
+  apiHost: String(process.env.DUB_API_HOST ?? &quot;&quot;),
+  apiKey: String(process.env.DUB_API_KEY ?? &quot;&quot;),
+  dubWorkspaceId: String(process.env.DUB_WORKSPACE_ID ?? &quot;&quot;),
+  domain: String(process.env.DUB_WORKSPACE_DOMAIN ?? &quot;&quot;),
+}))</code>
                     </td>
                 </tr>
 
