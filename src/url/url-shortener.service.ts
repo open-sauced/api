@@ -5,7 +5,7 @@ import { ConfigService } from "@nestjs/config";
 export class UrlShortenerService {
   private readonly dubApiHost = this.configService.get<string>("dub.apiHost")!;
   private readonly dubApiKey = this.configService.get<string>("dub.apiKey")!;
-  private readonly workspaceId = this.configService.get<string>("dub.workspaceId")!;
+  private readonly dubWorkspaceId = this.configService.get<string>("dub.dubWorkspaceId")!;
   private readonly domain = this.configService.get<string>("dub.domain")!;
 
   constructor(private configService: ConfigService) {}
@@ -21,7 +21,7 @@ export class UrlShortenerService {
         throw new BadRequestException("Invalid URL");
       }
 
-      const response = await fetch(`${this.dubApiHost}/links?workspaceId=${this.workspaceId}&search=${url}`, {
+      const response = await fetch(`${this.dubApiHost}/links?workspaceId=${this.dubWorkspaceId}&search=${url}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${this.dubApiKey}`,
@@ -45,7 +45,7 @@ export class UrlShortenerService {
   }
 
   async createShortLink(url: string) {
-    const response = await fetch(`${this.dubApiHost}/links?workspaceId=${this.workspaceId}`, {
+    const response = await fetch(`${this.dubApiHost}/links?workspaceId=${this.dubWorkspaceId}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.dubApiKey}`,
