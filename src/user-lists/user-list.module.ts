@@ -4,7 +4,6 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { DbWorkspaceUserLists } from "../workspace/entities/workspace-user-list.entity";
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
-import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
 import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { WorkspaceModule } from "../workspace/workspace.module";
@@ -30,7 +29,6 @@ import { UserListEventsStatsService } from "./user-list-events-stats.service";
         DbUser,
         DbUserList,
         DbUserHighlight,
-        DbPullRequest,
         DbUserListContributor,
         DbContributionStatTimeframe,
         DbContributorCategoryTimeframe,

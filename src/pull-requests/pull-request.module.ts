@@ -6,9 +6,6 @@ import { OpenAiModule } from "../open-ai/open-ai.module";
 import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
 import { TimescaleModule } from "../timescale/timescale.module";
 import { DbPullRequestReviewGitHubEvents } from "../timescale/entities/pull_request_review_github_event";
-import { DbPRInsight } from "./entities/pull-request-insight.entity";
-import { DbPullRequest } from "./entities/pull-request.entity";
-import { PullRequestInsightsService } from "./pull-request-insights.service";
 import { PullRequestController } from "./pull-request.controller";
 import { PullRequestDescriptionService } from "./pull-request-description.service";
 import { PullRequestDescriptionController } from "./pull-request-description.controller";
@@ -23,7 +20,6 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
 @Module({
   imports: [
     forwardRef(() => TimescaleModule),
-    TypeOrmModule.forFeature([DbPullRequest, DbPRInsight], "ApiConnection"),
     TypeOrmModule.forFeature([DbPullRequestGitHubEvents, DbPullRequestReviewGitHubEvents], "TimescaleConnection"),
     RepoFilterModule,
     OpenAiModule,
@@ -37,7 +33,6 @@ import { PullRequestReviewsController } from "./pull-request-review.controller";
     PullRequestReviewsController,
   ],
   providers: [
-    PullRequestInsightsService,
     PullRequestDescriptionService,
     CodeRefactorSuggestionService,
     CodeTestSuggestionService,
