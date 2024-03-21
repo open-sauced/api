@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.15.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.15.0-beta.1...v2.15.0-beta.2) (2024-03-21)
+
+
+### 🍕 Features
+
+* Remove pull request table ([#676](https://github.com/open-sauced/api.opensauced.pizza/issues/676)) ([a215d58](https://github.com/open-sauced/api.opensauced.pizza/commit/a215d58cf7b5209211950ee6ac7b95c1ae98f4b9))
+
 ## [2.15.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.14.0...v2.15.0-beta.1) (2024-03-20)
 
 
