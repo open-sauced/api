@@ -355,8 +355,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="314"
-                            class="link-to-prism">src/repo/repo.service.ts:314</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="306"
+                            class="link-to-prism">src/repo/repo.service.ts:306</a></div>
                 </td>
             </tr>
 
@@ -925,8 +925,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="250"
-                            class="link-to-prism">src/repo/repo.service.ts:250</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/repo/repo.service.ts:242</a></div>
                 </td>
             </tr>
 
@@ -1202,8 +1202,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="283"
-                            class="link-to-prism">src/repo/repo.service.ts:283</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/repo/repo.service.ts:275</a></div>
                 </td>
             </tr>
 
@@ -1421,7 +1421,7 @@ export class RepoService {
 
     const queryBuilder &#x3D; this.baseFilterQueryBuilder().withDeleted().addSelect(&quot;repos.deleted_at&quot;);
 
-    const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
+    const filters &#x3D; this.filterService.getRepoFilters(pageOptionsDto);
 
     if (!pageOptionsDto.repoIds &amp;&amp; !pageOptionsDto.repo &amp;&amp; !workspaceId) {
       filters.push([&#x60;&#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;repos&quot;.&quot;updated_at&quot;&#x60;, { range }]);
@@ -1507,14 +1507,6 @@ export class RepoService {
     const promises &#x3D; interests.map(async (interest) &#x3D;&gt; {
       queryBuilder
         .where(&#x60;(:topic &#x3D; ANY(&quot;repo&quot;.&quot;topics&quot;))&#x60;, { topic: interest })
-        .andWhere(
-          &#x60;
-          repo.id IN (
-            SELECT repo_id FROM pull_requests
-            WHERE now() - INTERVAL &#x27;30 days&#x27; &lt;&#x3D; &quot;pull_requests&quot;.&quot;updated_at&quot;
-          )
-        &#x60;
-        )
         .orderBy(&#x60;&quot;repo&quot;.&quot;updated_at&quot;&#x60;, &quot;DESC&quot;)
         .limit(3);
 

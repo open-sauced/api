@@ -122,8 +122,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="86"
-                            class="link-to-prism">src/common/filters/repo-filter.service.ts:86</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/common/filters/repo-filter.service.ts:72</a></div>
                 </td>
             </tr>
 
@@ -212,7 +212,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getRepoFilters(options: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>, startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, range: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>getRepoFilters(options: <a href="../classes/FilterOptionsDto.html" target="_self">FilterOptionsDto</a>)</code>
                 </td>
             </tr>
 
@@ -239,7 +239,6 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Default value</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -253,38 +252,6 @@
                                         No
                                     </td>
 
-                                    <td>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>startDate</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>&quot;NOW()&quot;</code>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>range</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-                                    <td>
-                                        <code>0</code>
-                                    </td>
 
                                 </tr>
                             </tbody>
@@ -323,7 +290,7 @@ export class RepoFilterService {
    * @param range
    */
 
-  getRepoFilters(options: FilterOptionsDto, startDate &#x3D; &quot;NOW()&quot;, range &#x3D; 0): [string, object][] {
+  getRepoFilters(options: FilterOptionsDto): [string, object][] {
     const filters: [string, object][] &#x3D; [];
 
     if (options.repoIds) {
@@ -350,20 +317,6 @@ export class RepoFilterService {
             top_repos.stars &gt; 1000
           ORDER BY top_repos.stars DESC
           LIMIT 1000
-        )
-      &#x60;,
-        {},
-      ]);
-    } else if (options.filter &#x3D;&#x3D;&#x3D; InsightFilterFieldsEnum.MostSpammed) {
-      filters.push([
-        &#x60;
-        repos.id IN (
-          SELECT spam_pull_requests.repo_id
-          FROM &quot;pull_requests&quot; &quot;spam_pull_requests&quot;
-          WHERE
-            &#x27;spam&#x27; &#x3D; ANY(&quot;spam_pull_requests&quot;.&quot;label_names&quot;)
-            AND &#x27;${startDate}&#x27;::TIMESTAMP &gt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
-            AND &#x27;${startDate}&#x27;::TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;spam_pull_requests&quot;.&quot;updated_at&quot;
         )
       &#x60;,
         {},
