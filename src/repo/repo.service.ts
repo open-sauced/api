@@ -138,7 +138,7 @@ export class RepoService {
 
     const queryBuilder = this.baseFilterQueryBuilder().withDeleted().addSelect("repos.deleted_at");
 
-    const filters = this.filterService.getRepoFilters(pageOptionsDto, startDate, range);
+    const filters = this.filterService.getRepoFilters(pageOptionsDto);
 
     if (!pageOptionsDto.repoIds && !pageOptionsDto.repo && !workspaceId) {
       filters.push([`'${startDate}'::TIMESTAMP >= "repos"."updated_at"`, { range }]);
@@ -224,14 +224,6 @@ export class RepoService {
     const promises = interests.map(async (interest) => {
       queryBuilder
         .where(`(:topic = ANY("repo"."topics"))`, { topic: interest })
-        .andWhere(
-          `
-          repo.id IN (
-            SELECT repo_id FROM pull_requests
-            WHERE now() - INTERVAL '30 days' <= "pull_requests"."updated_at"
-          )
-        `
-        )
         .orderBy(`"repo"."updated_at"`, "DESC")
         .limit(3);
 
