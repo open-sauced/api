@@ -199,6 +199,27 @@ export class PullRequestGithubEventsService {
     return itemCount;
   }
 
+  async isMaintainer(merger: string): Promise<boolean> {
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select("COUNT(*)")
+      .where(
+        `"pull_request_github_events"."pr_is_merged" = true AND "pull_request_github_events"."pr_action" = 'closed'`
+      )
+      .andWhere(`LOWER("pull_request_github_events"."actor_login") = LOWER(:merger)`, {
+        merger: merger.toLowerCase(),
+      });
+
+    const countResult = await queryBuilder.getRawOne<{ count: number }>();
+
+    if (!countResult) {
+      return false;
+    }
+
+    return countResult.count !== 0;
+  }
+
   async findAllByPrAuthor(author: string, pageOptionsDto: PageOptionsDto): Promise<PageDto<DbPullRequestGitHubEvents>> {
     const startDate = GetPrevDateISOString(pageOptionsDto.prev_days_start_date);
     const range = pageOptionsDto.range!;

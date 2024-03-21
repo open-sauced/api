@@ -12,7 +12,7 @@ export class RepoFilterService {
    * @param range
    */
 
-  getRepoFilters(options: FilterOptionsDto, startDate = "NOW()", range = 0): [string, object][] {
+  getRepoFilters(options: FilterOptionsDto): [string, object][] {
     const filters: [string, object][] = [];
 
     if (options.repoIds) {
@@ -39,20 +39,6 @@ export class RepoFilterService {
             top_repos.stars > 1000
           ORDER BY top_repos.stars DESC
           LIMIT 1000
-        )
-      `,
-        {},
-      ]);
-    } else if (options.filter === InsightFilterFieldsEnum.MostSpammed) {
-      filters.push([
-        `
-        repos.id IN (
-          SELECT spam_pull_requests.repo_id
-          FROM "pull_requests" "spam_pull_requests"
-          WHERE
-            'spam' = ANY("spam_pull_requests"."label_names")
-            AND '${startDate}'::TIMESTAMP >= "spam_pull_requests"."updated_at"
-            AND '${startDate}'::TIMESTAMP - INTERVAL '${range} days' <= "spam_pull_requests"."updated_at"
         )
       `,
         {},

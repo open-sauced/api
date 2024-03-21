@@ -155,6 +155,10 @@ describe("UserService", () => {
       await Promise.resolve();
       return 1;
     });
+    prEventService.isMaintainer = jest.fn(async () => {
+      await Promise.resolve();
+      return true;
+    });
 
     dbUserRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbUser, "ApiConnection"));
     dbWorkspaceRepositoryMock = module.get<MockRepository>(getRepositoryToken(DbWorkspace, "ApiConnection"));
@@ -256,7 +260,7 @@ describe("UserService", () => {
       const result = await userService.findOneByUsername(username);
 
       expect(dbUserRepositoryMock.createQueryBuilder).toHaveBeenCalled();
-      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(4);
+      expect(createQueryBuilderMock.addSelect).toHaveBeenCalledTimes(3);
       expect(createQueryBuilderMock.where).toHaveBeenCalledWith("LOWER(login) = :username", {
         username: username.toLowerCase(),
       });
