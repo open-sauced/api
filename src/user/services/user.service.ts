@@ -141,6 +141,7 @@ export class UserService {
   async findOneByUsername(username: string): Promise<DbUser> {
     const recentPrCount = await this.pullRequestGithubEventsService.findCountByPrAuthor(username, 30, 0);
     const userVelocity = await this.pullRequestGithubEventsService.findVelocityByPrAuthor(username, 30, 0);
+    const isMaintainer = await this.pullRequestGithubEventsService.isMaintainer(username);
 
     const queryBuilder = this.baseQueryBuilder();
 
@@ -172,19 +173,6 @@ export class UserService {
       )::INTEGER`,
         "users_followers_count"
       )
-      .addSelect(
-        `(
-          SELECT
-            CASE
-              WHEN COUNT(DISTINCT full_name) > 0 THEN true
-              ELSE false
-            END
-          FROM pull_requests prs
-          JOIN repos on prs.repo_id=repos.id
-          WHERE LOWER(prs.merged_by_login) = :username
-        )::BOOLEAN`,
-        "users_is_maintainer"
-      )
       .where("LOWER(login) = :username", { username: username.toLowerCase() })
       .setParameters({ username: username.toLowerCase() });
 
@@ -196,6 +184,7 @@ export class UserService {
 
     item.recent_pull_request_velocity_count = userVelocity;
     item.recent_pull_requests_count = recentPrCount;
+    item.is_maintainer = isMaintainer;
 
     return item;
   }

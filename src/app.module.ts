@@ -18,6 +18,7 @@ import {
   PizzaConfig,
   DbTimescaleConfig,
   GitHubConfig,
+  DubConfig,
 } from "./config";
 import { RepoModule } from "./repo/repo.module";
 import { HealthModule } from "./health/health.module";
@@ -51,14 +52,12 @@ import { StripeSubscriptionModule } from "./subscription/stripe-subscription.mod
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
-import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
 import { DbInsightMember } from "./insight/entities/insight-member.entity";
 import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
-import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
 import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
@@ -90,6 +89,7 @@ import { DbWorkspaceContributor } from "./workspace/entities/workspace-contribut
 import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
 import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
 import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.entity";
+import { UrlModule } from "./url/url.module";
 
 @Module({
   imports: [
@@ -104,6 +104,7 @@ import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.e
         PizzaConfig,
         DbTimescaleConfig,
         GitHubConfig,
+        DubConfig,
       ],
       isGlobal: true,
     }),
@@ -137,8 +138,6 @@ import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.e
             DbInsightRepo,
             DbCustomer,
             DbSubscription,
-            DbPullRequest,
-            DbPRInsight,
             DbUserToUserFollows,
             DbEmoji,
             DbUserTopRepo,
@@ -272,6 +271,7 @@ import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.e
     TimescaleModule,
     WorkspaceModule,
     HistogramModule,
+    UrlModule,
   ],
   providers: [],
 })

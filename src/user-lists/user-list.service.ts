@@ -10,7 +10,6 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { DbUserHighlightRepo } from "../highlight/entities/user-highlight-repo.entity";
-import { DbPullRequest } from "../pull-requests/entities/pull-request.entity";
 import { PageOptionsDto } from "../common/dtos/page-options.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { PagerService } from "../common/services/pager.service";
@@ -223,21 +222,6 @@ export class UserListService {
   async findContributorsByFilter(pageOptionsDto: FilterListContributorsDto): Promise<PageDto<DbUser>> {
     const queryBuilder = this.userRepository.createQueryBuilder("user");
 
-    queryBuilder.leftJoin(
-      (qb) =>
-        qb
-          .select("author_login")
-          .addSelect(
-            "COALESCE(AVG((pull_requests.merged_at::DATE - pull_requests.created_at::DATE)), 0)",
-            "avg_merge_time"
-          )
-          .from(DbPullRequest, "pull_requests")
-          .where("now() - INTERVAL '30 days' <= pull_requests.updated_at")
-          .groupBy("pull_requests.author_login"),
-      "pr_stats",
-      "LOWER(pr_stats.author_login) = LOWER(user.login)"
-    );
-
     if (pageOptionsDto.contributor) {
       queryBuilder.andWhere("LOWER(user.login) LIKE :contributor", {
         contributor: `%${pageOptionsDto.contributor.toLowerCase()}%`,
@@ -250,11 +234,6 @@ export class UserListService {
 
     if (pageOptionsDto.timezone) {
       queryBuilder.andWhere("user.timezone in (:...timezone)", { timezone: pageOptionsDto.timezone });
-    }
-
-    if (pageOptionsDto.pr_velocity) {
-      queryBuilder.andWhere("pr_stats.avg_merge_time <= :pr_velocity", { pr_velocity: pageOptionsDto.pr_velocity });
-      queryBuilder.andWhere("pr_stats.avg_merge_time != 0");
     }
 
     // skip "users" who are actually orgs
