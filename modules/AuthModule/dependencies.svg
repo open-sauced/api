@@ -14,143 +14,143 @@
 <title>cluster_AuthModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 1125,-230.8 1125,-32.8 8,-32.8"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_AuthModule_imports</title>
-<polygon fill="none" stroke="black" points="616,-40.8 616,-92.8 1117,-92.8 1117,-40.8 616,-40.8"/>
+<g id="clust4" class="cluster">
+<title>cluster_AuthModule_exports</title>
+<polygon fill="none" stroke="black" points="258,-170.8 258,-222.8 713,-222.8 713,-170.8 258,-170.8"/>
 </g>
 <g id="clust6" class="cluster">
 <title>cluster_AuthModule_providers</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 608,-92.8 608,-40.8 16,-40.8"/>
+<polygon fill="none" stroke="black" points="525,-40.8 525,-92.8 1117,-92.8 1117,-40.8 525,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_AuthModule_exports</title>
-<polygon fill="none" stroke="black" points="485,-170.8 485,-222.8 940,-222.8 940,-170.8 485,-170.8"/>
+<g id="clust3" class="cluster">
+<title>cluster_AuthModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 517,-92.8 517,-40.8 16,-40.8"/>
 </g>
 <!-- CouponModule -->
 <g id="node1" class="node">
 <title>CouponModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1108.89,-84.8 1105.89,-88.8 1084.89,-88.8 1081.89,-84.8 1005.11,-84.8 1005.11,-48.8 1108.89,-48.8 1108.89,-84.8"/>
-<text text-anchor="middle" x="1057" y="-62.6" font-family="Times,serif" font-size="14.00">CouponModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="508.89,-84.8 505.89,-88.8 484.89,-88.8 481.89,-84.8 405.11,-84.8 405.11,-48.8 508.89,-48.8 508.89,-84.8"/>
+<text text-anchor="middle" x="457" y="-62.6" font-family="Times,serif" font-size="14.00">CouponModule</text>
 </g>
 <!-- AuthModule -->
 <g id="node5" class="node">
 <title>AuthModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="727.55,-149.8 724.55,-153.8 703.55,-153.8 700.55,-149.8 640.45,-149.8 640.45,-113.8 727.55,-113.8 727.55,-149.8"/>
-<text text-anchor="middle" x="684" y="-127.6" font-family="Times,serif" font-size="14.00">AuthModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="500.55,-149.8 497.55,-153.8 476.55,-153.8 473.55,-149.8 413.45,-149.8 413.45,-113.8 500.55,-113.8 500.55,-149.8"/>
+<text text-anchor="middle" x="457" y="-127.6" font-family="Times,serif" font-size="14.00">AuthModule</text>
 </g>
 <!-- CouponModule&#45;&gt;AuthModule -->
 <g id="edge1" class="edge">
 <title>CouponModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M1057,-84.93C1057,-105.37 1057,-135.8 1057,-135.8 1057,-135.8 737.88,-135.8 737.88,-135.8"/>
-<polygon fill="black" stroke="black" points="737.88,-132.3 727.88,-135.8 737.88,-139.3 737.88,-132.3"/>
+<path fill="none" stroke="black" d="M457,-84.91C457,-84.91 457,-103.79 457,-103.79"/>
+<polygon fill="black" stroke="black" points="453.5,-103.79 457,-113.79 460.5,-103.79 453.5,-103.79"/>
 </g>
 <!-- CustomerModule -->
 <g id="node2" class="node">
 <title>CustomerModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="986.99,-84.8 983.99,-88.8 962.99,-88.8 959.99,-84.8 873.01,-84.8 873.01,-48.8 986.99,-48.8 986.99,-84.8"/>
-<text text-anchor="middle" x="930" y="-62.6" font-family="Times,serif" font-size="14.00">CustomerModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="386.99,-84.8 383.99,-88.8 362.99,-88.8 359.99,-84.8 273.01,-84.8 273.01,-48.8 386.99,-48.8 386.99,-84.8"/>
+<text text-anchor="middle" x="330" y="-62.6" font-family="Times,serif" font-size="14.00">CustomerModule</text>
 </g>
 <!-- CustomerModule&#45;&gt;AuthModule -->
 <g id="edge2" class="edge">
 <title>CustomerModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M902.45,-85.07C902.45,-103.36 902.45,-128.8 902.45,-128.8 902.45,-128.8 737.68,-128.8 737.68,-128.8"/>
-<polygon fill="black" stroke="black" points="737.68,-125.3 727.68,-128.8 737.68,-132.3 737.68,-125.3"/>
+<path fill="none" stroke="black" d="M348.01,-84.81C348.01,-100.85 348.01,-121.8 348.01,-121.8 348.01,-121.8 403.3,-121.8 403.3,-121.8"/>
+<polygon fill="black" stroke="black" points="403.3,-125.3 413.3,-121.8 403.3,-118.3 403.3,-125.3"/>
 </g>
 <!-- StripeModule -->
 <g id="node3" class="node">
 <title>StripeModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="855.49,-84.8 852.49,-88.8 831.49,-88.8 828.49,-84.8 762.51,-84.8 762.51,-48.8 855.49,-48.8 855.49,-84.8"/>
-<text text-anchor="middle" x="809" y="-62.6" font-family="Times,serif" font-size="14.00">StripeModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="255.49,-84.8 252.49,-88.8 231.49,-88.8 228.49,-84.8 162.51,-84.8 162.51,-48.8 255.49,-48.8 255.49,-84.8"/>
+<text text-anchor="middle" x="209" y="-62.6" font-family="Times,serif" font-size="14.00">StripeModule</text>
 </g>
 <!-- StripeModule&#45;&gt;AuthModule -->
 <g id="edge3" class="edge">
 <title>StripeModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M824.5,-84.81C824.5,-100.85 824.5,-121.8 824.5,-121.8 824.5,-121.8 737.68,-121.8 737.68,-121.8"/>
-<polygon fill="black" stroke="black" points="737.68,-118.3 727.68,-121.8 737.68,-125.3 737.68,-118.3"/>
+<path fill="none" stroke="black" d="M209,-85.07C209,-103.36 209,-128.8 209,-128.8 209,-128.8 403.23,-128.8 403.23,-128.8"/>
+<polygon fill="black" stroke="black" points="403.23,-132.3 413.23,-128.8 403.23,-125.3 403.23,-132.3"/>
 </g>
 <!-- UserReposModule -->
 <g id="node4" class="node">
 <title>UserReposModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="744.49,-84.8 741.49,-88.8 720.49,-88.8 717.49,-84.8 623.51,-84.8 623.51,-48.8 744.49,-48.8 744.49,-84.8"/>
-<text text-anchor="middle" x="684" y="-62.6" font-family="Times,serif" font-size="14.00">UserReposModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="144.49,-84.8 141.49,-88.8 120.49,-88.8 117.49,-84.8 23.51,-84.8 23.51,-48.8 144.49,-48.8 144.49,-84.8"/>
+<text text-anchor="middle" x="84" y="-62.6" font-family="Times,serif" font-size="14.00">UserReposModule</text>
 </g>
 <!-- UserReposModule&#45;&gt;AuthModule -->
 <g id="edge4" class="edge">
 <title>UserReposModule&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M684,-84.91C684,-84.91 684,-103.79 684,-103.79"/>
-<polygon fill="black" stroke="black" points="680.5,-103.79 684,-113.79 687.5,-103.79 680.5,-103.79"/>
+<path fill="none" stroke="black" d="M84,-84.93C84,-105.37 84,-135.8 84,-135.8 84,-135.8 403.12,-135.8 403.12,-135.8"/>
+<polygon fill="black" stroke="black" points="403.12,-139.3 413.12,-135.8 403.12,-132.3 403.12,-139.3"/>
 </g>
 <!-- PassthroughSupabaseGuard  -->
 <g id="node6" class="node">
 <title>PassthroughSupabaseGuard </title>
-<polygon fill="#fb8072" stroke="black" points="931.81,-214.8 756.19,-214.8 756.19,-178.8 931.81,-178.8 931.81,-214.8"/>
-<text text-anchor="middle" x="844" y="-192.6" font-family="Times,serif" font-size="14.00">PassthroughSupabaseGuard </text>
+<polygon fill="#fb8072" stroke="black" points="704.81,-214.8 529.19,-214.8 529.19,-178.8 704.81,-178.8 704.81,-214.8"/>
+<text text-anchor="middle" x="617" y="-192.6" font-family="Times,serif" font-size="14.00">PassthroughSupabaseGuard </text>
 </g>
 <!-- AuthModule&#45;&gt;PassthroughSupabaseGuard  -->
 <g id="edge5" class="edge">
 <title>AuthModule&#45;&gt;PassthroughSupabaseGuard </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M727.59,-142.8C758.13,-142.8 793.5,-142.8 793.5,-142.8 793.5,-142.8 793.5,-168.52 793.5,-168.52"/>
-<polygon fill="black" stroke="black" points="790,-168.52 793.5,-178.52 797,-168.52 790,-168.52"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M500.82,-142.8C538.37,-142.8 586.44,-142.8 586.44,-142.8 586.44,-142.8 586.44,-168.52 586.44,-168.52"/>
+<polygon fill="black" stroke="black" points="582.94,-168.52 586.44,-178.52 589.94,-168.52 582.94,-168.52"/>
 </g>
 <!-- SupabaseGuard  -->
 <g id="node7" class="node">
 <title>SupabaseGuard </title>
-<polygon fill="#fb8072" stroke="black" points="737.86,-214.8 630.14,-214.8 630.14,-178.8 737.86,-178.8 737.86,-214.8"/>
-<text text-anchor="middle" x="684" y="-192.6" font-family="Times,serif" font-size="14.00">SupabaseGuard </text>
+<polygon fill="#fb8072" stroke="black" points="510.86,-214.8 403.14,-214.8 403.14,-178.8 510.86,-178.8 510.86,-214.8"/>
+<text text-anchor="middle" x="457" y="-192.6" font-family="Times,serif" font-size="14.00">SupabaseGuard </text>
 </g>
 <!-- AuthModule&#45;&gt;SupabaseGuard  -->
 <g id="edge6" class="edge">
 <title>AuthModule&#45;&gt;SupabaseGuard </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M684,-149.91C684,-149.91 684,-168.79 684,-168.79"/>
-<polygon fill="black" stroke="black" points="680.5,-168.79 684,-178.79 687.5,-168.79 680.5,-168.79"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M457,-149.91C457,-149.91 457,-168.79 457,-168.79"/>
+<polygon fill="black" stroke="black" points="453.5,-168.79 457,-178.79 460.5,-168.79 453.5,-168.79"/>
 </g>
 <!-- SupabaseStrategy  -->
 <g id="node8" class="node">
 <title>SupabaseStrategy </title>
-<polygon fill="#fb8072" stroke="black" points="612.53,-214.8 493.47,-214.8 493.47,-178.8 612.53,-178.8 612.53,-214.8"/>
-<text text-anchor="middle" x="553" y="-192.6" font-family="Times,serif" font-size="14.00">SupabaseStrategy </text>
+<polygon fill="#fb8072" stroke="black" points="385.53,-214.8 266.47,-214.8 266.47,-178.8 385.53,-178.8 385.53,-214.8"/>
+<text text-anchor="middle" x="326" y="-192.6" font-family="Times,serif" font-size="14.00">SupabaseStrategy </text>
 </g>
 <!-- AuthModule&#45;&gt;SupabaseStrategy  -->
 <g id="edge7" class="edge">
 <title>AuthModule&#45;&gt;SupabaseStrategy </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M640.09,-142.8C622.44,-142.8 606.19,-142.8 606.19,-142.8 606.19,-142.8 606.19,-168.52 606.19,-168.52"/>
-<polygon fill="black" stroke="black" points="602.69,-168.52 606.19,-178.52 609.69,-168.52 602.69,-168.52"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M413.44,-142.8C370.26,-142.8 310.51,-142.8 310.51,-142.8 310.51,-142.8 310.51,-168.52 310.51,-168.52"/>
+<polygon fill="black" stroke="black" points="307.01,-168.52 310.51,-178.52 314.01,-168.52 307.01,-168.52"/>
 </g>
 <!-- PassthroughSupabaseGuard -->
 <g id="node9" class="node">
 <title>PassthroughSupabaseGuard</title>
-<ellipse fill="#fdb462" stroke="black" cx="481" cy="-66.8" rx="118.71" ry="18"/>
-<text text-anchor="middle" x="481" y="-62.6" font-family="Times,serif" font-size="14.00">PassthroughSupabaseGuard</text>
+<ellipse fill="#fdb462" stroke="black" cx="990" cy="-66.8" rx="118.71" ry="18"/>
+<text text-anchor="middle" x="990" y="-62.6" font-family="Times,serif" font-size="14.00">PassthroughSupabaseGuard</text>
 </g>
 <!-- PassthroughSupabaseGuard&#45;&gt;AuthModule -->
 <g id="edge8" class="edge">
 <title>PassthroughSupabaseGuard&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M546.67,-81.83C546.67,-98.11 546.67,-121.8 546.67,-121.8 546.67,-121.8 630.17,-121.8 630.17,-121.8"/>
-<polygon fill="black" stroke="black" points="630.17,-125.3 640.17,-121.8 630.17,-118.3 630.17,-125.3"/>
+<path fill="none" stroke="black" d="M990,-84.93C990,-105.37 990,-135.8 990,-135.8 990,-135.8 510.62,-135.8 510.62,-135.8"/>
+<polygon fill="black" stroke="black" points="510.62,-132.3 500.62,-135.8 510.62,-139.3 510.62,-132.3"/>
 </g>
 <!-- SupabaseGuard -->
 <g id="node10" class="node">
 <title>SupabaseGuard</title>
-<ellipse fill="#fdb462" stroke="black" cx="273" cy="-66.8" rx="71.78" ry="18"/>
-<text text-anchor="middle" x="273" y="-62.6" font-family="Times,serif" font-size="14.00">SupabaseGuard</text>
+<ellipse fill="#fdb462" stroke="black" cx="782" cy="-66.8" rx="71.78" ry="18"/>
+<text text-anchor="middle" x="782" y="-62.6" font-family="Times,serif" font-size="14.00">SupabaseGuard</text>
 </g>
 <!-- SupabaseGuard&#45;&gt;AuthModule -->
 <g id="edge9" class="edge">
 <title>SupabaseGuard&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M273,-85.07C273,-103.36 273,-128.8 273,-128.8 273,-128.8 630.4,-128.8 630.4,-128.8"/>
-<polygon fill="black" stroke="black" points="630.4,-132.3 640.4,-128.8 630.4,-125.3 630.4,-132.3"/>
+<path fill="none" stroke="black" d="M782,-85.07C782,-103.36 782,-128.8 782,-128.8 782,-128.8 510.83,-128.8 510.83,-128.8"/>
+<polygon fill="black" stroke="black" points="510.83,-125.3 500.83,-128.8 510.83,-132.3 510.83,-125.3"/>
 </g>
 <!-- SupabaseStrategy -->
 <g id="node11" class="node">
 <title>SupabaseStrategy</title>
-<ellipse fill="#fdb462" stroke="black" cx="104" cy="-66.8" rx="79.88" ry="18"/>
-<text text-anchor="middle" x="104" y="-62.6" font-family="Times,serif" font-size="14.00">SupabaseStrategy</text>
+<ellipse fill="#fdb462" stroke="black" cx="613" cy="-66.8" rx="79.88" ry="18"/>
+<text text-anchor="middle" x="613" y="-62.6" font-family="Times,serif" font-size="14.00">SupabaseStrategy</text>
 </g>
 <!-- SupabaseStrategy&#45;&gt;AuthModule -->
 <g id="edge10" class="edge">
 <title>SupabaseStrategy&#45;&gt;AuthModule</title>
-<path fill="none" stroke="black" d="M104,-84.93C104,-105.37 104,-135.8 104,-135.8 104,-135.8 630.41,-135.8 630.41,-135.8"/>
-<polygon fill="black" stroke="black" points="630.41,-139.3 640.41,-135.8 630.41,-132.3 630.41,-139.3"/>
+<path fill="none" stroke="black" d="M639.56,-83.9C639.56,-100.05 639.56,-121.8 639.56,-121.8 639.56,-121.8 510.73,-121.8 510.73,-121.8"/>
+<polygon fill="black" stroke="black" points="510.73,-118.3 500.73,-121.8 510.73,-125.3 510.73,-118.3"/>
 </g>
 </g>
 </svg>

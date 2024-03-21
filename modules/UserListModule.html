@@ -56,10 +56,6 @@
 <title>cluster_UserListModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 593,-230.8 593,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_UserListModule_exports</title>
-<polygon fill="none" stroke="black" points="106,-170.8 106,-222.8 425,-222.8 425,-170.8 106,-170.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_UserListModule_providers</title>
 <polygon fill="none" stroke="black" points="168,-40.8 168,-92.8 585,-92.8 585,-40.8 168,-40.8"/>
@@ -67,6 +63,10 @@
 <g id="clust3" class="cluster">
 <title>cluster_UserListModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 160,-92.8 160,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_UserListModule_exports</title>
+<polygon fill="none" stroke="black" points="106,-170.8 106,-222.8 425,-222.8 425,-170.8 106,-170.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">
@@ -232,7 +232,6 @@ import { TypeOrmModule } from &quot;@nestjs/typeorm&quot;;
 import { DbWorkspaceUserLists } from &quot;../workspace/entities/workspace-user-list.entity&quot;;
 import { ApiServicesModule } from &quot;../common/services/api-services.module&quot;;
 import { DbUser } from &quot;../user/user.entity&quot;;
-import { DbPullRequest } from &quot;../pull-requests/entities/pull-request.entity&quot;;
 import { DbUserHighlight } from &quot;../user/entities/user-highlight.entity&quot;;
 import { DbPullRequestGitHubEvents } from &quot;../timescale/entities/pull_request_github_event&quot;;
 import { WorkspaceModule } from &quot;../workspace/workspace.module&quot;;
@@ -258,7 +257,6 @@ import { UserListEventsStatsService } from &quot;./user-list-events-stats.servic
         DbUser,
         DbUserList,
         DbUserHighlight,
-        DbPullRequest,
         DbUserListContributor,
         DbContributionStatTimeframe,
         DbContributorCategoryTimeframe,
