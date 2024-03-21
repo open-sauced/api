@@ -52,14 +52,12 @@ import { StripeSubscriptionModule } from "./subscription/stripe-subscription.mod
 import { DbSubscription } from "./subscription/stripe-subscription.dto";
 import { DbLog } from "./log/log.entity";
 import { PullRequestModule } from "./pull-requests/pull-request.module";
-import { DbPullRequest } from "./pull-requests/entities/pull-request.entity";
 import { DbUserHighlight } from "./user/entities/user-highlight.entity";
 import { HighlightModule } from "./highlight/highlight.module";
 import { DbUserToUserFollows } from "./user/entities/user-follows.entity";
 import { DbInsightMember } from "./insight/entities/insight-member.entity";
 import { DbEmoji } from "./emoji/entities/emoji.entity";
 import { DbUserHighlightReaction } from "./user/entities/user-highlight-reaction.entity";
-import { DbPRInsight } from "./pull-requests/entities/pull-request-insight.entity";
 import { DbUserTopRepo } from "./user/entities/user-top-repo.entity";
 import { DbUserNotification } from "./user/entities/user-notification.entity";
 import { DbUserCollaboration } from "./user/entities/user-collaboration.entity";
@@ -140,8 +138,6 @@ import { UrlModule } from "./url/url.module";
             DbInsightRepo,
             DbCustomer,
             DbSubscription,
-            DbPullRequest,
-            DbPRInsight,
             DbUserToUserFollows,
             DbEmoji,
             DbUserTopRepo,

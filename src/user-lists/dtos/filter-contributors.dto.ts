@@ -59,14 +59,6 @@ export class FilterListContributorsDto {
   @IsOptional()
   timezone?: string[];
 
-  @ApiPropertyOptional({
-    type: "integer",
-    example: 2,
-    description: "Less than or equal to the average number of days to merge a PR over the last 30 days",
-  })
-  @IsOptional()
-  pr_velocity?: number;
-
   get skip(): number {
     return ((this.page ?? 1) - 1) * (this.limit ?? 10);
   }
