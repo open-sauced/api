@@ -30,6 +30,7 @@ import { DbUserHighlightReaction } from "./entities/user-highlight-reaction.enti
 import { DbUserTopRepo } from "./entities/user-top-repo.entity";
 import { DbUserCollaboration } from "./entities/user-collaboration.entity";
 import { DbUserOrganization } from "./entities/user-organization.entity";
+import { DbUserToUserFollows } from "./entities/user-follows.entity";
 
 @Entity({ name: "users" })
 export class DbUser extends BaseEntity {
@@ -648,6 +649,10 @@ export class DbUser extends BaseEntity {
   @ApiHideProperty()
   @OneToMany(() => DbUserNotification, (fromUserNotifications) => fromUserNotifications.from_user)
   public from_user_notifications: DbUserNotification[];
+
+  @ApiHideProperty()
+  @OneToMany(() => DbUserToUserFollows, (fromUserNotifications) => fromUserNotifications.following_user_id)
+  public following_user: DbUserToUserFollows[];
 
   @ApiHideProperty()
   @OneToMany(() => DbUserOrganization, (userOrgs) => userOrgs.organization_user)
