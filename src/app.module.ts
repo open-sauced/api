@@ -76,8 +76,8 @@ import { DbUserListContributor } from "./user-lists/entities/user-list-contribut
 import { DbCoupon } from "./coupon/entities/coupon.entity";
 import { LogModule } from "./log/log.module";
 import { TimescaleModule } from "./timescale/timescale.module";
-import { DbPullRequestGitHubEvents } from "./timescale/entities/pull_request_github_event";
-import { DbPullRequestReviewGitHubEvents } from "./timescale/entities/pull_request_review_github_event";
+import { DbPullRequestGitHubEvents } from "./timescale/entities/pull_request_github_event.entity";
+import { DbPullRequestReviewGitHubEvents } from "./timescale/entities/pull_request_review_github_event.entity";
 import { DbWorkspace } from "./workspace/entities/workspace.entity";
 import { DbWorkspaceMember } from "./workspace/entities/workspace-member.entity";
 import { DbWorkspaceOrg } from "./workspace/entities/workspace-org.entity";
@@ -86,8 +86,8 @@ import { DbWorkspaceInsight } from "./workspace/entities/workspace-insights.enti
 import { WorkspaceModule } from "./workspace/workspace.module";
 import { HistogramModule } from "./histogram/histogram.module";
 import { DbWorkspaceContributor } from "./workspace/entities/workspace-contributors.entity";
-import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event";
-import { DbPushGitHubEvents } from "./timescale/entities/push_github_events";
+import { DbIssuesGitHubEvents } from "./timescale/entities/issues_github_event.entity";
+import { DbPushGitHubEvents } from "./timescale/entities/push_github_events.entity";
 import { DbWorkspaceUserLists } from "./workspace/entities/workspace-user-list.entity";
 import { UrlModule } from "./url/url.module";
 

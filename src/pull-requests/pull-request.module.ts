@@ -3,9 +3,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { RepoFilterModule } from "../common/filters/repo-filter.module";
 import { OpenAiModule } from "../open-ai/open-ai.module";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event.entity";
 import { TimescaleModule } from "../timescale/timescale.module";
-import { DbPullRequestReviewGitHubEvents } from "../timescale/entities/pull_request_review_github_event";
+import { DbPullRequestReviewGitHubEvents } from "../timescale/entities/pull_request_review_github_event.entity";
 import { PullRequestController } from "./pull-request.controller";
 import { PullRequestDescriptionService } from "./pull-request-description.service";
 import { PullRequestDescriptionController } from "./pull-request-description.controller";

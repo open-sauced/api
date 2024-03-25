@@ -92,6 +92,14 @@ This command will start a new Docker container named my_postgres_container, mapp
 
 Once the database is stood up, you can use the `dev/apply-migrations.sh` script to apply all the migrations in the `migrations/` directory.
 
+### ⏰ Timescale
+
+This API integrates with a Timescale database for GitHub events data.
+This database schema is currently not open sourced but running the API without this data is still possible
+but some functionality, like the `v2/histogram` endpoints, will not be available.
+
+For more information on the specific GitHub events data, see [the GitHub documentation here](https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28#commitcommentevent)
+
 ### 🛠️ Installation
 
 To install the application:

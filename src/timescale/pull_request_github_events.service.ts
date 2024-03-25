@@ -1,7 +1,7 @@
 import { BadRequestException, Inject, Injectable, NotFoundException, forwardRef } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository, SelectQueryBuilder } from "typeorm";
-import { PullRequestHistogramDto } from "../histogram/dtos/pull_request";
+import { PullRequestHistogramDto } from "../histogram/dtos/pull_request.dto";
 import { FilterListContributorsDto } from "../user-lists/dtos/filter-contributors.dto";
 import { RepoService } from "../repo/repo.service";
 import { PullRequestPageOptionsDto } from "../pull-requests/dtos/pull-request-page-options.dto";
@@ -14,10 +14,22 @@ import { UserListService } from "../user-lists/user-list.service";
 import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-request-contributor-options.dto";
 import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
 import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
-import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
-import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram";
-import { DbRossContributorsHistogram, DbRossIndexHistogram } from "./entities/ross_index_histogram";
+import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event.entity";
+import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram.entity";
+import { DbRossContributorsHistogram, DbRossIndexHistogram } from "./entities/ross_index_histogram.entity";
 import { sanitizeRepos } from "./common/repos";
+
+/*
+ * pull request events, named "PullRequestEvent" in the GitHub API, are when
+ * a GitHub actor opens/modifies/closes a pull request.
+ *
+ * IMPORTANT NOTE: issue events in this context are for only repo issues.
+ * This may be confusing because "issues" in the context of the GitHub API refer to BOTH pull
+ * requests and actual issues. But, pull requests in this service are for only prs on GitHub repos.
+ * Not repo issues. For creation / edits of GitHub issues, see IssuesGithubEventsService.
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28
+ */
 
 @Injectable()
 export class PullRequestGithubEventsService {
@@ -539,6 +551,17 @@ export class PullRequestGithubEventsService {
       .setParameters(cteBuilder.getParameters())
       .select(`time_bucket('${width} day', event_time)`, "bucket")
       .addSelect("count(*)", "prs_count")
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_author_association) = 'collaborator' THEN 1 END)",
+        "collaborator_associated_prs"
+      )
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_author_association) = 'contributor' THEN 1 END)",
+        "contributor_associated_prs"
+      )
+      .addSelect("count(CASE WHEN LOWER(pr_author_association) = 'member' THEN 1 END)", "member_associated_prs")
+      .addSelect("count(CASE WHEN LOWER(pr_author_association) = 'none' THEN 1 END)", "non_associated_prs")
+      .addSelect("count(CASE WHEN LOWER(pr_author_association) = 'owner' THEN 1 END)", "owner_associated_prs")
       .addSelect("count(CASE WHEN LOWER(pr_action) = 'closed' AND pr_is_merged = true THEN 1 END)", "accepted_prs")
       .addSelect("count(CASE WHEN LOWER(pr_action) = 'closed' AND pr_is_merged = false THEN 1 END)", "closed_prs")
       .addSelect("count(CASE WHEN LOWER(pr_action) = 'opened' AND pr_is_draft = true THEN 1 END)", "draft_prs")

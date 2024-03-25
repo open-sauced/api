@@ -1,12 +1,21 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { StarsHistogramDto } from "../histogram/dtos/stars";
+import { GetPrevDateISOString } from "../common/util/datetimes";
+import { StarsHistogramDto } from "../histogram/dtos/stars.dto";
 import {
   DbTopWatchGitHubEventsHistogram,
   DbWatchGitHubEventsHistogram,
-} from "./entities/watch_github_events_histogram";
-import { sanitizeRepos } from "./common/repos";
+} from "./entities/watch_github_events_histogram.entity";
+
+/*
+ * watch events, named "WatchEvent" in the GitHub API, are when a GitHub actor stars a repo.
+ * This is NOT when an actor "watches" a repo in the traditional sense; in the GitHub events API,
+ * there is no "watching", only star events which are named "watch". The assumption is
+ * that this is for historical reasons.
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28
+ */
 
 @Injectable()
 export class WatchGithubEventsService {
@@ -22,28 +31,46 @@ export class WatchGithubEventsService {
   }
 
   async genStarsHistogram(options: StarsHistogramDto): Promise<DbWatchGitHubEventsHistogram[]> {
-    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
-      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    if (!options.contributor && !options.repo && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, or repoIds");
     }
 
     const order = options.orderDirection!;
     const range = options.range!;
-    const repo = sanitizeRepos(options.repo!);
-
-    if (!repo) {
-      throw new BadRequestException();
-    }
+    const startDate = GetPrevDateISOString(options.prev_days_start_date);
+    const width = options.width!;
 
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .select("time_bucket('1 day', event_time)", "bucket")
+      .select(`time_bucket('${width} day', event_time)`, "bucket")
       .addSelect("count(*)", "star_count")
       .from("watch_github_events", "watch_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo })
-      .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
+      .where(`'${startDate}':: TIMESTAMP >= "watch_github_events"."event_time"`)
+      .andWhere(`'${startDate}':: TIMESTAMP - INTERVAL '${range} days' <= "watch_github_events"."event_time"`)
       .groupBy("bucket")
       .orderBy("bucket", order);
+
+    /* filter on the provided star-er username */
+    if (options.contributor) {
+      queryBuilder.andWhere(`LOWER("watch_github_events"."actor_login") = LOWER(:actor)`, {
+        actor: options.contributor,
+      });
+    }
+
+    /* filter on the provided repo names */
+    if (options.repo) {
+      queryBuilder.andWhere(`LOWER("watch_github_events"."repo_name") IN (:...repoNames)`).setParameters({
+        repoNames: options.repo.toLowerCase().split(","),
+      });
+    }
+
+    /* filter on the provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(`"watch_github_events"."repo_id" IN (:...repoIds)`).setParameters({
+        repoIds: options.repoIds.split(","),
+      });
+    }
 
     const rawResults = await queryBuilder.getRawMany();
 

@@ -2,10 +2,10 @@ import { Controller, Get } from "@nestjs/common";
 import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { WatchGithubEventsService } from "../timescale/watch_github_events.service";
-import { DbTopWatchGitHubEventsHistogram } from "../timescale/entities/watch_github_events_histogram";
-import { DbTopForkGitHubEventsHistogram } from "../timescale/entities/fork_github_events_histogram";
+import { DbTopWatchGitHubEventsHistogram } from "../timescale/entities/watch_github_events_histogram.entity";
+import { DbTopForkGitHubEventsHistogram } from "../timescale/entities/fork_github_events_histogram.entity";
 import { ForkGithubEventsService } from "../timescale/fork_github_events.service";
-import { DbTopCommentGitHubEventsHistogram } from "../timescale/entities/issue_comment_github_events_histogram";
+import { DbTopCommentGitHubEventsHistogram } from "../timescale/entities/issue_comment_github_events_histogram.entity";
 import { IssueCommentGithubEventsService } from "../timescale/issue_comment_github_events.service";
 
 @Controller("histogram/top")

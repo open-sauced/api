@@ -1,8 +1,8 @@
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { Entity, Column } from "typeorm";
 
-@Entity({ name: "issue_comment_github_events" })
-export class DbIssueCommentGitHubEventsHistogram {
+@Entity({ name: "release_github_events" })
+export class DbReleaseGitHubEventsHistogram {
   @ApiModelProperty({
     description: "Timestamp representing histogram bucket day",
     example: "2022-08-28 22:04:29.000000",
@@ -15,7 +15,7 @@ export class DbIssueCommentGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: "Number of issue comments created in day bucket",
+    description: "Number of all releases in day bucket",
     example: 4,
     type: "integer",
   })
@@ -24,24 +24,10 @@ export class DbIssueCommentGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public issue_comments_count: number;
-}
-
-@Entity({ name: "issue_comment_github_events" })
-export class DbTopCommentGitHubEventsHistogram {
-  @ApiModelProperty({
-    description: "Timestamp representing histogram bucket day",
-    example: "2022-08-28 22:04:29.000000",
-  })
-  @Column({
-    type: "timestamp without time zone",
-    select: false,
-    insert: false,
-  })
-  public bucket: Date;
+  public all_releases: number;
 
   @ApiModelProperty({
-    description: "Number of forks in day bucket",
+    description: "Number of releases in day bucket",
     example: 4,
     type: "integer",
   })
@@ -50,16 +36,29 @@ export class DbTopCommentGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public comment_count: number;
+  public releases: number;
 
   @ApiModelProperty({
-    description: "Name of repo",
-    example: "open-sauced/api",
+    description: "Number of draft releases in day bucket",
+    example: 4,
+    type: "integer",
   })
   @Column({
-    type: "text",
+    type: "integer",
     select: false,
     insert: false,
   })
-  public repo_name: string;
+  public draft_releases: number;
+
+  @ApiModelProperty({
+    description: "Number of pre releases in day bucket",
+    example: 4,
+    type: "integer",
+  })
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public pre_releases: number;
 }

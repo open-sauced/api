@@ -3,8 +3,8 @@ import { Type } from "class-transformer";
 import { IsDate, IsInt } from "class-validator";
 import { Entity, Column } from "typeorm";
 
-@Entity({ name: "pull_request_github_events" })
-export class DbPullRequestGitHubEventsHistogram {
+@Entity({ name: "issues_github_events" })
+export class DbIssuesGitHubEventsHistogram {
   @ApiModelProperty({
     description: "Timestamp representing histogram bucket day",
     example: "2022-08-28 22:04:29.000000",
@@ -19,21 +19,8 @@ export class DbPullRequestGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: "The width in days of the individual time bucket",
-    example: 30,
-  })
-  @Type(() => Number)
-  @IsInt()
-  @Column({
-    type: "integer",
-    select: false,
-    insert: false,
-  })
-  public interval: number;
-
-  @ApiModelProperty({
-    description: "Number of Prs created in day bucket",
-    example: 4,
+    description: "Number of issues created in day bucket by users with the 'collaborator' assocoation",
+    example: 6,
     type: "integer",
   })
   @Type(() => Number)
@@ -43,11 +30,11 @@ export class DbPullRequestGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public pr_count = 0;
+  public collaborator_associated_issues: number;
 
   @ApiModelProperty({
-    description: "Number of accepted/merged Prs in bucket",
-    example: 4,
+    description: "Number of issues created in day bucket by users with the 'contributor' assocoation",
+    example: 6,
     type: "integer",
   })
   @Type(() => Number)
@@ -57,24 +44,10 @@ export class DbPullRequestGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public accepted_prs = 0;
+  public contributor_associated_issues: number;
 
   @ApiModelProperty({
-    description: "Number of open, unmerged Prs in bucket",
-    example: 5,
-    type: "integer",
-  })
-  @Type(() => Number)
-  @IsInt()
-  @Column({
-    type: "integer",
-    select: false,
-    insert: false,
-  })
-  public open_prs = 0;
-
-  @ApiModelProperty({
-    description: "Number of closed, unmerged Prs in bucket",
+    description: "Number of issues created in day bucket by users with the 'member' assocoation",
     example: 1,
     type: "integer",
   })
@@ -85,38 +58,10 @@ export class DbPullRequestGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public closed_prs = 0;
+  public member_associated_issues: number;
 
   @ApiModelProperty({
-    description: "Number of drafted, unmerged Prs in bucket",
-    example: 2,
-    type: "integer",
-  })
-  @Type(() => Number)
-  @IsInt()
-  @Column({
-    type: "integer",
-    select: false,
-    insert: false,
-  })
-  public draft_prs = 0;
-
-  @ApiModelProperty({
-    description: "Number of active, unmerged Prs in bucket",
-    example: 2,
-    type: "integer",
-  })
-  @Type(() => Number)
-  @IsInt()
-  @Column({
-    type: "integer",
-    select: false,
-    insert: false,
-  })
-  public active_prs = 0;
-
-  @ApiModelProperty({
-    description: "Number of Prs marked as spam within bucket",
+    description: "Number of issues created in day bucket by users with the 'none' assocoation",
     example: 1,
     type: "integer",
   })
@@ -127,11 +72,11 @@ export class DbPullRequestGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public spam_prs = 0;
+  public non_associated_issues: number;
 
   @ApiModelProperty({
-    description: "The average number of days to merge a PR over the time period",
-    example: 4,
+    description: "Number of issues created in day bucket by users with the 'owner' assocoation",
+    example: 1,
     type: "integer",
   })
   @Type(() => Number)
@@ -141,5 +86,75 @@ export class DbPullRequestGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public pr_velocity = 0;
+  public owner_associated_issues: number;
+
+  @ApiModelProperty({
+    description: "Number of issues opened in bucket",
+    example: 22,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsInt()
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public opened_issues: number;
+
+  @ApiModelProperty({
+    description: "Number of issues closed in bucket",
+    example: 11,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsInt()
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public closed_issues: number;
+
+  @ApiModelProperty({
+    description: "Number of issues reopened in bucket",
+    example: 11,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsInt()
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public reopened_issues: number;
+
+  @ApiModelProperty({
+    description: "Number of issues marked as spam in bucket",
+    example: 11,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsInt()
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public spam_issues: number;
+
+  @ApiModelProperty({
+    description: "The average number of days to close an issue over the time period",
+    example: 2,
+    type: "integer",
+  })
+  @Type(() => Number)
+  @IsInt()
+  @Column({
+    type: "integer",
+    select: false,
+    insert: false,
+  })
+  public issue_velocity = 0;
 }

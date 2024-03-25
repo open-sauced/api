@@ -6,7 +6,7 @@ import { PageDto } from "../common/dtos/page.dto";
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { RepoService } from "../repo/repo.service";
 import { DbRepo } from "../repo/entities/repo.entity";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event.entity";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { DbUserHighlight } from "./entities/user-highlight.entity";
 import { UserHighlightsService } from "./user-highlights.service";

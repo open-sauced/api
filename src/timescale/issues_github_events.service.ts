@@ -1,10 +1,22 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { IssueHistogramDto } from "../histogram/dtos/issue";
+import { IssueHistogramDto } from "../histogram/dtos/issue.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
-import { DbIssuesGitHubEventsHistogram } from "./entities/issues_github_events_histogram";
-import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
+import { DbIssuesGitHubEventsHistogram } from "./entities/issues_github_events_histogram.entity";
+import { DbIssuesGitHubEvents } from "./entities/issues_github_event.entity";
+
+/*
+ * issue events, named "IssueEvent" in the GitHub API, are when
+ * a GitHub actor creates/modifies an issue.
+ *
+ * IMPORTANT NOTE: issue events in this context are for only repo isues.
+ * This may be confusing because "issues" in the context of the GitHub API refer to BOTH pull
+ * requests and actual issues. But, issues in this service are for only issues on GitHub repos.
+ * For creation / edits
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28
+ */
 
 @Injectable()
 export class IssuesGithubEventsService {
@@ -67,25 +79,63 @@ export class IssuesGithubEventsService {
   }
 
   async genIssueHistogram(options: IssueHistogramDto): Promise<DbIssuesGitHubEventsHistogram[]> {
-    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
-      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    if (!options.contributor && !options.repo && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, or repoIds");
     }
 
     const order = options.orderDirection!;
     const range = options.range!;
-    const repo = options.repo!;
+    const startDate = GetPrevDateISOString(options.prev_days_start_date);
+    const width = options.width!;
 
     const queryBuilder = this.baseQueryBuilder();
 
     queryBuilder
-      .select("time_bucket('1 day', event_time)", "bucket")
-      .addSelect("count(*)", "issues_count")
+      .select(`time_bucket('${width} day', event_time)`, "bucket")
+      .addSelect(
+        "count(CASE WHEN LOWER(issue_author_association) = 'collaborator' THEN 1 END)",
+        "collaborator_associated_issues"
+      )
+      .addSelect(
+        "count(CASE WHEN LOWER(issue_author_association) = 'contributor' THEN 1 END)",
+        "contributor_associated_issues"
+      )
+      .addSelect("count(CASE WHEN LOWER(issue_author_association) = 'member' THEN 1 END)", "member_associated_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_author_association) = 'none' THEN 1 END)", "non_associated_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_author_association) = 'owner' THEN 1 END)", "owner_associated_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_action) = 'opened' THEN 1 END)", "opened_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_action) = 'closed' THEN 1 END)", "closed_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_action) = 'reopened' THEN 1 END)", "reopened_issues")
+      .addSelect("count(CASE WHEN LOWER(issue_active_lock_reason) = 'spam' THEN 1 END)", "spam_issues")
+      .addSelect(
+        `COALESCE(AVG(CASE WHEN issue_state = 'closed' THEN issue_closed_at::DATE - issue_created_at::DATE END), 0)::INTEGER AS issue_velocity`
+      )
       .from("issues_github_events", "issues_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: repo.toLowerCase() })
-      .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
-      .andWhere(`LOWER(issue_action) = LOWER('opened')`)
+      .where(`'${startDate}':: TIMESTAMP >= "issues_github_events"."event_time"`)
+      .andWhere(`'${startDate}':: TIMESTAMP - INTERVAL '${range} days' <= "issues_github_events"."event_time"`)
       .groupBy("bucket")
       .orderBy("bucket", order);
+
+    /* filter on the provided issue author */
+    if (options.contributor) {
+      queryBuilder.andWhere(`LOWER("issues_github_events"."issue_author_login") = LOWER(:author)`, {
+        author: options.contributor,
+      });
+    }
+
+    /* filter on the provided repo names */
+    if (options.repo) {
+      queryBuilder.andWhere(`LOWER("issues_github_events"."repo_name") IN (:...repoNames)`).setParameters({
+        repoNames: options.repo.toLowerCase().split(","),
+      });
+    }
+
+    /* filter on the provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(`"issues_github_events"."repo_id" IN (:...repoIds)`).setParameters({
+        repoIds: options.repoIds.split(","),
+      });
+    }
 
     const rawResults = await queryBuilder.getRawMany();
 

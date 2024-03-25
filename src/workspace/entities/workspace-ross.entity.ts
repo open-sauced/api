@@ -1,6 +1,9 @@
 import { ApiModelProperty } from "@nestjs/swagger/dist/decorators/api-model-property.decorator";
 import { Entity, Column } from "typeorm";
-import { DbRossContributorsHistogram, DbRossIndexHistogram } from "../../timescale/entities/ross_index_histogram";
+import {
+  DbRossContributorsHistogram,
+  DbRossIndexHistogram,
+} from "../../timescale/entities/ross_index_histogram.entity";
 
 @Entity("workspaces")
 export class DbWorkspaceRossIndex {

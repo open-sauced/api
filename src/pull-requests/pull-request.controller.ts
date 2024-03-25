@@ -3,7 +3,7 @@ import { ApiOperation, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 
 import { ApiPaginatedResponse } from "../common/decorators/api-paginated-response.decorator";
 import { PageDto } from "../common/dtos/page.dto";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event.entity";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { PullRequestPageOptionsDto } from "./dtos/pull-request-page-options.dto";
 

@@ -2,7 +2,7 @@ import { Module, forwardRef } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { WorkspaceModule } from "../workspace/workspace.module";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event.entity";
 import { TimescaleModule } from "../timescale/timescale.module";
 import { PullRequestModule } from "../pull-requests/pull-request.module";
 import { RepoModule } from "../repo/repo.module";

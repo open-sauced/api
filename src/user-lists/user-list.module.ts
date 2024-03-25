@@ -5,7 +5,7 @@ import { DbWorkspaceUserLists } from "../workspace/entities/workspace-user-list.
 import { ApiServicesModule } from "../common/services/api-services.module";
 import { DbUser } from "../user/user.entity";
 import { DbUserHighlight } from "../user/entities/user-highlight.entity";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event.entity";
 import { WorkspaceModule } from "../workspace/workspace.module";
 import { UserModule } from "../user/user.module";
 import { TimescaleModule } from "../timescale/timescale.module";
