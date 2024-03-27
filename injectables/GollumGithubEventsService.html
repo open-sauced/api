@@ -108,7 +108,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/timescale/gollum_github_events.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/timescale/gollum_github_events.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -171,8 +171,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/timescale/gollum_github_events.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/timescale/gollum_github_events.service.ts:25</a></div>
                 </td>
             </tr>
 
@@ -210,8 +210,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/timescale/gollum_github_events.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/timescale/gollum_github_events.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -270,6 +270,7 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { GollumHistogramDto } from &quot;../histogram/dtos/gollum.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import { DbGollumGitHubEventsHistogram } from &quot;./entities/gollum_github_events_histogram.entity&quot;;
 
 /*
@@ -299,10 +300,10 @@ export class GollumGithubEventsService {
       throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
-    const order &#x3D; options.orderDirection!;
-    const range &#x3D; options.range!;
-    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
-    const width &#x3D; options.width!;
+    const { range } &#x3D; options;
+    const order &#x3D; options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width &#x3D; options.width ?? 1;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 

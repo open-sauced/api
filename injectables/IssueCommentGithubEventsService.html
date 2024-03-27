@@ -112,7 +112,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -187,8 +187,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -226,8 +226,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:103</a></div>
                 </td>
             </tr>
 
@@ -265,8 +265,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/timescale/issue_comment_github_events.service.ts:40</a></div>
                 </td>
             </tr>
 
@@ -325,6 +325,7 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { IssueCommentsHistogramDto } from &quot;../histogram/dtos/issue_comments.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import {
   DbIssueCommentGitHubEventsHistogram,
   DbTopCommentGitHubEventsHistogram,
@@ -363,10 +364,10 @@ export class IssueCommentGithubEventsService {
       throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
-    const order &#x3D; options.orderDirection!;
-    const range &#x3D; options.range!;
-    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
-    const width &#x3D; options.width!;
+    const { range } &#x3D; options;
+    const order &#x3D; options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width &#x3D; options.width ?? 1;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 

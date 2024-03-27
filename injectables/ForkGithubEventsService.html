@@ -112,7 +112,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/timescale/fork_github_events.service.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/timescale/fork_github_events.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -175,8 +175,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -285,8 +285,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -313,6 +313,7 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { ForksHistogramDto } from &quot;../histogram/dtos/forks.dto&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import {
   DbForkGitHubEventsHistogram,
   DbTopForkGitHubEventsHistogram,
@@ -344,10 +345,10 @@ export class ForkGithubEventsService {
       throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
-    const order &#x3D; options.orderDirection!;
-    const range &#x3D; options.range!;
-    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
-    const width &#x3D; options.width!;
+    const { range } &#x3D; options;
+    const order &#x3D; options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width &#x3D; options.width ?? 1;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 

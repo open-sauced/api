@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/timescale/watch_github_events.service.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/timescale/watch_github_events.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -179,8 +179,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -289,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:99</a></div>
                 </td>
             </tr>
 
@@ -328,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="80"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:80</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -356,6 +356,7 @@ import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { StarsHistogramDto } from &quot;../histogram/dtos/stars.dto&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import {
   DbTopWatchGitHubEventsHistogram,
   DbWatchGitHubEventsHistogram,
@@ -388,10 +389,10 @@ export class WatchGithubEventsService {
       throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
-    const order &#x3D; options.orderDirection!;
-    const range &#x3D; options.range!;
-    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
-    const width &#x3D; options.width!;
+    const { range } &#x3D; options;
+    const order &#x3D; options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width &#x3D; options.width ?? 1;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 

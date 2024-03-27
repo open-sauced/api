@@ -99,10 +99,10 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                    <span class="modifier">Optional</span>
                                 <a href="#range" >range</a>
                             </li>
                             <li>
+                                    <span class="modifier">Readonly</span>
                                     <span class="modifier">Optional</span>
                                 <a href="#repo" >repo</a>
                             </li>
@@ -165,7 +165,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/histogram/dtos/base.dto.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/histogram/dtos/base.dto.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -207,7 +207,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/histogram/dtos/base.dto.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/histogram/dtos/base.dto.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -249,7 +249,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/histogram/dtos/base.dto.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/histogram/dtos/base.dto.ts:26</a></div>
                         </td>
                     </tr>
 
@@ -263,7 +263,6 @@
                     <a name="range"></a>
                     <span class="name">
                             <span class="modifier">Readonly</span>
-                            <span class="modifier">Optional</span>
                         <span ><b>range</b></span>
                         <a href="#range"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -285,13 +284,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;Range in days&#x27;, default: 30, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />@IsOptional()<br />
+                            @ApiProperty({description: &#x27;Range in days&#x27;, default: 30, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsIn([&#x27;7&#x27;, &#x27;30&#x27;, &#x27;90&#x27;])<br />@IsInt()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/histogram/dtos/base.dto.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/histogram/dtos/base.dto.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -304,6 +303,7 @@
                 <td class="col-md-4">
                     <a name="repo"></a>
                     <span class="name">
+                            <span class="modifier">Readonly</span>
                             <span class="modifier">Optional</span>
                         <span ><b>repo</b></span>
                         <a href="#repo"><span class="icon ion-ios-link"></span></a>
@@ -327,7 +327,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/histogram/dtos/base.dto.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/histogram/dtos/base.dto.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -364,7 +364,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/histogram/dtos/base.dto.ts:60</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/histogram/dtos/base.dto.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -406,7 +406,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/histogram/dtos/base.dto.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/histogram/dtos/base.dto.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -425,13 +425,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &quot;@nestjs/swagger&quot;;
 import { Type } from &quot;class-transformer&quot;;
 import { IsEnum, IsIn, IsInt, IsOptional, IsString } from &quot;class-validator&quot;;
 import { OrderDirectionEnum } from &quot;../../common/constants/order-direction.constant&quot;;
 
 export class BaseHistogramDto {
-  @ApiPropertyOptional({
+  @ApiProperty({
     description: &quot;Range in days&quot;,
     default: 30,
     type: &quot;integer&quot;,
@@ -439,8 +439,7 @@ export class BaseHistogramDto {
   @Type(() &#x3D;&gt; Number)
   @IsIn([7, 30, 90])
   @IsInt()
-  @IsOptional()
-  readonly range?: number &#x3D; 30;
+  readonly range: number &#x3D; 30;
 
   @ApiPropertyOptional({
     description: &quot;Number of days in the past to start range block&quot;,
@@ -471,7 +470,7 @@ export class BaseHistogramDto {
   @Type(() &#x3D;&gt; String)
   @IsString()
   @IsOptional()
-  repo?: string;
+  readonly repo?: string;
 
   @ApiPropertyOptional({
     type: &quot;string&quot;,

@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -203,8 +203,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:34</a></div>
                 </td>
             </tr>
 
@@ -242,8 +242,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:47</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:104</a></div>
                 </td>
             </tr>
 
@@ -396,8 +396,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="192"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:192</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:193</a></div>
                 </td>
             </tr>
 
@@ -464,6 +464,7 @@ import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { UserListService } from &quot;../user-lists/user-list.service&quot;;
 import { PullRequestReviewHistogramDto } from &quot;../histogram/dtos/pull_request_review.dto&quot;;
+import { OrderDirectionEnum } from &quot;../common/constants/order-direction.constant&quot;;
 import { DbPullRequestReviewGitHubEvents } from &quot;./entities/pull_request_review_github_event.entity&quot;;
 import { DbPullRequestReviewGitHubEventsHistogram } from &quot;./entities/pull_request_review_github_events_histogram.entity&quot;;
 
@@ -649,10 +650,10 @@ export class PullRequestReviewGithubEventsService {
       throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
-    const order &#x3D; options.orderDirection!;
-    const range &#x3D; options.range!;
-    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
-    const width &#x3D; options.width!;
+    const { range } &#x3D; options;
+    const order &#x3D; options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width &#x3D; options.width ?? 1;
 
     const queryBuilder &#x3D; this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 
