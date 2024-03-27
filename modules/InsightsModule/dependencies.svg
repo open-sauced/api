@@ -18,13 +18,13 @@
 <title>cluster_InsightsModule_imports</title>
 <polygon fill="none" stroke="black" points="592,-40.8 592,-92.8 874,-92.8 874,-40.8 592,-40.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_InsightsModule_exports</title>
-<polygon fill="none" stroke="black" points="347,-170.8 347,-222.8 617,-222.8 617,-170.8 347,-170.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_InsightsModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 584,-92.8 584,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_InsightsModule_exports</title>
+<polygon fill="none" stroke="black" points="347,-170.8 347,-222.8 617,-222.8 617,-170.8 347,-170.8"/>
 </g>
 <!-- ApiServicesModule -->
 <g id="node1" class="node">

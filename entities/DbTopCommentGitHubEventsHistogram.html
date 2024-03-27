@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/timescale/entities/issue_comment_github_events_histogram.ts</code>
+            <code>src/timescale/entities/issue_comment_github_events_histogram.entity.ts</code>
         </p>
 
 
@@ -133,7 +133,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:137</a></div>
                         </td>
                     </tr>
 
@@ -169,7 +169,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -205,7 +205,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:64</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:160</a></div>
                         </td>
                     </tr>
 
@@ -244,6 +244,102 @@ export class DbIssueCommentGitHubEventsHistogram {
     insert: false,
   })
   public issue_comments_count: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of all pr/issue comments created in day bucket&quot;,
+    example: 30,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public all_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments in day bucket by users with the &#x27;collaborator&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public collaborator_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;contributor&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public contributor_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;member&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public member_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;none&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public non_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments in day bucket by users with the &#x27;owner&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public owner_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr comments created in day bucket&quot;,
+    example: 15,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issue comments created in day bucket&quot;,
+    example: 15,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public issue_comments: number;
 }
 
 @Entity({ name: &quot;issue_comment_github_events&quot; })

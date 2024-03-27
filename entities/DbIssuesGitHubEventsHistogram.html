@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/timescale/entities/issues_github_events_histogram.ts</code>
+            <code>src/timescale/entities/issues_github_events_histogram.entity.ts</code>
         </p>
 
 
@@ -84,7 +84,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#issue_count" >issue_count</a>
+                                <a href="#collaborator_associated_issues" >collaborator_associated_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#contributor_associated_issues" >contributor_associated_issues</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -92,7 +96,27 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#member_associated_issues" >member_associated_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#non_associated_issues" >non_associated_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#opened_issues" >opened_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#owner_associated_issues" >owner_associated_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#reopened_issues" >reopened_issues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#spam_issues" >spam_issues</a>
                             </li>
                         </ul>
                     </td>
@@ -141,7 +165,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -177,7 +201,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.ts:61</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -188,11 +212,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="issue_count"></a>
+                    <a name="collaborator_associated_issues"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>issue_count</b></span>
-                        <a href="#issue_count"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>collaborator_associated_issues</b></span>
+                        <a href="#collaborator_associated_issues"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -207,13 +231,49 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiModelProperty({description: &#x27;Number of issue created in day bucket&#x27;, example: 4, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                            @ApiModelProperty({description: &#x27;Number of issues created in day bucket by users with the &#x27;collaborator&#x27; assocoation&#x27;, example: 6, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.ts:33</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contributor_associated_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>contributor_associated_issues</b></span>
+                        <a href="#contributor_associated_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues created in day bucket by users with the &#x27;contributor&#x27; assocoation&#x27;, example: 6, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -254,7 +314,79 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="159" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:159</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="member_associated_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>member_associated_issues</b></span>
+                        <a href="#member_associated_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues created in day bucket by users with the &#x27;member&#x27; assocoation&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="non_associated_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>non_associated_issues</b></span>
+                        <a href="#non_associated_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues created in day bucket by users with the &#x27;none&#x27; assocoation&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -290,7 +422,115 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.ts:47</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="owner_associated_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>owner_associated_issues</b></span>
+                        <a href="#owner_associated_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues created in day bucket by users with the &#x27;owner&#x27; assocoation&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reopened_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>reopened_issues</b></span>
+                        <a href="#reopened_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues reopened in bucket&#x27;, example: 11, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="131" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:131</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spam_issues"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>spam_issues</b></span>
+                        <a href="#spam_issues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issues marked as spam in bucket&#x27;, example: 11, type: &#x27;integer&#x27;})<br />@Type(undefined)<br />@IsInt()<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/timescale/entities/issues_github_events_histogram.entity.ts:145</a></div>
                         </td>
                     </tr>
 
@@ -323,8 +563,8 @@ export class DbIssuesGitHubEventsHistogram {
   public bucket: Date;
 
   @ApiModelProperty({
-    description: &quot;Number of issue created in day bucket&quot;,
-    example: 4,
+    description: &quot;Number of issues created in day bucket by users with the &#x27;collaborator&#x27; assocoation&quot;,
+    example: 6,
     type: &quot;integer&quot;,
   })
   @Type(() &#x3D;&gt; Number)
@@ -334,7 +574,63 @@ export class DbIssuesGitHubEventsHistogram {
     select: false,
     insert: false,
   })
-  public issue_count: number;
+  public collaborator_associated_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues created in day bucket by users with the &#x27;contributor&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public contributor_associated_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues created in day bucket by users with the &#x27;member&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public member_associated_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues created in day bucket by users with the &#x27;none&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public non_associated_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues created in day bucket by users with the &#x27;owner&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public owner_associated_issues: number;
 
   @ApiModelProperty({
     description: &quot;Number of issues opened in bucket&quot;,
@@ -363,6 +659,34 @@ export class DbIssuesGitHubEventsHistogram {
     insert: false,
   })
   public closed_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues reopened in bucket&quot;,
+    example: 11,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public reopened_issues: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issues marked as spam in bucket&quot;,
+    example: 11,
+    type: &quot;integer&quot;,
+  })
+  @Type(() &#x3D;&gt; Number)
+  @IsInt()
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public spam_issues: number;
 
   @ApiModelProperty({
     description: &quot;The average number of days to close an issue over the time period&quot;,

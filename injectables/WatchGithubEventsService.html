@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/timescale/watch_github_events.service.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/timescale/watch_github_events.service.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -179,8 +179,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -218,8 +218,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="24"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:24</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -289,8 +289,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="98"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:98</a></div>
                 </td>
             </tr>
 
@@ -328,8 +328,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/timescale/watch_github_events.service.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="80"
+                            class="link-to-prism">src/timescale/watch_github_events.service.ts:80</a></div>
                 </td>
             </tr>
 
@@ -354,12 +354,21 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
-import { StarsHistogramDto } from &quot;../histogram/dtos/stars&quot;;
+import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { StarsHistogramDto } from &quot;../histogram/dtos/stars.dto&quot;;
 import {
   DbTopWatchGitHubEventsHistogram,
   DbWatchGitHubEventsHistogram,
-} from &quot;./entities/watch_github_events_histogram&quot;;
-import { sanitizeRepos } from &quot;./common/repos&quot;;
+} from &quot;./entities/watch_github_events_histogram.entity&quot;;
+
+/*
+ * watch events, named &quot;WatchEvent&quot; in the GitHub API, are when a GitHub actor stars a repo.
+ * This is NOT when an actor &quot;watches&quot; a repo in the traditional sense; in the GitHub events API,
+ * there is no &quot;watching&quot;, only star events which are named &quot;watch&quot;. The assumption is
+ * that this is for historical reasons.
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion&#x3D;2022-11-28
+ */
 
 @Injectable()
 export class WatchGithubEventsService {
@@ -375,28 +384,46 @@ export class WatchGithubEventsService {
   }
 
   async genStarsHistogram(options: StarsHistogramDto): Promise&lt;DbWatchGitHubEventsHistogram[]&gt; {
-    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
-      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
-    const repo &#x3D; sanitizeRepos(options.repo!);
-
-    if (!repo) {
-      throw new BadRequestException();
-    }
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
+    const width &#x3D; options.width!;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .select(&#x60;time_bucket(&#x27;${width} day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
       .addSelect(&quot;count(*)&quot;, &quot;star_count&quot;)
       .from(&quot;watch_github_events&quot;, &quot;watch_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo })
-      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .where(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP &gt;&#x3D; &quot;watch_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;watch_github_events&quot;.&quot;event_time&quot;&#x60;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
+
+    /* filter on the provided star-er username */
+    if (options.contributor) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;watch_github_events&quot;.&quot;actor_login&quot;) &#x3D; LOWER(:actor)&#x60;, {
+        actor: options.contributor,
+      });
+    }
+
+    /* filter on the provided repo names */
+    if (options.repo) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;watch_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;).setParameters({
+        repoNames: options.repo.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* filter on the provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(&#x60;&quot;watch_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;).setParameters({
+        repoIds: options.repoIds.split(&quot;,&quot;),
+      });
+    }
 
     const rawResults &#x3D; await queryBuilder.getRawMany();
 

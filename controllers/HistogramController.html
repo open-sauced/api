@@ -85,7 +85,23 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#commitCommentHistogram" >commitCommentHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createHistogram" >createHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteHistogram" >deleteHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#forksHistogram" >forksHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#gollumHistogram" >gollumHistogram</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -94,6 +110,14 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#issuesHistogram" >issuesHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#memberHistogram" >memberHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#prReviewCommentsHistogram" >prReviewCommentsHistogram</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -106,6 +130,10 @@
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#pushesHistogram" >pushesHistogram</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#releaseHistogram" >releaseHistogram</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -132,6 +160,240 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="commitCommentHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>commitCommentHistogram</b></span>
+                        <a href="#commitCommentHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>commitCommentHistogram(options: <a href="../classes/CommitCommentsHistogramDto.html" target="_self">CommitCommentsHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/commit-comments&#x27;)<br />@ApiOperation({operationId: &#x27;commitCommentsHistogram&#x27;, summary: &#x27;Generates a commit comments histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbCommitCommentGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/CommitCommentsHistogramDto.html" target="_self" >CommitCommentsHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbCommitCommentGitHubEventsHistogram.html" target="_self" >Promise&lt;DbCommitCommentGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>createHistogram</b></span>
+                        <a href="#createHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createHistogram(options: <a href="../classes/CreateHistogramDto.html" target="_self">CreateHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/creates&#x27;)<br />@ApiOperation({operationId: &#x27;createHistogram&#x27;, summary: &#x27;Generates a &#x27;create&#x27; events histogram based on 1 day time buckets. Create events are associate with new tags, branches, and repos&#x27;})<br />@ApiOkResponse({type: DbCreateGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:182</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/CreateHistogramDto.html" target="_self" >CreateHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbCreateGitHubEventsHistogram.html" target="_self" >Promise&lt;DbCreateGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteHistogram</b></span>
+                        <a href="#deleteHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteHistogram(options: <a href="../classes/ReleaseHistogramDto.html" target="_self">ReleaseHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/deletes&#x27;)<br />@ApiOperation({operationId: &#x27;deleteHistogram&#x27;, summary: &#x27;Generates a &#x27;delete&#x27; events histogram based on 1 day time buckets. Delete events are associated with deleted tags, branches, and repos&#x27;})<br />@ApiOkResponse({type: DbDeleteGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/ReleaseHistogramDto.html" target="_self" >ReleaseHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbDeleteGitHubEventsHistogram.html" target="_self" >Promise&lt;DbDeleteGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="forksHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -151,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/forks&#x27;)<br />@ApiOperation({operationId: &#x27;forksHistogram&#x27;, summary: &#x27;Generates a forks histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPushGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/forks&#x27;)<br />@ApiOperation({operationId: &#x27;forksHistogram&#x27;, summary: &#x27;Generates a forks histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbForkGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:92</a></div>
                 </td>
             </tr>
 
@@ -210,6 +472,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="gollumHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>gollumHistogram</b></span>
+                        <a href="#gollumHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>gollumHistogram(options: <a href="../classes/GollumHistogramDto.html" target="_self">GollumHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/gollums&#x27;)<br />@ApiOperation({operationId: &#x27;gollumHistogram&#x27;, summary: &#x27;Generates a &#x27;gollum&#x27; events histogram based on 1 day time buckets. Gollum events are associated with new / edited wiki pages&#x27;})<br />@ApiOkResponse({type: DbGollumGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:204</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/GollumHistogramDto.html" target="_self" >GollumHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbGollumGitHubEventsHistogram.html" target="_self" >Promise&lt;DbGollumGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="issueCommentsHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -229,14 +569,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/issue-comments&#x27;)<br />@ApiOperation({operationId: &#x27;issueCommentsHistogram&#x27;, summary: &#x27;Generates a issue comments created histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPushGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/issue-comments&#x27;)<br />@ApiOperation({operationId: &#x27;issueCommentsHistogram&#x27;, summary: &#x27;Generates a issue comments histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbIssueCommentGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:102</a></div>
                 </td>
             </tr>
 
@@ -307,14 +647,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/issues&#x27;)<br />@ApiOperation({operationId: &#x27;issuesHistogram&#x27;, summary: &#x27;Generates a issues created histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPushGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/issues&#x27;)<br />@ApiOperation({operationId: &#x27;issuesHistogram&#x27;, summary: &#x27;Generates a issues histogram based on 1 day time buckets. Note: issues in the API are BOTH GitHub pull requests and issues&#x27;})<br />@ApiOkResponse({type: DbIssuesGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:115</a></div>
                 </td>
             </tr>
 
@@ -366,6 +706,162 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="memberHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>memberHistogram</b></span>
+                        <a href="#memberHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>memberHistogram(options: <a href="../classes/MemberHistogramDto.html" target="_self">MemberHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/members&#x27;)<br />@ApiOperation({operationId: &#x27;memberHistogram&#x27;, summary: &#x27;Generates a member events histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbMemberGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="214"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:214</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/MemberHistogramDto.html" target="_self" >MemberHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbMemberGitHubEventsHistogram.html" target="_self" >Promise&lt;DbMemberGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prReviewCommentsHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>prReviewCommentsHistogram</b></span>
+                        <a href="#prReviewCommentsHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prReviewCommentsHistogram(options: <a href="../classes/PullRequestReviewCommentHistogramDto.html" target="_self">PullRequestReviewCommentHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/pull-request-review-comments&#x27;)<br />@ApiOperation({operationId: &#x27;prReviewCommentsHistogram&#x27;, summary: &#x27;Generates a request review comments histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPullRequestReviewCommentGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/PullRequestReviewCommentHistogramDto.html" target="_self" >PullRequestReviewCommentHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbPullRequestReviewCommentGitHubEventsHistogram.html" target="_self" >Promise&lt;DbPullRequestReviewCommentGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="prReviewsHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -385,14 +881,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/pull-request-reviews&#x27;)<br />@ApiOperation({operationId: &#x27;prReviewsHistogram&#x27;, summary: &#x27;Generates a request reviews histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPullRequestGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/pull-request-reviews&#x27;)<br />@ApiOperation({operationId: &#x27;prReviewsHistogram&#x27;, summary: &#x27;Generates a request reviews histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPullRequestReviewGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:135</a></div>
                 </td>
             </tr>
 
@@ -463,14 +959,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/pull-requests&#x27;)<br />@ApiOperation({operationId: &#x27;prsHistogram&#x27;, summary: &#x27;Generates a pull request created histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPullRequestGitHubEventsHistogram, isArray: true})<br /></code>
+                    <code>@Get(&#x27;/pull-requests&#x27;)<br />@ApiOperation({operationId: &#x27;prsHistogram&#x27;, summary: &#x27;Generates a pull request histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbPullRequestGitHubEventsHistogram, isArray: true})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="97"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:97</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:125</a></div>
                 </td>
             </tr>
 
@@ -547,8 +1043,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:82</a></div>
                 </td>
             </tr>
 
@@ -600,6 +1096,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="releaseHistogram"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>releaseHistogram</b></span>
+                        <a href="#releaseHistogram"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>releaseHistogram(options: <a href="../classes/ReleaseHistogramDto.html" target="_self">ReleaseHistogramDto</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;/releases&#x27;)<br />@ApiOperation({operationId: &#x27;releasesHistogram&#x27;, summary: &#x27;Generates a release histogram based on 1 day time buckets&#x27;})<br />@ApiOkResponse({type: DbReleaseGitHubEventsHistogram, isArray: true})<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>options</td>
+                                    <td>
+                                                <code><a href="../classes/ReleaseHistogramDto.html" target="_self" >ReleaseHistogramDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../entitys/DbReleaseGitHubEventsHistogram.html" target="_self" >Promise&lt;DbReleaseGitHubEventsHistogram[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="starsHistogram"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
@@ -625,8 +1199,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/histogram/histogram.controller.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/histogram/histogram.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -681,38 +1255,65 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Query } from &quot;@nestjs/common&quot;;
 import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
-import { DbIssuesGitHubEventsHistogram } from &quot;../timescale/entities/issues_github_events_histogram&quot;;
+import { DbCommitCommentGitHubEventsHistogram } from &quot;../timescale/entities/commit_comment_github_events_histogram.entity&quot;;
+import { CommitCommentGithubEventsService } from &quot;../timescale/commit_comment_github_events.service&quot;;
+import { DbReleaseGitHubEventsHistogram } from &quot;../timescale/entities/release_github_events_histogram.entity&quot;;
+import { ReleaseGithubEventsService } from &quot;../timescale/release_github_events.service&quot;;
+import { DbCreateGitHubEventsHistogram } from &quot;../timescale/entities/create_github_events_histogram.entity&quot;;
+import { CreateGithubEventsService } from &quot;../timescale/create_github_events.service&quot;;
+import { DbDeleteGitHubEventsHistogram } from &quot;../timescale/entities/delete_github_events_histogram.entity&quot;;
+import { DeleteGithubEventsService } from &quot;../timescale/delete_github_events.service&quot;;
+import { GollumGithubEventsService } from &quot;../timescale/gollum_github_events.service&quot;;
+import { DbGollumGitHubEventsHistogram } from &quot;../timescale/entities/gollum_github_events_histogram.entity&quot;;
+import { DbMemberGitHubEventsHistogram } from &quot;../timescale/entities/member_github_events_histogram.entity&quot;;
+import { MemberGithubEventsService } from &quot;../timescale/member_github_events.service&quot;;
+import { DbIssuesGitHubEventsHistogram } from &quot;../timescale/entities/issues_github_events_histogram.entity&quot;;
 import { IssuesGithubEventsService } from &quot;../timescale/issues_github_events.service&quot;;
 import { PushGithubEventsService } from &quot;../timescale/push_github_events.service&quot;;
-import { DbPushGitHubEventsHistogram } from &quot;../timescale/entities/push_github_events_histogram&quot;;
+import { DbPushGitHubEventsHistogram } from &quot;../timescale/entities/push_github_events_histogram.entity&quot;;
 import { WatchGithubEventsService } from &quot;../timescale/watch_github_events.service&quot;;
-import { DbWatchGitHubEventsHistogram } from &quot;../timescale/entities/watch_github_events_histogram&quot;;
-import { DbForkGitHubEventsHistogram } from &quot;../timescale/entities/fork_github_events_histogram&quot;;
+import { DbWatchGitHubEventsHistogram } from &quot;../timescale/entities/watch_github_events_histogram.entity&quot;;
+import { DbForkGitHubEventsHistogram } from &quot;../timescale/entities/fork_github_events_histogram.entity&quot;;
 import { ForkGithubEventsService } from &quot;../timescale/fork_github_events.service&quot;;
-import { DbIssueCommentGitHubEventsHistogram } from &quot;../timescale/entities/issue_comment_github_events_histogram&quot;;
+import { DbIssueCommentGitHubEventsHistogram } from &quot;../timescale/entities/issue_comment_github_events_histogram.entity&quot;;
 import { IssueCommentGithubEventsService } from &quot;../timescale/issue_comment_github_events.service&quot;;
-import { DbPullRequestGitHubEventsHistogram } from &quot;../timescale/entities/pull_request_github_events_histogram&quot;;
+import { DbPullRequestGitHubEventsHistogram } from &quot;../timescale/entities/pull_request_github_events_histogram.entity&quot;;
 import { PullRequestGithubEventsService } from &quot;../timescale/pull_request_github_events.service&quot;;
-import { DbPullRequestReviewGitHubEventsHistogram } from &quot;../timescale/entities/pull_request_review_github_events_histogram&quot;;
+import { DbPullRequestReviewGitHubEventsHistogram } from &quot;../timescale/entities/pull_request_review_github_events_histogram.entity&quot;;
 import { PullRequestReviewGithubEventsService } from &quot;../timescale/pull_request_review_github_events.service&quot;;
-import { StarsHistogramDto } from &quot;./dtos/stars&quot;;
-import { PushesHistogramDto } from &quot;./dtos/pushes&quot;;
-import { ForksHistogramDto } from &quot;./dtos/forks&quot;;
-import { IssueCommentsHistogramDto } from &quot;./dtos/issue_comments&quot;;
-import { IssueHistogramDto } from &quot;./dtos/issue&quot;;
-import { PullRequestHistogramDto } from &quot;./dtos/pull_request&quot;;
-import { PullRequestReviewHistogramDto } from &quot;./dtos/pull_request_review&quot;;
+import { DbPullRequestReviewCommentGitHubEventsHistogram } from &quot;../timescale/entities/pull_request_review_comment_github_events_histogram.entity&quot;;
+import { PullRequestReviewCommentGithubEventsService } from &quot;../timescale/pull_request_review_comment_github_events.service&quot;;
+import { StarsHistogramDto } from &quot;./dtos/stars.dto&quot;;
+import { PushesHistogramDto } from &quot;./dtos/pushes.dto&quot;;
+import { ForksHistogramDto } from &quot;./dtos/forks.dto&quot;;
+import { IssueCommentsHistogramDto } from &quot;./dtos/issue_comments.dto&quot;;
+import { IssueHistogramDto } from &quot;./dtos/issue.dto&quot;;
+import { PullRequestHistogramDto } from &quot;./dtos/pull_request.dto&quot;;
+import { PullRequestReviewHistogramDto } from &quot;./dtos/pull_request_review.dto&quot;;
+import { ReleaseHistogramDto } from &quot;./dtos/releases.dto&quot;;
+import { CreateHistogramDto } from &quot;./dtos/create.dto&quot;;
+import { GollumHistogramDto } from &quot;./dtos/gollum.dto&quot;;
+import { MemberHistogramDto } from &quot;./dtos/member.dto&quot;;
+import { PullRequestReviewCommentHistogramDto } from &quot;./dtos/pull_request_review_comment.dto&quot;;
+import { CommitCommentsHistogramDto } from &quot;./dtos/commit_comments.dto&quot;;
 
 @Controller(&quot;histogram&quot;)
 @ApiTags(&quot;Histogram generation service&quot;)
 export class HistogramController {
   constructor(
+    private readonly commitCommentGitHubEventsService: CommitCommentGithubEventsService,
+    private readonly createGitHubEventsService: CreateGithubEventsService,
+    private readonly deleteGitHubEventsService: DeleteGithubEventsService,
     private readonly forkGitHubEventsService: ForkGithubEventsService,
+    private readonly gollumGitHubEventsService: GollumGithubEventsService,
     private readonly issueCommentGitHubEventsService: IssueCommentGithubEventsService,
     private readonly issueGitHubEventsService: IssuesGithubEventsService,
+    private readonly memberGitHubEventsService: MemberGithubEventsService,
     private readonly pullRequestGitHubEventsService: PullRequestGithubEventsService,
+    private readonly pullRequestRevieCommentsGitHubEventsService: PullRequestReviewCommentGithubEventsService,
     private readonly pullRequestReviewGitHubEventsService: PullRequestReviewGithubEventsService,
     private readonly pushGitHubEventsService: PushGithubEventsService,
+    private readonly releaseGitHubEventsService: ReleaseGithubEventsService,
     private readonly watchGitHubEventsService: WatchGithubEventsService
   ) {}
 
@@ -741,7 +1342,7 @@ export class HistogramController {
     operationId: &quot;forksHistogram&quot;,
     summary: &quot;Generates a forks histogram based on 1 day time buckets&quot;,
   })
-  @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
+  @ApiOkResponse({ type: DbForkGitHubEventsHistogram, isArray: true })
   async forksHistogram(@Query() options: ForksHistogramDto): Promise&lt;DbForkGitHubEventsHistogram[]&gt; {
     return this.forkGitHubEventsService.genForkHistogram(options);
   }
@@ -749,9 +1350,9 @@ export class HistogramController {
   @Get(&quot;/issue-comments&quot;)
   @ApiOperation({
     operationId: &quot;issueCommentsHistogram&quot;,
-    summary: &quot;Generates a issue comments created histogram based on 1 day time buckets&quot;,
+    summary: &quot;Generates a issue comments histogram based on 1 day time buckets&quot;,
   })
-  @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
+  @ApiOkResponse({ type: DbIssueCommentGitHubEventsHistogram, isArray: true })
   async issueCommentsHistogram(
     @Query() options: IssueCommentsHistogramDto
   ): Promise&lt;DbIssueCommentGitHubEventsHistogram[]&gt; {
@@ -761,9 +1362,10 @@ export class HistogramController {
   @Get(&quot;/issues&quot;)
   @ApiOperation({
     operationId: &quot;issuesHistogram&quot;,
-    summary: &quot;Generates a issues created histogram based on 1 day time buckets&quot;,
+    summary:
+      &quot;Generates a issues histogram based on 1 day time buckets. Note: issues in the API are BOTH GitHub pull requests and issues&quot;,
   })
-  @ApiOkResponse({ type: DbPushGitHubEventsHistogram, isArray: true })
+  @ApiOkResponse({ type: DbIssuesGitHubEventsHistogram, isArray: true })
   async issuesHistogram(@Query() options: IssueHistogramDto): Promise&lt;DbIssuesGitHubEventsHistogram[]&gt; {
     return this.issueGitHubEventsService.genIssueHistogram(options);
   }
@@ -771,7 +1373,7 @@ export class HistogramController {
   @Get(&quot;/pull-requests&quot;)
   @ApiOperation({
     operationId: &quot;prsHistogram&quot;,
-    summary: &quot;Generates a pull request created histogram based on 1 day time buckets&quot;,
+    summary: &quot;Generates a pull request histogram based on 1 day time buckets&quot;,
   })
   @ApiOkResponse({ type: DbPullRequestGitHubEventsHistogram, isArray: true })
   async prsHistogram(@Query() options: PullRequestHistogramDto): Promise&lt;DbPullRequestGitHubEventsHistogram[]&gt; {
@@ -783,11 +1385,88 @@ export class HistogramController {
     operationId: &quot;prReviewsHistogram&quot;,
     summary: &quot;Generates a request reviews histogram based on 1 day time buckets&quot;,
   })
-  @ApiOkResponse({ type: DbPullRequestGitHubEventsHistogram, isArray: true })
+  @ApiOkResponse({ type: DbPullRequestReviewGitHubEventsHistogram, isArray: true })
   async prReviewsHistogram(
     @Query() options: PullRequestReviewHistogramDto
   ): Promise&lt;DbPullRequestReviewGitHubEventsHistogram[]&gt; {
     return this.pullRequestReviewGitHubEventsService.genPrReviewHistogram(options);
+  }
+
+  @Get(&quot;/pull-request-review-comments&quot;)
+  @ApiOperation({
+    operationId: &quot;prReviewCommentsHistogram&quot;,
+    summary: &quot;Generates a request review comments histogram based on 1 day time buckets&quot;,
+  })
+  @ApiOkResponse({ type: DbPullRequestReviewCommentGitHubEventsHistogram, isArray: true })
+  async prReviewCommentsHistogram(
+    @Query() options: PullRequestReviewCommentHistogramDto
+  ): Promise&lt;DbPullRequestReviewCommentGitHubEventsHistogram[]&gt; {
+    return this.pullRequestRevieCommentsGitHubEventsService.genPullRequestReviewCommentHistogram(options);
+  }
+
+  @Get(&quot;/commit-comments&quot;)
+  @ApiOperation({
+    operationId: &quot;commitCommentsHistogram&quot;,
+    summary: &quot;Generates a commit comments histogram based on 1 day time buckets&quot;,
+  })
+  @ApiOkResponse({ type: DbCommitCommentGitHubEventsHistogram, isArray: true })
+  async commitCommentHistogram(
+    @Query() options: CommitCommentsHistogramDto
+  ): Promise&lt;DbCommitCommentGitHubEventsHistogram[]&gt; {
+    return this.commitCommentGitHubEventsService.genCommitCommentHistogram(options);
+  }
+
+  @Get(&quot;/releases&quot;)
+  @ApiOperation({
+    operationId: &quot;releasesHistogram&quot;,
+    summary: &quot;Generates a release histogram based on 1 day time buckets&quot;,
+  })
+  @ApiOkResponse({ type: DbReleaseGitHubEventsHistogram, isArray: true })
+  async releaseHistogram(@Query() options: ReleaseHistogramDto): Promise&lt;DbReleaseGitHubEventsHistogram[]&gt; {
+    return this.releaseGitHubEventsService.genReleaseHistogram(options);
+  }
+
+  @Get(&quot;/creates&quot;)
+  @ApiOperation({
+    operationId: &quot;createHistogram&quot;,
+    summary:
+      &quot;Generates a &#x27;create&#x27; events histogram based on 1 day time buckets. Create events are associate with new tags, branches, and repos&quot;,
+  })
+  @ApiOkResponse({ type: DbCreateGitHubEventsHistogram, isArray: true })
+  async createHistogram(@Query() options: CreateHistogramDto): Promise&lt;DbCreateGitHubEventsHistogram[]&gt; {
+    return this.createGitHubEventsService.genCreateHistogram(options);
+  }
+
+  @Get(&quot;/deletes&quot;)
+  @ApiOperation({
+    operationId: &quot;deleteHistogram&quot;,
+    summary:
+      &quot;Generates a &#x27;delete&#x27; events histogram based on 1 day time buckets. Delete events are associated with deleted tags, branches, and repos&quot;,
+  })
+  @ApiOkResponse({ type: DbDeleteGitHubEventsHistogram, isArray: true })
+  async deleteHistogram(@Query() options: ReleaseHistogramDto): Promise&lt;DbDeleteGitHubEventsHistogram[]&gt; {
+    return this.deleteGitHubEventsService.genDeleteHistogram(options);
+  }
+
+  @Get(&quot;/gollums&quot;)
+  @ApiOperation({
+    operationId: &quot;gollumHistogram&quot;,
+    summary:
+      &quot;Generates a &#x27;gollum&#x27; events histogram based on 1 day time buckets. Gollum events are associated with new / edited wiki pages&quot;,
+  })
+  @ApiOkResponse({ type: DbGollumGitHubEventsHistogram, isArray: true })
+  async gollumHistogram(@Query() options: GollumHistogramDto): Promise&lt;DbGollumGitHubEventsHistogram[]&gt; {
+    return this.gollumGitHubEventsService.genGollumHistogram(options);
+  }
+
+  @Get(&quot;/members&quot;)
+  @ApiOperation({
+    operationId: &quot;memberHistogram&quot;,
+    summary: &quot;Generates a member events histogram based on 1 day time buckets&quot;,
+  })
+  @ApiOkResponse({ type: DbMemberGitHubEventsHistogram, isArray: true })
+  async memberHistogram(@Query() options: MemberHistogramDto): Promise&lt;DbMemberGitHubEventsHistogram[]&gt; {
+    return this.memberGitHubEventsService.genMemberHistogram(options);
   }
 }
 </code></pre>

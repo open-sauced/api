@@ -126,7 +126,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/workspace/entities/workspace-ross.entity.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/workspace/entities/workspace-ross.entity.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -161,7 +161,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/workspace/entities/workspace-ross.entity.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/workspace/entities/workspace-ross.entity.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -175,7 +175,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiModelProperty } from &quot;@nestjs/swagger/dist/decorators/api-model-property.decorator&quot;;
 import { Entity, Column } from &quot;typeorm&quot;;
-import { DbRossContributorsHistogram, DbRossIndexHistogram } from &quot;../../timescale/entities/ross_index_histogram&quot;;
+import {
+  DbRossContributorsHistogram,
+  DbRossIndexHistogram,
+} from &quot;../../timescale/entities/ross_index_histogram.entity&quot;;
 
 @Entity(&quot;workspaces&quot;)
 export class DbWorkspaceRossIndex {

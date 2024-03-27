@@ -112,7 +112,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/timescale/fork_github_events.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/timescale/fork_github_events.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -175,8 +175,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -214,8 +214,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:32</a></div>
                 </td>
             </tr>
 
@@ -285,8 +285,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/timescale/fork_github_events.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/timescale/fork_github_events.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -311,8 +311,20 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
-import { ForksHistogramDto } from &quot;../histogram/dtos/forks&quot;;
-import { DbForkGitHubEventsHistogram, DbTopForkGitHubEventsHistogram } from &quot;./entities/fork_github_events_histogram&quot;;
+import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
+import { ForksHistogramDto } from &quot;../histogram/dtos/forks.dto&quot;;
+import {
+  DbForkGitHubEventsHistogram,
+  DbTopForkGitHubEventsHistogram,
+} from &quot;./entities/fork_github_events_histogram.entity&quot;;
+
+/*
+ * fork events, named &quot;ForkEvent&quot; in the GitHub API, are when
+ * a GitHub actor forks an existing repo. The metadata included with this event
+ * denotes both the name of the forked repo and the new fork.
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion&#x3D;2022-11-28
+ */
 
 @Injectable()
 export class ForkGithubEventsService {
@@ -328,24 +340,46 @@ export class ForkGithubEventsService {
   }
 
   async genForkHistogram(options: ForksHistogramDto): Promise&lt;DbForkGitHubEventsHistogram[]&gt; {
-    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
-      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
-    const repo &#x3D; options.repo!;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
+    const width &#x3D; options.width!;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
+      .select(&#x60;time_bucket(&#x27;${width} day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
       .addSelect(&quot;count(*)&quot;, &quot;forks_count&quot;)
       .from(&quot;fork_github_events&quot;, &quot;fork_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: repo.toLowerCase() })
-      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .where(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP &gt;&#x3D; &quot;fork_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;fork_github_events&quot;.&quot;event_time&quot;&#x60;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
+
+    /* filter on the provided forker username */
+    if (options.contributor) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;fork_github_events&quot;.&quot;actor_login&quot;) &#x3D; LOWER(:actor)&#x60;, {
+        actor: options.contributor,
+      });
+    }
+
+    /* filter on the provided repo names */
+    if (options.repo) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;fork_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;).setParameters({
+        repoNames: options.repo.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* filter on the provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(&#x60;&quot;fork_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;).setParameters({
+        repoIds: options.repoIds.split(&quot;,&quot;),
+      });
+    }
 
     const rawResults &#x3D; await queryBuilder.getRawMany();
 

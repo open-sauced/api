@@ -115,7 +115,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/timescale/issues_github_events.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/timescale/issues_github_events.service.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -178,8 +178,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="16"
-                            class="link-to-prism">src/timescale/issues_github_events.service.ts:16</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/timescale/issues_github_events.service.ts:28</a></div>
                 </td>
             </tr>
 
@@ -215,8 +215,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/timescale/issues_github_events.service.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/timescale/issues_github_events.service.ts:39</a></div>
                 </td>
             </tr>
 
@@ -310,8 +310,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/timescale/issues_github_events.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/timescale/issues_github_events.service.ts:52</a></div>
                 </td>
             </tr>
 
@@ -405,8 +405,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/timescale/issues_github_events.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/timescale/issues_github_events.service.ts:81</a></div>
                 </td>
             </tr>
 
@@ -463,10 +463,22 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException } from &quot;@nestjs/common&quot;;
 import { InjectRepository } from &quot;@nestjs/typeorm&quot;;
 import { Repository } from &quot;typeorm&quot;;
-import { IssueHistogramDto } from &quot;../histogram/dtos/issue&quot;;
+import { IssueHistogramDto } from &quot;../histogram/dtos/issue.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
-import { DbIssuesGitHubEventsHistogram } from &quot;./entities/issues_github_events_histogram&quot;;
-import { DbIssuesGitHubEvents } from &quot;./entities/issues_github_event&quot;;
+import { DbIssuesGitHubEventsHistogram } from &quot;./entities/issues_github_events_histogram.entity&quot;;
+import { DbIssuesGitHubEvents } from &quot;./entities/issues_github_event.entity&quot;;
+
+/*
+ * issue events, named &quot;IssueEvent&quot; in the GitHub API, are when
+ * a GitHub actor creates/modifies an issue.
+ *
+ * IMPORTANT NOTE: issue events in this context are for only repo isues.
+ * This may be confusing because &quot;issues&quot; in the context of the GitHub API refer to BOTH pull
+ * requests and actual issues. But, issues in this service are for only issues on GitHub repos.
+ * For creation / edits
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion&#x3D;2022-11-28
+ */
 
 @Injectable()
 export class IssuesGithubEventsService {
@@ -529,25 +541,63 @@ export class IssuesGithubEventsService {
   }
 
   async genIssueHistogram(options: IssueHistogramDto): Promise&lt;DbIssuesGitHubEventsHistogram[]&gt; {
-    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
-      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
-    const repo &#x3D; options.repo!;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
+    const width &#x3D; options.width!;
 
     const queryBuilder &#x3D; this.baseQueryBuilder();
 
     queryBuilder
-      .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
-      .addSelect(&quot;count(*)&quot;, &quot;issues_count&quot;)
+      .select(&#x60;time_bucket(&#x27;${width} day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(issue_author_association) &#x3D; &#x27;collaborator&#x27; THEN 1 END)&quot;,
+        &quot;collaborator_associated_issues&quot;
+      )
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(issue_author_association) &#x3D; &#x27;contributor&#x27; THEN 1 END)&quot;,
+        &quot;contributor_associated_issues&quot;
+      )
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_author_association) &#x3D; &#x27;member&#x27; THEN 1 END)&quot;, &quot;member_associated_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_author_association) &#x3D; &#x27;none&#x27; THEN 1 END)&quot;, &quot;non_associated_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_author_association) &#x3D; &#x27;owner&#x27; THEN 1 END)&quot;, &quot;owner_associated_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_action) &#x3D; &#x27;opened&#x27; THEN 1 END)&quot;, &quot;opened_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_action) &#x3D; &#x27;closed&#x27; THEN 1 END)&quot;, &quot;closed_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_action) &#x3D; &#x27;reopened&#x27; THEN 1 END)&quot;, &quot;reopened_issues&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(issue_active_lock_reason) &#x3D; &#x27;spam&#x27; THEN 1 END)&quot;, &quot;spam_issues&quot;)
+      .addSelect(
+        &#x60;COALESCE(AVG(CASE WHEN issue_state &#x3D; &#x27;closed&#x27; THEN issue_closed_at::DATE - issue_created_at::DATE END), 0)::INTEGER AS issue_velocity&#x60;
+      )
       .from(&quot;issues_github_events&quot;, &quot;issues_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: repo.toLowerCase() })
-      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
-      .andWhere(&#x60;LOWER(issue_action) &#x3D; LOWER(&#x27;opened&#x27;)&#x60;)
+      .where(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP &gt;&#x3D; &quot;issues_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;issues_github_events&quot;.&quot;event_time&quot;&#x60;)
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
+
+    /* filter on the provided issue author */
+    if (options.contributor) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;issues_github_events&quot;.&quot;issue_author_login&quot;) &#x3D; LOWER(:author)&#x60;, {
+        author: options.contributor,
+      });
+    }
+
+    /* filter on the provided repo names */
+    if (options.repo) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;issues_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;).setParameters({
+        repoNames: options.repo.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* filter on the provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(&#x60;&quot;issues_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;).setParameters({
+        repoIds: options.repoIds.split(&quot;,&quot;),
+      });
+    }
 
     const rawResults &#x3D; await queryBuilder.getRawMany();
 

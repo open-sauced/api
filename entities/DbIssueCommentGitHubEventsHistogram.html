@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/timescale/entities/issue_comment_github_events_histogram.ts</code>
+            <code>src/timescale/entities/issue_comment_github_events_histogram.entity.ts</code>
         </p>
 
 
@@ -76,11 +76,43 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#all_comments" >all_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#bucket" >bucket</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#collaborator_associated_comments" >collaborator_associated_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#contributor_associated_comments" >contributor_associated_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#issue_comments" >issue_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#issue_comments_count" >issue_comments_count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#member_associated_comments" >member_associated_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#non_associated_comments" >non_associated_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#owner_associated_comments" >owner_associated_comments</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#pr_comments" >pr_comments</a>
                             </li>
                         </ul>
                     </td>
@@ -100,6 +132,42 @@
     <h3 id="inputs">
         Properties
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="all_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>all_comments</b></span>
+                        <a href="#all_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of all pr/issue comments created in day bucket&#x27;, example: 30, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -129,7 +197,115 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="collaborator_associated_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>collaborator_associated_comments</b></span>
+                        <a href="#collaborator_associated_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr/issue comments in day bucket by users with the &#x27;collaborator&#x27; assocoation&#x27;, example: 6, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contributor_associated_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>contributor_associated_comments</b></span>
+                        <a href="#contributor_associated_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr/issue comments created in day bucket by users with the &#x27;contributor&#x27; assocoation&#x27;, example: 6, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="issue_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>issue_comments</b></span>
+                        <a href="#issue_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of issue comments created in day bucket&#x27;, example: 15, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:123</a></div>
                         </td>
                     </tr>
 
@@ -165,7 +341,151 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:27</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="member_associated_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>member_associated_comments</b></span>
+                        <a href="#member_associated_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr/issue comments created in day bucket by users with the &#x27;member&#x27; assocoation&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="non_associated_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>non_associated_comments</b></span>
+                        <a href="#non_associated_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr/issue comments created in day bucket by users with the &#x27;none&#x27; assocoation&#x27;, example: 1, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="owner_associated_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>owner_associated_comments</b></span>
+                        <a href="#owner_associated_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr/issue comments in day bucket by users with the &#x27;owner&#x27; assocoation&#x27;, example: 6, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pr_comments"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>pr_comments</b></span>
+                        <a href="#pr_comments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ApiModelProperty({description: &#x27;Number of pr comments created in day bucket&#x27;, example: 15, type: &#x27;integer&#x27;})<br />@Column({type: &#x27;integer&#x27;, select: false, insert: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/timescale/entities/issue_comment_github_events_histogram.entity.ts:111</a></div>
                         </td>
                     </tr>
 
@@ -204,6 +524,102 @@ export class DbIssueCommentGitHubEventsHistogram {
     insert: false,
   })
   public issue_comments_count: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of all pr/issue comments created in day bucket&quot;,
+    example: 30,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public all_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments in day bucket by users with the &#x27;collaborator&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public collaborator_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;contributor&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public contributor_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;member&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public member_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments created in day bucket by users with the &#x27;none&#x27; assocoation&quot;,
+    example: 1,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public non_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr/issue comments in day bucket by users with the &#x27;owner&#x27; assocoation&quot;,
+    example: 6,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public owner_associated_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of pr comments created in day bucket&quot;,
+    example: 15,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public pr_comments: number;
+
+  @ApiModelProperty({
+    description: &quot;Number of issue comments created in day bucket&quot;,
+    example: 15,
+    type: &quot;integer&quot;,
+  })
+  @Column({
+    type: &quot;integer&quot;,
+    select: false,
+    insert: false,
+  })
+  public issue_comments: number;
 }
 
 @Entity({ name: &quot;issue_comment_github_events&quot; })

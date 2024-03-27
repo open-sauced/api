@@ -90,6 +90,11 @@ API_DOMAIN=your_api_domain</code></pre></div><p>Replace <code>your_supabase_url<
 <div><pre class="line-numbers"><code class="language-shell">docker run --name my_postgres_container -p 25060:5432 -d my_postgres_image:latest</code></pre></div><p>This command will start a new Docker container named my_postgres_container, mapping port 25060 on your local machine to port 5432 on the Docker container.</p>
 <p><strong>5. Apply migration:</strong></p>
 <p>Once the database is stood up, you can use the <code>dev/apply-migrations.sh</code> script to apply all the migrations in the <code>migrations/</code> directory.</p>
+<h3 id="⏰-timescale">⏰ Timescale</h3>
+<p>This API integrates with a Timescale database for GitHub events data.
+This database schema is currently not open sourced but running the API without this data is still possible
+but some functionality, like the <code>v2/histogram</code> endpoints, will not be available.</p>
+<p>For more information on the specific GitHub events data, see <a href="https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28#commitcommentevent">the GitHub documentation here</a></p>
 <h3 id="🛠️-installation">🛠️ Installation</h3>
 <p>To install the application:</p>
 <div><pre class="line-numbers"><code class="language-shell">npm ci</code></pre></div><p>To start a local copy of the app on port <code>3001</code>:</p>

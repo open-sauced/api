@@ -308,10 +308,10 @@
 import { ApiOperation, ApiOkResponse, ApiTags } from &quot;@nestjs/swagger&quot;;
 
 import { WatchGithubEventsService } from &quot;../timescale/watch_github_events.service&quot;;
-import { DbTopWatchGitHubEventsHistogram } from &quot;../timescale/entities/watch_github_events_histogram&quot;;
-import { DbTopForkGitHubEventsHistogram } from &quot;../timescale/entities/fork_github_events_histogram&quot;;
+import { DbTopWatchGitHubEventsHistogram } from &quot;../timescale/entities/watch_github_events_histogram.entity&quot;;
+import { DbTopForkGitHubEventsHistogram } from &quot;../timescale/entities/fork_github_events_histogram.entity&quot;;
 import { ForkGithubEventsService } from &quot;../timescale/fork_github_events.service&quot;;
-import { DbTopCommentGitHubEventsHistogram } from &quot;../timescale/entities/issue_comment_github_events_histogram&quot;;
+import { DbTopCommentGitHubEventsHistogram } from &quot;../timescale/entities/issue_comment_github_events_histogram.entity&quot;;
 import { IssueCommentGithubEventsService } from &quot;../timescale/issue_comment_github_events.service&quot;;
 
 @Controller(&quot;histogram/top&quot;)

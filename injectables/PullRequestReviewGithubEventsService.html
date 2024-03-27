@@ -116,7 +116,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -203,8 +203,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:33</a></div>
                 </td>
             </tr>
 
@@ -242,8 +242,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -325,8 +325,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:103</a></div>
                 </td>
             </tr>
 
@@ -396,8 +396,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="185"
-                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:185</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/timescale/pull_request_review_github_events.service.ts:192</a></div>
                 </td>
             </tr>
 
@@ -463,9 +463,16 @@ import { PageMetaDto } from &quot;../common/dtos/page-meta.dto&quot;;
 import { PageDto } from &quot;../common/dtos/page.dto&quot;;
 import { GetPrevDateISOString } from &quot;../common/util/datetimes&quot;;
 import { UserListService } from &quot;../user-lists/user-list.service&quot;;
-import { PullRequestReviewHistogramDto } from &quot;../histogram/dtos/pull_request_review&quot;;
-import { DbPullRequestReviewGitHubEvents } from &quot;./entities/pull_request_review_github_event&quot;;
-import { DbPullRequestReviewGitHubEventsHistogram } from &quot;./entities/pull_request_review_github_events_histogram&quot;;
+import { PullRequestReviewHistogramDto } from &quot;../histogram/dtos/pull_request_review.dto&quot;;
+import { DbPullRequestReviewGitHubEvents } from &quot;./entities/pull_request_review_github_event.entity&quot;;
+import { DbPullRequestReviewGitHubEventsHistogram } from &quot;./entities/pull_request_review_github_events_histogram.entity&quot;;
+
+/*
+ * pull request review events, named &quot;PullRequestReviewEvent&quot; in the GitHub API, are when
+ * a GitHub actor makes a pull request review (approving, commenting, requesting changes).
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion&#x3D;2022-11-28
+ */
 
 @Injectable()
 export class PullRequestReviewGithubEventsService {
@@ -638,24 +645,71 @@ export class PullRequestReviewGithubEventsService {
   async genPrReviewHistogram(
     options: PullRequestReviewHistogramDto
   ): Promise&lt;DbPullRequestReviewGitHubEventsHistogram[]&gt; {
-    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.topic &amp;&amp; !options.filter &amp;&amp; !options.repoIds) {
-      throw new BadRequestException(&quot;must provide contributor, repo, topic, filter, or repoIds&quot;);
+    if (!options.contributor &amp;&amp; !options.repo &amp;&amp; !options.repoIds) {
+      throw new BadRequestException(&quot;must provide contributor, repo, or repoIds&quot;);
     }
 
     const order &#x3D; options.orderDirection!;
     const range &#x3D; options.range!;
-    const repo &#x3D; options.repo!;
+    const startDate &#x3D; GetPrevDateISOString(options.prev_days_start_date);
+    const width &#x3D; options.width!;
 
     const queryBuilder &#x3D; this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 
     queryBuilder
-      .select(&quot;time_bucket(&#x27;1 day&#x27;, event_time)&quot;, &quot;bucket&quot;)
-      .addSelect(&quot;count(*)&quot;, &quot;prs_count&quot;)
+      .select(&#x60;time_bucket(&#x27;${width} day&#x27;, event_time)&#x60;, &quot;bucket&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_review_action) &#x3D; &#x27;created&#x27; THEN 1 END)&quot;, &quot;all_reviews&quot;)
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(pr_review_author_association) &#x3D; &#x27;contributor&#x27; THEN 1 END)&quot;,
+        &quot;collaborator_associated_reviews&quot;
+      )
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(pr_review_author_association) &#x3D; &#x27;contributor&#x27; THEN 1 END)&quot;,
+        &quot;contributor_associated_reviews&quot;
+      )
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(pr_review_author_association) &#x3D; &#x27;member&#x27; THEN 1 END)&quot;,
+        &quot;member_associated_reviews&quot;
+      )
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_review_author_association) &#x3D; &#x27;none&#x27; THEN 1 END)&quot;, &quot;non_associated_reviews&quot;)
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(pr_review_author_association) &#x3D; &#x27;owner&#x27; THEN 1 END)&quot;,
+        &quot;owner_associated_reviews&quot;
+      )
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_review_state) &#x3D; &#x27;approved&#x27; THEN 1 END)&quot;, &quot;approved_reviews&quot;)
+      .addSelect(&quot;count(CASE WHEN LOWER(pr_review_state) &#x3D; &#x27;commented&#x27; THEN 1 END)&quot;, &quot;commented_reviews&quot;)
+      .addSelect(
+        &quot;count(CASE WHEN LOWER(pr_review_state) &#x3D; &#x27;changes_requested&#x27; THEN 1 END)&quot;,
+        &quot;changes_requested_reviews&quot;
+      )
       .from(&quot;pull_request_review_github_events&quot;, &quot;pull_request_review_github_events&quot;)
-      .where(&#x60;LOWER(&quot;repo_name&quot;) &#x3D; LOWER(:repo)&#x60;, { repo: repo.toLowerCase() })
-      .andWhere(&#x60;now() - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;event_time&quot;&#x60;)
+      .where(&#x60;&#x27;${startDate}&#x27;:: TIMESTAMP &gt;&#x3D; &quot;pull_request_review_github_events&quot;.&quot;event_time&quot;&#x60;)
+      .andWhere(
+        &#x60;&#x27;${startDate}&#x27;:: TIMESTAMP - INTERVAL &#x27;${range} days&#x27; &lt;&#x3D; &quot;pull_request_review_github_events&quot;.&quot;event_time&quot;&#x60;
+      )
       .groupBy(&quot;bucket&quot;)
       .orderBy(&quot;bucket&quot;, order);
+
+    /* filter on the provided pull req review author */
+    if (options.contributor) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;pull_request_review_github_events&quot;.&quot;pr_review_author_login&quot;) &#x3D; LOWER(:author)&#x60;, {
+        author: options.contributor,
+      });
+    }
+
+    /* apply consumer provided repo name filters */
+    if (options.repo) {
+      queryBuilder.andWhere(&#x60;LOWER(&quot;pull_request_review_github_events&quot;.&quot;repo_name&quot;) IN (:...repoNames)&#x60;).setParameters({
+        repoNames: options.repo.toLowerCase().split(&quot;,&quot;),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(&#x60;&quot;pull_request_review_github_events&quot;.&quot;repo_id&quot; IN (:...repoIds)&#x60;).setParameters({
+        repoIds: options.repoIds.split(&quot;,&quot;),
+      });
+    }
 
     const rawResults &#x3D; await queryBuilder.getRawMany();
 
