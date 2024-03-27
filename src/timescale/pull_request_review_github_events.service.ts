@@ -10,9 +10,16 @@ import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
-import { PullRequestReviewHistogramDto } from "../histogram/dtos/pull_request_review";
-import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event";
-import { DbPullRequestReviewGitHubEventsHistogram } from "./entities/pull_request_review_github_events_histogram";
+import { PullRequestReviewHistogramDto } from "../histogram/dtos/pull_request_review.dto";
+import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event.entity";
+import { DbPullRequestReviewGitHubEventsHistogram } from "./entities/pull_request_review_github_events_histogram.entity";
+
+/*
+ * pull request review events, named "PullRequestReviewEvent" in the GitHub API, are when
+ * a GitHub actor makes a pull request review (approving, commenting, requesting changes).
+ *
+ * for further details, refer to: https://docs.github.com/en/rest/using-the-rest-api/github-event-types?apiVersion=2022-11-28
+ */
 
 @Injectable()
 export class PullRequestReviewGithubEventsService {
@@ -185,24 +192,71 @@ export class PullRequestReviewGithubEventsService {
   async genPrReviewHistogram(
     options: PullRequestReviewHistogramDto
   ): Promise<DbPullRequestReviewGitHubEventsHistogram[]> {
-    if (!options.contributor && !options.repo && !options.topic && !options.filter && !options.repoIds) {
-      throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
+    if (!options.contributor && !options.repo && !options.repoIds) {
+      throw new BadRequestException("must provide contributor, repo, or repoIds");
     }
 
     const order = options.orderDirection!;
     const range = options.range!;
-    const repo = options.repo!;
+    const startDate = GetPrevDateISOString(options.prev_days_start_date);
+    const width = options.width!;
 
     const queryBuilder = this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 
     queryBuilder
-      .select("time_bucket('1 day', event_time)", "bucket")
-      .addSelect("count(*)", "prs_count")
+      .select(`time_bucket('${width} day', event_time)`, "bucket")
+      .addSelect("count(CASE WHEN LOWER(pr_review_action) = 'created' THEN 1 END)", "all_reviews")
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_review_author_association) = 'contributor' THEN 1 END)",
+        "collaborator_associated_reviews"
+      )
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_review_author_association) = 'contributor' THEN 1 END)",
+        "contributor_associated_reviews"
+      )
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_review_author_association) = 'member' THEN 1 END)",
+        "member_associated_reviews"
+      )
+      .addSelect("count(CASE WHEN LOWER(pr_review_author_association) = 'none' THEN 1 END)", "non_associated_reviews")
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_review_author_association) = 'owner' THEN 1 END)",
+        "owner_associated_reviews"
+      )
+      .addSelect("count(CASE WHEN LOWER(pr_review_state) = 'approved' THEN 1 END)", "approved_reviews")
+      .addSelect("count(CASE WHEN LOWER(pr_review_state) = 'commented' THEN 1 END)", "commented_reviews")
+      .addSelect(
+        "count(CASE WHEN LOWER(pr_review_state) = 'changes_requested' THEN 1 END)",
+        "changes_requested_reviews"
+      )
       .from("pull_request_review_github_events", "pull_request_review_github_events")
-      .where(`LOWER("repo_name") = LOWER(:repo)`, { repo: repo.toLowerCase() })
-      .andWhere(`now() - INTERVAL '${range} days' <= "event_time"`)
+      .where(`'${startDate}':: TIMESTAMP >= "pull_request_review_github_events"."event_time"`)
+      .andWhere(
+        `'${startDate}':: TIMESTAMP - INTERVAL '${range} days' <= "pull_request_review_github_events"."event_time"`
+      )
       .groupBy("bucket")
       .orderBy("bucket", order);
+
+    /* filter on the provided pull req review author */
+    if (options.contributor) {
+      queryBuilder.andWhere(`LOWER("pull_request_review_github_events"."pr_review_author_login") = LOWER(:author)`, {
+        author: options.contributor,
+      });
+    }
+
+    /* apply consumer provided repo name filters */
+    if (options.repo) {
+      queryBuilder.andWhere(`LOWER("pull_request_review_github_events"."repo_name") IN (:...repoNames)`).setParameters({
+        repoNames: options.repo.toLowerCase().split(","),
+      });
+    }
+
+    /* apply filters for consumer provided repo ids */
+    if (options.repoIds) {
+      queryBuilder.andWhere(`"pull_request_review_github_events"."repo_id" IN (:...repoIds)`).setParameters({
+        repoIds: options.repoIds.split(","),
+      });
+    }
 
     const rawResults = await queryBuilder.getRawMany();
 

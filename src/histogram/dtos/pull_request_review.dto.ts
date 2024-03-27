@@ -1,3 +1,3 @@
-import { BaseHistogramDto } from "./base";
+import { BaseHistogramDto } from "./base.dto";
 
 export class PullRequestReviewHistogramDto extends BaseHistogramDto {}

@@ -3,7 +3,7 @@ import { Repository, SelectQueryBuilder } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 
 import { PageDto } from "../common/dtos/page.dto";
-import { DbPullRequestGitHubEvents } from "../timescale/entities/pull_request_github_event";
+import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event.entity";
 import {
   ContributorStatsOrderEnum,
   ContributorStatsTypeEnum,

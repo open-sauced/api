@@ -1,7 +1,6 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsEnum, IsIn, IsInt, IsOptional, IsString } from "class-validator";
-import { InsightFilterFieldsEnum } from "../../insight/dtos/insight-options.dto";
 import { OrderDirectionEnum } from "../../common/constants/order-direction.constant";
 
 export class BaseHistogramDto {
@@ -64,20 +63,4 @@ export class BaseHistogramDto {
   @IsEnum(OrderDirectionEnum)
   @IsOptional()
   readonly orderDirection?: OrderDirectionEnum = OrderDirectionEnum.DESC;
-
-  @ApiPropertyOptional({
-    enum: InsightFilterFieldsEnum,
-    enumName: "InsightFilterFieldsEnum",
-  })
-  @IsEnum(InsightFilterFieldsEnum)
-  @IsOptional()
-  readonly filter?: InsightFilterFieldsEnum;
-
-  @ApiPropertyOptional({
-    type: "string",
-    default: "",
-  })
-  @IsString()
-  @IsOptional()
-  readonly topic?: string;
 }

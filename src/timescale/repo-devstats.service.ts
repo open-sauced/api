@@ -7,11 +7,11 @@ import { avgRepoActivityRatioSample } from "../common/calculations/avg-repo-acti
 import { PageDto } from "../common/dtos/page.dto";
 import { PageMetaDto } from "../common/dtos/page-meta.dto";
 import { DbRepoContributor } from "../repo/entities/repo_contributors.entity";
-import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event";
-import { DbIssuesGitHubEvents } from "./entities/issues_github_event";
-import { DbPushGitHubEvents } from "./entities/push_github_events";
-import { DbWatchGitHubEvents } from "./entities/watch_github_events";
-import { DbForkGitHubEvents } from "./entities/fork_github_events";
+import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event.entity";
+import { DbIssuesGitHubEvents } from "./entities/issues_github_event.entity";
+import { DbPushGitHubEvents } from "./entities/push_github_events.entity";
+import { DbWatchGitHubEvents } from "./entities/watch_github_events.entity";
+import { DbForkGitHubEvents } from "./entities/fork_github_events.entity";
 
 @Injectable()
 export class RepoDevstatsService {
