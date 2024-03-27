@@ -11,6 +11,7 @@ import { PageDto } from "../common/dtos/page.dto";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { UserListService } from "../user-lists/user-list.service";
 import { PullRequestReviewHistogramDto } from "../histogram/dtos/pull_request_review.dto";
+import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { DbPullRequestReviewGitHubEvents } from "./entities/pull_request_review_github_event.entity";
 import { DbPullRequestReviewGitHubEventsHistogram } from "./entities/pull_request_review_github_events_histogram.entity";
 
@@ -196,10 +197,10 @@ export class PullRequestReviewGithubEventsService {
       throw new BadRequestException("must provide contributor, repo, or repoIds");
     }
 
-    const order = options.orderDirection!;
-    const range = options.range!;
-    const startDate = GetPrevDateISOString(options.prev_days_start_date);
-    const width = options.width!;
+    const { range } = options;
+    const order = options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate = GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width = options.width ?? 1;
 
     const queryBuilder = this.pullRequestReviewGithubEventsRepository.manager.createQueryBuilder();
 

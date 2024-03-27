@@ -14,6 +14,7 @@ import { UserListService } from "../user-lists/user-list.service";
 import { PullRequestContributorOptionsDto } from "../pull-requests/dtos/pull-request-contributor-options.dto";
 import { DbPullRequestContributor } from "../pull-requests/dtos/pull-request-contributor.dto";
 import { PullRequestContributorInsightsDto } from "../pull-requests/dtos/pull-request-contributor-insights.dto";
+import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { DbPullRequestGitHubEvents } from "./entities/pull_request_github_event.entity";
 import { DbPullRequestGitHubEventsHistogram } from "./entities/pull_request_github_events_histogram.entity";
 import { DbRossContributorsHistogram, DbRossIndexHistogram } from "./entities/ross_index_histogram.entity";
@@ -489,10 +490,10 @@ export class PullRequestGithubEventsService {
       throw new BadRequestException("must provide contributor, repo, topic, filter, or repoIds");
     }
 
-    const order = options.orderDirection!;
-    const range = options.range!;
-    const startDate = GetPrevDateISOString(options.prev_days_start_date);
-    const width = options.width!;
+    const { range } = options;
+    const order = options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate = GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width = options.width ?? 1;
 
     const cteBuilder = this.pullRequestGithubEventsRepository
       .createQueryBuilder("pull_request_github_events")
