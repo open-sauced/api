@@ -7,6 +7,7 @@ import { ObjectLiteral, Repository } from "typeorm";
 import { ConfigService } from "@nestjs/config";
 
 import { User } from "@supabase/supabase-js";
+import { DbForkGitHubEventsHistogram } from "../../timescale/entities/fork_github_events_histogram.entity";
 import { userNotificationTypes } from "../entities/user-notification.constants";
 import { DbUser } from "../user.entity";
 import { DbUserHighlightReaction } from "../entities/user-highlight-reaction.entity";
@@ -33,6 +34,7 @@ import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity
 import { DbWorkspaceContributor } from "../../workspace/entities/workspace-contributors.entity";
 import { DbWatchGitHubEvents } from "../../timescale/entities/watch_github_events.entity";
 import { DbForkGitHubEvents } from "../../timescale/entities/fork_github_events.entity";
+import { ForkGithubEventsService } from "../../timescale/fork_github_events.service";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -57,6 +59,7 @@ describe("UserService", () => {
       providers: [
         UserService,
         ConfigService,
+        ForkGithubEventsService,
         PullRequestGithubEventsService,
         RepoDevstatsService,
         RepoService,
@@ -110,6 +113,10 @@ describe("UserService", () => {
         },
         {
           provide: getRepositoryToken(DbForkGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbForkGitHubEventsHistogram, "TimescaleConnection"),
           useValue: createMockRepository(),
         },
         {

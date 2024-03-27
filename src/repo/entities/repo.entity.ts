@@ -542,6 +542,18 @@ export class DbRepo extends BaseEntity {
   public pr_velocity_count?: number;
 
   @ApiModelProperty({
+    description: "The average number of forks over a time span",
+    example: 15,
+    type: "float",
+  })
+  @Column({
+    type: "float",
+    select: false,
+    insert: false,
+  })
+  public fork_velocity?: number;
+
+  @ApiModelProperty({
     description: "Number of non-closed PRs updated within the day range",
     example: 0,
     type: "integer",

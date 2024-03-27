@@ -14,6 +14,7 @@ import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PullRequestGithubEventsService } from "../timescale/pull_request_github_events.service";
 import { RepoDevstatsService } from "../timescale/repo-devstats.service";
 import { UserService } from "../user/services/user.service";
+import { ForkGithubEventsService } from "../timescale/fork_github_events.service";
 import { RepoOrderFieldsEnum, RepoPageOptionsDto } from "./dtos/repo-page-options.dto";
 import { DbRepo } from "./entities/repo.entity";
 import { RepoSearchOptionsDto } from "./dtos/repo-search-options.dto";
@@ -26,6 +27,7 @@ export class RepoService {
     private filterService: RepoFilterService,
     @Inject(forwardRef(() => PullRequestGithubEventsService))
     private pullRequestGithubEventsService: PullRequestGithubEventsService,
+    private forkGithubEventsService: ForkGithubEventsService,
     private repoDevstatsService: RepoDevstatsService,
     private configService: ConfigService,
     private userService: UserService
@@ -183,6 +185,8 @@ export class RepoService {
         prevDaysStartDate
       );
 
+      const forksHisto = await this.forkGithubEventsService.genForkHistogram({ repo: entity.full_name, range });
+      const forksVelocity = forksHisto.reduce((acc, curr) => acc + curr.forks_count, 0) / range;
       const activityRatio = await this.repoDevstatsService.calculateRepoActivityRatio(entity.full_name, range);
       const confidence = await this.repoDevstatsService.calculateContributorConfidence(entity.full_name, range);
 
@@ -195,6 +199,7 @@ export class RepoService {
         draft_prs_count: prStats.draft_prs,
         closed_prs_count: prStats.closed_prs,
         pr_velocity_count: prStats.pr_velocity,
+        fork_velocity: forksVelocity,
         activity_ratio: activityRatio,
         contributor_confidence: confidence,
         health: activityRatio,
