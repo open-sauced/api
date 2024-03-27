@@ -5,6 +5,7 @@ import { GetPrevDateISOString } from "../common/util/datetimes";
 import { PushesHistogramDto } from "../histogram/dtos/pushes.dto";
 import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import { DbPushGitHubEventsHistogram } from "./entities/push_github_events_histogram.entity";
+import { DbPushGitHubEvents } from "./entities/push_github_events.entity";
 
 /*
  * push events, named "PushEvent" in the GitHub API, are when
@@ -73,5 +74,36 @@ export class PushGithubEventsService {
     const rawResults = await queryBuilder.getRawMany();
 
     return rawResults as DbPushGitHubEventsHistogram[];
+  }
+
+  async lastPushDatesForRepo(repo: string): Promise<{ push_date: Date; main_push_date: Date }> {
+    const startDate = GetPrevDateISOString(0);
+    const range = 30;
+
+    const queryBuilder = this.baseQueryBuilder();
+
+    queryBuilder
+      .select(`*`)
+      .from("push_github_events", "push_github_events")
+      .where(`'${startDate}':: TIMESTAMP >= "push_github_events"."event_time"`)
+      .andWhere(`'${startDate}':: TIMESTAMP - INTERVAL '${range} days' <= "push_github_events"."event_time"`)
+      .andWhere(`LOWER("push_github_events"."repo_name") = '${repo}'`)
+      .orderBy("event_time", OrderDirectionEnum.DESC);
+
+    const results = await queryBuilder.getRawMany<DbPushGitHubEvents>();
+
+    if (results.length === 0) {
+      return { push_date: new Date(0), main_push_date: new Date(0) };
+    }
+
+    const firstPushDate = results[0].event_time;
+    const mainMasterRegex = new RegExp("main|master");
+    const firstMainPushDate =
+      results.find((item) => item.push_ref && mainMasterRegex.test(item.push_ref))?.event_time ?? new Date(0);
+
+    return {
+      push_date: firstPushDate,
+      main_push_date: firstMainPushDate,
+    };
   }
 }

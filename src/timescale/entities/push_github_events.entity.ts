@@ -49,4 +49,11 @@ export class DbPushGitHubEvents extends BaseEntity {
   })
   @Column({ type: "bigint" })
   public push_num_commits?: number;
+
+  @ApiModelProperty({
+    description: "Name of the Git ref that was pushed to",
+    example: "ref/head/main",
+  })
+  @Column({ type: "text" })
+  public push_ref?: string;
 }

@@ -588,4 +588,26 @@ export class DbRepo extends BaseEntity {
     insert: false,
   })
   public health?: number;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing repository last push from GitHub events data",
+    example: "2022-08-28 22:04:39.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    select: false,
+    insert: false,
+  })
+  public last_pushed_at?: Date;
+
+  @ApiModelPropertyOptional({
+    description: "Timestamp representing repository last push from GitHub events data for the main branch",
+    example: "2022-08-28 22:04:39.000000",
+  })
+  @Column({
+    type: "timestamp without time zone",
+    select: false,
+    insert: false,
+  })
+  public last_main_pushed_at?: Date;
 }

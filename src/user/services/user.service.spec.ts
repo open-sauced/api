@@ -33,6 +33,8 @@ import { DbWorkspaceRepo } from "../../workspace/entities/workspace-repos.entity
 import { DbWorkspaceContributor } from "../../workspace/entities/workspace-contributors.entity";
 import { DbWatchGitHubEvents } from "../../timescale/entities/watch_github_events.entity";
 import { DbForkGitHubEvents } from "../../timescale/entities/fork_github_events.entity";
+import { PushGithubEventsService } from "../../timescale/push_github_events.service";
+import { DbPushGitHubEventsHistogram } from "../../timescale/entities/push_github_events_histogram.entity";
 import { UserService } from "./user.service";
 
 type MockRepository<T extends ObjectLiteral = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
@@ -58,6 +60,7 @@ describe("UserService", () => {
         UserService,
         ConfigService,
         PullRequestGithubEventsService,
+        PushGithubEventsService,
         RepoDevstatsService,
         RepoService,
         UserListService,
@@ -110,6 +113,10 @@ describe("UserService", () => {
         },
         {
           provide: getRepositoryToken(DbForkGitHubEvents, "TimescaleConnection"),
+          useValue: createMockRepository(),
+        },
+        {
+          provide: getRepositoryToken(DbPushGitHubEventsHistogram, "TimescaleConnection"),
           useValue: createMockRepository(),
         },
         {
