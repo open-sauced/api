@@ -5,6 +5,13 @@
 
 > All notable changes to this project will be documented in this file
 
+## [2.16.0-beta.2](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.16.0-beta.1...v2.16.0-beta.2) (2024-03-27)
+
+
+### 🐛 Bug Fixes
+
+* Adds checks for optional base-histo dto fields ([#683](https://github.com/open-sauced/api.opensauced.pizza/issues/683)) ([3e12381](https://github.com/open-sauced/api.opensauced.pizza/commit/3e12381630c0a7bf8f69ac7bf4653aaee772207e))
+
 ## [2.16.0-beta.1](https://github.com/open-sauced/api.opensauced.pizza/compare/v2.15.0...v2.16.0-beta.1) (2024-03-27)
 
 
