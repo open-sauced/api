@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { GetPrevDateISOString } from "../common/util/datetimes";
 import { ForksHistogramDto } from "../histogram/dtos/forks.dto";
+import { OrderDirectionEnum } from "../common/constants/order-direction.constant";
 import {
   DbForkGitHubEventsHistogram,
   DbTopForkGitHubEventsHistogram,
@@ -34,10 +35,10 @@ export class ForkGithubEventsService {
       throw new BadRequestException("must provide contributor, repo, or repoIds");
     }
 
-    const order = options.orderDirection!;
-    const range = options.range!;
-    const startDate = GetPrevDateISOString(options.prev_days_start_date);
-    const width = options.width!;
+    const { range } = options;
+    const order = options.orderDirection ?? OrderDirectionEnum.DESC;
+    const startDate = GetPrevDateISOString(options.prev_days_start_date ?? 0);
+    const width = options.width ?? 1;
 
     const queryBuilder = this.baseQueryBuilder();
 
